@@ -1,0 +1,3449 @@
+{
+  "schema": "polar.linux.saved-native-compute.v1",
+  "scope": "Offline Linux-local compute/FS diagnostic only; cannot supplement failed live control",
+  "clock_domain": "Linux time.perf_counter only, never subtract Windows/QPC time",
+  "spec_sha256": "6a145857f5da9c5221da70478a34d283d7692381fe5da78b966852b7b2e3fe1f",
+  "binary_sha256": "6d714e83f3c339c18a0a82577227cf936b2ab23b7c041476e0b05f463174894a",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "source_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "patch_sha256": "5a8a882a7d95e561da43b31d7caeb68ad7d64ae1a20851b8d932f2acf115cc68",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "is_original_upstream": false,
+    "is_baseline_40f7": false,
+    "tracker_patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "vision_frontend": {
+      "id": "image_contour_corners_v3",
+      "source_path": "overlays/corners_contour_v3.cpp",
+      "source_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c"
+    },
+    "patch_identity_format": "rmcs-own-source-performance-composition.v1",
+    "runtime_performance_profile": {
+      "schema": "rmcs.first-frame-performance.v1",
+      "id": "first-frame-trace",
+      "patch_sha256": "34d9c6681df772cfb415439ca779aa19bc48537ec1e2516271c03b8def3b04c4",
+      "generator_source_path": "overlays/prepare_first_frame_profile.py",
+      "generator_sha256": "7ae3e52ebda958f4037da3b019f0f64bc937fea6d951d16b2ad862fcda158e2f",
+      "trace_header_source_path": "overlays/first_frame_trace.hpp",
+      "trace_header_sha256": "93717eefc16f7033a51357870ef7585d857e641e0d4263593ffae0592a440f2d",
+      "request_preallocated": false,
+      "inference_during_setup": false,
+      "diagnostic_only": true
+    },
+    "performance_base_patch_sha256": "3ced3a3e41b4e6b6567f2b3b94f218817a043588fb0691b175ab55d5e3edbdf7"
+  },
+  "actual_image_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422",
+  "saved_input": {
+    "format": "v2_actual_frame_manifest",
+    "frame_id": 7,
+    "source": "native/binding_80592e12f3dd4acf94faa3e76ad61839/actual_frames/sensor_7.bgr",
+    "manifest": "native/binding_80592e12f3dd4acf94faa3e76ad61839/actual_frames/sensor_7.json",
+    "manifest_sha256": "606b79676eda1b6afbcc4c59d43488f4db5e4c72f4f1ba1be9181cd0888bd504",
+    "image_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422"
+  },
+  "storage": {
+    "mode": "tmpfs",
+    "native_image": "/dev/shm/polar-saved-native-aeufwopk/saved_input.bgr",
+    "retained_image": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-first-frame-trace-saved12-20261013/saved_input.bgr",
+    "workspace": "/dev/shm/polar-saved-native-aeufwopk",
+    "workspace_mode": "0o700",
+    "identical_retained_and_native_pixels": true
+  },
+  "preserved_capture_ns": 410000000,
+  "preserved_control_ns": 422000000,
+  "timestamp_or_pixel_changes": false,
+  "own_fields_omitted_not_archived": [
+    "hp",
+    "ammo",
+    "heat"
+  ],
+  "ready_before_capture_or_inference": true,
+  "live_80ms_budget_changed": false,
+  "diagnostic_response_timeout_s": 2.0,
+  "cases": [
+    {
+      "case": "same_packet_15",
+      "startup_s": 1.7354828610000013,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x55df1546e1b0 0x1000 0x0 0x0 0x0 0x7ffe2aefc468 0x78019a8aca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.01595368299999933,
+        "pid": 735,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-aeufwopk/same_packet_15",
+      "cpu": {
+        "user_s": 0.5667939999999999,
+        "system_s": 0.528368,
+        "peak_rss_kib_preclose": 147520,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 36.876751039,
+          "linux_local_response_perf": 36.930087526,
+          "response_s": 0.05333648700000282,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.012,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 1,
+          "linux_local_request_perf": 36.934752436,
+          "linux_local_response_perf": 36.935329201,
+          "response_s": 0.0005767650000052527,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 2,
+          "linux_local_request_perf": 36.939187955,
+          "linux_local_response_perf": 36.939654213,
+          "response_s": 0.00046625799999588935,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 3,
+          "linux_local_request_perf": 36.942015876,
+          "linux_local_response_perf": 36.942522991,
+          "response_s": 0.000507114999997782,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 4,
+          "linux_local_request_perf": 36.946858336,
+          "linux_local_response_perf": 36.947359445,
+          "response_s": 0.0005011089999982232,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 5,
+          "linux_local_request_perf": 36.949656001,
+          "linux_local_response_perf": 36.950183042,
+          "response_s": 0.0005270409999980075,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 6,
+          "linux_local_request_perf": 36.953611482,
+          "linux_local_response_perf": 36.954089718,
+          "response_s": 0.0004782359999992991,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 7,
+          "linux_local_request_perf": 36.958550792,
+          "linux_local_response_perf": 36.959188916,
+          "response_s": 0.0006381240000052912,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 8,
+          "linux_local_request_perf": 36.964597932,
+          "linux_local_response_perf": 36.965132892,
+          "response_s": 0.0005349600000030819,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 9,
+          "linux_local_request_perf": 36.968889623,
+          "linux_local_response_perf": 36.96946215,
+          "response_s": 0.0005725269999956595,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 10,
+          "linux_local_request_perf": 36.972143592,
+          "linux_local_response_perf": 36.972619902,
+          "response_s": 0.00047630999999626056,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 11,
+          "linux_local_request_perf": 36.974622803,
+          "linux_local_response_perf": 36.975060335,
+          "response_s": 0.0004375319999994076,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 12,
+          "linux_local_request_perf": 36.977222038,
+          "linux_local_response_perf": 36.977662172,
+          "response_s": 0.00044013400000153524,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 13,
+          "linux_local_request_perf": 36.979568965,
+          "linux_local_response_perf": 36.980063582,
+          "response_s": 0.0004946170000010852,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 14,
+          "linux_local_request_perf": 36.982628236,
+          "linux_local_response_perf": 36.983162026,
+          "response_s": 0.0005337900000057516,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.012,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "phase_diagnostic": {
+        "schema": "polar.saved-native-phase-report.v1",
+        "available": true,
+        "required": true,
+        "expected_profile": "first-frame-trace",
+        "profile": "first-frame-trace",
+        "original_identity": {
+          "frame_id": 7,
+          "exposure_timestamp_ns": 410000000,
+          "control_time_ns": 422000000
+        },
+        "clock_domain": "linux_steady_diagnostic_only",
+        "eof_complete": true,
+        "valid": true,
+        "stream_valid": true,
+        "first_frame_complete": true,
+        "required_first_frame_phases": [
+          "actual_bgr_read",
+          "control",
+          "detector",
+          "first_tick",
+          "generate_request",
+          "infer",
+          "input_attach",
+          "pose_estimation",
+          "post_nms",
+          "request_create",
+          "resize",
+          "stdout_serialize",
+          "tensor_create",
+          "tracker"
+        ],
+        "missing_first_frame_phases": [],
+        "required_startup_phases": [
+          "model_compile"
+        ],
+        "missing_startup_phases": [],
+        "completed_phases": [
+          {
+            "phase": "model_compile",
+            "startup": true,
+            "begin_linux_steady_ns": 35531195772,
+            "end_linux_steady_ns": 36872555548,
+            "elapsed_ns": 1341359776,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "actual_bgr_read",
+            "startup": false,
+            "begin_linux_steady_ns": 36878874370,
+            "end_linux_steady_ns": 36881005564,
+            "elapsed_ns": 2131194,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tensor_create",
+            "startup": false,
+            "begin_linux_steady_ns": 36881030217,
+            "end_linux_steady_ns": 36881037160,
+            "elapsed_ns": 6943,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "request_create",
+            "startup": false,
+            "begin_linux_steady_ns": 36881037811,
+            "end_linux_steady_ns": 36881094483,
+            "elapsed_ns": 56672,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "resize",
+            "startup": false,
+            "begin_linux_steady_ns": 36881095232,
+            "end_linux_steady_ns": 36886418108,
+            "elapsed_ns": 5322876,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "input_attach",
+            "startup": false,
+            "begin_linux_steady_ns": 36886424604,
+            "end_linux_steady_ns": 36886462484,
+            "elapsed_ns": 37880,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "generate_request",
+            "startup": false,
+            "begin_linux_steady_ns": 36881029215,
+            "end_linux_steady_ns": 36886463418,
+            "elapsed_ns": 5434203,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "infer",
+            "startup": false,
+            "begin_linux_steady_ns": 36886464499,
+            "end_linux_steady_ns": 36918051784,
+            "elapsed_ns": 31587285,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "post_nms",
+            "startup": false,
+            "begin_linux_steady_ns": 36918071121,
+            "end_linux_steady_ns": 36920194289,
+            "elapsed_ns": 2123168,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "detector",
+            "startup": false,
+            "begin_linux_steady_ns": 36881027521,
+            "end_linux_steady_ns": 36924924162,
+            "elapsed_ns": 43896641,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "pose_estimation",
+            "startup": false,
+            "begin_linux_steady_ns": 36925728477,
+            "end_linux_steady_ns": 36928156209,
+            "elapsed_ns": 2427732,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tracker",
+            "startup": false,
+            "begin_linux_steady_ns": 36928162008,
+            "end_linux_steady_ns": 36929621799,
+            "elapsed_ns": 1459791,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "control",
+            "startup": false,
+            "begin_linux_steady_ns": 36929728561,
+            "end_linux_steady_ns": 36929948427,
+            "elapsed_ns": 219866,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "stdout_serialize",
+            "startup": false,
+            "begin_linux_steady_ns": 36929950379,
+            "end_linux_steady_ns": 36929966195,
+            "elapsed_ns": 15816,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "first_tick",
+            "startup": false,
+            "begin_linux_steady_ns": 36877995901,
+            "end_linux_steady_ns": 36929966885,
+            "elapsed_ns": 51970984,
+            "exception_unwinding": false
+          }
+        ],
+        "incomplete_phases": [],
+        "events": [
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "begin",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 35531195772,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "end",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 36872555548,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true,
+            "elapsed_ns": 1341359776,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36877995901,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36878874370,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881005564,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2131194,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881027521,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881029215,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881030217,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881037160,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 6943,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881037811,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881094483,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 56672,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36881095232,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36886418108,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 5322876,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36886424604,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36886462484,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 37880,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36886463418,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 5434203,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36886464499,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36918051784,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 31587285,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36918071121,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36920194289,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2123168,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36924924162,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 43896641,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36925728477,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36928156209,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2427732,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36928162008,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36929621799,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1459791,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36929728561,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36929948427,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 219866,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36929950379,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36929966195,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 15816,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 36929966885,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 51970984,
+            "exception_unwinding": false
+          }
+        ],
+        "errors": [],
+        "qualification": "Linux-local scoped phase wall durations; startup is zero-frame, not per-inference lifetime CPU",
+        "stderr_sha256": "43c055f67c5b5e4d980e254752d2ef3f4762321a75cd9bfbec027547e8958ee0",
+        "correlated_response_sample": 0
+      },
+      "actual_detector_samples": 1
+    },
+    {
+      "case": "fresh_first_1",
+      "startup_s": 0.8022584120000005,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x5b0490f411b0 0x1000 0x0 0x0 0x0 0x7ffc14831238 0x7b8b9eeaca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.01612224800000206,
+        "pid": 772,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-aeufwopk/fresh_first_1",
+      "cpu": {
+        "user_s": 0.622398,
+        "system_s": 0.29045199999999993,
+        "peak_rss_kib_preclose": 149084,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 37.918144114,
+          "linux_local_response_perf": 37.948125746,
+          "response_s": 0.029981632000001923,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.012,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "phase_diagnostic": {
+        "schema": "polar.saved-native-phase-report.v1",
+        "available": true,
+        "required": true,
+        "expected_profile": "first-frame-trace",
+        "profile": "first-frame-trace",
+        "original_identity": {
+          "frame_id": 7,
+          "exposure_timestamp_ns": 410000000,
+          "control_time_ns": 422000000
+        },
+        "clock_domain": "linux_steady_diagnostic_only",
+        "eof_complete": true,
+        "valid": true,
+        "stream_valid": true,
+        "first_frame_complete": true,
+        "required_first_frame_phases": [
+          "actual_bgr_read",
+          "control",
+          "detector",
+          "first_tick",
+          "generate_request",
+          "infer",
+          "input_attach",
+          "pose_estimation",
+          "post_nms",
+          "request_create",
+          "resize",
+          "stdout_serialize",
+          "tensor_create",
+          "tracker"
+        ],
+        "missing_first_frame_phases": [],
+        "required_startup_phases": [
+          "model_compile"
+        ],
+        "missing_startup_phases": [],
+        "completed_phases": [
+          {
+            "phase": "model_compile",
+            "startup": true,
+            "begin_linux_steady_ns": 37286917867,
+            "end_linux_steady_ns": 37915054480,
+            "elapsed_ns": 628136613,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "actual_bgr_read",
+            "startup": false,
+            "begin_linux_steady_ns": 37919331848,
+            "end_linux_steady_ns": 37921621467,
+            "elapsed_ns": 2289619,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tensor_create",
+            "startup": false,
+            "begin_linux_steady_ns": 37921661519,
+            "end_linux_steady_ns": 37921669941,
+            "elapsed_ns": 8422,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "request_create",
+            "startup": false,
+            "begin_linux_steady_ns": 37921671488,
+            "end_linux_steady_ns": 37921753356,
+            "elapsed_ns": 81868,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "resize",
+            "startup": false,
+            "begin_linux_steady_ns": 37921754957,
+            "end_linux_steady_ns": 37923203256,
+            "elapsed_ns": 1448299,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "input_attach",
+            "startup": false,
+            "begin_linux_steady_ns": 37923205665,
+            "end_linux_steady_ns": 37923232254,
+            "elapsed_ns": 26589,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "generate_request",
+            "startup": false,
+            "begin_linux_steady_ns": 37921659597,
+            "end_linux_steady_ns": 37923233415,
+            "elapsed_ns": 1573818,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "infer",
+            "startup": false,
+            "begin_linux_steady_ns": 37923234391,
+            "end_linux_steady_ns": 37945065391,
+            "elapsed_ns": 21831000,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "post_nms",
+            "startup": false,
+            "begin_linux_steady_ns": 37945078230,
+            "end_linux_steady_ns": 37945209430,
+            "elapsed_ns": 131200,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "detector",
+            "startup": false,
+            "begin_linux_steady_ns": 37921656926,
+            "end_linux_steady_ns": 37945502174,
+            "elapsed_ns": 23845248,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "pose_estimation",
+            "startup": false,
+            "begin_linux_steady_ns": 37945550793,
+            "end_linux_steady_ns": 37945820554,
+            "elapsed_ns": 269761,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tracker",
+            "startup": false,
+            "begin_linux_steady_ns": 37945822443,
+            "end_linux_steady_ns": 37947340073,
+            "elapsed_ns": 1517630,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "control",
+            "startup": false,
+            "begin_linux_steady_ns": 37947452811,
+            "end_linux_steady_ns": 37947947221,
+            "elapsed_ns": 494410,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "stdout_serialize",
+            "startup": false,
+            "begin_linux_steady_ns": 37947953061,
+            "end_linux_steady_ns": 37947969765,
+            "elapsed_ns": 16704,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "first_tick",
+            "startup": false,
+            "begin_linux_steady_ns": 37918944089,
+            "end_linux_steady_ns": 37947970641,
+            "elapsed_ns": 29026552,
+            "exception_unwinding": false
+          }
+        ],
+        "incomplete_phases": [],
+        "events": [
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "begin",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 37286917867,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "end",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 37915054480,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true,
+            "elapsed_ns": 628136613,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37918944089,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37919331848,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921621467,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2289619,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921656926,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921659597,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921661519,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921669941,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 8422,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921671488,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921753356,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 81868,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37921754957,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37923203256,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1448299,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37923205665,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37923232254,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 26589,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37923233415,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1573818,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37923234391,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945065391,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 21831000,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945078230,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945209430,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 131200,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945502174,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 23845248,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945550793,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945820554,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 269761,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37945822443,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37947340073,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1517630,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37947452811,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37947947221,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 494410,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37947953061,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37947969765,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 16704,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 37947970641,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 29026552,
+            "exception_unwinding": false
+          }
+        ],
+        "errors": [],
+        "qualification": "Linux-local scoped phase wall durations; startup is zero-frame, not per-inference lifetime CPU",
+        "stderr_sha256": "01ca03989f0f5fe7a462f76b89ec19397a3241f674da3c7f9d20507b86fc68ea",
+        "correlated_response_sample": 0
+      },
+      "actual_detector_samples": 1
+    },
+    {
+      "case": "fresh_first_2",
+      "startup_s": 1.0853896160000005,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x630ccce161b0 0x1000 0x0 0x0 0x0 0x7ffd433a78d8 0x7517224aca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.015849951999996392,
+        "pid": 809,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-aeufwopk/fresh_first_2",
+      "cpu": {
+        "user_s": 0.5684930000000001,
+        "system_s": 0.3861460000000001,
+        "peak_rss_kib_preclose": 148192,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 39.177828444,
+          "linux_local_response_perf": 39.216316387,
+          "response_s": 0.0384879429999998,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.012,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "phase_diagnostic": {
+        "schema": "polar.saved-native-phase-report.v1",
+        "available": true,
+        "required": true,
+        "expected_profile": "first-frame-trace",
+        "profile": "first-frame-trace",
+        "original_identity": {
+          "frame_id": 7,
+          "exposure_timestamp_ns": 410000000,
+          "control_time_ns": 422000000
+        },
+        "clock_domain": "linux_steady_diagnostic_only",
+        "eof_complete": true,
+        "valid": true,
+        "stream_valid": true,
+        "first_frame_complete": true,
+        "required_first_frame_phases": [
+          "actual_bgr_read",
+          "control",
+          "detector",
+          "first_tick",
+          "generate_request",
+          "infer",
+          "input_attach",
+          "pose_estimation",
+          "post_nms",
+          "request_create",
+          "resize",
+          "stdout_serialize",
+          "tensor_create",
+          "tracker"
+        ],
+        "missing_first_frame_phases": [],
+        "required_startup_phases": [
+          "model_compile"
+        ],
+        "missing_startup_phases": [],
+        "completed_phases": [
+          {
+            "phase": "model_compile",
+            "startup": true,
+            "begin_linux_steady_ns": 38267694367,
+            "end_linux_steady_ns": 39173151503,
+            "elapsed_ns": 905457136,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "actual_bgr_read",
+            "startup": false,
+            "begin_linux_steady_ns": 39179804707,
+            "end_linux_steady_ns": 39181874999,
+            "elapsed_ns": 2070292,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tensor_create",
+            "startup": false,
+            "begin_linux_steady_ns": 39181893502,
+            "end_linux_steady_ns": 39181896803,
+            "elapsed_ns": 3301,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "request_create",
+            "startup": false,
+            "begin_linux_steady_ns": 39181897394,
+            "end_linux_steady_ns": 39181934402,
+            "elapsed_ns": 37008,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "resize",
+            "startup": false,
+            "begin_linux_steady_ns": 39181935131,
+            "end_linux_steady_ns": 39183525960,
+            "elapsed_ns": 1590829,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "input_attach",
+            "startup": false,
+            "begin_linux_steady_ns": 39183528659,
+            "end_linux_steady_ns": 39183550191,
+            "elapsed_ns": 21532,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "generate_request",
+            "startup": false,
+            "begin_linux_steady_ns": 39181892481,
+            "end_linux_steady_ns": 39183551195,
+            "elapsed_ns": 1658714,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "infer",
+            "startup": false,
+            "begin_linux_steady_ns": 39183552031,
+            "end_linux_steady_ns": 39209738425,
+            "elapsed_ns": 26186394,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "post_nms",
+            "startup": false,
+            "begin_linux_steady_ns": 39209750551,
+            "end_linux_steady_ns": 39209876197,
+            "elapsed_ns": 125646,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "detector",
+            "startup": false,
+            "begin_linux_steady_ns": 39181891333,
+            "end_linux_steady_ns": 39212018526,
+            "elapsed_ns": 30127193,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "pose_estimation",
+            "startup": false,
+            "begin_linux_steady_ns": 39212045539,
+            "end_linux_steady_ns": 39212301019,
+            "elapsed_ns": 255480,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tracker",
+            "startup": false,
+            "begin_linux_steady_ns": 39212304792,
+            "end_linux_steady_ns": 39215288667,
+            "elapsed_ns": 2983875,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "control",
+            "startup": false,
+            "begin_linux_steady_ns": 39215381370,
+            "end_linux_steady_ns": 39216161470,
+            "elapsed_ns": 780100,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "stdout_serialize",
+            "startup": false,
+            "begin_linux_steady_ns": 39216177648,
+            "end_linux_steady_ns": 39216199115,
+            "elapsed_ns": 21467,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "first_tick",
+            "startup": false,
+            "begin_linux_steady_ns": 39179034755,
+            "end_linux_steady_ns": 39216200348,
+            "elapsed_ns": 37165593,
+            "exception_unwinding": false
+          }
+        ],
+        "incomplete_phases": [],
+        "events": [
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "begin",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 38267694367,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "end",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 39173151503,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true,
+            "elapsed_ns": 905457136,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39179034755,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39179804707,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181874999,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2070292,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181891333,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181892481,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181893502,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181896803,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 3301,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181897394,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181934402,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 37008,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39181935131,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39183525960,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1590829,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39183528659,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39183550191,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 21532,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39183551195,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1658714,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39183552031,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39209738425,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 26186394,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39209750551,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39209876197,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 125646,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39212018526,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 30127193,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39212045539,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39212301019,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 255480,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39212304792,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39215288667,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2983875,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39215381370,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39216161470,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 780100,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39216177648,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39216199115,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 21467,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 39216200348,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 37165593,
+            "exception_unwinding": false
+          }
+        ],
+        "errors": [],
+        "qualification": "Linux-local scoped phase wall durations; startup is zero-frame, not per-inference lifetime CPU",
+        "stderr_sha256": "f3179a311adbc30cf521cd690cfe447efce1231091daa6a0af2e1880a08833c6",
+        "correlated_response_sample": 0
+      },
+      "actual_detector_samples": 1
+    },
+    {
+      "case": "fresh_first_3",
+      "startup_s": 1.097862354,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x60654adfc1b0 0x1000 0x0 0x0 0x0 0x7ffc561c4e98 0x7f81f48aca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.015796332999997276,
+        "pid": 846,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-aeufwopk/fresh_first_3",
+      "cpu": {
+        "user_s": 0.6379009999999998,
+        "system_s": 0.34129699999999996,
+        "peak_rss_kib_preclose": 148340,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 40.487452762,
+          "linux_local_response_perf": 40.520266943,
+          "response_s": 0.032814181000006215,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.422,
+            "clock_time_ns": 422000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.012,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "phase_diagnostic": {
+        "schema": "polar.saved-native-phase-report.v1",
+        "available": true,
+        "required": true,
+        "expected_profile": "first-frame-trace",
+        "profile": "first-frame-trace",
+        "original_identity": {
+          "frame_id": 7,
+          "exposure_timestamp_ns": 410000000,
+          "control_time_ns": 422000000
+        },
+        "clock_domain": "linux_steady_diagnostic_only",
+        "eof_complete": true,
+        "valid": true,
+        "stream_valid": true,
+        "first_frame_complete": true,
+        "required_first_frame_phases": [
+          "actual_bgr_read",
+          "control",
+          "detector",
+          "first_tick",
+          "generate_request",
+          "infer",
+          "input_attach",
+          "pose_estimation",
+          "post_nms",
+          "request_create",
+          "resize",
+          "stdout_serialize",
+          "tensor_create",
+          "tracker"
+        ],
+        "missing_first_frame_phases": [],
+        "required_startup_phases": [
+          "model_compile"
+        ],
+        "missing_startup_phases": [],
+        "completed_phases": [
+          {
+            "phase": "model_compile",
+            "startup": true,
+            "begin_linux_steady_ns": 39613979548,
+            "end_linux_steady_ns": 40486248705,
+            "elapsed_ns": 872269157,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "actual_bgr_read",
+            "startup": false,
+            "begin_linux_steady_ns": 40489002468,
+            "end_linux_steady_ns": 40491027715,
+            "elapsed_ns": 2025247,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tensor_create",
+            "startup": false,
+            "begin_linux_steady_ns": 40491052153,
+            "end_linux_steady_ns": 40491056686,
+            "elapsed_ns": 4533,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "request_create",
+            "startup": false,
+            "begin_linux_steady_ns": 40491057294,
+            "end_linux_steady_ns": 40491103105,
+            "elapsed_ns": 45811,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "resize",
+            "startup": false,
+            "begin_linux_steady_ns": 40491103862,
+            "end_linux_steady_ns": 40492562776,
+            "elapsed_ns": 1458914,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "input_attach",
+            "startup": false,
+            "begin_linux_steady_ns": 40492566075,
+            "end_linux_steady_ns": 40492591114,
+            "elapsed_ns": 25039,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "generate_request",
+            "startup": false,
+            "begin_linux_steady_ns": 40491050939,
+            "end_linux_steady_ns": 40492592298,
+            "elapsed_ns": 1541359,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "infer",
+            "startup": false,
+            "begin_linux_steady_ns": 40492593147,
+            "end_linux_steady_ns": 40513538064,
+            "elapsed_ns": 20944917,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "post_nms",
+            "startup": false,
+            "begin_linux_steady_ns": 40513551128,
+            "end_linux_steady_ns": 40513751911,
+            "elapsed_ns": 200783,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "detector",
+            "startup": false,
+            "begin_linux_steady_ns": 40491049254,
+            "end_linux_steady_ns": 40517426039,
+            "elapsed_ns": 26376785,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "pose_estimation",
+            "startup": false,
+            "begin_linux_steady_ns": 40517444901,
+            "end_linux_steady_ns": 40517628810,
+            "elapsed_ns": 183909,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "tracker",
+            "startup": false,
+            "begin_linux_steady_ns": 40517630054,
+            "end_linux_steady_ns": 40519611157,
+            "elapsed_ns": 1981103,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "control",
+            "startup": false,
+            "begin_linux_steady_ns": 40519697684,
+            "end_linux_steady_ns": 40520039865,
+            "elapsed_ns": 342181,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "stdout_serialize",
+            "startup": false,
+            "begin_linux_steady_ns": 40520053829,
+            "end_linux_steady_ns": 40520068324,
+            "elapsed_ns": 14495,
+            "exception_unwinding": false
+          },
+          {
+            "phase": "first_tick",
+            "startup": false,
+            "begin_linux_steady_ns": 40488545885,
+            "end_linux_steady_ns": 40520068942,
+            "elapsed_ns": 31523057,
+            "exception_unwinding": false
+          }
+        ],
+        "incomplete_phases": [],
+        "events": [
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "begin",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 39613979548,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "model_compile",
+            "event": "end",
+            "frame_id": -1,
+            "exposure_timestamp_ns": -1,
+            "control_time_ns": -1,
+            "linux_steady_ns": 40486248705,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": true,
+            "elapsed_ns": 872269157,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40488545885,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40489002468,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "actual_bgr_read",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491027715,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 2025247,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491049254,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491050939,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491052153,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tensor_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491056686,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 4533,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491057294,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "request_create",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491103105,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 45811,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40491103862,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "resize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40492562776,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1458914,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40492566075,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "input_attach",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40492591114,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 25039,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "generate_request",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40492592298,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1541359,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40492593147,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "infer",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40513538064,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 20944917,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40513551128,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "post_nms",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40513751911,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 200783,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "detector",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40517426039,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 26376785,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40517444901,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "pose_estimation",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40517628810,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 183909,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40517630054,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "tracker",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40519611157,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 1981103,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40519697684,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "control",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40520039865,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 342181,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "begin",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40520053829,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "stdout_serialize",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40520068324,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 14495,
+            "exception_unwinding": false
+          },
+          {
+            "schema": "rmcs.first-frame-trace.v1",
+            "profile": "first-frame-trace",
+            "phase": "first_tick",
+            "event": "end",
+            "frame_id": 7,
+            "exposure_timestamp_ns": 410000000,
+            "control_time_ns": 422000000,
+            "linux_steady_ns": 40520068942,
+            "clock_domain": "linux_steady_diagnostic_only",
+            "startup": false,
+            "elapsed_ns": 31523057,
+            "exception_unwinding": false
+          }
+        ],
+        "errors": [],
+        "qualification": "Linux-local scoped phase wall durations; startup is zero-frame, not per-inference lifetime CPU",
+        "stderr_sha256": "a3939bafd116d0240ef1fd248dbc56496ab1bbf5f3b240ca85ae51915b50bbcf",
+        "correlated_response_sample": 0
+      },
+      "actual_detector_samples": 1
+    }
+  ],
+  "errors": [],
+  "phase_profile": "first-frame-trace",
+  "first_frame_phase_timings": {
+    "actual_bgr_read": {
+      "samples": 4,
+      "p50_ms": 2.100743,
+      "p95_ms": 2.26585525,
+      "p99_ms": 2.28486625,
+      "max_ms": 2.289619
+    },
+    "tensor_create": {
+      "samples": 4,
+      "p50_ms": 0.005738,
+      "p95_ms": 0.00820015,
+      "p99_ms": 0.008377629999999999,
+      "max_ms": 0.008422
+    },
+    "request_create": {
+      "samples": 4,
+      "p50_ms": 0.0512415,
+      "p95_ms": 0.0780886,
+      "p99_ms": 0.08111211999999998,
+      "max_ms": 0.081868
+    },
+    "resize": {
+      "samples": 4,
+      "p50_ms": 1.5248715,
+      "p95_ms": 4.763068949999998,
+      "p99_ms": 5.210914589999999,
+      "max_ms": 5.322876
+    },
+    "input_attach": {
+      "samples": 4,
+      "p50_ms": 0.025814,
+      "p95_ms": 0.03618635,
+      "p99_ms": 0.03754127,
+      "max_ms": 0.037880000000000004
+    },
+    "generate_request": {
+      "samples": 4,
+      "p50_ms": 1.616266,
+      "p95_ms": 4.867879649999999,
+      "p99_ms": 5.32093833,
+      "max_ms": 5.434203
+    },
+    "infer": {
+      "samples": 4,
+      "p50_ms": 24.008697,
+      "p95_ms": 30.777151349999997,
+      "p99_ms": 31.42525827,
+      "max_ms": 31.587285
+    },
+    "post_nms": {
+      "samples": 4,
+      "p50_ms": 0.1659915,
+      "p95_ms": 1.8348102499999992,
+      "p99_ms": 2.0654964499999995,
+      "max_ms": 2.1231679999999997
+    },
+    "detector": {
+      "samples": 4,
+      "p50_ms": 28.251989,
+      "p95_ms": 41.8312238,
+      "p99_ms": 43.483557559999994,
+      "max_ms": 43.896641
+    },
+    "pose_estimation": {
+      "samples": 4,
+      "p50_ms": 0.2626205,
+      "p95_ms": 2.1040363499999994,
+      "p99_ms": 2.3629928699999994,
+      "max_ms": 2.4277320000000002
+    },
+    "tracker": {
+      "samples": 4,
+      "p50_ms": 1.7493665000000003,
+      "p95_ms": 2.8334591999999996,
+      "p99_ms": 2.95379184,
+      "max_ms": 2.983875
+    },
+    "control": {
+      "samples": 4,
+      "p50_ms": 0.4182955,
+      "p95_ms": 0.7372464999999999,
+      "p99_ms": 0.7715293,
+      "max_ms": 0.7801
+    },
+    "stdout_serialize": {
+      "samples": 4,
+      "p50_ms": 0.01626,
+      "p95_ms": 0.020752549999999998,
+      "p99_ms": 0.02132411,
+      "max_ms": 0.021467
+    },
+    "first_tick": {
+      "samples": 4,
+      "p50_ms": 34.344325,
+      "p95_ms": 49.75017534999999,
+      "p99_ms": 51.52682227,
+      "max_ms": 51.970984
+    }
+  },
+  "startup_phase_timings": {
+    "model_compile": {
+      "samples": 4,
+      "p50_ms": 888.8631465,
+      "p95_ms": 1275.9743799999999,
+      "p99_ms": 1328.2826968,
+      "max_ms": 1341.359776
+    }
+  },
+  "phase_timing_qualification": "Four independent processes, first original exposure only; scoped wall timings are inclusive/nested, not additive or child-lifetime CPU; duplicate requests contribute no phase/inference samples",
+  "fresh_valid_first_inference": {
+    "samples": 4,
+    "p50_ms": 35.65106200000301,
+    "p95_ms": 51.10920540000236,
+    "p99_ms": 52.89103068000273,
+    "max_ms": 53.33648700000282
+  },
+  "duplicate_noninference_responses": {
+    "samples": 14,
+    "p50_ms": 0.5041119999980026,
+    "p95_ms": 0.5982406500052662,
+    "p99_ms": 0.6301473300052862,
+    "max_ms": 0.6381240000052912
+  },
+  "filesystem_stages": {
+    "read_s": {
+      "samples": 15,
+      "p50_ms": 0.3924150000003124,
+      "p95_ms": 2.0861830000022503,
+      "p99_ms": 2.143762200003465,
+      "max_ms": 2.1581570000037686
+    },
+    "sha256_s": {
+      "samples": 15,
+      "p50_ms": 1.9514840000027789,
+      "p95_ms": 2.053418299999521,
+      "p99_ms": 2.06121406000193,
+      "max_ms": 2.0631630000025325
+    },
+    "json_encode_s": {
+      "samples": 15,
+      "p50_ms": 0.03583600000212073,
+      "p95_ms": 0.06812230000221574,
+      "p99_ms": 0.07585645999952816,
+      "max_ms": 0.07778999999885627
+    }
+  },
+  "filesystem_samples": [
+    {
+      "sample": 0,
+      "read_s": 0.0021581570000037686,
+      "sha256_s": 0.0019481880000000729,
+      "json_encode_s": 7.778999999885627e-05
+    },
+    {
+      "sample": 1,
+      "read_s": 0.0020553370000016002,
+      "sha256_s": 0.001923986999997851,
+      "json_encode_s": 4.595900000481379e-05
+    },
+    {
+      "sample": 2,
+      "read_s": 0.0003924150000003124,
+      "sha256_s": 0.0020161999999999125,
+      "json_encode_s": 3.988899999995965e-05
+    },
+    {
+      "sample": 3,
+      "read_s": 0.00036761999999868067,
+      "sha256_s": 0.0020147880000038754,
+      "json_encode_s": 3.298899999748528e-05
+    },
+    {
+      "sample": 4,
+      "read_s": 0.0004076330000017947,
+      "sha256_s": 0.0020492419999982303,
+      "json_encode_s": 6.397900000365553e-05
+    },
+    {
+      "sample": 5,
+      "read_s": 0.0004102009999940037,
+      "sha256_s": 0.002039218000000176,
+      "json_encode_s": 5.0029000000506585e-05
+    },
+    {
+      "sample": 6,
+      "read_s": 0.000461620000002938,
+      "sha256_s": 0.0019612289999955124,
+      "json_encode_s": 3.922599999839349e-05
+    },
+    {
+      "sample": 7,
+      "read_s": 0.00037390899999678595,
+      "sha256_s": 0.0018827649999977325,
+      "json_encode_s": 3.104500000006283e-05
+    },
+    {
+      "sample": 8,
+      "read_s": 0.00048310799999740084,
+      "sha256_s": 0.0019897419999992394,
+      "json_encode_s": 3.583600000212073e-05
+    },
+    {
+      "sample": 9,
+      "read_s": 0.0003909359999951789,
+      "sha256_s": 0.0020631630000025325,
+      "json_encode_s": 3.7804999998058975e-05
+    },
+    {
+      "sample": 10,
+      "read_s": 0.000399855000004834,
+      "sha256_s": 0.0018824960000003443,
+      "json_encode_s": 3.226300000136462e-05
+    },
+    {
+      "sample": 11,
+      "read_s": 0.0003678879999995388,
+      "sha256_s": 0.0018858720000025642,
+      "json_encode_s": 3.0328000001134114e-05
+    },
+    {
+      "sample": 12,
+      "read_s": 0.00032752699999605284,
+      "sha256_s": 0.0019514840000027789,
+      "json_encode_s": 2.811499999921807e-05
+    },
+    {
+      "sample": 13,
+      "read_s": 0.0002942670000010139,
+      "sha256_s": 0.0018209169999963137,
+      "json_encode_s": 2.5626000002887395e-05
+    },
+    {
+      "sample": 14,
+      "read_s": 0.0002659489999956577,
+      "sha256_s": 0.0018247639999984244,
+      "json_encode_s": 2.499000000000251e-05
+    }
+  ],
+  "storage_cleanup": {
+    "tmpfs_created": true,
+    "tmpfs_path": "/dev/shm/polar-saved-native-aeufwopk",
+    "tmpfs_removed": true
+  }
+}

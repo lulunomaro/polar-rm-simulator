@@ -1,0 +1,40 @@
+{
+  "schema": "polar.sim.pb-navigation-manifest.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_pb_navigation",
+      "label": "explicit DDS fixture diagnostic",
+      "command": [
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+        "-u",
+        "-m",
+        "rm_match.integrations.pb_navigation_bridge",
+        "--domain-id",
+        "82",
+        "--expected-robot-id",
+        "red_sentry",
+        "--expected-episode",
+        "0",
+        "--expected-binding-epoch",
+        "1",
+        "--cloud-topic",
+        "/polar_sil_probe/red_sentry/livox/lidar",
+        "--pointcloud-topic",
+        "/polar_sil_probe/red_sentry/livox/lidar/pointcloud",
+        "--imu-topic",
+        "/polar_sil_probe/red_sentry/livox/imu",
+        "--request-topic",
+        "/polar_sil_probe/red_sentry/polar/pb/request",
+        "--result-topic",
+        "/polar_sil_probe/red_sentry/polar/pb/result",
+        "--odom-topic",
+        "/polar_sil_probe/red_sentry/Odometry",
+        "--clock-topic",
+        "/polar_sil_probe/red_sentry/clock",
+        "--tf-static-topic",
+        "/polar_sil_probe/red_sentry/tf_static"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator"
+    }
+  ]
+}

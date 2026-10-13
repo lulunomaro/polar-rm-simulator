@@ -12,12 +12,133 @@ import stat
 import sys
 import time
 import traceback
+import math
 import tempfile
 from contextlib import contextmanager
 from types import SimpleNamespace
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
+
+PHASE_PREFIX='[RMCS-FIRST-FRAME] '
+PHASE_SCHEMA='rmcs.first-frame-trace.v1'
+PHASE_PROFILES=('first-frame-trace','request-preallocate-trace')
+PHASE_NAMES=frozenset(('model_compile','request_preallocate','first_tick','actual_bgr_read',
+    'generate_request','tensor_create','request_create','input_attach','resize','infer','post_nms','detector',
+    'pose_estimation','tracker','control','stdout_serialize'))
+STARTUP_PHASE_NAMES=frozenset(('model_compile','request_preallocate','tensor_create','request_create'))
+CORE_FRAME_PHASES=frozenset(('first_tick','actual_bgr_read','generate_request','resize','input_attach','infer','post_nms',
+    'detector','pose_estimation','tracker','control','stdout_serialize'))
+
+
+def saved_request_identity(request):
+    """Original sensor/control clock identity, never host/QPC-derived stamps."""
+    if type(request.get('frame_id')) is not int or request['frame_id']<0:raise ValueError('Invalid saved frame identity')
+    values=[]
+    for name in ('capture_sim_time','observation_sim_time'):
+        value=request.get(name)
+        if type(value) not in (int,float) or not math.isfinite(value) or not 0<=value<=1e9:
+            raise ValueError('Invalid saved '+name)
+        values.append(round(value*1e9))
+    if values[1]<values[0]:raise ValueError('Saved control precedes exposure')
+    return dict(frame_id=request['frame_id'],exposure_timestamp_ns=values[0],control_time_ns=values[1])
+
+
+def parse_native_phase_stderr(text,request,*,expected_profile=None,eof_complete=True):
+    """Strict, bounded, Linux-local diagnostic protocol; no native execution.
+
+    Ordinary original ELF stderr remains compatible: absent diagnostic records
+    are reported unavailable, and become an error only when explicitly required.
+    EOF/partial phases and malformed or mismatched records never count as success.
+    """
+    if expected_profile is not None and expected_profile not in PHASE_PROFILES:raise ValueError('Unknown phase profile')
+    if type(text) is not str or len(text)>16*1024*1024:raise ValueError('Unbounded native stderr')
+    if type(eof_complete) is not bool:raise ValueError('Invalid phase EOF state')
+    identity=saved_request_identity(request)
+    records=[];completed=[];stack=[];errors=[];profile=None;last_ns=None
+    def error(code,line=None,phase=None):
+        row=dict(code=code)
+        if line is not None:row['line']=line
+        if phase is not None:row['phase']=phase
+        errors.append(row)
+    fields={'schema','profile','phase','event','frame_id','exposure_timestamp_ns','control_time_ns',
+        'linux_steady_ns','clock_domain','startup'}
+    for line_no,line in enumerate(text.splitlines(keepends=True),1):
+        if not line.startswith('[RMCS-FIRST-FRAME]'):continue
+        if len(records)>=4096:error('too_many_phase_records',line_no);break
+        if not line.startswith(PHASE_PREFIX):error('malformed_phase_prefix',line_no);continue
+        if not line.endswith('\n'):error('partial_phase_line_at_eof',line_no);continue
+        try:
+            row=_saved_json(line[len(PHASE_PREFIX):])
+            if type(row) is not dict:raise ValueError('phase object required')
+            event=row.get('event')
+            allowed=fields|({'elapsed_ns','exception_unwinding'} if event=='end' else set())
+            if set(row)!=allowed or event not in ('begin','end'):raise ValueError('phase fields')
+            if row['schema']!=PHASE_SCHEMA or type(row['schema']) is not str:raise ValueError('phase schema')
+            if type(row['profile']) is not str or row['profile'] not in PHASE_PROFILES:raise ValueError('phase profile')
+            if type(row['phase']) is not str or row['phase'] not in PHASE_NAMES:raise ValueError('phase name')
+            if type(row['startup']) is not bool or row['clock_domain']!='linux_steady_diagnostic_only':raise ValueError('phase clock/startup')
+            for key in ('frame_id','exposure_timestamp_ns','control_time_ns','linux_steady_ns'):
+                if type(row[key]) is not int or not (-1 if key!='linux_steady_ns' else 0)<=row[key]<=2**63-1:
+                    raise ValueError('phase integer')
+            if event=='end' and (type(row['elapsed_ns']) is not int or not 0<=row['elapsed_ns']<=2**63-1
+                or type(row['exception_unwinding']) is not bool):raise ValueError('phase end values')
+        except (ValueError,TypeError,OverflowError):error('invalid_phase_record',line_no);continue
+        records.append(row)
+        if profile is None:profile=row['profile']
+        if row['profile']!=profile or (expected_profile is not None and row['profile']!=expected_profile):error('phase_profile_mismatch',line_no,row['phase'])
+        if row['startup'] and row['phase'] not in STARTUP_PHASE_NAMES:error('invalid_startup_phase',line_no,row['phase'])
+        if not row['startup'] and row['phase'] in ('model_compile','request_preallocate'):error('startup_phase_marked_as_frame',line_no,row['phase'])
+        if (row['profile']=='request-preallocate-trace' and not row['startup']
+            and row['phase'] in ('tensor_create','request_create')):error('preallocated_request_created_inside_frame',line_no,row['phase'])
+        if row['profile']=='first-frame-trace' and row['startup'] and row['phase']!='model_compile':error('lazy_profile_preallocated_at_startup',line_no,row['phase'])
+        expected={k:-1 for k in identity} if row['startup'] else identity
+        if any(row[k]!=v for k,v in expected.items()):error('phase_original_identity_mismatch',line_no,row['phase'])
+        stamp=row['linux_steady_ns']
+        if last_ns is not None and stamp<last_ns:error('phase_clock_reversed',line_no,row['phase'])
+        last_ns=stamp
+        key=(row['startup'],row['phase'])
+        if row['event']=='begin':
+            if any((r['startup'],r['phase'])==key for r in stack):error('phase_duplicate_active_begin',line_no,row['phase'])
+            stack.append(row)
+        elif not stack or (stack[-1]['startup'],stack[-1]['phase'])!=key:
+            error('phase_end_without_matching_nested_begin',line_no,row['phase'])
+        else:
+            begin=stack.pop();elapsed=stamp-begin['linux_steady_ns']
+            if row['elapsed_ns']!=elapsed:error('phase_elapsed_mismatch',line_no,row['phase'])
+            if row['exception_unwinding']:error('phase_exception_unwinding',line_no,row['phase'])
+            completed.append(dict(phase=row['phase'],startup=row['startup'],begin_linux_steady_ns=begin['linux_steady_ns'],
+                end_linux_steady_ns=stamp,elapsed_ns=row['elapsed_ns'],exception_unwinding=row['exception_unwinding']))
+    if stack:
+        for row in stack:error('phase_begin_without_end_at_eof',phase=row['phase'])
+    if not eof_complete:error('phase_stream_eof_not_confirmed')
+    if not records and expected_profile is not None:error('required_phase_stream_missing')
+    counts={}
+    for row in completed:
+        key=(row['startup'],row['phase']);counts[key]=counts.get(key,0)+1
+    for (startup,phase),count in counts.items():
+        if count>1:error('phase_completed_more_than_once',phase=phase)
+    stream_valid=bool(records) and not errors
+    required=CORE_FRAME_PHASES
+    if profile=='first-frame-trace':required=required|{'tensor_create','request_create'}
+    elif profile=='request-preallocate-trace':required=required|{'input_attach'}
+    missing=sorted(phase for phase in required if counts.get((False,phase),0)!=1)
+    required_startup=({'model_compile','request_preallocate','tensor_create','request_create'}
+        if profile=='request-preallocate-trace' else {'model_compile'})
+    missing_startup=sorted(phase for phase in required_startup if counts.get((True,phase),0)!=1)
+    if records:
+        for phase in missing:error('required_first_frame_phase_missing',phase=phase)
+        for phase in missing_startup:error('required_startup_phase_missing',phase=phase)
+    first_frame_complete=stream_valid and not missing and not missing_startup
+    return dict(schema='polar.saved-native-phase-report.v1',available=bool(records),required=expected_profile is not None,
+        expected_profile=expected_profile,profile=profile,original_identity=identity,
+        clock_domain='linux_steady_diagnostic_only',eof_complete=eof_complete,
+        valid=bool(records) and not errors,stream_valid=stream_valid,first_frame_complete=first_frame_complete,
+        required_first_frame_phases=sorted(required),missing_first_frame_phases=missing,
+        required_startup_phases=sorted(required_startup),missing_startup_phases=missing_startup,
+        completed_phases=completed,incomplete_phases=[r['phase'] for r in stack],
+        events=records,errors=errors,
+        qualification='Linux-local scoped phase wall durations; startup is zero-frame, not per-inference lifetime CPU')
 
 
 def _saved_json(text):
@@ -138,10 +259,17 @@ def main():
     p.add_argument('--native-spec',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
     p.add_argument('--storage',choices=('drvfs','tmpfs'),default='drvfs')
+    p.add_argument('--phase-profile',choices=('none',*PHASE_PROFILES),default='none',
+        help='Require strict STDERR phase evidence only for an explicit diagnostic overlay; original ELF default remains compatible')
     a=p.parse_args()
     if sys.platform!='linux':raise RuntimeError('Run only in Linux, no Windows/host clock inference')
-    from rm_match.deployment.profile import validate_t2_spec
-    spec,spec_sha=validate_t2_spec(a.native_spec)
+    phase_profile=None if a.phase_profile=='none' else a.phase_profile
+    if phase_profile is None:
+        from rm_match.deployment.profile import validate_t2_spec
+        spec,spec_sha=validate_t2_spec(a.native_spec)
+    else:
+        from tools.validate_native_performance_profile import validate_performance_spec
+        spec,spec_sha=validate_performance_spec(a.native_spec,expected_profile=phase_profile)
     root=Path(os.path.abspath(a.run_root));out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
@@ -149,11 +277,13 @@ def main():
     request=saved['request'];content=saved['content'];image_sha=saved['sha256']
     write('SAVED_INPUT_PROVENANCE.json',saved['provenance'])
     write('NATIVE_SPEC.json',spec)
-    write('DIAGNOSTIC_SOURCE.json',{rel:hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
-        for rel in ('tools/diagnose_native_saved_compute.py','rm_match/operator/source_aim.py',
-            'rm_match/integrations/rmcs_process.py')})
+    diagnostic_sources=['tools/diagnose_native_saved_compute.py','rm_match/operator/source_aim.py',
+        'rm_match/integrations/rmcs_process.py']
+    if phase_profile is not None:diagnostic_sources.append('tools/validate_native_performance_profile.py')
+    write('DIAGNOSTIC_SOURCE.json',{rel:hashlib.sha256((ROOT/rel).read_bytes()).hexdigest() for rel in diagnostic_sources})
     with saved_storage_workspace(out,content,a.storage) as workspace:
-        try:report=run_saved_compute(spec,spec_sha,out,saved,workspace)
+        try:report=run_saved_compute(spec,spec_sha,out,saved,workspace,
+            phase_profile=phase_profile)
         except BaseException:
             (out/'exception.txt').write_text(traceback.format_exc(),encoding='utf-8')
             raise
@@ -165,7 +295,7 @@ def main():
     return 0 if not report['errors'] and report['storage_cleanup']['tmpfs_removed'] and all(c['cleanup']['proc_absent'] for c in report['cases']) else 2
 
 
-def run_saved_compute(spec,spec_sha,out,saved,workspace):
+def run_saved_compute(spec,spec_sha,out,saved,workspace,*,phase_profile=None):
     import resource
     from rm_match.camera_profile import SourceCameraProfile
     from rm_match.integrations.rmcs_contract import own_state
@@ -174,6 +304,7 @@ def run_saved_compute(spec,spec_sha,out,saved,workspace):
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
     request=saved['request'];image_sha=saved['sha256'];image=workspace['image']
+    saved_request_identity(request)
     captured=request['own_at_capture'];profile=SourceCameraProfile()
     own=own_state(SimpleNamespace(own_qpos=captured['own_qpos_at_capture'],own_qvel=captured['own_qvel_at_capture'],
         odom_xyyaw=captured['own_odom_at_capture'],odom_vxyw=captured['own_odom_velocity_at_capture'],
@@ -252,12 +383,35 @@ def run_saved_compute(spec,spec_sha,out,saved,workspace):
             if case_cwd!=case_out and case_cwd.exists():
                 try:shutil.copytree(case_cwd,case_out)
                 except OSError as exc:errors.append(dict(case=name,error='retain_case:'+type(exc).__name__+':'+str(exc)))
+        try:
+            stderr_bytes=_saved_read(case_out/'rmcs_stderr.log',out,16*1024*1024)
+            phases=parse_native_phase_stderr(stderr_bytes.decode('utf-8'),request,expected_profile=phase_profile,
+                eof_complete=cleanup['proc_absent'])
+            phases['stderr_sha256']=hashlib.sha256(stderr_bytes).hexdigest()
+            phases['correlated_response_sample']=0 if rows else None
+            if phases['available'] or phase_profile is not None:
+                if not phases['valid']:errors.append(dict(case=name,error='native_phase_diagnostic_failed',phase_errors=phases['errors']))
+        except (ValueError,OSError,UnicodeError) as exc:
+            phases=dict(available=False,valid=False,required=phase_profile is not None,
+                errors=[dict(code='phase_stderr_read_failed',error_type=type(exc).__name__)])
+            # An actual stderr evidence failure must remain visible even when
+            # original execution already failed; never synthesize absent stages.
+            errors.append(dict(case=name,error='native_phase_stderr_unavailable',phase_errors=phases['errors']))
+        write(name+'_phase_report.json',phases)
         cases.append(dict(case=name,startup_s=startup,zero_tick_readiness=readiness,error=error,cleanup=cleanup,
             child_cwd=str(case_cwd),cpu=cpu,tracking_mode_sha256=hashlib.sha256(spec['runtime_mode_contents'].encode('utf-8')).hexdigest(),
-            responses=rows,actual_detector_samples=sum(x['response']['detector_executed'] is True for x in rows)))
+            responses=rows,phase_diagnostic=phases,
+            actual_detector_samples=sum(x['response']['detector_executed'] is True for x in rows)))
         write('CASES_PARTIAL.json',cases)
     first=[x['responses'][0]['response_s'] for x in cases if x['responses'] and x['responses'][0]['response']['detector_executed']]
     duplicates=[x['response_s'] for x in cases[0]['responses'][1:] if not x['response']['detector_executed']]
+    phase_samples={};startup_phase_samples={}
+    for case in cases:
+        phases=case['phase_diagnostic']
+        if not phases.get('valid'):continue
+        for stage in phases['completed_phases']:
+            target=startup_phase_samples if stage['startup'] else phase_samples
+            target.setdefault(stage['phase'],[]).append(stage['elapsed_ns']/1e9)
     report=dict(schema='polar.linux.saved-native-compute.v1',scope='Offline Linux-local compute/FS diagnostic only; cannot supplement failed live control',
         clock_domain='Linux time.perf_counter only, never subtract Windows/QPC time',
         spec_sha256=spec_sha,binary_sha256=spec['sha256']['binary'],model_sha256=spec['model_sha256'],
@@ -269,6 +423,10 @@ def run_saved_compute(spec,spec_sha,out,saved,workspace):
         timestamp_or_pixel_changes=False,own_fields_omitted_not_archived=['hp','ammo','heat'],
         ready_before_capture_or_inference=True,live_80ms_budget_changed=False,
         diagnostic_response_timeout_s=2.,cases=cases,errors=errors,
+        phase_profile=phase_profile,
+        first_frame_phase_timings={k:distribution(v) for k,v in phase_samples.items()},
+        startup_phase_timings={k:distribution(v) for k,v in startup_phase_samples.items()},
+        phase_timing_qualification='Four independent processes, first original exposure only; scoped wall timings are inclusive/nested, not additive or child-lifetime CPU; duplicate requests contribute no phase/inference samples',
         fresh_valid_first_inference=distribution(first),duplicate_noninference_responses=distribution(duplicates),
         filesystem_stages={k:distribution([x[k] for x in fs]) for k in ('read_s','sha256_s','json_encode_s')},
         filesystem_samples=fs)

@@ -1,0 +1,19 @@
+{
+  "schema": "polar.sim.pb-interface-byte-equivalence.v1",
+  "built_upstream_commit": "8cb0fa51e336bf8d89648a81ff1f54b98c625d28",
+  "target_upstream_commit": "524e14a1ec714e427bde729a8f869bb7acd8507d",
+  "messages": {
+    "CustomMsg.msg": {
+      "built_sha256": "f42d6709db951b1fa307e929e742c0593cbf0d1b0ff977d2ed63ad8d7cee0a96",
+      "target_sha256": "f42d6709db951b1fa307e929e742c0593cbf0d1b0ff977d2ed63ad8d7cee0a96"
+    },
+    "CustomPoint.msg": {
+      "built_sha256": "b64b31a8edc8c8b3765d82b5d3ccd2d2e1f217b9525ef7007ab918674c619c59",
+      "target_sha256": "b64b31a8edc8c8b3765d82b5d3ccd2d2e1f217b9525ef7007ab918674c619c59"
+    }
+  },
+  "message_bytes_equal": true,
+  "scope": "original_message_bytes_only_no_hardware_driver_or_navigation_qualification",
+  "built_source_identity_sha256": "ddc7bb4689ff7596f4620fe66c9532249fafc4d25ec6b25af64cc0e46db218c1",
+  "target_source_identity_sha256": "50cf0acf8208bb5ae56cda79c4c0aa1018e448b07482425fc621e011f2681966"
+}

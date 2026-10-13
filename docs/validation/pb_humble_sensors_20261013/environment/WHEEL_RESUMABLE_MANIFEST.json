@@ -1,0 +1,132 @@
+[
+  {
+    "name": "mujoco",
+    "version": "3.15.0",
+    "ok": true,
+    "file": "mujoco-3.15.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "bytes": 30008078,
+    "sha256": "277774ddfabaf2b08df6f7c6946f22bddd0cbe7e92b1cf968864335f40673081",
+    "url": "https://files.pythonhosted.org/packages/38/49/71acbef3ead0b9bb5ec6802600c8a298bd28ba91d72b285e996c3f055cc6/mujoco-3.15.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "pip",
+    "version": "25.3",
+    "ok": true,
+    "file": "pip-25.3-py3-none-any.whl",
+    "bytes": 1778622,
+    "sha256": "9655943313a94722b7774661c21049070f6bbb0a1516bf02f7c8d5d9201514cd",
+    "url": "https://files.pythonhosted.org/packages/44/3c/d717024885424591d5376220b5e836c2d5293ce2011523c9de23ff7bf068/pip-25.3-py3-none-any.whl",
+    "requires_python": ">=3.9"
+  },
+  {
+    "name": "absl-py",
+    "version": "2.5.1",
+    "ok": true,
+    "file": "absl_py-2.5.1-py3-none-any.whl",
+    "bytes": 137673,
+    "sha256": "721200f2f0e9960f2ca9dc3a2a706b201f5f75d812c158f059cbbe29eeafbdb8",
+    "url": "https://files.pythonhosted.org/packages/b3/7d/01e62f59e4166af1be6238d9f2b7f3453630c51b8044b412d05b5606532a/absl_py-2.5.1-py3-none-any.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "etils",
+    "version": "1.13.0",
+    "ok": true,
+    "file": "etils-1.13.0-py3-none-any.whl",
+    "bytes": 170603,
+    "sha256": "d9cd4f40fbe77ad6613b7348a18132cc511237b6c076dbb89105c0b520a4c6bb",
+    "url": "https://files.pythonhosted.org/packages/e7/98/87b5946356095738cb90a6df7b35ff69ac5750f6e783d5fbcc5cb3b6cbd7/etils-1.13.0-py3-none-any.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "glfw",
+    "version": "2.10.2",
+    "ok": true,
+    "file": "glfw-2.10.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "bytes": 248490,
+    "sha256": "b860de3ca0686182483f98f3ddd12e660acf25b3e0d521450ec9a3f999f72a65",
+    "url": "https://files.pythonhosted.org/packages/69/84/1b98671314ea5f40397586b6cd14db913de3196333be558fdc177e61708f/glfw-2.10.2-py2.py3-none-manylinux_2_28_x86_64.whl",
+    "requires_python": null
+  },
+  {
+    "name": "PyOpenGL",
+    "version": "3.1.10",
+    "ok": true,
+    "file": "pyopengl-3.1.10-py3-none-any.whl",
+    "bytes": 3194996,
+    "sha256": "794a943daced39300879e4e47bd94525280685f42dbb5a998d336cfff151d74f",
+    "url": "https://files.pythonhosted.org/packages/de/e4/1ba6f44e491c4eece978685230dde56b14d51a0365bc1b774ddaa94d14cd/pyopengl-3.1.10-py3-none-any.whl",
+    "requires_python": null
+  },
+  {
+    "name": "websockets",
+    "version": "16.1.1",
+    "ok": true,
+    "file": "websockets-16.1.1-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+    "bytes": 186038,
+    "sha256": "1214e673c404684b9bf7154f5cf43b45025b1a6160fac3a9e438e9c1a97e22cb",
+    "url": "https://files.pythonhosted.org/packages/f3/18/a17e2f0cde02dc10154c808deed7e1d8528afff93612f70d3f0a5b19b011/websockets-16.1.1-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "fsspec",
+    "version": "2026.9.0",
+    "ok": true,
+    "file": "fsspec-2026.9.0-py3-none-any.whl",
+    "bytes": 221738,
+    "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f",
+    "url": "https://files.pythonhosted.org/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "importlib_resources",
+    "version": "7.1.0",
+    "ok": true,
+    "file": "importlib_resources-7.1.0-py3-none-any.whl",
+    "bytes": 37232,
+    "sha256": "1bd7b48b4088eddb2cd16382150bb515af0bd2c70128194392725f82ad2c96a1",
+    "url": "https://files.pythonhosted.org/packages/8a/db/55a262f3606bebcae07cc14095338471ad7c0bbcaa37707e6f0ee49725b7/importlib_resources-7.1.0-py3-none-any.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "typing_extensions",
+    "version": "4.16.0",
+    "ok": true,
+    "file": "typing_extensions-4.16.0-py3-none-any.whl",
+    "bytes": 45571,
+    "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+    "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+    "requires_python": ">=3.9"
+  },
+  {
+    "name": "zipp",
+    "version": "4.1.1",
+    "ok": true,
+    "file": "zipp-4.1.1-py3-none-any.whl",
+    "bytes": 10582,
+    "sha256": "8979f52d874162f485ff2981e3891f3a3317b7a3dd43ff1e1775b9304f307a9c",
+    "url": "https://files.pythonhosted.org/packages/b5/98/df615823cd9419131ce19fba00de53a663794369e198aade064a244b385d/zipp-4.1.1-py3-none-any.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "pillow",
+    "version": "12.3.0",
+    "ok": true,
+    "file": "pillow-12.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "bytes": 6925605,
+    "sha256": "f0606c8bf2cdefea14a43530f7657cbbb7ecf1c4222512492ef4a4434a9501ec",
+    "url": "https://files.pythonhosted.org/packages/4e/89/36f4cd76cf4baf05c50ababb976249153f18c959171c7f6ba09a6f217260/pillow-12.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "requires_python": ">=3.10"
+  },
+  {
+    "name": "numpy",
+    "version": "2.2.6",
+    "ok": true,
+    "file": "numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "bytes": 16801050,
+    "sha256": "fc7b73d02efb0e18c000e9ad8b83480dfcd5dfd11065997ed4c6747470ae8915",
+    "url": "https://files.pythonhosted.org/packages/b4/63/3de6a34ad7ad6646ac7d2f55ebc6ad439dbbf9c4370017c50cf403fb19b5/numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "requires_python": ">=3.10"
+  }
+]

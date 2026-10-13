@@ -1,0 +1,16 @@
+[2.718s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+Starting >>> loam_interface
+--- stderr: loam_interface
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/loam_interface` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+---
+Finished <<< loam_interface [4min 38s]
+Starting >>> point_lio
+Finished <<< point_lio [12min 32s]
+Starting >>> sensor_scan_generation
+--- stderr: sensor_scan_generation
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/sensor_scan_generation` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+---
+Finished <<< sensor_scan_generation [3min 54s]
+
+Summary: 3 packages finished [21min 6s]
+  2 packages had stderr output: loam_interface sensor_scan_generation

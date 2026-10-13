@@ -1,0 +1,75 @@
+{
+  "schema": "polar.evidence.preservation.v1",
+  "files": [
+    {
+      "path": "module/adapter_manifest.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_module_attempt1/adapter_manifest.json",
+      "sha256": "b8ffd84d7478167f047bc56a75880bd1967cd971d94cea3876fb0c771d996631"
+    },
+    {
+      "path": "module/BRIDGE_STDERR.log",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_module_attempt1/BRIDGE_STDERR.log",
+      "sha256": "49d214b589e0a1aa4469e8d377d897b8003bf88831b04cde65cd19aed7b736e8"
+    },
+    {
+      "path": "module/ENVIRONMENT.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_module_attempt1/ENVIRONMENT.json",
+      "sha256": "2aec69f7af2495058636269343d744f4b1db1a303ed829427a887282a350c507"
+    },
+    {
+      "path": "module/RESULT.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_module_attempt1/RESULT.json",
+      "sha256": "8d2e7d1e2f97eb778bea8cb7a27843ad4410dc3a09705d9c875fe5841f7a70f2"
+    },
+    {
+      "path": "module/WORKER_STDERR.log",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_module_attempt1/WORKER_STDERR.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "module/WORKER_STDOUT.log",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_module_attempt1/WORKER_STDOUT.log",
+      "sha256": "d7cfd15699f35b6e27c176731e45f6af22cc6e1da3f274457fae88d359a2715d"
+    },
+    {
+      "path": "bootstrap/adapter_manifest.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/adapter_manifest.json",
+      "sha256": "57ec2ebba05e711b69de4e5e9ed573e8f7b1957d6e6cc480e5aff7558e6840f1"
+    },
+    {
+      "path": "bootstrap/bridge_bootstrap.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/bridge_bootstrap.json",
+      "sha256": "253445687a55ec18bc722a81ec37be02d069f60b92a975830bf9db57b8ae7475"
+    },
+    {
+      "path": "bootstrap/BRIDGE_STDERR.log",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/BRIDGE_STDERR.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bootstrap/CHILD_PHASES.jsonl",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/CHILD_PHASES.jsonl",
+      "sha256": "d3d058bcd5e647c4124cb9c5a715772f9aaeb2af059e7c4ce417b18e85e97199"
+    },
+    {
+      "path": "bootstrap/ENVIRONMENT.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/ENVIRONMENT.json",
+      "sha256": "d43e551db7405cd27b339f365f4ce47b24d15379117e0e5a40af356f40db645c"
+    },
+    {
+      "path": "bootstrap/RESULT.json",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/RESULT.json",
+      "sha256": "a4c125cc17fba52c5c8cc4cb69e47c1554d1a1c8800e22dbdbdfefa671298435"
+    },
+    {
+      "path": "bootstrap/WORKER_STDERR.log",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/WORKER_STDERR.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "bootstrap/WORKER_STDOUT.log",
+      "original_path": "artifacts/ros2-local-lyrical-20261013/jsonl_bootstrap_attempt1/WORKER_STDOUT.log",
+      "sha256": "dbfc4a2d59f6276674654628c48f77cc97bea5d4cb3013506c8648c48770dbbc"
+    }
+  ]
+}

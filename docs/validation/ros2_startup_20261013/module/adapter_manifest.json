@@ -1,0 +1,32 @@
+{
+  "schema": "polar.sim.adapter.jsonl.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_ros2_startup_fixture",
+      "kind": "navigation",
+      "label": "Actual ROS startup/JSONL fixture; no physics/navigation",
+      "command": [
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+        "-u",
+        "-m",
+        "rm_match.integrations.ros2_bridge",
+        "--adapter-id",
+        "custom_ros2_startup_fixture",
+        "--kind",
+        "navigation",
+        "--node-name",
+        "polar_startup_bridge",
+        "--observation-topic",
+        "/polar/startup_690/observation",
+        "--action-topic",
+        "/polar/startup_690/action",
+        "--domain-id",
+        "80",
+        "--response-timeout",
+        "0.08"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "required_sensors": []
+    }
+  ]
+}

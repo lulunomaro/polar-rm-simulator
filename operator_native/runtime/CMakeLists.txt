@@ -24,6 +24,18 @@ if(RMCS_USE_CONTOUR_CORNERS)
   endif()
   set(RMCS_CORNERS_SOURCE "${RMCS_GENERATED_DIR}/corners_contour_v1.cpp")
 endif()
+set(RMCS_PERFORMANCE_PROFILE "original" CACHE STRING "Explicit first-frame diagnostic profile")
+set_property(CACHE RMCS_PERFORMANCE_PROFILE PROPERTY STRINGS original first-frame-trace request-preallocate-trace)
+set(RMCS_ARMOR_DETECTION_SOURCE candidate/src/module/detector/armor_detection.cpp)
+if(NOT RMCS_PERFORMANCE_PROFILE STREQUAL "original")
+  if(NOT RMCS_PERFORMANCE_PROFILE MATCHES "^(first-frame-trace|request-preallocate-trace)$")
+    message(FATAL_ERROR "Unknown diagnostic performance profile")
+  endif()
+  if(NOT EXISTS "${RMCS_GENERATED_DIR}/armor_detection_profile.cpp" OR NOT EXISTS "${RMCS_GENERATED_DIR}/first_frame_trace.hpp")
+    message(FATAL_ERROR "Performance profile requires separately generated hash-bound overlays")
+  endif()
+  set(RMCS_ARMOR_DETECTION_SOURCE "${RMCS_GENERATED_DIR}/armor_detection_profile.cpp")
+endif()
 add_executable(rmcs_sim_operator_fov
   "${RMCS_GENERATED_DIR}/main.cpp"
   candidate/src/kernel/detector.cpp
@@ -48,7 +60,7 @@ add_executable(rmcs_sim_operator_fov
   candidate/src/module/tracker/model/rune_energy_fitter.cpp
   candidate/src/module/tracker/model/virtual_rune.cpp
   candidate/src/module/detector/adjacency_lightbar.cpp
-  candidate/src/module/detector/armor_detection.cpp
+  ${RMCS_ARMOR_DETECTION_SOURCE}
   candidate/src/module/detector/green_light.cpp
   candidate/src/module/detector/lightbar.cpp
   candidate/src/module/detector/rune.cpp
@@ -64,6 +76,9 @@ target_include_directories(rmcs_sim_operator_fov PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}/shims"
   "${CMAKE_CURRENT_SOURCE_DIR}/candidate/src"
   "${CMAKE_CURRENT_SOURCE_DIR}/candidate/src/kernel")
+if(NOT RMCS_PERFORMANCE_PROFILE STREQUAL "original")
+  target_include_directories(rmcs_sim_operator_fov PRIVATE "${RMCS_GENERATED_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/candidate/src/module/detector")
+endif()
 # The unchanged source uses both <Eigen/...> and <eigen3/Eigen/...>.
 get_target_property(EIGEN_INCLUDE_DIRS Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES)
 foreach(EIGEN_INCLUDE IN LISTS EIGEN_INCLUDE_DIRS)

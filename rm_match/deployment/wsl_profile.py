@@ -137,6 +137,8 @@ def validate_wsl_spec(spec_path,*,repo_root,shared_out,distribution=DISTRIBUTION
         raise ValueError('wsl_spec_changed_after_registration')
     if type(spec) is not dict or spec.get('operator_identity')!='rmcs-sim-operator-fov-v1':
         raise ValueError('wsl_native_operator_identity_mismatch')
+    if 'performance_profile' in spec:
+        raise ValueError('wsl_diagnostic_performance_requires_explicit_offline_entry')
     source=spec.get('source_identity',{})
     revision,extra=profile.validate_source_identity(source)
     if revision!='contour-v3' or source.get('is_original_upstream') is not False or source.get('is_baseline_40f7') is not False:
@@ -164,6 +166,8 @@ def validate_wsl_spec(spec_path,*,repo_root,shared_out,distribution=DISTRIBUTION
     if build_sha!=frozen.get('manifest_sha256'):raise ValueError('wsl_build_manifest_hash_mismatch')
     identities[str(build_path)]=build_sha
     inputs=build.get('input_identity',{})
+    if 'performance_profile' in build or 'performance_profile' in inputs:
+        raise ValueError('wsl_diagnostic_performance_build_not_default_deployment')
     if (build.get('status')!='native_build_succeeded' or build.get('full_clean_compile') is not True
             or build.get('binary_sha256')!=hashes['binary'] or inputs.get('algorithm_identity')!=source
             or inputs.get('corner_refinement')!=revision or inputs.get('additional_source_files')!=extra):

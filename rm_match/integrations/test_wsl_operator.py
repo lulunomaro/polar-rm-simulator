@@ -182,7 +182,12 @@ class ActualWslSupervisorTests(unittest.TestCase):
         self.assertFalse((self.out/'worker/STARTUP.json').exists())
 
     def test_actual_frozen_elf_model_initialization_zero_tick_and_reap(self):
-        actor=WslOperatorProcess(ROOT/'artifacts/native-contour-v3-final-default-build/operator_source.local.json',
+        # A new builder identity invalidates old local specs even when the ELF
+        # bytes are unchanged. Select one actual build explicitly, never repair
+        # or silently replace the frozen historical spec.
+        spec=Path(os.environ.get('POLAR_WSL_TEST_SPEC',
+            str(ROOT/'artifacts/native-contour-v3-final-default-build/operator_source.local.json'))).absolute()
+        actor=WslOperatorProcess(spec,
             self.out,dict(fov_degrees=85.,circle_radius_x_norm=.25,circle_radius_y_norm=.25))
         start=time.perf_counter()
         try:
@@ -194,6 +199,7 @@ class ActualWslSupervisorTests(unittest.TestCase):
         finally:
             before=time.perf_counter(); actor.close(); closed=time.perf_counter()-before
             (self.out/'RESULT.json').write_text(json.dumps(dict(ready=actor.ready,cleanup=actor.cleanup,
+                selected_spec=str(spec),selected_spec_sha256=hashlib.sha256(spec.read_bytes()).hexdigest(),
                 startup_host_s=locals().get('startup'),close_host_s=closed,
                 qualification='Actual frozen ELF initialized, zero frames/native ticks/inference/physics; Windows host + WSL native, not live qualification'),indent=2)+'\n',encoding='utf8')
         self.assertLess(closed,1.5); self.assertTrue(actor.cleanup['reaped'])

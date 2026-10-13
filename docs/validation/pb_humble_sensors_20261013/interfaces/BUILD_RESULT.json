@@ -1,0 +1,16 @@
+{
+  "schema": "polar.sim.pb-interface-build.v1",
+  "command": [
+    "/bin/bash",
+    "-c",
+    "source /opt/ros/humble/setup.bash && exec colcon --log-base \"$1/logs\" build --base-paths \"$1/src/livox_ros_driver2\" --build-base \"$1/build\" --install-base \"$1/install\" --executor sequential --cmake-args -DBUILD_TESTING=OFF",
+    "pb-owned-build",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013"
+  ],
+  "elapsed_seconds": 46.841322228999985,
+  "returncode": 0,
+  "interfaces_only": true,
+  "system_install": false,
+  "source_identity_sha256": "ddc7bb4689ff7596f4620fe66c9532249fafc4d25ec6b25af64cc0e46db218c1",
+  "controller_built": false
+}

@@ -84,6 +84,11 @@ def validate_camera(camera,sim_time,*,image_token=None,robot_id=None,episode=Non
     return raw
 
 def validate_observation(value,*,image_bytes=None,image_token=None):
+    if type(value) is dict and value.get('schema') == 'polar.sim.navigation-observation.v1':
+        if image_token is not None: raise ContractError('navigation_profile_cannot_carry_camera_token')
+        from .navigation_contracts import validate_navigation_observation
+        if image_bytes is not None: image_bytes['raw'] = None
+        return validate_navigation_observation(value)
     # Validate and decode the SAME detached snapshot. A caller changing its
     # frame while we decode cannot pair copied metadata with older pixel bytes.
     value=copy.deepcopy(value)

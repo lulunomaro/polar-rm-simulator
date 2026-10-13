@@ -1,0 +1,29 @@
+{
+  "schema": "polar.humble-python-runtime.v1",
+  "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+  "executable": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+  "nodes_or_hardware_started": false,
+  "checks": {
+    "project_runtime_versions": true,
+    "Imu_real_typesupport_roundtrip": true,
+    "PointCloud2_real_typesupport_roundtrip": true,
+    "TransformStamped_real_typesupport_roundtrip": true,
+    "CustomMsg_real_typesupport_roundtrip": true,
+    "CustomPoint_real_typesupport_roundtrip": true,
+    "CPU_model_creation_no_step_no_renderer": true
+  },
+  "errors": [],
+  "versions": {
+    "numpy": "2.2.6",
+    "mujoco": "3.15.0",
+    "Pillow": "12.3.0",
+    "rclpy": "3.3.21"
+  },
+  "paths": {
+    "numpy": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/numpy/__init__.py",
+    "mujoco": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/mujoco/__init__.py",
+    "PIL": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/PIL/__init__.py",
+    "rclpy": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py"
+  },
+  "clean": true
+}

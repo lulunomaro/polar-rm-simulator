@@ -1,0 +1,31 @@
+[  3%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-first-frame-trace-build-20261013/generated/main.cpp.o
+[  6%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/detector.cpp.o
+[ 10%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/pose_estimator.cpp.o
+[ 13%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/tracker.cpp.o
+[ 16%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/fire_control.cpp.o
+[ 20%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/logging/printer.cpp.o
+[ 23%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/panic.cpp.o
+[ 26%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/image/process.cpp.o
+[ 30%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/camera.cpp.o
+[ 33%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-first-frame-trace-build-20261013/generated/corners_contour_v1.cpp.o
+[ 36%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/outpost.cpp.o
+[ 40%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/reprojection.cpp.o
+[ 43%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/robot.cpp.o
+[ 46%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_armors.cpp.o
+[ 50%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_pnp/outpost_distance_optimizer.cpp.o
+[ 53%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_pnp/pnp_solution.cpp.o
+[ 56%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_pnp/yaw_optimizer.cpp.o
+[ 60%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/outpost.cpp.o
+[ 63%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/robot.cpp.o
+[ 66%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/rune.cpp.o
+[ 70%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/rune_energy_fitter.cpp.o
+[ 73%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/virtual_rune.cpp.o
+[ 76%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/adjacency_lightbar.cpp.o
+[ 80%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-first-frame-trace-build-20261013/generated/armor_detection_profile.cpp.o
+[ 83%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/green_light.cpp.o
+[ 86%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/lightbar.cpp.o
+[ 90%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/rune.cpp.o
+[ 93%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/fire_control/shoot_evaluator.cpp.o
+[ 96%] Building CXX object CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/fire_control/trajectory_solution.cpp.o
+[100%] Linking CXX executable /mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-first-frame-trace-build-20261013/bin/rmcs_sim_operator_fov
+[100%] Built target rmcs_sim_operator_fov

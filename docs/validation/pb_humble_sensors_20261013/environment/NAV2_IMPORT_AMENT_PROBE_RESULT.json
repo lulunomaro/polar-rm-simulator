@@ -1,0 +1,15 @@
+[
+  {
+    "stage": "configure",
+    "command": [
+      "cmake",
+      "-S",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/nav2-import-ament-probe",
+      "-B",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/nav2-import-ament-probe-build",
+      "-DPython3_EXECUTABLE=/usr/bin/python3"
+    ],
+    "exit_code": 1,
+    "elapsed_s": 93.55637491700008
+  }
+]

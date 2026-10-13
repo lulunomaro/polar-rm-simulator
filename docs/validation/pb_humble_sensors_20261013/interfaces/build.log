@@ -1,0 +1,13 @@
+Starting >>> livox_ros_driver2
+--- stderr: livox_ros_driver2
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< livox_ros_driver2 [45.1s]
+
+Summary: 1 package finished [45.4s]
+  1 package had stderr output: livox_ros_driver2

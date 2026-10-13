@@ -8,7 +8,8 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from tools.diagnose_native_saved_compute import select_saved_native_input,saved_storage_workspace
+from tools.diagnose_native_saved_compute import (select_saved_native_input,saved_storage_workspace,
+    parse_native_phase_stderr,saved_request_identity,PHASE_PREFIX)
 
 
 class SavedNativeInputTests(unittest.TestCase):
@@ -155,6 +156,109 @@ class SavedNativeInputTests(unittest.TestCase):
         self.assertFalse(owned.exists());self.assertTrue(state['cleanup']['tmpfs_removed'])
         self.assertTrue(json.loads((out/'STORAGE_CLEANUP.json').read_text())['tmpfs_removed'])
         self.assertEqual((out/'saved_input.bgr').read_bytes(),self.raw)
+
+
+class NativePhaseProtocolTests(unittest.TestCase):
+    request=dict(frame_id=7,capture_sim_time=.4100000000000003,observation_sim_time=.4220000000000003)
+
+    def records(self,profile='first-frame-trace'):
+        records=[];stack=[];now=100
+        def emit(phase,event,startup=False):
+            nonlocal now
+            now+=100
+            identity={k:-1 for k in ('frame_id','exposure_timestamp_ns','control_time_ns')} if startup else saved_request_identity(self.request)
+            row=dict(schema='rmcs.first-frame-trace.v1',profile=profile,phase=phase,event=event,**identity,
+                linux_steady_ns=now,clock_domain='linux_steady_diagnostic_only',startup=startup)
+            if event=='begin':stack.append(now)
+            else:row.update(elapsed_ns=now-stack.pop(),exception_unwinding=False)
+            records.append(row)
+        emit('model_compile','begin',True);emit('model_compile','end',True)
+        if profile=='request-preallocate-trace':
+            emit('request_preallocate','begin',True)
+            for stage in ('tensor_create','request_create'):emit(stage,'begin',True);emit(stage,'end',True)
+            emit('request_preallocate','end',True)
+        emit('first_tick','begin')
+        emit('actual_bgr_read','begin');emit('actual_bgr_read','end')
+        emit('detector','begin');emit('generate_request','begin')
+        if profile=='first-frame-trace':
+            for stage in ('tensor_create','request_create'):emit(stage,'begin');emit(stage,'end')
+        for stage in ('resize','input_attach'):emit(stage,'begin');emit(stage,'end')
+        emit('generate_request','end')
+        for stage in ('infer','post_nms'):emit(stage,'begin');emit(stage,'end')
+        emit('detector','end')
+        for stage in ('pose_estimation','tracker','control','stdout_serialize'):emit(stage,'begin');emit(stage,'end')
+        emit('first_tick','end')
+        return records
+
+    def text(self,records):return 'Ordinary runtime warning remains stderr only\n'+''.join(PHASE_PREFIX+json.dumps(row)+'\n' for row in records)
+    def parse(self,records,profile='first-frame-trace',**kwargs):
+        return parse_native_phase_stderr(self.text(records),self.request,expected_profile=profile,**kwargs)
+
+    def test_both_profiles_correlate_original_identity_and_separate_startup(self):
+        for profile in ('first-frame-trace','request-preallocate-trace'):
+            with self.subTest(profile=profile):
+                result=self.parse(self.records(profile),profile)
+                self.assertTrue(result['valid']);self.assertTrue(result['stream_valid']);self.assertTrue(result['first_frame_complete'])
+                self.assertEqual(result['original_identity'],dict(frame_id=7,exposure_timestamp_ns=410000000,control_time_ns=422000000))
+                self.assertFalse(result['errors']);self.assertFalse(result['missing_first_frame_phases'])
+                for row in result['events']:
+                    if row['startup']:self.assertEqual((row['frame_id'],row['exposure_timestamp_ns'],row['control_time_ns']),(-1,-1,-1))
+                infer=[r for r in result['completed_phases'] if r['phase']=='infer']
+                self.assertEqual(len(infer),1);self.assertFalse(infer[0]['startup'])
+
+    def test_original_no_phase_compatible_but_required_missing_is_explicit(self):
+        result=parse_native_phase_stderr('ordinary startup stderr\n',self.request)
+        self.assertFalse(result['available']);self.assertFalse(result['valid']);self.assertFalse(result['first_frame_complete']);self.assertEqual(result['errors'],[])
+        result=parse_native_phase_stderr('',self.request,expected_profile='first-frame-trace')
+        self.assertIn('required_phase_stream_missing',[r['code'] for r in result['errors']])
+
+    def test_only_unrelated_complete_phase_cannot_pass_as_first_frame(self):
+        result=self.parse(self.records()[:2])
+        self.assertTrue(result['stream_valid']);self.assertFalse(result['first_frame_complete']);self.assertFalse(result['valid'])
+        self.assertIn('infer',result['missing_first_frame_phases'])
+
+    def test_identity_profile_clock_types_unknown_and_truth_fields_rejected(self):
+        for key,value in [('frame_id',8),('frame_id',True),('exposure_timestamp_ns',410000001),
+            ('control_time_ns',422000001),('profile','request-preallocate-trace'),('clock_domain','host_perf_counter'),
+            ('linux_steady_ns',float('nan')),('startup',1),('phase','unknown'),('world_xy',[1,2])]:
+            records=self.records();records[2][key]=value
+            with self.subTest(key=key,value=value):self.assertFalse(self.parse(records)['valid'])
+
+    def test_startup_identity_and_phase_semantics_not_mixed_with_frame(self):
+        for mutation in ('identity','infer_startup','input_attach_startup','prealloc_in_frame'):
+            records=self.records('request-preallocate-trace')
+            if mutation=='identity':records[0]['frame_id']=7
+            elif mutation=='prealloc_in_frame':
+                for row in records:
+                    if row['phase']=='tensor_create':row.update(startup=False,**saved_request_identity(self.request))
+            else:
+                target='infer' if mutation=='infer_startup' else 'input_attach'
+                for row in records:
+                    if row['phase']==target:row.update(startup=True,frame_id=-1,exposure_timestamp_ns=-1,control_time_ns=-1)
+            with self.subTest(mutation=mutation):self.assertFalse(self.parse(records,'request-preallocate-trace')['valid'])
+
+    def test_end_missing_unwind_elapsed_duplicate_clock_reverse_and_eof_rejected(self):
+        for mutation in ('missing_end','unwind','elapsed','duplicate','clock_reverse','bad_nesting','eof'):
+            records=self.records();kwargs={}
+            if mutation=='missing_end':records.pop()
+            elif mutation=='unwind':records[-1]['exception_unwinding']=True
+            elif mutation=='elapsed':records[-1]['elapsed_ns']+=1
+            elif mutation=='duplicate':records+=self.records()
+            elif mutation=='clock_reverse':records[-1]['linux_steady_ns']=0
+            elif mutation=='bad_nesting':records[-1]['phase']='infer'
+            else:kwargs['eof_complete']=False
+            with self.subTest(mutation=mutation):self.assertFalse(self.parse(records,**kwargs)['valid'])
+        truncated=self.text(self.records())[:-1]
+        result=parse_native_phase_stderr(truncated,self.request,expected_profile='first-frame-trace')
+        self.assertIn('partial_phase_line_at_eof',[r['code'] for r in result['errors']])
+
+    def test_exact_end_only_fields_duplicate_json_and_strict_saved_clock_identity(self):
+        records=self.records();records[0]['elapsed_ns']=0
+        self.assertFalse(self.parse(records)['valid'])
+        bad=PHASE_PREFIX+'{"schema":"x","schema":"y"}\n'
+        self.assertFalse(parse_native_phase_stderr(bad,self.request,expected_profile='first-frame-trace')['valid'])
+        for key,value in [('frame_id',True),('capture_sim_time',True),('capture_sim_time',float('inf')),('observation_sim_time',.40)]:
+            with self.subTest(key=key),self.assertRaises(ValueError):saved_request_identity(dict(self.request,**{key:value}))
 
 
 if __name__=='__main__':unittest.main()

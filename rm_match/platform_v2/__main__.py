@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--admission-manifest',required=True,
         help='Local server-owned role/robot grants; no implicit HTTP enrollment')
     parser.add_argument('--native-out',help='Local native process output root; never a network-selected executable')
+    parser.add_argument('--pb-navigation-manifest',help='Explicit local PolarBear pointcloud/IMU navigation process manifest')
     parser.add_argument('--real-time-factor',type=float,default=1.,help='Maximum simulation/wall rate; wall leases and deadlines never scale')
     args=parser.parse_args()
     from .admission import AdmissionPolicy
@@ -27,19 +28,28 @@ def main():
     if args.native_spec and not args.camera:parser.error('Native source requires --camera')
     if not 0<args.real_time_factor<=1:parser.error('--real-time-factor must be within (0, 1]')
     if not 0<args.max_wall_seconds<=3600:parser.error('--max-wall-seconds must be within (0, 3600]')
-    backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply);camera=None
+    navigation_config=None
+    if args.pb_navigation_manifest:
+        from ..navigation_sensors import NavigationSensorConfig
+        navigation_config=NavigationSensorConfig()
+    backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply,navigation_sensors=navigation_config);camera=None
     if args.camera:
         from .camera import CameraProvider
         camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps)
     from .adapters import default_registry
     registry=default_registry(native_spec=args.native_spec,native_out=args.native_out)
+    if args.pb_navigation_manifest:
+        from ..integrations.pb_navigation_adapter import register_pb_navigation
+        register_pb_navigation(registry,args.pb_navigation_manifest)
     runtime=PlatformRuntime(backend,camera=camera,registry=registry)
     server=PlatformHTTPServer(TransportConfig(port=args.port,admission_policy=admission),runtime)
     http=threading.Thread(target=server.serve_forever,name='sim-v2-http',daemon=True);http.start()
     def stop(*_):runtime.request_stop()
     signal.signal(signal.SIGINT,stop);signal.signal(signal.SIGTERM,stop)
     print(json.dumps(dict(url=f'http://127.0.0.1:{server.server_address[1]}',
-        transport='loopback_only',virtual_resupply=args.virtual_resupply,camera='real_opt_in' if args.camera else 'unavailable_no_gl',cross_machine_LAN_verified=False,real_time_factor_limit=args.real_time_factor,native_registered=bool(args.native_spec))),flush=True)
+        transport='loopback_only',virtual_resupply=args.virtual_resupply,camera='real_opt_in' if args.camera else 'unavailable_no_gl',cross_machine_LAN_verified=False,real_time_factor_limit=args.real_time_factor,native_registered=bool(args.native_spec),
+        navigation_sensor_profile=None if navigation_config is None else navigation_config.identity(),
+        pb_navigation_registered=bool(args.pb_navigation_manifest))),flush=True)
     try:runtime.run(max_wall_seconds=args.max_wall_seconds,real_time_factor=args.real_time_factor)
     finally:
         server.shutdown();server.server_close();http.join(2.)

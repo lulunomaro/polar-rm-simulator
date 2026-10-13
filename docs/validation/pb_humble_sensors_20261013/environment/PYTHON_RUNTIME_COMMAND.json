@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/probe_python_runtime.py"
+  ],
+  "exit_code": 0,
+  "PYTHONPATH_scrubbed": true,
+  "trusted_import_mechanism": "venv startup owned_humble.pth fixed absolute paths",
+  "pth_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/owned_humble.pth"
+}

@@ -80,6 +80,18 @@ def fixture():
 class WslProfileTests(unittest.TestCase):
     def check(self,f,**kw):return wsl.validate_wsl_spec(f['spec_path'],repo_root=f['repo'],shared_out=f['out'],**kw)
 
+    def test_diagnostic_metadata_cannot_enter_default_wsl_registry(self):
+        with fixture() as f:
+            f['spec']['performance_profile']=None
+            write_json(f['spec_path'],f['spec'])
+            with self.assertRaisesRegex(ValueError,'explicit_offline_entry'):self.check(f)
+        with fixture() as f:
+            f['build']['input_identity']['performance_profile']=None
+            write_json(f['builddir']/'BUILD_MANIFEST.json',f['build'])
+            f['spec']['frozen_build']['manifest_sha256']=profile.digest(f['builddir']/'BUILD_MANIFEST.json')
+            write_json(f['spec_path'],f['spec'])
+            with self.assertRaisesRegex(ValueError,'not_default_deployment'):self.check(f)
+
     def test_checked_host_spec_keeps_linux_binary_identity_without_launch(self):
         with fixture() as f,patch.object(subprocess,'Popen') as start:
             checked=self.check(f)

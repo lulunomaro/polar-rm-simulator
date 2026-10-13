@@ -1,0 +1,27 @@
+[
+  {
+    "stage": "configure",
+    "command": [
+      "cmake",
+      "-S",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/nav2-import-probe",
+      "-B",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/nav2-import-probe-build",
+      "-DPython3_EXECUTABLE=/usr/bin/python3"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 102.27132419400004
+  },
+  {
+    "stage": "build",
+    "command": [
+      "cmake",
+      "--build",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/nav2-import-probe-build",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 2,
+    "elapsed_s": 6.482473467000091
+  }
+]

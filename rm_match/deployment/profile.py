@@ -56,6 +56,8 @@ def read_json(path, limit=1024 * 1024):
 
 
 def validate_source_identity(source):
+    if any(key in source for key in ('runtime_performance_profile', 'performance_base_patch_sha256')):
+        raise ValueError('Diagnostic native performance profiles require the explicit offline validator')
     if source.get('base_commit') != T2_BASE:
         raise ValueError('Own RMCS T2 source identity mismatch; baseline substitution refused')
     frontend = source.get('vision_frontend')
@@ -88,6 +90,8 @@ def validate_t2_spec(path):
     it happens to speak the same operator protocol.
     """
     spec, initial_spec_sha = read_json_snapshot(path)
+    if 'performance_profile' in spec:
+        raise ValueError('Diagnostic native performance profiles cannot enter the default deployment')
     source = spec.get('source_identity', {})
     corner_revision, additional_sources = validate_source_identity(source)
     if source.get('is_original_upstream') is not False or source.get('is_baseline_40f7') is not False:
@@ -101,6 +105,8 @@ def validate_t2_spec(path):
     if digest(build_path) != spec.get('frozen_build', {}).get('manifest_sha256'):
         raise ValueError('Portable build manifest hash mismatch')
     build = read_json(build_path, 4 * 1024 * 1024)
+    if 'performance_profile' in build or 'performance_profile' in build.get('input_identity', {}):
+        raise ValueError('Diagnostic native performance build cannot enter the default deployment')
     if (build.get('status') != 'native_build_succeeded'
             or build.get('full_clean_compile') is not True
             or build.get('input_identity', {}).get('algorithm_identity') != source

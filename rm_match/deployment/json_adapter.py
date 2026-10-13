@@ -148,14 +148,18 @@ class JsonLineAdapter(BaseAdapter):
                 raise TimeoutError('custom_response_after_original_deadline')
             if isinstance(result, Exception):
                 raise result
-            exact(result, ('schema', 'op', 'ok', 'action') if packet['op'] == 'act' else ('schema', 'op', 'ok'), 'custom_response')
-            if result['schema'] != SCHEMA or result['op'] != packet['op'] or result['ok'] is not True:
-                raise ContractError('custom_response_identity_or_status')
+            self._validate_response(result, packet)
             return result
         except Exception:
             self.failed = True
             self.close()
             raise
+
+    def _validate_response(self, result, packet):
+        """Default wire shape; reviewed local adapters may add typed no-action."""
+        exact(result, ('schema', 'op', 'ok', 'action') if packet['op'] == 'act' else ('schema', 'op', 'ok'), 'custom_response')
+        if result['schema'] != SCHEMA or result['op'] != packet['op'] or result['ok'] is not True:
+            raise ContractError('custom_response_identity_or_status')
 
     def act(self, observation):
         o = self.checked(observation)

@@ -1,0 +1,42 @@
+{
+  "schema": "polarbear.navigation.owned-workspace-plan.v1",
+  "source_manifest": "SOURCE_MANIFEST.json",
+  "distribution": "Ubuntu-22.04",
+  "ros_distribution": "humble",
+  "workspace": "/root/polar-navigation-humble-e05eb08e",
+  "build_executed": false,
+  "system_install_executed": false,
+  "hardware_driver_launch_allowed": false,
+  "gazebo_launch_required": false,
+  "phases": [
+    {
+      "name": "interfaces",
+      "packages": ["livox_ros_driver2"],
+      "source": "livox_ros_driver2_2025/msg",
+      "owned_overlay_required": "interfaces-only package CMake preserving original package/type identity and exact msg bytes",
+      "runtime_executables": []
+    },
+    {
+      "name": "actual_sensor_localization",
+      "packages": ["point_lio", "loam_interface", "sensor_scan_generation", "terrain_analysis", "terrain_analysis_ext"],
+      "source_roots": ["point_lio2025", "pb2025_sentry_nav/loam_interface", "pb2025_sentry_nav/sensor_scan_generation", "pb2025_sentry_nav/terrain_analysis", "pb2025_sentry_nav/terrain_analysis_ext"],
+      "owned_config": {"use_sim_time": true, "preprocess.lidar_type": 1, "preprocess.scan_line": 4, "preprocess.timestamp_unit": 3, "mapping.imu_time_inte": 0.002, "mapping.acc_norm": 9.81, "mapping.extrinsic_est_en": false, "common.time_diff_lidar_to_imu": 0.0, "odometry.publish_odometry_without_downsample": false, "prior_pcd.enable": false},
+      "overlay_required": ["exact source scan identity to localization stamp", "exact cloud/odom pairing", "missing TF rejects instead of identity", "sim stamp velocity derivative and reset history"],
+      "may_issue_commands": false
+    },
+    {
+      "name": "associated_controller",
+      "packages": ["pb_omni_pid_pursuit_controller", "pb_nav2_plugins"],
+      "source_roots": ["pb_omni_pid_pursuit_controller", "pb_nav2_plugins"],
+      "system_runtime": ["nav2_controller", "nav2_planner", "nav2_behaviors", "nav2_bt_navigator", "nav2_map_server", "nav2_lifecycle_manager"],
+      "owned_overlay_required": "computeVelocityCommands actual input/output event associated to original source scan/lease/activation/episode; no latest ID relabel",
+      "command_interface": "reviewed source result through SDK authority, not bare Twist subscription",
+      "default_spin_speed": 0.0
+    }
+  ],
+  "observed_missing_dependencies": ["ros-humble-navigation2", "ros-humble-nav2-bringup", "ros-humble-nav2-core", "ros-humble-pcl-ros", "libgoogle-glog-dev"],
+  "optional_mapping_dependencies": ["ros-humble-slam-toolbox", "pinned pointcloud_to_laserscan"],
+  "required_additional_inventory": ["pcl_conversions", "message_filters", "libunwind-dev", "other nav2 component packages", "small_gicp dependencies only if that localization path is selected"],
+  "next_execution_gate": "parent-coordinated build window after exclusive saved native performance measurement",
+  "evidence_required": ["owned overlay base/new source SHA and patch", "colcon logs", "DDS actual messages with original sim stamps", "localization no truth injection", "controller pose to original cloud correlation", "epoch/reset/lease/expiry rejection", "owned processes cleanup"]
+}

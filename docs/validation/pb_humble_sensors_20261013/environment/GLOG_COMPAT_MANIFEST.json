@@ -1,0 +1,14 @@
+{
+  "schema": "polar.owned-glog-relocation.v1",
+  "original_deb_sha256": "133bce58e98e56366960410dabbf0259eca1cfaa1b0f67063201be542a8ecd3c",
+  "original_target_sha256": "a5d8a5a76e89fdbaa32ab2a3221e7890db11a284fe0cc8734206c0df45e975d2",
+  "original_config_sha256": "27a2331587d0b3fea8d52f74114d37ce940a0b7432d0b4ecaacb408d37e8eb0b",
+  "original_anchor": "INTERFACE_LINK_LIBRARIES \"/usr/lib/x86_64-linux-gnu/libunwind.so;gflags\"",
+  "replacement_library": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib/x86_64-linux-gnu/libunwind.so",
+  "replacement_library_sha256": "5d1f6f104f79698e137c9f17c4b0317dfd96816c0eb6a87c50619a41472ca382",
+  "replacement_library_deb_sha256": "781e3eb86986ab93e8b4866fc571fdec780c3d9a8b56b490e9c2f10fb90978ce",
+  "wrapper": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/compat/lib/cmake/glog/glog-config.cmake",
+  "wrapper_sha256": "78564618c9a3167d4eef50c71eb7d5eea1f8b2e727f58e4f430efb457b41603d",
+  "original_package_files_changed": false,
+  "system_files_changed": false
+}

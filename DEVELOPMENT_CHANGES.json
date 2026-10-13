@@ -19,16 +19,16 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "41f37400019f3f2f42336e68ba9a86d802c2688f665d5eb24121ee078081106e",
-      "task": "T13",
-      "reason": "Require an explicit local admission manifest for HTTP enrollment"
+      "current_sha256": "55218f17bcb755dc798f60353c9ace9c02033dbb4621097503fc34c7292fb48f",
+      "task": "T09",
+      "reason": "Preserve loopback admission and existing native/GUI entry; opt-in reviewed PB navigation manifest enables actual pointcloud/IMU sensing and local registration without HTTP argv"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
       "original_sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
-      "current_sha256": "8635c2f8bfafa82aab851a909c441e08cf75e23f3cb904327f8eddf52006880f",
-      "task": "T03",
-      "reason": "Cache immutable model indices and limits; retain fresh physical data and consumption guards"
+      "current_sha256": "4aeebb98795f3f8507624f4ed908221768a55ca7111d2d50861101e20c2630fb",
+      "task": "T09",
+      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation sensor profile samples actual rays/gyro/accelerometer only on physics authority"
     },
     {
       "path": "rm_match/platform_v2/camera.py",
@@ -75,9 +75,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "2c112a3c2c1519c2292a3d2eb0674bc8daba38e1751d1a88ea403b98c3a07f73",
-      "task": "T03",
-      "reason": "Retain capture wall/simulation deadlines and current authority; explicit exact-class sealed RGB only, original-deadline recheck after admission with expired jobs discarded; no custom bypass or cached leases"
+      "current_sha256": "2c303e117888926d1e4420c3d91556619e73c290eaae0203c9a4f3d609348e7f",
+      "task": "T09",
+      "reason": "Keep original leases, activation, camera80ms and SDK150ms; explicit navigation sensor jobs use original scan end deadlines, reject old generations and retain waiting localization without synthetic actions"
     },
     {
       "path": "rm_match/platform_v2/server.py",
@@ -187,9 +187,9 @@
     {
       "path": "rm_match/platform_v2/contracts.py",
       "original_sha256": "400d417505c93f28884e48d0c4bca6434fc395ab347d4833faa888ac8fc448e1",
-      "current_sha256": "172df372d9b165fce28b6f3646445b862fbea4e5f2a2f518f2d9910c7697a487",
-      "task": "T03",
-      "reason": "Snapshot before strict scalar/enum/metadata validation; reuse only matching minted camera pixels privately without changing the JSON DTO or skipping boundary checks"
+      "current_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "task": "T09",
+      "reason": "Preserve strict camera/range observation.v2 and pixel proofs; dispatch separate pose-free pointcloud/IMU navigation schema without fabricating missing legacy pose fields"
     },
     {
       "path": "rm_match/platform_v2/adapters.py",

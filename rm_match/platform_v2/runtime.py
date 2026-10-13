@@ -144,7 +144,13 @@ class AdapterSlot:
                     # invalid result must not be overwritten by a later good one.
                     from .contracts import validate_action
                     if not private_rejected and not discarded_reason:
-                        phase='action_validation';value=validate_action(value,o,self.registry.get(b['adapter_id']).descriptor)
+                        phase='action_validation'
+                        from .navigation_contracts import NAV_SCHEMA,NAV_PROFILE,NAV_STATUS_SCHEMA,validate_navigation_status
+                        metadata=self.registry.get(b['adapter_id']).descriptor
+                        if (metadata.get('observation_profile')==NAV_PROFILE and o['schema']==NAV_SCHEMA
+                            and type(value) is dict and value.get('schema')==NAV_STATUS_SCHEMA):
+                            value=validate_navigation_status(value,o)
+                        else:value=validate_action(value,o,metadata)
                 except BaseException as exc:
                     error=type(exc).__name__;failed_identity=current;exception_diagnostic=_exception_location(exc,phase)
                 finally:self.running=False
@@ -192,7 +198,7 @@ class PlatformRuntime:
         if tuple(self.control.robot_ids)!=tuple(backend.robot_ids):raise ValueError('Registry/backend mismatch')
         if not 0<observation_period<=.2 or not 0<action_ttl<=.25:raise ValueError('Invalid scheduling bounds')
         self.observation_period=observation_period;self.action_ttl=action_ttl
-        self.slots={};self.outputs={};self.observed={};self.next_observation={};self.status={}
+        self.slots={};self.outputs={};self.observed={};self.next_observation={};self.status={};self._navigation_samples={}
         self._fault_epochs={};self._slot_bound={};self._own_samples={};self._camera_samples={}
         self.stop_event=threading.Event();self.cache_lock=threading.Lock()
         self.cached={'runtime_state':'starting','telemetry_available':False}
@@ -357,6 +363,14 @@ class PlatformRuntime:
                 or not self._camera_budget_current(rid,kind,b,budget,sim_time,private=job.get('native_pixels') is not None)):
                 self.outputs.pop(key,None);self.status[key]='late_result';continue
             try:
+                from .navigation_contracts import NAV_STATUS_SCHEMA,validate_navigation_status
+                if result['value'].get('schema')==NAV_STATUS_SCHEMA:
+                    metadata=self.registry.get(b['adapter_id']).descriptor
+                    if metadata.get('observation_profile')!='pointcloud_imu_v1':raise ValueError('navigation_status_profile')
+                    status=validate_navigation_status(result['value'],o)
+                    self.outputs.pop(key,None);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
+                    self.status[key]='waiting_for_navigation:'+status['status']
+                    continue
                 action=validate_action(result['value'],o,self.registry.get(b['adapter_id']).descriptor)
                 if action['kind']!=kind:raise ValueError('kind mismatch')
                 current=self.outputs.get(key)
@@ -389,6 +403,9 @@ class PlatformRuntime:
 
     def _camera_budget_current(self,rid,kind,b,budget,sim_time,*,private=False):
         if budget is None:return True
+        if budget.get('source')=='navigation_sensor_v1':
+            check=getattr(self.backend,'navigation_capture_valid',None)
+            return kind=='navigation' and callable(check) and bool(check(rid,self._episode,budget,sim_time))
         if private:return self._private_camera_valid(rid,kind,b,budget,sim_time)
         check=getattr(self.camera,'sensor_capture_valid',None)
         # Preserve legacy duck-typed camera providers' existing budget API.
@@ -420,6 +437,7 @@ class PlatformRuntime:
                 if b['owner'] is None:
                     self._own_samples.pop(key,None)
                     self._camera_samples.pop(key,None)
+                    self._navigation_samples.pop(key,None)
                     if self._slot_bound.pop(key,False) and key in self.slots:self.slots[key].submit({'deactivate':True})
                     continue
                 if not self._binding_active(b,self.clock()):
@@ -429,6 +447,9 @@ class PlatformRuntime:
                 schedule_identity=(b['epoch'],b['owner'])
                 previous=self.next_observation.get(key)
                 spec=self.registry.get(b['adapter_id']).descriptor
+                if spec.get('observation_profile')=='pointcloud_imu_v1':
+                    self._schedule_navigation(rid,kind,b,spec,sim_time)
+                    continue
                 own_refresh=self._own_refresh_profile(kind,b,spec)
                 private_pixels=(self.enable_native_pixels and getattr(self.camera,'enable_native_pixels',False)
                     and kind=='aim' and b['adapter_id']=='aim_native_rmcs_v1'
@@ -527,6 +548,48 @@ class PlatformRuntime:
                 self.slots[key].submit(job)
                 if key not in self.outputs:self.status[key]='waiting_for_adapter'
 
+    def _schedule_navigation(self,rid,kind,b,spec,sim_time):
+        """Only explicit local profiles receive the pose-free sensor protocol."""
+        from .navigation_contracts import build_navigation_observation
+        key=(rid,kind)
+        try:
+            if kind!='navigation' or set(spec['required_sensors'])!={'pointcloud','imu'}:
+                raise ValueError('navigation_sensor_profile_capabilities')
+            provider=getattr(self.backend,'navigation_sensor_packet',None)
+            packet=provider(rid) if callable(provider) else None
+            if packet is None:
+                self.status[key]='waiting_for_navigation_sensors';return
+            cloud=packet['sensors']['pointcloud']
+            sample=(self._episode,b['epoch'],b['owner'],cloud['frame_id'])
+            if self._navigation_samples.get(key)==sample:return
+            if packet['robot_id']!=rid or packet['episode']!=self._episode:
+                raise ValueError('navigation_sensor_identity_mismatch')
+            age=min(self.action_ttl,.15)
+            budget=dict(source='navigation_sensor_v1',frame_id=cloud['frame_id'],
+                profile_sha256=cloud['profile_sha256'],capture_wall=packet['capture_wall'],
+                capture_sim_time=cloud['capture_sim_time'],wall_deadline=packet['capture_wall']+age,
+                sim_deadline=cloud['capture_sim_time']+age)
+            deadline=budget['wall_deadline']
+            if b.get('activation_required',False):deadline=min(deadline,b['activation_expires'])
+            seq=self.observed.get(key,0)+1
+            observation=build_navigation_observation(packet,binding_epoch=b['epoch'],observed_seq=seq,wall_deadline=deadline)
+            if (not self._budget_valid(budget,self.clock(),sim_time) or self.clock()>=deadline
+                or not self._camera_budget_current(rid,kind,b,budget,sim_time)):
+                self.status[key]='navigation_sensor_expired';return
+            self.observed[key]=seq;self._navigation_samples[key]=sample
+            if key not in self.slots:self.slots[key]=AdapterSlot(self.registry,self.clock)
+            authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires',
+                'activation_window_id','activation_window_deadline')}
+            self._trace('adapter_enqueue',robot_id=rid,kind=kind,binding_epoch=b['epoch'],episode=self._episode,
+                observed_seq=seq,observation_sim_time=observation['sim_time'],wall_deadline=deadline,
+                sensor_budget=budget,schedule_reason='new_navigation_scan',operator_authorization=authorization)
+            self.slots[key].submit(dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,
+                operator_authorization=authorization))
+            if key not in self.outputs:self.status[key]='waiting_for_navigation'
+        except Exception as exc:
+            self.outputs.pop(key,None);self._fault_epochs[key]=b['epoch'];self.status[key]='sensor_error:'+type(exc).__name__
+            if key in self.slots:self.slots[key].submit({'deactivate':True})
+
     def _targets(self,snapshot,sim_time,*,sampled_wall=None):
         now=self.clock() if sampled_wall is None else sampled_wall;result={}
         for rid in snapshot['robot_ids']:
@@ -569,7 +632,7 @@ class PlatformRuntime:
         if self.stop_event.is_set() or self.control.stopped:return False
         episode=self.backend.episode
         if self._episode is not None and self._episode!=episode:
-            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear()
+            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._navigation_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear()
         self._episode=episode
         sim_time=self.backend.sim_time
         snapshot=self.control.snapshot()

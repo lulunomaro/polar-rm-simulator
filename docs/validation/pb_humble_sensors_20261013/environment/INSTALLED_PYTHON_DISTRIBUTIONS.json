@@ -1,0 +1,72 @@
+[
+  {
+    "name": "mujoco",
+    "version": "3.15.0",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/mujoco-3.15.0.dist-info"
+  },
+  {
+    "name": "numpy",
+    "version": "2.2.6",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/numpy-2.2.6.dist-info"
+  },
+  {
+    "name": "Pillow",
+    "version": "12.3.0",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/pillow-12.3.0.dist-info"
+  },
+  {
+    "name": "pip",
+    "version": "25.3",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/pip-25.3.dist-info"
+  },
+  {
+    "name": "absl-py",
+    "version": "2.5.1",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/absl_py-2.5.1.dist-info"
+  },
+  {
+    "name": "etils",
+    "version": "1.13.0",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/etils-1.13.0.dist-info"
+  },
+  {
+    "name": "glfw",
+    "version": "2.10.2",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/glfw-2.10.2.dist-info"
+  },
+  {
+    "name": "PyOpenGL",
+    "version": "3.1.10",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/pyopengl-3.1.10.dist-info"
+  },
+  {
+    "name": "websockets",
+    "version": "16.1.1",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/websockets-16.1.1.dist-info"
+  },
+  {
+    "name": "fsspec",
+    "version": "2026.9.0",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/fsspec-2026.9.0.dist-info"
+  },
+  {
+    "name": "importlib_resources",
+    "version": "7.1.0",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/importlib_resources-7.1.0.dist-info"
+  },
+  {
+    "name": "typing_extensions",
+    "version": "4.16.0",
+    "distribution_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/typing_extensions-4.16.0.dist-info"
+  },
+  {
+    "name": "zipp",
+    "version": "1.0.0",
+    "distribution_path": "/usr/lib/python3/dist-packages/zipp-1.0.0.egg-info"
+  },
+  {
+    "name": "rclpy",
+    "version": "3.3.21",
+    "distribution_path": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy-3.3.21-py3.10.egg-info"
+  }
+]

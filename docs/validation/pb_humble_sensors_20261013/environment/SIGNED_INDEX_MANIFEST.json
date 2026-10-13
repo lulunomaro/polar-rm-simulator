@@ -1,0 +1,111 @@
+{
+  "ros_key_fingerprint": "C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654",
+  "ros_packages_gz_sha256": "4160d55cfc4974f3166b5f8eca8a593431b936d19fb593a02c09cb510e83da64",
+  "ros_packages_sha256": "2bea30019e96208a26c4c1efbc7169426afc056bbcb2539b3d971387d054f114",
+  "ubuntu_signed_packages": [
+    {
+      "file": "security.ubuntu.com_ubuntu_dists_jammy-security_multiverse_binary-amd64_Packages",
+      "sha256": "0d2c5a73d67917c70c6aceb3cb8cf6cad539e7b7c9a89a1ff83b48264cf95acf",
+      "bytes": 531283,
+      "release": "security.ubuntu.com_ubuntu_dists_jammy-security_InRelease"
+    },
+    {
+      "file": "security.ubuntu.com_ubuntu_dists_jammy-security_restricted_binary-amd64_Packages",
+      "sha256": "2c7573b9c2341062dd21424e73dd668cc117c3f9fa67164282c81875a90dd3d3",
+      "bytes": 36551258,
+      "release": "security.ubuntu.com_ubuntu_dists_jammy-security_InRelease"
+    },
+    {
+      "file": "security.ubuntu.com_ubuntu_dists_jammy-security_universe_binary-amd64_Packages",
+      "sha256": "10bd0a2bb2f632c03d004768be7ab461752e765837b9a65e851a6d6cdcd277c9",
+      "bytes": 6178086,
+      "release": "security.ubuntu.com_ubuntu_dists_jammy-security_InRelease"
+    },
+    {
+      "file": "security.ubuntu.com_ubuntu_dists_jammy-security_main_binary-amd64_Packages",
+      "sha256": "18d233d59be29825777d9b784c0e5a818b711705085d70cf5e8de72b1f1be2d5",
+      "bytes": 19846941,
+      "release": "security.ubuntu.com_ubuntu_dists_jammy-security_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy_multiverse_binary-amd64_Packages",
+      "sha256": "3493e180d952143ec601e4c833e54de709473bd636b6a3f6bb94e367e56f4abf",
+      "bytes": 918002,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy_main_binary-amd64_Packages",
+      "sha256": "12ce0797a6ed39a1fee1321985976c6b78872a8fe4c7ef2fb712f2364c9839a3",
+      "bytes": 6779186,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy_restricted_binary-amd64_Packages",
+      "sha256": "b40bcc8340f4a2295e3daa158b7c50001642e843b3559907402c1b0da2d2459b",
+      "bytes": 915647,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy_universe_binary-amd64_Packages",
+      "sha256": "6b8cc68643d18250ab297c4f6d427a8778b1d1534e1a3033fff0f221fa20a419",
+      "bytes": 64332414,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy-updates_restricted_binary-amd64_Packages",
+      "sha256": "7751e0f0ab2418ebd6d16cbee543526d7b0a60225ab5d5bc607ba164bd1ac8ea",
+      "bytes": 37997522,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy-updates_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy-updates_universe_binary-amd64_Packages",
+      "sha256": "0442a9ac0b11f6393b2695f7d06a4668d31f660445c64213191fb387af1ed480",
+      "bytes": 7264923,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy-updates_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy-updates_multiverse_binary-amd64_Packages",
+      "sha256": "5e52800818424c992647479d7886d79149bc58207140526b227470a54ee81c2a",
+      "bytes": 564256,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy-updates_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy-updates_main_binary-amd64_Packages",
+      "sha256": "7ce0277207f226841af7e967336bc776dbc474da8ec8a8534c8b446e444f29ac",
+      "bytes": 21283948,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy-updates_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy-backports_universe_binary-amd64_Packages",
+      "sha256": "7827e4bbafa51e0b3695d8bf205be0661f8445093edb3839d1284d312659eedb",
+      "bytes": 146895,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy-backports_InRelease"
+    },
+    {
+      "file": "archive.ubuntu.com_ubuntu_dists_jammy-backports_main_binary-amd64_Packages",
+      "sha256": "0219024aa182adc4bdc770ced883d89db13252232b1d5b36d14ef2a5ea15843f",
+      "bytes": 448415,
+      "release": "archive.ubuntu.com_ubuntu_dists_jammy-backports_InRelease"
+    }
+  ],
+  "requested": [
+    "ros-humble-navigation2",
+    "ros-humble-nav2-bringup",
+    "ros-humble-slam-toolbox",
+    "ros-humble-pcl-ros",
+    "ros-humble-pointcloud-to-laserscan",
+    "nlohmann-json3-dev",
+    "libgoogle-glog-dev",
+    "libunwind-dev"
+  ],
+  "apt_options": [
+    "-o",
+    "Dir::State::lists=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/apt-lists",
+    "-o",
+    "Dir::Etc::sourcelist=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/apt-sources.list",
+    "-o",
+    "Dir::Etc::sourceparts=-",
+    "-o",
+    "Dir::Cache=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/apt-cache"
+  ]
+}

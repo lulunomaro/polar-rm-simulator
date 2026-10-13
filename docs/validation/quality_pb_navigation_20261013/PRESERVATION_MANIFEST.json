@@ -1,0 +1,119 @@
+{
+  "schema": "polar.evidence.preservation.v1",
+  "files": [
+    {
+      "path": "attempt1/acceptance_preset.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/acceptance_preset.log",
+      "sha256": "780b59ffcdab97f53d5e68083311101919faad4545a3d0f763f7bfd37321d22e",
+      "bytes": 1166
+    },
+    {
+      "path": "attempt1/interface_static.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/interface_static.log",
+      "sha256": "b87e2e1679d8529d44b272302cd7e34b0065fd0686f9002c39d851a5a4d5dd25",
+      "bytes": 23957
+    },
+    {
+      "path": "attempt1/manifest.json",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/manifest.json",
+      "sha256": "7c172fc32dbc61aac8be2fe8216c5944ece24f6d90d2f9d6aedb6a67115cacd8",
+      "bytes": 118281
+    },
+    {
+      "path": "attempt1/preset.json",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/preset.json",
+      "sha256": "780b59ffcdab97f53d5e68083311101919faad4545a3d0f763f7bfd37321d22e",
+      "bytes": 1166
+    },
+    {
+      "path": "attempt1/pytest.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/pytest.log",
+      "sha256": "3cba82e92f4f30282fc21715db5963b27aa7defec631c0ad2f95f4420d56d987",
+      "bytes": 5895
+    },
+    {
+      "path": "attempt1/pytest.xml",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/pytest.xml",
+      "sha256": "b1c32b99def2f269dc86b08d0120af47bff9da168cf9d0eee81b8a2b581e18c9",
+      "bytes": 170381
+    },
+    {
+      "path": "attempt1/source_provenance.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint/source_provenance.log",
+      "sha256": "de445753187d8b0f95ebba35d4257eda3745e6faa330d54d2bbd4bf130522b26",
+      "bytes": 1537
+    },
+    {
+      "path": "attempt2/acceptance_preset.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/acceptance_preset.log",
+      "sha256": "780b59ffcdab97f53d5e68083311101919faad4545a3d0f763f7bfd37321d22e",
+      "bytes": 1166
+    },
+    {
+      "path": "attempt2/camera.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/camera.log",
+      "sha256": "c5dc974c62204dd137357951ced22aec66515bc4539c09c6ae584243e3a406bf",
+      "bytes": 200
+    },
+    {
+      "path": "attempt2/interface_static.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/interface_static.log",
+      "sha256": "0301cd906f3440b69d68e698575c4f846f19a34c7a73864c69e8ed05928d288c",
+      "bytes": 23957
+    },
+    {
+      "path": "attempt2/manifest.json",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/manifest.json",
+      "sha256": "9ca268e94899bafd9c3b34e939fade71a3719949bd12011da9896e54c88791e6",
+      "bytes": 118912
+    },
+    {
+      "path": "attempt2/preset.json",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/preset.json",
+      "sha256": "780b59ffcdab97f53d5e68083311101919faad4545a3d0f763f7bfd37321d22e",
+      "bytes": 1166
+    },
+    {
+      "path": "attempt2/pytest.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/pytest.log",
+      "sha256": "66beecdc17dad04c05871745cbccf7494c05e1d61bfad99be1a187312a4665b2",
+      "bytes": 3480
+    },
+    {
+      "path": "attempt2/pytest.xml",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/pytest.xml",
+      "sha256": "4f67a69df46ffbb8369f9cf145d838f6a1130b5b019e912a70df7a67132ef1d5",
+      "bytes": 168284
+    },
+    {
+      "path": "attempt2/source_provenance.log",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/source_provenance.log",
+      "sha256": "de445753187d8b0f95ebba35d4257eda3745e6faa330d54d2bbd4bf130522b26",
+      "bytes": 1537
+    },
+    {
+      "path": "attempt2/camera/a-real-camera.jpg",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/camera/a-real-camera.jpg",
+      "sha256": "19a5411bf39f8ed6d997f9be25fd13340ee49390f5231985d483df24a626a707",
+      "bytes": 37227
+    },
+    {
+      "path": "attempt2/camera/b-real-camera.jpg",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/camera/b-real-camera.jpg",
+      "sha256": "0b7708454a188c3a5d6b3e8993879a7f6c4af01965b1ed3c5766be345613b0f7",
+      "bytes": 37868
+    },
+    {
+      "path": "attempt2/camera/qualification.json",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/camera/qualification.json",
+      "sha256": "2ea48566bb8ba1d07f44a0c96a0085b7e413e927a5aee3406426087cdce500fc",
+      "bytes": 13473
+    },
+    {
+      "path": "attempt2/camera/spectator-real-camera.jpg",
+      "original_path": "artifacts/quality-20261013-pb-navigation-checkpoint-r2/camera/spectator-real-camera.jpg",
+      "sha256": "e7b6e68576ee03bd6089a4926ab44281506b646347abe5d92793cb1f7bba4bce",
+      "bytes": 38020
+    }
+  ]
+}

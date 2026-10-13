@@ -1,0 +1,26 @@
+[
+  {
+    "stage": "configure",
+    "command": [
+      "cmake",
+      "-S",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix-probe",
+      "-B",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix-probe-compat-build",
+      "-DPython3_EXECUTABLE=/usr/bin/python3",
+      "-DPYTHON_EXECUTABLE=/usr/bin/python3"
+    ],
+    "exit_code": 0
+  },
+  {
+    "stage": "build",
+    "command": [
+      "cmake",
+      "--build",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix-probe-compat-build",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 0
+  }
+]

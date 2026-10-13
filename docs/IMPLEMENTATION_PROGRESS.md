@@ -12,9 +12,9 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 部分基础：RobotIO与JSON registry；可选ROS2信封桥，Lyrical/Fast DDS真实1项通过、身份echo与清理已测；JSONL同源QPC及排队后期限已修 | host2s startup/80ms物理ROS联调、标准ROS传感器消息、Nav2/自家节点适配、Windows↔WSL桥、两套完整独立实现 |
+| T07 | 部分基础：原ROS2信封DDS已测；独立点云/IMU导航schema、原deadline等待状态与PB桥；Humble消息接口编译、原host2s新进程DDS和独立主题搬运已实测 | Lyrical原host2s失败保留；Point-LIO/Nav2/SIL仍验证中；Windows↔WSL、两套完整独立实现未验收 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 未完整实现：当前 ideal own odometry 与 64 rays 显式保留限制 | MID360/IMU/编码器包、自主定位建图、关闭理想定位审计 |
+| T09 | 进行中：默认ideal odometry/64 rays限制仍保留；显式导航profile新增实际3D ray/gyro/accelerometer、四线与逐点ns；导航DTO无ideal pose；10s5000步/99cloud实测 | MID360真实光学/动力学标定、编码器、自家Point-LIO/Nav2闭环、漂移/恢复及实际控制消费仍缺 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
@@ -35,6 +35,41 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
 ## 最新代码与证据：ROS2及实时入口修复
+
+用户最新明确要求接入 [北极熊 pb2025_sentry_nav](https://gitee.com/SMBU-POLARBEAR/pb2025_sentry_nav)
+哨兵导航，源码已锁定 cb97fb07 及其 Point-LIO/Omni PID gitlink，见 [来源审计](POLARBEAR_NAVIGATION_SOURCE.md)。
+Ubuntu22.04/Humble 环境与新 owned workspace 分开验证，不修改旧坏 checkout 或启硬件driver。
+新 schema 只传 sensor-local点/真实offset、实际 gyro/accelerometer与合法裁判状态，无qpos/ideal odom。
+等待定位是独立无动作状态，保留同代算法实例；异常/进程超时、旧帧、变代、越权仍拒绝。
+服务入口 `--pb-navigation-manifest` 为显式本地注册，不给HTTP选择命令。
+
+[实际传感器证据](validation/navigation_sensors_20261013/README.md)：四线10s/5000步/99cloud/RTF0.9999635，
+原输入时刻、源码hash和无回波处理均保留。它使用物理脚本激励，尚不是自家导航算法闭环。
+PB原路径的ApproxTime重贴pose时间、missingTF单位回退和wall-time速度差分必须修复；
+owned overlay 已修复这些边界，实际controller入口/结果与LIO扫描绑定同一不可变上下文；
+不接裸Twist后补当前identity。真实三包LIO/TF与PB Nav2插件正在独立workspace编译。
+
+[Humble实际DDS与构建记录](validation/pb_humble_sensors_20261013/README.md)：原JsonLineAdapter新进程
+reset 0.806705s、act 0.051286s，9项真实DDS/清理检查通过；后续实际归档584点、51IMU
+及独立clock/tf_static主题搬运通过。后两项不是当前物理deadline authority验证，原时刻未刷新。
+尚无Point-LIO/SLAM/规划/控制器驱动哨兵的闭环证据。默认T2另有29TU新clean build，
+ELF仍4d357067…，诊断profile未替换默认自瞄。
+
+用户已明确授权把最新成果提交并推送当前开发分支；不合并main，不发布release。
+
+本轮 [冻结质量记录](validation/quality_pb_navigation_20261013/README.md)：1118passed、10skipped、
+574subtests，实际camera35checks与preset/source/interface全部通过；871项source检查期间不变。
+第一轮1117passed/1failed完整保留：测试误引旧builder spec被哈希门禁拒绝；第二轮显式选择
+真正新默认构建，未改旧spec或放宽门禁。Point-LIO/loam/sensor三包实际build已过、尚未启动。
+PB插件真实ELF发现layers重名，正在修复构建绑定，尚无导航执行或完整比赛通过。
+
+[原host2s实测](validation/ros2_startup_20261013/README.md)：Lyrical module因清理PYTHONPATH缺rclpy，
+固定bootstrap仍未在原2s内完成rclpy初始化；两次0观测/0动作且清理完成，不能把先前DDS通过推成host通过。
+
+[首帧实际分解](validation/native_first_frame_20261013/README.md)：两个诊断profile均29TU clean build，
+8fresh完整检测/PnP/跟踪与清理，原actual12帧410/422ms未改。create_request仅约0.05ms，
+pure preallocation没有可信改善，未生产采纳；主要infer约23–24ms，首响应最大53–56ms。
+这些是独立overlay的离线记录，原default/live失败保持，未以重复同帧回复或阶段P50相减声称实时通过。
 
 [ROS2基础桥](ROS2_BRIDGE.md) 已新增本地预注册的 navigation/aim ID和严格JSON信封；
 官方Lyrical rclpy10.0.11/FastDDS在Ubuntu26.04 WSL实际通过，bridge退出0、peer/thread/context清理完成。
@@ -128,7 +163,7 @@ gimbal106步、12HTTPcommands、fire0、Qt退出0。
 
 第二条当前draft返回2是预期保护。Linux/WSL离线EGL当前llvmpipe，不能冒充NVIDIA实时性能。
 聊天每30分钟自动检查继续已授权开发；仅实质进展/失败/完成/需用户输入通知。
-不合并主分支、不推送公开发布、不训练模型、不启动真实硬件测试。
+不合并主分支、不发布release、不训练模型、不启动真实硬件测试；当前开发分支推送已获用户授权。
 
 ## 后续发现与修复记录
 

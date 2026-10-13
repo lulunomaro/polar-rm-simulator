@@ -1,0 +1,45 @@
+{
+  "schema": "polar.evidence.preservation.v1",
+  "files": [
+    {
+      "path": "attempt1_lines6/EVIDENCE_MANIFEST.json",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt1/EVIDENCE_MANIFEST.json",
+      "sha256": "c1f5f855501162eb0c350222c4a3ac1931638ba20d7409e8933f38dfecc2aef0"
+    },
+    {
+      "path": "attempt1_lines6/first_observation.json.gz",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt1/first_observation.json.gz",
+      "sha256": "e5aafa96ce5598b27ba2b158a48edfc91b4a3bba3b230c53a2229628ec5ae8ec"
+    },
+    {
+      "path": "attempt1_lines6/last_observation.json.gz",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt1/last_observation.json.gz",
+      "sha256": "0acf166638f0cde7ce58d57a385370ad45aa4181295949c72e760d77b792e821"
+    },
+    {
+      "path": "attempt1_lines6/RESULT.json",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt1/RESULT.json",
+      "sha256": "1ddd97ce7c95e3abecd7cf09e26e93660513b4df949a82296087937b3f6a264b"
+    },
+    {
+      "path": "attempt2_lines4/EVIDENCE_MANIFEST.json",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt2-lines4/EVIDENCE_MANIFEST.json",
+      "sha256": "38cce335936eeb67ea427e42994a49149586d80074c2ae5f7b4a06b283a84b4d"
+    },
+    {
+      "path": "attempt2_lines4/first_observation.json.gz",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt2-lines4/first_observation.json.gz",
+      "sha256": "44d3e80dff6785b74b9a475935e9d611b256b0fb93c89345c26edc816a95f9ba"
+    },
+    {
+      "path": "attempt2_lines4/last_observation.json.gz",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt2-lines4/last_observation.json.gz",
+      "sha256": "33ae65a377d70c9ce277d928ae3751501dc7d8ecaeaed38c59e0b863a3e42e99"
+    },
+    {
+      "path": "attempt2_lines4/RESULT.json",
+      "original_path": "artifacts/navigation-sensors-actual-20261013-attempt2-lines4/RESULT.json",
+      "sha256": "e71fbacbc9daa27819c5673cb83e410325de1cfbb2b985813d811f869bcf55c3"
+    }
+  ]
+}

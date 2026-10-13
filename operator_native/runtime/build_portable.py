@@ -28,12 +28,31 @@ CORNER_FRONTENDS = {
     'contour-v2': ('overlays/corners_contour_v2.cpp', 'image_contour_corners_v2'),
     'contour-v3': ('overlays/corners_contour_v3.cpp', 'image_contour_corners_v3'),
 }
+PERFORMANCE_PROFILES=('original','first-frame-trace','request-preallocate-trace')
+PERFORMANCE_SOURCES=('overlays/prepare_first_frame_profile.py','overlays/first_frame_trace.hpp')
 
 
 def combined_patch_hash(tracker_patch_sha256, frontend_sha256):
     value=dict(schema='rmcs-own-source-composition.v1',tracker_patch_sha256=tracker_patch_sha256,
                vision_frontend_sha256=frontend_sha256)
     return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+
+
+def performance_identity(base,profile):
+    if profile not in PERFORMANCE_PROFILES:raise ValueError('Unsupported performance profile')
+    sources={rel:sha(base/rel) for rel in PERFORMANCE_SOURCES}
+    payload=dict(schema='rmcs.first-frame-performance-patch.v1',profile=profile,sources=sources)
+    patch=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    return dict(schema='rmcs.first-frame-performance.v1',id=profile,patch_sha256=patch,
+        generator_source_path=PERFORMANCE_SOURCES[0],generator_sha256=sources[PERFORMANCE_SOURCES[0]],
+        trace_header_source_path=PERFORMANCE_SOURCES[1],trace_header_sha256=sources[PERFORMANCE_SOURCES[1]],
+        request_preallocated=profile=='request-preallocate-trace',inference_during_setup=False,diagnostic_only=True)
+
+
+def performance_combined_patch_hash(base_patch,performance_patch):
+    payload=dict(schema='rmcs-own-source-performance-composition.v1',base_patch_sha256=base_patch,
+        performance_patch_sha256=performance_patch)
+    return hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
 
 
 def sha(path):
@@ -55,7 +74,7 @@ def verify_sources(base=ROOT):
     return manifest
 
 
-def make_commands(base, out, *, cmake='cmake', jobs=2, prefix=None, corner_refinement='original'):
+def make_commands(base, out, *, cmake='cmake', jobs=2, prefix=None, corner_refinement='original',performance_profile='original'):
     configure = [cmake, '-S', str(base), '-B', str(out / 'cmake'),
                  '-DCMAKE_BUILD_TYPE=Release',
                  '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',
@@ -66,11 +85,13 @@ def make_commands(base, out, *, cmake='cmake', jobs=2, prefix=None, corner_refin
     if corner_refinement != 'original' and corner_refinement not in CORNER_FRONTENDS:
         raise ValueError('Unsupported corner frontend revision')
     if corner_refinement!='original':configure.append('-DRMCS_USE_CONTOUR_CORNERS=ON')
+    if performance_profile not in PERFORMANCE_PROFILES:raise ValueError('Unsupported performance profile')
+    if performance_profile!='original':configure.append('-DRMCS_PERFORMANCE_PROFILE='+performance_profile)
     return [configure, [cmake, '--build', str(out / 'cmake'), '--target',
                         'rmcs_sim_operator_fov', '--parallel', str(jobs)]]
 
 
-def input_identity(base, model, hook, *, corner_refinement='original'):
+def input_identity(base, model, hook, *, corner_refinement='original',performance_profile='original'):
     recovered = verify_sources(base)
     if model.name != 'shenzhen-0526.onnx' or not model.is_file() or sha(model) != MODEL_HASH:
         raise ValueError('Expected exact shenzhen-0526.onnx model is missing or changed')
@@ -89,6 +110,14 @@ def input_identity(base, model, hook, *, corner_refinement='original'):
                          patch_sha256=combined_patch_hash(tracker_hash,overlay_hash))
         extra[overlay_source]=overlay_hash
     elif corner_refinement!='original':raise ValueError('Unsupported corner frontend revision')
+    performance={}
+    if performance_profile!='original':
+        selected=performance_identity(base,performance_profile);original_patch=algorithm['patch_sha256']
+        algorithm.update(runtime_performance_profile=selected,performance_base_patch_sha256=original_patch,
+            patch_identity_format='rmcs-own-source-performance-composition.v1',
+            patch_sha256=performance_combined_patch_hash(original_patch,selected['patch_sha256']))
+        extra.update({rel:sha(base/rel) for rel in PERFORMANCE_SOURCES});performance['performance_profile']=selected
+    elif performance_profile not in PERFORMANCE_PROFILES:raise ValueError('Unsupported performance profile')
     return {'recovery_manifest_sha256': sha(base / 'RECOVERY_MANIFEST.json'),
             'source_files': {r['path']: r['sha256'] for r in recovered['files']},
             'algorithm_identity': algorithm,
@@ -96,11 +125,11 @@ def input_identity(base, model, hook, *, corner_refinement='original'):
             'model_sha256': MODEL_HASH, 'operator_hook_sha256': HOOK_HASH,
             'portable_entry_sha256': sha(base / 'build_portable.py'),
             'cmake_project_sha256': sha(base / 'CMakeLists.txt'),
-            'profile_sha256': sha(base / 'simulation_profile.json')}
+            'profile_sha256': sha(base / 'simulation_profile.json'),**performance}
 
 
-def prepare(base, out, model, hook, *, corner_refinement='original'):
-    identity = input_identity(base, model, hook,corner_refinement=corner_refinement)
+def prepare(base, out, model, hook, *, corner_refinement='original',performance_profile='original'):
+    identity = input_identity(base, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile)
     # Each attempt gets a fresh directory. Preserve prior failures and results.
     if out.exists():
         raise ValueError('Output already exists; choose a fresh --out directory')
@@ -121,6 +150,11 @@ def prepare(base, out, model, hook, *, corner_refinement='original'):
     text = main.read_text()
     if sha(main) != OPERATOR_MAIN_HASH or IDENTITY not in text or 'fov_admitted2d' not in text or 'std::erase_if' not in text:
         raise ValueError('Expected operator FOV transformation is incomplete')
+    if performance_profile!='original':
+        isolated_generator=generated/'prepare_first_frame_profile.py'
+        shutil.copyfile(base/PERFORMANCE_SOURCES[0],isolated_generator)
+        subprocess.run([sys.executable,str(isolated_generator),'--base',str(base),
+            '--generated',str(generated),'--profile',performance_profile],check=True)
     profile = json.loads((base / 'simulation_profile.json').read_text())
     profile['autoaim']['detector']['model_location'] = str(model)
     configs = out / 'configs'
@@ -159,7 +193,7 @@ def make_spec(binary, configs, model, identity, build_manifest_hash):
         raise ValueError('Detector model changed during build')
     digest = sha(binary)
     mode_hash = hashlib.sha256(MODE.encode()).hexdigest()
-    return {
+    spec={
         'id': 't2_sim_operator_portable_local', 'operator_identity': IDENTITY,
         'runner_identity': IDENTITY, 'binary': str(binary),
         'executor_yaml': str(configs / 'simulation_executor.yaml'),
@@ -179,6 +213,14 @@ def make_spec(binary, configs, model, identity, build_manifest_hash):
         'qualification': 'Built only; no inference, MuJoCo closed-loop, live, or hardware qualification',
         'algorithm_description': 'Recovered 079a7fe plus T2 tracker changes; explicit frontend ' + identity.get('corner_refinement','original') + '; operator FOV adapter; simulation-only stationary red sentry; no automatic fire authority',
     }
+    if 'performance_profile' in identity:
+        selected=identity['performance_profile']
+        spec.update(performance_profile=selected,diagnostic_only=True,
+            id='t2_sim_operator_performance_diagnostic',qualification='Diagnostic profile built only; never ordinary/live/native registry qualification')
+        spec['frozen_build']['performance_profile']=selected
+        spec['frozen_build']['diagnostic_only']=True
+        spec['algorithm_description']+='; explicit diagnostic performance profile '+selected['id']
+    return spec
 
 
 def syntax_command(row):
@@ -216,14 +258,14 @@ def syntax_checks(out):
     return reports
 
 
-def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='original'):
+def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='original',performance_profile='original'):
     if platform.system() != 'Linux' or platform.machine().lower() not in ('x86_64', 'amd64'):
         raise RuntimeError('This native build supports Linux x86-64 only')
     cmake = shutil.which('cmake')
     if cmake is None:
         raise RuntimeError('CMake is missing; install documented local prerequisites yourself')
-    identity = prepare(base, out, model, hook,corner_refinement=corner_refinement)
-    commands = make_commands(base, out, cmake=cmake, jobs=jobs, prefix=prefix,corner_refinement=corner_refinement)
+    identity = prepare(base, out, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile)
+    commands = make_commands(base, out, cmake=cmake, jobs=jobs, prefix=prefix,corner_refinement=corner_refinement,performance_profile=performance_profile)
     write_json(out / 'BUILD_ATTEMPT.json', {'status': 'running', 'commands': commands})
     try:
         for name, command in zip(('configure.log', 'build.log'), commands):
@@ -231,7 +273,7 @@ def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='orig
                 subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, check=True)
             if name == 'configure.log':
                 syntax = syntax_checks(out)
-        if input_identity(base, model, hook,corner_refinement=corner_refinement) != {k:v for k,v in identity.items() if k != 'generated_sha256'}:
+        if input_identity(base, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile) != {k:v for k,v in identity.items() if k != 'generated_sha256'}:
             raise ValueError('Build inputs changed during compilation')
         for rel, digest in identity['generated_sha256'].items():
             if sha(out / rel) != digest:
@@ -245,6 +287,7 @@ def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='orig
                     'syntax_checks': syntax,
                     'cmake_cache_sha256': sha(out / 'cmake/CMakeCache.txt'),
                     'compile_commands_sha256': sha(out / 'cmake/compile_commands.json')}
+        if 'performance_profile' in identity:manifest.update(performance_profile=identity['performance_profile'],diagnostic_only=True)
         write_json(out / 'BUILD_MANIFEST.json', manifest)
         spec = make_spec(binary, out / 'configs', model, identity, sha(out / 'BUILD_MANIFEST.json'))
         write_json(out / 'operator_source.local.json', spec)
@@ -268,20 +311,22 @@ def main(argv=None):
     parser.add_argument('--jobs', type=int, default=2)
     parser.add_argument('--corner-refinement',choices=('original',*CORNER_FRONTENDS),default='contour-v3',
                         help='Explicit source revision; each contour frontend is separately identified from original T2')
+    parser.add_argument('--performance-profile',choices=PERFORMANCE_PROFILES,default='original',
+        help='Opt-in diagnostic overlays only; request-preallocate does not supply pixels or run warm inference')
     args = parser.parse_args(argv)
     if args.jobs < 1:
         parser.error('--jobs must be positive')
     out, model, hook = args.out.resolve(), args.model.resolve(), args.operator_hook.resolve()
     if args.action == 'plan':
-        identity = input_identity(ROOT, model, hook,corner_refinement=args.corner_refinement)
+        identity = input_identity(ROOT, model, hook,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile)
         result = {'status': 'unbuilt_plan', 'inputs': identity,
-                  'commands_not_executed': make_commands(ROOT, out, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement),
+                  'commands_not_executed': make_commands(ROOT, out, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile),
                   'cmake_available': shutil.which('cmake') is not None,
                   'dependencies': json.loads((ROOT / 'RECOVERY_MANIFEST.json').read_text())['dependencies']}
     elif args.action == 'prepare':
-        result = {'status': 'prepared_unbuilt_no_spec', 'inputs': prepare(ROOT, out, model, hook,corner_refinement=args.corner_refinement)}
+        result = {'status': 'prepared_unbuilt_no_spec', 'inputs': prepare(ROOT, out, model, hook,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile)}
     else:
-        result = build(ROOT, out, model, hook, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement)
+        result = build(ROOT, out, model, hook, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile)
     print(json.dumps(result, indent=2))
 
 

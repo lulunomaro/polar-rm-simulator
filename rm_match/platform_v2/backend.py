@@ -11,16 +11,28 @@ class MuJoCoBackend:
     The existing 3v3 core and judge remain unchanged. Supplying a different backend
     preserves the platform protocol; this does not qualify a new roster or ruleset.
     """
-    def __init__(self,sim=None,*,camera=False,virtual_resupply="disabled"):
+    def __init__(self,sim=None,*,camera=False,virtual_resupply="disabled",navigation_sensors=None,clock=time.perf_counter):
         from .resupply import VirtualResupply
         self._resupply=VirtualResupply(virtual_resupply)
         if sim is None:
             from ..match_engine import MatchSimulation
-            if camera:
+            if navigation_sensors is not None:
+                from ..navigation_sensors import navigation_model_xml
+                from ..match_model import make_match_xml
+                if camera:
+                    from .camera import camera_model_xml
+                    xml=camera_model_xml()
+                else:xml=make_match_xml()
+                sim=MatchSimulation(render=False,model_xml=navigation_model_xml(xml,navigation_sensors))
+            elif camera:
                 from .camera import camera_model_xml
                 sim=MatchSimulation(render=False,model_xml=camera_model_xml())
             else:sim=MatchSimulation(render=False)
         self._sim=sim
+        self._navigation_sensors=None
+        if navigation_sensors is not None:
+            from ..navigation_sensors import NavigationSensors
+            self._navigation_sensors=NavigationSensors(sim,navigation_sensors,clock=clock)
         self.robot_ids=tuple(sim.robot_ids)
         self.timestep=float(sim.model.opt.timestep)
         self._authority=None
@@ -70,7 +82,18 @@ class MuJoCoBackend:
         self._check();return float(self._sim.time)
 
     def declared_sensor_support(self):
-        return {r:["odometry","ranges"] for r in self.robot_ids}
+        support={r:["odometry","ranges"] for r in self.robot_ids}
+        if self._navigation_sensors is not None:
+            for r in self._navigation_sensors.config.robot_ids:support[r]+=['pointcloud','imu']
+        return support
+
+    def navigation_sensor_packet(self,rid):
+        self._check()
+        return None if self._navigation_sensors is None else self._navigation_sensors.packet(rid)
+
+    def navigation_capture_valid(self,rid,episode,budget,sim_time):
+        self._check()
+        return bool(self._navigation_sensors and self._navigation_sensors.capture_valid(rid,episode,budget,sim_time))
 
     def sensor_sample(self,rid):
         self._check()
@@ -120,6 +143,7 @@ class MuJoCoBackend:
 
     def _step(self,targets,guard=None,clock=time.monotonic):
         self._check()
+        if getattr(self,'_navigation_sensors',None) is not None:self._navigation_sensors.capture()
         from ..contracts import Command
         import numpy as np
         s=self._sim;commands={}

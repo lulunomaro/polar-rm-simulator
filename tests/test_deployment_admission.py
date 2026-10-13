@@ -30,6 +30,16 @@ class EnrollmentTests(unittest.TestCase):
 
 
 class SourceCompositionTests(unittest.TestCase):
+    def test_diagnostic_identity_requires_explicit_offline_entry(self):
+        original = dict(base_commit=profile.T2_BASE, patch_sha256=profile.T2_PATCH)
+        self.assertEqual(profile.validate_source_identity(original), ('original', {}))
+        for key in ('runtime_performance_profile', 'performance_base_patch_sha256'):
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'explicit offline validator'):
+                profile.validate_source_identity(dict(original, **{key: None}))
+        with patch.object(profile, 'read_json_snapshot', return_value=({'performance_profile': None}, '0'*64)):
+            with self.assertRaisesRegex(ValueError, 'default deployment'):
+                profile.validate_t2_spec('unused.json')
+
     def test_own_tracker_and_frontend_are_both_required(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td); overlay=root/'overlays/corners_contour_v1.cpp'

@@ -1,0 +1,61 @@
+{
+  "scope": "Actual JsonLineAdapter original 2s reset + actual DDS peer; explicit zero-motion fixture; no physics/NN/navigation",
+  "mode": "module",
+  "clock": "Linux time.perf_counter",
+  "fixture": true,
+  "reset_ack_received": false,
+  "action_received": false,
+  "fresh_exec_child": true,
+  "parent_import_not_counted_as_child_start": true,
+  "kernel_page_cache_not_purged": true,
+  "peer_setup_s": 6.534349680999995,
+  "popen_begin": 88.461422649,
+  "popen_end": 88.464781694,
+  "child_pid": 744,
+  "exchanges": [
+    {
+      "op": "reset",
+      "begin": 88.465080855,
+      "original_timeout_s": 2.0,
+      "accepted": false,
+      "error_type": "ContractError",
+      "end": 88.905609498,
+      "elapsed_s": 0.4405286430000075
+    }
+  ],
+  "failure_type": "ContractError",
+  "owned_children": [
+    {
+      "pid": 744,
+      "returncode": -9,
+      "reaped": true,
+      "pipes_closed": true
+    }
+  ],
+  "adapter_io_thread_alive": false,
+  "peer_cleanup": {
+    "thread_alive": false,
+    "executor_clean": true,
+    "context_ok": false,
+    "errors": []
+  },
+  "peer_errors": [],
+  "peer_observations": 0,
+  "elapsed_s": 6.999989514999996,
+  "original_reset_gate_passed": false,
+  "clean_shutdown": true,
+  "child_phases": [],
+  "manifest_sha256": "b8ffd84d7478167f047bc56a75880bd1967cd971d94cea3876fb0c771d996631",
+  "sources": {
+    "rm_match/deployment/json_adapter.py": "69793193ca63d7281db35ff337a1aa592f6c51910544296a5abc087916b4a247",
+    "rm_match/integrations/ros2_bridge.py": "5372c8a3afe5bb530560a2287b71f1898dd347f9eed08d1aacce8c4355a18241",
+    "rm_match/integrations/ros2_bridge_transport.py": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+    "tools/diagnose_ros2_jsonl_startup.py": "edd542ec4ca2041b6eb5d8c59ddc3d8b8a955802a52dc1093bc4eefaa1bcbbd2"
+  },
+  "provenance_sha256": {
+    "PACKAGES_MANIFEST.json": "46f562eba1cbe4dc03a91524de7158942908e3b79d29c8520b82aa0d9c0b76f6",
+    "EXTRACTION.json": "af0ff13d54bc75d1d6a0fce4d7ac71b26ce17f4615ec6abc149053ee0c579af1",
+    "UBUNTU_PACKAGES_MANIFEST.json": "56e235a2ce8fb1e61636cccb7c4b4a706fdcb8bf583d03290f655c996abd8b67",
+    "UBUNTU_PYTHON_PACKAGES_MANIFEST.json": "ba6ac2c481d2d57b9a352dc55e1c7c715d310321c87b23b2966486f5776aae70"
+  }
+}

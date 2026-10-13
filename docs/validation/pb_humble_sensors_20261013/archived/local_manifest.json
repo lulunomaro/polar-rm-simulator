@@ -1,0 +1,24 @@
+{
+  "schema": "polar.sim.pb-navigation-manifest.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_pb_navigation",
+      "label": "explicit DDS fixture diagnostic",
+      "command": [
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+        "-u",
+        "-m",
+        "rm_match.integrations.pb_navigation_bridge",
+        "--domain-id",
+        "82",
+        "--expected-robot-id",
+        "red_sentry",
+        "--expected-episode",
+        "0",
+        "--expected-binding-epoch",
+        "1"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "polar.sim.pb-navigation-manifest.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_pb_navigation",
+      "label": "PolarBear Humble pointcloud/IMU bridge; sourced controller integration required",
+      "command": ["{python}", "-u", "-m", "rm_match.integrations.pb_navigation_bridge", "--adapter-id", "custom_pb_navigation", "--domain-id", "81", "--expected-robot-id", "red_sentry", "--expected-episode", "0", "--expected-binding-epoch", "1"],
+      "cwd": ".."
+    }
+  ]
+}
