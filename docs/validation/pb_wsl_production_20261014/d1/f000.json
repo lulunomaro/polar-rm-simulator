@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_pb_wsl_production_sil.py",
+    "--environment",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json",
+    "--stack-config",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-config-20261014-04.json",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-production-sil-actual-20261014-attempt1",
+    "--seconds",
+    "30",
+    "--diagnostics",
+    "--run"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "source_before": {
+    "rm_match/integrations/pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "9859e153ebc1e3c4e3f67e03503db6172ef1c54adbe3cac7b56b0f14386393b8",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "tools/qa_pb_wsl_navigation_sil.py": "6c07791f2ce6d4371e882a472486f1302734cb037038d95f97fcc68d3f402122",
+    "tools/pb_external_goal_session.py": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+    "tools/pb_sil_duration.py": "71185147f73bbbdf5b29d9d90b94e285c598d720174914076b824aad59383825",
+    "tools/qa_pb_external_goal_supervisor.py": "741923851a61b6345301805029a744c7a05442358724ccf06bc03e291b5891a6",
+    "tools/qa_pb_external_navigation_goal.py": "220e0fe4569c4ba63b6631b94c13f3f483fd4c07ba47128fcf61981f365678e8",
+    "tools/qa_pb_wsl_production_sil.py": "7549f91523dff45efc30087c1501031489adc59c00de678b2be7180d70e0e412",
+    "tests/test_pb_external_goal_session.py": "30afd552d9004de6f9297050381a4fe733740657c19bd27a8f5b36e5880e75b6",
+    "tests/test_pb_external_navigation_goal.py": "a88bc22e1062edbc67f6a5b8e027f92ae8f6a4ad59270a41aae8a5f91dcc7152",
+    "tests/test_pb_sil_duration.py": "67a125471e1b824156280e220a992d1a5152da3f326a36a54c14b32f31863a60",
+    "tests/test_pb_stack_shutdown_deadline.py": "b20ca6df80ef62ceb28b708c114b0d3586e0b8970678102be726e2c7401727b0",
+    "tests/test_pb_wsl_navigation_worker.py": "1a6b71b88edde62b0ae42d858bc770bb32ca2ca849b43c0f1942340765fba907",
+    "tests/test_pb_wsl_navigation_session.py": "d956a321d2cb192f19f03221835ecbd00dc1a71d75a6872be1235c76f0bcd70d",
+    "tests/test_pb_wsl_navigation_registry.py": "f482c5a63a7a913a69a1e0d8d0b002e9c12bacfe33f517be52d3bec4183a3bbc",
+    "tests/test_pb_wsl_navigation_stdio.py": "c9ac298e097192e793f655d12faa07b20817a8651227c5378cb819a7daa3484b"
+  },
+  "driver_sha256": "8b55edcdda1becffbbf56cf5b4872d2ef6a82187ef552f1fa992a2d5e6357f35"
+}

@@ -6,7 +6,7 @@
 
 | 平面 | 目标边界 | 当前实现与缺口 |
 | --- | --- | --- |
-| 选手/算法 | 本车传感器、标定、合法裁判字段和授权控制；禁止敌方真值、理想定位及命中预知 | 算法 DTO 不含敌方坐标、目标 ID、分割标签、全车名单或 simulator/judge 对象；但仍有理想本车关节、`odom_xyyaw`/`odom_vxyw` 和 64 条匿名理想射线，尚不符合最终自主导航边界 |
+| 选手/算法 | 本车传感器、标定、合法裁判字段和授权控制；禁止敌方真值、理想定位及命中预知 | 默认算法 DTO 不含敌方坐标、目标 ID、分割标签、全车名单或 simulator/judge 对象；默认仍有理想本车关节、`odom_xyyaw`/`odom_vxyw` 和 64 条匿名理想射线。显式 navigation_sensor_v1/PB桥使用独立真实ray/gyro/accelerometer，不传ideal pose，详见下述局部接入边界 |
 | 仿真/裁判 | 完整世界状态、碰撞与规则内部状态仅在权威线程使用 | 物理推进、控制仲裁、碰撞与裁判由服务权威线程管理；当前规则仅已验证的 3v3 子集 |
 | 观战/评测 | 真值、俯视与评分单独权限/通道，不回流算法 | 显式 audit grant 的 spectator 保留完整审计；operator state 是 `operator_limited_display`，frame 是 `operator_camera_display_v1`，不含世界 xy/odom 或他人动态/指令。本地 grant 限定 robot scope，watch/claim/control 不得越范围。跨机权限、TLS 与多人实测仍待 T13 |
 
@@ -102,6 +102,6 @@ HTTP 拒绝格式是 `{"accepted":false,"error":"原因码"}`，当前拒绝响�
 
 运行时 stop 先撤销控制权限。reviewed native lifecycle 通过持久取消事件停止 owned process，迟到的 reset/Popen 不能恢复推理；worker 单独拥有 wait/pipe close。live slots 与 offline worker 共用一次 1.5 s shutdown join 预算，等待发生在关闭阶段。可信审计的 `shutdown_status` 记录 `clean/unfinished_slots/lifecycle_errors/join_budget_s/join_elapsed_s`；任何未退出线程或关闭异常将 runtime 标为 `adapter_shutdown_incomplete`，离线终态改 HALTED。未知 Python 插件无法强行终止时必须记录关闭失败；这不构成恶意插件沙箱。80 ms 相机与 150 ms 授权期限未改变。
 
-T01 退出前需确认实际负责人、目标机、规则/传感器配置与质量阈值，并解决或列为有负责人的接口决策；T07/T09/T13 的能力缺口须按各自测试实现。未完成：完整版本协商、map/lidar 与通用关节规范、独立 arm、真实 IMU/编码器/点云、移除理想里程计、跨机时钟/TLS/多人实测、视频/HUD/裁判/输入频率与压缩/排序/背压/掉包规范、统一证据清单、ROS 2/串口桥和硬件监督器。
+T01 退出前需确认实际负责人、目标机、规则/传感器配置与质量阈值，并解决或列为有负责人的接口决策；T07/T09/T13 的能力缺口须按各自测试实现。显式[PB导航桥](PB_NAVIGATION_BRIDGE.md)及[Windows→WSL入口](PB_WSL_NAVIGATION.md)已有真实仿真点云/IMU→自家Point-LIO/SLAM/Smac/PID、生产Gate和独立外部动作客户端的单哨兵/单代/单目标局部SIL证据；这未改变默认DTO，也未完成通用ROS接口或传感器标定。未完成：完整版本协商、通用map/lidar/关节规范、独立arm、真实车辆IMU/编码器/点云标定、默认理想里程计移除、完整任务/多实现、跨机时钟/TLS/多人实测、视频/HUD/裁判/输入频率与压缩/排序/背压/掉包规范、统一比赛证据清单、通用ROS 2/串口桥和硬件监督器。
 
 局部验证命令：`python -m unittest rm_match.platform_v2.test_state_projection`。9 项 CPU/实际 loopback HTTP 测试覆盖本车/敌车真值哨兵、未知未来字段、嵌套透传、他人输入/绑定配置、release/expired lease 立即撤销 HUD、新 owner 不继承历史命令、spectator 快照不变。这是响应边界验证，不含渲染、GUI、native 推理、跨机或完整比赛。

@@ -1,0 +1,7 @@
+[INFO] [1791933307.090183931] [polar_sil_2b8829bfd7ee4c54b0e97fce101daa31.red_sentry.slam_toolbox]: Node using stack size 40000000
+[INFO] [1791933307.198536402] [polar_sil_2b8829bfd7ee4c54b0e97fce101daa31.red_sentry.slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[INFO] [1791933307.199730755] [polar_sil_2b8829bfd7ee4c54b0e97fce101daa31.red_sentry.slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.
+[WARN] [1791933311.021055780] [polar_sil_2b8829bfd7ee4c54b0e97fce101daa31.red_sentry.slam_toolbox]: minimum laser range setting (0.3 m) exceeds the capabilities of the used Lidar (0.3 m)
+Info: clipped range threshold to be within minimum and maximum range!
+Registering sensor: [Custom Described Lidar]
+[INFO] [1791933340.721311547] [rclcpp]: signal_handler(SIGINT/SIGTERM)

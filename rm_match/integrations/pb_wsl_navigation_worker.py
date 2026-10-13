@@ -183,11 +183,15 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
     from tools.pb_navigation_stack import PBNavigationStack
     identity=process_identity();guard=StopGuard(out,spec)
     errors=[];stack=transport=core=observer=gate=None;goal_thread=None;code=2;old_signals={}
-    rpc_rows=[];current_serial=None;current_op=None
+    rpc_rows=[];rpc_total=0;rpc_dropped=0;current_serial=None;current_op=None;odometry_messages=0
     def phase(name):
-        if spec['diagnostics'] and len(rpc_rows)<4096:
+        nonlocal rpc_total,rpc_dropped
+        if not spec['diagnostics']:return
+        rpc_total+=1
+        if len(rpc_rows)<4096:
             rpc_rows.append(dict(phase=name,id=current_serial,op=current_op,
                 local_wall=time.perf_counter(),clock='linux_local_perf_counter'))
+        else:rpc_dropped+=1
     for sig in (signal.SIGINT,signal.SIGTERM):
         old_signals[sig]=signal.getsignal(sig)
         signal.signal(sig,lambda *_:guard.stop.set())
@@ -220,6 +224,11 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
             imu_topic=ready['topics']['imu'],request_topic=ready['topics']['request'],result_topic=ready['topics']['result'],
             odom_topic=ready['topics']['odom'],clock_topic=ready['topics']['clock'],tf_static_topic=ready['topics']['tf_static'])
         core=NavigationBridge(settings)
+        original_odom=core.receive_odom_stamp
+        def received_odom(stamp):
+            nonlocal odometry_messages
+            original_odom(stamp);odometry_messages+=1
+        core.receive_odom_stamp=received_odom
         transport=(transport_factory or HumbleNavigationTransport)(settings,core)
         original_spin=transport.spin_once
         def spin(timeout):
@@ -258,9 +267,9 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
                 if packet!={'schema':JSONL_SCHEMA,'op':'status'}:raise ValueError('wsl_status_packet')
                 result=dict(stack_state=stack.state,bridge_reset=core.context is not None,
                     namespace=stack.namespace,goal_report={} if observer is None else observer.goal_report,
-                    odometry_messages=0 if observer is None else observer.odom_count,
+                    odometry_messages=odometry_messages if observer is None else observer.odom_count,
                     map_messages=gate.maps if gate is not None else observer.map_count,
-                    errors=[] if observer is None else observer.errors,clock_domain='linux_local_receive_only')
+                    errors=gate.errors if gate is not None else observer.errors,clock_domain='linux_local_receive_only')
             elif op in ('reset','act'):
                 if op=='reset':
                     core.reset(packet['context'],packet['config']);transport.wait_ready(1.)
@@ -282,9 +291,24 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
     finally:
         guard.stop.set()
         cleanup=None
+        if gate is not None:
+            try:
+                (out/'PRODUCTION_GATE_STATUS.json').write_text(json.dumps(dict(schema='polar.pb.production-gate-status.v1',
+                    run_uuid=spec['run_uuid'],production_gate=True,
+                    namespace=stack.namespace,stack_state=stack.state,map_messages=gate.maps,
+                    odometry_messages=odometry_messages,latest_odom_stamp_ns=core._odom_stamp,
+                    activation_started=gate.thread is not None,errors=gate.errors,
+                    clock_domain='linux_local_receive_only'),allow_nan=False)+'\n',encoding='utf8')
+            except BaseException as error:errors.append('gate_status_save:'+type(error).__name__)
         if observer is not None:
             try:observer.record_ending_estimate()
             except BaseException as error:errors.append('ending_estimate:'+type(error).__name__)
+        # Cancel/join lifecycle activation while its own stack context is alive.
+        # Gate uses no action/velocity authority; this is only owned teardown.
+        if gate is not None:
+            try:
+                if not gate.close():errors.append('activation_thread_not_reaped')
+            except BaseException as error:errors.append('gate_cleanup:'+type(error).__name__)
         if stack is not None:
             try:cleanup=stack.stop(grace_s=.15)
             except BaseException as error:errors.append('stack_cleanup:'+type(error).__name__)
@@ -300,10 +324,6 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
                 (out/'GOAL_REPORT.json').write_text(json.dumps(observer.goal_report,indent=2)+'\n',encoding='utf8')
                 errors+=observer.errors
             except BaseException as error:errors.append('observer_evidence_save:'+type(error).__name__)
-        if gate is not None:
-            try:
-                if not gate.close():errors.append('activation_thread_not_reaped')
-            except BaseException as error:errors.append('gate_cleanup:'+type(error).__name__)
         if core is not None:
             try:core.close()
             except BaseException as error:errors.append('core_cleanup:'+type(error).__name__)
@@ -324,7 +344,8 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
         if not source_unchanged:errors.append('session_source_changed')
         if spec['diagnostics']:
             try:
-                (out/'LINUX_RPC_PHASES.json').write_text(json.dumps(dict(rows=rpc_rows,
+                (out/'LINUX_RPC_PHASES.json').write_text(json.dumps(dict(rows=rpc_rows,total=rpc_total,
+                    dropped=rpc_dropped,capacity=4096,complete=rpc_dropped==0,
                     stop_poll_count=guard.poll_count,max_stop_poll_seconds=guard.max_poll_seconds,
                     slow_stop_polls=guard.slow_polls,clock='linux_local_perf_counter'),allow_nan=False)+'\n',encoding='utf8')
             except BaseException as error:errors.append('rpc_evidence_save:'+type(error).__name__)
@@ -343,7 +364,8 @@ def main(argv=None):
     for name in ('CLEANUP.json','WORKER_STARTED.json','ROS_SOURCE.jsonl','GOAL_REPORT.json','stack'):
         if (out/name).exists():raise ValueError('wsl_session_reuse_forbidden')
     fd=os.open(str(out/'WORKER_STARTED.json'),os.O_WRONLY|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
-    with os.fdopen(fd,'w',encoding='utf8') as stream:stream.write(json.dumps(process_identity(),allow_nan=False)+'\n')
+    with os.fdopen(fd,'w',encoding='utf8') as stream:stream.write(json.dumps(dict(run_uuid=spec['run_uuid'],
+        config_sha256=spec['config_ref']['sha256'],**process_identity()),allow_nan=False)+'\n')
     return session_worker(spec,out)
 
 

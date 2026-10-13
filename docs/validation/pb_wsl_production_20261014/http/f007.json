@@ -1,0 +1,336 @@
+{
+  "scope": "actual loopback TCP with fake runtime; no simulation/ROS/authorization bypass",
+  "label": "before",
+  "source_sha256": "d5b172ce5e7aef18910228f8322ff7163ecd2fb819e2a03e4f06582b8fbcc0ba",
+  "source_unchanged": true,
+  "samples": [
+    {
+      "delay_s": 0.0,
+      "sample": 0,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0014513999922201037
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 1,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0008175999973900616
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 2,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0007843999919714406
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 3,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0007654000073671341
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 4,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0007070999999996275
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 5,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0007037000032141805
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 6,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0006748000014340505
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 7,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.000635299991699867
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 8,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0006209999992279336
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 9,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0006404999876394868
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 10,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0007101999945007265
+    },
+    {
+      "delay_s": 0.0,
+      "sample": 11,
+      "status": 413,
+      "body": {
+        "accepted": false,
+        "error": "body_too_large"
+      },
+      "exact_response": true,
+      "elapsed_s": 0.0006993999995756894
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 0,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.01638529999763705
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 1,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.016112600002088584
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 2,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.016149799994309433
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 3,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.029219100004411303
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 4,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.01649489998817444
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 5,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.015926399995805696
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 6,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.016297199996188283
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 7,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.016043099996750243
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 8,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.01599250000435859
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 9,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.0314113000058569
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 10,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.01599119999445975
+    },
+    {
+      "delay_s": 0.015,
+      "sample": 11,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.015788399992743507
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 0,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.05149530000926461
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 1,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.06925109999428969
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 2,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.07172910000372212
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 3,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.06831260000762995
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 4,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.05124319999595173
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 5,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.07101739999779966
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 6,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.062343900004634634
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 7,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.06775820000621025
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 8,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.060793199998443015
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 9,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.0627880000101868
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 10,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.05159269999421667
+    },
+    {
+      "delay_s": 0.05,
+      "sample": 11,
+      "error_type": "ConnectionAbortedError",
+      "error": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002",
+      "exact_response": false,
+      "elapsed_s": 0.05133649999334011
+    }
+  ],
+  "exact_responses": 12,
+  "all_responses_exact": false,
+  "serve_thread_reaped": true,
+  "elapsed_s": 0.9865951999963727
+}

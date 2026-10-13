@@ -1,0 +1,249 @@
+{
+  "schema": "polar.pb.production-independent-audit.v1",
+  "passed": true,
+  "source": "artifacts\\pb-wsl-production-sil-actual-20261014-attempt2",
+  "scope": "Read-only production Gate/external raw action\u2192original SDK\u2192all nonzero physical consumption; no new run/mission/hardware/accuracy acceptance",
+  "internal_test_goal": false,
+  "production_gate": {
+    "schema": "polar.pb.production-gate-status.v1",
+    "run_uuid": "dfe4397daa9a443b8eabcd09b5e3fe5d",
+    "production_gate": true,
+    "namespace": "/polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d/red_sentry",
+    "stack_state": "ACTIVE",
+    "map_messages": 59,
+    "odometry_messages": 297,
+    "latest_odom_stamp_ns": 29897999999,
+    "activation_started": true,
+    "errors": [],
+    "clock_domain": "linux_local_receive_only"
+  },
+  "external_state_observations": [
+    {
+      "event": "gate_state_observed",
+      "receive_wall": 10.878021915,
+      "receive_clock": "linux_local_perf_counter",
+      "node": "controller_server",
+      "state": 3,
+      "service": "/polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d/red_sentry/controller_server/get_state"
+    },
+    {
+      "event": "gate_state_observed",
+      "receive_wall": 11.105964186,
+      "receive_clock": "linux_local_perf_counter",
+      "node": "planner_server",
+      "state": 3,
+      "service": "/polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d/red_sentry/planner_server/get_state"
+    }
+  ],
+  "actual_costmap_geometry": {
+    "raw_receipt_count": 48,
+    "decision_count": 2,
+    "accepted_decision": {
+      "event": "global_costmap_readiness",
+      "receive_wall": 11.177180092,
+      "receive_clock": "linux_local_perf_counter",
+      "decision": {
+        "schema": "polar.pb.global-costmap-readiness.v1",
+        "grid_receipt_id": 1,
+        "grid_data_sha256": "19fe4c30d443f871109084cee37cc0f1c7f86d80149bb930855f8be82afbef81",
+        "grid_header": {
+          "stamp": {
+            "sec": 1,
+            "nanosec": 0
+          },
+          "frame_id": "map"
+        },
+        "actual_tf": {
+          "header": {
+            "stamp": {
+              "sec": 1,
+              "nanosec": 98000000
+            },
+            "frame_id": "map"
+          },
+          "child_frame_id": "base_link",
+          "transform": {
+            "translation": {
+              "x": -0.0329570889253417,
+              "y": -0.020623552849733627,
+              "z": 0.004893902591344822
+            },
+            "rotation": {
+              "x": -0.006498116235265625,
+              "y": 0.012581302407357407,
+              "z": 0.000782177742109312,
+              "w": 0.9998994316995622
+            }
+          }
+        },
+        "actual_goal": {
+          "header": {
+            "stamp": {
+              "sec": 1,
+              "nanosec": 98000000
+            },
+            "frame_id": "map"
+          },
+          "pose": {
+            "position": {
+              "x": 0.9670429110746583,
+              "y": -0.020623552849733627,
+              "z": 0.0
+            },
+            "orientation": {
+              "x": -0.006498116235265625,
+              "y": 0.012581302407357407,
+              "z": 0.000782177742109312,
+              "w": 0.9998994316995622
+            }
+          }
+        },
+        "start_cell": {
+          "in_bounds": true,
+          "index_xy": [
+            0,
+            153
+          ],
+          "cost": 255
+        },
+        "goal_cell": {
+          "in_bounds": true,
+          "index_xy": [
+            20,
+            153
+          ],
+          "cost": 255
+        },
+        "ready": true,
+        "predicate": "same_published_map_geometry_half_open_bounds",
+        "costs_affect_predicate": false,
+        "planner_feasibility_qualified": false
+      }
+    },
+    "accepted_raw_receipt": {
+      "event": "global_costmap_received",
+      "receive_wall": 11.095535302,
+      "receive_clock": "linux_local_perf_counter",
+      "grid": {
+        "schema": "polar.pb.actual-global-costmap.v1",
+        "receipt_id": 1,
+        "source": "actual_raw_costmap_subscription",
+        "topic": "/polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d/red_sentry/global_costmap/costmap_raw",
+        "message_type": "nav2_msgs/msg/Costmap",
+        "header": {
+          "stamp": {
+            "sec": 1,
+            "nanosec": 0
+          },
+          "frame_id": "map"
+        },
+        "metadata": {
+          "size_x": 107,
+          "size_y": 155,
+          "resolution": 0.05000000074505806,
+          "origin": {
+            "position": {
+              "x": -0.041795904168293686,
+              "y": -7.71620029173627,
+              "z": 0.0
+            },
+            "orientation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            }
+          },
+          "layer": "master",
+          "map_load_time": {
+            "sec": 0,
+            "nanosec": 0
+          },
+          "update_time": {
+            "sec": 0,
+            "nanosec": 0
+          }
+        },
+        "data_bytes": 16585,
+        "data_sha256": "19fe4c30d443f871109084cee37cc0f1c7f86d80149bb930855f8be82afbef81",
+        "receive_wall": 11.09547008,
+        "receive_clock": "linux_local_perf_counter"
+      }
+    },
+    "half_open_bounds_independently_recomputed": true,
+    "geometry_indices_independently_recomputed": true,
+    "data_sha256_continuity_verified": true,
+    "whole_raw_grid_bytes_preserved": false,
+    "data_sha256_independently_recomputed": false,
+    "cell_costs_independently_recomputed": false,
+    "costs_do_not_affect_bounds_predicate": true,
+    "planner_feasibility_qualified": false
+  },
+  "ROS_counts": {
+    "request": 299,
+    "localization": 297,
+    "controller_result": 19
+  },
+  "nonzero_consumed_steps": 708,
+  "consumed_command_identities": 19,
+  "capture_age_host_wall_s": {
+    "min": 0.03110490000108257,
+    "max": 0.1287979000044288
+  },
+  "clock_domains": {
+    "host": "Windows QPC receipt/SDK",
+    "peer": "Linux local perf_counter",
+    "sensor_and_ros": "original sim clock",
+    "cross_domain_subtraction": false
+  },
+  "original_files_sha256": {
+    "RESULT.json": "60bda613f7ff525e009a17c59c50cf209a74520b680470d53ac73e140e42f375",
+    "session/SESSION_SPEC.json": "b287b19761dd5ef005c008eb93e924ca75ecd5ade2cb565e7941dd1dcaddc516",
+    "session/PRODUCTION_GATE_STATUS.json": "ed6ed89b8cae1d9d2132bf9746f9d897d1de3008b7d5b7f837ecf900554fd44a",
+    "peer/EXTERNAL_SPEC.json": "d6dce3a872af93776a8d272808e0897e5e39b1506f537f27002b81a01512cedb",
+    "peer/RESULT.json": "99bd64b915563aa14fb40001fabde2fc3e62c093185c71ac6fa39fd6174ecc1f",
+    "peer/READY.json": "596a7ed797c324d1660790991b4ba540c09748c567e92cb394b45a6b112b93af",
+    "peer/GOAL_REPORT.json": "62ee5423ad40b86eb1a27dde025ee98dd8cf94617612986a38d6b7139d174421",
+    "peer/CLEANUP.json": "f7dd515be2b8ad4f1c47b8cac346c0ed1c3ef529db9e64be06edf0a3114ea775",
+    "peer/SUPERVISOR_CLEANUP.json": "4862248fdc611188212ac503f166b40c1704804a39f8a1190c264bc10357cbfb",
+    "peer/SUPERVISOR_STARTED.json": "58c0718fca2d990a3f111f805118619afdcdd06ff01af880e930507717d5db6e",
+    "peer/SPAWN.json": "d6e2cf92b9f4db6379e53fef3692f45db1c0ce26367e8ec969f3783cf9044800",
+    "session/WORKER_STARTED.json": "4f499b65dab4d0a87feaa56f87e361a190b6e2df365f804239c939acc6445edd",
+    "session/CLEANUP.json": "78d44da3e542a6748ae7791bd94428c081e1f45f3c8f39999a48df59214e0470",
+    "session/stack/CLEANUP.json": "656af60e970392b4dd87936208769d26238977735f4cf0714fb341270aef70c6",
+    "session/stack/controller_server.log": "7a1e6e3f38dca0450129c7f90521e091f2bc29fd3fd5346b848efb187e56d4a9",
+    "session/stack/planner_server.log": "549b081df2faacdd82ee823bf22d9efa9db983d0835a114840f0abc064b6fc65",
+    "TRACE.jsonl": "357dd7d14fa6d5e4f17d9e9d6f7a387ae04c1377145d0cc2b714068a1e8e856e",
+    "peer/ROS_SOURCE.jsonl": "bf2d9c1db34ccb9f20aa3b1ab7e81c9a8c2b12cec457a7687c0b3c0126af0396",
+    "peer/EXTERNAL_EVENTS.jsonl": "e302aca84a9b46002050f49733915187ce3f5e4d0c17e8e38e3e6e5e00684bb3"
+  },
+  "originals_unchanged": true,
+  "algorithm_source_sha256": {
+    "rm_match/integrations/pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "20d39ac402770d125897f1f7a8a88af0e3d0c05376eb620b3c82d55a99dcc58f",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "rm_match/integrations/pb_navigation_bridge.py": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "rm_match/integrations/pb_navigation_phases.py": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+    "rm_match/integrations/ros2_bridge.py": "5372c8a3afe5bb530560a2287b71f1898dd347f9eed08d1aacce8c4355a18241",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/deployment/profile.py": "c571aefa6cf5ba44c2385be26f015d50557c21eb6edd59a4ea1a90de6eaf9c57",
+    "rm_match/deployment/wsl_profile.py": "2d05ec3e0c9e79d771d790093414c62af798f2ae7d8e1dea09b59de03e80b758",
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_wsl_production_sil.py": "12e6791b980c124c6558d45651b7829d29cb7e45b92617a42a50172137efc3ba",
+    "tools/pb_external_goal_session.py": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+    "tools/pb_sil_duration.py": "71185147f73bbbdf5b29d9d90b94e285c598d720174914076b824aad59383825",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "rm_match/platform_v2/runtime.py": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+    "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+  },
+  "audit_script_sha256": "e16590a49ac25e9746edf694388395e092de041ff707e3109e3cbe1878671d79"
+}

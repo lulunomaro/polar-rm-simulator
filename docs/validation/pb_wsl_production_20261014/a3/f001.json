@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-production-audit-20261014-03\\audit.py",
+    "--source",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-production-sil-actual-20261014-attempt3"
+  ],
+  "qualification": "Read-only independent original actual3 evidence; no new ROS/WSL/physics run"
+}

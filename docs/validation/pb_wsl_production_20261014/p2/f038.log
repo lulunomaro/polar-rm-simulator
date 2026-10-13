@@ -1,0 +1,23 @@
+[INFO] [1791932392.095724935] [ImuProcess]: IMU Initializing: 1.0 %
+[WARN] [1791932392.096547018] [ImuProcess]: reset ImuProcess
+[INFO] [1791932392.150137021] [ImuProcess]: IMU Initializing: 50.0 %
+[INFO] [1791932392.150610646] [ImuProcess]: IMU Initializing: 100.0 %
+lidar_type: 1
+~~~~/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/src/point_lio/ file opened
+first imu time: 0.098000
+[INFO] [1791932422.000585191] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+Failed to delete datawriter, at ./src/publisher.cpp:48 during '__function__'
+[ERROR] [1791932422.119701012] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.point_lio.rclcpp]: Error in destruction of rcl publisher handle: cannot publish data, at ./src/rmw_publish.cpp:62, at ./src/rcl/publisher.c:187
+
+>>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+This error state is being overwritten:
+
+  'cannot publish data, at ./src/rmw_publish.cpp:62'
+
+with this new error message:
+
+  'Failed to delete datareader, at ./src/subscription.cpp:52'
+
+rcutils_reset_error() should be called after error handling to avoid this.
+<<<
+__function__:80: 'destroy_subscription' failed

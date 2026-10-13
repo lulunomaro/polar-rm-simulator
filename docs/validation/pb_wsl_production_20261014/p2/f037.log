@@ -1,0 +1,44 @@
+[INFO] [1791932388.523819289] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: 
+	planner_server lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791932388.603202293] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Creating
+[INFO] [1791932388.615894320] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: 
+	global_costmap lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791932388.651928242] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Creating Costmap
+[INFO] [1791932389.022886572] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Configuring
+[INFO] [1791932389.023099042] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Configuring
+[INFO] [1791932389.029181390] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Using plugin "static_layer"
+[INFO] [1791932389.035722408] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Subscribing to the map topic (/polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d/red_sentry/map) with transient local durability
+[INFO] [1791932389.037338079] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Initialized plugin "static_layer"
+[INFO] [1791932389.037645175] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Using plugin "intensity_voxel_layer"
+[INFO] [1791932389.044958506] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Subscribed to Topics: terrain_map_ext
+[INFO] [1791932389.049394653] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Initialized plugin "intensity_voxel_layer"
+[INFO] [1791932389.049591638] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Using plugin "inflation_layer"
+[INFO] [1791932389.050482888] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[INFO] [1791932389.077164490] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlannerHybrid
+[INFO] [1791932389.077464880] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Configuring GridBased of type SmacPlannerHybrid
+[INFO] [1791932389.079942578] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Even sized heuristic lookup table size set 400.000000, increasing size by 1 to make odd
+[INFO] [1791932389.886641954] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Configured plugin GridBased of type SmacPlannerHybrid with maximum iterations 1000000, max on approach iterations 1000, and allowing unknown traversal. Tolerance 0.50.Using motion model: Dubin.
+[INFO] [1791932389.887198636] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Planner Server has GridBased  planners available.
+[INFO] [1791932392.632803228] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 107 X 155 at 0.050000 m/pix
+[INFO] [1791932392.765069927] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Activating
+[INFO] [1791932392.765397743] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Activating
+[INFO] [1791932392.765734506] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Checking transform
+[INFO] [1791932392.766017623] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: start
+[WARN] [1791932392.966259574] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[INFO] [1791932392.967099816] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Activating plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791932392.968402785] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Creating bond (planner_server) to lifecycle manager.
+[INFO] [1791932393.766158507] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 214 X 167 at 0.050000 m/pix
+[INFO] [1791932394.166130455] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 225 X 169 at 0.050000 m/pix
+[INFO] [1791932395.166211719] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 225 X 169 at 0.050000 m/pix
+[INFO] [1791932395.766194685] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 225 X 169 at 0.050000 m/pix
+[INFO] [1791932396.166236478] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 246 X 169 at 0.050000 m/pix
+[INFO] [1791932422.000689348] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [1791932422.002522563] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[INFO] [1791932422.003289974] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Deactivating
+[INFO] [1791932422.003617002] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.global_costmap.global_costmap]: Deactivating
+[INFO] [1791932422.166717391] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Deactivating plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791932422.167759703] [polar_sil_dfe4397daa9a443b8eabcd09b5e3fe5d.red_sentry.planner_server]: Destroying bond (planner_server) to lifecycle manager.

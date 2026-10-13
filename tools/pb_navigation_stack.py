@@ -421,11 +421,14 @@ class PBNavigationStack:
 
     def stop(self, grace_s=1.5):
         if not self._stop_lock.acquire(blocking=False):
-            if not self._stop_complete.wait(timeout=5.0):
+            budget=grace_s+1.0+.15
+            end=getattr(self,'_stop_deadline',time.perf_counter()+budget)
+            if not self._stop_complete.wait(timeout=max(0.,min(budget,end-time.perf_counter()))):
                 return {'schema':'polar.pb-stack-cleanup.v1','clean':False,'errors':['shutdown_in_progress'],'processes':[]}
             return copy.deepcopy(self.cleanup)
         try:
             if self._stop_complete.is_set():return copy.deepcopy(self.cleanup)
+            self._stop_deadline=time.perf_counter()+grace_s+1.0+.15
             try:self.cleanup=self._stop_owned(grace_s)
             except BaseException as error:
                 self.cleanup={'schema':'polar.pb-stack-cleanup.v1','clean':False,'errors':['shutdown_exception:'+type(error).__name__],

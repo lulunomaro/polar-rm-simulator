@@ -1,0 +1,31 @@
+{
+  "schema": "polar.pb.external-goal-spec.v1",
+  "run_uuid": "c6807e0416e9a3c44cfeee862cd022f2",
+  "session_run_uuid": "3328d07170fa46e69357be18424973cc",
+  "session_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-wsl-production-sil-actual-20261014-attempt1/session/SESSION_SPEC.json",
+    "sha256": "e865205dfcd429f333c804376e82f1c651e5cf5eb29e8908ed71c0f1a3401b18"
+  },
+  "namespace": "/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry",
+  "domain_id": 84,
+  "root_linux": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+  "out_linux": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-wsl-production-sil-actual-20261014-attempt1/peer",
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "source_sha256": {
+    "tools/qa_pb_external_navigation_goal.py": "220e0fe4569c4ba63b6631b94c13f3f483fd4c07ba47128fcf61981f365678e8",
+    "tools/qa_pb_external_goal_supervisor.py": "741923851a61b6345301805029a744c7a05442358724ccf06bc03e291b5891a6",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "goal_offset_m": [
+    1.0,
+    0.0
+  ],
+  "max_wall_seconds": 60.0
+}

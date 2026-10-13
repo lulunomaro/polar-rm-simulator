@@ -1,0 +1,19 @@
+{
+  "max_packet_validation_rpc_id": 282,
+  "max_packet_validation_ms": 20.73720000043977,
+  "max_packet_validation_rpc_exchange_total_ms": 71.61569999880157,
+  "phases": {
+    "exchange_enter": 72064.4340392,
+    "packet_validated": 72064.4547764,
+    "encode_begin": 72064.4547777,
+    "encode_end": 72064.4549648,
+    "stdin_write_begin": 72064.4549879,
+    "stdin_write_end": 72064.4555276,
+    "stdout_line_received": 72064.5055453,
+    "caller_received": 72064.5056057,
+    "result_validated": 72064.5056476,
+    "return_copy_end": 72064.5056549
+  },
+  "max_total_rpc_230_packet_validation_ms": 18.01990000240039,
+  "source_input_sha256": "03d4af4347c2cfc1a53eff4a3a056432816569e10191a76d4f152b191bce7eb9"
+}

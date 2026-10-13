@@ -1,0 +1,491 @@
+{
+  "schema": "polar.pb-wsl-navigation-readonly-review.v1",
+  "source_sha256": {
+    "rm_match/integrations/pb_wsl_navigation.py": "feee1a7b65e4a791fd60eaa64f5402aff85b9a30d3e6dbd59f5254b5ce37e5a5",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "5ad106f8b126b736de6fe38df00ef949efe8103fefd3ad3743bb10871d028e7c",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "674620ee8661dd4429a88952348722678e6c572adfa98f2991c539337d4f53c2",
+    "rm_match/integrations/pb_navigation_bridge.py": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "tools/pb_navigation_stack.py": "44554cbb0d931409deda02f70599da70cda16c71ed13cb4f3cfd538a3f2e9ba7",
+    "tools/qa_pb_wsl_navigation_sil.py": "bea7173ccc1d83294cf860246d26da6b84634326a8918b31f838fa5c0f67ff5a",
+    "rm_match/platform_v2/__main__.py": "cf5ea2214f221ca541dc52c82fd0b35ab77503c8d4d764510b99b2d777e68fc3"
+  },
+  "source_unchanged_during_review": true,
+  "evidence_sha256": {
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt2/RESULT.json": "5bb1eb3b6711c8ec48ecebf8ec631a03d5c219059a149f4038eeddef679a7006",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt2/PREPARE.json": "cdd41d2b01765cd3362424ee403d5458d57e4d84fe1d8ea296df16da626299dd",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt2/session/CLEANUP.json": "fce0a6b7f8a8fcbfc27477b7176a73fa82129cec0c93e8368719fe929a44f02f",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt2/TRACE.jsonl": "a2ed5b8b7540d37155eb54c461445eb35c3d0c6848f58d71c762bda843d20e65",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt2/session/SESSION_SPEC.json": "d0061b8f7a5fec15c5f139ef50dd158fc615167ba172186ac9150801911904a5",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/RESULT.json": "22c5e178afd8f0e6616412062449cd89cf3b2bdb9737e0781fe3fddfeb25c1bd",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/PREPARE.json": "7fe66fac0e7e7e1a044d0fc23188d833b447e5fc2650711bfdd1e5fe26349514",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/session/CLEANUP.json": "4b158a6aece366451018286be9635f3ca19e7f8edb8baeefb8ebfb50c4156b02",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/TRACE.jsonl": "d8a42d25b937aa5592299ef7682a293353aa4018fb666b6fd6d4bf087a8bfebd",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/session/SESSION_SPEC.json": "2d8aeb79e7dd4aa021e44424ea2768ad27c33aca5e6fa3d750e4b69c71acd9b6",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/HOST_RPC_PHASES.json": "2366d5bd5b3ed4fdea845ed88850570f1522621ba7ea9e3a6c89ef3211c88a9e",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt3/session/LINUX_RPC_PHASES.json": "03ce17e7542558c9beba812e97d2733bc062e16098933bbe0c08bb6de4c284f9",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/RESULT.json": "10ecbc73958cb98b590d26cabe74f76156ea76016e4589110f6083c1d10207ad",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/PREPARE.json": "7686c60a3e7bcfd4af65d1df5cff93882a35cf792f72773d73772a7a69b2c12d",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/session/CLEANUP.json": "f3315c49dc3bf403c7c87e41028b900e6bfef8194f13863a623d3fdd560f57a6",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/TRACE.jsonl": "246366b98ac1d8e9117cc273253106634d3ed4606664f68a86381aee4052ac7e",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/session/SESSION_SPEC.json": "80fe75b6069765603cd3427f259a090685d9885ef5fbc93e2297cb61d3be0a0d",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/HOST_RPC_PHASES.json": "d1bf8ea89333fb64b4d37854254e1b380f25e399918a8a50b52a1d7f077db764",
+    "artifacts/pb-wsl-navigation-sil-actual-20261014-attempt4/session/LINUX_RPC_PHASES.json": "a0f9cba1867220c068ca6f52a66971d004e8f5e309fab2f642ada645dd1ca824"
+  },
+  "percentile_definition": "median P50; nearest-rank P95/P99; all durations in milliseconds",
+  "no_cross_clock_subtraction": true,
+  "production_gate_exercised_by_these_attempts": false,
+  "attempts": {
+    "2": {
+      "scope": "single sentry/generation/relative goal; Windows physics+WSL Humble; not full mission/match/hardware",
+      "relative_test_goal": true,
+      "actual_steps": 3808,
+      "reported_pass": false,
+      "host_source_unchanged": true,
+      "runtime_shutdown_clean": true,
+      "worker_cleanup_clean": true,
+      "owned_groups": [],
+      "cleanup_identity_matches_ready": true,
+      "adapter_result_count": 67,
+      "faults": [
+        {
+          "event": "adapter_result",
+          "wall_time": 61678.4104878,
+          "robot_id": "red_sentry",
+          "kind": "navigation",
+          "binding_epoch": 1,
+          "observed_seq": 67,
+          "episode": 0,
+          "observation_sim_time": 6.7,
+          "wall_deadline": 61678.3959935,
+          "sensor_budget": {
+            "source": "navigation_sensor_v1",
+            "frame_id": 66,
+            "profile_sha256": "db84bf05840374b1f04cb56aeb5272ca852db6bd40ac993825b169422b96b443",
+            "capture_wall": 61678.2752295,
+            "capture_sim_time": 6.7,
+            "wall_deadline": 61678.425229500004,
+            "sim_deadline": 6.8500000000000005
+          },
+          "sample_identity": null,
+          "operator_authorization": {
+            "epoch": 1,
+            "activation_required": true,
+            "activation_seq": 133,
+            "activation_expires": 61678.3959935,
+            "activation_window_id": 134,
+            "activation_window_deadline": 61678.3959935
+          },
+          "started_wall": 61678.2792511,
+          "completed_wall": 61678.4098055,
+          "error": "TimeoutError",
+          "command": null,
+          "discarded_reason": null,
+          "admission_timings": {
+            "act_s": 0.1297400999974343
+          },
+          "exception_diagnostic": {
+            "phase": "public_act",
+            "frames": [
+              {
+                "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\runtime.py",
+                "function": "_run",
+                "line": 153
+              },
+              {
+                "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\pb_wsl_navigation_registry.py",
+                "function": "act",
+                "line": 37
+              },
+              {
+                "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\pb_wsl_navigation.py",
+                "function": "exchange",
+                "line": 341
+              },
+              {
+                "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\pb_wsl_navigation.py",
+                "function": "_receive",
+                "line": 222
+              }
+            ]
+          }
+        }
+      ],
+      "host_act_ms": {
+        "count": 67,
+        "p50": 53.41020000196295,
+        "p95": 55.61200000374811,
+        "p99": 129.7400999974343,
+        "max": 129.7400999974343,
+        "min": 13.058600001386367
+      },
+      "host_original_deadline_margin_ms": {
+        "count": 67,
+        "p50": 55.07909999869298,
+        "p95": 95.64749999844935,
+        "p99": 98.2542000056128,
+        "max": 98.2542000056128,
+        "min": -13.811999997415114
+      },
+      "prepare_wall_seconds": 7.446286300000793
+    },
+    "3": {
+      "scope": "single sentry/generation/relative goal; Windows physics+WSL Humble; not full mission/match/hardware",
+      "relative_test_goal": true,
+      "actual_steps": 15000,
+      "reported_pass": true,
+      "host_source_unchanged": true,
+      "runtime_shutdown_clean": true,
+      "worker_cleanup_clean": true,
+      "owned_groups": [],
+      "cleanup_identity_matches_ready": true,
+      "adapter_result_count": 299,
+      "faults": [],
+      "host_act_ms": {
+        "count": 299,
+        "p50": 53.47489999985555,
+        "p95": 55.10789999971166,
+        "p99": 57.11910000536591,
+        "max": 57.54200000228593,
+        "min": 47.21409999910975
+      },
+      "host_original_deadline_margin_ms": {
+        "count": 299,
+        "p50": 53.91419999796199,
+        "p95": 67.0112000007066,
+        "p99": 73.00120000581956,
+        "max": 74.19179999851622,
+        "min": 10.180199999012984
+      },
+      "prepare_wall_seconds": 8.802164100001391,
+      "host_phases": {
+        "act_transaction_count": 299,
+        "metrics": {
+          "encode": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.1906000034068711,
+              "p95": 0.22629999875789508,
+              "p99": 0.26480000087758526,
+              "max": 0.3224000029149465,
+              "min": 0.1736999984132126
+            },
+            "missing_ids": []
+          },
+          "writer_admission": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.04610000178217888,
+              "p95": 0.4163999983575195,
+              "p99": 0.8750000051804818,
+              "max": 1.0022999995271675,
+              "min": 0.021500003640539944
+            },
+            "missing_ids": []
+          },
+          "pipe_write": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.4853999998886138,
+              "p95": 0.7213999997475185,
+              "p99": 0.9444999959669076,
+              "max": 1.374399995256681,
+              "min": 0.09699999645818025
+            },
+            "missing_ids": []
+          },
+          "written_to_reply_received": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 50.674600002821535,
+              "p95": 52.32059999980265,
+              "p99": 54.57169999863254,
+              "max": 54.75329999899259,
+              "min": 43.92669999651844
+            },
+            "missing_ids": []
+          },
+          "reader_to_caller": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.027199996111448854,
+              "p95": 0.26330000400776044,
+              "p99": 0.7689000049140304,
+              "max": 0.8675999997649342,
+              "min": 0.01649999467190355
+            },
+            "missing_ids": []
+          },
+          "encode_to_caller": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 51.451200000883546,
+              "p95": 53.06190000555944,
+              "p99": 55.23450000328012,
+              "max": 55.6531999973231,
+              "min": 44.99070000019856
+            },
+            "missing_ids": []
+          }
+        },
+        "errors": []
+      },
+      "linux_phases": {
+        "act_transaction_count": 299,
+        "metrics": {
+          "parsed_to_exchange": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.0013830000007430954,
+              "p95": 0.0017149999997911891,
+              "p99": 0.002482999999386948,
+              "max": 0.007569000004536974,
+              "min": 0.001089000001286422
+            },
+            "missing_ids": []
+          },
+          "bridge_exchange": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 50.29436299999901,
+              "p95": 50.50513700000181,
+              "p99": 51.052025000004164,
+              "max": 52.53070399999871,
+              "min": 43.983419999999995
+            },
+            "missing_ids": []
+          },
+          "reply_serialization_admission": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.0027870000032237385,
+              "p95": 0.004097999999785884,
+              "p99": 0.008800999999891701,
+              "max": 0.01588499999627402,
+              "min": 0.0021389999993459696
+            },
+            "missing_ids": []
+          },
+          "stdout_write": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.06844900000047005,
+              "p95": 0.7128089999994813,
+              "p99": 1.2528689999982134,
+              "max": 2.2173939999987624,
+              "min": 0.0521790000007627
+            },
+            "missing_ids": []
+          },
+          "parsed_to_stdout_complete": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 50.38225499999882,
+              "p95": 51.13470999999947,
+              "p99": 51.81573899999847,
+              "max": 52.60042399999776,
+              "min": 44.08364799999909
+            },
+            "missing_ids": []
+          }
+        },
+        "errors": []
+      },
+      "stop_poll": {
+        "stop_poll_count": 2747,
+        "max_stop_poll_seconds": 0.01039002399999589,
+        "slow_stop_polls": [
+          {
+            "local_wall": 38.169210173,
+            "duration_s": 0.01039002399999589
+          }
+        ],
+        "first_act_parsed_local_wall": 8.311734512,
+        "last_act_stdout_complete_local_wall": 38.09677215,
+        "slow_poll_before_first_act_count": 0,
+        "slow_poll_after_last_act_count": 1,
+        "slow_poll_during_act_span_count": 0
+      },
+      "ledger_capacity_not_hit": true
+    },
+    "4": {
+      "scope": "single sentry/generation/relative goal; Windows physics+WSL Humble; not full mission/match/hardware",
+      "relative_test_goal": true,
+      "actual_steps": 15000,
+      "reported_pass": true,
+      "host_source_unchanged": true,
+      "runtime_shutdown_clean": true,
+      "worker_cleanup_clean": true,
+      "owned_groups": [],
+      "cleanup_identity_matches_ready": true,
+      "adapter_result_count": 299,
+      "faults": [],
+      "host_act_ms": {
+        "count": 299,
+        "p50": 53.515599996899255,
+        "p95": 55.24919999879785,
+        "p99": 62.958700000308454,
+        "max": 76.13380000111647,
+        "min": 43.67140000249492
+      },
+      "host_original_deadline_margin_ms": {
+        "count": 299,
+        "p50": 52.876699999615084,
+        "p95": 72.52070000686217,
+        "p99": 87.15970000048401,
+        "max": 100.42170000087935,
+        "min": 11.35910000448348
+      },
+      "prepare_wall_seconds": 8.159563199995318,
+      "host_phases": {
+        "act_transaction_count": 299,
+        "metrics": {
+          "encode": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.19710000196937472,
+              "p95": 0.24649999977555126,
+              "p99": 0.3242999955546111,
+              "max": 0.3665999975055456,
+              "min": 0.17069999739760533
+            },
+            "missing_ids": []
+          },
+          "writer_admission": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.04550000448944047,
+              "p95": 0.4002999994554557,
+              "p99": 0.724500001524575,
+              "max": 0.8486000006087124,
+              "min": 0.021899999410379678
+            },
+            "missing_ids": []
+          },
+          "pipe_write": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.48179999430431053,
+              "p95": 0.7152000034693629,
+              "p99": 1.0219000032520853,
+              "max": 1.4510000037262216,
+              "min": 0.08689999958733097
+            },
+            "missing_ids": []
+          },
+          "written_to_reply_received": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 50.72870000003604,
+              "p95": 51.828800002112985,
+              "p99": 53.034099997603334,
+              "max": 53.882899999734946,
+              "min": 40.46309999830555
+            },
+            "missing_ids": []
+          },
+          "reader_to_caller": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.025500004994682968,
+              "p95": 0.17330000264337286,
+              "p99": 1.206399996590335,
+              "max": 1.432500001101289,
+              "min": 0.01790000533219427
+            },
+            "missing_ids": []
+          },
+          "encode_to_caller": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 51.44010000367416,
+              "p95": 52.859000003081746,
+              "p99": 53.974700000253506,
+              "max": 54.70860000059474,
+              "min": 41.89369999949122
+            },
+            "missing_ids": []
+          }
+        },
+        "errors": []
+      },
+      "linux_phases": {
+        "act_transaction_count": 299,
+        "metrics": {
+          "parsed_to_exchange": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.001473999999390685,
+              "p95": 0.0023910000024329747,
+              "p99": 0.005814999997966197,
+              "max": 0.03596800000060796,
+              "min": 0.0011339999979043114
+            },
+            "missing_ids": []
+          },
+          "bridge_exchange": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 50.279143000000914,
+              "p95": 50.49106999999964,
+              "p99": 50.96721600000009,
+              "max": 51.037350999997955,
+              "min": 40.62962300000095
+            },
+            "missing_ids": []
+          },
+          "reply_serialization_admission": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.003043999999619018,
+              "p95": 0.005355000006090904,
+              "p99": 0.01538100000075815,
+              "max": 0.03944600000238552,
+              "min": 0.00226800000291405
+            },
+            "missing_ids": []
+          },
+          "stdout_write": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 0.06448099999900592,
+              "p95": 0.641028000000432,
+              "p99": 0.767866000000339,
+              "max": 1.6002929999991977,
+              "min": 0.05183100000039076
+            },
+            "missing_ids": []
+          },
+          "parsed_to_stdout_complete": {
+            "milliseconds": {
+              "count": 299,
+              "p50": 50.359739999997544,
+              "p95": 50.96145200000102,
+              "p99": 51.24941900000124,
+              "max": 51.89669199999969,
+              "min": 40.9711460000004
+            },
+            "missing_ids": []
+          }
+        },
+        "errors": []
+      },
+      "stop_poll": {
+        "stop_poll_count": 2731,
+        "max_stop_poll_seconds": 0.014226342999997144,
+        "slow_stop_polls": [
+          {
+            "local_wall": 38.04381575,
+            "duration_s": 0.014226342999997144
+          }
+        ],
+        "first_act_parsed_local_wall": 8.165126845,
+        "last_act_stdout_complete_local_wall": 37.964311921,
+        "slow_poll_before_first_act_count": 0,
+        "slow_poll_after_last_act_count": 1,
+        "slow_poll_during_act_span_count": 0
+      },
+      "ledger_capacity_not_hit": true
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "polar.pb.production-phase-audit-manifest.v1",
+  "files_sha256": {
+    "AUDIT.json": "67286fcc0723e114e37e1c90f01d8ccd41bca15f3cae5444cd0c1b365dd82380",
+    "audit.py": "41473a3ab878e500f80454e8d0cbb1a243b3c40770082be15a34daa5fcc90558",
+    "console.log": "67286fcc0723e114e37e1c90f01d8ccd41bca15f3cae5444cd0c1b365dd82380",
+    "PROCESS_RESULT.json": "859a79479f6f97cb03adb6ac4c3e497d2c7bf829e0f8973504dec60ae2a631da",
+    "REVIEW.md": "bdf571f09e12b5233e077f54a0f842379cf08f5ac7eda7770e9d42562fd8a73a",
+    "raw\\COMMAND.json": "f74f4466e2767c87c32e25e8c3eebec34a6a4037cedb4155bb0a751b47b66aa5",
+    "raw\\HOST_RPC_PHASES.json": "ca6476614730e005c000d809b38aa0f318065456622a0204f98808456e6e0ba9",
+    "raw\\PREPARE.json": "68df62b66e47b68b4931b6b5e5559bd3c017cbea5cbf64da69fc1598e19e313d",
+    "raw\\RESULT.json": "72703436b3019c8f908abc03008a2aaefc15958b5ad3772499d42262d08c370c",
+    "raw\\SDK_FAILURE.txt": "5c005f8f1e485d085dd11f09b447f118cd052db3d9125c4d1db7286c496f8a9c",
+    "raw\\TRACE.jsonl": "4bf4c7b0e2153ca74be0df76cc08c15485ac00533e44e23086750f3895a326d1",
+    "raw\\peer\\client.stderr.log": "b58ce2677bcc525913739adbe6516e587896aacdb7472a7263613a580c017d19",
+    "raw\\peer\\EXTERNAL_EVENTS.jsonl": "ca5f5276381f725cc614ac5afb39fcd48e9c5ff9991713f4323b7ee2717602aa",
+    "raw\\peer\\EXTERNAL_SPEC.json": "ed0062183b12c8325f0d5470f86437ebb0ddf0a5038ca6f689aa2c0045437407",
+    "raw\\peer\\GOAL_REPORT.json": "ab8bf97b9c73865043eb9cc00343c5b1b5372aadb292e704609609908100fe91",
+    "raw\\peer\\RESULT.json": "52b81a51237dea190df23837be1ec0f8185592a0060876c3e252b5482d266b5b",
+    "raw\\peer\\SUPERVISOR_CLEANUP.json": "cb996b94fd8c555a35d3387252b5493a2b660005d4d83ae62893cc924c5db3a5",
+    "raw\\session\\CLEANUP.json": "277e39796819e21ed3c901c2053a5352f90ae2ebe337979346970952a34e31d7",
+    "raw\\session\\HOST_RPC_PHASES.json": "ea15337523f43ee82bc252b3e1ffcf975b9a3bff9fe8652b9879123cb2675b53",
+    "raw\\session\\LINUX_RPC_PHASES.json": "63ab6af6a0d3dedf2b27b8dd9e800468879c4710415ba9a5735304fde0484e8f",
+    "raw\\session\\PRODUCTION_GATE_STATUS.json": "78f6d0befcc16595b1187da30da35e3e196b3a419f0fae9231e1aa987b13c617",
+    "raw\\session\\SESSION_SPEC.json": "e865205dfcd429f333c804376e82f1c651e5cf5eb29e8908ed71c0f1a3401b18",
+    "raw\\session\\stack\\planner_server.log": "b8bfa94e15fd5d793cd99a7e24f12b3a4adab15c36a581e0af338c87049e3a1e"
+  },
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts/pb-wsl-production-phase-audit-20261014-01/audit.py"
+  ],
+  "business_source_modified": false,
+  "original_attempt_modified": false,
+  "frozen": true
+}

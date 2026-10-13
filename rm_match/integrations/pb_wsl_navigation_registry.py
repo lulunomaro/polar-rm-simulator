@@ -65,10 +65,10 @@ def register_pb_wsl_navigation(registry,path,*,repo_root,clock=time.perf_counter
     session=session_factory(repo_root,value['out'],value['config_ref'],value['environment_ref'],clock=clock,
         diagnostics=value['diagnostics'],relative_test_goal=relative_test_goal)
     try:session.prepare()
-    except BaseException:
+    except BaseException as prepare_error:
         session.request_stop()
         try:session.close()
-        except BaseException:pass
+        except BaseException as cleanup_error:raise cleanup_error from prepare_error
         raise
     lock=threading.Lock();claimed=False
     def factory(config):

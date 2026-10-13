@@ -12,13 +12,13 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 局部SIL通过：Linux SIL8以及Windows→WSL实际3/4均由自家Point-LIO/SLAM/Smac/PID产生真实物理消费；新增显式Windows服务入口，原SDK与deadline保持 | 单车/单代/单目标30s；第2轮间歇超时根因未关闭，生产无测试目标模式/完整任务/第二实现/第二机器仍需验证；旧失败保留 |
+| T07 | 局部SIL通过：Linux SIL8、Windows内部QA3/4及生产Gate+独立外部动作客户端均由自家Point-LIO/SLAM/Smac/PID产生真实物理消费，原SDK与deadline保持 | 单车/单代/单目标30s；旧内部QA第2轮间歇超时根因未关闭，完整行为树/任务/第二实现/第二机器仍需验证；旧失败保留 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式 role/robot/audit admission、state/frame 白名单、撤权和跨 scope 拒绝、客户端兼容；Operator HTTP拒绝响应/有界正文收尾修复 | 两物理电脑 LAN、多人冲突/断线及完整可见 GUI 验收 |
+| T13 | 本地局部修复：显式 role/robot/audit admission、state/frame 白名单、撤权和跨 scope 拒绝、客户端兼容；Operator与v2平台 HTTP拒绝响应/有界正文收尾修复 | 两物理电脑 LAN、多人冲突/断线及完整可见 GUI 验收 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
@@ -151,7 +151,7 @@ fullQA1144/37skip/685subtests为独立质量证据，不能扩大本次SIL范围
 [专用接入说明](PB_WSL_NAVIGATION.md)与[永久证据](validation/pb_wsl_navigation_20261014/README.md)
 新增受信本地 `--pb-wsl-navigation-manifest`、持久有界管道、原主机期限校验和Linux整栈收尾。
 HTTP只选择已注册ID，不选择命令；准备先于backend/physics且不预热传感器数据，原reset2s/graph1s/ROS50ms保持。
-服务显示独立namespace/Domain84；生产入口没有自动测试目标，完整外部目标/行为树模式仍需专项验证。
+服务显示独立namespace/Domain84；生产入口没有自动测试目标。后续独立外部动作客户端的局部验证见下节，完整行为树/任务仍未验收。
 
 | Windows→WSL实测 | 实际证据与结论 |
 | --- | --- |
@@ -172,7 +172,7 @@ host capture age分别53.988–120.290ms/51.226–140.888ms；raw目标/路径/a
 新增 bounded host/Linux scalar RPC phase账本与STOP共享盘耗时元数据（只在内存记录、收尾写盘），
 用于后续定位尾延迟。修复 native WSL leader先退出时可能留下孙进程的owned-group回收，
 真实Linux9项清理、8项stdio夹具与Windows source/spec回归分别标明范围；它们没有NN/硬件闭环资格。
-当前M0–M5完整状态保持未签收，默认T2实时仍0返回/0消费；下一步继续production gate/外部目标、
+当前M0–M5完整状态保持未签收，默认T2实时仍0返回/0消费；下一步继续完整外部任务、
 导航异常与恢复矩阵、自瞄首帧80ms链、长期负载，所有旧失败保留。
 
 本轮首统一质量检查1208passed/1failed/48skip/768subtests，未标通过，见
@@ -188,6 +188,35 @@ source_unchanged_during_checks=true、checks_passed_not_milestone_acceptance。
 原161未改源/29归属修改/1派生fixture核验通过；本轮未重复camera，前轮35checks另存，
 实际Linux清理/stdio与Windows导航3/4范围分别按上述原件记录，不以条件skip计通过。
 归档只追加验证字节和此最终说明，执行源码保持质量检查时的身份；M0–M5仍未完整签收。
+
+## 生产 Gate + 独立外部 ROS 目标客户端
+
+新记录见[生产接入证据](validation/pb_wsl_production_20261014/README.md)，与旧内部QA3/4原字节分别保存。
+内部相对目标关闭（relative_test_goal=false），生产Gate仅在实际map/LIO/估计TF出现后激活原服务器。
+独立owned客户端只查询GetState与真实代价地图/TF，再向原ComputePathToPose和FollowPath发送一个估计相对目标；
+它不切换生命周期、不发布sensor或cmd_vel，也不输入truth。完整自家决策/行为树尚未验证。
+
+| 生产实测 | 原结果与限定范围 |
+| --- | --- |
+| attempt1 | 657step/1.314sim秒、9request/7定位/0controller/0消费；Gate ACTIVE但Smac报Start pose is out of costmap，status6/empty，失败保留；算法与外部进程组实际已reap，业务失败不标clean通过 |
+| attempt2 | 实际15000step/30sim秒、物理29.999280400s/RTF1.000023987；299request/297定位/59map/19controller/708非零消费，Smac15pose/status4、FollowPath/status4；source不变，runtime/Nav九组/外部client与supervisor清理通过 |
+| attempt3 | 平台HTTP修复后，28项前置源码快照含server/client/admission；15000step/30sim秒、物理30.000017600s/RTF0.999999413；299request/297定位/59map/19controller/412非零消费，Smac15pose/status4、FollowPath/status4；source与全部资源清理通过 |
+
+首轮没有HostTimeout：13次act RPC均完整，host本域P50 52.424ms/max53.749ms；这不能关闭旧内部QA第2轮seq67故障。
+修复客户端读取原global_costmap/costmap_raw：保留原网格geometry/stamp/接收clock/dataSHA、实际估计TF/目标与cell索引，
+两点必须可定位到同一份有效网格的半开边界内才发唯一规划请求。cost值不决定ready、不重试planner、不替换原寻路。
+未保存整个网格原字节，SHA/cell代价仅作原记录关联，不宣称独立重算；元数据bounds可独立重算。
+
+另修复status查询busy误停act、注册准备失败吞清理错误、pre-ready清理身份核验、激活线程与栈的收尾顺序、
+并发stack.stop共享原deadline及有界阶段账本的收尾写盘。host/Linux均显式记录total/dropped/capacity；
+complete只表明未截尾，不表明每RPC成功。实际物理时长与run+cleanup分开，长清理不能使提前停步通过30秒验收。
+导航冻结专项原日志为71passed/8明确skip/105subtests；HTTP另有37passed/21subtests/0skip。最终统一质量以新归档manifest为准。
+统一质量第一轮preset/source通过但interface_static失败：v2平台MAX16384拒绝正文时Windows偶发10053，尚未执行pytest。
+实际TCP对照36case中24个延迟正文均丢失413；修复flush/FIN后最多64KiB/100ms弃正文，同36case全部完整413。
+合法正文沿用原1秒并限定为总读取期限，timeout/truncated返回400且不dispatch/renew；原源码与失败均保存。
+修改归属保持原提取SHA，仅更新开发SHA和说明；第三轮导航使用该新HTTP源码，不以第二轮证据重标。
+原80ms图像、150ms控制、reset2s/graph1s/ROS50ms均未放宽；本轮无相机/NN/射击/训练/硬件。
+T07/T09/T13/T16只有上述局部增量，T01–T18其余缺口和M0–M5状态保持表中结果；默认T2实时仍0返回/0消费。
 
 [原host2s实测](validation/ros2_startup_20261013/README.md)：Lyrical module因清理PYTHONPATH缺rclpy，
 固定bootstrap仍未在原2s内完成rclpy初始化；两次0观测/0动作且清理完成，不能把先前DDS通过推成host通过。
@@ -288,7 +317,7 @@ gimbal106步、12HTTPcommands、fire0、Qt退出0。
     python tools/check_project.py --out artifacts/quality-new --camera
 
 第二条当前draft返回2是预期保护。Linux/WSL离线EGL当前llvmpipe，不能冒充NVIDIA实时性能。
-聊天每30分钟自动检查继续已授权开发；仅实质进展/失败/完成/需用户输入通知。
+聊天按用户最新要求每2小时自动检查并继续已授权开发；仅实质进展/失败/完成/需用户输入通知。
 不合并主分支、不发布release、不训练模型、不启动真实硬件测试；当前开发分支推送已获用户授权。
 
 ## 后续发现与修复记录

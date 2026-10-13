@@ -1,0 +1,25 @@
+{
+  "schema": "polar.pb.external-goal-ready.v1",
+  "run_uuid": "44bf23e3a5aed351c5abff6ea361d9cc",
+  "session_run_uuid": "2b8829bfd7ee4c54b0e97fce101daa31",
+  "namespace": "/polar_sil_2b8829bfd7ee4c54b0e97fce101daa31/red_sentry",
+  "domain_id": 84,
+  "state": "OBSERVING_NO_INPUT_PUBLISHED",
+  "pid": 614,
+  "start_ticks": 927,
+  "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce",
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "source_sha256": {
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "spec_sha256": "88a1c7a149bace70ce4ead8f6952ffbf40f4aab8aa49a4203b29c96788fb4dad",
+  "sensor_published": false,
+  "goal_sent": false,
+  "lifecycle_changed": false
+}

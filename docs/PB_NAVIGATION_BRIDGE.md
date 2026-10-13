@@ -115,3 +115,5 @@ cd /path/to/polar-rm-simulator
 ```
 
 实际本轮 config04 SHA `affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26`，FINAL ENV SHA `d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee`；其中绑定 Point-LIO05 `fd2b50c7...`、诊断控制器 `d4539050...`、原算法 source/build/ELF 审计及插件03。完整路径与字节身份以本轮 RESULT/PLAN/config 构建引用为准，不能只改路径复用旧身份。`--diagnostics` 仅打开有界元数据记录，不改变 2 秒 reset、1 秒图等待、50 ms ROS 等待或 150 ms 控制门限。
+
+后续[Windows生产 Gate 与独立外部动作客户端](PB_WSL_NAVIGATION.md)已完成两次30秒单目标实测：内部测试目标关闭、客户端只读取实际全局代价地图和估计TF，并查询GetState后调用原Smac/FollowPath；分别708/412个非零消费通过原身份与SDK150ms审计，第三轮包含新HTTP服务源码快照。首轮地图尚未覆盖起点的原规划失败也保留。该结果不扩大上述Linux证据，不代表完整行为树、定位精度、多目标恢复或比赛通过。

@@ -1,0 +1,16 @@
+{
+  "bounded_navigation_consumption_passed": true,
+  "relative_goal_completed": true,
+  "actual_steps": 15000,
+  "physics_rtf": 1.000023987241818,
+  "consumption_audit": {
+    "consumed_steps": 708,
+    "nonzero_consumed_steps": 708,
+    "actual_sensor_requests": 299,
+    "actual_controller_results": 19,
+    "actual_localizations": 297,
+    "errors": [],
+    "passed": true
+  },
+  "errors": []
+}

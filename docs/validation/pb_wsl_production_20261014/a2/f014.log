@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\pb-wsl-production-audit-20261014-02\audit.py", line 324, in main
+    try:report=audit(source)
+               ^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\pb-wsl-production-audit-20261014-02\audit.py", line 201, in audit
+    assert len(peer_spawn['argv'])>=2 and Path(peer_spawn['argv'][0]).is_absolute() and '--run' in peer_spawn['argv']
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

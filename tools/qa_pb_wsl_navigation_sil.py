@@ -30,6 +30,7 @@ def main(argv=None):
     if out.exists() or any(p.is_symlink() for p in (out,*out.parents)) or not out.resolve().is_relative_to(ROOT/'artifacts'):parser.error('fresh repository artifacts output required')
     out.mkdir(parents=True)
     from tools.qa_pb_navigation_sil import audit_navigation_consumption
+    from tools.pb_sil_duration import completed_physics_duration
     from rm_match.integrations.pb_wsl_navigation_registry import register_pb_wsl_navigation,SCHEMA
     from rm_match.integrations.pb_wsl_navigation import SOURCE_FILES
     from rm_match.platform_v2.adapters import Registry
@@ -40,7 +41,7 @@ def main(argv=None):
     from rm_match.platform_v2.client import PlatformClient
     from rm_match.navigation_sensors import NavigationSensorConfig
     def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-    source_names=list(SOURCE_FILES)+['tools/qa_pb_wsl_navigation_sil.py','rm_match/integrations/pb_wsl_navigation_registry.py',
+    source_names=list(SOURCE_FILES)+['tools/qa_pb_wsl_navigation_sil.py','tools/pb_sil_duration.py','rm_match/integrations/pb_wsl_navigation_registry.py',
         'rm_match/platform_v2/runtime.py','rm_match/platform_v2/backend.py','rm_match/navigation_sensors.py','rm_match/harness.xml']
     hashes=lambda:{n:sha(ROOT/n) for n in source_names}
     before=hashes();rows=[];errors=[];session=runtime=server=sdk=None;http=None;thread=None;stop=threading.Event()
@@ -134,8 +135,7 @@ def main(argv=None):
     goal={} if not goalfile.is_file() else json.loads(goalfile.read_bytes())
     audit=audit_navigation_consumption(rows,ros)
     if session is not None:
-        (out/'HOST_RPC_PHASES.json').write_text(json.dumps(dict(rows=session.phase_rows,
-            clock='windows_local_perf_counter'),allow_nan=False)+'\n',encoding='utf8')
+        (out/'HOST_RPC_PHASES.json').write_text(json.dumps(session.phase_snapshot(),allow_nan=False)+'\n',encoding='utf8')
     (out/'TRACE.jsonl').write_text(''.join(json.dumps(r,allow_nan=False,separators=(',',':'))+'\n' for r in rows),encoding='utf8')
     result=dict(schema='polar.pb.windows-wsl-navigation-sil.v1',scope='single sentry/generation/relative goal; Windows physics+WSL Humble; not full mission/match/hardware',
         actual_steps=0 if runtime is None else runtime.steps,requested_seconds=args.seconds,wall_seconds=elapsed,
@@ -150,7 +150,8 @@ def main(argv=None):
         clock_conversion=False,sensor_input_has_truth=False,image_limit_seconds=.08,control_window_seconds=.15,fire_permission=False,
         full_match_qualified=False,hardware_qualified=False)
     result['relative_goal_completed']=goal.get('follow_path_status')==4
-    result['completed_requested_wall_duration']=elapsed is not None and elapsed>=args.seconds
+    result['completed_requested_wall_duration']=completed_physics_duration(result['actual_steps'],
+        .002 if runtime is None else runtime.backend.timestep,physics_elapsed,args.seconds)
     result['bounded_navigation_consumption_passed']=bool(audit['passed'] and not errors and result['runtime_error'] is None and result['completed_requested_wall_duration'] and result['source_unchanged'] and goal.get('planner_status')==4 and goal.get('follow_path_accepted')
         and result['shutdown'] and result['shutdown']['clean'] and result['session_cleanup'] and result['session_cleanup']['clean'])
     (out/'RESULT.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n',encoding='utf8')

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_pb_external_navigation_goal.py", line 236, in main
+    if result.status!=4 or len(result.result.path.poses)<2:raise ValueError('external_planner_failed_or_empty')
+ValueError: external_planner_failed_or_empty

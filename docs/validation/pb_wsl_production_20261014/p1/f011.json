@@ -1,0 +1,52 @@
+{
+  "schema": "polar.pb.external-goal-result.v1",
+  "run_uuid": "c6807e0416e9a3c44cfeee862cd022f2",
+  "session_run_uuid": "3328d07170fa46e69357be18424973cc",
+  "namespace": "/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry",
+  "goal_completed": false,
+  "elapsed_s": 2.0452738329999995,
+  "cleanup": {
+    "schema": "polar.pb.external-goal-cleanup.v1",
+    "run_uuid": "c6807e0416e9a3c44cfeee862cd022f2",
+    "pid": 611,
+    "start_ticks": 997,
+    "boot_id": "2a8a95e8-dba6-4500-b67d-844423d9c79a",
+    "clean": false,
+    "errors": [
+      "ValueError:external_planner_failed_or_empty"
+    ],
+    "observer_thread_alive": false,
+    "session_node_processes_owned": false
+  },
+  "source_sha256": {
+    "tools/qa_pb_external_navigation_goal.py": "220e0fe4569c4ba63b6631b94c13f3f483fd4c07ba47128fcf61981f365678e8",
+    "tools/qa_pb_external_goal_supervisor.py": "741923851a61b6345301805029a744c7a05442358724ccf06bc03e291b5891a6",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "goal_report": {
+    "source": "actual_algorithm_map_to_base_link_tf",
+    "frame": "map",
+    "source_stamp_ns": 898000000,
+    "relative_offset_m": [
+      1.0,
+      0.0
+    ],
+    "goal_xy": [
+      0.9534757489703428,
+      0.001033163846120222
+    ]
+  },
+  "algorithm_input_has_truth": false,
+  "lifecycle_changed": false,
+  "sensor_published": false,
+  "cmd_vel_published": false,
+  "scope": "independent external action client; production Gate observation only; not full mission/hardware"
+}

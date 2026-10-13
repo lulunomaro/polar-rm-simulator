@@ -14,6 +14,7 @@ docs/validation/**/*.json -text diff
 docs/validation/**/*.jsonl -text diff
 docs/validation/**/*.md -text diff
 docs/validation/**/*.txt -text diff
+docs/validation/**/*.tsv -text diff
 docs/validation/**/*.log -text diff -whitespace
 docs/validation/**/*.xml -text diff
 docs/validation/**/*.cpp -text diff

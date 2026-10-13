@@ -57,6 +57,8 @@ class Child:
         self.cleanup_mutate=None;self.no_cleanup=False;self.no_reply=False
         self.stdout=Output(self);self.stdin=Input(self);self.pid=777
         self.identity=dict(supervisor_pid=8123,start_ticks=4567,boot_id='a'*8+'-'+('b'*4+'-')*3+'c'*12)
+        (session.out/'WORKER_STARTED.json').write_bytes(host._encode(dict(run_uuid=session.run_uuid,
+            config_sha256=session.spec['config_ref']['sha256'],**self.identity),host.MAX_LINE))
         self.stdout.emit(dict(schema=host.SCHEMA,event='ready',run_uuid=session.run_uuid,
             namespace=session.namespace,config_sha256=session.spec['config_ref']['sha256'],
             environment_sha256=session.spec['environment_ref']['sha256'],state='CONFIGURED',**self.identity))
@@ -103,13 +105,13 @@ class SessionTests(unittest.TestCase):
         for session in self.sessions:
             try:session.close()
             except RuntimeError:pass
-    def new(self):
+    def new(self,diagnostics=False):
         self.counter+=1
         ref=lambda p:dict(path=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest())
-        s=host.WslNavigationSession(self.root,self.root/'artifacts'/('out'+str(self.counter)),ref(self.config),ref(self.env),clock=self.clock)
+        s=host.WslNavigationSession(self.root,self.root/'artifacts'/('out'+str(self.counter)),ref(self.config),ref(self.env),clock=self.clock,diagnostics=diagnostics)
         self.sessions.append(s);return s
-    def prepared(self):
-        s=self.new();children=[]
+    def prepared(self,diagnostics=False):
+        s=self.new(diagnostics);children=[]
         def start(*args,**kw):
             children.append(Child(s));return children[-1]
         with patch.object(host.sys,'platform','win32'),patch.object(host,'WSL_EXECUTABLE',self.exe),patch.object(host.subprocess,'Popen',side_effect=start) as popen:
@@ -224,9 +226,88 @@ class SessionTests(unittest.TestCase):
     def test_concurrent_transaction_cannot_use_another_reply(self):
         s,c,_,_=self.prepared();s._transaction.acquire()
         try:
-            with self.assertRaises(RuntimeError):s.status()
+            with self.assertRaises(RuntimeError):s.act(self.obs())
         finally:s._transaction.release()
         self.assertTrue(s._stop.is_set());self.assertFalse(c.requests)
+    def test_valid_status_busy_does_not_cancel_owned_act_or_consume_serial(self):
+        s,c,_,_=self.prepared();self.reset(s);entered=threading.Event();release=threading.Event();answers=[];failures=[]
+        def hold(_):entered.set();release.wait(.5)
+        c.mutate=hold
+        def act():
+            try:answers.append(s.act(self.obs()))
+            except BaseException as error:failures.append(error)
+        actor=threading.Thread(target=act);actor.start();self.assertTrue(entered.wait(.2));serial=s._serial
+        try:
+            with self.assertRaisesRegex(host.WslNavigationBusy,'session_status_busy'):s.status()
+            self.assertEqual(s._serial,serial);self.assertFalse(s._stop.is_set())
+            self.assertEqual([x['op'] for x in c.requests],['reset','act'])
+        finally:release.set();actor.join(.5)
+        self.assertFalse(actor.is_alive());self.assertFalse(failures);self.assertEqual(len(answers),1)
+        self.assertFalse(s._stop.is_set())
+        c.mutate=None;self.assertEqual(s.status()['state'],'CONFIGURED')
+    def test_malformed_status_and_reset_concurrency_still_cancel(self):
+        for packet in (dict(op='status',extra=True),dict(op='status',schema='wrong'),dict(op='reset',context={},config={})):
+            with self.subTest(packet=packet):
+                s,c,_,_=self.prepared();s._transaction.acquire()
+                try:
+                    with self.assertRaises(RuntimeError):s.exchange(packet)
+                finally:s._transaction.release()
+                self.assertTrue(s._stop.is_set())
+        s,c,_,_=self.prepared();s._transaction.acquire()
+        try:
+            with self.assertRaises(RuntimeError):s.exchange(dict(op='status'),timeout=10**1000)
+        finally:s._transaction.release()
+        self.assertTrue(s._stop.is_set())
+    def test_pre_ready_cleanup_accepts_only_own_birth_and_never_accepts_act(self):
+        s,c,_,_=self.prepared();s.ready=None;s.close()
+        self.assertTrue(s.cleanup['clean']);self.assertIsNone(s.ready);self.assertFalse(s._reset)
+        with self.assertRaises(RuntimeError):s.act(self.obs())
+    def test_pre_ready_foreign_missing_extra_or_typed_wrong_marker_rejected(self):
+        cases=[('run_uuid','0'*32),('config_sha256','0'*64),('supervisor_pid',True),('start_ticks',1),('boot_id','0'*36),('extra','field'),('missing',None)]
+        for key,value in cases:
+            with self.subTest(key=key):
+                s,c,_,_=self.prepared();s.ready=None;path=s.out/'WORKER_STARTED.json'
+                marker=host._json(path.read_bytes())
+                if key=='missing':path.unlink()
+                else:marker[key]=value;path.write_bytes(host._encode(marker,host.MAX_LINE))
+                with self.assertRaises(RuntimeError):s.close()
+                self.assertIsNone(s.cleanup)
+    def test_phase_cap_metadata_persists_after_close_only(self):
+        s,c,_,_=self.prepared(diagnostics=True);self.reset(s)
+        for i in range(host.PHASE_CAPACITY+7):s._phase('fixture',i,'act')
+        snapshot=s.phase_snapshot();self.assertEqual(len(snapshot['rows']),host.PHASE_CAPACITY)
+        self.assertEqual(snapshot['dropped'],snapshot['total']-host.PHASE_CAPACITY);self.assertFalse(snapshot['complete'])
+        self.assertFalse((s.out/'HOST_RPC_PHASES.json').exists());s.close()
+        saved=host._json((s.out/'HOST_RPC_PHASES.json').read_bytes())
+        self.assertEqual(saved,snapshot);self.assertTrue(s.cleanup['clean']);s.close();self.assertTrue(s.cleanup['clean'])
+    def test_exchange_diagnostic_stages_are_scalar_and_preserve_original_input(self):
+        s,c,_,_=self.prepared(diagnostics=True);self.reset(s);o=self.obs();original=deepcopy(o);s.act(o)
+        self.assertEqual(o,original)
+        rows=[r for r in s.phase_snapshot()['rows'] if r['op']=='act']
+        phases=[r['phase'] for r in rows]
+        for first,last in [('exchange_enter','packet_validated'),('packet_validated','encode_begin'),
+                ('caller_received','result_validated'),('result_validated','return_copy_end')]:
+            self.assertLess(phases.index(first),phases.index(last))
+        self.assertTrue(all(set(r)=={'phase','id','op','local_wall','clock'} for r in rows))
+        self.assertTrue(all(r['clock']=='windows_local_perf_counter' for r in rows))
+    def test_phase_archive_io_failure_never_claims_clean(self):
+        s,c,_,_=self.prepared(diagnostics=True)
+        with patch.object(s,'_write_phases',side_effect=OSError('disk unavailable')):
+            with self.assertRaisesRegex(RuntimeError,'phase_archive_failed'):s.close()
+        self.assertIsNone(s.cleanup);self.assertTrue(s._resource_cleanup['clean'])
+        with self.assertRaises(RuntimeError):s.close()
+    def test_blocked_phase_archive_has_shared_close_budget_and_sticky_failure(self):
+        s,c,_,_=self.prepared(diagnostics=True);entered=threading.Event();release=threading.Event();old=s._write_phases
+        def block(payload):entered.set();release.wait(3.);old(payload)
+        with patch.object(s,'_write_phases',side_effect=block):
+            started=time.perf_counter()
+            try:
+                with self.assertRaisesRegex(RuntimeError,'phase_writer_not_joined'):s.close()
+                self.assertTrue(entered.is_set());self.assertLess(time.perf_counter()-started,1.4)
+                self.assertIsNone(s.cleanup)
+            finally:release.set();s._ledger_writer.join(.5)
+        self.assertFalse(s._ledger_writer.is_alive())
+        with self.assertRaises(RuntimeError):s.close()
     def test_durable_stop_and_cleanup_same_process_proof(self):
         s,c,_,_=self.prepared();self.reset(s);s.request_stop()
         self.assertTrue(s._stop_written.wait(.2))

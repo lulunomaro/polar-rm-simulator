@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_pb_wsl_production_sil.py", line 109, in deadman
+    if peer.child.poll() is not None:raise RuntimeError('external_goal_supervisor_exited_early')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: external_goal_supervisor_exited_early

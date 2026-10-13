@@ -1,0 +1,13 @@
+{
+  "schema": "polar.pb.external-goal-cleanup.v1",
+  "run_uuid": "c6807e0416e9a3c44cfeee862cd022f2",
+  "pid": 611,
+  "start_ticks": 997,
+  "boot_id": "2a8a95e8-dba6-4500-b67d-844423d9c79a",
+  "clean": false,
+  "errors": [
+    "ValueError:external_planner_failed_or_empty"
+  ],
+  "observer_thread_alive": false,
+  "session_node_processes_owned": false
+}

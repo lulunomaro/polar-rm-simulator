@@ -1,0 +1,32 @@
+{
+  "exit_code": 0,
+  "elapsed_s": 0.23660850001033396,
+  "owned_driver_reaped": true,
+  "audit_sha256": "e16590a49ac25e9746edf694388395e092de041ff707e3109e3cbe1878671d79",
+  "original_input_sha256": {
+    "RESULT.json": "60bda613f7ff525e009a17c59c50cf209a74520b680470d53ac73e140e42f375",
+    "session/SESSION_SPEC.json": "b287b19761dd5ef005c008eb93e924ca75ecd5ade2cb565e7941dd1dcaddc516",
+    "session/PRODUCTION_GATE_STATUS.json": "ed6ed89b8cae1d9d2132bf9746f9d897d1de3008b7d5b7f837ecf900554fd44a",
+    "peer/EXTERNAL_SPEC.json": "d6dce3a872af93776a8d272808e0897e5e39b1506f537f27002b81a01512cedb",
+    "peer/RESULT.json": "99bd64b915563aa14fb40001fabde2fc3e62c093185c71ac6fa39fd6174ecc1f",
+    "peer/READY.json": "596a7ed797c324d1660790991b4ba540c09748c567e92cb394b45a6b112b93af",
+    "peer/GOAL_REPORT.json": "62ee5423ad40b86eb1a27dde025ee98dd8cf94617612986a38d6b7139d174421",
+    "peer/CLEANUP.json": "f7dd515be2b8ad4f1c47b8cac346c0ed1c3ef529db9e64be06edf0a3114ea775",
+    "peer/SUPERVISOR_CLEANUP.json": "4862248fdc611188212ac503f166b40c1704804a39f8a1190c264bc10357cbfb",
+    "peer/SUPERVISOR_STARTED.json": "58c0718fca2d990a3f111f805118619afdcdd06ff01af880e930507717d5db6e",
+    "peer/SPAWN.json": "d6e2cf92b9f4db6379e53fef3692f45db1c0ce26367e8ec969f3783cf9044800",
+    "session/WORKER_STARTED.json": "4f499b65dab4d0a87feaa56f87e361a190b6e2df365f804239c939acc6445edd",
+    "session/CLEANUP.json": "78d44da3e542a6748ae7791bd94428c081e1f45f3c8f39999a48df59214e0470",
+    "session/stack/CLEANUP.json": "656af60e970392b4dd87936208769d26238977735f4cf0714fb341270aef70c6",
+    "session/stack/controller_server.log": "7a1e6e3f38dca0450129c7f90521e091f2bc29fd3fd5346b848efb187e56d4a9",
+    "session/stack/planner_server.log": "549b081df2faacdd82ee823bf22d9efa9db983d0835a114840f0abc064b6fc65",
+    "TRACE.jsonl": "357dd7d14fa6d5e4f17d9e9d6f7a387ae04c1377145d0cc2b714068a1e8e856e",
+    "peer/ROS_SOURCE.jsonl": "bf2d9c1db34ccb9f20aa3b1ab7e81c9a8c2b12cec457a7687c0b3c0126af0396",
+    "peer/EXTERNAL_EVENTS.jsonl": "e302aca84a9b46002050f49733915187ce3f5e4d0c17e8e38e3e6e5e00684bb3"
+  },
+  "originals_unchanged": true,
+  "result_sha256": "e1e2096131da005fcbb5a7789cdfdf72b455eaed0320a118f50a31fa80d26609",
+  "stdout_sha256": "d082a1ac4e7cdfe417339a3687255b9167108f79a0a36a2a04fbd4388689d7fb",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "actual read-only evidence audit; no ROS/WSL/physics rerun"
+}

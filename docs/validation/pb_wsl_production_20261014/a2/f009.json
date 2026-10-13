@@ -1,0 +1,33 @@
+{
+  "exit_code": 2,
+  "elapsed_s": 0.2113272999995388,
+  "owned_driver_reaped": true,
+  "source_before": {
+    "RESULT.json": "60bda613f7ff525e009a17c59c50cf209a74520b680470d53ac73e140e42f375",
+    "TRACE.jsonl": "357dd7d14fa6d5e4f17d9e9d6f7a387ae04c1377145d0cc2b714068a1e8e856e",
+    "peer/ROS_SOURCE.jsonl": "bf2d9c1db34ccb9f20aa3b1ab7e81c9a8c2b12cec457a7687c0b3c0126af0396",
+    "peer/EXTERNAL_EVENTS.jsonl": "e302aca84a9b46002050f49733915187ce3f5e4d0c17e8e38e3e6e5e00684bb3",
+    "peer/GOAL_REPORT.json": "62ee5423ad40b86eb1a27dde025ee98dd8cf94617612986a38d6b7139d174421",
+    "peer/RESULT.json": "99bd64b915563aa14fb40001fabde2fc3e62c093185c71ac6fa39fd6174ecc1f",
+    "session/SESSION_SPEC.json": "b287b19761dd5ef005c008eb93e924ca75ecd5ade2cb565e7941dd1dcaddc516",
+    "session/PRODUCTION_GATE_STATUS.json": "ed6ed89b8cae1d9d2132bf9746f9d897d1de3008b7d5b7f837ecf900554fd44a"
+  },
+  "source_after": {
+    "RESULT.json": "60bda613f7ff525e009a17c59c50cf209a74520b680470d53ac73e140e42f375",
+    "TRACE.jsonl": "357dd7d14fa6d5e4f17d9e9d6f7a387ae04c1377145d0cc2b714068a1e8e856e",
+    "peer/ROS_SOURCE.jsonl": "bf2d9c1db34ccb9f20aa3b1ab7e81c9a8c2b12cec457a7687c0b3c0126af0396",
+    "peer/EXTERNAL_EVENTS.jsonl": "e302aca84a9b46002050f49733915187ce3f5e4d0c17e8e38e3e6e5e00684bb3",
+    "peer/GOAL_REPORT.json": "62ee5423ad40b86eb1a27dde025ee98dd8cf94617612986a38d6b7139d174421",
+    "peer/RESULT.json": "99bd64b915563aa14fb40001fabde2fc3e62c093185c71ac6fa39fd6174ecc1f",
+    "session/SESSION_SPEC.json": "b287b19761dd5ef005c008eb93e924ca75ecd5ade2cb565e7941dd1dcaddc516",
+    "session/PRODUCTION_GATE_STATUS.json": "ed6ed89b8cae1d9d2132bf9746f9d897d1de3008b7d5b7f837ecf900554fd44a"
+  },
+  "source_unchanged": true,
+  "audit_script_before_sha256": "a92e9e5a83331f799a310bb6427bea31297c01f92e02eac4ff99c349a7fd2d99",
+  "audit_script_after_sha256": "a92e9e5a83331f799a310bb6427bea31297c01f92e02eac4ff99c349a7fd2d99",
+  "audit_script_unchanged": true,
+  "result_sha256": "df40de1f166f5021a7db5c021e0106782112c73fb505eeb9afb155fe3c6de0da",
+  "stdout_sha256": "df40de1f166f5021a7db5c021e0106782112c73fb505eeb9afb155fe3c6de0da",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Actual independent read-only audit execution; no navigation/ROS/WSL/GL/NN rerun"
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_pb_external_navigation_goal.py",
+    "-q"
+  ],
+  "source_before": {
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tests/test_pb_external_navigation_goal.py": "9d01e75d9b5bcc98e2a200fba8113daff56d7c9ff1944fa603060d377141f96c"
+  },
+  "qualification": "Windows pure unit path/metadata checks, no ROS/WSL/NN/SIL",
+  "driver_sha256": "3fa5202dc58b02ebd538031067740a6027f7073c79c447658e75d12d2e11f752"
+}

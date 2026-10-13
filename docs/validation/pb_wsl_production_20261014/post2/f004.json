@@ -1,0 +1,17 @@
+{
+  "scope": "Two documentation clarifications after quality; default/opt-in sensors and offline/live evidence separated",
+  "source_changed_during_checks": false,
+  "postcheck_changed_files": [
+    {
+      "path": "docs/ROBOT_IO_V1.md",
+      "checked_before_sha256": "efd0a37d5bfdc416c2b821964fe394749b5d4a84c881a57a7a5f02f778d65e63",
+      "current_sha256": "f663ab622f32565329ed893a87e19f212b1cf3d17006ec7c4d942926d51d7f6f"
+    },
+    {
+      "path": "docs/ACCEPTANCE_TRACEABILITY.md",
+      "checked_before_sha256": "6b85557da32e92c40a958a636e6765089a1e7a69a982d387c1e939baa67bf793",
+      "current_sha256": "e78703a9c0d7a8664737d2b6a85c555ae7267f0c0633f6ada7c4102087f036cd"
+    }
+  ],
+  "all_other_checked_files_unchanged": true
+}

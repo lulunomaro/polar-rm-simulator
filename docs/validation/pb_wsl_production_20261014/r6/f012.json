@@ -1,0 +1,60 @@
+{
+  "schema": "polar.pb-wsl-session-repair.v1",
+  "scope": "mocked Windows host pipes and clock boundaries, no actualWSL/ROS/GL/build/fullQA",
+  "source_sha256": {
+    "rm_match/integrations/pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "tests/test_pb_wsl_navigation_session.py": "d956a321d2cb192f19f03221835ecbd00dc1a71d75a6872be1235c76f0bcd70d",
+    "tests/test_pb_wsl_navigation_registry.py": "f482c5a63a7a913a69a1e0d8d0b002e9c12bacfe33f517be52d3bec4183a3bbc"
+  },
+  "focused": {
+    "passed": 51,
+    "subtests_passed": 45,
+    "skipped": 0,
+    "raw_log": "focused-stages-final.log",
+    "raw_log_sha256": "f4ce686e3c0d0c04d5fb00bfdb76e44e18797030c9840578c2e46136072b6c70"
+  },
+  "interfaces": {
+    "status_busy_exception": "WslNavigationBusy(session_status_busy)",
+    "worker_started_fields": [
+      "run_uuid",
+      "config_sha256",
+      "supervisor_pid",
+      "start_ticks",
+      "boot_id"
+    ],
+    "host_phase_file": "session out/HOST_RPC_PHASES.json",
+    "phase_capacity": 4096,
+    "archive_bytes_max": 2097152,
+    "phase_metadata": [
+      "total",
+      "dropped",
+      "capacity",
+      "complete",
+      "clock"
+    ],
+    "extra_phases": [
+      "exchange_enter",
+      "packet_validated",
+      "result_validated",
+      "return_copy_end"
+    ]
+  },
+  "limits_unchanged": {
+    "prepare_s": 10,
+    "reset_s": 2,
+    "act_max_s": 0.15,
+    "close_total_s": 1.3
+  },
+  "cases": [
+    "busy valid status neither stops active act nor advances serial",
+    "malformed status/reset/control concurrent still failclosed",
+    "pre-ready clean proof matches own marker and never permits act",
+    "wrong run/config/PIDtype/start/boot/missing/extra marker rejects",
+    "phase cap persists total+dropped after close only",
+    "blockedphasewriter returns within shared1.3 budget, released fixture thread, stickyfailure",
+    "phaseIO failure leaves cleanupNone while resourceproof retained privately",
+    "registry cleanupfailure chains original preparefailure",
+    "original deadline retained through realhostperf diagnostic scalar stages"
+  ]
+}

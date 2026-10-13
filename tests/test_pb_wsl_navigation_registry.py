@@ -24,10 +24,10 @@ class Session:
 
 
 class LocalWslRegistryTests(unittest.TestCase):
-    def create(self,temp,clock=lambda:10.):
+    def create(self,temp,clock=lambda:10.,session_factory=Session):
         manifest=Path(temp)/'manifest.json'
         manifest.write_text(json.dumps(dict(schema=SCHEMA,config_ref={},environment_ref={},out=str(Path(temp)/'out'),diagnostics=False)))
-        registry=Registry();session=register_pb_wsl_navigation(registry,manifest,repo_root=temp,clock=clock,session_factory=Session)
+        registry=Registry();session=register_pb_wsl_navigation(registry,manifest,repo_root=temp,clock=clock,session_factory=session_factory)
         return registry,session,manifest
 
     def test_prepare_precedes_single_empty_config_handover(self):
@@ -60,6 +60,26 @@ class LocalWslRegistryTests(unittest.TestCase):
             session.exchange=delayed
             with self.assertRaisesRegex(ContractError,'original_deadline'):adapter.act(o)
             self.assertTrue(session.stopped)
+    def test_prepare_and_cleanup_failures_keep_original_cause_and_sticky_close(self):
+        captured=[]
+        class Failed(Session):
+            def __init__(self,*args,**kwargs):super().__init__(*args,**kwargs);captured.append(self);self._close_failure=None
+            def prepare(self):raise ValueError('original prepare failure')
+            def close(self):
+                self.closed=True;self._close_failure='sticky cleanup failure';raise RuntimeError(self._close_failure)
+        with TemporaryDirectory() as temp:
+            with self.assertRaisesRegex(RuntimeError,'sticky cleanup') as result:self.create(temp,session_factory=Failed)
+        self.assertEqual(str(result.exception.__cause__),'original prepare failure')
+        self.assertTrue(captured[0].stopped and captured[0].closed)
+        with self.assertRaisesRegex(RuntimeError,'sticky cleanup'):captured[0].close()
+    def test_prepare_failure_with_successful_cleanup_preserves_original_error(self):
+        captured=[]
+        class Failed(Session):
+            def __init__(self,*args,**kwargs):super().__init__(*args,**kwargs);captured.append(self)
+            def prepare(self):raise ValueError('original prepare failure')
+        with TemporaryDirectory() as temp:
+            with self.assertRaisesRegex(ValueError,'original prepare'):self.create(temp,session_factory=Failed)
+        self.assertTrue(captured[0].stopped and captured[0].closed)
 
 
 if __name__=='__main__':unittest.main()

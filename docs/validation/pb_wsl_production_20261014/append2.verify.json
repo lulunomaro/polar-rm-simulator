@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\pb_wsl_production_20261014\\verify_archives.py",
+    "--archive",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\pb_wsl_production_20261014"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 0.2497064000053797,
+  "owned_process_reaped": true,
+  "stdout_sha256": "8188d6aeaa8a9b58923109a06281020ae06510db6b527f369bab88a4332a70a2",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Explicit postcheck docs-only archive append; no test/ROS/WSL/physics rerun"
+}

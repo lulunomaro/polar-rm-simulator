@@ -1,0 +1,18 @@
+{
+  "pid": 64208,
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_s": 0.708190299992566,
+  "owned_child_reaped": true,
+  "source_before": {
+    "tools/qa_pb_external_navigation_goal.py": "c7e577f5ccc13648bf6aa87fdebbad55a9e966eb5348cf195ba64cb9b42c20b7",
+    "tests/test_pb_external_navigation_goal.py": "edd8aa580f157ef296c30823bd4381145cd5ebeff39aaaf6062de61d86ba2060"
+  },
+  "source_after": {
+    "tools/qa_pb_external_navigation_goal.py": "c7e577f5ccc13648bf6aa87fdebbad55a9e966eb5348cf195ba64cb9b42c20b7",
+    "tests/test_pb_external_navigation_goal.py": "edd8aa580f157ef296c30823bd4381145cd5ebeff39aaaf6062de61d86ba2060"
+  },
+  "source_unchanged": true,
+  "stdout_sha256": "9a67c9ed9ed60aa386f1c526fb7fa0251e2d3dc0b34f96cd818491b91b8b385b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

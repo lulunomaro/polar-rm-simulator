@@ -1,0 +1,20 @@
+{
+  "schema": "polar.evidence.missing-originals.v1",
+  "records": [
+    {
+      "source": "artifacts/pb-wsl-production-audit-20261014-02/audit.py at retry1 execution",
+      "recorded_sha256": "d3f525e915ba3bcd6ca6d292f8e815be48b4643e6008a2e9302ef401fc863e14",
+      "exact_original_source_bytes_saved": false,
+      "retained_evidence": "retry1 COMMAND/PROCESS_RESULT/RESULT/stdout/stderr traceback; first_failure exact script and final retry2 exact script",
+      "reason": "Intermediate source overwritten before exact snapshot; no historical source reconstruction."
+    },
+    {
+      "source": "artifacts/pb-postcheck-documentation-20261014-02 proof execution",
+      "raw_stdout_saved": false,
+      "full_raw_process_result_saved": false,
+      "retained_evidence": "Exact proof.py, COMMAND, RESULT and before/after document bytes; shell exit0 was structured tool observation only",
+      "reason": "No historical raw process log was saved; do not manufacture one."
+    }
+  ],
+  "qualified_claim": "Every archived existing original payload is byte-exact; this statement does not invent absent historical source bytes or logs."
+}

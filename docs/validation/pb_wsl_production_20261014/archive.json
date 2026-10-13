@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\pb_wsl_production_20261014\\archive_evidence.py",
+    "--dest",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\pb_wsl_production_20261014"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 1.4005345999903511,
+  "owned_process_reaped": true,
+  "stdout_sha256": "1f0f66c9fe51bd27a7969f23b36b428eb0d63de7557a82b94f143f84a96ab286",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Archive byte preservation check only; no simulation/ROS/WSL/NN or test rerun"
+}

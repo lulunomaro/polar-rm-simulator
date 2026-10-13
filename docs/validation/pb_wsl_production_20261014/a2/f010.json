@@ -1,0 +1,9 @@
+{
+  "schema": "polar.pb.production-independent-audit.v1",
+  "passed": false,
+  "error_type": "AssertionError",
+  "error": "",
+  "source": "artifacts\\pb-wsl-production-sil-actual-20261014-attempt2",
+  "audit_script_sha256": "a92e9e5a83331f799a310bb6427bea31297c01f92e02eac4ff99c349a7fd2d99",
+  "scope": "Read-only evidence rejection; no rerun"
+}

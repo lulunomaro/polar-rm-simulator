@@ -1,0 +1,46 @@
+{
+  "scope": "Read-only source review; no ROS, WSL, tests or SIL executed; not runtime acceptance",
+  "reviewed_files": [
+    "tools/qa_pb_external_goal_supervisor.py",
+    "tools/pb_external_goal_session.py",
+    "tools/qa_pb_wsl_production_sil.py",
+    "rm_match/integrations/owned_linux_group.py"
+  ],
+  "client_interface_matched": true,
+  "matched_contracts": [
+    "load_spec returns (value,out), CLI --spec/--spec-sha256/--run, source roster seven files",
+    "Session namespace/domain84/environment/spec SHA and production relative_test_goal:false bind",
+    "Atomic client READY complete JSON; Linux supervisor verifies source/environment/spec and child PID/start_ticks/boot",
+    "Independent client only observes real map/TF and queries ACTIVE lifecycle state; it does not activate lifecycle or publish sensors/velocity",
+    "Client remains alive after FollowPath completion until TERM or its resource wall bound",
+    "Owned Linux process-group identity and subreaper, 0.5-second TERM plus 0.5-second KILL/reap; nonzero child exits fail",
+    "Windows owner checks original group/process identities and cleanup/reap; no Linux receive-wall subtraction from Windows QPC"
+  ],
+  "confirmed_acceptance_gap": {
+    "observed": "completed_requested_wall_duration used runtime.run elapsed including close",
+    "counterexample": "A signal ends physical run at 29.4 seconds after goal completion; 0.7-second cleanup yields elapsed30.1 and could incorrectly claim full30",
+    "parent_response": "Parent confirmed fix to physics_elapsed and simulated steps with 2dt/1dt boundaries and a regression; this review did not run that regression"
+  },
+  "additional_hardening_recommendations": [
+    {
+      "file": "tools/qa_pb_external_goal_supervisor.py",
+      "observation": "Supervisor_STARTED uses write_text; supervisor cleanup temporary is not independently noalias/exclusive guarded",
+      "minimal_change": "Use the client's fresh noalias exclusive-temp atomic JSON publisher for supervisor metadata",
+      "qualification": "Normal trusted freshout is already established by the host; independent Linux entrypoint should also reject substituted metadata aliases/reuse"
+    },
+    {
+      "file": "tools/qa_pb_external_goal_supervisor.py",
+      "observation": "Client CLEANUP reader independently verifies only run_uuid and clean, relying on frozen client for exact process and thread metadata",
+      "minimal_change": "Require exact client cleanup schema/PID/start_ticks/boot and observer_thread_alive:false against READY/owned identity"
+    },
+    {
+      "file": "tools/pb_external_goal_session.py",
+      "observation": "Host READY parser uses ordinary json.loads and some equality-only scalar checks",
+      "minimal_change": "Reject duplicate/nonfinite JSON and enforce exact scalar types/domain84/state/false warmup flags",
+      "qualification": "Frozen supervisor/client source produces valid messages in the intended flow; current partial input failures fail, but this is not an independent strict parser proof"
+    }
+  ],
+  "business_source_modified_by_reviewer": false,
+  "runtime_pass_claim": false,
+  "earlier_intermittent_timeout_root_cause_claim": false
+}

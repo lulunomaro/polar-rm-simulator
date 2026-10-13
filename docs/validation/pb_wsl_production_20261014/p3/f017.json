@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "-u",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_pb_external_navigation_goal.py",
+    "--spec",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-wsl-production-sil-actual-20261014-attempt3/peer/EXTERNAL_SPEC.json",
+    "--spec-sha256",
+    "88a1c7a149bace70ce4ead8f6952ffbf40f4aab8aa49a4203b29c96788fb4dad",
+    "--run"
+  ],
+  "identity": {
+    "run_id": "57a9ac7b4c764071ba826468ba2e7bfd",
+    "supervisor_pid": 613,
+    "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce",
+    "pid": 614,
+    "pgid": 614,
+    "leader_start_ticks": 927
+  }
+}

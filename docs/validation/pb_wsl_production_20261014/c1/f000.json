@@ -1,0 +1,18 @@
+{
+  "qualification": "Structured observation of actual installed message/header reads and upstream pinned source; no ROS node or costmap run",
+  "raw_read_stdout_saved": false,
+  "installed_prefix": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble",
+  "installed_definition_sha256": {
+    "share/nav2_msgs/msg/Costmap.msg": "359c3ae99accc8f052691706b9eb277b0a1fe2313f151e4b4970f5eb6f898c47",
+    "share/nav2_msgs/msg/CostmapMetaData.msg": "35db3946f56000d0e9e7ad4c823fdcc1815cbd480a2f799bc86eacd2b0afc3b1",
+    "share/nav2_msgs/srv/GetCostmap.srv": "898caf7bae5f0044569e6092cc5607192497d151034c9c881de12496b50998ed",
+    "include/nav2_costmap_2d/nav2_costmap_2d/costmap_2d_publisher.hpp": "2f282896195f768a1cd02228f5fad1bc6e1b44f17b1a70e616c00bc7c02224ef"
+  },
+  "upstream_reference": "https://raw.githubusercontent.com/ros-navigation/navigation2/1.1.20/nav2_costmap_2d/src/costmap_2d_publisher.cpp",
+  "selected_api": "nav2_msgs/msg/Costmap on <namespace>/global_costmap/costmap_raw; reliable transient_local depth1",
+  "rationale": "prepareCostmap copies complete raw data under Costmap2D mutex and publishes independently of always_send_full_costmap. This version's GetCostmap service callback does not acquire that mutex.",
+  "readiness": "actual published map geometry with positive bounded sizes/resolution, axis-aligned finite origin, complete bounded uint8 payload, estimated map start and map goal inside half-open dimensions",
+  "costs_are_diagnostic_only": true,
+  "source_stamps_retagged": false,
+  "earlier_failure": "Original production attempt1 planner log records static resize107x155/.05 then Start pose is out of costmap; it did not archive raw costmap origin. No original origin reconstructed."
+}

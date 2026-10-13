@@ -1,0 +1,219 @@
+{
+  "schema": "polar.pb.windows-wsl-production-sil.v1",
+  "scope": "production Gate + independent external estimated-pose relative goal; single sentry/generation; Windows physics+WSL Humble; not full mission/match/hardware",
+  "actual_steps": 15000,
+  "requested_seconds": 30.0,
+  "wall_seconds": 30.50805869999749,
+  "simulation_seconds": 30.0,
+  "physics_wall_seconds": 30.000017599988496,
+  "physics_rtf": 0.999999413334061,
+  "run_and_cleanup_rtf": 0.9833467378244708,
+  "source_sha256": {
+    "rm_match/integrations/pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "20d39ac402770d125897f1f7a8a88af0e3d0c05376eb620b3c82d55a99dcc58f",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "rm_match/integrations/pb_navigation_bridge.py": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "rm_match/integrations/pb_navigation_phases.py": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+    "rm_match/integrations/ros2_bridge.py": "5372c8a3afe5bb530560a2287b71f1898dd347f9eed08d1aacce8c4355a18241",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/deployment/profile.py": "c571aefa6cf5ba44c2385be26f015d50557c21eb6edd59a4ea1a90de6eaf9c57",
+    "rm_match/deployment/wsl_profile.py": "2d05ec3e0c9e79d771d790093414c62af798f2ae7d8e1dea09b59de03e80b758",
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_wsl_production_sil.py": "238c867c488ca1d434f4a4fa3c1ef9aa3e6fe8ab02f9e4156b4032b02193c6d0",
+    "tools/pb_external_goal_session.py": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+    "tools/pb_sil_duration.py": "71185147f73bbbdf5b29d9d90b94e285c598d720174914076b824aad59383825",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "rm_match/platform_v2/runtime.py": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/server.py": "f7051d9c4beab13cd4ea2863c3ca8c2ea0c0d06d542be6618615de67bf016fbc",
+    "rm_match/platform_v2/client.py": "9be9c8507a245c3d81e68c29a652dbe6ca54f7b607377d128d4009974af16e10",
+    "rm_match/platform_v2/admission.py": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+    "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+  },
+  "source_unchanged": true,
+  "consumption_audit": {
+    "consumed_steps": 412,
+    "nonzero_consumed_steps": 412,
+    "actual_sensor_requests": 299,
+    "actual_controller_results": 19,
+    "actual_localizations": 297,
+    "errors": [],
+    "passed": true
+  },
+  "observer_goal": {
+    "source": "actual_algorithm_map_to_base_link_tf",
+    "frame": "map",
+    "source_stamp_ns": 1098000000,
+    "relative_offset_m": [
+      1.0,
+      0.0
+    ],
+    "goal_xy": [
+      0.9670429110746583,
+      -0.020623552849733627
+    ],
+    "path_poses": 15,
+    "planner_status": 4,
+    "follow_path_accepted": true,
+    "follow_path_status": 4
+  },
+  "runtime_error": null,
+  "shutdown": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.5075989999895683
+  },
+  "session_cleanup": {
+    "schema": "polar.pb.wsl-session-cleanup.v1",
+    "run_uuid": "2b8829bfd7ee4c54b0e97fce101daa31",
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "clean": true,
+    "owned_groups": [],
+    "errors": [],
+    "supervisor_pid": 330,
+    "start_ticks": 253,
+    "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce"
+  },
+  "external_client_result": {
+    "schema": "polar.pb.external-goal-result.v1",
+    "run_uuid": "44bf23e3a5aed351c5abff6ea361d9cc",
+    "session_run_uuid": "2b8829bfd7ee4c54b0e97fce101daa31",
+    "namespace": "/polar_sil_2b8829bfd7ee4c54b0e97fce101daa31/red_sentry",
+    "goal_completed": true,
+    "elapsed_s": 31.325919735000003,
+    "cleanup": {
+      "schema": "polar.pb.external-goal-cleanup.v1",
+      "run_uuid": "44bf23e3a5aed351c5abff6ea361d9cc",
+      "pid": 614,
+      "start_ticks": 927,
+      "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce",
+      "clean": true,
+      "errors": [],
+      "observer_thread_alive": false,
+      "session_node_processes_owned": false
+    },
+    "source_sha256": {
+      "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+      "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+      "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+      "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+      "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+      "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+    },
+    "environment_ref": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+      "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+    },
+    "goal_report": {
+      "source": "actual_algorithm_map_to_base_link_tf",
+      "frame": "map",
+      "source_stamp_ns": 1098000000,
+      "relative_offset_m": [
+        1.0,
+        0.0
+      ],
+      "goal_xy": [
+        0.9670429110746583,
+        -0.020623552849733627
+      ],
+      "path_poses": 15,
+      "planner_status": 4,
+      "follow_path_accepted": true,
+      "follow_path_status": 4
+    },
+    "algorithm_input_has_truth": false,
+    "lifecycle_changed": false,
+    "sensor_published": false,
+    "cmd_vel_published": false,
+    "scope": "independent external action client; production Gate observation only; not full mission/hardware"
+  },
+  "external_supervisor_cleanup": {
+    "schema": "polar.pb.external-goal-supervisor.v1",
+    "run_uuid": "44bf23e3a5aed351c5abff6ea361d9cc",
+    "spec_sha256": "88a1c7a149bace70ce4ead8f6952ffbf40f4aab8aa49a4203b29c96788fb4dad",
+    "supervisor_pid": 613,
+    "start_ticks": 844,
+    "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce",
+    "clean": true,
+    "errors": [],
+    "group": {
+      "run_id": "57a9ac7b4c764071ba826468ba2e7bfd",
+      "supervisor_pid": 613,
+      "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce",
+      "pid": 614,
+      "pgid": 614,
+      "leader_start_ticks": 927,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.28464764800000353
+    },
+    "client_cleanup": {
+      "schema": "polar.pb.external-goal-cleanup.v1",
+      "run_uuid": "44bf23e3a5aed351c5abff6ea361d9cc",
+      "pid": 614,
+      "start_ticks": 927,
+      "boot_id": "b569a866-129b-474d-8399-3fe8a07905ce",
+      "clean": true,
+      "errors": [],
+      "observer_thread_alive": false,
+      "session_node_processes_owned": false
+    },
+    "returncode": 0
+  },
+  "production_gate_status": {
+    "schema": "polar.pb.production-gate-status.v1",
+    "run_uuid": "2b8829bfd7ee4c54b0e97fce101daa31",
+    "production_gate": true,
+    "namespace": "/polar_sil_2b8829bfd7ee4c54b0e97fce101daa31/red_sentry",
+    "stack_state": "ACTIVE",
+    "map_messages": 59,
+    "odometry_messages": 297,
+    "latest_odom_stamp_ns": 29897999999,
+    "activation_started": true,
+    "errors": [],
+    "clock_domain": "linux_local_receive_only"
+  },
+  "internal_test_goal": false,
+  "isolated_postrun_groundtruth": {
+    "initial_qpos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_qpos": [
+      1.432476365068651,
+      -0.09326633114583305,
+      0.0005325684906204825
+    ],
+    "algorithm_input": false
+  },
+  "errors": [],
+  "clock_conversion": false,
+  "sensor_input_has_truth": false,
+  "image_limit_seconds": 0.08,
+  "control_window_seconds": 0.15,
+  "fire_permission": false,
+  "full_match_qualified": false,
+  "hardware_qualified": false,
+  "relative_goal_completed": true,
+  "completed_requested_wall_duration": true,
+  "production_scope_identity_valid": true,
+  "bounded_navigation_consumption_passed": true
+}

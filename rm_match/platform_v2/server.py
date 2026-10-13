@@ -4,13 +4,18 @@ from dataclasses import dataclass
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
 import json
+import socket
 import threading
+import time
 from urllib.parse import urlsplit
 from .control import Rejected, exact
 from .admission import AdmissionPolicy
 
 SCHEMA='rm.sim.platform.v2'
 MAX_BODY_BYTES=16384
+BODY_TIMEOUT_S=1.
+REJECT_DRAIN_BYTES=64*1024
+REJECT_DRAIN_TIMEOUT_S=.1
 
 @dataclass(frozen=True)
 class TransportConfig:
@@ -62,17 +67,60 @@ class PlatformHandler(BaseHTTPRequestHandler):
     server_version='MuJoCoPlatform/2'
     def log_message(self,*_):pass
     def setup(self):
-        super().setup();self.connection.settimeout(1.)
+        super().setup();self.connection.settimeout(BODY_TIMEOUT_S)
+        self._body_bytes_read=0;self._discard_body_on_close=False
+
+    def _read_body(self,length):
+        deadline=time.perf_counter()+BODY_TIMEOUT_S;raw=bytearray()
+        try:
+            while len(raw)<length:
+                remaining=deadline-time.perf_counter()
+                if remaining<=0:raise TimeoutError('Request body deadline expired')
+                self.connection.settimeout(remaining)
+                chunk=self.rfile.read1(length-len(raw))
+                if not chunk:raise ValueError('truncated body')
+                self._body_bytes_read+=len(chunk);raw.extend(chunk)
+            if time.perf_counter()>=deadline:raise TimeoutError('Request body deadline expired')
+            return bytes(raw)
+        finally:self.connection.settimeout(BODY_TIMEOUT_S)
+
+    def finish(self):
+        try:
+            if self._discard_body_on_close:
+                # FIN preserves the rejection before unread receive data can
+                # cause a Winsock reset. Discarding is bounded and never parsed.
+                self.wfile.flush()
+                try:self.connection.shutdown(socket.SHUT_WR)
+                except OSError:pass
+                try:declared=int(self.headers.get('Content-Length','-1'))
+                except ValueError:declared=-1
+                remaining=(REJECT_DRAIN_BYTES if declared<0 else
+                    min(REJECT_DRAIN_BYTES,max(0,declared-self._body_bytes_read)))
+                deadline=time.perf_counter()+REJECT_DRAIN_TIMEOUT_S
+                while remaining>0:
+                    timeout=deadline-time.perf_counter()
+                    if timeout<=0:break
+                    self.connection.settimeout(timeout)
+                    try:chunk=self.rfile.read1(min(4096,remaining))
+                    except OSError:break
+                    if not chunk:break
+                    remaining-=len(chunk)
+        except OSError:pass
+        finally:super().finish()
+
     def _json(self,code,value):
+        self.close_connection=True
+        if code>=400 and (self.command=='POST' or self.headers.get('Content-Length') is not None or self.headers.get('Transfer-Encoding')):
+            self._discard_body_on_close=True
         body=json.dumps(value,allow_nan=False,separators=(',',':')).encode()
         self.send_response(code)
         self.send_header('Content-Type','application/json')
         self.send_header('Content-Length',str(len(body)))
         self.send_header('Cache-Control','no-store')
         self.send_header('X-Content-Type-Options','nosniff')
-        self.end_headers()
-        try:self.wfile.write(body)
-        except (BrokenPipeError,ConnectionResetError,ConnectionAbortedError):pass
+        self.send_header('Connection','close')
+        try:self.end_headers();self.wfile.write(body);self.wfile.flush()
+        except OSError:pass
 
     def _safe(self):
         if not ipaddress.ip_address(self.client_address[0]).is_loopback:raise Rejected('loopback_only',403)
@@ -103,12 +151,11 @@ class PlatformHandler(BaseHTTPRequestHandler):
             return d
         def invalid(_):raise ValueError('nonfinite JSON')
         try:
-            raw=self.rfile.read(length)
-            if len(raw)!=length:raise ValueError('truncated body')
+            raw=self._read_body(length)
             value=json.loads(raw,object_pairs_hook=pairs,parse_constant=invalid)
             if not isinstance(value,dict):raise ValueError('object required')
             return value
-        except (ValueError,UnicodeError,RecursionError):raise Rejected('invalid_json',400)
+        except (OSError,ValueError,UnicodeError,RecursionError):raise Rejected('invalid_json',400)
 
     def do_GET(self):
         try:

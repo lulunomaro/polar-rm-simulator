@@ -1,0 +1,9 @@
+{
+  "schema": "polar.prechange-source-snapshot.v1",
+  "files": {
+    "rm_match/integrations/pb_wsl_navigation.py": "feee1a7b65e4a791fd60eaa64f5402aff85b9a30d3e6dbd59f5254b5ce37e5a5",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "674620ee8661dd4429a88952348722678e6c572adfa98f2991c539337d4f53c2",
+    "tests/test_pb_wsl_navigation_session.py": "91b2b14a2febf8a781ea13860b9805f48478c0d46a002ffddfdae6f36104f883",
+    "tests/test_pb_wsl_navigation_registry.py": "74e76532fcf1e034a21fbbdb57e8ffd9866170c42c024c5a7964b71c759ad10b"
+  }
+}

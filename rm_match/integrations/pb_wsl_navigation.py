@@ -29,6 +29,8 @@ MAX_LINE = 64 * 1024
 MAX_REQUEST = 12 * 1024 * 1024
 CHUNK = 64 * 1024
 WSL_EXECUTABLE = Path('C:/Windows/System32/wsl.exe')
+PHASE_CAPACITY = 4096
+MAX_PHASE_ARCHIVE = 2 * 1024 * 1024
 SOURCE_FILES = (
     'rm_match/integrations/pb_wsl_navigation.py',
     'rm_match/integrations/pb_wsl_navigation_worker.py',
@@ -81,6 +83,11 @@ def _encode(value, limit):
     return raw
 
 
+def _valid_timeout(value):
+    try:return type(value) in (int,float) and math.isfinite(value) and value>0
+    except OverflowError:return False
+
+
 def _ref(value, root, out):
     _exact(value, ('path', 'sha256'), 'session_reference_fields')
     if type(value['sha256']) is not str or not re.fullmatch('[0-9a-f]{64}', value['sha256']):
@@ -92,6 +99,10 @@ def _ref(value, root, out):
     if not path.is_file() or _sha(path) != value['sha256']:
         raise ValueError('session_reference_changed')
     return path, dict(path=linux, sha256=value['sha256'])
+
+
+class WslNavigationBusy(RuntimeError):
+    """Valid monitor request declined without modifying a live transaction."""
 
 
 class WslNavigationSession:
@@ -134,6 +145,7 @@ class WslNavigationSession:
         self.process = None
         self.ready = None
         self.cleanup = None
+        self._resource_cleanup = None
         self.stderr = None
         self._incoming = queue.Queue(1)
         self._outgoing = queue.Queue(1)
@@ -149,9 +161,21 @@ class WslNavigationSession:
         self._stop_write_error = None
         self._stop_written = threading.Event()
         self.phase_rows = []
+        self.phase_total = 0
+        self.phase_dropped = 0
+        self._phase_lock = threading.Lock()
+        self._ledger_ready = threading.Event()
+        self._ledger_error = None
+        self._ledger_payload = None
+        self._ledger_deadline = None
+        self._ledger_writer = None
         self._stop_writer = threading.Thread(target=self._persist_stop, daemon=True, name='pb-wsl-stop-writer')
         self._threads.append(self._stop_writer)
         self._stop_writer.start()
+        if diagnostics:
+            self._ledger_writer = threading.Thread(target=self._persist_phases, daemon=True, name='pb-wsl-phase-writer')
+            self._threads.append(self._ledger_writer)
+            self._ledger_writer.start()
 
     def _map(self, path):
         return host_to_linux_path(path, repo_root=self.root, shared_out=self.out)
@@ -176,9 +200,38 @@ class WslNavigationSession:
 
     def _phase(self, phase, serial=None, op=None):
         # Bounded scalar diagnostics in memory; no hot-path filesystem access.
-        if self.spec['diagnostics'] and len(self.phase_rows) < 4096:
-            self.phase_rows.append(dict(phase=phase, id=serial, op=op,
-                local_wall=time.perf_counter(), clock='windows_local_perf_counter'))
+        if not self.spec['diagnostics']:return
+        with self._phase_lock:
+            self.phase_total += 1
+            if len(self.phase_rows) < PHASE_CAPACITY:
+                self.phase_rows.append(dict(phase=phase, id=serial, op=op,
+                    local_wall=time.perf_counter(), clock='windows_local_perf_counter'))
+            else:self.phase_dropped += 1
+
+    def phase_snapshot(self):
+        with self._phase_lock:
+            return dict(rows=copy.deepcopy(self.phase_rows), total=self.phase_total,
+                dropped=self.phase_dropped, capacity=PHASE_CAPACITY,
+                complete=self.phase_dropped == 0, clock='windows_local_perf_counter')
+
+    def _write_phases(self, payload):
+        _host_path(self.out)
+        path=self.out/'HOST_RPC_PHASES.json'
+        if path.exists() or path.is_symlink():raise ValueError('session_phase_archive_exists')
+        temporary=self.out/'HOST_RPC_PHASES.tmp'
+        with temporary.open('xb') as stream:stream.write(payload)
+        os.replace(temporary,path)
+
+    def _persist_phases(self):
+        self._ledger_ready.wait()
+        try:
+            if self._ledger_payload is None:raise TimeoutError('session_phase_archive_budget_exhausted')
+            if time.perf_counter() >= self._ledger_deadline:raise TimeoutError('session_phase_archive_budget_exhausted')
+            payload=_encode(self._ledger_payload, MAX_PHASE_ARCHIVE)
+            if time.perf_counter() >= self._ledger_deadline:raise TimeoutError('session_phase_archive_budget_exhausted')
+            self._write_phases(payload)
+            if time.perf_counter() >= self._ledger_deadline:raise TimeoutError('session_phase_archive_after_deadline')
+        except BaseException as error:self._ledger_error=type(error).__name__+':'+str(error)
 
     def _read(self, child):
         buffer = bytearray()
@@ -298,10 +351,20 @@ class WslNavigationSession:
 
     def exchange(self, packet, *, timeout=None):
         if not self._transaction.acquire(blocking=False):
+            # Exempt only a structurally valid monitoring request. Malformed
+            # status/control/reset packets retain the original fail-closed path.
+            if (type(packet) is dict and type(packet.get('op')) is str and packet['op']=='status'
+                and set(packet) in ({'op'}, {'schema','op'})
+                and ('schema' not in packet or (type(packet['schema']) is str and packet['schema']==JSONL_SCHEMA))
+                and (timeout is None or _valid_timeout(timeout))):
+                raise WslNavigationBusy('session_status_busy')
             self.request_stop()
             raise RuntimeError('session_concurrent_transaction')
         try:
             started = self._now()
+            diagnostic_op=(packet.get('op') if type(packet) is dict and type(packet.get('op')) is str
+                and packet['op'] in ('reset','act','status') else None)
+            self._phase('exchange_enter',self._serial+1,diagnostic_op)
             if self.ready is None or self._closed or self._stop.is_set():
                 raise RuntimeError('session_not_ready')
             if type(packet) is not dict or packet.get('schema', JSONL_SCHEMA) != JSONL_SCHEMA:
@@ -329,7 +392,7 @@ class WslNavigationSession:
             else:
                 raise ValueError('session_op')
             if timeout is not None:
-                if type(timeout) not in (int, float) or not math.isfinite(timeout) or timeout <= 0:
+                if not _valid_timeout(timeout):
                     raise ValueError('session_timeout')
                 cap = min(cap, timeout)
             deadline = started + cap
@@ -343,6 +406,7 @@ class WslNavigationSession:
                 deadline = min(deadline, o['wall_deadline'])
             if self._now() >= deadline:
                 raise TimeoutError('session_original_deadline_expired')
+            self._phase('packet_validated',self._serial+1,op)
             self._serial += 1
             serial = self._serial
             self._phase('encode_begin', serial, op)
@@ -382,7 +446,9 @@ class WslNavigationSession:
                     action = validate_action(result[field], o, dict(kind='navigation', output_modes=['velocity_body']))
                     if any(type(action[k]) is not type(o[k]) or action[k] != o[k] for k in IDENTITY):
                         raise ValueError('session_act_reply_source_identity')
+            self._phase('result_validated',serial,op)
             result = copy.deepcopy(result)
+            self._phase('return_copy_end',serial,op)
             if self._now() >= deadline:
                 raise TimeoutError('session_result_validation_deadline')
             return result
@@ -435,7 +501,23 @@ class WslNavigationSession:
                 config_sha256=self.spec['config_ref']['sha256']).items():
             if type(value[k]) is not str or value[k] != expected:
                 raise ValueError('session_cleanup_identity')
-        if self.ready is None or any(type(value[k]) is not type(self.ready[k]) or value[k] != self.ready[k]
+        identity = self.ready
+        if identity is None:
+            # Caller has already reaped this WSL launcher before this read.
+            # Birth identity proves resources only; it never makes us ready.
+            path = _host_path(self.out/'WORKER_STARTED.json')
+            with path.open('rb') as stream:raw = stream.read(MAX_LINE+1)
+            if len(raw)>MAX_LINE:raise ValueError('session_worker_marker_oversized')
+            identity=_json(raw)
+            _exact(identity, ('run_uuid','config_sha256','supervisor_pid','start_ticks','boot_id'), 'session_worker_marker_fields')
+            if (type(identity['run_uuid']) is not str or identity['run_uuid']!=self.run_uuid
+                or type(identity['config_sha256']) is not str or identity['config_sha256']!=self.spec['config_ref']['sha256']
+                or type(identity['supervisor_pid']) is not int or identity['supervisor_pid']<=0
+                or type(identity['start_ticks']) is not int or identity['start_ticks']<0
+                or type(identity['boot_id']) is not str
+                or not re.fullmatch('[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}',identity['boot_id'])):
+                raise ValueError('session_worker_marker_identity')
+        if any(type(value[k]) is not type(identity[k]) or value[k] != identity[k]
                 for k in ('supervisor_pid', 'start_ticks', 'boot_id')):
             raise ValueError('session_cleanup_process_identity')
         if (value['clean'] is not True or type(value['owned_groups']) is not list or value['owned_groups']
@@ -446,48 +528,44 @@ class WslNavigationSession:
     def close(self):
         if not self._close_lock.acquire(blocking=False):
             raise RuntimeError('session_close_in_progress')
+        if self._closed:
+            self._close_lock.release()
+            if self._close_failure:raise RuntimeError(self._close_failure)
+            return
         errors = []
         deadline = time.perf_counter() + 1.3
+        resource_cleanup = None
         try:
-            if self._closed:
-                if self._close_failure:
-                    raise RuntimeError(self._close_failure)
-                return
             self.request_stop()
             child = self.process
             if child is not None:
                 path = self.out / 'CLEANUP.json'
-                while time.perf_counter() < deadline:
-                    exited = child.poll() is not None
-                    if path.exists():
-                        try:
-                            _host_path(path)
-                            with path.open('rb') as stream:
-                                raw = stream.read(MAX_LINE + 1)
-                            if len(raw) > MAX_LINE:
-                                raise ValueError('session_cleanup_oversized')
-                            self.cleanup = self._check_cleanup(_json(raw))
-                        except BaseException as exc:
-                            errors.append(type(exc).__name__ + ':' + str(exc))
-                        break
-                    if exited:
-                        break
-                    time.sleep(.005)
+                reaped=False
                 try:
                     code = child.wait(timeout=max(0., deadline - time.perf_counter()))
+                    reaped=True
                     if code != 0:
                         errors.append('session_supervisor_exit_nonzero')
                 except subprocess.TimeoutExpired:
                     errors.append('session_supervisor_not_reaped')
-                if self.cleanup is None:
+                if reaped and path.exists():
+                    try:
+                        _host_path(path)
+                        with path.open('rb') as stream:raw = stream.read(MAX_LINE+1)
+                        if len(raw)>MAX_LINE:raise ValueError('session_cleanup_oversized')
+                        resource_cleanup=self._check_cleanup(_json(raw))
+                    except BaseException as exc:errors.append(type(exc).__name__+':'+str(exc))
+                if resource_cleanup is None:
                     errors.append('session_linux_cleanup_unproved')
             elif self.ready is not None:
                 errors.append('session_supervisor_missing')
+        except BaseException as error:
+            errors.append('session_close_error:'+type(error).__name__+':'+str(error))
         finally:
             # Never taskkill a launcher and call that Linux cleanup. Unreaped
             # supervisors remain visible to the caller via process and failure.
             for thread in self._threads:
-                if thread is not threading.current_thread():
+                if thread is not threading.current_thread() and thread is not self._ledger_writer:
                     thread.join(timeout=max(0., deadline - time.perf_counter()))
                     if thread.is_alive():
                         errors.append('session_stop_writer_not_joined' if thread is self._stop_writer else 'session_io_thread_not_joined')
@@ -500,9 +578,25 @@ class WslNavigationSession:
                         try:stream.close()
                         except OSError:errors.append('session_pipe_close_failed')
             if self.stderr is not None:
-                self.stderr.close()
+                try:self.stderr.close()
+                except OSError:errors.append('session_stderr_close_failed')
+            if self._ledger_writer is not None:
+                try:
+                    if time.perf_counter() < deadline:
+                        self._ledger_payload = self.phase_snapshot()
+                    self._ledger_deadline = deadline
+                    self._ledger_ready.set()
+                    self._ledger_writer.join(timeout=max(0., deadline-time.perf_counter()))
+                    if self._ledger_writer.is_alive():errors.append('session_phase_writer_not_joined')
+                    if self._ledger_error:errors.append('session_phase_archive_failed:'+self._ledger_error)
+                except BaseException as error:
+                    errors.append('session_phase_archive_failed:'+type(error).__name__+':'+str(error))
+                    self._ledger_ready.set()
+                    self._ledger_writer.join(timeout=max(0.,deadline-time.perf_counter()))
+            self._resource_cleanup = resource_cleanup
+            self.cleanup = resource_cleanup if not errors else None
+            self._close_failure = ';'.join(errors) if errors else None
             self._closed = True
             self._close_lock.release()
         if errors:
-            self._close_failure = ';'.join(errors)
             raise RuntimeError(self._close_failure)

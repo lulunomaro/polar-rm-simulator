@@ -1,0 +1,13 @@
+{
+  "scope": "Read-only Git/plan/evidence audit, no quality/WSL/ROS/NN/GL/physics rerun",
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-progress-audit-20261014-05\\audit.py"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 0.6760559000103967,
+  "audit_sha256": "500d1c288172d2c8f9a0a25e64c9fd75ee7882fb872e7b85e757a1a9e74ecfd2",
+  "result_sha256": "3f83b889ac273105281d04f649b5637e4faa1acf8625e8cccca0cac55ade3615",
+  "stdout_sha256": "70014d25bd5f9053d5a2faa67accb3f1432dedf8ef0f66e13bf05755e37839a1",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

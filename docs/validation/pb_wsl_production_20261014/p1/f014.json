@@ -1,0 +1,172 @@
+{
+  "schema": "polar.pb.windows-wsl-production-sil.v1",
+  "scope": "production Gate + independent external estimated-pose relative goal; single sentry/generation; Windows physics+WSL Humble; not full mission/match/hardware",
+  "actual_steps": 657,
+  "requested_seconds": 30.0,
+  "wall_seconds": 1.7736552999995183,
+  "simulation_seconds": 1.314,
+  "physics_wall_seconds": 1.3145285000064177,
+  "physics_rtf": 0.9995979546990308,
+  "run_and_cleanup_rtf": 0.7408429360543488,
+  "source_sha256": {
+    "rm_match/integrations/pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "9859e153ebc1e3c4e3f67e03503db6172ef1c54adbe3cac7b56b0f14386393b8",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "rm_match/integrations/pb_navigation_bridge.py": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "rm_match/integrations/pb_navigation_phases.py": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+    "rm_match/integrations/ros2_bridge.py": "5372c8a3afe5bb530560a2287b71f1898dd347f9eed08d1aacce8c4355a18241",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/deployment/profile.py": "c571aefa6cf5ba44c2385be26f015d50557c21eb6edd59a4ea1a90de6eaf9c57",
+    "rm_match/deployment/wsl_profile.py": "2d05ec3e0c9e79d771d790093414c62af798f2ae7d8e1dea09b59de03e80b758",
+    "tools/qa_pb_external_navigation_goal.py": "220e0fe4569c4ba63b6631b94c13f3f483fd4c07ba47128fcf61981f365678e8",
+    "tools/qa_pb_external_goal_supervisor.py": "741923851a61b6345301805029a744c7a05442358724ccf06bc03e291b5891a6",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_wsl_production_sil.py": "7549f91523dff45efc30087c1501031489adc59c00de678b2be7180d70e0e412",
+    "tools/pb_external_goal_session.py": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+    "tools/pb_sil_duration.py": "71185147f73bbbdf5b29d9d90b94e285c598d720174914076b824aad59383825",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "rm_match/platform_v2/runtime.py": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+    "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+  },
+  "source_unchanged": true,
+  "consumption_audit": {
+    "consumed_steps": 0,
+    "nonzero_consumed_steps": 0,
+    "actual_sensor_requests": 9,
+    "actual_controller_results": 0,
+    "actual_localizations": 7,
+    "errors": [],
+    "passed": false
+  },
+  "observer_goal": {
+    "source": "actual_algorithm_map_to_base_link_tf",
+    "frame": "map",
+    "source_stamp_ns": 898000000,
+    "relative_offset_m": [
+      1.0,
+      0.0
+    ],
+    "goal_xy": [
+      0.9534757489703428,
+      0.001033163846120222
+    ]
+  },
+  "runtime_error": null,
+  "shutdown": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.458698500005994
+  },
+  "session_cleanup": {
+    "schema": "polar.pb.wsl-session-cleanup.v1",
+    "run_uuid": "3328d07170fa46e69357be18424973cc",
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "clean": true,
+    "owned_groups": [],
+    "errors": [],
+    "supervisor_pid": 330,
+    "start_ticks": 266,
+    "boot_id": "2a8a95e8-dba6-4500-b67d-844423d9c79a"
+  },
+  "external_client_result": {
+    "schema": "polar.pb.external-goal-result.v1",
+    "run_uuid": "c6807e0416e9a3c44cfeee862cd022f2",
+    "session_run_uuid": "3328d07170fa46e69357be18424973cc",
+    "namespace": "/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry",
+    "goal_completed": false,
+    "elapsed_s": 2.0452738329999995,
+    "cleanup": {
+      "schema": "polar.pb.external-goal-cleanup.v1",
+      "run_uuid": "c6807e0416e9a3c44cfeee862cd022f2",
+      "pid": 611,
+      "start_ticks": 997,
+      "boot_id": "2a8a95e8-dba6-4500-b67d-844423d9c79a",
+      "clean": false,
+      "errors": [
+        "ValueError:external_planner_failed_or_empty"
+      ],
+      "observer_thread_alive": false,
+      "session_node_processes_owned": false
+    },
+    "source_sha256": {
+      "tools/qa_pb_external_navigation_goal.py": "220e0fe4569c4ba63b6631b94c13f3f483fd4c07ba47128fcf61981f365678e8",
+      "tools/qa_pb_external_goal_supervisor.py": "741923851a61b6345301805029a744c7a05442358724ccf06bc03e291b5891a6",
+      "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+      "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+      "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+      "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+    },
+    "environment_ref": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+      "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+    },
+    "goal_report": {
+      "source": "actual_algorithm_map_to_base_link_tf",
+      "frame": "map",
+      "source_stamp_ns": 898000000,
+      "relative_offset_m": [
+        1.0,
+        0.0
+      ],
+      "goal_xy": [
+        0.9534757489703428,
+        0.001033163846120222
+      ]
+    },
+    "algorithm_input_has_truth": false,
+    "lifecycle_changed": false,
+    "sensor_published": false,
+    "cmd_vel_published": false,
+    "scope": "independent external action client; production Gate observation only; not full mission/hardware"
+  },
+  "external_supervisor_cleanup": null,
+  "production_gate_status": {
+    "production_gate": true,
+    "namespace": "/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry",
+    "stack_state": "ACTIVE",
+    "map_messages": 2,
+    "odometry_messages": 11,
+    "latest_odom_stamp_ns": 1298000000,
+    "activation_started": true,
+    "errors": [],
+    "clock_domain": "linux_local_receive_only"
+  },
+  "internal_test_goal": false,
+  "isolated_postrun_groundtruth": {
+    "initial_qpos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_qpos": [
+      5.842417352243272e-07,
+      -2.5395317212160426e-28,
+      3.426666018174044e-26
+    ],
+    "algorithm_input": false
+  },
+  "errors": [
+    "sdk:RuntimeError:external_goal_supervisor_exited_early",
+    "peer_cleanup:RuntimeError:RuntimeError:external_linux_cleanup_unclean;external_supervisor_exit_nonzero"
+  ],
+  "clock_conversion": false,
+  "sensor_input_has_truth": false,
+  "image_limit_seconds": 0.08,
+  "control_window_seconds": 0.15,
+  "fire_permission": false,
+  "full_match_qualified": false,
+  "hardware_qualified": false,
+  "relative_goal_completed": false,
+  "completed_requested_wall_duration": false,
+  "bounded_navigation_consumption_passed": false
+}

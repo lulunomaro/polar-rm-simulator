@@ -1,0 +1,19 @@
+{
+  "bounded_navigation_consumption_passed": false,
+  "relative_goal_completed": false,
+  "actual_steps": 657,
+  "physics_rtf": 0.9995979546990308,
+  "consumption_audit": {
+    "consumed_steps": 0,
+    "nonzero_consumed_steps": 0,
+    "actual_sensor_requests": 9,
+    "actual_controller_results": 0,
+    "actual_localizations": 7,
+    "errors": [],
+    "passed": false
+  },
+  "errors": [
+    "sdk:RuntimeError:external_goal_supervisor_exited_early",
+    "peer_cleanup:RuntimeError:RuntimeError:external_linux_cleanup_unclean;external_supervisor_exit_nonzero"
+  ]
+}

@@ -35,7 +35,7 @@ class FakeTransport:
 
 
 class FakeGate:
-    def __init__(self,*args):self.maps=0
+    def __init__(self,*args):self.maps=0;self.errors=[];self.thread=None
     def poll(self,core):pass
     def close(self):return True
 

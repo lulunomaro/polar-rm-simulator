@@ -1,0 +1,5 @@
+{"event":"observer_ready","receive_wall":11.259282609,"receive_clock":"linux_local_perf_counter","pid":611,"start_ticks":997,"boot_id":"2a8a95e8-dba6-4500-b67d-844423d9c79a"}
+{"event":"gate_state_observed","receive_wall":12.076122726,"receive_clock":"linux_local_perf_counter","node":"controller_server","state":2,"service":"/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry/controller_server/get_state"}
+{"event":"gate_state_observed","receive_wall":12.086504953,"receive_clock":"linux_local_perf_counter","node":"planner_server","state":2,"service":"/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry/planner_server/get_state"}
+{"event":"gate_state_observed","receive_wall":12.187738084,"receive_clock":"linux_local_perf_counter","node":"controller_server","state":3,"service":"/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry/controller_server/get_state"}
+{"event":"gate_state_observed","receive_wall":12.451444122,"receive_clock":"linux_local_perf_counter","node":"planner_server","state":3,"service":"/polar_sil_3328d07170fa46e69357be18424973cc/red_sentry/planner_server/get_state"}

@@ -1,0 +1,11 @@
+{
+  "schema": "polar.readonly-review-artifacts.v1",
+  "scope": "saved evidence and source audit only; no ROS/WSL/GL/pytest/build",
+  "files": {
+    "console-final.log": "fd80367fd9a62409eab24dd5e977413cf78f332767ed453fcbcd42605bd0a955",
+    "console.log": "fd80367fd9a62409eab24dd5e977413cf78f332767ed453fcbcd42605bd0a955",
+    "METRICS.json": "9e0f1e3ecc45731f761a4f7dc8bd6bd55e78f22ba1bcd469ac29a5b09e71ed8a",
+    "REVIEW.md": "b0e5718bb4b35e82435c9093324ea560b2f27148103264a80972e5395b938c6b",
+    "review.py": "b8242d85fc43abf40692785e3820e4e99f344eb2016e8688aae9a1aeb39b90cb"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "argv": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\preserve_postcheck_documentation_20261014.py",
+    "--revision",
+    "2"
+  ],
+  "script_sha256": "7de2f42de1326b4db6264e4a406d12599b18cb5949b21d9939ef5fce8f32284a",
+  "result": "actual RESULT.json saved; shell exit0; no raw stdout capture"
+}

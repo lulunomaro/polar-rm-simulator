@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\check_project.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\quality-20261014-wsl-production-frozen-01"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "driver_sha256": "2f36fec671f63e77d46676840e74c1adbc5f443e09339e105735e589f234cbb9",
+  "scope": "frozen local quality; no camera/native realtime/match/hardware qualification"
+}
