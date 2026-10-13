@@ -124,7 +124,7 @@ owned RMCS terminate→kill→finally streams、live/offline可信native取消�
 未知Python插件只使用总1.5s等待并明确unclean，避免假clean或卡住物理authority。
 Windows专用140passed/22subtests与WSL实际12lifecycle checks通过。
 本轮字节规范保护已冻结overlay/patch/报告的literal SHA；常规源LF规范后更新26项提取修改归属。
-本地分支保存及干净本地clone源门禁将另记录，不等于第二物理电脑或公开发布。
+本地分支检查点 1dc500d / 3160522 已保存，工作区干净；新本地clone源门禁通过，42项冻结报告/工具/源码hash与客户端patch全部一致。它不等于第二物理电脑或公开发布。
 
 
 冻结的最终质量入口 artifacts/quality-20261013-frozen-checkpoint/manifest.json：
@@ -132,3 +132,10 @@ checks_passed_not_milestone_acceptance；preset、26项归属源变更/未改原
 全量787passed/4skipped/216subtests、实际camera35checks全部通过，运行期间source_unchanged=true。
 相应draft --require-frozen仍应拒绝。当前局部问题的代码/测试/失败与复现均保存；
 新默认PnP修复和静态OFFLINE链已验证，M1实时/完整比赛、M2–M5仍按上表继续推进。
+
+
+Windows条件跳过的2项原尺寸EGL/lens投影用WSL实际EGL另跑，2passed（6.40s），
+日志 artifacts/checkpoint-clone-egl-projection.log；SIGTERM-ignore另有POSIX实际12项回归，
+Windows symlink权限skip保持显式，不为测试改系统权限。最后没有遗留构建或native运行。
+下一项可执行M1工作是显式Windows GPU/持久WSL native传输与真实80/150ms全链测量；
+现WSL单独GLFW/D3D12原尺寸相机不满足80ms，不能直接启动该配置当实时通过。
