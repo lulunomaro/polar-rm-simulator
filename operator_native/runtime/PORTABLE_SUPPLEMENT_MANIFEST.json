@@ -1,0 +1,28 @@
+{
+  "schema": "rmcs-portable-source-supplement-v1",
+  "status": "source_prepared_native_build_pending",
+  "identity": "rmcs-sim-operator-fov-v1",
+  "algorithm": "079a7fe + T2 tracker patch, not 40f7",
+  "original_file_count": 94,
+  "original_manifest_sha256": "37e09d876fd579336feb694802e95a72315ef3d428ac5947aae98298ac823869",
+  "supplement_sha256": {
+    "RECOVERY_MANIFEST.json": "37e09d876fd579336feb694802e95a72315ef3d428ac5947aae98298ac823869",
+    ".gitignore": "ceb061a8044036ad854d4333cd93a3cf6d8979921c60d23e5babe4850f8c32ab",
+    "CMakeLists.txt": "b16acc817f8cf3f8dc3a9e41b7a3133710120de0eb3899a6d1262f966482a934",
+    "build_portable.py": "365ec788c1d931ee4fb902f375e1a7228888d7152a00024299e4d9795d223f3a",
+    "simulation_profile.json": "27346cdac468a18de4e00d3fd50a6480a5a8e0d1811356187fcd55e58db198bb",
+    "README_PORTABLE.md": "a7d3929f7f9fd5ead99cf93a2058dec8c94d3cb8d346490c415eb398d544e835",
+    "test_portable_setup.py": "af7158aee70f919c4160475cf3782345aba2c618cda3e2f800320b0aefa92fe7"
+  },
+  "static_checks": {
+    "setup_unit_tests": 10,
+    "status": "passed",
+    "actual_fov_source_generation": "passed",
+    "generated_main_sha256": "4357b6e6b3495730229b0b08e9eeb94d0de7db57a5dc435b916a4ae26772e5ca",
+    "original_source_hashes": "94 unchanged",
+    "native_compile": "not performed by source preparation",
+    "inference": "not run",
+    "simulator": "not run",
+    "windows": "not validated"
+  }
+}

@@ -27,7 +27,9 @@
 
 本仓库已包含历史 RMCS 检测模型 `models/shenzhen-0526.onnx`（4,359,932 字节），SHA-256 为 `b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255`。模型字节与固定上游及历史身份记录一致；原始 MIT 声明、输入输出接口和权利范围说明见 [模型来源与限制](models/README.md)。本次只做字节与来源核验，没有运行模型推理或物理仿真，不能据此认定 native 流程已就绪。
 
-本仓库仍不包含 native 二进制、策略权重、完整 native 构建树、私有场景初值、真实轮腿 CAD/RL 资产或 Python 解释器。不要把示例配置当成可运行 native 配置。native 路径仅有 Linux ELF64/x86-64 源码约束；Windows 桌面、跨设备 LAN、完整官方规则与真实硬件动力学均未完成验证。实时 camera/native 路径也未达到原定壁钟验收标准。
+本仓库已补入 [operator_native/runtime/](operator_native/runtime/README_PORTABLE.md) 的 RMCS T2 原生源码与可移植构建入口：94 个恢复文件保持原字节，来源是 `079a7fe + T2 tracker`，不是历史 `40f7` 全场基线。外部 C++ 依赖仍需本机准备，源码存在不等于 native 运行已验收。最小步骤、依赖和当前验证边界见 [原生构建指南](docs/NATIVE_RUNTIME.md)。
+
+本仓库仍不包含 native 二进制、外部 native 依赖库、策略权重、私有场景初值、真实轮腿 CAD/RL 资产或 Python 解释器。不要把示例配置当成可运行 native 配置。native 路径仅有 Linux ELF64/x86-64 源码约束；Windows 桌面、跨设备 LAN、完整官方规则与真实硬件动力学均未完成验证。实时 camera/native 路径也未达到原定壁钟验收标准。
 
 ## 不启动物理的拆分检查
 

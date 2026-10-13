@@ -37,7 +37,7 @@ Default is dry-run. Add --run only when intending to start the local simulator a
 
 Use the same client launcher with --mode offline on Linux and explicit --scene-json /absolute/scene.json and --native-spec /absolute/operator_source.local.json. It validates frozen lifecycle source and provided artifact hashes. Native shared-library/rpath/ABI compatibility remains an additional requirement.
 
-This is one stationary, fire-off scene with 24 exposures and modeled delay. The original Qt window is a spectator with watch acknowledgement, not arbitrary manual offline gameplay or a complete match. The older paired 2x24 offscreen QA evidence has a separate scope. See the retained tools/platform_v2/offline_stage6/serve.py entry. Machine-local native inputs are not supplied here.
+This is one stationary, fire-off scene with 24 exposures and modeled delay. The original Qt window is a spectator with watch acknowledgement, not arbitrary manual offline gameplay or a complete match. The older paired 2x24 offscreen QA evidence has a separate scope. See the retained tools/platform_v2/offline_stage6/serve.py entry. Machine-local native binaries, generated configs and specs are not supplied here. A reviewed source build entry is now included under `operator_native/runtime/`; see [NATIVE_RUNTIME.md](NATIVE_RUNTIME.md). The retained `operator_native/README.md` describes the earlier external-runner workflow; the new portable guide takes precedence for the included recovered source tree.
 
 ## Historical timing-v5
 
@@ -48,7 +48,7 @@ Only red sentry uses this actor; five robots retain the baseline. Rules and dyna
 ## Boundaries
 
 - No workflow or CI dispatch is added. Extraction verification starts no physics, renderer, native actor, paid API, or hardware operation.
-- The historical detector weight is included at `models/shenzhen-0526.onnx`; point `model_share` to that directory only when preparing an otherwise valid matching runtime spec. See `../models/README.md` for its pinned source, original license notice and interface. This does not supply or validate a runtime spec. Native source/build dependencies, other weights, binaries, private scene initialization and local specs remain separate inputs subject to existing usage rights. No inference or native runtime qualification was performed for this model supplement.
+- The historical detector weight is included at `models/shenzhen-0526.onnx`; point `model_share` to that directory only when preparing an otherwise valid matching runtime spec. See `../models/README.md` for its pinned source, original license notice and interface. This does not supply or validate a runtime spec. The native source build tree is included at `operator_native/runtime/`; its external build dependencies, other weights, binaries, private scene initialization and local specs remain separate inputs subject to existing usage rights. No inference or native runtime qualification was performed for this model supplement.
 - Keep runtime specs, native outputs, recordings, .env files and secrets local. Review staged changes; ignore patterns are only an additional guard.
 - Original owned code is released under MIT. Retain LICENSE, THIRD_PARTY_NOTICES.md, licenses/RMCS_MIT.txt and SOURCE_PROVENANCE.md; third-party dependency and asset terms remain separate.
 - Syntax and synthetic checks do not qualify Windows visible UI, LAN, hardware, real-time native execution, a complete match or full official rules.

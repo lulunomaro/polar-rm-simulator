@@ -1,0 +1,672 @@
+{
+  "schema": "rmcs-native-runtime-recovery-review-v1",
+  "status": "static_recovery_only_not_compiled_or_executed",
+  "source_package": "T2_candidate_relink_source_and_protocol_checkpoint.zip",
+  "source_package_sha256": "50dc19f40115993944ad516e724fad5e7179505907bb845e09802ac0baa96700",
+  "algorithm_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "is_original_upstream": false,
+    "is_baseline_40f7": false
+  },
+  "license": {
+    "path": "candidate/LICENSE",
+    "sha256": "d415250801c46571ba8bb11b1587b46ecb00ac60c826050a2ee6bd19f1bc3ca5",
+    "spdx": "MIT",
+    "copyright": "Copyright (c) 2025 Alliance Algorithm Team",
+    "note": "Keep the full notice. Adapter/build files are recovered user project artifacts and have no separate per-file license notice; apply the authorized simulator project licensing policy, do not infer third-party rights beyond the included notice."
+  },
+  "files": [
+    {
+      "path": "adapter_clock.hpp",
+      "sha256": "27e846a277f8eefa77f50cf82a4e331fee1235b3102a78cdace5b26633d52e77",
+      "bytes": 740
+    },
+    {
+      "path": "build.py",
+      "sha256": "92b39e47ba592b0bae6c01a4d9aeef12fdf470bc44e389aec4bc83c2feb078d9",
+      "bytes": 6795
+    },
+    {
+      "path": "candidate/LICENSE",
+      "sha256": "d415250801c46571ba8bb11b1587b46ecb00ac60c826050a2ee6bd19f1bc3ca5",
+      "bytes": 1080
+    },
+    {
+      "path": "candidate/src/kernel/command_safety.hpp",
+      "sha256": "04e99c83ec3b98f93d9f407493df797f02f521874a91677138cae156bd8348fc",
+      "bytes": 3073
+    },
+    {
+      "path": "candidate/src/kernel/detector.cpp",
+      "sha256": "254e40dd42f4ff9be986023572dec1a2a15f53fc73d069ecd770f890eefb653b",
+      "bytes": 9218
+    },
+    {
+      "path": "candidate/src/kernel/detector.hpp",
+      "sha256": "870e5e64ee85c6daca00bc4d04151bd324cea9c2faa8075d291554eba25bb4be",
+      "bytes": 993
+    },
+    {
+      "path": "candidate/src/kernel/fire_control.cpp",
+      "sha256": "503e3539b08a07835dd9d41294e9ff760a8717bdd411deac38a19a8af5b89265",
+      "bytes": 20655
+    },
+    {
+      "path": "candidate/src/kernel/fire_control.hpp",
+      "sha256": "155c5dec84b95ccfec87ac7fbf6de9ebb20f42d6929075382d2dfe3850df8700",
+      "bytes": 4898
+    },
+    {
+      "path": "candidate/src/kernel/observation_events.hpp",
+      "sha256": "0f1f4bdfe24e49d1af8af4fa4a9e766d3267b360c950b852e35ccaa94b1228fd",
+      "bytes": 2644
+    },
+    {
+      "path": "candidate/src/kernel/pose_estimator.cpp",
+      "sha256": "e688b450571953f4c3626f85bdac02e0b59c91526ca98229c6eb481a1835e850",
+      "bytes": 12934
+    },
+    {
+      "path": "candidate/src/kernel/pose_estimator.hpp",
+      "sha256": "29d499ec84f03e15e821c1aa91af3b1d7301caa9d235289b0b00a401b8e3a665",
+      "bytes": 1089
+    },
+    {
+      "path": "candidate/src/kernel/tracker.cpp",
+      "sha256": "2a70d1f9a252a2f1169a916b3da48b13a9058f7bc1e7f76e763bbc764ff66981",
+      "bytes": 38279
+    },
+    {
+      "path": "candidate/src/kernel/tracker.hpp",
+      "sha256": "1774c7ed5a6275243e5a313d9f526864cf8e3569e50a80db2162fc37345d3bc9",
+      "bytes": 3075
+    },
+    {
+      "path": "candidate/src/module/detector/adjacency_lightbar.cpp",
+      "sha256": "03b3777aea593aea78ddc1783ffcd19156e332ce127c6217dd98d1612df7bb27",
+      "bytes": 9893
+    },
+    {
+      "path": "candidate/src/module/detector/adjacency_lightbar.hpp",
+      "sha256": "1ecd2bd19120fcf0609f7822da819610e28f851af7fd6b761fa9d8afd6896835",
+      "bytes": 723
+    },
+    {
+      "path": "candidate/src/module/detector/armor_detection.cpp",
+      "sha256": "7928296d46394354ea500d962e0f749db225c7d55400554ac345ec366748a550",
+      "bytes": 12990
+    },
+    {
+      "path": "candidate/src/module/detector/armor_detection.hpp",
+      "sha256": "e23bc762b370fe889bc5af809c92701cd8b1db5c981090ceb802b0661eaea14f",
+      "bytes": 458
+    },
+    {
+      "path": "candidate/src/module/detector/green_light.cpp",
+      "sha256": "0f8cb3686ec2ebb9c4a61227f7386b58c76b55976c114f93a250d34c988a2e14",
+      "bytes": 6883
+    },
+    {
+      "path": "candidate/src/module/detector/green_light.hpp",
+      "sha256": "7046b0db7883fadacac224b51b088598f48b74395d2f01a56ef7551023a11630",
+      "bytes": 657
+    },
+    {
+      "path": "candidate/src/module/detector/lightbar.cpp",
+      "sha256": "611f059ffb68acf6410d5e59a2c1b90e38bd5c5397c0c008ee2c79fc8a44ec5c",
+      "bytes": 5670
+    },
+    {
+      "path": "candidate/src/module/detector/lightbar.hpp",
+      "sha256": "b423a7ad75c3d720174023af454c5d8e7bd0c03e4171b998ef57085184b18846",
+      "bytes": 486
+    },
+    {
+      "path": "candidate/src/module/detector/models/shenzhen.hpp",
+      "sha256": "a4df0e24959f0ef81f862f10d5d3beff619ee875069e035f659edfe246704846",
+      "bytes": 2514
+    },
+    {
+      "path": "candidate/src/module/detector/models/shenzhen_0526.hpp",
+      "sha256": "cbaa4e569e239f5d1014b0fb4ea185628573a96ca60411592498388659217ae8",
+      "bytes": 160
+    },
+    {
+      "path": "candidate/src/module/detector/models/shenzhen_0708.hpp",
+      "sha256": "49c1c2eb1c40d5011bfc5e1d7a7014f23085007ae115a32b909d4ffae4a2b20e",
+      "bytes": 160
+    },
+    {
+      "path": "candidate/src/module/detector/models/tongji_yolov5.hpp",
+      "sha256": "5b3b47540c92572456043ef14b5000026ede600cfddec280e916e520b65e5bb1",
+      "bytes": 2424
+    },
+    {
+      "path": "candidate/src/module/detector/rune.cpp",
+      "sha256": "0d4efb096b01fe660ae7581b047432e6a1b35d0dec42ffc8125794a61fa69b55",
+      "bytes": 22022
+    },
+    {
+      "path": "candidate/src/module/detector/rune.hpp",
+      "sha256": "053ca677b7519503d87280a654999704b66d9f8ee4c46a5dafeac359bb0d89e5",
+      "bytes": 1159
+    },
+    {
+      "path": "candidate/src/module/fire_control/center_intercept.hpp",
+      "sha256": "93a0e02c15cef7bfbb91aa983802c216e50a852c97e47ea2cab8ff83122ef239",
+      "bytes": 7048
+    },
+    {
+      "path": "candidate/src/module/fire_control/shoot_evaluator.cpp",
+      "sha256": "55d27dd29aa87aa14b664344e9891c44e70f9cecf683e709cca794dd566754c4",
+      "bytes": 5094
+    },
+    {
+      "path": "candidate/src/module/fire_control/shoot_evaluator.hpp",
+      "sha256": "27311bda538166675ffe2c4f2ce4958de28c45ec5ff7ceb57f27c871c603e130",
+      "bytes": 575
+    },
+    {
+      "path": "candidate/src/module/fire_control/trajectory_solution.cpp",
+      "sha256": "4f659f832fc094d3ff6a69427545000eda0ad5fb2e6201ab5d0acfb1286e0b7a",
+      "bytes": 9595
+    },
+    {
+      "path": "candidate/src/module/fire_control/trajectory_solution.hpp",
+      "sha256": "c62d9eb8298a482f2d0fa2c82d4e1fedb2240072af5cb07b82603e332bb5ee0a",
+      "bytes": 1506
+    },
+    {
+      "path": "candidate/src/module/tracker/association_transaction.hpp",
+      "sha256": "bbde3ed785d47c4c46c2356960ace782ccce06a076c30212e92e672957432faa",
+      "bytes": 3961
+    },
+    {
+      "path": "candidate/src/module/tracker/model/outpost.cpp",
+      "sha256": "58ebd7325935773219eb00acc9d0a9acc1a8a2986c386fb29627f5c2ef630956",
+      "bytes": 21748
+    },
+    {
+      "path": "candidate/src/module/tracker/model/outpost.hpp",
+      "sha256": "061a63a0f65b7d1893c37d13bcd024ea993963ef52b0864a7a205bb6518365ab",
+      "bytes": 3145
+    },
+    {
+      "path": "candidate/src/module/tracker/model/robot.cpp",
+      "sha256": "4e7ac62e766f2f6b045f7cc94be8bc4c590ca1475d64519d2533a462dc1ef75e",
+      "bytes": 44393
+    },
+    {
+      "path": "candidate/src/module/tracker/model/robot.hpp",
+      "sha256": "bef7db80c23bf973f865e4717bcc9220c3ca01f1c5a8b0f671b8d5ff049bc87a",
+      "bytes": 2995
+    },
+    {
+      "path": "candidate/src/module/tracker/model/rune.cpp",
+      "sha256": "fc5f37177652a4daf85a26f33f52c5bf2600a53fcf4224be8e53895e9de71f88",
+      "bytes": 43586
+    },
+    {
+      "path": "candidate/src/module/tracker/model/rune.hpp",
+      "sha256": "fc218675e17deabab6049ef725f279d4653be831782a5b6cb1437282afc8e892",
+      "bytes": 2482
+    },
+    {
+      "path": "candidate/src/module/tracker/model/rune_energy_fitter.cpp",
+      "sha256": "d0084477589671e12f9d7518c9d043cbda47c0e92cb5dfc8d105778688727260",
+      "bytes": 4568
+    },
+    {
+      "path": "candidate/src/module/tracker/model/rune_energy_fitter.hpp",
+      "sha256": "96f41309962e31aafad4acceedca69ae84d608531bc1a696b6f538e681f967c0",
+      "bytes": 1133
+    },
+    {
+      "path": "candidate/src/module/tracker/model/virtual_rune.cpp",
+      "sha256": "c3a1a6fc0cdc714736f342264713a35270bed8503c69d3b09615601cd6c506f8",
+      "bytes": 7186
+    },
+    {
+      "path": "candidate/src/module/tracker/model/virtual_rune.hpp",
+      "sha256": "e10fca00b3755c89ce1f21e896e3edef16ee1b207ce9c0dd6703b2bd26c89452",
+      "bytes": 1676
+    },
+    {
+      "path": "candidate/src/module/tracker/observation_consistency.hpp",
+      "sha256": "236d9013637570614c285e54229d6b690ffd1efe6223c353b37f13ddab986834",
+      "bytes": 977
+    },
+    {
+      "path": "candidate/src/module/tracker/observation_guard.hpp",
+      "sha256": "98449bf809c8310ba7809da2dbb7f5901f914d2a541c9836809536c6ddea0ae7",
+      "bytes": 2599
+    },
+    {
+      "path": "candidate/src/module/tracker/trackable.hpp",
+      "sha256": "59b341a10d94d18588e2ad3d08c0d8c24f0d134f2c8d26c60dd4c4da5c760b74",
+      "bytes": 3045
+    },
+    {
+      "path": "candidate/src/utility/image/process.cpp",
+      "sha256": "86ab242b882e594a9160ea43e57142a2c7aa2218daf146e6c73aa11650f09155",
+      "bytes": 2589
+    },
+    {
+      "path": "candidate/src/utility/image/process.hpp",
+      "sha256": "b468fb961d42db2494b3d7483ed72aee526104b97a41c110702fa4dc28458ac8",
+      "bytes": 189
+    },
+    {
+      "path": "candidate/src/utility/logging/printer.cpp",
+      "sha256": "9f627f46f4435e50b6aad76be13ec8121ebc36def01cd20d4566ae724e2ea7ca",
+      "bytes": 917
+    },
+    {
+      "path": "candidate/src/utility/logging/printer.hpp",
+      "sha256": "5b720c690d77969bba2dd4538225ad08c4a24b5d1d3c4a9c9f3731b59be94dc2",
+      "bytes": 992
+    },
+    {
+      "path": "candidate/src/utility/math/angle.hpp",
+      "sha256": "dd884814591cc1a18b5096d5d5ae5bf724b7b7a10bc869fe00af11b3f7d8c35c",
+      "bytes": 368
+    },
+    {
+      "path": "candidate/src/utility/math/camera.cpp",
+      "sha256": "4336b6a40aeef3636b29be84776945a1ea684d8b435fdb2d2fc2f1a884e71189",
+      "bytes": 1704
+    },
+    {
+      "path": "candidate/src/utility/math/camera.hpp",
+      "sha256": "40d5e489a6dc67f15c093976eda7b6f8421071d6edddcc0a2a999bb0b8d6cd7c",
+      "bytes": 840
+    },
+    {
+      "path": "candidate/src/utility/math/conversion.hpp",
+      "sha256": "29260407657ebb13368a9227718516657f426ea49c4145cb54a4d9a487fa2c55",
+      "bytes": 5323
+    },
+    {
+      "path": "candidate/src/utility/math/corners_optimizor.cpp",
+      "sha256": "d99ca680eef70fdb8ead1511f53c432536a314ecb152b7721c46fbde8de26423",
+      "bytes": 8193
+    },
+    {
+      "path": "candidate/src/utility/math/corners_optimizor.hpp",
+      "sha256": "f70113440dc4d19678dd344f60beee50ee51d4713fe9489edb470f7f03bed013",
+      "bytes": 256
+    },
+    {
+      "path": "candidate/src/utility/math/hungarian.hpp",
+      "sha256": "01590c586e190539b185028a27b02700e993fe72b77bcea4e54af288dc0cc227",
+      "bytes": 3395
+    },
+    {
+      "path": "candidate/src/utility/math/linear.hpp",
+      "sha256": "d8c6b6d233a9d8717033a1d93581c1a2ab120e6fb65ddc6296170165e33f05a0",
+      "bytes": 9029
+    },
+    {
+      "path": "candidate/src/utility/math/mahalanobis.hpp",
+      "sha256": "8ab1d50f89b787ede6130f816762dcb0c17bae92ecf6831720a1056ef2f24c60",
+      "bytes": 470
+    },
+    {
+      "path": "candidate/src/utility/math/outpost.cpp",
+      "sha256": "dad0c025530db0f5f390a124a6131e568eb1fb51bf5ee1bb47b169a5540eaeb9",
+      "bytes": 6029
+    },
+    {
+      "path": "candidate/src/utility/math/outpost.hpp",
+      "sha256": "07ea792e083dfb7ea31c7a83eeaae65b5783421a6f95d387f056a57261570458",
+      "bytes": 1108
+    },
+    {
+      "path": "candidate/src/utility/math/projection_jacobian.hpp",
+      "sha256": "65083a47be74f1b9fb2205bd69e2c1d66bc6fe7497b8832d1a72d8f9ca6428e5",
+      "bytes": 1657
+    },
+    {
+      "path": "candidate/src/utility/math/reprojection.cpp",
+      "sha256": "7cc7d56d7fa074c2dd22085ce02b804da3def3e70e6660e37e6744fcd432274a",
+      "bytes": 1399
+    },
+    {
+      "path": "candidate/src/utility/math/reprojection.hpp",
+      "sha256": "44d9bbebd7bd4c19a681d86abd0d0bcfc0ddc23bddff96a789ae22b2f838ae6f",
+      "bytes": 2116
+    },
+    {
+      "path": "candidate/src/utility/math/robot.cpp",
+      "sha256": "9250060582a0215af94b2225b8efefaee05e889683a2e0471352eb4d7b31d75a",
+      "bytes": 3950
+    },
+    {
+      "path": "candidate/src/utility/math/robot.hpp",
+      "sha256": "36ae359153bdd969b224275a0334ef5db22500bfd8bb7ffdb8f8e11ef2558e4d",
+      "bytes": 1197
+    },
+    {
+      "path": "candidate/src/utility/math/sigmoid.hpp",
+      "sha256": "261c15c9779f984f38ddfd20215db2cb7488148f84218190e3b7f08a46b19d4f",
+      "bytes": 285
+    },
+    {
+      "path": "candidate/src/utility/math/solve_armors.cpp",
+      "sha256": "f7261eba375c38976b6ebb370c46a7daab490a52a1659625254ea5063fd063d6",
+      "bytes": 1442
+    },
+    {
+      "path": "candidate/src/utility/math/solve_armors.hpp",
+      "sha256": "2abbe6391c7f40d2dea31b820330a6806601ac32b1331d9c3d22653262c767ed",
+      "bytes": 553
+    },
+    {
+      "path": "candidate/src/utility/math/solve_pnp/outpost_distance_optimizer.cpp",
+      "sha256": "54c849ffae31b1b865127dee728dfa75b3d3593047e201cc2e78efe3ff112895",
+      "bytes": 3601
+    },
+    {
+      "path": "candidate/src/utility/math/solve_pnp/outpost_distance_optimizer.hpp",
+      "sha256": "81edb99f4ea92e0fc7cfa7ceeefc03f8aacfc7b6328c689b8bb62c1eaef14421",
+      "bytes": 560
+    },
+    {
+      "path": "candidate/src/utility/math/solve_pnp/pnp_solution.cpp",
+      "sha256": "537f97231dfbaba8c1c51ddbee2b2d1bbf780c2735740d381018b34cfcb05934",
+      "bytes": 15532
+    },
+    {
+      "path": "candidate/src/utility/math/solve_pnp/pnp_solution.hpp",
+      "sha256": "f60da915e23d2d9b1d3945bf3f68a3dfd5f94fc8fd71d7aaf7d571b3381ce8bf",
+      "bytes": 2094
+    },
+    {
+      "path": "candidate/src/utility/math/solve_pnp/yaw_optimizer.cpp",
+      "sha256": "5e10097ba86c63d9f6ea6eec8cda615a9a817350777558fce7d66b5c5a010aeb",
+      "bytes": 4287
+    },
+    {
+      "path": "candidate/src/utility/math/solve_pnp/yaw_optimizer.hpp",
+      "sha256": "d2ac3354822d125258f6e527966661c62ad7936a0c9fe34e787e488ba46639b8",
+      "bytes": 930
+    },
+    {
+      "path": "candidate/src/utility/model/armor_detection.hpp",
+      "sha256": "8cd4446cb89ebc1164b0714cf40e2278f6160edd7ed97193aad01470222edb7d",
+      "bytes": 5446
+    },
+    {
+      "path": "candidate/src/utility/model/common_model.hpp",
+      "sha256": "9c9533526afa903cdec1bfb166843c5e4b457b1f2b2e9442f632a392dc79ea0c",
+      "bytes": 4087
+    },
+    {
+      "path": "candidate/src/utility/panic.cpp",
+      "sha256": "30f161bf49d74d8cab54e78952e6ec87013413bcc11a0548ab81cabf51c76ada",
+      "bytes": 1476
+    },
+    {
+      "path": "candidate/src/utility/panic.hpp",
+      "sha256": "8bb856540ec1827f1c7dd985cf8efe62da34d342e22d97541da8f9ae77461e2a",
+      "bytes": 218
+    },
+    {
+      "path": "candidate/src/utility/pimpl.hpp",
+      "sha256": "9c7dd0569d2ee0a92dbf166392dc627a7d934f64285b055f5025810dd738f900",
+      "bytes": 1080
+    },
+    {
+      "path": "candidate/src/utility/repeat.hpp",
+      "sha256": "7eb2acc07f4fd8fa2123172a52b091a4f6d80418db9d7dc2ba11e2e5e761a04e",
+      "bytes": 2251
+    },
+    {
+      "path": "candidate/src/utility/robot/aimpoint.hpp",
+      "sha256": "bb161cc860c855f5e4d0a58f1c571a66eaeeea823a942edcf13f1284071dc43e",
+      "bytes": 1612
+    },
+    {
+      "path": "candidate/src/utility/robot/armor.hpp",
+      "sha256": "c0ece052246fddd0a74d040618c13a7a61f1426ce3cb51a19b1be038375241d6",
+      "bytes": 5868
+    },
+    {
+      "path": "candidate/src/utility/robot/color.hpp",
+      "sha256": "1c3b5b4f82e396d394c0c61a921742b845e519e7911033dc268c2655542a5b34",
+      "bytes": 421
+    },
+    {
+      "path": "candidate/src/utility/robot/constant.hpp",
+      "sha256": "937fe7108f798199ea34e0ba978863ce7c923d601709bf973ce19e9e05a6348b",
+      "bytes": 454
+    },
+    {
+      "path": "candidate/src/utility/robot/id.hpp",
+      "sha256": "179370284a913f24c178bfc1422e00b95d6f3dc1643674f79272836b429a406e",
+      "bytes": 6783
+    },
+    {
+      "path": "candidate/src/utility/robot/rune.hpp",
+      "sha256": "3cbb968a3a3c465557b035d93cf092907a44599d8060ccc7ffa95dbdb62dfb72",
+      "bytes": 1205
+    },
+    {
+      "path": "candidate/src/utility/serializable.hpp",
+      "sha256": "e17e7c49df2f6e293928dcfe8bdefbf4faa861942d98da03209f0274532d9119",
+      "bytes": 8175
+    },
+    {
+      "path": "candidate/src/utility/string.hpp",
+      "sha256": "92b846f8e425af0bad4e96e8b07a188accfca0e10b3aa42867237abac892f71f",
+      "bytes": 1858
+    },
+    {
+      "path": "main.cpp",
+      "sha256": "f4b27666761c582ea0a568731d0475a7806b48ee34bc5f5e92aa7175886c2b7b",
+      "bytes": 15130
+    },
+    {
+      "path": "shims/rclcpp/exceptions/exceptions.hpp",
+      "sha256": "a39db282a412ab90225debdf741d3369ece6298a6c2d1cc7ca4b7c1a4a7400a4",
+      "bytes": 169
+    },
+    {
+      "path": "shims/rclcpp/logger.hpp",
+      "sha256": "01ca7cf0e3ee5ebc3ba11924c8f4fc995c73dac388638317ced29292dbaa08b5",
+      "bytes": 152
+    },
+    {
+      "path": "shims/rclcpp/logging.hpp",
+      "sha256": "65e8bffc3dd4ee2a77a9c854174699b96ff5d830180d15c91d60d8ca48fb735b",
+      "bytes": 273
+    },
+    {
+      "path": "shims/utility/clock.hpp",
+      "sha256": "c926ddec49289699af8b2528125b7c8bad89f7149576b8f84a3ceb3ce4b7255a",
+      "bytes": 671
+    }
+  ],
+  "translation_units": [
+    "main.cpp",
+    "candidate/src/kernel/detector.cpp",
+    "candidate/src/kernel/pose_estimator.cpp",
+    "candidate/src/kernel/tracker.cpp",
+    "candidate/src/kernel/fire_control.cpp",
+    "candidate/src/utility/logging/printer.cpp",
+    "candidate/src/utility/panic.cpp",
+    "candidate/src/utility/image/process.cpp",
+    "candidate/src/utility/math/camera.cpp",
+    "candidate/src/utility/math/corners_optimizor.cpp",
+    "candidate/src/utility/math/outpost.cpp",
+    "candidate/src/utility/math/reprojection.cpp",
+    "candidate/src/utility/math/robot.cpp",
+    "candidate/src/utility/math/solve_armors.cpp",
+    "candidate/src/utility/math/solve_pnp/outpost_distance_optimizer.cpp",
+    "candidate/src/utility/math/solve_pnp/pnp_solution.cpp",
+    "candidate/src/utility/math/solve_pnp/yaw_optimizer.cpp",
+    "candidate/src/module/tracker/model/outpost.cpp",
+    "candidate/src/module/tracker/model/robot.cpp",
+    "candidate/src/module/tracker/model/rune.cpp",
+    "candidate/src/module/tracker/model/rune_energy_fitter.cpp",
+    "candidate/src/module/tracker/model/virtual_rune.cpp",
+    "candidate/src/module/detector/adjacency_lightbar.cpp",
+    "candidate/src/module/detector/armor_detection.cpp",
+    "candidate/src/module/detector/green_light.cpp",
+    "candidate/src/module/detector/lightbar.cpp",
+    "candidate/src/module/detector/rune.cpp",
+    "candidate/src/module/fire_control/shoot_evaluator.cpp",
+    "candidate/src/module/fire_control/trajectory_solution.cpp"
+  ],
+  "external_include_names": [
+    "Eigen/Cholesky",
+    "Eigen/Eigenvalues",
+    "algorithm",
+    "array",
+    "atomic",
+    "cctype",
+    "chrono",
+    "cmath",
+    "concepts",
+    "cstddef",
+    "cstdint",
+    "cstdio",
+    "cstdlib",
+    "cstring",
+    "deque",
+    "eigen3/Eigen/Cholesky",
+    "eigen3/Eigen/Core",
+    "eigen3/Eigen/Dense",
+    "eigen3/Eigen/Geometry",
+    "execinfo.h",
+    "expected",
+    "filesystem",
+    "format",
+    "fstream",
+    "generator",
+    "iomanip",
+    "iostream",
+    "iterator",
+    "limits",
+    "memory",
+    "mutex",
+    "numbers",
+    "numeric",
+    "opencv2/calib3d.hpp",
+    "opencv2/core.hpp",
+    "opencv2/core/eigen.hpp",
+    "opencv2/core/mat.hpp",
+    "opencv2/core/types.hpp",
+    "opencv2/dnn/dnn.hpp",
+    "opencv2/highgui.hpp",
+    "opencv2/imgcodecs.hpp",
+    "opencv2/imgproc.hpp",
+    "opencv2/ximgproc.hpp",
+    "openvino/core/preprocess/pre_post_process.hpp",
+    "openvino/runtime/compiled_model.hpp",
+    "openvino/runtime/core.hpp",
+    "openvino/runtime/exception.hpp",
+    "optional",
+    "ranges",
+    "ratio",
+    "source_location",
+    "span",
+    "sstream",
+    "stdexcept",
+    "string",
+    "string_view",
+    "thread",
+    "tuple",
+    "type_traits",
+    "unistd.h",
+    "unordered_map",
+    "utility",
+    "vector",
+    "yaml-cpp/exceptions.h",
+    "yaml-cpp/node/node.h",
+    "yaml-cpp/yaml.h"
+  ],
+  "dependencies": {
+    "compiler_observed_in_recovered_elf": "GCC (Debian 14.2.0-19) 14.2.0",
+    "cpp_standard": "C++23",
+    "glibcxx_abi": 1,
+    "eigen": "3.4.0-4",
+    "opencv": "4.10.0+dfsg-5",
+    "yaml_cpp": "0.8.0+dfsg-7",
+    "openvino": "2025.4.0, C++ ABI=1 official archive",
+    "external_package_sha256": {
+      "libeigen3-dev_3.4.0-4_all.deb": "1a167bb381acb90c1d8450a8f3e66a09d216dbc64b33ac8a082a0912513ef939",
+      "libopencv-calib3d-dev_4.10.0+dfsg-5_amd64.deb": "9db0e8b4f57d7e48fcc85d2f1afbe3ea33e3b85648eb9dbf2b7fbaa19e781eaa",
+      "libopencv-contrib-dev_4.10.0+dfsg-5_amd64.deb": "bd005f08f09d1c620c1834f8f76314b910ed130abaca1710d8613a4575014d33",
+      "libopencv-core-dev_4.10.0+dfsg-5_amd64.deb": "06ecdfca0a8ce36c1120f5467d64ad258e128b03419c90dec90e863529d11927",
+      "libopencv-dnn-dev_4.10.0+dfsg-5_amd64.deb": "b6644bbf9e1929c75d6404715878b7b87aeb784422d23b1b6d8d9aceaf661b08",
+      "libopencv-features2d-dev_4.10.0+dfsg-5_amd64.deb": "351404fb3d68b38ad5cbf2a0928b51896ab15cd14058461442db19f5b4436d37",
+      "libopencv-flann-dev_4.10.0+dfsg-5_amd64.deb": "f212723891375714b6354645df54d86d361f9aaf47240f0fd9afc0cc9d2dede1",
+      "libopencv-highgui-dev_4.10.0+dfsg-5_amd64.deb": "6022c1ff90daae7c919b8137327758d7aa0e14a711ba38d744ccc7e34f2f5fa2",
+      "libopencv-imgcodecs-dev_4.10.0+dfsg-5_amd64.deb": "c4af24bbe24e588de336e241ef45b49354186a84f091fd011fbb2ce250d09a46",
+      "libopencv-imgproc-dev_4.10.0+dfsg-5_amd64.deb": "7fca2f9b4298240100978ddbfd6f1c72954d4cbd0c847d2809658ffe1c4472fb",
+      "libopencv-videoio-dev_4.10.0+dfsg-5_amd64.deb": "09470833e78d514d9ddc306c71c69750ed37364c87f52e645f2955823e388c34",
+      "libyaml-cpp-dev_0.8.0+dfsg-7_amd64.deb": "0103d77ce1535dea4499ab5ad970ab6a343ef63dd93f2a9fdbbf529249719ce0",
+      "openvino_cpp.tgz": "c57bc759a04bf316d66dc42d644433cf3bd590ad640933630a0616efb380a630"
+    },
+    "selected_runtime_sha256": {
+      "openvino_cpp/runtime/3rdparty/tbb/lib/libtbb.so.12.13": "25984f1c1ac802e2cea39e6dfa91920046c276cf9116f8bf6af87e620cd85522",
+      "openvino_cpp/runtime/lib/intel64/libopenvino.so.2025.4.0": "b83b7a04dafe0bdf3ced2f8cf6e7b7f80c91a43105672d4cf982fd76a0f6a819",
+      "openvino_cpp/runtime/lib/intel64/libopenvino_intel_cpu_plugin.so": "63de60fa2f23ca4717119e072b42c03b9ce304872c83f37d65c7c7eeefa8d914",
+      "openvino_cpp/runtime/lib/intel64/libopenvino_onnx_frontend.so.2025.4.0": "0ae479b36d00c0f8a4369b6927489709ff8b7007fbae71690ec817297a46a2be"
+    }
+  },
+  "verified_recovered_original_config_hashes": {
+    "configs/candidate_executor.yaml": "2a1164d28c626d672bc5e2f800e1726779306444f54bdd5bf2d6fcbeebaee308",
+    "configs/candidate.yaml": "0303337ed0600ab3cdf5dc9a464d076430cfeb6280633fa28573409692231b4d"
+  },
+  "config_publication_plan": {
+    "autoaim_keep": [
+      "detector",
+      "tracker",
+      "pose_estimator",
+      "virtual_rune.enable=false"
+    ],
+    "autoaim_exclude": [
+      "inherited camera_matrix and distort_coeff",
+      "visualization and network streaming",
+      "virtual rune physical layout other than enable=false"
+    ],
+    "executor_keep": [
+      "auto_aim_component.ros__parameters.manual_shoot=false",
+      "auto_aim_component.ros__parameters.fire_control"
+    ],
+    "executor_exclude": [
+      "hardware camera properties/topics",
+      "recorders/players and device/local paths",
+      "rmcs_executor native component scheduling"
+    ],
+    "reason": "headless main.cpp reads only these retained sections; request frame calibration drives each observation. A curated simulator profile has new bytes and MUST have newly generated config hashes."
+  },
+  "historical_binary_identities": {
+    "original_079a": "a35355c8c1f6daccdc55297656e3289520a7adbe3584ddf40145f61ca951a8be",
+    "t2_formal_candidate": "e69fbb9eb39bb421458ada703656d7d83446fe0f749fa5bdf28ac612d397e795",
+    "t2_isolation_control": "0df1c9c6b10ab5d8892af249c0c7caa4e69890e03ee242cd24010b9924e9cbf3"
+  },
+  "model": {
+    "filename": "shenzhen-0526.onnx",
+    "sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+    "bytes": 4359932
+  },
+  "known_required_integration_work": [
+    "Do not use recovered configs/candidate_spec.json with T2 source; it is the 079a baseline spec. T2 identity exists in runtime/configs/t2_trusted_prior_spec.json.",
+    "Current operator_native/build_native.py requires external build/candidate/build_manifest.json and compile_commands.json; neither is an output that can be pretended present. A real clean build or portable entry adaptation is still required.",
+    "Recovered build.py can describe a full --variant candidate build after exact external dependencies are provided. Its default both also expects absent upstream source and upstream_robot_translation.cpp.",
+    "Operator FOV patch expects exactly the recovered main.cpp and adapter_clock.hpp hashes; both were verified. Generating/compiling that delta produces a new binary identity.",
+    "prepare_operator_spec.py currently treats config/model paths as process-relative, not base-spec-relative. Resolve paths explicitly or fix this before portable use.",
+    "No runtime can be called verified until actual build and requested MuJoCo-camera-to-source-to-gimbal integration checks pass."
+  ]
+}
