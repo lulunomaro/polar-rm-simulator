@@ -1,0 +1,34 @@
+[INFO] [1791909721.572308532] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: 
+	planner_server lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791909722.117735418] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Creating
+[INFO] [1791909722.131772655] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: 
+	global_costmap lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791909722.275429261] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Creating Costmap
+[INFO] [1791909724.571979701] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Configuring
+[INFO] [1791909724.572220400] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Configuring
+[INFO] [1791909724.592657265] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Using plugin "static_layer"
+[INFO] [1791909724.617209732] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Subscribing to the map topic (/polar_sil_9569d5f75a2248baa693e33567603ff2/red_sentry/map) with transient local durability
+[INFO] [1791909724.622186657] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Initialized plugin "static_layer"
+[INFO] [1791909724.622426479] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Using plugin "intensity_voxel_layer"
+[INFO] [1791909724.630764743] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Subscribed to Topics: terrain_map_ext
+[INFO] [1791909724.638037860] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Initialized plugin "intensity_voxel_layer"
+[INFO] [1791909724.638231520] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Using plugin "inflation_layer"
+[INFO] [1791909724.639235464] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[INFO] [1791909724.720117987] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlannerHybrid
+[INFO] [1791909724.720385043] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Configuring GridBased of type SmacPlannerHybrid
+[INFO] [1791909724.722597561] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Even sized heuristic lookup table size set 400.000000, increasing size by 1 to make odd
+[INFO] [1791909725.531970994] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Configured plugin GridBased of type SmacPlannerHybrid with maximum iterations 1000000, max on approach iterations 1000, and allowing unknown traversal. Tolerance 0.50.Using motion model: Dubin.
+[INFO] [1791909725.532456853] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Planner Server has GridBased  planners available.
+[INFO] [1791909729.956627083] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [1791909729.957679159] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[INFO] [1791909729.958432930] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Cleaning up
+[INFO] [1791909729.966967455] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Cleaning up
+[INFO] [1791909729.970176067] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Cleaning up plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791909729.970461235] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Destroying plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791909729.975041292] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[INFO] [1791909729.976829440] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.global_costmap.global_costmap]: Destroying
+[INFO] [1791909729.981996006] [polar_sil_9569d5f75a2248baa693e33567603ff2.red_sentry.planner_server]: Destroying

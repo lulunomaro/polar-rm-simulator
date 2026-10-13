@@ -135,16 +135,15 @@ def transform(name, text):
         text=replace_once(text,'struct MeasureGroup  //', '#include "pb_scan_source.hpp"\n\nstruct MeasureGroup  //')
         text=replace_once(text,'  double lidar_beg_time;','  std::shared_ptr<const polar_pb::Json> pb_context;\n  double lidar_beg_time;')
     elif name == 'src/li_initialization.h':
-        text=replace_once(text,'extern std::deque<double> time_buffer;', 'extern std::deque<double> time_buffer;\nextern polar_pb::ScanSource pb_scan_source;\nextern std::deque<std::shared_ptr<const polar_pb::Json>> pb_context_buffer;')
+        text=replace_once(text,'extern std::deque<double> time_buffer;', 'extern std::deque<double> time_buffer;\nextern polar_pb::ScanJoin<livox_ros_driver2::msg::CustomMsg::SharedPtr> pb_scan_source;\nextern std::deque<std::shared_ptr<const polar_pb::Json>> pb_context_buffer;\nvoid pb_drain_scans();')
     elif name == 'src/li_initialization.cpp':
-        text=replace_once(text,'std::deque<double> time_buffer;', 'std::deque<double> time_buffer;\npolar_pb::ScanSource pb_scan_source;\nstd::deque<std::shared_ptr<const polar_pb::Json>> pb_context_buffer;')
-        text=replace_once(text,'  // mtx_buffer.lock();\n  double preprocess_start_time = omp_get_wtime();', '''  // Context is captured before preprocessing, not selected at pose publication.
-  if (con_frame || cut_frame_init || lidar_buffer.size() >= 8 ||
-      msg->header.frame_id != "livox_frame" || msg->point_num != msg->points.size()) return;
-  auto bound = pb_scan_source.bind(rclcpp::Time(msg->header.stamp).nanoseconds(), msg->timebase);
-  if (!bound) { RCLCPP_WARN(rclcpp::get_logger("li_initialization"), "pb_unassociated_raw_scan"); return; }
+        text=replace_once(text,'#include "li_initialization.h"', '#include "li_initialization.h"\n#include <limits>')
+        text=replace_once(text,'std::deque<double> time_buffer;', 'std::deque<double> time_buffer;\npolar_pb::ScanJoin<livox_ros_driver2::msg::CustomMsg::SharedPtr> pb_scan_source;\nstd::deque<std::shared_ptr<const polar_pb::Json>> pb_context_buffer;')
+        text=replace_once(text,'void livox_pcl_cbk(const livox_ros_driver2::msg::CustomMsg::SharedPtr & msg)', '''static void pb_process_bound_scan(const livox_ros_driver2::msg::CustomMsg::SharedPtr & msg,
+                                  std::shared_ptr<const polar_pb::Json> bound)''')
+        text=replace_once(text,'  // mtx_buffer.lock();\n  double preprocess_start_time = omp_get_wtime();', '''  // Context is the exact original pair, captured before preprocessing.
   double preprocess_start_time = omp_get_wtime();''')
-        ingress = text.index('void livox_pcl_cbk(')
+        ingress = text.index('static void pb_process_bound_scan(')
         text = text[:ingress] + replace_once(text[ingress:],'        lidar_buffer.emplace_back(ptr);\n        time_buffer.emplace_back(rclcpp::Time(msg->header.stamp).seconds());', '        lidar_buffer.emplace_back(ptr);\n        time_buffer.emplace_back(rclcpp::Time(msg->header.stamp).seconds());\n        pb_context_buffer.emplace_back(std::move(bound));')
         # Both source assignments and both queue pops remain aligned with one actual scan.
         if text.count('meas.lidar = lidar_buffer.front();') != 2: raise ValueError('pb_measure_anchor')
@@ -163,10 +162,58 @@ def transform(name, text):
     throw std::runtime_error("pb_imu_buffer_overflow_stop");
   }
   imu_deque.emplace_back(msg);''')
+        text=replace_once(text,'void imu_cbk(', '''void pb_drain_scans()
+{
+  const auto discarded = pb_scan_source.take_discards();
+  if (discarded.requests || discarded.raw)
+    RCLCPP_WARN(rclcpp::get_logger("li_initialization"),
+      "pb_join_original_sim_window_expired: requests=%zu raw=%zu last_request_start=%lld last_raw_start=%lld",
+      discarded.requests, discarded.raw, static_cast<long long>(discarded.last_request_start),
+      static_cast<long long>(discarded.last_raw_start));
+  // Both subscriptions use the same default mutually-exclusive callback group.
+  // Processing is in scan order, on this executor; no extra worker is created.
+  while (lidar_buffer.size() < 8) {
+    livox_ros_driver2::msg::CustomMsg::SharedPtr raw;
+    std::shared_ptr<const polar_pb::Json> context;
+    if (!pb_scan_source.take(raw, context)) break;
+    pb_process_bound_scan(raw, std::move(context));
+  }
+}
+
+void livox_pcl_cbk(const livox_ros_driver2::msg::CustomMsg::SharedPtr & msg)
+{
+  if (con_frame || cut_frame_init || msg->header.frame_id != "livox_frame" ||
+      msg->point_num != msg->points.size() || msg->point_num == 0 || msg->point_num > 40000) {
+    RCLCPP_WARN(rclcpp::get_logger("li_initialization"), "pb_raw_scan_rejected"); return;
+  }
+  const int64_t start = rclcpp::Time(msg->header.stamp).nanoseconds();
+  uint32_t max_offset = 0;
+  for (const auto &point : msg->points) if (point.offset_time > max_offset) max_offset = point.offset_time;
+  if (start < 0 || start > std::numeric_limits<int64_t>::max() - max_offset) {
+    RCLCPP_WARN(rclcpp::get_logger("li_initialization"), "pb_raw_scan_time_overflow"); return;
+  }
+  try {
+    pb_scan_source.add_raw(start, msg->timebase, start + max_offset, msg);
+  } catch (const polar_pb::GenerationFault &) { throw; }
+  catch (const std::exception &e) {
+    RCLCPP_WARN(rclcpp::get_logger("li_initialization"), "pb_raw_join_rejected: %s", e.what()); return;
+  }
+  pb_drain_scans();
+}
+
+void imu_cbk(''')
+        text=replace_once(text,'bool sync_packages(MeasureGroup & meas)\n{', 'bool sync_packages(MeasureGroup & meas)\n{\n  pb_drain_scans();')
     elif name == 'src/laserMapping.cpp':
-        text=replace_once(text,'#include <nav_msgs/msg/path.hpp>', '#include <nav_msgs/msg/path.hpp>\n#include <std_msgs/msg/string.hpp>')
+        text=replace_once(text,'#include <nav_msgs/msg/path.hpp>', '#include <nav_msgs/msg/path.hpp>\n#include <std_msgs/msg/string.hpp>\n#include <chrono>\n#include <algorithm>')
         text=replace_once(text,'imu_topic, rclcpp::SensorDataQoS(), imu_cbk', 'imu_topic, rclcpp::SensorDataQoS().keep_last(1024), imu_cbk')
-        text=replace_once(text,'nav_msgs::msg::Odometry odomAftMapped;', 'nav_msgs::msg::Odometry odomAftMapped;\nrclcpp::Publisher<std_msgs::msg::String>::SharedPtr pb_localization_publisher;')
+        text=replace_once(text,'nav_msgs::msg::Odometry odomAftMapped;', 'nav_msgs::msg::Odometry odomAftMapped;\nrclcpp::Publisher<std_msgs::msg::String>::SharedPtr pb_localization_publisher;\nuint64_t pb_imu_callbacks = 0, pb_imu_accepted = 0, pb_raw_callbacks = 0;')
+        text=replace_once(text,'[](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) { livox_pcl_cbk(msg); }',
+                          '[](const livox_ros_driver2::msg::CustomMsg::SharedPtr msg) { ++pb_raw_callbacks; livox_pcl_cbk(msg); }')
+        text=replace_once(text,'imu_topic, rclcpp::SensorDataQoS().keep_last(1024), imu_cbk', '''imu_topic, rclcpp::SensorDataQoS().keep_last(1024),
+      [](const sensor_msgs::msg::Imu::ConstSharedPtr msg) {
+        ++pb_imu_callbacks; const auto before = imu_deque.size(); imu_cbk(msg);
+        if (imu_deque.size() > before) ++pb_imu_accepted;
+      }''')
         text=replace_once(text,'  set_posestamp(odomAftMapped.pose.pose);', '''  set_posestamp(odomAftMapped.pose.pose);
   try {
     auto source = polar_pb::localization_event(Measures.pb_context,
@@ -186,11 +233,55 @@ def transform(name, text):
   pb_scan_source.configure(robot, episode, epoch);
   pb_localization_publisher = nh->create_publisher<std_msgs::msg::String>("/polar/pb/localization", rclcpp::QoS(8).reliable());
   auto pb_request_subscription = nh->create_subscription<std_msgs::msg::String>(
-    "/polar/pb/request", rclcpp::QoS(1).reliable(), [](std_msgs::msg::String::ConstSharedPtr msg) {
+    "/polar/pb/request", rclcpp::QoS(8).reliable(), [](std_msgs::msg::String::ConstSharedPtr msg) {
       try { pb_scan_source.install(msg->data); }
       catch (const polar_pb::GenerationFault &) { RCLCPP_ERROR(LOGGER, "pb_generation_changed_stop"); throw; }
-      catch (const std::exception &) { RCLCPP_WARN(LOGGER, "pb_request_context_rejected"); }
-    });''')
+      catch (const std::exception &e) { RCLCPP_WARN(LOGGER, "pb_request_context_rejected: %s", e.what()); return; }
+      pb_drain_scans();
+    });
+  const bool pb_dispatch_diagnostics = nh->declare_parameter<bool>("pb.dispatch_diagnostics", false);
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pb_dispatch_publisher;
+  if (pb_dispatch_diagnostics)
+    pb_dispatch_publisher = nh->create_publisher<std_msgs::msg::String>("polar/pb/dispatch", rclcpp::QoS(8).reliable());''')
+        text=replace_once(text,'  rclcpp::Rate rate(500);', '''  rclcpp::Rate rate(500);
+  uint64_t pb_dispatch_calls = 0, pb_scan_dispatch_calls = 0, pb_dispatch_excess = 0;
+  uint64_t pb_last_dispatch_imu = 0, pb_max_dispatch_imu = 0;
+  int64_t pb_last_dispatch_ns = 0, pb_max_dispatch_ns = 0;
+  auto pb_last_dispatch_report = std::chrono::steady_clock::time_point::min();
+  constexpr int64_t pb_dispatch_budget_ns = 1000000;''')
+        text=replace_once(text,'    executor.spin_some();', '''    // Drain already-arrived DDS work without an extra 2ms pause per IMU.
+    // This budget is checked between callbacks; a single callback is not preempted.
+    const auto pb_before_imu = pb_imu_callbacks;
+    const auto pb_dispatch_start = std::chrono::steady_clock::now();
+    executor.spin_all(std::chrono::milliseconds(1));
+    pb_last_dispatch_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
+      std::chrono::steady_clock::now() - pb_dispatch_start).count();
+    pb_last_dispatch_imu = pb_imu_callbacks - pb_before_imu;
+    ++pb_dispatch_calls; ++pb_scan_dispatch_calls;
+    pb_max_dispatch_imu = std::max(pb_max_dispatch_imu, pb_last_dispatch_imu);
+    pb_max_dispatch_ns = std::max(pb_max_dispatch_ns, pb_last_dispatch_ns);
+    if (pb_last_dispatch_ns > pb_dispatch_budget_ns) ++pb_dispatch_excess;''')
+        text=replace_once(text,'    if (sync_packages(Measures)) {', '''    if (sync_packages(Measures)) {
+      const auto pb_report_time = std::chrono::steady_clock::now();
+      if (pb_dispatch_publisher && Measures.pb_context &&
+          (pb_last_dispatch_report == std::chrono::steady_clock::time_point::min() ||
+           pb_report_time - pb_last_dispatch_report >= std::chrono::milliseconds(100))) {
+        const auto &ctx = *Measures.pb_context;
+        polar_pb::Json diag={{"schema","polar.pb.dispatch.v1"},
+          {"clock_domain","linux_steady_diagnostic_only"},{"strategy","spin_all"},
+          {"dispatch_budget_ns",pb_dispatch_budget_ns},{"dispatch_calls_total",pb_dispatch_calls},
+          {"dispatch_calls_since_scan",pb_scan_dispatch_calls},
+          {"imu_callbacks_total",pb_imu_callbacks},{"imu_accepted_total",pb_imu_accepted},
+          {"raw_callbacks_total",pb_raw_callbacks},
+          {"last_imu_callbacks_per_dispatch",pb_last_dispatch_imu},
+          {"max_imu_callbacks_per_dispatch",pb_max_dispatch_imu},
+          {"last_dispatch_duration_ns",pb_last_dispatch_ns},{"max_dispatch_duration_ns",pb_max_dispatch_ns},
+          {"exceeded_budget_calls_since_scan",pb_dispatch_excess}};
+        for (const auto *key : {"robot_id","episode","binding_epoch","observed_seq","cloud_frame_id"}) diag[key]=ctx.at(key);
+        std_msgs::msg::String event; event.data=diag.dump(); pb_dispatch_publisher->publish(event);
+        pb_last_dispatch_report = pb_report_time;
+      }
+      pb_scan_dispatch_calls=0; pb_dispatch_excess=0; pb_max_dispatch_imu=0; pb_max_dispatch_ns=0;''')
     elif name == 'CMakeLists.txt':
         text=replace_once(text,'find_package(ament_cmake REQUIRED)', 'find_package(ament_cmake REQUIRED)\nfind_package(std_msgs REQUIRED)\nfind_package(nlohmann_json REQUIRED)')
         text=replace_once(text,'ament_target_dependencies(pointlio_mapping\n', 'target_link_libraries(pointlio_mapping nlohmann_json::nlohmann_json)\nament_target_dependencies(pointlio_mapping\n  std_msgs\n')

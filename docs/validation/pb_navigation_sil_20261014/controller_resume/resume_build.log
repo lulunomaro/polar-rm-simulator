@@ -1,0 +1,5 @@
+[4.506s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+Starting >>> pb_omni_pid_pursuit_controller
+Finished <<< pb_omni_pid_pursuit_controller [16.6s]
+
+Summary: 1 package finished [19.0s]

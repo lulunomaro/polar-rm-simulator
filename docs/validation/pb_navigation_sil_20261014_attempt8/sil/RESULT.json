@@ -1,0 +1,225 @@
+{
+  "schema": "polar.sim.pb-navigation-sil.v1",
+  "scope": "actual bounded Point-LIO/SLAM/Smac/PB PID and MuJoCo sentry; not full mission/match/hardware",
+  "requested_seconds": 30.0,
+  "wall_seconds": 30.014120550999962,
+  "actual_steps": 15000,
+  "simulation_seconds": 30.0,
+  "physics_rtf": 0.99952953640684,
+  "source_sha256": {
+    "tools/qa_pb_navigation_sil.py": "58313c9442ee7444ffba84b95eb86c9cb0fd20b9327bada3b2292b390a44131f",
+    "tools/pb_navigation_stack.py": "44554cbb0d931409deda02f70599da70cda16c71ed13cb4f3cfd538a3f2e9ba7",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+    "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+    "rm_match/match_model.py": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+    "rm_match/match_engine.py": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/platform_v2/runtime.py": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/integrations/pb_navigation_adapter.py": "baee75377f08b1666c81c16abb0b767347cf4ac723cc7cae14a62ee2e84accbe",
+    "rm_match/integrations/pb_navigation_bridge.py": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/integrations/pb_navigation_phases.py": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+    "tools/pb2025_overlay/pb_scan_source.hpp": "6c42a18186ed1b40247eae2fdfcb1c228ef785a66aaa487ab636b5a0bb185c16"
+  },
+  "source_unchanged": true,
+  "sensor_input_has_truth": false,
+  "diagnostics": true,
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "stack_config_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-config-20261014-04.json",
+    "sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+  },
+  "image_limit_seconds": 0.08,
+  "control_window_seconds": 0.15,
+  "fire_permission": false,
+  "observer_goal": {
+    "source": "actual_algorithm_map_to_base_link_tf",
+    "frame": "map",
+    "source_stamp_ns": 998000000,
+    "relative_offset_m": [
+      1.0,
+      0.0
+    ],
+    "goal_xy": [
+      1.0053576365764143,
+      0.005075472419167291
+    ],
+    "path_poses": 14,
+    "planner_status": 4,
+    "follow_path_accepted": true,
+    "follow_path_status": 4
+  },
+  "actual_odometry_messages": 292,
+  "actual_map_messages": 59,
+  "consumption_audit": {
+    "consumed_steps": 779,
+    "nonzero_consumed_steps": 779,
+    "actual_sensor_requests": 294,
+    "actual_controller_results": 18,
+    "actual_localizations": 292,
+    "errors": [],
+    "passed": true
+  },
+  "shutdown": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.01361143600001924
+  },
+  "stack_cleanup": {
+    "schema": "polar.pb-stack-cleanup.v1",
+    "clean": true,
+    "errors": [],
+    "processes": [
+      {
+        "node": "point_lio",
+        "pid": 436,
+        "returncode": -9,
+        "remaining_members": []
+      },
+      {
+        "node": "loam_interface",
+        "pid": 437,
+        "returncode": 0,
+        "remaining_members": []
+      },
+      {
+        "node": "sensor_scan_generation",
+        "pid": 438,
+        "returncode": 0,
+        "remaining_members": []
+      },
+      {
+        "node": "terrain_analysis",
+        "pid": 439,
+        "returncode": -9,
+        "remaining_members": []
+      },
+      {
+        "node": "terrain_analysis_ext",
+        "pid": 440,
+        "returncode": -9,
+        "remaining_members": []
+      },
+      {
+        "node": "pointcloud_to_laserscan",
+        "pid": 441,
+        "returncode": 0,
+        "remaining_members": []
+      },
+      {
+        "node": "slam_toolbox",
+        "pid": 442,
+        "returncode": 0,
+        "remaining_members": []
+      },
+      {
+        "node": "planner_server",
+        "pid": 443,
+        "returncode": 0,
+        "remaining_members": []
+      },
+      {
+        "node": "controller_server",
+        "pid": 448,
+        "returncode": 0,
+        "remaining_members": []
+      }
+    ],
+    "elapsed_s": 1.5658828770000355,
+    "prior_state": "ACTIVE",
+    "assets_after": {
+      "point_lio": {
+        "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/install/point_lio/lib/point_lio/pointlio_mapping",
+        "expected_sha256": "fd2b50c7a2d1993c80fc251f201126af6d3775a813851102108dfb65e521471f",
+        "actual_sha256": "fd2b50c7a2d1993c80fc251f201126af6d3775a813851102108dfb65e521471f",
+        "unchanged": true
+      },
+      "loam_interface": {
+        "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib/loam_interface/loam_interface_node",
+        "expected_sha256": "5ab5a79a4a9926f0140f192b2edd1382dedd6544018135c01777537536138376",
+        "actual_sha256": "5ab5a79a4a9926f0140f192b2edd1382dedd6544018135c01777537536138376",
+        "unchanged": true
+      },
+      "sensor_scan_generation": {
+        "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib/sensor_scan_generation/sensor_scan_generation_node",
+        "expected_sha256": "45be8afa95d7a92d009b7acc7c4ebaa1eb1d35a5ae40d9974b43edeaf4c652b0",
+        "actual_sha256": "45be8afa95d7a92d009b7acc7c4ebaa1eb1d35a5ae40d9974b43edeaf4c652b0",
+        "unchanged": true
+      },
+      "terrain_analysis": {
+        "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis/lib/terrain_analysis/terrainAnalysis",
+        "expected_sha256": "aefba171b7a205772fff0bc8e5a4ea756a8cf571ea202b71d916c853f5b7945d",
+        "actual_sha256": "aefba171b7a205772fff0bc8e5a4ea756a8cf571ea202b71d916c853f5b7945d",
+        "unchanged": true
+      },
+      "terrain_analysis_ext": {
+        "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext/lib/terrain_analysis_ext/terrainAnalysisExt",
+        "expected_sha256": "f6384c6ceafb0323c7ad95b9e97f3b8fbbe77ffe3d0f09cb0c27c617ea304ca2",
+        "actual_sha256": "f6384c6ceafb0323c7ad95b9e97f3b8fbbe77ffe3d0f09cb0c27c617ea304ca2",
+        "unchanged": true
+      },
+      "pointcloud_to_laserscan": {
+        "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node",
+        "expected_sha256": "7bc4d426e28f70ec0ebe2db72cf8eb18d4024027ea45131f63b747590bdd7907",
+        "actual_sha256": "7bc4d426e28f70ec0ebe2db72cf8eb18d4024027ea45131f63b747590bdd7907",
+        "unchanged": true
+      },
+      "slam_toolbox": {
+        "path": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/slam_toolbox/sync_slam_toolbox_node",
+        "expected_sha256": "7a6a0ae28c5be1c4d087ef5552136aa6a7655ea762d988ffdae4998d0f8eb033",
+        "actual_sha256": "7a6a0ae28c5be1c4d087ef5552136aa6a7655ea762d988ffdae4998d0f8eb033",
+        "unchanged": true
+      },
+      "planner_server": {
+        "path": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/nav2_planner/planner_server",
+        "expected_sha256": "cf15e259c96ec1ecb20edd3b660c6c866563c77b5ffb8ea0863e15d130c49ad1",
+        "actual_sha256": "cf15e259c96ec1ecb20edd3b660c6c866563c77b5ffb8ea0863e15d130c49ad1",
+        "unchanged": true
+      },
+      "controller_server": {
+        "path": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/nav2_controller/controller_server",
+        "expected_sha256": "16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d",
+        "actual_sha256": "16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d",
+        "unchanged": true
+      },
+      "pb_intensity_layers": {
+        "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins/lib/libpb_intensity_layers.so",
+        "expected_sha256": "d7cce4d27ba71f4cf68800ad76559f71146e79a939753aa640a86adb3ea8d269",
+        "actual_sha256": "d7cce4d27ba71f4cf68800ad76559f71146e79a939753aa640a86adb3ea8d269",
+        "unchanged": true
+      },
+      "pb_controller": {
+        "path": "/root/polar-controller-diag-build-20261014-01/install/pb_omni_pid_pursuit_controller/lib/libpb_omni_pid_pursuit_controller.so",
+        "expected_sha256": "d4539050e0959270080044ace965a525f7653b0ef0a1715b031a06d91e156dbd",
+        "actual_sha256": "d4539050e0959270080044ace965a525f7653b0ef0a1715b031a06d91e156dbd",
+        "unchanged": true
+      }
+    },
+    "assets_unchanged": true
+  },
+  "isolated_postrun_groundtruth": {
+    "initial_qpos": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_qpos": [
+      1.434108176248881,
+      -0.020416876388143948,
+      5.580619198928183e-05
+    ],
+    "algorithm_input": false
+  },
+  "errors": [],
+  "full_match_qualified": false,
+  "hardware_qualified": false,
+  "relative_goal_completed": true,
+  "bounded_navigation_consumption_passed": true
+}

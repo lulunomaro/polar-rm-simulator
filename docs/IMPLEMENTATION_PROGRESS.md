@@ -1,6 +1,6 @@
 # 按计划实施的进度与证据
 
-2026-10-13（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
+更新至 2026-10-14（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
 work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 历史 cf6a6e4 证据、原帧、原模型及失败实验均保留。当前无 M0–M5 完整签收。
 
@@ -12,9 +12,9 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 部分基础：原ROS2信封DDS已测；独立点云/IMU导航schema、原deadline等待状态与PB桥；Humble消息接口编译、原host2s新进程DDS和独立主题搬运已实测 | Lyrical原host2s失败保留；Point-LIO/Nav2/SIL仍验证中；Windows↔WSL、两套完整独立实现未验收 |
+| T07 | 局部SIL通过：严格导航schema/PB桥/实际Humble DDS；SIL8真实定位、地图、Smac与FollowPath成功，18结果/779非零物理消费，原SDK与deadline保持 | 单车/单代/单目标30s；完整任务与第二实现、Windows↔WSL入口、第二机器未验收；旧七轮失败保留 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 进行中：默认ideal odometry/64 rays限制仍保留；显式导航profile新增实际3D ray/gyro/accelerometer、四线与逐点ns；导航DTO无ideal pose；10s5000步/99cloud实测 | MID360真实光学/动力学标定、编码器、自家Point-LIO/Nav2闭环、漂移/恢复及实际控制消费仍缺 |
+| T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；SIL8由实际Point-LIO/Nav2产生779非零消费步；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
@@ -47,12 +47,12 @@ Ubuntu22.04/Humble 环境与新 owned workspace 分开验证，不修改旧坏 c
 原输入时刻、源码hash和无回波处理均保留。它使用物理脚本激励，尚不是自家导航算法闭环。
 PB原路径的ApproxTime重贴pose时间、missingTF单位回退和wall-time速度差分必须修复；
 owned overlay 已修复这些边界，实际controller入口/结果与LIO扫描绑定同一不可变上下文；
-不接裸Twist后补当前identity。真实三包LIO/TF与PB Nav2插件正在独立workspace编译。
+不接裸Twist后补当前identity。真实LIO/TF/terrain与PB控制器/插件已在独立workspace编译成功。
 
 [Humble实际DDS与构建记录](validation/pb_humble_sensors_20261013/README.md)：原JsonLineAdapter新进程
 reset 0.806705s、act 0.051286s，9项真实DDS/清理检查通过；后续实际归档584点、51IMU
 及独立clock/tf_static主题搬运通过。后两项不是当前物理deadline authority验证，原时刻未刷新。
-尚无Point-LIO/SLAM/规划/控制器驱动哨兵的闭环证据。默认T2另有29TU新clean build，
+这些DDS早期记录不是导航闭环；后述SIL8另有真实定位/规划/物理消费证据。默认T2另有29TU新clean build，
 ELF仍4d357067…，诊断profile未替换默认自瞄。
 
 用户已明确授权把最新成果提交并推送当前开发分支；不合并main，不发布release。
@@ -60,8 +60,91 @@ ELF仍4d357067…，诊断profile未替换默认自瞄。
 本轮 [冻结质量记录](validation/quality_pb_navigation_20261013/README.md)：1118passed、10skipped、
 574subtests，实际camera35checks与preset/source/interface全部通过；871项source检查期间不变。
 第一轮1117passed/1failed完整保留：测试误引旧builder spec被哈希门禁拒绝；第二轮显式选择
-真正新默认构建，未改旧spec或放宽门禁。Point-LIO/loam/sensor三包实际build已过、尚未启动。
-PB插件真实ELF发现layers重名，正在修复构建绑定，尚无导航执行或完整比赛通过。
+真正新默认构建，未改旧spec或放宽门禁。Point-LIO/loam/sensor三包实际build已过；
+此质量记录早于下述实际SIL，不等于导航执行通过。PB插件原layers重名已仅修owned输出库/XML绑定，
+原算法/class字节不变；旧加载失败保留。
+
+[单代 PB 导航 SIL 证据](validation/pb_navigation_sil_20261014/README.md)按轮保存当前Windows工作区
+源快照与Ubuntu22.04/Humble真实Linux运行结果。固定PB插件独立构建412.657s成功，控制器
+同SHA对象resume23.838s成功；三ELF真实依赖解析/加载通过。原combined600s超时保留，
+构建资源预算默认1800s、可选60–3600s，不改变任何SDK时窗。真实Nav2已配置Smac、PB PID和
+IntensityVoxelLayer类；独立类probe编译180s超时也保留，不覆盖为通过。
+
+SIL attempts1–6均未形成定位→规划→控制→物理消费闭环。attempt5实际30s/15000步，
+RTF0.999315、543次原150ms SDK激活；子进程reset2.0448s超原2s持续故障，0ROS请求/定位/动作。
+attempt6阶段文件证明reset ACK已flush：module→ACK1.370686s，ROS imports1.099678s、
+node0.131157s、图发现约.000986s（counts[1,1,2,1]），不是图等待耗尽1s。
+随后SDK lease_mismatch停止，3.472802s/1016步、0定位/地图/动作消费；最大物理停顿
+40.717807→41.820299约1.102492s，已定位导航worker误import native图像模块及NumPy2/cv2 ABI警告，
+该导入修复的独立回归与后续SIL7结果另记，旧失败保持。启动诊断只写bounded本地phase，不改sourcewall/数据/期限。
+本轮Linux全栈试验不等于Windows↔WSL桥入口、可见GUI、完整导航任务或M2通过。
+
+导航误import native/cv2已修为仅真实 native 实例进入图像模块；独立 runtime 81passed/52subtests，
+Humble fresh process 证明 navigation/JSON slot 不尝试 vision import。统一质量入口
+`artifacts/quality-20261014-navigation-startup-checkpoint/manifest.json`：1139passed、36skipped、625subtests，
+状态为 checks_passed_not_milestone_acceptance。它是质量检查，不替代实际导航或完整比赛。
+
+Point-LIO 04 新 owned workspace 真实构建约25.6分钟，ELF ff6e3bde78b74edde2875984a3dc8687a6b8a65bfc172e52dbbb74630794005b；
+raw/context有界exact join与未配对过界清理保留原时间/身份，旧02/03未覆盖。
+新owned ext4环境保存14,899文件、1,621目录、186链接与mode核验，原前缀/环境不变；
+仅受信派生pth映射新路径。三fresh导入/真实消息serialize/六车模型0step通过，未init DDS或预热NN。
+FINAL ENV SHA d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee。
+
+ext4下独立DDS fixture `artifacts/pb-humble-tfmessage-ext4-20261014-attempt2/dds/RESULT.json` 九checks全通过，
+原2s reset实际.454714s、act.051592s，51IMU及原bytes/time/identity/staticTF通过且clean。
+额外QoS wrapper exit2如实保留：图能确认TF RELIABLE/TRANSIENT_LOCAL、request RELIABLE/VOLATILE，
+但本次history UNKNOWN/depth0，不能据其测量队列深度；source/单位配置KEEP_LAST、TF1/request8另记。
+首旧env2.036241s reset失败与独立类probe180s compile失败都保留，不拼接为新成功。
+这些DDS检查均非physics/LIO/Nav2闭环；SIL第七轮结果见下文，仍未通过。
+
+[新 runtime 永久记录](validation/pb_navigation_runtime_20261014/README.md)保存89项原字节/SHA，包含ext4与SIL7分开的来源。
+SIL7已结束：15000步/30s，RTF0.999506，293原请求、290LIO定位事件、58map；
+Smac status4成功返回14-pose路径，FollowPath接受后status6 FailedProgress，0controller result、0有效motion消费。
+整体未通过，source/assets不变且九组算法进程/runtime全部clean。Windows当前源与Linux真实栈范围仍分开，
+这些局部算法成功不是Win↔WSL部署、完整哨兵任务或M2验收。
+
+原身份请求→loc一致，但287/290定位到observer时已经看到后续请求；96–148ms到达延迟是observer诊断，
+不能据此推断CPP callback顺序/重贴identity。新ControllerContext default-off metadata日志限256条，
+记录真实begin/finish拒绝，不改单pending、pose匹配、原sim_window或50/150ms门禁；
+实际FakeROS C++对照guard/output相同。新controller-only fresh构建195.130948s通过，
+ELF d4539050e0959270080044ace965a525f7653b0ef0a1715b031a06d91e156dbd实际ldd/RTLD_NOW通过，旧02原字节保持。
+
+有界dispatch实际DDS微夹具将同51个原stamp消息消费从spin_some100.102ms降至spin_all188.399µs；
+此为synthetic DDS调度证据，不是SIL/物理传感器。Point-LIO05已独立编译与依赖/源审计通过，
+ELF fd2b50c7a2d1993c80fc251f201126af6d3775a813851102108dfb65e521471f；新一轮SIL8结果另存，不重判旧运行。
+[最新dispatch质量记录](validation/quality_navigation_dispatch_20261014/README.md)：1144passed、37明确skip、685subtests，
+preset/source/interface通过且source_unchanged=true；本轮未重复camera，前轮35checks另存。
+
+[SIL8永久记录](validation/pb_navigation_sil_20261014_attempt8/README.md)实际退出0：30s/15000步，
+RTF0.9995295364，294原请求、292真实定位、59map；Smac14-pose/status4与FollowPath/status4成功，
+18controller result、779非零物理消费步，原身份/传感器/SDK150ms/wall-sim期限审计errors=[]。
+source unchanged，runtime clean join .013611s，九个算法组allreap/assets unchanged；fire_permission=false。
+这是本机Linux Ubuntu22.04/Humble、red_sentry单车/单代/单目标的一次局部SIL通过，不签收M1/M2或完整任务。
+
+目标为实际算法估计map pose沿map的x方向偏移1m、y保持不变；postrun qpos[1.434108,-.0204169,.0000558]只用于隔离评测，
+不进入算法、不能据此称定位精度或所有导航场景通过。旧SIL7失败仍保留。
+控制器bounded前256条diag：beginaccepted18、finishpublished18，nopending35、posenotlocalized26、
+finishnorequest61、requestinstalled42、locaccepted28、loccontextmismatch13、locnopending15；
+它只是达到上限的日志前缀，不代表后续全部callback。安全拒绝仍工作。
+
+独立复核779条均关联原source→SDK ACK→物理消费，0adapter fault，capture age27.298–148.928ms未超过原150ms。
+292定位逐字段/类型匹配原请求；observer到达延迟P50 5.532ms/P95 6.913ms/max10.614ms是接收代理测量。
+C++186个采样区间的批量callback最大数25–50、dispatch最大1.206ms；spin_all1ms为非抢占预算，非CPU硬上限，采样不等于全量统计。
+raw ROS的Reached the goal为旁证；完整path/goal TF未记录，14-pose和目标来源引用冻结工具结果，未由raw ROS独立重算。
+
+复现使用本机生成的已核验ENV/stack config与freshout，不声明归档私有路径可跨机运行：
+
+```sh
+/path/to/verified-humble-venv/bin/python tools/qa_pb_navigation_sil.py \
+  --environment /path/to/generated/ENVIRONMENT_COMPAT_FINAL.json \
+  --stack-config /path/to/generated/pb-navigation-sil-config.json \
+  --out artifacts/pb-navigation-sil-fresh --seconds 30 --diagnostics --run
+```
+
+本轮config04 SHA affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26，
+FINALd601...、Point-LIO05 fd2b50c7...、诊断controller d4539050...与build/source/ELF引用完整冻结于RESULT/PLAN。
+入口/构建依据见[PB桥说明](PB_NAVIGATION_BRIDGE.md)；Win↔WSL服务、第二机器、更多目标/障碍/恢复与定位精度仍待验证。
+fullQA1144/37skip/685subtests为独立质量证据，不能扩大本次SIL范围。
 
 [原host2s实测](validation/ros2_startup_20261013/README.md)：Lyrical module因清理PYTHONPATH缺rclpy，
 固定bootstrap仍未在原2s内完成rclpy初始化；两次0观测/0动作且清理完成，不能把先前DDS通过推成host通过。

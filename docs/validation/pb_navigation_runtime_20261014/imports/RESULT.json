@@ -1,0 +1,118 @@
+{
+  "schema": "polar.sim.pb-import-diagnostic.v1",
+  "records": [
+    {
+      "order": 0,
+      "mode": "broadcaster",
+      "elapsed_seconds": 4.631151072,
+      "exit_code": 0,
+      "child": {
+        "pid": 412,
+        "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+        "stages": [
+          {
+            "stage": "rclpy",
+            "seconds": 0.9656953579999996
+          },
+          {
+            "stage": "messages",
+            "seconds": 2.508246528
+          },
+          {
+            "stage": "broadcaster",
+            "seconds": 0.15008770700000085
+          }
+        ],
+        "total_seconds": 3.624035674000001,
+        "initialized": false,
+        "nodes_started": false
+      }
+    },
+    {
+      "order": 1,
+      "mode": "tfmessage",
+      "elapsed_seconds": 4.399880628,
+      "exit_code": 0,
+      "child": {
+        "pid": 444,
+        "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+        "stages": [
+          {
+            "stage": "rclpy",
+            "seconds": 0.7852320370000001
+          },
+          {
+            "stage": "messages",
+            "seconds": 2.381749109000001
+          },
+          {
+            "stage": "tfmessage",
+            "seconds": 0.0014354059999988067
+          }
+        ],
+        "total_seconds": 3.168423034,
+        "initialized": false,
+        "nodes_started": false
+      }
+    },
+    {
+      "order": 2,
+      "mode": "tfmessage",
+      "elapsed_seconds": 3.613326325000001,
+      "exit_code": 0,
+      "child": {
+        "pid": 479,
+        "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+        "stages": [
+          {
+            "stage": "rclpy",
+            "seconds": 0.8607219439999998
+          },
+          {
+            "stage": "messages",
+            "seconds": 1.693103660000002
+          },
+          {
+            "stage": "tfmessage",
+            "seconds": 0.0009024370000005888
+          }
+        ],
+        "total_seconds": 2.5547333310000013,
+        "initialized": false,
+        "nodes_started": false
+      }
+    },
+    {
+      "order": 3,
+      "mode": "broadcaster",
+      "elapsed_seconds": 3.221919731,
+      "exit_code": 0,
+      "child": {
+        "pid": 511,
+        "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+        "stages": [
+          {
+            "stage": "rclpy",
+            "seconds": 0.6359392819999989
+          },
+          {
+            "stage": "messages",
+            "seconds": 1.7444867459999998
+          },
+          {
+            "stage": "broadcaster",
+            "seconds": 0.07012653399999991
+          }
+        ],
+        "total_seconds": 2.450557726000003,
+        "initialized": false,
+        "nodes_started": false
+      }
+    }
+  ],
+  "environment_sha256": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49",
+  "interpreter": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+  "pythonpath_scrubbed": true,
+  "qualification": "fresh_child_imports_only_no_init_dds_sensor_or_nn; OS cache/order not controlled",
+  "all_children_reaped": true
+}

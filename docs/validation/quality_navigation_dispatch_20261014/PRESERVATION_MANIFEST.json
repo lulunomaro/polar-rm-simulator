@@ -1,0 +1,47 @@
+{
+  "schema": "polar.evidence.preservation.v1",
+  "files": [
+    {
+      "path": "acceptance_preset.log",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/acceptance_preset.log",
+      "bytes": 1166,
+      "sha256": "9354e08a48fcc8ef4c7e5385ea37f0ddc62b47b4fa52523b6ee702014871306b"
+    },
+    {
+      "path": "interface_static.log",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/interface_static.log",
+      "bytes": 23957,
+      "sha256": "35c679a41d9ea8e699300e93cc44e65c8f1318a05c32bef9b75922dfcd4bb418"
+    },
+    {
+      "path": "manifest.json",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/manifest.json",
+      "bytes": 181018,
+      "sha256": "58e51ddef8e22238884043fd97e49de1c74bfb8f0c57678c03fe6f0aa130dc7c"
+    },
+    {
+      "path": "preset.json",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/preset.json",
+      "bytes": 1166,
+      "sha256": "9354e08a48fcc8ef4c7e5385ea37f0ddc62b47b4fa52523b6ee702014871306b"
+    },
+    {
+      "path": "pytest.log",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/pytest.log",
+      "bytes": 3530,
+      "sha256": "37c447390b18c3bca8472bc85c73f41a9084267e7b0ffc172a6d155fa00b4922"
+    },
+    {
+      "path": "pytest.xml",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/pytest.xml",
+      "bytes": 183362,
+      "sha256": "3143e183c15874e39eda18bd384e27fb4f3fa387433d57d868cd030756b379cf"
+    },
+    {
+      "path": "source_provenance.log",
+      "original_path": "artifacts/quality-20261014-navigation-dispatch-checkpoint/source_provenance.log",
+      "bytes": 1537,
+      "sha256": "0814ac22f411ae673604e63da40015346c4d02d1c750cbd340d73fddc2ce60ff"
+    }
+  ]
+}

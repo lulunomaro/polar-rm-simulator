@@ -1,0 +1,16 @@
+{
+  "pid": 472,
+  "pgid": 472,
+  "command": [
+    "/usr/bin/colcon",
+    "build",
+    "--executor",
+    "sequential",
+    "--packages-select",
+    "point_lio",
+    "--cmake-args",
+    "-DBUILD_TESTING=OFF",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "compiler_parallelism": 1
+}

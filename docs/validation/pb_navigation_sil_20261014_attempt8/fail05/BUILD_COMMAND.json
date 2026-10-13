@@ -1,0 +1,22 @@
+{
+  "schema": "polar.pb2025.lio-bounded-join-build.v1",
+  "workspace": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05",
+  "command": [
+    "/usr/bin/colcon",
+    "build",
+    "--executor",
+    "sequential",
+    "--packages-select",
+    "point_lio",
+    "--cmake-args",
+    "-DBUILD_TESTING=OFF",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+  ],
+  "build_script_sha256": "b6af116917687ffd36178def150c5f61f48b3f6ec2a73cd6b6cdfb122e5ef1be",
+  "full_ros_build": true,
+  "nodes_started": false,
+  "copied_build_cache": false,
+  "source_manifest_sha256": "7d9022208ecb95840264855f52e50943d0b10c38527743c873d7959697ce69b2"
+}

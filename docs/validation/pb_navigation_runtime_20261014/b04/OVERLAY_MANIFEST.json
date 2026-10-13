@@ -1,0 +1,301 @@
+{
+  "schema": "polar.pb2025.lio-tf-overlay.v1",
+  "upstream": {
+    "pb2025_sentry_nav": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+    "point_lio2025": "641424bf9d924f5ba0bd87ca9d91a4f148384925"
+  },
+  "namespace": "red_sentry",
+  "base_frame": "base_link",
+  "lidar_frame": "livox_frame",
+  "episode": 0,
+  "binding_epoch": 1,
+  "build_executed": false,
+  "source_root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\polarbear-navigation-source-e05eb08e",
+  "files": {
+    "loam_interface/.clang-format": {
+      "original_sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3",
+      "sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3"
+    },
+    "loam_interface/.clang-tidy": {
+      "original_sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f",
+      "sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f"
+    },
+    "loam_interface/CMakeLists.txt": {
+      "original_sha256": "b7c9ebf4182fb6c6d440e46a27d3cf28bdee0b2520453a8d6b431695329db6fb",
+      "sha256": "b7c9ebf4182fb6c6d440e46a27d3cf28bdee0b2520453a8d6b431695329db6fb"
+    },
+    "loam_interface/include/loam_interface/loam_interface.hpp": {
+      "original_sha256": "67b9e0676f6852d96ddf414b947c1313f7f7b0cf2ac63fee5e229c5740492a86",
+      "sha256": "a669580933b0e5990aae70e53f8c639d17ec9751bce86e6676296329742c666a"
+    },
+    "loam_interface/launch/loam_interface_launch.py": {
+      "original_sha256": "fb7b00742f56b3ecf72415288e4d31ec799bf4127012c4c4be37af63999341ee",
+      "sha256": "fb7b00742f56b3ecf72415288e4d31ec799bf4127012c4c4be37af63999341ee"
+    },
+    "loam_interface/package.xml": {
+      "original_sha256": "d05f392ab3bc63a938085d272d6f71a5dfb39aa5943b2575691fa94574954107",
+      "sha256": "d05f392ab3bc63a938085d272d6f71a5dfb39aa5943b2575691fa94574954107"
+    },
+    "loam_interface/src/loam_interface.cpp": {
+      "original_sha256": "e564e850847994f622408d8d0d84c76bfa8b011dc436f3efe85842455188edd6",
+      "sha256": "8cc61237e62c36de03aaaefa97ba9b78806261f4af6bbdd44370cc0119e62410"
+    },
+    "sensor_scan_generation/.clang-format": {
+      "original_sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3",
+      "sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3"
+    },
+    "sensor_scan_generation/.clang-tidy": {
+      "original_sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f",
+      "sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f"
+    },
+    "sensor_scan_generation/CMakeLists.txt": {
+      "original_sha256": "c9b814e8818adb00e2d36403a064bff1e267112a277a0683f7bdffe7acc80bdc",
+      "sha256": "c9b814e8818adb00e2d36403a064bff1e267112a277a0683f7bdffe7acc80bdc"
+    },
+    "sensor_scan_generation/include/sensor_scan_generation/sensor_scan_generation.hpp": {
+      "original_sha256": "52341f6806609205f38138c7f2f784369de484c614b0b8311a5f0f05fd2787f6",
+      "sha256": "5df521fa815b75bf0bbb855ee9e8a2a3aad5336a3f7095dc796cce6be587adb3"
+    },
+    "sensor_scan_generation/launch/sensor_scan_generation.launch.py": {
+      "original_sha256": "7bc95244d703979cfcb8c9737eb6447d22f6ff60b37fa1fb9e73c5ec4ca9a6d5",
+      "sha256": "7bc95244d703979cfcb8c9737eb6447d22f6ff60b37fa1fb9e73c5ec4ca9a6d5"
+    },
+    "sensor_scan_generation/package.xml": {
+      "original_sha256": "e461c8a7c08d74e621d92bf6007688545fc03dfe6c8beb747967550471fb11a7",
+      "sha256": "e461c8a7c08d74e621d92bf6007688545fc03dfe6c8beb747967550471fb11a7"
+    },
+    "sensor_scan_generation/src/sensor_scan_generation.cpp": {
+      "original_sha256": "cb6a4f81568de22a8a83cf977f63afb71c563bc5c6cdd4ce89be7047c1e0e7a2",
+      "sha256": "90065389c98bddd9da0520e345034a9e5e2c67e8e6a385acf55b74d2fdee7a93"
+    },
+    "point_lio/CMakeLists.txt": {
+      "original_sha256": "1dd779626f52fc69e82064e92b94f5ca896a0ffd1c0ca55ca0b271a4b0d953d7",
+      "sha256": "a6760668a08d10d96404db758dadabc4d4ed75e736da4f4c861060e8212a1825"
+    },
+    "point_lio/LICENSE": {
+      "original_sha256": "baf732b4dd36cdb1fcb6a2fe0c343cebe78a0f95adc3068f75844053a686447e",
+      "sha256": "baf732b4dd36cdb1fcb6a2fe0c343cebe78a0f95adc3068f75844053a686447e"
+    },
+    "point_lio/Log/guide.md": {
+      "original_sha256": "fed25e6327cf40ebfa87a960acc717eabb16a78890516c6934cb9ad1bc44ce14",
+      "sha256": "fed25e6327cf40ebfa87a960acc717eabb16a78890516c6934cb9ad1bc44ce14"
+    },
+    "point_lio/PCD/readme.md": {
+      "original_sha256": "82376917790d2f7aac929baf30e1bb9009b545cffc1b14b2250cf45a447068c2",
+      "sha256": "82376917790d2f7aac929baf30e1bb9009b545cffc1b14b2250cf45a447068c2"
+    },
+    "point_lio/README.md": {
+      "original_sha256": "908cff3a76d06e47fae49cc5433b1f16bbaa32d3ff2e2e1ffbbf3b2cc985548c",
+      "sha256": "908cff3a76d06e47fae49cc5433b1f16bbaa32d3ff2e2e1ffbbf3b2cc985548c"
+    },
+    "point_lio/config/avia.yaml": {
+      "original_sha256": "b27ef25e894b816b13a2a71aa4818e677c7a560ab030ff7bae34084d12d93c6f",
+      "sha256": "b27ef25e894b816b13a2a71aa4818e677c7a560ab030ff7bae34084d12d93c6f"
+    },
+    "point_lio/config/horizon.yaml": {
+      "original_sha256": "ec46ab1d49481c4cbaa7ecc2e9d6e1c2d23a73f46d23142f71d4b39704e33cd0",
+      "sha256": "ec46ab1d49481c4cbaa7ecc2e9d6e1c2d23a73f46d23142f71d4b39704e33cd0"
+    },
+    "point_lio/config/mid360.yaml": {
+      "original_sha256": "2de667a2ce9cf697e3191f804ee448c101166cd8d5e443e91299a258de0f9e23",
+      "sha256": "2de667a2ce9cf697e3191f804ee448c101166cd8d5e443e91299a258de0f9e23"
+    },
+    "point_lio/config/ouster64.yaml": {
+      "original_sha256": "81d00fa5fab64c1536806f8d0d89794fe4ad023fa38496b719e10a4635e817ab",
+      "sha256": "81d00fa5fab64c1536806f8d0d89794fe4ad023fa38496b719e10a4635e817ab"
+    },
+    "point_lio/config/velody16.yaml": {
+      "original_sha256": "72d1a428725e508b67a1c0d769c788b317e0d17b8c64aa310618c2f6a351d552",
+      "sha256": "72d1a428725e508b67a1c0d769c788b317e0d17b8c64aa310618c2f6a351d552"
+    },
+    "point_lio/include/.vscode/c_cpp_properties.json": {
+      "original_sha256": "fd626ae5d6930e394af64f76a8bdf2c526aee72fe38460d10bf6a1e4cee99d23",
+      "sha256": "fd626ae5d6930e394af64f76a8bdf2c526aee72fe38460d10bf6a1e4cee99d23"
+    },
+    "point_lio/include/.vscode/settings.json": {
+      "original_sha256": "6a1b8c832a3ed5b4ba3cc2777ab9b1bd032c178d9a3c5a43b0b81ae02aeb9355",
+      "sha256": "6a1b8c832a3ed5b4ba3cc2777ab9b1bd032c178d9a3c5a43b0b81ae02aeb9355"
+    },
+    "point_lio/include/IKFoM/.gitignore": {
+      "original_sha256": "3ba2020da55f76620d61950cb88f0d6cc0d5852eae7b2c03f8487a64c87da959",
+      "sha256": "3ba2020da55f76620d61950cb88f0d6cc0d5852eae7b2c03f8487a64c87da959"
+    },
+    "point_lio/include/IKFoM/.vscode/settings.json": {
+      "original_sha256": "cf633ef45225201b1ccc48581af7fd2b719d3a487f46c2db45025c865696b940",
+      "sha256": "cf633ef45225201b1ccc48581af7fd2b719d3a487f46c2db45025c865696b940"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/.vscode/settings.json": {
+      "original_sha256": "4fc9b077141d17cf3d636541e3a769ea8483458cbeee37db23703da8b3bbdc7f",
+      "sha256": "4fc9b077141d17cf3d636541e3a769ea8483458cbeee37db23703da8b3bbdc7f"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/esekfom/.vscode/settings.json": {
+      "original_sha256": "6f906a12d2630fd82015a39fc4d2580f4e762032cb8d3ff40d34d29bd7528398",
+      "sha256": "6f906a12d2630fd82015a39fc4d2580f4e762032cb8d3ff40d34d29bd7528398"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/esekfom/esekfom.hpp": {
+      "original_sha256": "f30e55220a06cd465bb49b9c8d83d788b66b61be9e1510d6637c9c468ab56d97",
+      "sha256": "f30e55220a06cd465bb49b9c8d83d788b66b61be9e1510d6637c9c468ab56d97"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/esekfom/util.hpp": {
+      "original_sha256": "3c4265d25ea3f8c7f586d1e34bc352e981e09e30555e42011cd23a0a147d6918",
+      "sha256": "3c4265d25ea3f8c7f586d1e34bc352e981e09e30555e42011cd23a0a147d6918"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/build_manifold.hpp": {
+      "original_sha256": "fe018230140bfab649b7acdf43f2f063a64d2805a64b93438f22b676b7e23959",
+      "sha256": "fe018230140bfab649b7acdf43f2f063a64d2805a64b93438f22b676b7e23959"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/src/SubManifold.hpp": {
+      "original_sha256": "96709f0f453a0c8776b1969064275ebf14dc5234b7024e68eb1cfc51a513864f",
+      "sha256": "96709f0f453a0c8776b1969064275ebf14dc5234b7024e68eb1cfc51a513864f"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/src/mtkmath.hpp": {
+      "original_sha256": "d28e5f44f521ea7e953f35e8a974d8e4c8aa7e699c4339cb924f3efe91acbe49",
+      "sha256": "d28e5f44f521ea7e953f35e8a974d8e4c8aa7e699c4339cb924f3efe91acbe49"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/src/vectview.hpp": {
+      "original_sha256": "7855408124ea65df4423bae5f97d5104af5552318796bc6324bdbf98a45101f3",
+      "sha256": "7855408124ea65df4423bae5f97d5104af5552318796bc6324bdbf98a45101f3"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/startIdx.hpp": {
+      "original_sha256": "79cdc368bb4e083f5fda7549094c0aba8b599aee1f88e9f2a8b7fa785bf1f757",
+      "sha256": "79cdc368bb4e083f5fda7549094c0aba8b599aee1f88e9f2a8b7fa785bf1f757"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/types/S2.hpp": {
+      "original_sha256": "38aca2b8b1474fe1d1c3b71839558bddbab198bb7fd2656471202983fc47a1d3",
+      "sha256": "38aca2b8b1474fe1d1c3b71839558bddbab198bb7fd2656471202983fc47a1d3"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/types/SEn.hpp": {
+      "original_sha256": "c1c5f90e42df2bf8f34697994fc5c5297a577063b9217759c6dfe7d244de36f7",
+      "sha256": "c1c5f90e42df2bf8f34697994fc5c5297a577063b9217759c6dfe7d244de36f7"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/types/SOn.hpp": {
+      "original_sha256": "eaa27590fd68fcfc0b5b056b131cc6a70f9092ecf967889d157e78e475a0e0cd",
+      "sha256": "eaa27590fd68fcfc0b5b056b131cc6a70f9092ecf967889d157e78e475a0e0cd"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/types/vect.hpp": {
+      "original_sha256": "8053fd1eedd5ee26e1eb1d0da88354174550ab01269383b07640dd911a7e6b99",
+      "sha256": "8053fd1eedd5ee26e1eb1d0da88354174550ab01269383b07640dd911a7e6b99"
+    },
+    "point_lio/include/IKFoM/IKFoM_toolkit/mtk/types/wrapped_cv_mat.hpp": {
+      "original_sha256": "3040f43fcb4195a2572a8819be012ebd2c4b59a38cfae86fcac3e01d7039a589",
+      "sha256": "3040f43fcb4195a2572a8819be012ebd2c4b59a38cfae86fcac3e01d7039a589"
+    },
+    "point_lio/include/IKFoM/LICENSE": {
+      "original_sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    "point_lio/include/IKFoM/README.md": {
+      "original_sha256": "69f46f94d72f19eb1ddeb50f2515fbc3654720e12d127df6f1bfe9545f4e8e0d",
+      "sha256": "69f46f94d72f19eb1ddeb50f2515fbc3654720e12d127df6f1bfe9545f4e8e0d"
+    },
+    "point_lio/include/common_lib.h": {
+      "original_sha256": "b60ab7ffa402e0eb7dc72cfaf4c5e5efe988e88883ce253f4c40fc8056f4f230",
+      "sha256": "0d9ad8e91a8e8d8dea7dc0418aa8edf034c41e2ab852b7449bd9d63ce91ba87a"
+    },
+    "point_lio/include/ivox/eigen_types.h": {
+      "original_sha256": "3b8a19e5c2979295383ff21160ec08bbb853c9b70d73745fb87a80cfc32ceec2",
+      "sha256": "3b8a19e5c2979295383ff21160ec08bbb853c9b70d73745fb87a80cfc32ceec2"
+    },
+    "point_lio/include/ivox/hilbert.hpp": {
+      "original_sha256": "e145216d1d894f04c1a53201e206ef725e75a238a32c26f9fd8b34582f25c68a",
+      "sha256": "e145216d1d894f04c1a53201e206ef725e75a238a32c26f9fd8b34582f25c68a"
+    },
+    "point_lio/include/ivox/ivox3d.h": {
+      "original_sha256": "476fab14fe0f42f4328364cbb1d61d186ec45adcadcb173260c6160572479069",
+      "sha256": "476fab14fe0f42f4328364cbb1d61d186ec45adcadcb173260c6160572479069"
+    },
+    "point_lio/include/ivox/ivox3d_node.hpp": {
+      "original_sha256": "bfa403d43c1dfd0ee66e5789e9638a16290c3d021f1f7a834fdfe2bdd944f179",
+      "sha256": "bfa403d43c1dfd0ee66e5789e9638a16290c3d021f1f7a834fdfe2bdd944f179"
+    },
+    "point_lio/include/matplotlibcpp.h": {
+      "original_sha256": "4d83ec8713ad33b279a4bccc68b4b8e5dff3fb3e06737ac70f41e07df2ee1c50",
+      "sha256": "4d83ec8713ad33b279a4bccc68b4b8e5dff3fb3e06737ac70f41e07df2ee1c50"
+    },
+    "point_lio/include/so3_math.h": {
+      "original_sha256": "23bf1d4ad542a7c8808a0109fcfc787a2cbf8a60e4bc23cc6daead511b3ea9ec",
+      "sha256": "23bf1d4ad542a7c8808a0109fcfc787a2cbf8a60e4bc23cc6daead511b3ea9ec"
+    },
+    "point_lio/launch/point_lio.launch.py": {
+      "original_sha256": "23533ac2983cf952b083c0b9f837116ebb3cb5db9a78fc443ad1d9436db7118e",
+      "sha256": "23533ac2983cf952b083c0b9f837116ebb3cb5db9a78fc443ad1d9436db7118e"
+    },
+    "point_lio/msg/LocalSensorExternalTrigger.msg": {
+      "original_sha256": "10d0b69feef2b5bbc49b3ea1aa2caf95f09ac5e76f68ffce3c88028f34c202a5",
+      "sha256": "10d0b69feef2b5bbc49b3ea1aa2caf95f09ac5e76f68ffce3c88028f34c202a5"
+    },
+    "point_lio/package.xml": {
+      "original_sha256": "b0ee7790647660655a295bf9e379ca85018f745ad55085a1199d32b96e51e4dd",
+      "sha256": "b1d7449e762de4e01638071ca98cfbe2cef9a62a6ca9c3eaf35f7c5e67677f93"
+    },
+    "point_lio/rviz_cfg/.gitignore": {
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "point_lio/rviz_cfg/loam_livox.rviz": {
+      "original_sha256": "b0cac10f21cdb5453b92d89d57e8a69307bc158fe2cc8e9a90fbe6d568e8a583",
+      "sha256": "b0cac10f21cdb5453b92d89d57e8a69307bc158fe2cc8e9a90fbe6d568e8a583"
+    },
+    "point_lio/src/Estimator.cpp": {
+      "original_sha256": "ad89c28616161ec0553ce76ee8911c19f67f0669730fc4e8d6609114e58f1ddf",
+      "sha256": "ad89c28616161ec0553ce76ee8911c19f67f0669730fc4e8d6609114e58f1ddf"
+    },
+    "point_lio/src/Estimator.h": {
+      "original_sha256": "a7cecceebb98b346bfc722aedf2ee054babff4af4c32ea278a280abcca46b9c0",
+      "sha256": "a7cecceebb98b346bfc722aedf2ee054babff4af4c32ea278a280abcca46b9c0"
+    },
+    "point_lio/src/IMU_Processing.cpp": {
+      "original_sha256": "bb666f1cb23f5d4c4d6e6397db889bacd38f5f1a85a3688c42f5e9c43433dc71",
+      "sha256": "bb666f1cb23f5d4c4d6e6397db889bacd38f5f1a85a3688c42f5e9c43433dc71"
+    },
+    "point_lio/src/IMU_Processing.h": {
+      "original_sha256": "3423aa11f8d7a83903d9fe6fedfdc6242ffc76729122505fde1d0c7622d0a844",
+      "sha256": "3423aa11f8d7a83903d9fe6fedfdc6242ffc76729122505fde1d0c7622d0a844"
+    },
+    "point_lio/src/laserMapping.cpp": {
+      "original_sha256": "411240dda869824b0e3cfcde8f7e2c7b7995835f0f72eff2e4ac1499ef789139",
+      "sha256": "70d54685526603e3f37cd5c20950ced4cd76947a89eab907849d06b9cc687116"
+    },
+    "point_lio/src/li_initialization.cpp": {
+      "original_sha256": "422fd636b9417b0f705803e3cef4818a024ccb72eaa8bd4ffeb2cd53b39c5398",
+      "sha256": "6164b69900a92c0613cea5a43ea488b23dc19251441a9a2bbda202f65b154e1e"
+    },
+    "point_lio/src/li_initialization.h": {
+      "original_sha256": "7bd6129ceb9a0d2b3da176d02fd3ee811a7fbe12b1be54d9c1ea57bc09a2c6fe",
+      "sha256": "2fcdbd18952d1642fabb0133b2d570021a31ab76bd60cab96d9172ba833be315"
+    },
+    "point_lio/src/parameters.cpp": {
+      "original_sha256": "10a2e6ae543a3bf933151f29cbc281e7670c6a326028037588dcb373b41a6bae",
+      "sha256": "10a2e6ae543a3bf933151f29cbc281e7670c6a326028037588dcb373b41a6bae"
+    },
+    "point_lio/src/parameters.h": {
+      "original_sha256": "0ad665f6d676956496b655a6cd872099d3b44b9746380c1ba2b41baeabf9edd6",
+      "sha256": "0ad665f6d676956496b655a6cd872099d3b44b9746380c1ba2b41baeabf9edd6"
+    },
+    "point_lio/src/preprocess.cpp": {
+      "original_sha256": "49e622b2c337fe19391053db35d7115c8611170b1f40c5ff39946a2f5aac27b9",
+      "sha256": "49e622b2c337fe19391053db35d7115c8611170b1f40c5ff39946a2f5aac27b9"
+    },
+    "point_lio/src/preprocess.h": {
+      "original_sha256": "7982b72f764aff37966dab58b4b67f98a23e2145d1f9bd159c296408088519e5",
+      "sha256": "7982b72f764aff37966dab58b4b67f98a23e2145d1f9bd159c296408088519e5"
+    },
+    "point_lio/include/pb_scan_source.hpp": {
+      "original_sha256": null,
+      "sha256": "6c42a18186ed1b40247eae2fdfcb1c228ef785a66aaa487ab636b5a0bb185c16"
+    },
+    "sensor_scan_generation/include/pb_sim_stamp.hpp": {
+      "original_sha256": null,
+      "sha256": "35475e336165968539e2612064c585d81ac9a5e70df832d0609c5ec5724e4956"
+    },
+    "point_lio/include/pb_request_context.hpp": {
+      "original_sha256": null,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "owned_lio.launch.py": {
+      "original_sha256": null,
+      "sha256": "12131bd2211ae054b300731b9887cab527ec67226e58230ba211432324920e7b"
+    }
+  },
+  "generator_sha256": "1b6b6249888d66bb2d32cc897f4c999032023b82f4095ab2ac541f8b07d993c9"
+}

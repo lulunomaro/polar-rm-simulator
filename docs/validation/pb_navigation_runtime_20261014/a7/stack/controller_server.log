@@ -1,0 +1,49 @@
+[INFO] [1791915432.051911656] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: 
+	controller_server lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791915433.006472904] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Creating controller server
+[INFO] [1791915433.019587407] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: 
+	local_costmap lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791915433.103837123] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Creating Costmap
+[INFO] [1791915433.105912648] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Configuring controller interface
+[INFO] [1791915433.106403029] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: getting goal checker plugins..
+[INFO] [1791915433.106877153] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Controller frequency set to 20.0000Hz
+[INFO] [1791915433.107089358] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Configuring
+[INFO] [1791915433.183750703] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Using plugin "static_layer"
+[INFO] [1791915433.246433905] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Subscribing to the map topic (/polar_sil_6758cd36c44744098ac21311ad5129e9/red_sentry/map) with transient local durability
+[INFO] [1791915433.270923426] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Initialized plugin "static_layer"
+[INFO] [1791915433.271116318] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Using plugin "intensity_voxel_layer"
+[INFO] [1791915433.308563884] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Subscribed to Topics: terrain_map
+[INFO] [1791915433.321833579] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Initialized plugin "intensity_voxel_layer"
+[INFO] [1791915433.322032727] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Using plugin "inflation_layer"
+[INFO] [1791915433.322938749] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[INFO] [1791915433.365480619] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[INFO] [1791915433.376538197] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[INFO] [1791915433.377275632] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[INFO] [1791915433.456511030] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Created controller : FollowPath of type pb_omni_pid_pursuit_controller::OmniPidPursuitController
+[INFO] [1791915433.475995492] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Controller Server has FollowPath  controllers available.
+[INFO] [1791915436.175739396] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: StaticLayer: Resizing static layer to 136 X 154 at 0.050000 m/pix
+[INFO] [1791915436.190595471] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Activating
+[INFO] [1791915436.191051348] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Activating
+[INFO] [1791915436.191543458] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Checking transform
+[INFO] [1791915436.192298023] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: start
+[INFO] [1791915436.295149731] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Activating controller: FollowPath of type regulated_pure_pursuit_controller::OmniPidPursuitController
+[INFO] [1791915436.295674337] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Creating bond (controller_server) to lifecycle manager.
+[INFO] [1791915436.588249505] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Received a goal, begin computing control effort.
+[ERROR] [1791915446.639363828] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Failed to make progress
+[WARN] [1791915446.639957957] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: [follow_path] [ActionServer] Aborting handle.
+[INFO] [1791915464.745098237] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [1791915464.747193502] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[INFO] [1791915464.747470023] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Deactivating
+[INFO] [1791915464.747768666] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Deactivating controller: FollowPath of type regulated_pure_pursuit_controller::OmniPidPursuitController
+[INFO] [1791915464.748219950] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Deactivating
+[INFO] [1791915464.792636909] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[INFO] [1791915464.803279036] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Cleaning up
+[INFO] [1791915464.803557258] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Cleaning up controller: FollowPath of type pb_omni_pid_pursuit_controller::OmniPidPursuitController
+[INFO] [1791915464.804031650] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Cleaning up
+[INFO] [1791915464.810769427] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[INFO] [1791915464.814194837] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.local_costmap.local_costmap]: Destroying
+[INFO] [1791915464.818943750] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.controller_server]: Destroying

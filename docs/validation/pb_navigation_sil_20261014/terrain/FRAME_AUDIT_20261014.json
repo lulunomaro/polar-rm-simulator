@@ -1,0 +1,55 @@
+{
+  "schema": "polar.pb2025.terrain-frame-audit.v1",
+  "audit_date": "2026-10-14",
+  "source_modified": false,
+  "nodes_started": false,
+  "terrain_upstream_commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+  "pointcloud_to_laserscan_commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+  "terrain_analysis": {
+    "source": "src/terrain_analysis/src/terrainAnalysis.cpp",
+    "source_sha256": "5782c62c103f02eb72175126e2b90101edbffab369a2e423cf12e0df5e2df601",
+    "input_xyz_source_lines": [144, 156, 159, 160, 161],
+    "output_frame_line": 686,
+    "output_frame": "odom",
+    "output_stamp_line": 684,
+    "stamp_implementation": "original laserCloudTime seconds converted back to integer nanoseconds",
+    "output_topic": "terrain_map",
+    "odom_to_map_transform_performed": false,
+    "map_frame_claimed": false
+  },
+  "terrain_analysis_ext": {
+    "source": "src/terrain_analysis_ext/src/terrainAnalysisExt.cpp",
+    "source_sha256": "472fbcd937c224d24f7c1489a6bfc66aa7f2a4ce9dbe566f099e32e001b52f9d",
+    "input_xyz_source_lines": [115, 130, 142, 143, 144],
+    "local_terrain_input_lines": [154, 157, 545, 551],
+    "output_xyz_copy_lines": [533, 534, 535],
+    "output_frame_line": 562,
+    "output_frame": "odom",
+    "output_stamp_line": 560,
+    "output_topic": "terrain_map_ext",
+    "odom_to_map_transform_performed": false,
+    "map_frame_claimed": false
+  },
+  "pointcloud_to_laserscan": {
+    "source": "src/pointcloud_to_laserscan/src/pointcloud_to_laserscan_node.cpp",
+    "source_sha256": "62e21f9296f8f783ae76e8bb712e55a561ef509b91074b82a2092c7505ffbb04",
+    "original_header_copy_line": 144,
+    "target_frame_assignment_line": 146,
+    "actual_tf2_transform_lines": [169, 172],
+    "transform_failure_return_line": 176,
+    "publish_line": 236,
+    "reviewed_target_frame": "base_link",
+    "label_only_transform": false
+  },
+  "expected_tf": {
+    "base_link_to_livox_frame": "actual fixed sensor calibration from sensor bridge",
+    "odom_to_base_link": "actual LIO estimate via owned sensor_scan_generation",
+    "map_to_odom": "SLAM algorithm estimate, no static identity masking"
+  },
+  "requires_rebuild_for_suspected_map_relabel": false,
+  "separate_known_limitations": [
+    "Original terrain callbacks do not validate incoming frame_id, so controlled upstream odom sources remain a prerequisite.",
+    "Original terrain uses independent odometry/cloud callbacks for crop/elevation; it does not prove exact stamp pairing.",
+    "Original terrain output stamp has a floating seconds to integer nanoseconds round trip; it does not deliberately replace scan-end with the enclosing acquisition window end."
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "polar.sim.pb-owned-source.v1",
+  "upstream_commit": "d70977132936da4d758bd6e8c0771a8cf4861ad9",
+  "original_algorithm": true,
+  "binding_patch": {
+    "kind": "library_output_and_xml_binding_only",
+    "before": "liblayers.so",
+    "after": "libpb_intensity_layers.so",
+    "class_identity": [
+      {
+        "type": "pb_nav2_costmap_2d::IntensityVoxelLayer",
+        "base_class_type": "nav2_costmap_2d::Layer"
+      }
+    ],
+    "algorithm_sha256": {
+      "include/pb_nav2_plugins/behaviors/back_up_free_space.hpp": "64a33f7ff3fd0552498b7780cb8bd3dda2a7f1c72050cbc4da8655b74d70ac52",
+      "include/pb_nav2_plugins/layers/intensity_voxel_layer.hpp": "ac1d98356fa00e49090da430b67adb462c06afa4ff37a90b2dea1f4bcbd82d60",
+      "src/behaviors/back_up_free_space.cpp": "9f5d01a66245c9c6f564ac53ffd268ebf243784c649039666dd82827cc32f37d",
+      "src/layers/intensity_voxel_layer.cpp": "cf278385af84028d9dc3125cf2a6158acba178579bf927acc869dcfae185c90f"
+    },
+    "changed_files": {
+      "CMakeLists.txt": {
+        "before_sha256": "3e6ec73ec8cd1ba090b47eabeb40fa91421e2df7a5e618e22b8beb0b7cf38f1d",
+        "after_sha256": "2bc87608adadd1ea157ba9a340abce141e084f06da080e71db3e92ee99eca06a"
+      },
+      "costmap_plugins.xml": {
+        "before_sha256": "372112109d49f944a5e68bfa6303b7724a387a23946965943e3aec96b1f57bf6",
+        "after_sha256": "94e5ba1199f29f4b4e7adcc4d091b2006fad33c29446ce2b2795803a7bcac2fe"
+      }
+    }
+  },
+  "qualification": "original_plugins_with_unique_library_binding_not_navigation_acceptance",
+  "files": {
+    ".clang-format": {
+      "bytes": 383,
+      "sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3"
+    },
+    ".clang-tidy": {
+      "bytes": 2619,
+      "sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f"
+    },
+    ".github/workflows/ci.yml": {
+      "bytes": 638,
+      "sha256": "da3ccb51a85479da93655d983e3a3ff1649f05831b410ea96d12ce05cedeb530"
+    },
+    ".github/workflows/colcon_test.sh": {
+      "bytes": 153,
+      "sha256": "862ea6c7878a0cd6fd3693645ba4e546908faaea9abe36d25f32b112cfe17b07"
+    },
+    ".pre-commit-config.yaml": {
+      "bytes": 3294,
+      "sha256": "ed2e34794f4fc024856920378e43c9b9f0db479e1cfaae87cf43b8965afc34c9"
+    },
+    "CMakeLists.txt": {
+      "bytes": 1126,
+      "sha256": "2bc87608adadd1ea157ba9a340abce141e084f06da080e71db3e92ee99eca06a"
+    },
+    "CONTRIBUTING.md": {
+      "bytes": 3175,
+      "sha256": "b18e9155faee6b8a1bfdc070b5524ba76a5953835fe32d819b8113563855a942"
+    },
+    "LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "NOTICE": {
+      "bytes": 400,
+      "sha256": "b8d7b8eecc3d9ef66757401e1ef372b464f020e086cdbab2e30324b1835e23ed"
+    },
+    "README.md": {
+      "bytes": 5495,
+      "sha256": "07dd41a87e1f344cc25a2de3061d7c784a136c731c903b6d5bffb4a27fec2077"
+    },
+    "behavior_plugin.xml": {
+      "bytes": 331,
+      "sha256": "bb0bf766650c27d7123cec9eebe4479db016bf2168dd996bef34d1571d0eaf4c"
+    },
+    "costmap_plugins.xml": {
+      "bytes": 306,
+      "sha256": "94e5ba1199f29f4b4e7adcc4d091b2006fad33c29446ce2b2795803a7bcac2fe"
+    },
+    "include/pb_nav2_plugins/behaviors/back_up_free_space.hpp": {
+      "bytes": 3381,
+      "sha256": "64a33f7ff3fd0552498b7780cb8bd3dda2a7f1c72050cbc4da8655b74d70ac52"
+    },
+    "include/pb_nav2_plugins/layers/intensity_voxel_layer.hpp": {
+      "bytes": 3956,
+      "sha256": "ac1d98356fa00e49090da430b67adb462c06afa4ff37a90b2dea1f4bcbd82d60"
+    },
+    "package.xml": {
+      "bytes": 1307,
+      "sha256": "8c352ddd009627d218e8a0ab91c75f3e92830e038e71e798dd6552b93051b103"
+    },
+    "src/behaviors/back_up_free_space.cpp": {
+      "bytes": 11539,
+      "sha256": "9f5d01a66245c9c6f564ac53ffd268ebf243784c649039666dd82827cc32f37d"
+    },
+    "src/layers/intensity_voxel_layer.cpp": {
+      "bytes": 7506,
+      "sha256": "cf278385af84028d9dc3125cf2a6158acba178579bf927acc869dcfae185c90f"
+    }
+  }
+}

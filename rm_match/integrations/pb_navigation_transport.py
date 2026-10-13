@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import time
 from .ros2_bridge import BridgeError
+from .pb_navigation_phases import PHASES
 
 
 class HumbleNavigationTransport:
@@ -16,6 +17,7 @@ class HumbleNavigationTransport:
         rmw=os.environ.get('RMW_IMPLEMENTATION','rmw_fastrtps_cpp')
         if rmw not in ('rmw_fastrtps_cpp','rmw_cyclonedds_cpp'):raise BridgeError('pb_local_dds_rmw_required')
         os.environ['RMW_IMPLEMENTATION']=rmw
+        PHASES.mark('ros_import_begin')
         try:
             import rclpy
             from rclpy.context import Context
@@ -27,23 +29,29 @@ class HumbleNavigationTransport:
             from geometry_msgs.msg import TransformStamped
             from nav_msgs.msg import Odometry
             from std_msgs.msg import String
-            from tf2_ros import StaticTransformBroadcaster
-        except (ImportError,OSError):raise BridgeError('pb_humble_livox_dependencies_unavailable') from None
-        self._rclpy=rclpy;self.types=(CustomMsg,CustomPoint,PointCloud2,PointField,Imu,Clock,String,TransformStamped)
+            from tf2_msgs.msg import TFMessage
+        except (ImportError,OSError):
+            PHASES.mark('ros_import_failed')
+            raise BridgeError('pb_humble_livox_dependencies_unavailable') from None
+        PHASES.mark('ros_import_end')
+        self._rclpy=rclpy;self.types=(CustomMsg,CustomPoint,PointCloud2,PointField,Imu,Clock,String,TransformStamped,TFMessage)
         self.context=Context()
         try:
+            PHASES.mark('rclpy_init_begin')
             rclpy.init(args=[],context=self.context,domain_id=settings.domain_id)
+            PHASES.mark('rclpy_init_end');PHASES.mark('node_begin')
             self.node=rclpy.create_node(settings.node_name,context=self.context,use_global_arguments=False,
                 cli_args=['--ros-args','--remap','/tf_static:='+settings.tf_static_topic],
                 enable_rosout=False,start_parameter_services=False)
             sensor=QoSProfile(history=HistoryPolicy.KEEP_LAST,depth=1,reliability=ReliabilityPolicy.BEST_EFFORT,durability=DurabilityPolicy.VOLATILE)
             imu_qos=QoSProfile(history=HistoryPolicy.KEEP_LAST,depth=1024,reliability=ReliabilityPolicy.BEST_EFFORT,durability=DurabilityPolicy.VOLATILE)
             control=QoSProfile(history=HistoryPolicy.KEEP_LAST,depth=1,reliability=ReliabilityPolicy.RELIABLE,durability=DurabilityPolicy.VOLATILE)
+            request_qos=QoSProfile(history=HistoryPolicy.KEEP_LAST,depth=8,reliability=ReliabilityPolicy.RELIABLE,durability=DurabilityPolicy.VOLATILE)
             self.cloud_pub=self.node.create_publisher(CustomMsg,settings.cloud_topic,sensor)
             self.pc_pub=self.node.create_publisher(PointCloud2,settings.pointcloud_topic,sensor)
             self.imu_pub=self.node.create_publisher(Imu,settings.imu_topic,imu_qos)
             self.clock_pub=self.node.create_publisher(Clock,settings.clock_topic,control)
-            self.request_pub=self.node.create_publisher(String,settings.request_topic,control)
+            self.request_pub=self.node.create_publisher(String,settings.request_topic,request_qos)
             def result(message):
                 try:core.receive_result(message.data)
                 except ValueError:self.rejected_results=min(self.rejected_results+1,2**53-1)
@@ -52,8 +60,13 @@ class HumbleNavigationTransport:
                 try:core.receive_odom_stamp(message.header.stamp.sec*1000000000+message.header.stamp.nanosec)
                 except ValueError:pass
             self.odom_sub=self.node.create_subscription(Odometry,settings.odom_topic,odom,sensor)
-            self.tf=StaticTransformBroadcaster(self.node)
+            # Same message/QoS as Humble StaticTransformBroadcaster; avoid its
+            # package-level buffer/client/listener imports on fresh startup.
+            static_qos=QoSProfile(history=HistoryPolicy.KEEP_LAST,depth=1,
+                reliability=ReliabilityPolicy.RELIABLE,durability=DurabilityPolicy.TRANSIENT_LOCAL)
+            self.tf_pub=self.node.create_publisher(TFMessage,settings.tf_static_topic,static_qos)
             self.executor=SingleThreadedExecutor(context=self.context);self.executor.add_node(self.node)
+            PHASES.mark('node_end');PHASES.mark('transport_ready')
         except BaseException:self.close();raise
 
     @staticmethod
@@ -64,14 +77,14 @@ class HumbleNavigationTransport:
 
     def publish_bundle(self,bundle,request):
         if self._closed:raise BridgeError('pb_transport_closed')
-        CustomMsg,CustomPoint,PointCloud2,PointField,Imu,Clock,String,TransformStamped=self.types
+        CustomMsg,CustomPoint,PointCloud2,PointField,Imu,Clock,String,TransformStamped,TFMessage=self.types
         ext=bundle['extrinsics']
         if self._extrinsics is not None and self._extrinsics!=ext:raise BridgeError('pb_extrinsics_changed_within_process')
         if self._extrinsics is None:
             tf=TransformStamped();tf.header.frame_id=ext['parent_frame'];tf.child_frame_id=bundle['custom']['header']['frame_id']
             for k,v in zip(('x','y','z'),ext['translation_m']):setattr(tf.transform.translation,k,float(v))
             for k,v in zip(('x','y','z','w'),ext['rotation_xyzw']):setattr(tf.transform.rotation,k,float(v))
-            self.tf.sendTransform(tf);self._extrinsics=ext
+            self.tf_pub.publish(TFMessage(transforms=[tf]));self._extrinsics=ext
         clock=Clock();self._stamp(clock.clock,bundle['clock']);self.clock_pub.publish(clock)
         ctx=String();ctx.data=request;self.request_pub.publish(ctx)
         # IMU ends at the cloud end, allowing actual LIO interpolation. Shared
@@ -108,10 +121,15 @@ class HumbleNavigationTransport:
 
     def wait_ready(self,timeout=1.):
         deadline=time.monotonic()+timeout
-        while not (self.cloud_pub.get_subscription_count() and self.imu_pub.get_subscription_count()
-            and self.request_pub.get_subscription_count() and self.node.count_publishers(self.settings.result_topic)):
+        PHASES.mark('graph_wait_enter');last_counts=None
+        while True:
+            counts=(self.cloud_pub.get_subscription_count(),self.imu_pub.get_subscription_count(),
+                self.request_pub.get_subscription_count(),self.node.count_publishers(self.settings.result_topic))
+            if counts!=last_counts:PHASES.mark('graph_counts',counts);last_counts=counts
+            if all(counts):PHASES.mark('graph_ready');return
             remaining=deadline-time.monotonic()
-            if remaining<=0:raise BridgeError('pb_navigation_graph_unavailable')
+            if remaining<=0:
+                PHASES.mark('graph_timeout');raise BridgeError('pb_navigation_graph_unavailable')
             self.spin_once(min(.01,remaining))
 
     def close(self):
@@ -119,6 +137,7 @@ class HumbleNavigationTransport:
             if self._close_error:raise BridgeError('pb_shutdown_incomplete')
             return
         self._closed=True;errors=[]
+        PHASES.mark('transport_cleanup_begin')
         if self.executor is not None:
             try:
                 if not self.executor.shutdown(timeout_sec=.15):errors.append('executor')
@@ -129,4 +148,6 @@ class HumbleNavigationTransport:
         if self.context is not None and self._rclpy is not None:
             try:self._rclpy.try_shutdown(context=self.context)
             except Exception:errors.append('context')
-        if errors:self._close_error=True;raise BridgeError('pb_shutdown_incomplete')
+        if errors:
+            PHASES.mark('transport_cleanup_failed');self._close_error=True;raise BridgeError('pb_shutdown_incomplete')
+        PHASES.mark('transport_cleanup_end')

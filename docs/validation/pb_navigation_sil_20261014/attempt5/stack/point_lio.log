@@ -1,0 +1,5 @@
+lidar_type: 1
+~~~~/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/src/point_lio/ file opened
+[INFO] [1791910554.789700667] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+Failed to delete datawriter, at ./src/publisher.cpp:48 during '__function__'
+[ERROR] [1791910554.908491440] [polar_sil_c536bf3f6e6e41558f1f071f4d023d8f.red_sentry.point_lio.rclcpp]: Error in destruction of rcl publisher handle: cannot publish data, at ./src/rmw_publish.cpp:62, at ./src/rcl/publisher.c:187

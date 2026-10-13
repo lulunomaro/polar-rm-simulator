@@ -1,0 +1,17 @@
+{
+  "schema": "polar.pb2025.dispatch-symbol-audit.v1",
+  "elf_path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/install/point_lio/lib/point_lio/pointlio_mapping",
+  "elf_sha256": "fd2b50c7a2d1993c80fc251f201126af6d3775a813851102108dfb65e521471f",
+  "command": [
+    "/usr/bin/nm",
+    "-D",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/install/point_lio/lib/point_lio/pointlio_mapping"
+  ],
+  "symbols": [
+    "                 U _ZN6rclcpp8Executor8spin_allENSt6chrono8durationIlSt5ratioILl1ELl1000000000EEEE"
+  ],
+  "actual_spin_all_import": true,
+  "actual_spin_some_import": false,
+  "nodes_started": false,
+  "passed": true
+}

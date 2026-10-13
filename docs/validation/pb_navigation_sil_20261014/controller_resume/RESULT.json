@@ -1,0 +1,51 @@
+{
+  "schema": "polar.sim.pb-controller-resume.v1",
+  "command": [
+    "colcon",
+    "--log-base",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-controller-resume-20261014-01/logs",
+    "build",
+    "--base-paths",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/src/pb_omni_pid_pursuit_controller",
+    "--packages-select",
+    "pb_omni_pid_pursuit_controller",
+    "--build-base",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/build",
+    "--install-base",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install",
+    "--executor",
+    "sequential",
+    "--cmake-args",
+    "-DBUILD_TESTING=OFF",
+    "-DPython3_EXECUTABLE=/usr/bin/python3",
+    "-DPYTHON_EXECUTABLE=/usr/bin/python3"
+  ],
+  "exit_code": 0,
+  "timeout": false,
+  "elapsed_seconds": 23.838153061000412,
+  "original_evidence_before_sha256": {
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/src/pb_omni_pid_pursuit_controller/SOURCE_IDENTITY.json": "bfa23b77d92938415ceb13c855b13c4e5ecffa0cfd7ad5a7fd7c1d9b84beaa0f",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/BUILD_RESULT.json": "583bc17e6041f1b0ec3f7a4d4785505aabd7ab30a413e292e80c5111c0c50f93",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/build.log": "979d330e4223cf2429b11931e4dc73fb2aaf4daed94eacb7bb59a941fb4200c6"
+  },
+  "original_evidence_after_sha256": {
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/src/pb_omni_pid_pursuit_controller/SOURCE_IDENTITY.json": "bfa23b77d92938415ceb13c855b13c4e5ecffa0cfd7ad5a7fd7c1d9b84beaa0f",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/BUILD_RESULT.json": "583bc17e6041f1b0ec3f7a4d4785505aabd7ab30a413e292e80c5111c0c50f93",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/build.log": "979d330e4223cf2429b11931e4dc73fb2aaf4daed94eacb7bb59a941fb4200c6"
+  },
+  "original_reports_unchanged": true,
+  "reuse_verified_source": true,
+  "reuse_build": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/build",
+  "install": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install",
+  "environment_sha256": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49",
+  "environment": {
+    "CMAKE_PREFIX_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/compat:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr:/opt/ros/humble:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2",
+    "AMENT_PREFIX_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble:/opt/ros/humble:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2",
+    "LD_LIBRARY_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib/x86_64-linux-gnu:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2/lib:/opt/ros/humble/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+    "PYTHONPATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/local/lib/python3.10/dist-packages:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2/local/lib/python3.10/dist-packages",
+    "PKG_CONFIG_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib/x86_64-linux-gnu/pkgconfig"
+  },
+  "MAKEFLAGS": "-j2",
+  "SDK_reset_timeout_unchanged": 2.0,
+  "navigation_nodes_started": false
+}

@@ -1,0 +1,1113 @@
+{
+  "schema": "polar.pb-navigation-stack.v1",
+  "namespace": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+  "domain_id": 84,
+  "bridge_manifest_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/bridge_manifest.json",
+  "bridge_manifest_sha256": "1076dad6a0229a50c8ea84501b3b5f5f00639b04a59b768caebf19b324653930",
+  "env": {
+    "CMAKE_PREFIX_PATH": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio:/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface:/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/compat:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr:/opt/ros/humble:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2",
+    "AMENT_PREFIX_PATH": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio:/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface:/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble:/opt/ros/humble:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2",
+    "LD_LIBRARY_PATH": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio/lib:/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib:/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis/lib:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext/lib:/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib/x86_64-linux-gnu:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2/lib:/opt/ros/humble/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+    "PKG_CONFIG_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+    "ROS_DISTRO": "humble",
+    "ROS_DOMAIN_ID": "84",
+    "ROS_LOCALHOST_ONLY": "1",
+    "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "RCUTILS_COLORIZED_OUTPUT": "0"
+  },
+  "install_prefixes": [
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation",
+    "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis",
+    "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext",
+    "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller"
+  ],
+  "commands": {
+    "point_lio": [
+      "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio/lib/point_lio/pointlio_mapping",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=point_lio",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "loam_interface": [
+      "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib/loam_interface/loam_interface_node",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=loam_interface",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "sensor_scan_generation": [
+      "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib/sensor_scan_generation/sensor_scan_generation_node",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=sensor_scan_generation",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "terrain_analysis": [
+      "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis/lib/terrain_analysis/terrainAnalysis",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=terrain_analysis",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "terrain_analysis_ext": [
+      "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext/lib/terrain_analysis_ext/terrainAnalysisExt",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=terrain_analysis_ext",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "pointcloud_to_laserscan": [
+      "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=pointcloud_to_laserscan",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "slam_toolbox": [
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/slam_toolbox/sync_slam_toolbox_node",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=slam_toolbox",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "planner_server": [
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/nav2_planner/planner_server",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=planner_server",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ],
+    "controller_server": [
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/nav2_controller/controller_server",
+      "--ros-args",
+      "-r",
+      "__ns:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry",
+      "-r",
+      "__node:=controller_server",
+      "--params-file",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+      "-r",
+      "/clock:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+      "-r",
+      "/tf:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+      "-r",
+      "/tf_static:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+      "-r",
+      "/polar/pb/request:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+      "-r",
+      "/polar/pb/localization:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+      "-r",
+      "/polar/pb/result:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+      "-r",
+      "/map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "-r",
+      "/map_metadata:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_metadata",
+      "-r",
+      "/map_updates:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map_updates",
+      "-r",
+      "livox/lidar:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+      "-r",
+      "livox/imu:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+      "-r",
+      "aft_mapped_to_init:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+      "-r",
+      "cloud_registered:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cloud_registered",
+      "-r",
+      "registered_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/registered_scan",
+      "-r",
+      "lidar_odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/lidar_odometry",
+      "-r",
+      "sensor_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/sensor_scan",
+      "-r",
+      "odometry:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "-r",
+      "terrain_map:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "-r",
+      "terrain_map_ext:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "obstacle_scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cloud_in:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "-r",
+      "scan:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "-r",
+      "cmd_vel:=/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/cmd_vel_nav2_audit"
+    ]
+  },
+  "assets": {
+    "point_lio": {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio/lib/point_lio/pointlio_mapping",
+      "sha256": "a1161ea663df5c359300ae42bc3674ef6ad3f795e9743081ad1123732c0373c4"
+    },
+    "loam_interface": {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib/loam_interface/loam_interface_node",
+      "sha256": "5ab5a79a4a9926f0140f192b2edd1382dedd6544018135c01777537536138376"
+    },
+    "sensor_scan_generation": {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib/sensor_scan_generation/sensor_scan_generation_node",
+      "sha256": "45be8afa95d7a92d009b7acc7c4ebaa1eb1d35a5ae40d9974b43edeaf4c652b0"
+    },
+    "terrain_analysis": {
+      "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis/lib/terrain_analysis/terrainAnalysis",
+      "sha256": "aefba171b7a205772fff0bc8e5a4ea756a8cf571ea202b71d916c853f5b7945d"
+    },
+    "terrain_analysis_ext": {
+      "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext/lib/terrain_analysis_ext/terrainAnalysisExt",
+      "sha256": "f6384c6ceafb0323c7ad95b9e97f3b8fbbe77ffe3d0f09cb0c27c617ea304ca2"
+    },
+    "pointcloud_to_laserscan": {
+      "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node",
+      "sha256": "7bc4d426e28f70ec0ebe2db72cf8eb18d4024027ea45131f63b747590bdd7907"
+    },
+    "slam_toolbox": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/slam_toolbox/sync_slam_toolbox_node",
+      "sha256": "7a6a0ae28c5be1c4d087ef5552136aa6a7655ea762d988ffdae4998d0f8eb033"
+    },
+    "planner_server": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/nav2_planner/planner_server",
+      "sha256": "cf15e259c96ec1ecb20edd3b660c6c866563c77b5ffb8ea0863e15d130c49ad1"
+    },
+    "controller_server": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/nav2_controller/controller_server",
+      "sha256": "16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d"
+    }
+  },
+  "libraries": {
+    "pb_intensity_layers": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins/lib/libpb_intensity_layers.so",
+      "sha256": "d7cce4d27ba71f4cf68800ad76559f71146e79a939753aa640a86adb3ea8d269"
+    },
+    "pb_controller": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller/lib/libpb_omni_pid_pursuit_controller.so",
+      "sha256": "def2bd7413e805067706278037bc4b8615938208ca33a16fd3edf550a6020911"
+    }
+  },
+  "original_configuration": {
+    "upstream_commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+    "reality_sha256": "d17fc377b08eb0aae1561b9508085ec933e394cb6791c97e1fbc1e6471ad2364",
+    "simulation_sha256": "5341a37f335144f87edac15ae43c5a4194fab2e1a1c1fac3fd1551f7764746c6",
+    "point_lio_base": "reality",
+    "navigation_base": "reality",
+    "generation_config_sha256": "4d3e9d42cc41b0d67bc670732c3a401f95cc4ad5de1b811c72113bbe10775cd5"
+  },
+  "parameters_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-actual-20261014-attempt3/stack/owned_parameters.yaml",
+  "parameters_sha256": "441ef6c485be01b5236cceebfcb8ec7fb8d52a4d8891ca952fb07e4208c6e342",
+  "adaptations": [
+    {
+      "node": "point_lio",
+      "parameter": "use_sim_time",
+      "original": {
+        "missing": true
+      },
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "loam_interface",
+      "parameter": "use_sim_time",
+      "original": false,
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "sensor_scan_generation",
+      "parameter": "use_sim_time",
+      "original": false,
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "terrain_analysis",
+      "parameter": "use_sim_time",
+      "original": {
+        "missing": true
+      },
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "terrain_analysis_ext",
+      "parameter": "use_sim_time",
+      "original": {
+        "missing": true
+      },
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "pointcloud_to_laserscan",
+      "parameter": "use_sim_time",
+      "original": false,
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "slam_toolbox",
+      "parameter": "use_sim_time",
+      "original": {
+        "missing": true
+      },
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "planner_server",
+      "parameter": "use_sim_time",
+      "original": false,
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "use_sim_time",
+      "original": false,
+      "adapted": true,
+      "reason": "single owned simulation clock; no wall-time sensor stamps"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "mapping.imu_time_inte",
+      "original": 0.005,
+      "adapted": 0.002,
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "mapping.acc_norm",
+      "original": 1.0,
+      "adapted": 9.81,
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "mapping.extrinsic_T",
+      "original": [
+        -0.011,
+        -0.02329,
+        0.04412
+      ],
+      "adapted": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "mapping.gravity_init",
+      "original": [
+        0.0,
+        0.0,
+        -9.8
+      ],
+      "adapted": [
+        0.0,
+        0.0,
+        -9.81
+      ],
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "odometry.publish_odometry_without_downsample",
+      "original": true,
+      "adapted": false,
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "pb.expected_robot_id",
+      "original": {
+        "missing": true
+      },
+      "adapted": "red_sentry",
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "pb.expected_episode",
+      "original": {
+        "missing": true
+      },
+      "adapted": 0,
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "pb.expected_binding_epoch",
+      "original": {
+        "missing": true
+      },
+      "adapted": 1,
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "loam_interface",
+      "parameter": "base_frame",
+      "original": "base_footprint",
+      "adapted": "base_link",
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "loam_interface",
+      "parameter": "lidar_frame",
+      "original": "front_mid360",
+      "adapted": "livox_frame",
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "sensor_scan_generation",
+      "parameter": "base_frame",
+      "original": "base_footprint",
+      "adapted": "base_link",
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "sensor_scan_generation",
+      "parameter": "robot_base_frame",
+      "original": "gimbal_yaw",
+      "adapted": "base_link",
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "sensor_scan_generation",
+      "parameter": "lidar_frame",
+      "original": "front_mid360",
+      "adapted": "livox_frame",
+      "reason": "reviewed actual Livox/SI/mount/generation overlay"
+    },
+    {
+      "node": "pointcloud_to_laserscan",
+      "parameter": "target_frame",
+      "original": "base_footprint",
+      "adapted": "base_link",
+      "reason": "actual calibrated simulator rigid base; no fake yaw frame"
+    },
+    {
+      "node": "slam_toolbox",
+      "parameter": "base_frame",
+      "original": "base_footprint",
+      "adapted": "base_link",
+      "reason": "actual calibrated simulator rigid base; no fake yaw frame"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "mapping.satu_acc",
+      "original": 4.0,
+      "adapted": 39.24,
+      "reason": "same physical acceleration saturation threshold expressed in actual SI input units"
+    },
+    {
+      "node": "point_lio",
+      "parameter": "mapping.gravity",
+      "original": [
+        0.0,
+        0.0,
+        -9.8
+      ],
+      "adapted": [
+        0.0,
+        0.0,
+        -9.81
+      ],
+      "reason": "simulator gravity SI calibration, no true robot pose"
+    },
+    {
+      "node": "slam_toolbox",
+      "parameter": "transform_publish_period",
+      "original": 0.0,
+      "adapted": 0.02,
+      "reason": "enable SLAM-produced map-to-odom; upstream launch used a forbidden static alternative"
+    },
+    {
+      "node": "slam_toolbox",
+      "parameter": "scan_topic",
+      "original": "obstacle_scan",
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan",
+      "reason": "explicit generation topic isolation"
+    },
+    {
+      "node": "slam_toolbox",
+      "parameter": "map_name",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "reason": "no cross-generation absolute map topic"
+    },
+    {
+      "node": "slam_toolbox",
+      "parameter": "use_map_saver",
+      "original": true,
+      "adapted": false,
+      "reason": "no map saver service or persisted/prior map in first SIL scope"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "odom_topic",
+      "original": "odometry",
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+      "reason": "actual sensor-scan odometry, never truth"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "progress_checker_plugin",
+      "original": {
+        "missing": true
+      },
+      "adapted": "progress_checker",
+      "reason": "Humble 1.1.20 singular parameter compatibility"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "FollowPath.v_linear_min",
+      "original": -2.5,
+      "adapted": -1.0,
+      "reason": "platform scalar PID speed norm limit 1 m/s and angular limit 2 rad/s; original gains unchanged"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "FollowPath.v_linear_max",
+      "original": 2.5,
+      "adapted": 1.0,
+      "reason": "platform scalar PID speed norm limit 1 m/s and angular limit 2 rad/s; original gains unchanged"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "FollowPath.v_angular_min",
+      "original": -3.0,
+      "adapted": -2.0,
+      "reason": "platform scalar PID speed norm limit 1 m/s and angular limit 2 rad/s; original gains unchanged"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "FollowPath.v_angular_max",
+      "original": 3.0,
+      "adapted": 2.0,
+      "reason": "platform scalar PID speed norm limit 1 m/s and angular limit 2 rad/s; original gains unchanged"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.enabled",
+      "original": {
+        "missing": true
+      },
+      "adapted": true,
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.robot_id",
+      "original": {
+        "missing": true
+      },
+      "adapted": "red_sentry",
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.episode",
+      "original": {
+        "missing": true
+      },
+      "adapted": 0,
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.binding_epoch",
+      "original": {
+        "missing": true
+      },
+      "adapted": 1,
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.request_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar/pb/request",
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.result_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar/pb/result",
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "controller_server",
+      "parameter": "polar_sourced.localization_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar/pb/localization",
+      "reason": "reviewed compute-context hook, fixed generation identity"
+    },
+    {
+      "node": "local_costmap",
+      "parameter": "robot_base_frame",
+      "original": "gimbal_yaw_fake",
+      "adapted": "base_link",
+      "reason": "owned frame/topic simulation clock; preserve original local odom/global map frames"
+    },
+    {
+      "node": "local_costmap",
+      "parameter": "map_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "reason": "owned frame/topic simulation clock; preserve original local odom/global map frames"
+    },
+    {
+      "node": "local_costmap",
+      "parameter": "static_layer.map_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "reason": "owned frame/topic simulation clock; preserve original local odom/global map frames"
+    },
+    {
+      "node": "local_costmap",
+      "parameter": "robot_radius",
+      "original": 0.2,
+      "adapted": 0.38,
+      "reason": "static simplified chassis .28/.23 m halfsize + margin; not real sentry CAD"
+    },
+    {
+      "node": "local_costmap",
+      "parameter": "intensity_voxel_layer.terrain_map.topic",
+      "original": "<robot_namespace>/terrain_map",
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map",
+      "reason": "explicit fresh namespace"
+    },
+    {
+      "node": "global_costmap",
+      "parameter": "robot_base_frame",
+      "original": "gimbal_yaw_fake",
+      "adapted": "base_link",
+      "reason": "owned frame/topic simulation clock; preserve original local odom/global map frames"
+    },
+    {
+      "node": "global_costmap",
+      "parameter": "map_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "reason": "owned frame/topic simulation clock; preserve original local odom/global map frames"
+    },
+    {
+      "node": "global_costmap",
+      "parameter": "static_layer.map_topic",
+      "original": {
+        "missing": true
+      },
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+      "reason": "owned frame/topic simulation clock; preserve original local odom/global map frames"
+    },
+    {
+      "node": "global_costmap",
+      "parameter": "robot_radius",
+      "original": 0.2,
+      "adapted": 0.38,
+      "reason": "static simplified chassis .28/.23 m halfsize + margin; not real sentry CAD"
+    },
+    {
+      "node": "global_costmap",
+      "parameter": "intensity_voxel_layer.terrain_map_ext.topic",
+      "original": "<robot_namespace>/terrain_map_ext",
+      "adapted": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/terrain_map_ext",
+      "reason": "explicit fresh namespace"
+    }
+  ],
+  "static_vehicle_calibration": {
+    "source": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/rm_match/harness.xml",
+    "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+    "chassis_halfsize_xy_m": [
+      0.28,
+      0.23
+    ],
+    "circumscribed_radius_m": 0.3623534186398688,
+    "costmap_radius_m": 0.38,
+    "qualification": "simplified simulator vehicle profile, not real sentry CAD or dynamic world truth"
+  },
+  "provenance": {
+    "lio_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261013-02/OVERLAY_MANIFEST.json",
+      "sha256": "6810957d9918ee5ccc71658056fe524b7721b4010603740cfddc27e9cbea46e3"
+    },
+    "lio_elf": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261013-02/BINARY_AUDIT.json",
+      "sha256": "31ba1a583ecedb5fb46c799a162a56b820d82fcd06bb6a18be11b6ef6d2324f2"
+    },
+    "terrain_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-terrain-scan-build-20261013/SOURCE_MANIFEST.json",
+      "sha256": "65799b8c512f4fd42133ce8e607c3b97c1745f8e1c9802e88e815f3bdbba80d0"
+    },
+    "terrain_elf": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-terrain-scan-build-20261013/BINARY_AUDIT.json",
+      "sha256": "6f3d7f65802b256219ff70d9d1631e5cb5ffd0b7bcdf3469154999d3f2e67256"
+    },
+    "controller_resume": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-controller-resume-20261014-01/RESULT.json",
+      "sha256": "9c32e39bb5b8c352a02226bb431739587d431760dd920b822c16777858934836"
+    },
+    "controller_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/src/pb_omni_pid_pursuit_controller/SOURCE_IDENTITY.json",
+      "sha256": "bfa23b77d92938415ceb13c855b13c4e5ecffa0cfd7ad5a7fd7c1d9b84beaa0f"
+    },
+    "pb_plugin_build": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/BUILD_RESULT.json",
+      "sha256": "d8970f06fafa7a1076fd6e88a1dfa2955325e2bc2246e95e06c58f09f7eb12a9"
+    },
+    "pb_plugin_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/src/pb_nav2_plugins/SOURCE_IDENTITY.json",
+      "sha256": "79bbea021d59d2ffc1a9e88b4f38c4ad96ca644482af60737af54edfe6b5e29a"
+    },
+    "dependency_environment": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/ENVIRONMENT_MANIFEST.json",
+      "sha256": "b6f3841d60a7aeead3ca00ad04a936c4d6e88ba710c148a099b3def7d16816dc"
+    },
+    "python_ABI": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/PYTHON_RUNTIME_RESULT.json",
+      "sha256": "0b87123ad3a8f7363bc0477f98b917871aceb490e07555ebd7aef7b4ec1aa929"
+    },
+    "loader_audit": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-nav2-elf-loader-audit-20261014/RESULT.json",
+      "sha256": "0cc96b585d04e687062ffe1f668ac4210b6e2c4a89270830e1485bee26bf6b8b"
+    }
+  },
+  "physics_started": false,
+  "sensor_warmup": false,
+  "prior_map": false,
+  "topics": {
+    "clock": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/clock",
+    "tf": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf",
+    "tf_static": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/tf_static",
+    "request": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/request",
+    "localization": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/localization",
+    "result": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/polar/pb/result",
+    "odom": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/odometry",
+    "lio_odom": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/aft_mapped_to_init",
+    "map": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/map",
+    "cloud": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/lidar",
+    "imu": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/livox/imu",
+    "scan": "/polar_sil_6367db03c4324fa98017424750cf9c4c/red_sentry/obstacle_scan"
+  },
+  "forbidden_nodes_not_started": [
+    "fake_vel_transform",
+    "velocity_smoother",
+    "bt_navigator",
+    "map_server",
+    "static_map_to_odom"
+  ],
+  "scope": "prepared_only_not_algorithm_or_sil_acceptance"
+}

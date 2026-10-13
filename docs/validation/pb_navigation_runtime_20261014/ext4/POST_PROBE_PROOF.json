@@ -1,0 +1,19 @@
+{
+  "schema": "polar.humble-ext4-post-probe.v1",
+  "clean": true,
+  "errors": [],
+  "checked_counts": {
+    "file": 14899,
+    "directory": 1621,
+    "symlink": 186
+  },
+  "all_new_runtime_bytes_links_modes_unchanged_except_explicit_derived_pth": true,
+  "original_evidence_unchanged": true,
+  "own_venv_processes_remaining": [],
+  "all_three_subprocesses_waited_and_reaped": true,
+  "final_environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "elapsed_s": 3.27109918799988,
+  "navigation_nodes_started": false,
+  "DDS_initialized": false,
+  "physics_steps": 0
+}

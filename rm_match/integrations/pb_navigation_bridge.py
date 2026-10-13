@@ -1,5 +1,7 @@
 """Optional Humble sensor bridge. Bare Twist is deliberately not an action input."""
 from __future__ import annotations
+from .pb_navigation_phases import PHASES
+PHASES.mark('module')
 from dataclasses import dataclass
 import argparse
 import copy
@@ -167,6 +169,7 @@ def serve_navigation(core,transport,input_stream,output_stream):
         request=parse_json(raw,MAX_REQUEST)
         if type(request) is not dict or type(request.get('schema')) is not str or request['schema']!=JSONL_SCHEMA:raise BridgeError('pb_jsonl_schema')
         if request.get('op')=='reset':
+            PHASES.mark('reset_received')
             exact(request,('schema','op','context','config'),'pb_reset_request');core.reset(request['context'],request['config']);transport.wait_ready(1.)
             response=dict(schema=JSONL_SCHEMA,op='reset',ok=True)
         elif request.get('op')=='act':
@@ -175,9 +178,11 @@ def serve_navigation(core,transport,input_stream,output_stream):
             response=dict(schema=JSONL_SCHEMA,op='act',ok=True,**{kind:value})
         else:raise BridgeError('pb_jsonl_unknown_op')
         output_stream.write(encode_json(response,MAX_RESPONSE-1)+b'\n');output_stream.flush()
+        if response['op']=='reset':PHASES.mark('reset_ack')
 
 
 def main(argv=None):
+    PHASES.mark('main')
     p=argparse.ArgumentParser(description=__doc__)
     for k in NavigationSettings.__dataclass_fields__:
         default=getattr(NavigationSettings(),k)
@@ -192,13 +197,16 @@ def main(argv=None):
         serve_navigation(core,transport,sys.stdin.buffer,protocol)
     except KeyboardInterrupt:code=130
     except Exception as exc:
+        PHASES.mark('main_failed')
         print(str(exc) if isinstance(exc,BridgeError) else 'pb_bridge_failed',file=sys.stderr,flush=True);code=2
     finally:
+        PHASES.mark('cleanup_begin')
         if core is not None:core.close()
         try:
             if transport is not None:transport.close()
         except Exception:print('pb_shutdown_incomplete',file=sys.stderr,flush=True);code=2
         protocol.close()
+        PHASES.mark('cleanup_end');PHASES.close()
     return code
 
 

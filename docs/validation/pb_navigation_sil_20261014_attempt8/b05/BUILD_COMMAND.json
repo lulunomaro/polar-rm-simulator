@@ -1,0 +1,38 @@
+{
+  "schema": "polar.pb2025.lio-bounded-join-build.v1",
+  "workspace": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02",
+  "command": [
+    "/usr/bin/colcon",
+    "build",
+    "--executor",
+    "sequential",
+    "--packages-select",
+    "point_lio",
+    "--cmake-args",
+    "-DBUILD_TESTING=OFF",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+  ],
+  "build_script_sha256": "7a1e7bc8da129fe0314de1bb75e449d5703895b340d30de72844463f69fc9812",
+  "full_ros_build": true,
+  "nodes_started": false,
+  "copied_build_cache": false,
+  "source_manifest_sha256": "7d9022208ecb95840264855f52e50943d0b10c38527743c873d7959697ce69b2",
+  "environment": {
+    "CMAKE_PREFIX_PATH": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/build_compat:/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+    "AMENT_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+    "LD_LIBRARY_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+    "PYTHONPATH": null,
+    "PKG_CONFIG_PATH": "/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "1",
+    "MAKEFLAGS": "-j1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "environment_manifest_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "reused_install_prefixes": [
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation"
+  ]
+}

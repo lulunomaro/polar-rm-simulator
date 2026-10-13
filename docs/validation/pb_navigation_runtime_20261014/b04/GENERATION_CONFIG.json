@@ -1,0 +1,110 @@
+{
+  "schema": "polar.pb2025.lio-generated-config.v1",
+  "nodes": [
+    {
+      "package": "point_lio",
+      "executable": "pointlio_mapping",
+      "namespace": "red_sentry",
+      "parameters": [
+        {
+          "use_sim_time": true,
+          "common.lid_topic": "livox/lidar",
+          "common.imu_topic": "livox/imu",
+          "common.con_frame": false,
+          "common.cut_frame": false,
+          "common.time_diff_lidar_to_imu": 0.0,
+          "preprocess.lidar_type": 1,
+          "preprocess.scan_line": 4,
+          "preprocess.timestamp_unit": 3,
+          "mapping.imu_time_inte": 0.002,
+          "mapping.acc_norm": 9.81,
+          "mapping.extrinsic_est_en": false,
+          "mapping.extrinsic_T": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mapping.extrinsic_R": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "mapping.gravity_init": [
+            0.0,
+            0.0,
+            -9.81
+          ],
+          "prior_pcd.enable": false,
+          "odometry.publish_odometry_without_downsample": false,
+          "publish.scan_publish_en": true,
+          "publish.tf_send_en": false,
+          "runtime_pos_log_enable": false,
+          "pcd_save.pcd_save_en": false,
+          "pb.expected_robot_id": "red_sentry",
+          "pb.expected_episode": 0,
+          "pb.expected_binding_epoch": 1
+        }
+      ]
+    },
+    {
+      "package": "loam_interface",
+      "executable": "loam_interface_node",
+      "namespace": "red_sentry",
+      "parameters": [
+        {
+          "use_sim_time": true,
+          "state_estimation_topic": "aft_mapped_to_init",
+          "registered_scan_topic": "cloud_registered",
+          "odom_frame": "odom",
+          "base_frame": "base_link",
+          "lidar_frame": "livox_frame"
+        }
+      ]
+    },
+    {
+      "package": "sensor_scan_generation",
+      "executable": "sensor_scan_generation_node",
+      "namespace": "red_sentry",
+      "parameters": [
+        {
+          "use_sim_time": true,
+          "base_frame": "base_link",
+          "robot_base_frame": "base_link",
+          "lidar_frame": "livox_frame"
+        }
+      ]
+    }
+  ],
+  "expected_ros_node_names": [
+    "laserMapping",
+    "loam_interface",
+    "sensor_scan_generation"
+  ],
+  "build_workspace": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_04",
+  "install_prefixes": [
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_04/install/point_lio",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation"
+  ],
+  "source_manifest_sha256": "144d9fd7339dbc0f899e6d99bcceae3eddb9baf1952d28aaa0705c23e60f9903",
+  "launch_sha256": "12131bd2211ae054b300731b9887cab527ec67226e58230ba211432324920e7b",
+  "source_overlay": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261014-04",
+  "source_manifest_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261014-04/OVERLAY_MANIFEST.json",
+  "launch_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261014-04/owned_lio.launch.py",
+  "build_result_sha256": "a5b97ac3aec894ac8fa0033089f807eed663c3da4fe7ba2ac8c7e63e7e732fc2",
+  "binary_audit_sha256": "be927eeeb775a1338c6af1730fcb9a3bc9400cda3133776fd4aa923360a905ed",
+  "post_build_audit_sha256": "3420b01882a3b3aa03d96ece2883aa2c9ce31edb0b5db6bd66bfb475168343cf",
+  "reused_tf_source_proof_sha256": "8ac40d5a7b7319a7ef97473f1deec4b2d64a9b39fa42a713db4c643e03fc7a21",
+  "original_config_sha256": "4d3e9d42cc41b0d67bc670732c3a401f95cc4ad5de1b811c72113bbe10775cd5",
+  "node_build_workspaces": {
+    "point_lio": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_04",
+    "loam_interface": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02",
+    "sensor_scan_generation": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02"
+  }
+}

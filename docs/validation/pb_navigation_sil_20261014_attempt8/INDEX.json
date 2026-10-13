@@ -1,0 +1,344 @@
+{
+  "schema": "polar.pb-navigation-frozen-evidence-index.v1",
+  "manifest": "MANIFEST.json",
+  "manifest_sha256": "41f1b7573b2cdf189821014fbfc1069d5de17e6c8df8e1527e4c7c88775c78d0",
+  "copied_payload_count": 57,
+  "groups": {
+    "b05": 17,
+    "config": 6,
+    "dispatch": 2,
+    "driver": 5,
+    "fail05": 8,
+    "preparation": 1,
+    "sil": 18
+  },
+  "original_total_bytes": 8779930,
+  "stored_total_bytes": 824223,
+  "independent_full_payload_verification_passes": 2,
+  "all_sources_unchanged": true,
+  "local_files_verified_twice": [
+    {
+      "path": "archive_evidence.py",
+      "bytes": 4513,
+      "sha256": "b7247f5bbc1f05a560c46abb7d0c55e9e589a3f7f29bf62c36e474918a13f2ac"
+    },
+    {
+      "path": "b05/audit_build.py",
+      "bytes": 5614,
+      "sha256": "01dfff14a740e2cc0089dd5b54c15453173afcad345b96a8e45c0203bd5d36c8"
+    },
+    {
+      "path": "b05/audit_dispatch_symbol.py",
+      "bytes": 1136,
+      "sha256": "236e6aa23de037f525aa277525f9fe5bc898eec3e08743a4b2c86b215599ea7e"
+    },
+    {
+      "path": "b05/BINARY_AUDIT.json",
+      "bytes": 26413,
+      "sha256": "6968b41970521c038b89cba55cefcb5b6150c5c733cb04e9d71b0f2c23720c3e"
+    },
+    {
+      "path": "b05/BUILD_COMMAND.json",
+      "bytes": 2281,
+      "sha256": "50bd92a8a2b4f58537f2f928f2c51ef0e13577dde7b5c5f030314e80916b640a"
+    },
+    {
+      "path": "b05/build_owned.py",
+      "bytes": 10032,
+      "sha256": "7a1e7bc8da129fe0314de1bb75e449d5703895b340d30de72844463f69fc9812"
+    },
+    {
+      "path": "b05/BUILD_PID.json",
+      "bytes": 434,
+      "sha256": "3430ccd991346f51aac7cecc009a254cce8b69646209af7ca735e63c70cf4a93"
+    },
+    {
+      "path": "b05/BUILD_RESULT.json",
+      "bytes": 2583,
+      "sha256": "dbcb6f5f8febef582bbb8617eba5777b7e83715830f5a9096922059110ac2181"
+    },
+    {
+      "path": "b05/colcon.log",
+      "bytes": 803,
+      "sha256": "22ecab2a3bec989fd3f269edd2a81099c24e5839a604921b00fd21e7d05e2789"
+    },
+    {
+      "path": "b05/DERIVED_BUILD_COMPAT.json",
+      "bytes": 1282,
+      "sha256": "70db518e3101137de2d32efa9ad0c4bc622d2943e2424d29a250d4ed2edd336f"
+    },
+    {
+      "path": "b05/DISPATCH_SYMBOL_AUDIT.json",
+      "bytes": 683,
+      "sha256": "7463b171fb5462b6896f2132d7530d7b9dc51d15edb70ab0a7875a127327b13b"
+    },
+    {
+      "path": "b05/generate_config.py",
+      "bytes": 2653,
+      "sha256": "9149cff97084c1dd1328d39fe5d5f126879ba6065129f8905fb77d8c0e5da30e"
+    },
+    {
+      "path": "b05/GENERATION_CONFIG.json",
+      "bytes": 4221,
+      "sha256": "359ffe8d46a23eb01513cb76d24a9c3338b2aa6d30fd6be9b59c096889f8c968"
+    },
+    {
+      "path": "b05/OVERLAY_MANIFEST.json",
+      "bytes": 17090,
+      "sha256": "7d9022208ecb95840264855f52e50943d0b10c38527743c873d7959697ce69b2"
+    },
+    {
+      "path": "b05/owned_lio.launch.py",
+      "bytes": 1737,
+      "sha256": "12131bd2211ae054b300731b9887cab527ec67226e58230ba211432324920e7b"
+    },
+    {
+      "path": "b05/POST_BUILD_AUDIT.json.gz",
+      "bytes": 10607,
+      "sha256": "463cc9cf5d42999c5145251a93c3abcd8cf53eeb3fc5085f08146d7158a3199c"
+    },
+    {
+      "path": "b05/prepare_post_audit.py",
+      "bytes": 3053,
+      "sha256": "f42eba46ff6ab6fe1f520081b888c3b4e831920f2f33d1ff077f4979ab1c6c01"
+    },
+    {
+      "path": "b05/REUSED_TF_SOURCE_PROOF.json",
+      "bytes": 4861,
+      "sha256": "8ac40d5a7b7319a7ef97473f1deec4b2d64a9b39fa42a713db4c643e03fc7a21"
+    },
+    {
+      "path": "config/pb-navigation-sil-config-20261014-04.json",
+      "bytes": 10051,
+      "sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+    },
+    {
+      "path": "config/pb_navigation_stack.py",
+      "bytes": 32618,
+      "sha256": "44554cbb0d931409deda02f70599da70cda16c71ed13cb4f3cfd538a3f2e9ba7"
+    },
+    {
+      "path": "config/prepare_sil_attempt8_20261014.py",
+      "bytes": 2944,
+      "sha256": "92d4f1f437f477a65c3c99117c9e09e9258c2c32d74efe98c04f93d784b94afb"
+    },
+    {
+      "path": "config/prepare_sil_ext4_config_20261014.py",
+      "bytes": 2063,
+      "sha256": "772ab236b5c19f19f387c9599cc066a91405aef2d071e7da57a5b1bda4a6d8c6"
+    },
+    {
+      "path": "config/qa_pb_navigation_sil.py",
+      "bytes": 33245,
+      "sha256": "58313c9442ee7444ffba84b95eb86c9cb0fd20b9327bada3b2292b390a44131f"
+    },
+    {
+      "path": "config/run_sil_attempt8_20261014.py",
+      "bytes": 2570,
+      "sha256": "e4fabf36f1d2cbf031484b0adcb5350066d9e79bcc6be07cdb1c44c6e5dcbcc4"
+    },
+    {
+      "path": "dispatch/audit.py",
+      "bytes": 8504,
+      "sha256": "7f8c14498a93ce5c77ca74c03c3d45cf2d93691be9be2efe9d7629094699debd"
+    },
+    {
+      "path": "dispatch/RESULT.json",
+      "bytes": 9470,
+      "sha256": "3c3716043eb4e306f09fcf1742d960992a9e19300340cce1e68a02479f653b12"
+    },
+    {
+      "path": "driver/COMMAND.json",
+      "bytes": 1548,
+      "sha256": "c7fec93db4cbfac86b7847dd636389e5fa6df7bdfdf118dc9733f1e552c18820"
+    },
+    {
+      "path": "driver/PID.json",
+      "bytes": 26,
+      "sha256": "fa8bb4dfb4c643f1804babc5ca155202d552b47cb7a3fa1bdb10074d8a19aff2"
+    },
+    {
+      "path": "driver/PROCESS_RESULT.json",
+      "bytes": 1936,
+      "sha256": "1359faaa53a7358f965b95a58960a8674fee01839571d5202cd508b207591ff5"
+    },
+    {
+      "path": "driver/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "driver/stdout.log",
+      "bytes": 391,
+      "sha256": "874ebb631c2aa9778e05522b064cc19f3ebe947a08ce71c40f3405ae814c75c7"
+    },
+    {
+      "path": "fail05/BUILD_COMMAND.json",
+      "bytes": 784,
+      "sha256": "34c52c8d6690bfb4e0b3a56ec8320daed760c873eb1206d94d588086ad929482"
+    },
+    {
+      "path": "fail05/build_owned.py",
+      "bytes": 10025,
+      "sha256": "b6af116917687ffd36178def150c5f61f48b3f6ec2a73cd6b6cdfb122e5ef1be"
+    },
+    {
+      "path": "fail05/BUILD_RESULT.json",
+      "bytes": 1063,
+      "sha256": "7eedbd9ba51568cfe5012d18ff55f81fee25c0b1bcbdcccc2314a4d7510aa111"
+    },
+    {
+      "path": "fail05/DERIVED_BUILD_COMPAT.json",
+      "bytes": 1279,
+      "sha256": "18842b66a3f3b4e309d8796ae0241c2f597bf21152acf62c58e6845beb9bbeec"
+    },
+    {
+      "path": "fail05/OVERLAY_MANIFEST.json",
+      "bytes": 17090,
+      "sha256": "7d9022208ecb95840264855f52e50943d0b10c38527743c873d7959697ce69b2"
+    },
+    {
+      "path": "fail05/owned_lio.launch.py",
+      "bytes": 1737,
+      "sha256": "12131bd2211ae054b300731b9887cab527ec67226e58230ba211432324920e7b"
+    },
+    {
+      "path": "fail05/prepare_build_driver.py",
+      "bytes": 3861,
+      "sha256": "f41ae1561c5d605ceb698bb1da71758bdda99ec310093a460c56555ddd9830f0"
+    },
+    {
+      "path": "fail05/REUSED_TF_SOURCE_PROOF.json",
+      "bytes": 4861,
+      "sha256": "8ac40d5a7b7319a7ef97473f1deec4b2d64a9b39fa42a713db4c643e03fc7a21"
+    },
+    {
+      "path": "INDEPENDENT_AUDIT.json",
+      "bytes": 246894,
+      "sha256": "a42b3e20d1c910077c18782ccb2e22bd8d52efa99d026253e294b3d196391750"
+    },
+    {
+      "path": "independent_audit.py",
+      "bytes": 7476,
+      "sha256": "4d5ab39cdf30ad3077058e4def39f4adb31d88e885767a774614743abc024299"
+    },
+    {
+      "path": "MANIFEST.json",
+      "bytes": 29462,
+      "sha256": "41f1b7573b2cdf189821014fbfc1069d5de17e6c8df8e1527e4c7c88775c78d0"
+    },
+    {
+      "path": "preparation/SIL_ATTEMPT8_PREPARATION_OBSERVATION.json",
+      "bytes": 1044,
+      "sha256": "ff3fec44ee82f49b3852ce83d12fd9f90d8262bdc468bf311fd5678da5334fbe"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5467,
+      "sha256": "a48b84258c649f479efd5f8e92bac5ea967594ee1e7ab0fec8f3e9dcccac46be"
+    },
+    {
+      "path": "sil/bridge_phase.jsonl",
+      "bytes": 1332,
+      "sha256": "acf5afb8bac2f8f579eecdff315ff8c2beee22decac797400ec711be0f549c12"
+    },
+    {
+      "path": "sil/RESULT.json",
+      "bytes": 9753,
+      "sha256": "39f6192b09d16f222f4b798d18942277ba3904a6affe209d7da32957177d31ad"
+    },
+    {
+      "path": "sil/ROS_SOURCE.jsonl.gz",
+      "bytes": 35791,
+      "sha256": "d4fe625c1e168a765f8e11643811ebed3aa3d957d565e128e4c02d9c4cc2605d"
+    },
+    {
+      "path": "sil/stack/bridge_manifest.json",
+      "bytes": 1550,
+      "sha256": "81e4d7bafb1832bf94083827af77e1e32f8962591f99216e9b0a9882b803156a"
+    },
+    {
+      "path": "sil/stack/CLEANUP.json",
+      "bytes": 5533,
+      "sha256": "dd1f4b9cdbe7214e490b7ee19e633ccb90ec3059da01c59ccd51db44131dea0c"
+    },
+    {
+      "path": "sil/stack/controller_server.log.gz",
+      "bytes": 7310,
+      "sha256": "961a73c09c22e3d644120659b484e271151468ee69db3d0fa25ca72c5527eff3"
+    },
+    {
+      "path": "sil/stack/loam_interface.log",
+      "bytes": 71,
+      "sha256": "7c60bb9af4e52a62d3b1d16bef3569a3c5e7d560c93e61e31ec22506bb518356"
+    },
+    {
+      "path": "sil/stack/owned_parameters.yaml",
+      "bytes": 14266,
+      "sha256": "f371dc85947076ae25d000b6392b4e0b090bf16e5855b052a2484c7a555cb0c2"
+    },
+    {
+      "path": "sil/stack/PLAN.json",
+      "bytes": 54923,
+      "sha256": "fe0d357f5a2061f19bf6805d2abb3c5907dc20d151c9c94a914fce733ffc62dd"
+    },
+    {
+      "path": "sil/stack/planner_server.log",
+      "bytes": 7495,
+      "sha256": "e31fd5a5937adcd0f5298bed5a63b99c7892ac9726bd63d350f60e7490a9533d"
+    },
+    {
+      "path": "sil/stack/point_lio.log",
+      "bytes": 783,
+      "sha256": "3ff654936a49654d053316828e678e11982e5799224132ea5094a038e9678a8b"
+    },
+    {
+      "path": "sil/stack/pointcloud_to_laserscan.log",
+      "bytes": 244,
+      "sha256": "de29bfd8ced33c5a57ed1ad75b46aab76aa2ebe5ebb2bb2f0502351878f1d5d3"
+    },
+    {
+      "path": "sil/stack/sensor_scan_generation.log",
+      "bytes": 71,
+      "sha256": "b6685ba8be161f7e2e0b52375785c627ffecf1696d11e9403a7a38a9357fc307"
+    },
+    {
+      "path": "sil/stack/slam_toolbox.log",
+      "bytes": 800,
+      "sha256": "f7add88956088dcd76475f9c44d2f32f1c24f5cd2256d9b65adb0c0054a5e27f"
+    },
+    {
+      "path": "sil/stack/supervisor.jsonl",
+      "bytes": 25849,
+      "sha256": "d5fe5f4d9bde996d83410f0e0385069a2ff9378cb4f940cf7274f928eb66888b"
+    },
+    {
+      "path": "sil/stack/terrain_analysis.log",
+      "bytes": 324,
+      "sha256": "d847d1223247156db2f9e030775b63da349082f125ec7ef3b96c1a894edb33e5"
+    },
+    {
+      "path": "sil/stack/terrain_analysis_ext.log",
+      "bytes": 324,
+      "sha256": "f0ccfadf48707974f33c54ea7cf54a996e8cf2cfcfb4540fca289dae5f380d9f"
+    },
+    {
+      "path": "sil/TRACE.jsonl.gz",
+      "bytes": 415211,
+      "sha256": "8cf960a532502b656bb52d6d242e1d6d36d622f53b4947c33474b553f4e045db"
+    },
+    {
+      "path": "verify_archives.py",
+      "bytes": 3520,
+      "sha256": "d9d4e31e43e46356e24ad5f7d7dc6914ad3495011c82e3fe6034d5476b460bc0"
+    }
+  ],
+  "inventory_excludes_self": true,
+  "qualification": "frozen original single-sentry Linux 30s SIL + build/failure/driver evidence; no full mission, Windows, LAN or HIL qualification; no binaries/dependencies bundled",
+  "actual_receipt_audit": {
+    "commands": 18,
+    "consumed_steps": 779,
+    "all_receipts_verified": true,
+    "goal_path_qualification": "goal/path/status from frozen action-future RESULT and bound harness; raw controller reached-goal log corroborates, no independent original goal-TF/path snapshot"
+  }
+}

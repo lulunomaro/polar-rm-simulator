@@ -1,0 +1,17 @@
+test_actual_humble_owned_context_does_not_init_global_executor (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_algorithm_tuning_preserved_and_units_equivalent (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_alternative_algorithm_or_frames_rejected (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_concurrent_stop_waits_for_actual_failed_cleanup (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_executor_shutdown_order_and_failure_are_visible (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_fault_reaps_own_harmless_process_preserves_other_group (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_generation_alias_fault_stops_group (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_json_duplicate_and_nonfinite_rejected (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_namespace_domain_are_exact_and_fresh (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_slam_tf_enabled_without_prior_or_fake_frame (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_spin_requires_owned_executor (test_pb_navigation_stack.StackConfigurationTests) ... ok
+test_stop_rechecks_actual_asset_sha (test_pb_navigation_stack.StackConfigurationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 3.271s
+
+OK

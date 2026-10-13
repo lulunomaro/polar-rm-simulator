@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "/root/polar-navigation-humble-e05eb08e/rclcpp_dispatch_fixture_20261014_02/build/dispatch_fixture",
+    "some"
+  ],
+  "pid": 501,
+  "returncode": 0,
+  "wall_s": 0.24692208000000448,
+  "stdout": "{\"schema\":\"polar.pb.rclcpp-dispatch-fixture.v1\",\"scope\":\"synthetic DDS fixture, not LIO or SIL\",\"clock_domain\":\"linux_steady_diagnostic_only\",\"mode\":\"some\",\"imu_samples\":51,\"original_stamps_preserved\":true,\"poll_hz\":500,\"spin_all_budget_ns\":1000000,\"dispatch_calls\":51,\"max_callbacks_per_dispatch\":1,\"max_dispatch_duration_ns\":71356,\"publication_duration_ns\":53223,\"burst_end_to_complete_ns\":100102392,\"passed\":true,\"callbacks_per_dispatch\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\"dispatch_duration_ns\":[58610,25269,31227,23984,45934,14896,22404,19379,19810,21109,11145,9003,6369,6131,34880,28388,21754,17683,24859,7336,37230,18937,24421,16143,71356,42727,41577,41718,30917,17678,31126,17982,14381,47649,17582,31549,24078,29417,26549,16842,22028,24133,20299,18792,7592,23066,20412,37358,18610,29176,22769]}\n",
+  "stderr": "",
+  "reaped": true
+}

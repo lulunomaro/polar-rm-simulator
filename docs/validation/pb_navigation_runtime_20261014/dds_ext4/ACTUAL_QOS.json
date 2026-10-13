@@ -1,0 +1,30 @@
+{
+  "records": {
+    "tf": [
+      {
+        "topic": "/polar_tfmessage_ext4/red_sentry/tf_static",
+        "node_name": "polar_pb_sensor_bridge",
+        "node_namespace": "/",
+        "reliability": "RELIABLE",
+        "durability": "TRANSIENT_LOCAL",
+        "history": "UNKNOWN",
+        "depth": 0
+      }
+    ],
+    "request": [
+      {
+        "topic": "/polar_tfmessage_ext4/red_sentry/polar/pb/request",
+        "node_name": "polar_pb_sensor_bridge",
+        "node_namespace": "/",
+        "reliability": "RELIABLE",
+        "durability": "VOLATILE",
+        "history": "UNKNOWN",
+        "depth": 0
+      }
+    ]
+  },
+  "errors": [],
+  "tf_matches_original_broadcaster": null,
+  "request_bounded_depth_8": false,
+  "passed": false
+}

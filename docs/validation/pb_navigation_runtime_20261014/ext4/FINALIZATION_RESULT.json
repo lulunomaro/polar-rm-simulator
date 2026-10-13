@@ -1,0 +1,52 @@
+{
+  "schema": "polar.humble-ext4-finalization.v1",
+  "clean": true,
+  "checks": {
+    "original_evidence_unchanged": true,
+    "PYTHONPATH_not_required": true
+  },
+  "original_evidence_sha256": {
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/MIGRATION_RESULT.json": "0d30bbfeb4577c7034159fb14454e1de17c48539272c0925d6724a047f9a2c53",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT.json": "d5d1dab00204fe41b2ccbf79d74f963f636f0bbbadbe8bfb55b80e71c23c33e0",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/DERIVED_PTH.json": "e1d333b739b82f5a655d4ab652d8a06823564047e3a0636003cb5e486adee1bc",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/ENVIRONMENT_COMPAT.json": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49"
+  },
+  "final_environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "venv_python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+  "asset_path_mappings": [
+    {
+      "source": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv",
+      "destination": "/root/polar-humble-ext4-20261014-01/venv"
+    },
+    {
+      "source": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix",
+      "destination": "/root/polar-humble-ext4-20261014-01/prefix"
+    },
+    {
+      "source": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/compat",
+      "destination": "/root/polar-humble-ext4-20261014-01/compat"
+    },
+    {
+      "source": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-interfaces-actual-20261013/install/livox_ros_driver2",
+      "destination": "/root/polar-humble-ext4-20261014-01/livox_ros_driver2"
+    }
+  ],
+  "pth": {
+    "schema": "polar.humble-ext4-pth-final.v1",
+    "path": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/owned_humble.pth",
+    "before_sha256": "7cfc456dca4948692d6263fc38e6aabe4d042ac3de83ac0c8e9ac1e4f6095dc6",
+    "after_sha256": "aadc51d8ccebdda01e32b3777eebe35fb9e6cca5322feb728521fd255c3c46dd",
+    "trusted_paths": [
+      "/opt/ros/humble/lib/python3.10/site-packages",
+      "/opt/ros/humble/local/lib/python3.10/dist-packages",
+      "/root/polar-humble-ext4-20261014-01/livox_ros_driver2/local/lib/python3.10/dist-packages",
+      "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/local/lib/python3.10/dist-packages",
+      "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/python3.10/site-packages"
+    ],
+    "source_environment_sha256": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49",
+    "no_free_callback": true
+  },
+  "navigation_nodes_started": false,
+  "physics_steps": 0,
+  "source_sha256": "f07637b16e6f0c390b24f55f1e7cf63ecf7cc9e2aec8def61b37f6988c56368d"
+}

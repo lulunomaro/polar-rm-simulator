@@ -1,0 +1,25 @@
+{
+  "source_sha256": {
+    "tools/build_pb_nav2_plugins.py": "282e96ec4f14c285ec0d56a25f2cd8781a3e22bb57aa5aa2cbf7b4c093342787",
+    "tests/test_pb_layers_binding.py": "53929d3f6abfefcf438c334bfae91f13a5576d3698cd134cd09b05720840235a"
+  },
+  "windows_pytest": {
+    "passed": 4,
+    "actual_linux_skipped": 2,
+    "subtests_passed": 7
+  },
+  "humble_unittest": {
+    "passed": 6,
+    "actual_elf_loader_fixture": true,
+    "actual_owned_descendant_reaped": true
+  },
+  "build_budget_default_seconds": 1800,
+  "bounds_seconds": [
+    60,
+    3600
+  ],
+  "sdk_deadlines_changed": false,
+  "old_reports_overwritten": false,
+  "actual_original_shared_libraries_loaded": 3,
+  "plugin_class_extra_probe": "compile_timeout_180s_not_verified"
+}

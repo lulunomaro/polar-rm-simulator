@@ -1,0 +1,176 @@
+{
+  "schema": "polar.pb-navigation-frozen-evidence-index.v1",
+  "manifest": "MANIFEST.json",
+  "manifest_sha256": "d3e1435aa89b9f5b42971abbfa8a5fe82c37660471c87cbe3c17ff2dd91b88bf",
+  "copied_payload_count": 28,
+  "groups": {
+    "ctrl": 15,
+    "dds": 7,
+    "fail": 4,
+    "fake": 1,
+    "src": 1
+  },
+  "original_total_bytes": 29923752,
+  "stored_total_bytes": 1106572,
+  "independent_full_payload_verification_passes": 2,
+  "all_sources_unchanged": true,
+  "local_files_verified_twice": [
+    {
+      "path": "archive_evidence.py",
+      "bytes": 4038,
+      "sha256": "f9736d612670ef83ee55a1d94fb68148bcc55495280805ddc674376d1c10f4c5"
+    },
+    {
+      "path": "ctrl/audit.py",
+      "bytes": 3301,
+      "sha256": "0040d4081821d4e18a5a29889ae1cbd05fe0d1dfc89ee8222c2b6bd58d5d3629"
+    },
+    {
+      "path": "ctrl/BINARY_AUDIT.json.gz",
+      "bytes": 527694,
+      "sha256": "17a6793e63687fe8ff7f54017b3447dd5516154761afff23f6f987387621e998"
+    },
+    {
+      "path": "ctrl/BUILD_RESULT_ORIGINAL.json",
+      "bytes": 2259,
+      "sha256": "79e4aa231b4514562eede700d2b35d548e6d288635ce3f0958141f22b7593dd7"
+    },
+    {
+      "path": "ctrl/driver.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ctrl/dynamic.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ctrl/dynamic.stdout",
+      "bytes": 3078,
+      "sha256": "6c77156cd0848cdd24b1291eb725d51e8d41ff3cee60c92f15075e2c2f18d9a7"
+    },
+    {
+      "path": "ctrl/FAKE_ROS_TEST_OBSERVATION.json",
+      "bytes": 835,
+      "sha256": "ec3b772f0ef00a15ac0c645de05264ab9f20ee2fa7b87ebd530589486bcb8278"
+    },
+    {
+      "path": "ctrl/launch.py",
+      "bytes": 2709,
+      "sha256": "d0a2b44966d6ed8f533437de5ee4082852c982e3bec690886b3c6b0137d40a07"
+    },
+    {
+      "path": "ctrl/ldd.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ctrl/ldd.stdout",
+      "bytes": 5719,
+      "sha256": "329980e23fb873086653e8933cdbd706ce2ada96429b226ad4d1c361e232ccaa"
+    },
+    {
+      "path": "ctrl/load.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ctrl/load.stdout",
+      "bytes": 25,
+      "sha256": "cc21688d8082b15faae1bf57b73dc3ddf1c43dcfa3d544d558b9de0e7b03725d"
+    },
+    {
+      "path": "ctrl/RESULT.json",
+      "bytes": 4367,
+      "sha256": "3a13e49444c24676ad6fa8ceb04c98f44ae22320429da729fe8458943090f3bc"
+    },
+    {
+      "path": "ctrl/symbols.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ctrl/symbols.stdout.gz",
+      "bytes": 523637,
+      "sha256": "b3a0f7f033136b951006ee539927bc0d9e4a36a3e1a93ec7730091966789730d"
+    },
+    {
+      "path": "dds/all.json",
+      "bytes": 767,
+      "sha256": "44787bf213b7152a45b77f5d56ac170d4d5ddd061de052b7a04fce910b498727"
+    },
+    {
+      "path": "dds/COMMAND.json",
+      "bytes": 1163,
+      "sha256": "e2581e83832243b5fdca206a63e18eaf9d4f3c12077d32bdf55a0319ee4f5a37"
+    },
+    {
+      "path": "dds/compile.json",
+      "bytes": 442,
+      "sha256": "56010ad5138c529c232a74bb0637f6fda2e29965b5dab5d6e079780cdc1842b1"
+    },
+    {
+      "path": "dds/configure.json",
+      "bytes": 2462,
+      "sha256": "b375d141f90db77aa5163d705c11e9ce2c972cf49a6508c8b3297d9698c98d22"
+    },
+    {
+      "path": "dds/RESULT.json",
+      "bytes": 2510,
+      "sha256": "7bea11cc0aaa5f125c9d402b8f8f6cfb2a60171cf6ccacd154025c7e13ba4bbb"
+    },
+    {
+      "path": "dds/run_fixture.py",
+      "bytes": 3965,
+      "sha256": "eb3d9c2696c74867a892e24e000bf8946252b8cd072bbf459d4009ab197acb8e"
+    },
+    {
+      "path": "dds/some.json",
+      "bytes": 1165,
+      "sha256": "bcd3c7b395b1443956b9f78ce1d316c8c92a557f460da75f864bc472038b1951"
+    },
+    {
+      "path": "fail/COMMAND.json",
+      "bytes": 1160,
+      "sha256": "6ee799188bb7c501c9368e492fa0a631b2b6a05392f307b64645c9bc6c996fb5"
+    },
+    {
+      "path": "fail/configure.json",
+      "bytes": 1999,
+      "sha256": "f017c0bb6d0713cdec60f513eb3481d907242e6b9e526376db095796d828bd0c"
+    },
+    {
+      "path": "fail/RESULT.json",
+      "bytes": 81,
+      "sha256": "8f4cb383fe9386aa9b8b42a0c81198690bc6de73f47da030098ffdaf64ce9b09"
+    },
+    {
+      "path": "fail/run_fixture.py",
+      "bytes": 3754,
+      "sha256": "b0fb5e36ca736c596879de8f612fb38bc3a7363706685a820a611f886549c21d"
+    },
+    {
+      "path": "fake/test_pb_controller_diagnostics.py",
+      "bytes": 9192,
+      "sha256": "16eb2088ef454e95b705b704f254a1543dd50b5b2b60e62cbf693aab0da95132"
+    },
+    {
+      "path": "MANIFEST.json",
+      "bytes": 14307,
+      "sha256": "d3e1435aa89b9f5b42971abbfa8a5fe82c37660471c87cbe3c17ff2dd91b88bf"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3263,
+      "sha256": "57dc84fabfd34604cf54ebcc5bf521c4b0cb69c68c42357de3724655d1645409"
+    },
+    {
+      "path": "src/SOURCE_IDENTITY.json",
+      "bytes": 4288,
+      "sha256": "a333992febd32c48b4145cc9ecaacbf02782bef9f310ba6a376de97229321c18"
+    }
+  ],
+  "inventory_excludes_self": true,
+  "qualification": "frozen actual synthetic DDS dispatch + diagnostic controller build/load text; not SIL or navigation acceptance; no binaries bundled"
+}

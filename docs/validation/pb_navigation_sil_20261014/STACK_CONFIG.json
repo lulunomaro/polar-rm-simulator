@@ -1,0 +1,118 @@
+{
+  "schema": "polar.pb-stack-config.v1",
+  "repo_root": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+  "source_repo": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/polarbear-navigation-source-e05eb08e/pb2025_sentry_nav",
+  "source_revision": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+  "generation_config": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261013-02/GENERATION_CONFIG.json",
+    "sha256": "4d3e9d42cc41b0d67bc670732c3a401f95cc4ad5de1b811c72113bbe10775cd5"
+  },
+  "environment": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/ENVIRONMENT_COMPAT.json",
+    "sha256": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49"
+  },
+  "install_prefixes": [
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface",
+    "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation",
+    "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis",
+    "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext",
+    "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller"
+  ],
+  "assets": {
+    "point_lio": {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/point_lio/lib/point_lio/pointlio_mapping",
+      "sha256": "a1161ea663df5c359300ae42bc3674ef6ad3f795e9743081ad1123732c0373c4"
+    },
+    "loam_interface": {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib/loam_interface/loam_interface_node",
+      "sha256": "5ab5a79a4a9926f0140f192b2edd1382dedd6544018135c01777537536138376"
+    },
+    "sensor_scan_generation": {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib/sensor_scan_generation/sensor_scan_generation_node",
+      "sha256": "45be8afa95d7a92d009b7acc7c4ebaa1eb1d35a5ae40d9974b43edeaf4c652b0"
+    },
+    "terrain_analysis": {
+      "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis/lib/terrain_analysis/terrainAnalysis",
+      "sha256": "aefba171b7a205772fff0bc8e5a4ea756a8cf571ea202b71d916c853f5b7945d"
+    },
+    "terrain_analysis_ext": {
+      "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/terrain_analysis_ext/lib/terrain_analysis_ext/terrainAnalysisExt",
+      "sha256": "f6384c6ceafb0323c7ad95b9e97f3b8fbbe77ffe3d0f09cb0c27c617ea304ca2"
+    },
+    "pointcloud_to_laserscan": {
+      "path": "/root/polar-navigation-humble-e05eb08e/terrain_scan_build_20261013_01/install/pointcloud_to_laserscan/lib/pointcloud_to_laserscan/pointcloud_to_laserscan_node",
+      "sha256": "7bc4d426e28f70ec0ebe2db72cf8eb18d4024027ea45131f63b747590bdd7907"
+    },
+    "slam_toolbox": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/slam_toolbox/sync_slam_toolbox_node",
+      "sha256": "7a6a0ae28c5be1c4d087ef5552136aa6a7655ea762d988ffdae4998d0f8eb033"
+    },
+    "planner_server": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/nav2_planner/planner_server",
+      "sha256": "cf15e259c96ec1ecb20edd3b660c6c866563c77b5ffb8ea0863e15d130c49ad1"
+    },
+    "controller_server": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble/lib/nav2_controller/controller_server",
+      "sha256": "16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d"
+    }
+  },
+  "libraries": {
+    "pb_intensity_layers": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/install/pb_nav2_plugins/lib/libpb_intensity_layers.so",
+      "sha256": "d7cce4d27ba71f4cf68800ad76559f71146e79a939753aa640a86adb3ea8d269"
+    },
+    "pb_controller": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/install/pb_omni_pid_pursuit_controller/lib/libpb_omni_pid_pursuit_controller.so",
+      "sha256": "def2bd7413e805067706278037bc4b8615938208ca33a16fd3edf550a6020911"
+    }
+  },
+  "provenance": {
+    "lio_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261013-02/OVERLAY_MANIFEST.json",
+      "sha256": "6810957d9918ee5ccc71658056fe524b7721b4010603740cfddc27e9cbea46e3"
+    },
+    "lio_elf": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-lio-tf-source-20261013-02/BINARY_AUDIT.json",
+      "sha256": "31ba1a583ecedb5fb46c799a162a56b820d82fcd06bb6a18be11b6ef6d2324f2"
+    },
+    "terrain_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-terrain-scan-build-20261013/SOURCE_MANIFEST.json",
+      "sha256": "65799b8c512f4fd42133ce8e607c3b97c1745f8e1c9802e88e815f3bdbba80d0"
+    },
+    "terrain_elf": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-terrain-scan-build-20261013/BINARY_AUDIT.json",
+      "sha256": "6f3d7f65802b256219ff70d9d1631e5cb5ffd0b7bcdf3469154999d3f2e67256"
+    },
+    "controller_resume": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-controller-resume-20261014-01/RESULT.json",
+      "sha256": "9c32e39bb5b8c352a02226bb431739587d431760dd920b822c16777858934836"
+    },
+    "controller_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261013-02/src/pb_omni_pid_pursuit_controller/SOURCE_IDENTITY.json",
+      "sha256": "bfa23b77d92938415ceb13c855b13c4e5ecffa0cfd7ad5a7fd7c1d9b84beaa0f"
+    },
+    "pb_plugin_build": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/BUILD_RESULT.json",
+      "sha256": "d8970f06fafa7a1076fd6e88a1dfa2955325e2bc2246e95e06c58f09f7eb12a9"
+    },
+    "pb_plugin_source": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-nav2-plugins-actual-build-20261014-03/src/pb_nav2_plugins/SOURCE_IDENTITY.json",
+      "sha256": "79bbea021d59d2ffc1a9e88b4f38c4ad96ca644482af60737af54edfe6b5e29a"
+    },
+    "dependency_environment": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/ENVIRONMENT_MANIFEST.json",
+      "sha256": "b6f3841d60a7aeead3ca00ad04a936c4d6e88ba710c148a099b3def7d16816dc"
+    },
+    "python_ABI": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/PYTHON_RUNTIME_RESULT.json",
+      "sha256": "0b87123ad3a8f7363bc0477f98b917871aceb490e07555ebd7aef7b4ec1aa929"
+    },
+    "loader_audit": {
+      "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-nav2-elf-loader-audit-20261014/RESULT.json",
+      "sha256": "0cc96b585d04e687062ffe1f668ac4210b6e2c4a89270830e1485bee26bf6b8b"
+    }
+  }
+}

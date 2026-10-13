@@ -1,0 +1,165 @@
+{
+  "schema": "polar.pb2025.terrain-scan-source.v1",
+  "files": {
+    "terrain_analysis/CMakeLists.txt": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis/CMakeLists.txt",
+      "sha256": "e592c35288d02401579b5518c86255bb675ffd1db92c9c988f685ceffcf2f5e7",
+      "modified": false
+    },
+    "terrain_analysis/launch/terrain_analysis.launch": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis/launch/terrain_analysis.launch",
+      "sha256": "61b36711b954bf06741dd7ad195deeb2b192a71d62bf7b816aa941ac32e3ac3a",
+      "modified": false
+    },
+    "terrain_analysis/package.xml": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis/package.xml",
+      "sha256": "2e329e1e7f9220695eeb591ccea16b8a72e457fb0617842ce11802649db3d593",
+      "modified": false
+    },
+    "terrain_analysis/src/terrainAnalysis.cpp": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis/src/terrainAnalysis.cpp",
+      "sha256": "5782c62c103f02eb72175126e2b90101edbffab369a2e423cf12e0df5e2df601",
+      "modified": false
+    },
+    "terrain_analysis_ext/CMakeLists.txt": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis_ext/CMakeLists.txt",
+      "sha256": "e79e02aa3e3cf637396bd86cc8c892d2bc7b23e8203cf7cdd0b7d708e08e43ed",
+      "modified": false
+    },
+    "terrain_analysis_ext/launch/terrain_analysis_ext.launch": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis_ext/launch/terrain_analysis_ext.launch",
+      "sha256": "83b7c1ba8fca385025e5632118dfa9321315e37c6790ea40ce0561a21613ab7d",
+      "modified": false
+    },
+    "terrain_analysis_ext/package.xml": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis_ext/package.xml",
+      "sha256": "9633a6267a6ac6774c05c421cf983df9241b06782fc6230a25912b6de4adde22",
+      "modified": false
+    },
+    "terrain_analysis_ext/src/terrainAnalysisExt.cpp": {
+      "upstream": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85",
+      "git_path": "terrain_analysis_ext/src/terrainAnalysisExt.cpp",
+      "sha256": "472fbcd937c224d24f7c1489a6bfc66aa7f2a4ce9dbe566f099e32e001b52f9d",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/CHANGELOG.rst": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "CHANGELOG.rst",
+      "sha256": "ec7a03672e81ca302eff45eb0825da4d62fa5339779788a1e55e602fa467e2a3",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/CMakeLists.txt": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "CMakeLists.txt",
+      "sha256": "bb7563b3f0549483abec1eb7c8520cd13abd3a03d5ec0a9bca14cc3dbfb68bf6",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/LICENSE": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "LICENSE",
+      "sha256": "6273b9e0f2e944f7c3f024205dab05f907ba0489fdf42c8caa61e0ddcf63be47",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/README.md": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "README.md",
+      "sha256": "784a5a57681553e04dd7f12e5bc6bcfbf27454f295f3f9bdd295fbc26b76006e",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/include/pointcloud_to_laserscan/laserscan_to_pointcloud_node.hpp": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "include/pointcloud_to_laserscan/laserscan_to_pointcloud_node.hpp",
+      "sha256": "bf0b05dfc80fcb67b52f46a502593c2bd5b4a9db0a4f32a964f8c696dc586924",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/include/pointcloud_to_laserscan/pointcloud_to_laserscan_node.hpp": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "include/pointcloud_to_laserscan/pointcloud_to_laserscan_node.hpp",
+      "sha256": "d4c1de17c3e917d9ccd6b85976bc593a3550371feee46935cc4c0f977a1f4937",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/include/pointcloud_to_laserscan/visibility_control.h": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "include/pointcloud_to_laserscan/visibility_control.h",
+      "sha256": "feb3319264011bb6964b97ae392f837cad98dc6079d6d8d44102ae00bab39409",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/launch/sample_laserscan_to_pointcloud_launch.py": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "launch/sample_laserscan_to_pointcloud_launch.py",
+      "sha256": "4802e8ea5264e0b273167d9e506bb8ba336d166653903d2540a9f7e541c711db",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/launch/sample_pointcloud_to_laserscan_launch.py": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "launch/sample_pointcloud_to_laserscan_launch.py",
+      "sha256": "d45fe2ab2ff1dfbf6dc63131a94306770ae08bb564a2f53c2d695989f6b8546a",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/package.xml": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "package.xml",
+      "sha256": "e7b9c0f1a688db3b51237ee16fff9a0ecf30e3f0cf1c8e202796bcce120401c7",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/src/dummy_pointcloud_publisher.cpp": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "src/dummy_pointcloud_publisher.cpp",
+      "sha256": "eece1e62fb3d21a7e63c38897e75869ef6bfe25fba978a5fa2532845bbe94e0b",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/src/laserscan_to_pointcloud_node.cpp": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "src/laserscan_to_pointcloud_node.cpp",
+      "sha256": "ec70a970d22c8058cb77015c0eed11a0156054ab232e469aea1003a104a6b6d5",
+      "modified": false
+    },
+    "pointcloud_to_laserscan/src/pointcloud_to_laserscan_node.cpp": {
+      "upstream": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267",
+      "git_path": "src/pointcloud_to_laserscan_node.cpp",
+      "sha256": "62e21f9296f8f783ae76e8bb712e55a561ef509b91074b82a2092c7505ffbb04",
+      "modified": false
+    }
+  },
+  "upstream": [
+    {
+      "repository": "pb2025_sentry_nav",
+      "commit": "cb97fb07ace54fcc617ddb884227ef85fe4b8f85"
+    },
+    {
+      "repository": "pointcloud_to_laserscan_2025",
+      "commit": "5efaa8ba391bf4450a02cc5bb794b586c9f7d267"
+    }
+  ],
+  "algorithm_modified": false,
+  "build_executed": false,
+  "prepare_script_sha256": "06c736c3e1cbcbba2cdb52e39f763823f7b611b917d4063b3385e0f746766bc4"
+}

@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/usr/bin/cmake",
+    "-S",
+    "/root/polar-navigation-humble-e05eb08e/rclcpp_dispatch_fixture_20261014_02/src",
+    "-B",
+    "/root/polar-navigation-humble-e05eb08e/rclcpp_dispatch_fixture_20261014_02/build",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+  ],
+  "pid": 391,
+  "returncode": 0,
+  "wall_s": 43.653164898,
+  "stdout": "-- The CXX compiler identification is GNU 11.4.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n-- Found Python3: /root/polar-humble-ext4-20261014-01/venv/bin/python (found version \"3.10.12\") found components: Interpreter \n-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n-- Found rmw_implementation_cmake: 6.1.3 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version \"3.0.2\")  \n-- Found FastRTPS: /opt/ros/humble/include  \n-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n-- Looking for C++ include pthread.h\n-- Looking for C++ include pthread.h - found\n-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n-- Found Threads: TRUE  \n-- Found sensor_msgs: 4.9.2 (/opt/ros/humble/share/sensor_msgs/cmake)\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /root/polar-navigation-humble-e05eb08e/rclcpp_dispatch_fixture_20261014_02/build\n",
+  "stderr": "CMake Warning:\n  Manually-specified variables were not used by the project:\n\n    PYTHON_EXECUTABLE\n\n\n",
+  "reaped": true
+}

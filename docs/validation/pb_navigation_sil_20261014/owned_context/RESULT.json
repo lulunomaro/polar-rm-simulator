@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tests",
+    "-p",
+    "test_pb_navigation_stack.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 5.167605971999997,
+  "LD_preexec": true,
+  "PYTHONPATH_scrubbed": true,
+  "navigation_algorithm_nodes_started": false,
+  "sensor_frames": 0,
+  "physics_steps": 0,
+  "actual_owned_context_case_passed": true
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "polar.navigation-sensor-qa.v1",
+  "scope": "Actual MuJoCo 3D ray/IMU only; physical excitation is scripted, no own navigation algorithm",
+  "navigation_qualified": false,
+  "full_match_qualified": false,
+  "hardware_qualified": false,
+  "profile": {
+    "schema": "polar.navigation-sensor-profile.v1",
+    "robot_ids": [
+      "red_sentry"
+    ],
+    "point_rate_hz": 200000,
+    "scan_period_ns": 100000000,
+    "range_min_m": 0.1,
+    "range_max_m": 40.0,
+    "mount_translation_m": [
+      0.0,
+      0.0,
+      0.5
+    ],
+    "mount_rotation_xyzw": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "range_noise_std_m": 0.01,
+    "gyro_noise_std_rps": 0.001,
+    "acceleration_noise_std_mps2": 0.01,
+    "seed": 20261013,
+    "pattern": "analytic_golden_angle_v1",
+    "fov_degrees": [
+      360,
+      -7,
+      52
+    ],
+    "scan_lines": 4,
+    "reflectivity": "constant_100_uncalibrated",
+    "orientation_feed": false,
+    "imu_rate": "one_actual_sample_per_physics_step",
+    "point_time": "physics_step_quantized",
+    "calibration": "provisional_base_mount_not_measured_hardware"
+  },
+  "profile_sha256": "db84bf05840374b1f04cb56aeb5272ca852db6bd40ac993825b169422b96b443",
+  "requested_seconds": 2.0,
+  "actual_steps": 1000,
+  "simulation_seconds": 2.0,
+  "wall_seconds": 2.0001218440000006,
+  "physics_rtf": 0.9999390817112637,
+  "attempted_rays": 400000,
+  "completed_clouds": 19,
+  "returned_points": 11145,
+  "clouds": [
+    {
+      "frame_id": 0,
+      "start_ns": 0,
+      "end_ns": 100000000,
+      "point_count": 584,
+      "imu_count": 51,
+      "capture_wall": 6.847344722,
+      "observed_wall": 6.848233393,
+      "delivery_age_s": 0.0008886710000002296,
+      "sensor_sha256": "735b2e77cdc8833ab74326e6a0fd623d85ad8b08f8e9c92de3e94229383a4515"
+    },
+    {
+      "frame_id": 1,
+      "start_ns": 100000000,
+      "end_ns": 200000000,
+      "point_count": 573,
+      "imu_count": 51,
+      "capture_wall": 6.885631339,
+      "observed_wall": 6.886509641,
+      "delivery_age_s": 0.000878302000000275,
+      "sensor_sha256": "ecdb97127946904aa1aec68127998512917bb0a64df1ba606bc8a1c7a2414a9e"
+    },
+    {
+      "frame_id": 2,
+      "start_ns": 200000000,
+      "end_ns": 300000000,
+      "point_count": 570,
+      "imu_count": 51,
+      "capture_wall": 6.985484515,
+      "observed_wall": 6.986635341,
+      "delivery_age_s": 0.0011508260000008264,
+      "sensor_sha256": "eca18504daf92fbc5e0a283d049b8f564bbe3208ec9c233c8fe7551b431054c5"
+    },
+    {
+      "frame_id": 3,
+      "start_ns": 300000000,
+      "end_ns": 400000000,
+      "point_count": 567,
+      "imu_count": 51,
+      "capture_wall": 7.085467508,
+      "observed_wall": 7.086295029,
+      "delivery_age_s": 0.0008275210000006084,
+      "sensor_sha256": "e367e84c365eb2ac5d24743cb90b8288d0b2e5283701ad165090232a00f83439"
+    },
+    {
+      "frame_id": 4,
+      "start_ns": 400000000,
+      "end_ns": 500000000,
+      "point_count": 580,
+      "imu_count": 51,
+      "capture_wall": 7.185683235,
+      "observed_wall": 7.186599289,
+      "delivery_age_s": 0.000916054000000166,
+      "sensor_sha256": "69d0d02e2e7429c1e44b16bac8533c46efd7e1b78b822f8b4844060fdb87c225"
+    },
+    {
+      "frame_id": 5,
+      "start_ns": 500000000,
+      "end_ns": 600000000,
+      "point_count": 586,
+      "imu_count": 51,
+      "capture_wall": 7.285533362,
+      "observed_wall": 7.286489182,
+      "delivery_age_s": 0.0009558200000006067,
+      "sensor_sha256": "957423a3ddc3db1fce4f233c84d55d6e00e2a9395c006b31d9238bcd8171079a"
+    },
+    {
+      "frame_id": 6,
+      "start_ns": 600000000,
+      "end_ns": 700000000,
+      "point_count": 571,
+      "imu_count": 51,
+      "capture_wall": 7.385523017,
+      "observed_wall": 7.386481081,
+      "delivery_age_s": 0.0009580640000006468,
+      "sensor_sha256": "0a26ace0573f025d9e6d2fc1f31f56a07f46b8cfb7d98a93016041f89cdebea9"
+    },
+    {
+      "frame_id": 7,
+      "start_ns": 700000000,
+      "end_ns": 800000000,
+      "point_count": 568,
+      "imu_count": 51,
+      "capture_wall": 7.485588767,
+      "observed_wall": 7.486587333,
+      "delivery_age_s": 0.000998565999999812,
+      "sensor_sha256": "8fa70fbbc0a6aebe4858999f8bfa24560e586ff76f34b2a17daf5f7b7a5676a6"
+    },
+    {
+      "frame_id": 8,
+      "start_ns": 800000000,
+      "end_ns": 900000000,
+      "point_count": 569,
+      "imu_count": 51,
+      "capture_wall": 7.585509688,
+      "observed_wall": 7.586459092,
+      "delivery_age_s": 0.000949403999999987,
+      "sensor_sha256": "7aa1d2490bca7c98c864ee772dae8f2e14aa4e85c3f1b7fc48e38e4067135b02"
+    },
+    {
+      "frame_id": 9,
+      "start_ns": 900000000,
+      "end_ns": 1000000000,
+      "point_count": 573,
+      "imu_count": 51,
+      "capture_wall": 7.685506417,
+      "observed_wall": 7.686438747,
+      "delivery_age_s": 0.0009323300000003698,
+      "sensor_sha256": "cfe6853f5b5a71e56cfb36a6e2bdcaf66e063cc2a92f7d10481f0c4be563b112"
+    },
+    {
+      "frame_id": 10,
+      "start_ns": 1000000000,
+      "end_ns": 1100000000,
+      "point_count": 580,
+      "imu_count": 51,
+      "capture_wall": 7.785482155,
+      "observed_wall": 7.786436274,
+      "delivery_age_s": 0.0009541189999993094,
+      "sensor_sha256": "0e2b70df47ef56b10fce4c4605b3e36620c3273a269848a0f0f3c1f9e009ccbe"
+    },
+    {
+      "frame_id": 11,
+      "start_ns": 1100000000,
+      "end_ns": 1200000000,
+      "point_count": 587,
+      "imu_count": 51,
+      "capture_wall": 7.885481901,
+      "observed_wall": 7.886530711,
+      "delivery_age_s": 0.001048809999999456,
+      "sensor_sha256": "23eec0a47f3c8a94093bab7f0b873871c4fc4b76164c516ea418cdc3a05ab5f7"
+    },
+    {
+      "frame_id": 12,
+      "start_ns": 1200000000,
+      "end_ns": 1300000000,
+      "point_count": 592,
+      "imu_count": 51,
+      "capture_wall": 7.985481605,
+      "observed_wall": 7.98636038,
+      "delivery_age_s": 0.0008787749999994432,
+      "sensor_sha256": "99b5b56bfe1e5de173b68f87f2c8e1cba8168ef4195c98d7d7974437599f29e8"
+    },
+    {
+      "frame_id": 13,
+      "start_ns": 1300000000,
+      "end_ns": 1400000000,
+      "point_count": 589,
+      "imu_count": 51,
+      "capture_wall": 8.085534565,
+      "observed_wall": 8.086476069,
+      "delivery_age_s": 0.0009415040000000374,
+      "sensor_sha256": "c5341170bf33b1723ae517411a53eec3642225084f130f718957a94d9989c0b6"
+    },
+    {
+      "frame_id": 14,
+      "start_ns": 1400000000,
+      "end_ns": 1500000000,
+      "point_count": 591,
+      "imu_count": 51,
+      "capture_wall": 8.185550814,
+      "observed_wall": 8.186682768,
+      "delivery_age_s": 0.0011319539999998796,
+      "sensor_sha256": "dd39773205109126065171dae578ac18ebedd1a03caa329987bbd5109a37b900"
+    },
+    {
+      "frame_id": 15,
+      "start_ns": 1500000000,
+      "end_ns": 1600000000,
+      "point_count": 598,
+      "imu_count": 51,
+      "capture_wall": 8.285615871,
+      "observed_wall": 8.286535675,
+      "delivery_age_s": 0.0009198040000004681,
+      "sensor_sha256": "8bf9eea0db6ee3efa86a41d2a00bdaff00e75869a5ef0e79bd137a329bb9fc6a"
+    },
+    {
+      "frame_id": 16,
+      "start_ns": 1600000000,
+      "end_ns": 1700000000,
+      "point_count": 610,
+      "imu_count": 51,
+      "capture_wall": 8.385532155,
+      "observed_wall": 8.386531726,
+      "delivery_age_s": 0.0009995709999994773,
+      "sensor_sha256": "a6ee58acbf1799ee745dbad46ea24c4fcd652d524119680923bf972f3eaac90c"
+    },
+    {
+      "frame_id": 17,
+      "start_ns": 1700000000,
+      "end_ns": 1800000000,
+      "point_count": 623,
+      "imu_count": 51,
+      "capture_wall": 8.485643118,
+      "observed_wall": 8.486567259,
+      "delivery_age_s": 0.0009241409999987127,
+      "sensor_sha256": "1246b1970ab6ce945c0b6d42665facd67ca46500ab54ed4b1a7fab6c71833036"
+    },
+    {
+      "frame_id": 18,
+      "start_ns": 1800000000,
+      "end_ns": 1900000000,
+      "point_count": 634,
+      "imu_count": 51,
+      "capture_wall": 8.585647528,
+      "observed_wall": 8.586524035,
+      "delivery_age_s": 0.0008765069999991937,
+      "sensor_sha256": "39f9a026103e3c234c8ad99bb23263ba4cb7377ea3263297abc3918bd03a8481"
+    }
+  ],
+  "step_durations": {
+    "count": 1000,
+    "p50_ms": 0.5717115000001272,
+    "p95_ms": 0.7565931499997623,
+    "max_ms": 138.18214199999977
+  },
+  "validation_durations": {
+    "count": 19,
+    "p50_ms": 0.6675349999998303,
+    "p95_ms": 0.7430723000005023,
+    "max_ms": 0.778436000000049
+  },
+  "no_orientation_or_ideal_odometry": true,
+  "image_budget_80ms_changed": false,
+  "control_window_150ms_changed": false,
+  "source_files_sha256": {
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/backend.py": "4aeebb98795f3f8507624f4ed908221768a55ca7111d2d50861101e20c2630fb",
+    "rm_match/match_engine.py": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+    "rm_match/match_model.py": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+    "rm_match/arena.py": "7d67c46c718df7c1511b1ede564b3f6b657db4e17c3920dff4bb907c48f2b711",
+    "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+    "tools/qa_navigation_sensors.py": "35d241bc2ab2904c801cbe848a278f2af37f8eeeb3d6a9ad7115b309881e552b",
+    "rm_match/assets/arenas/rmul_2026_rules_v1_2/arena.xml": "e668017d40a963360d41bae435668c7bfeb75d2f2c9be60dd43dc88bbe564bc4"
+  },
+  "source_unchanged": true,
+  "errors": []
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "polar.pb.dispatch-readonly-audit.v1",
+  "scope": "Read-only actual SIL recorder comparison, no fixture substitution, no physics truth input",
+  "quantile_method": "sorted nearest lower rank floor((n-1)*q)",
+  "attempt7": {
+    "source_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-actual-20261014-attempt7\\ROS_SOURCE.jsonl",
+    "source_sha256": "17849da8b21854d1598056df3e551b3f6c6ba8e438c92f312ef97440f453b70d",
+    "source_unchanged": true,
+    "counts": {
+      "request": 293,
+      "localization": 290
+    },
+    "strict_original_localization_join_count": 290,
+    "request_order_strictly_increasing": true,
+    "observer_request_to_localization_ms": {
+      "count": 290,
+      "min": 96.36305099999731,
+      "p50": 140.12013099999976,
+      "p95": 143.7066619999996,
+      "p99": 144.73521100000397,
+      "max": 148.24659299999965
+    },
+    "observer_localization_minus_original_deadline_ms": {
+      "count": 290,
+      "min": -8.374773999996421,
+      "p50": 46.09187500000189,
+      "p95": 51.03343100000046,
+      "p99": 51.76372399999707,
+      "max": 53.88276900000477
+    },
+    "observer_localization_before_original_deadline": 51,
+    "observer_latest_request_minus_localization_seq": {
+      "1": 287,
+      "0": 3
+    },
+    "original_acquisition_end_minus_localization_ns": {
+      "2000000": 142,
+      "2000001": 148
+    },
+    "controller_original_joins": [],
+    "controller_deadline_margin_ms": null,
+    "errors": [],
+    "actual_dispatch_diagnostic": null
+  },
+  "attempt8": {
+    "source_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-actual-20261014-attempt8\\ROS_SOURCE.jsonl",
+    "source_sha256": "7479b7f0f5253240d95cb9c1df8ef026feeb393768b844a86ac151b86b2d173b",
+    "source_unchanged": true,
+    "counts": {
+      "request": 294,
+      "dispatch_diagnostic": 186,
+      "localization": 292,
+      "controller_result": 18
+    },
+    "strict_original_localization_join_count": 292,
+    "request_order_strictly_increasing": true,
+    "observer_request_to_localization_ms": {
+      "count": 292,
+      "min": 0.02895000000080472,
+      "p50": 5.532176000031086,
+      "p95": 6.91285800002106,
+      "p99": 7.7004020000117634,
+      "max": 10.614494999970248
+    },
+    "observer_localization_minus_original_deadline_ms": {
+      "count": 292,
+      "min": -136.47275699997863,
+      "p50": -86.48709400000598,
+      "p95": -81.86736199996858,
+      "p99": -79.74934899999653,
+      "max": -74.79543599998806
+    },
+    "observer_localization_before_original_deadline": 292,
+    "observer_latest_request_minus_localization_seq": {
+      "0": 292
+    },
+    "original_acquisition_end_minus_localization_ns": {
+      "2000001": 150,
+      "2000000": 142
+    },
+    "controller_original_joins": [
+      {
+        "observed_seq": 36,
+        "cloud_frame_id": 35,
+        "joined": true,
+        "original_deadline_margin_ms": 122.97591999998758
+      },
+      {
+        "observed_seq": 37,
+        "cloud_frame_id": 36,
+        "joined": true,
+        "original_deadline_margin_ms": 76.88156499995102
+      },
+      {
+        "observed_seq": 38,
+        "cloud_frame_id": 37,
+        "joined": true,
+        "original_deadline_margin_ms": 75.67845699998088
+      },
+      {
+        "observed_seq": 39,
+        "cloud_frame_id": 38,
+        "joined": true,
+        "original_deadline_margin_ms": 79.07772999999452
+      },
+      {
+        "observed_seq": 40,
+        "cloud_frame_id": 39,
+        "joined": true,
+        "original_deadline_margin_ms": 124.71743399999013
+      },
+      {
+        "observed_seq": 41,
+        "cloud_frame_id": 40,
+        "joined": true,
+        "original_deadline_margin_ms": 72.74599699996998
+      },
+      {
+        "observed_seq": 42,
+        "cloud_frame_id": 41,
+        "joined": true,
+        "original_deadline_margin_ms": 123.561876999986
+      },
+      {
+        "observed_seq": 43,
+        "cloud_frame_id": 42,
+        "joined": true,
+        "original_deadline_margin_ms": 74.46590399996467
+      },
+      {
+        "observed_seq": 44,
+        "cloud_frame_id": 43,
+        "joined": true,
+        "original_deadline_margin_ms": 76.8393239999341
+      },
+      {
+        "observed_seq": 45,
+        "cloud_frame_id": 44,
+        "joined": true,
+        "original_deadline_margin_ms": 123.5860400000206
+      },
+      {
+        "observed_seq": 46,
+        "cloud_frame_id": 45,
+        "joined": true,
+        "original_deadline_margin_ms": 74.76543199999242
+      },
+      {
+        "observed_seq": 47,
+        "cloud_frame_id": 46,
+        "joined": true,
+        "original_deadline_margin_ms": 75.96945699998514
+      },
+      {
+        "observed_seq": 48,
+        "cloud_frame_id": 47,
+        "joined": true,
+        "original_deadline_margin_ms": 124.70360899999378
+      },
+      {
+        "observed_seq": 49,
+        "cloud_frame_id": 48,
+        "joined": true,
+        "original_deadline_margin_ms": 74.50520700001562
+      },
+      {
+        "observed_seq": 50,
+        "cloud_frame_id": 49,
+        "joined": true,
+        "original_deadline_margin_ms": 75.43789699997205
+      },
+      {
+        "observed_seq": 51,
+        "cloud_frame_id": 50,
+        "joined": true,
+        "original_deadline_margin_ms": 124.57262399999536
+      },
+      {
+        "observed_seq": 52,
+        "cloud_frame_id": 51,
+        "joined": true,
+        "original_deadline_margin_ms": 73.89201999995976
+      },
+      {
+        "observed_seq": 53,
+        "cloud_frame_id": 52,
+        "joined": true,
+        "original_deadline_margin_ms": 123.92777000002297
+      }
+    ],
+    "controller_deadline_margin_ms": {
+      "count": 18,
+      "min": 72.74599699996998,
+      "p50": 76.8393239999341,
+      "p95": 124.70360899999378,
+      "p99": 124.70360899999378,
+      "max": 124.71743399999013
+    },
+    "errors": [],
+    "actual_dispatch_diagnostic": {
+      "reports": 186,
+      "reported_intervals_with_callback_burst": 186,
+      "max_imu_callbacks_per_dispatch": {
+        "count": 186,
+        "min": 25,
+        "p50": 39,
+        "p95": 50,
+        "p99": 50,
+        "max": 50
+      },
+      "last_imu_callbacks_per_dispatch": {
+        "count": 186,
+        "min": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 3,
+        "max": 12
+      },
+      "reported_scan_interval_max_dispatch_ms": {
+        "count": 186,
+        "min": 0.178852,
+        "p50": 0.287723,
+        "p95": 0.524513,
+        "p99": 0.92251,
+        "max": 1.206005
+      },
+      "last_dispatch_ms": {
+        "count": 186,
+        "min": 0.07163,
+        "p50": 0.093732,
+        "p95": 0.172171,
+        "p99": 0.239583,
+        "max": 0.383728
+      },
+      "reported_intervals_with_dispatch_budget_excess": 2,
+      "sum_exceeded_budget_calls_in_reported_intervals": 2,
+      "largest_reported_dispatch_budget_excess_ms": 0.206005,
+      "first_report": {
+        "binding_epoch": 1,
+        "clock_domain": "linux_steady_diagnostic_only",
+        "cloud_frame_id": 5,
+        "dispatch_budget_ns": 1000000,
+        "dispatch_calls_since_scan": 1121,
+        "dispatch_calls_total": 1121,
+        "episode": 0,
+        "exceeded_budget_calls_since_scan": 0,
+        "imu_accepted_total": 51,
+        "imu_callbacks_total": 51,
+        "last_dispatch_duration_ns": 383728,
+        "last_imu_callbacks_per_dispatch": 0,
+        "max_dispatch_duration_ns": 613730,
+        "max_imu_callbacks_per_dispatch": 44,
+        "observed_seq": 6,
+        "raw_callbacks_total": 1,
+        "robot_id": "red_sentry",
+        "schema": "polar.pb.dispatch.v1",
+        "strategy": "spin_all"
+      },
+      "last_report": {
+        "binding_epoch": 1,
+        "clock_domain": "linux_steady_diagnostic_only",
+        "cloud_frame_id": 297,
+        "dispatch_budget_ns": 1000000,
+        "dispatch_calls_since_scan": 50,
+        "dispatch_calls_total": 15700,
+        "episode": 0,
+        "exceeded_budget_calls_since_scan": 0,
+        "imu_accepted_total": 14651,
+        "imu_callbacks_total": 14651,
+        "last_dispatch_duration_ns": 84796,
+        "last_imu_callbacks_per_dispatch": 0,
+        "max_dispatch_duration_ns": 405459,
+        "max_imu_callbacks_per_dispatch": 26,
+        "observed_seq": 298,
+        "raw_callbacks_total": 293,
+        "robot_id": "red_sentry",
+        "schema": "polar.pb.dispatch.v1",
+        "strategy": "spin_all"
+      },
+      "observer_receive_interval_ms": {
+        "count": 185,
+        "min": 93.95734800000355,
+        "p50": 194.130212999994,
+        "p95": 201.5381489999868,
+        "p99": 212.13423500000772,
+        "max": 232.23822900001778
+      },
+      "coverage": "At most 10 Hz reports; each reports its scan interval. Throttled successful-scan intervals are not represented in per-scan maxima/excess, so these are reported-interval bounds, not an exhaustive full-run maximum.",
+      "clocks": "Callback counts and dispatch durations are actual C++ diagnostics. They use Linux steady time locally. Observer receive deltas are separate proxies and are never subtracted from Linux steady timestamps."
+    }
+  },
+  "passed": true
+}

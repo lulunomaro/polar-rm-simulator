@@ -1,0 +1,16 @@
+{
+  "bounded_navigation_consumption_passed": true,
+  "actual_steps": 15000,
+  "actual_odometry_messages": 292,
+  "actual_map_messages": 59,
+  "consumption_audit": {
+    "consumed_steps": 779,
+    "nonzero_consumed_steps": 779,
+    "actual_sensor_requests": 294,
+    "actual_controller_results": 18,
+    "actual_localizations": 292,
+    "errors": [],
+    "passed": true
+  },
+  "errors": []
+}

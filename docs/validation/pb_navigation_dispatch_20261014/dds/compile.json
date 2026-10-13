@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/usr/bin/cmake",
+    "--build",
+    "/root/polar-navigation-humble-e05eb08e/rclcpp_dispatch_fixture_20261014_02/build",
+    "--parallel",
+    "1"
+  ],
+  "pid": 478,
+  "returncode": 0,
+  "wall_s": 6.929580090000002,
+  "stdout": "[ 50%] Building CXX object CMakeFiles/dispatch_fixture.dir/main.cpp.o\n[100%] Linking CXX executable dispatch_fixture\n[100%] Built target dispatch_fixture\n",
+  "stderr": "",
+  "reaped": true
+}

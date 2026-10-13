@@ -1,0 +1,15 @@
+[INFO] [1791909158.262395930] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.controller_server]: 
+	controller_server lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791909161.347139569] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.controller_server]: Creating controller server
+[INFO] [1791909161.361296434] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.local_costmap.local_costmap]: 
+	local_costmap lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791909161.647111770] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.local_costmap.local_costmap]: Creating Costmap
+[INFO] [1791909167.148326872] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [1791909167.149330006] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[INFO] [1791909167.150025940] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[INFO] [1791909167.159304498] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.local_costmap.local_costmap]: Destroying
+[INFO] [1791909167.166811781] [polar_sil_6367db03c4324fa98017424750cf9c4c.red_sentry.controller_server]: Destroying

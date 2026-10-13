@@ -1,0 +1,17 @@
+{
+  "schema": "polar.pb2025.ext4-build-compat.v1",
+  "original_wrapper_sha256": "78564618c9a3167d4eef50c71eb7d5eea1f8b2e727f58e4f430efb457b41603d",
+  "derived_wrapper_path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/build_compat/lib/cmake/glog/glog-config.cmake",
+  "derived_wrapper_sha256": "bc61d6ade302621a19e3ff6e338d3c1de8d9acc67eab1a4ba7a35a3398e45183",
+  "version_sha256": "1829cde666f2ce1fa503625366a28a2c094224443f8205f2dc8b47afbc99e333",
+  "original_prefix": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix",
+  "copied_prefix": "/root/polar-humble-ext4-20261014-01/prefix",
+  "exact_replacement_count": 5,
+  "byte_identical_guarded_assets": {
+    "usr/lib/x86_64-linux-gnu/cmake/glog/glog-targets.cmake": "a5d8a5a76e89fdbaa32ab2a3221e7890db11a284fe0cc8734206c0df45e975d2",
+    "usr/lib/x86_64-linux-gnu/cmake/glog/glog-config.cmake": "27a2331587d0b3fea8d52f74114d37ce940a0b7432d0b4ecaacb408d37e8eb0b",
+    "usr/lib/x86_64-linux-gnu/libunwind.so": "5d1f6f104f79698e137c9f17c4b0317dfd96816c0eb6a87c50619a41472ca382"
+  },
+  "original_environment_manifest_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "original_runtime_copy_modified": false
+}

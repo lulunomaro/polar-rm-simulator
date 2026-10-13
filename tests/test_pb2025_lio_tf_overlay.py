@@ -71,8 +71,11 @@ class OverlayTests(unittest.TestCase):
         out=(self.out/'point_lio/src/laserMapping.cpp').read_text()
         self.assertEqual(inp.count('meas.pb_context = pb_context_buffer.front();'),2)
         self.assertEqual(inp.count('pb_context_buffer.pop_front();'),2)
-        self.assertIn('pb_scan_source.bind(rclcpp::Time(msg->header.stamp).nanoseconds(), msg->timebase)',inp)
-        self.assertIn('lidar_buffer.size() >= 8',inp)
+        self.assertIn('pb_scan_source.add_raw(start, msg->timebase, start + max_offset, msg)',inp)
+        self.assertIn('pb_scan_source.take(raw, context)',inp)
+        self.assertIn('pb_process_bound_scan(raw, std::move(context))',inp)
+        self.assertIn('pb_raw_join_rejected: %s',inp)
+        self.assertIn('lidar_buffer.size() < 8',inp)
         self.assertIn('pb_scan_queue_alignment',inp)
         self.assertIn('imu_deque.size() >= 4096',inp)
         self.assertIn('pb_imu_buffer_overflow_stop',inp)
@@ -87,6 +90,26 @@ class OverlayTests(unittest.TestCase):
         self.assertNotIn('pb_scan_source',publisher)
         self.assertLess(publisher.index('localization_event'),publisher.index('pubOdomAftMapped->publish'))
 
+    def test_both_ingress_callbacks_drain_bounded_exact_join(self):
+        inp=(self.out/'point_lio/src/li_initialization.cpp').read_text()
+        out=(self.out/'point_lio/src/laserMapping.cpp').read_text()
+        h=(self.out/'point_lio/include/pb_scan_source.hpp').read_text()
+        self.assertIn('while (lidar_buffer.size() < 8)',inp)
+        self.assertIn('msg->point_num > 40000',inp)
+        self.assertIn('pb_drain_scans();',inp[inp.index('void livox_pcl_cbk('):inp.index('void imu_cbk(')])
+        self.assertIn('pb_drain_scans();',inp[inp.index('bool sync_packages('):])
+        req=out[out.index('auto pb_request_subscription'):out.index('  std::cout << "lidar_type:')]
+        self.assertIn('rclcpp::QoS(8).reliable()',req)
+        self.assertLess(req.index('pb_scan_source.install'),req.index('pb_drain_scans();'))
+        self.assertIn('raw_.clear(); discarded_ = {}; throw;',h)
+        self.assertIn('capacity = 8',h)
+        self.assertNotIn('steady_clock',h)
+        self.assertNotIn('wall_deadline',h)
+        self.assertIn('pb_join_original_sim_window_expired',inp)
+        self.assertIn('!source_.has_request(header_ns)',h)
+        self.assertIn('acquisition_end_ns',h)
+        self.assertIn('std::numeric_limits<int64_t>::max() - max_offset',inp)
+
     def test_owned_launch_correct_config_and_no_fake_controller(self):
         text=(self.out/'owned_lio.launch.py').read_text()
         ast.parse(text)
@@ -97,6 +120,30 @@ class OverlayTests(unittest.TestCase):
         self.assertEqual(text.count("Node(package="),3)
         self.assertNotIn("package='fake_vel_transform'",text)
         self.assertNotIn("package='livox_ros_driver2'",text)
+
+    def test_bounded_dispatch_preserves_main_rate_and_disabled_diagnostics(self):
+        out=(self.out/'point_lio/src/laserMapping.cpp').read_text()
+        self.assertIn('rclcpp::Rate rate(500);',out)
+        self.assertIn('rate.sleep();',out)
+        self.assertIn('executor.spin_all(std::chrono::milliseconds(1));',out)
+        self.assertNotIn('executor.spin_some();',out)
+        self.assertIn('declare_parameter<bool>("pb.dispatch_diagnostics", false)',out)
+        self.assertIn('"polar/pb/dispatch"',out)
+        self.assertNotIn('"/polar/pb/dispatch"',out)
+        self.assertIn('"linux_steady_diagnostic_only"',out)
+        self.assertIn('"exceeded_budget_calls_since_scan"',out)
+        self.assertIn('pb_report_time - pb_last_dispatch_report >= std::chrono::milliseconds(100)',out)
+        publish=out.index('pb_dispatch_publisher->publish(event)')
+        self.assertLess(out.index('if (sync_packages(Measures)) {'),publish)
+        self.assertIn('pb_imu_callbacks - pb_before_imu',out)
+        # All other compiled translation units and shared headers stay byte-exact
+        # versus the already audited 04, allowing a proven main-only build.
+        previous=overlay.ROOT/'artifacts/pb2025-lio-tf-source-20261014-04/OVERLAY_MANIFEST.json'
+        if previous.exists():
+            old=json.loads(previous.read_text())
+            for name,row in self.manifest['files'].items():
+                if name.startswith('point_lio/') and name!='point_lio/src/laserMapping.cpp':
+                    with self.subTest(name=name):self.assertEqual(row['sha256'],old['files'][name]['sha256'])
 
     @unittest.skipUnless(os.environ.get('POLAR_TEST_PB_CPP')=='1','explicit lightweight C++/WSL regression opt-in')
     def test_actual_cpp_stamp_sequence(self):

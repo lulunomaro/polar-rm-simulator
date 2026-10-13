@@ -1,0 +1,90 @@
+{
+  "schema": "polar.sim.pb-owned-source.v1",
+  "upstream_commit": "0b95c800e61f8abbdddfcf6b07f8838b842724c3",
+  "upstream_files": {
+    ".clang-format": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3",
+    ".clang-tidy": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f",
+    ".github/workflows/ci.yml": "419887104ded1a8fc62dab56000afd5fc2a6173b013d6dc42725ab6068251959",
+    ".pre-commit-config.yaml": "ed2e34794f4fc024856920378e43c9b9f0db479e1cfaae87cf43b8965afc34c9",
+    "CMakeLists.txt": "7b2c8aa576ee6061dea7719e7a31e0838e43d6f8eaaafe52aef646230422576f",
+    "CONTRIBUTING.md": "8dc03af069eb0b037dfa2427cb47d65a23836a5f3c7b73b223485e6e13fdfbaf",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "012cd07e4d6f7e68281e38e1242eb4965b8858d6569eae75ba8d58047d89b77b",
+    "include/pb_omni_pid_pursuit_controller/omni_pid_pursuit_controller.hpp": "026ad1eaed238a101fc2f577472cd5379b39b8b986b3f09061890a7c1802dc75",
+    "include/pb_omni_pid_pursuit_controller/pid.hpp": "943fa4412dce17cac121964a3b7796185d68d9af180e516ec9e80d437392351f",
+    "package.xml": "2fcd82729a38a72e939a092b26771f5b4dc76154f6abc1f32574ec39c5ffc8a2",
+    "pb_omni_pid_pursuit_controller.xml": "0d34ed34b7689e8977c3f6efeb2f3a66003418e13578d87398de400e86fe4f6f",
+    "src/omni_pid_pursuit_controller.cpp": "40fffeb2c3a70a2f92024aad528126e96d414cb48006f85ed75a9dd9796856b0",
+    "src/pid.cpp": "4b8861190935034fbf54309b5c5aafc5a656765d19d08e97eb379173982d71cb"
+  },
+  "overlay_header_sha256": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+  "qualification": "source_overlay_unbuilt_unqualified",
+  "lifecycle": "requires_fresh_stack_single_explicit_generation",
+  "algorithm": "original_pb_omni_pid_no_fallback",
+  "files": {
+    ".clang-format": {
+      "bytes": 383,
+      "sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3"
+    },
+    ".clang-tidy": {
+      "bytes": 2619,
+      "sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f"
+    },
+    ".github/workflows/ci.yml": {
+      "bytes": 432,
+      "sha256": "419887104ded1a8fc62dab56000afd5fc2a6173b013d6dc42725ab6068251959"
+    },
+    ".pre-commit-config.yaml": {
+      "bytes": 3294,
+      "sha256": "ed2e34794f4fc024856920378e43c9b9f0db479e1cfaae87cf43b8965afc34c9"
+    },
+    "CMakeLists.txt": {
+      "bytes": 658,
+      "sha256": "f2442c2b1d5933d4480fc5d7746f9d5fc3a4484b0a4d6c3a0f5de59d2a4f0371"
+    },
+    "CONTRIBUTING.md": {
+      "bytes": 3235,
+      "sha256": "8dc03af069eb0b037dfa2427cb47d65a23836a5f3c7b73b223485e6e13fdfbaf"
+    },
+    "LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "README.md": {
+      "bytes": 6088,
+      "sha256": "012cd07e4d6f7e68281e38e1242eb4965b8858d6569eae75ba8d58047d89b77b"
+    },
+    "include/pb_omni_pid_pursuit_controller/omni_pid_pursuit_controller.hpp": {
+      "bytes": 11290,
+      "sha256": "ec4ab0b0929672b1aa9faecc315e9d0cc116356bdc88a9ae1397225edc466663"
+    },
+    "include/pb_omni_pid_pursuit_controller/pb_request_context.hpp": {
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "include/pb_omni_pid_pursuit_controller/pid.hpp": {
+      "bytes": 1364,
+      "sha256": "943fa4412dce17cac121964a3b7796185d68d9af180e516ec9e80d437392351f"
+    },
+    "include/pb_omni_pid_pursuit_controller/polar_controller_context.hpp": {
+      "bytes": 11831,
+      "sha256": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c"
+    },
+    "package.xml": {
+      "bytes": 1230,
+      "sha256": "5eb9fd1b324cbf57b00a361e947dc3f9422361e22cc7c6f435836fabae325d40"
+    },
+    "pb_omni_pid_pursuit_controller.xml": {
+      "bytes": 341,
+      "sha256": "0d34ed34b7689e8977c3f6efeb2f3a66003418e13578d87398de400e86fe4f6f"
+    },
+    "src/omni_pid_pursuit_controller.cpp": {
+      "bytes": 33610,
+      "sha256": "0d6a73e7b247c5e25ffed34d27d198cc2e1449cdda29538dc6410fda234b8577"
+    },
+    "src/pid.cpp": {
+      "bytes": 1599,
+      "sha256": "4b8861190935034fbf54309b5c5aafc5a656765d19d08e97eb379173982d71cb"
+    }
+  }
+}

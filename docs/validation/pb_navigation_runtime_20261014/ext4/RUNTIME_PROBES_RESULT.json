@@ -1,0 +1,178 @@
+{
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "script_sha256": "50533140b2172779f0ff16aa0ac34bf1a92e587ca93fa8af0086001af438f46d",
+  "cases": [
+    {
+      "case": 0,
+      "exit_code": 0,
+      "total_process_s": 0.7678589040001498,
+      "result": {
+        "checks": {
+          "Imu": true,
+          "PointCloud2": true,
+          "TransformStamped": true,
+          "TFMessage": true,
+          "CustomMsg": true,
+          "CustomPoint": true,
+          "ComputePathToPose_Goal": true,
+          "FollowPath_Goal": true,
+          "actual_repo_model_created_zero_steps": true,
+          "no_renderer": true,
+          "versions_exact": true,
+          "PYTHONPATH_scrubbed": true
+        },
+        "clean": true,
+        "stages_s": {
+          "rclpy": 0.04407388900017395,
+          "numpy": 0.1512342340001851,
+          "mujoco": 0.10044637300006798,
+          "PIL": 0.0012151300002187782,
+          "sensor_msgs.msg": 0.009114030000091589,
+          "tf2_msgs.msg": 0.0023452620002899494,
+          "nav2_msgs.action": 0.017508297999938804,
+          "livox_ros_driver2.msg": 0.00273086399965905
+        },
+        "elapsed_s": 0.6581345059998966,
+        "versions": {
+          "rclpy": "3.3.21",
+          "numpy": "2.2.6",
+          "mujoco": "3.15.0",
+          "Pillow": "12.3.0"
+        },
+        "paths": {
+          "rclpy": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py",
+          "numpy": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/numpy/__init__.py",
+          "mujoco": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/mujoco/__init__.py",
+          "PIL": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/PIL/__init__.py",
+          "sensor_msgs.msg": "/opt/ros/humble/local/lib/python3.10/dist-packages/sensor_msgs/msg/__init__.py",
+          "tf2_msgs.msg": "/opt/ros/humble/local/lib/python3.10/dist-packages/tf2_msgs/msg/__init__.py",
+          "nav2_msgs.action": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/local/lib/python3.10/dist-packages/nav2_msgs/action/__init__.py",
+          "livox_ros_driver2.msg": "/root/polar-humble-ext4-20261014-01/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/__init__.py"
+        },
+        "python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "DDS_initialized": false,
+        "navigation_nodes_started": false,
+        "sensor_frames": 0,
+        "physics_steps": 0,
+        "qualification": "fresh imports/real message serialization/actual repository model zero-step; not DDS or navigation qualification"
+      },
+      "stdout_sha256": "1dbb234c07126018b6579ad212f9cde69d500d548f8f7e5d8be7a8ed88d9400c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": 1,
+      "exit_code": 0,
+      "total_process_s": 0.5505289270004141,
+      "result": {
+        "checks": {
+          "Imu": true,
+          "PointCloud2": true,
+          "TransformStamped": true,
+          "TFMessage": true,
+          "CustomMsg": true,
+          "CustomPoint": true,
+          "ComputePathToPose_Goal": true,
+          "FollowPath_Goal": true,
+          "actual_repo_model_created_zero_steps": true,
+          "no_renderer": true,
+          "versions_exact": true,
+          "PYTHONPATH_scrubbed": true
+        },
+        "clean": true,
+        "stages_s": {
+          "rclpy": 0.0165554569998676,
+          "numpy": 0.07956917100000283,
+          "mujoco": 0.0761214869999094,
+          "PIL": 0.00048461200003657723,
+          "sensor_msgs.msg": 0.0033455759999014845,
+          "tf2_msgs.msg": 0.0006370999999489868,
+          "nav2_msgs.action": 0.006766771999991761,
+          "livox_ros_driver2.msg": 0.0007641110000804474
+        },
+        "elapsed_s": 0.4409664250001697,
+        "versions": {
+          "rclpy": "3.3.21",
+          "numpy": "2.2.6",
+          "mujoco": "3.15.0",
+          "Pillow": "12.3.0"
+        },
+        "paths": {
+          "rclpy": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py",
+          "numpy": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/numpy/__init__.py",
+          "mujoco": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/mujoco/__init__.py",
+          "PIL": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/PIL/__init__.py",
+          "sensor_msgs.msg": "/opt/ros/humble/local/lib/python3.10/dist-packages/sensor_msgs/msg/__init__.py",
+          "tf2_msgs.msg": "/opt/ros/humble/local/lib/python3.10/dist-packages/tf2_msgs/msg/__init__.py",
+          "nav2_msgs.action": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/local/lib/python3.10/dist-packages/nav2_msgs/action/__init__.py",
+          "livox_ros_driver2.msg": "/root/polar-humble-ext4-20261014-01/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/__init__.py"
+        },
+        "python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "DDS_initialized": false,
+        "navigation_nodes_started": false,
+        "sensor_frames": 0,
+        "physics_steps": 0,
+        "qualification": "fresh imports/real message serialization/actual repository model zero-step; not DDS or navigation qualification"
+      },
+      "stdout_sha256": "dcf7f763afcda8a2a86029a22987f0106d7b350ca8eaff60fc205cebb0784585",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": 2,
+      "exit_code": 0,
+      "total_process_s": 0.6412952969999424,
+      "result": {
+        "checks": {
+          "Imu": true,
+          "PointCloud2": true,
+          "TransformStamped": true,
+          "TFMessage": true,
+          "CustomMsg": true,
+          "CustomPoint": true,
+          "ComputePathToPose_Goal": true,
+          "FollowPath_Goal": true,
+          "actual_repo_model_created_zero_steps": true,
+          "no_renderer": true,
+          "versions_exact": true,
+          "PYTHONPATH_scrubbed": true
+        },
+        "clean": true,
+        "stages_s": {
+          "rclpy": 0.013541110000005574,
+          "numpy": 0.06781717700005174,
+          "mujoco": 0.07827616999975362,
+          "PIL": 0.0004816330001631286,
+          "sensor_msgs.msg": 0.0028248830003576586,
+          "tf2_msgs.msg": 0.0005505889998858038,
+          "nav2_msgs.action": 0.00825130299972443,
+          "livox_ros_driver2.msg": 0.0007881689998612273
+        },
+        "elapsed_s": 0.5320223920002718,
+        "versions": {
+          "rclpy": "3.3.21",
+          "numpy": "2.2.6",
+          "mujoco": "3.15.0",
+          "Pillow": "12.3.0"
+        },
+        "paths": {
+          "rclpy": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py",
+          "numpy": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/numpy/__init__.py",
+          "mujoco": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/mujoco/__init__.py",
+          "PIL": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/PIL/__init__.py",
+          "sensor_msgs.msg": "/opt/ros/humble/local/lib/python3.10/dist-packages/sensor_msgs/msg/__init__.py",
+          "tf2_msgs.msg": "/opt/ros/humble/local/lib/python3.10/dist-packages/tf2_msgs/msg/__init__.py",
+          "nav2_msgs.action": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/local/lib/python3.10/dist-packages/nav2_msgs/action/__init__.py",
+          "livox_ros_driver2.msg": "/root/polar-humble-ext4-20261014-01/livox_ros_driver2/local/lib/python3.10/dist-packages/livox_ros_driver2/msg/__init__.py"
+        },
+        "python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "DDS_initialized": false,
+        "navigation_nodes_started": false,
+        "sensor_frames": 0,
+        "physics_steps": 0,
+        "qualification": "fresh imports/real message serialization/actual repository model zero-step; not DDS or navigation qualification"
+      },
+      "stdout_sha256": "f6df756429730216cef3efe188e8a7703d219d543b0a8eea4b562f0c8c234dc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "clean": true
+}

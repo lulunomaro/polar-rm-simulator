@@ -1,0 +1,14 @@
+{
+  "evidence_kind": "structured observation of actual tool output; raw terminal log was not saved",
+  "command": ["wsl", "-d", "Ubuntu-22.04", "--cd", "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator", "--", "/usr/bin/python3", "-m", "unittest", "discover", "-s", "tests", "-p", "test_pb_controller_diagnostics.py"],
+  "exit_code": 0,
+  "observed_unittest_summary": "Ran 2 tests in 3.677s; OK",
+  "tests_passed": 2,
+  "tests_skipped": 0,
+  "actual_cpp_compiler_used": true,
+  "ROS_types": "explicit fake fixtures; no actual ROS initialization or DDS",
+  "scope": "diagnostics on/off outputs and safety guards identical; 256 metadata log bound",
+  "header_sha256_at_test": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+  "raw_stdout_reconstructed": false,
+  "test_rerun_for_archival": false
+}

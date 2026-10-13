@@ -1,0 +1,34 @@
+[2.779s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/prefix/opt/ros/humble' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+Starting >>> pb_nav2_plugins
+--- stderr: pb_nav2_plugins
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/pb_nav2_plugins` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+CMake Error in CMakeLists.txt:
+  Imported target "nav2_costmap_2d::layers" includes non-existent path
+
+    "/opt/ros/humble/include/nav2_msgs"
+
+  in its INTERFACE_INCLUDE_DIRECTORIES.  Possible reasons include:
+
+  * The path was deleted, renamed, or moved to another location.
+
+  * An install or uninstall procedure did not complete successfully.
+
+  * The installation package was faulty and references files it does not
+  provide.
+
+
+
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    PYTHON_EXECUTABLE
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+---
+Failed   <<< pb_nav2_plugins [1min 49s, exited with code 1]
+
+Summary: 0 packages finished [1min 51s]
+  1 package failed: pb_nav2_plugins
+  1 package had stderr output: pb_nav2_plugins
+  1 package not processed

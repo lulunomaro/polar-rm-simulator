@@ -1,0 +1,9 @@
+{
+  "executed_snapshot_sha256": "2c57269e44e1e06024d33873c627629dee4d2a17830e10463459dd54e7188596",
+  "current_tool_sha256": "434ea9772afe9b235287ecad92dbb57acd35c1371a2990da205aeae71b8df893",
+  "snapshot_created_after_launch": true,
+  "reconstruction": "Exact initial new-file apply_patch bytes, reversing the sole post-launch pth import-path amendment. Python had already compiled v1; the running copy does not use amended logic.",
+  "postlaunch_change": "append original trusted PYTHONPATH roots to derived new pth",
+  "original_result_and_environment_will_remain_unchanged": true,
+  "finalizer_must_write_new_names": true
+}

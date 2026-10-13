@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tests",
+    "-p",
+    "test_pb_navigation_stack.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 6.298661422,
+  "LD_preexec": true,
+  "PYTHONPATH_scrubbed": true,
+  "navigation_algorithm_nodes_started": false,
+  "sensor_frames": 0,
+  "physics_steps": 0,
+  "source_sha256": {
+    "tools/pb_navigation_stack.py": "1091ff96404c536a1cf9a4d60cf258ed9349b0aa54a293097a4520a5219212a6",
+    "tests/test_pb_navigation_stack.py": "cdc46b3fecf8ca3b102bb564d359546fede7c2416a155e33fd9999d767778ecf"
+  },
+  "source_unchanged": true,
+  "actual_dds_fixture_passed": true,
+  "qualification": "actual harmless isolated lifecycle service only; no navigation/SIL qualification"
+}

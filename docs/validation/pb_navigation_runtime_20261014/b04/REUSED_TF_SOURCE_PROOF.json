@@ -1,0 +1,87 @@
+{
+  "schema": "polar.pb2025.unchanged-TF-reuse.v1",
+  "original_manifest_sha256": "6810957d9918ee5ccc71658056fe524b7721b4010603740cfddc27e9cbea46e3",
+  "original_binary_audit_sha256": "31ba1a583ecedb5fb46c799a162a56b820d82fcd06bb6a18be11b6ef6d2324f2",
+  "files": {
+    "loam_interface/.clang-format": {
+      "original_sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3",
+      "sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3"
+    },
+    "loam_interface/.clang-tidy": {
+      "original_sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f",
+      "sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f"
+    },
+    "loam_interface/CMakeLists.txt": {
+      "original_sha256": "b7c9ebf4182fb6c6d440e46a27d3cf28bdee0b2520453a8d6b431695329db6fb",
+      "sha256": "b7c9ebf4182fb6c6d440e46a27d3cf28bdee0b2520453a8d6b431695329db6fb"
+    },
+    "loam_interface/include/loam_interface/loam_interface.hpp": {
+      "original_sha256": "67b9e0676f6852d96ddf414b947c1313f7f7b0cf2ac63fee5e229c5740492a86",
+      "sha256": "a669580933b0e5990aae70e53f8c639d17ec9751bce86e6676296329742c666a"
+    },
+    "loam_interface/launch/loam_interface_launch.py": {
+      "original_sha256": "fb7b00742f56b3ecf72415288e4d31ec799bf4127012c4c4be37af63999341ee",
+      "sha256": "fb7b00742f56b3ecf72415288e4d31ec799bf4127012c4c4be37af63999341ee"
+    },
+    "loam_interface/package.xml": {
+      "original_sha256": "d05f392ab3bc63a938085d272d6f71a5dfb39aa5943b2575691fa94574954107",
+      "sha256": "d05f392ab3bc63a938085d272d6f71a5dfb39aa5943b2575691fa94574954107"
+    },
+    "loam_interface/src/loam_interface.cpp": {
+      "original_sha256": "e564e850847994f622408d8d0d84c76bfa8b011dc436f3efe85842455188edd6",
+      "sha256": "8cc61237e62c36de03aaaefa97ba9b78806261f4af6bbdd44370cc0119e62410"
+    },
+    "sensor_scan_generation/.clang-format": {
+      "original_sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3",
+      "sha256": "39d316067e73187125a7f222d954478052f55cd25e2831c3a44578f5f173d5c3"
+    },
+    "sensor_scan_generation/.clang-tidy": {
+      "original_sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f",
+      "sha256": "dd6960f5e4722bfbe1087c0c7c8fd6f4929a2684f693e64724675686bc306f2f"
+    },
+    "sensor_scan_generation/CMakeLists.txt": {
+      "original_sha256": "c9b814e8818adb00e2d36403a064bff1e267112a277a0683f7bdffe7acc80bdc",
+      "sha256": "c9b814e8818adb00e2d36403a064bff1e267112a277a0683f7bdffe7acc80bdc"
+    },
+    "sensor_scan_generation/include/sensor_scan_generation/sensor_scan_generation.hpp": {
+      "original_sha256": "52341f6806609205f38138c7f2f784369de484c614b0b8311a5f0f05fd2787f6",
+      "sha256": "5df521fa815b75bf0bbb855ee9e8a2a3aad5336a3f7095dc796cce6be587adb3"
+    },
+    "sensor_scan_generation/launch/sensor_scan_generation.launch.py": {
+      "original_sha256": "7bc95244d703979cfcb8c9737eb6447d22f6ff60b37fa1fb9e73c5ec4ca9a6d5",
+      "sha256": "7bc95244d703979cfcb8c9737eb6447d22f6ff60b37fa1fb9e73c5ec4ca9a6d5"
+    },
+    "sensor_scan_generation/package.xml": {
+      "original_sha256": "e461c8a7c08d74e621d92bf6007688545fc03dfe6c8beb747967550471fb11a7",
+      "sha256": "e461c8a7c08d74e621d92bf6007688545fc03dfe6c8beb747967550471fb11a7"
+    },
+    "sensor_scan_generation/src/sensor_scan_generation.cpp": {
+      "original_sha256": "cb6a4f81568de22a8a83cf977f63afb71c563bc5c6cdd4ce89be7047c1e0e7a2",
+      "sha256": "90065389c98bddd9da0520e345034a9e5e2c67e8e6a385acf55b74d2fdee7a93"
+    },
+    "sensor_scan_generation/include/pb_sim_stamp.hpp": {
+      "original_sha256": null,
+      "sha256": "35475e336165968539e2612064c585d81ac9a5e70df832d0609c5ec5724e4956"
+    }
+  },
+  "original_built_source_bytes_verified": true,
+  "binaries": [
+    {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib/loam_interface/loam_interface_node",
+      "sha256": "5ab5a79a4a9926f0140f192b2edd1382dedd6544018135c01777537536138376"
+    },
+    {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib/sensor_scan_generation/sensor_scan_generation_node",
+      "sha256": "45be8afa95d7a92d009b7acc7c4ebaa1eb1d35a5ae40d9974b43edeaf4c652b0"
+    },
+    {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/loam_interface/lib/libloam_interface.so",
+      "sha256": "f134610303aaeb6570030b535c23ae55b06de00d80f0d41f089ee2aa735659ff"
+    },
+    {
+      "path": "/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261013_02/install/sensor_scan_generation/lib/libsensor_scan_generation.so",
+      "sha256": "1910dfe84c3d2e93bff5777f3d0c02cfde9141879777d4aac43d78fb4ea0ec7f"
+    }
+  ],
+  "reason": "Only Point-LIO ingress/context code changed; TF sources are byte-identical."
+}

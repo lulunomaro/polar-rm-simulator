@@ -1,0 +1,16 @@
+{
+  "scope": "structured observation of actual tool results; not raw stderr",
+  "script": "artifacts/prepare_sil_attempt8_20261014.py",
+  "failed_preparations": [
+    {"exit_code": 1, "error": "KeyError: exit_code", "cause": "Point-LIO build report uses returncode rather than controller exit_code", "SIL_started": false, "config_written": false},
+    {"exit_code": 1, "error": "KeyError: timed_out", "cause": "Point-LIO report uses passed and compiler_driver_reaped; it has no timed_out field", "SIL_started": false, "config_written": false}
+  ],
+  "successful_preparation": {
+    "exit_code": 0,
+    "validated_fields": ["returncode", "passed", "compiler_driver_reaped", "POST_BUILD_AUDIT.compiler_group_reaped", "POST_BUILD_AUDIT.remaining_build_members"],
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "SIL_started_by_preparation": false
+  },
+  "prior_failed_script_snapshots_saved": false,
+  "qualification": "metadata preparation history only; no ROS or physics run in these preparations"
+}

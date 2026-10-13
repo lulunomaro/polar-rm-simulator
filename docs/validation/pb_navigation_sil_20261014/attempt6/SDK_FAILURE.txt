@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_pb_navigation_sil.py", line 287, in deadman
+    if time.perf_counter()-renew>=.25:sdk.renew('red_sentry',['motion']);renew=time.perf_counter()
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/rm_match/platform_v2/client.py", line 124, in renew
+    expected=self._epochs(rid,channels);result=self._request('/v2/renew',dict(robot_id=rid,lease_epochs=expected))
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/rm_match/platform_v2/client.py", line 51, in _request
+    raise ClientError(str(reason)) from None
+rm_match.platform_v2.client.ClientError: lease_mismatch

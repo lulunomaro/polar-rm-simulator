@@ -1,0 +1,10 @@
+{
+  "compile_timeout_seconds": 180,
+  "plugin_class_instantiation_verified": false,
+  "reason": "actual C++ pluginlib probe compile timeout; original ELF RTLD_NOW passed separately",
+  "owned_cc1plus_pid": 396,
+  "verified_cmdline_scope": false,
+  "killed": false,
+  "post_cleanup_process_state": "absent",
+  "no_new_probe_started": true
+}

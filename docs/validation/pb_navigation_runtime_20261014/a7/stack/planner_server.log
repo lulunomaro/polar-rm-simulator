@@ -1,0 +1,185 @@
+[INFO] [1791915432.010523244] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: 
+	planner_server lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791915432.171255105] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Creating
+[INFO] [1791915432.182422507] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: 
+	global_costmap lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791915432.241500485] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Creating Costmap
+[INFO] [1791915433.493690523] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Configuring
+[INFO] [1791915433.494144068] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Configuring
+[INFO] [1791915433.504713477] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Using plugin "static_layer"
+[INFO] [1791915433.517944179] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Subscribing to the map topic (/polar_sil_6758cd36c44744098ac21311ad5129e9/red_sentry/map) with transient local durability
+[INFO] [1791915433.520661504] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Initialized plugin "static_layer"
+[INFO] [1791915433.520973975] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Using plugin "intensity_voxel_layer"
+[INFO] [1791915433.528757030] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Subscribed to Topics: terrain_map_ext
+[INFO] [1791915433.534305959] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Initialized plugin "intensity_voxel_layer"
+[INFO] [1791915433.534567991] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Using plugin "inflation_layer"
+[INFO] [1791915433.535413039] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[INFO] [1791915433.562540455] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Created global planner plugin GridBased of type nav2_smac_planner/SmacPlannerHybrid
+[INFO] [1791915433.562988782] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Configuring GridBased of type SmacPlannerHybrid
+[INFO] [1791915433.565452490] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Even sized heuristic lookup table size set 400.000000, increasing size by 1 to make odd
+[INFO] [1791915434.352288646] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Configured plugin GridBased of type SmacPlannerHybrid with maximum iterations 1000000, max on approach iterations 1000, and allowing unknown traversal. Tolerance 0.50.Using motion model: Dubin.
+[INFO] [1791915434.353563546] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Planner Server has GridBased  planners available.
+[INFO] [1791915436.175807107] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: StaticLayer: Resizing costmap to 136 X 154 at 0.050000 m/pix
+[INFO] [1791915436.311585668] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Activating
+[INFO] [1791915436.311860389] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Activating
+[INFO] [1791915436.312235677] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Checking transform
+[INFO] [1791915436.312588072] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: start
+[INFO] [1791915436.513696297] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Activating plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791915436.515287418] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Creating bond (planner_server) to lifecycle manager.
+[WARN] [1791915436.712729343] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915436.912856732] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915437.112738656] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915437.312731833] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915437.512732192] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915437.712771703] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915437.912774029] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915438.112744551] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915438.312782341] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915438.512753769] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915438.712711604] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915438.912717555] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915439.112758133] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915439.312716615] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915439.512705721] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915439.712827015] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915439.912755391] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915440.112804868] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915440.312752571] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915440.512728707] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915440.712720007] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915440.912741270] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915441.112731632] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915441.312774496] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915441.512783281] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915441.712923626] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915441.912780842] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915442.112794303] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915442.312709869] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915442.512828480] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915442.712813734] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915442.912798437] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915443.112783648] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915443.312747166] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915443.512784001] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915443.712830090] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915443.912773261] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915444.112740501] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915444.312784724] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915444.512792575] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915444.712779357] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915444.912723447] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915445.112741152] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915445.312726550] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915445.512721460] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915445.712774733] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915445.912729599] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915446.112852755] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915446.312758415] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915446.512770195] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915446.712831294] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915446.912737110] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915447.112736520] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915447.312722267] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915447.512726464] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915447.712758688] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915447.912729568] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915448.112770441] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915448.312721466] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915448.512718823] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915448.712723950] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915448.912743298] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915449.112721180] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915449.312736003] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915449.512755516] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915449.712754014] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915449.912791084] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915450.112765425] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915450.312769445] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915450.512738027] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915450.712745550] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915450.912833841] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915451.112807946] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915451.313059937] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915451.512955891] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915451.712726493] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915451.912906120] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915452.112916495] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915452.312894539] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915452.512958738] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915452.712824940] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915452.912740152] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915453.112770043] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915453.312765759] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915453.512780188] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915453.912786556] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915454.112748820] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915454.312870987] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915454.512753689] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915454.712777894] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915454.912855452] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915455.112841230] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915455.312915567] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915455.512758923] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915455.712738637] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915455.912903838] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915456.112738492] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915456.312736989] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915456.512896905] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915456.712764028] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915456.912855943] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915457.112738147] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915457.312750131] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915457.512718486] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915457.712745558] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915457.912787800] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915458.112731112] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915458.312730868] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915458.512793463] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915458.712725959] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915458.912719887] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915459.112706990] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915459.312716407] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915459.512709471] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915459.712813650] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915459.912719165] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915460.112879412] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915460.312722390] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915460.512748011] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915460.712840218] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915460.912728854] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915461.112728047] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915461.312715911] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915461.512818618] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915461.712895668] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915461.912752733] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915462.112873612] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915462.312726555] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915462.512790933] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915462.712922863] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915462.912854312] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915463.112744978] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915463.312741765] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915463.512963431] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915463.712776449] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915463.912751653] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915464.112878488] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915464.312881457] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915464.512723516] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[WARN] [1791915464.712733958] [nav2_costmap_2d]: Robot is out of bounds of the costmap!
+[INFO] [1791915464.745102145] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [1791915464.747114177] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[INFO] [1791915464.747462578] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Deactivating
+[INFO] [1791915464.747755268] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Deactivating
+[INFO] [1791915464.912816579] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Deactivating plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791915464.913175509] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[INFO] [1791915464.923568338] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Cleaning up
+[INFO] [1791915464.927676790] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Cleaning up
+[INFO] [1791915464.929728861] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Cleaning up plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791915464.930327541] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Destroying plugin GridBased of type SmacPlannerHybrid
+[INFO] [1791915464.932867251] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[INFO] [1791915464.934945978] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.global_costmap.global_costmap]: Destroying
+[INFO] [1791915464.939236101] [polar_sil_6758cd36c44744098ac21311ad5129e9.red_sentry.planner_server]: Destroying

@@ -1,0 +1,7 @@
+[0.515s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+[0.515s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/polar-humble-ext4-20261014-01/livox_ros_driver2' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+[0.516s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/root/polar-humble-ext4-20261014-01/livox_ros_driver2' in the environment variable CMAKE_PREFIX_PATH seems to be a catkin workspace but it doesn't contain any 'local_setup.*' files. Maybe the catkin version is not up-to-date?
+Starting >>> point_lio
+Finished <<< point_lio [3min 8s]
+
+Summary: 1 package finished [3min 8s]

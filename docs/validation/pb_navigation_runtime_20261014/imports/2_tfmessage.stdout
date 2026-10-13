@@ -1,0 +1,1 @@
+{"pid": 479, "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]", "stages": [{"stage": "rclpy", "seconds": 0.8607219439999998}, {"stage": "messages", "seconds": 1.693103660000002}, {"stage": "tfmessage", "seconds": 0.0009024370000005888}], "total_seconds": 2.5547333310000013, "initialized": false, "nodes_started": false}

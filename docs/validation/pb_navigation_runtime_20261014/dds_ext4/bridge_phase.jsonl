@@ -1,0 +1,14 @@
+{"phase":"module","pid":444,"monotonic_ns":2292376030578,"perf_counter_ns":2292376031307}
+{"phase":"main","pid":444,"monotonic_ns":2292453439921,"perf_counter_ns":2292453440411}
+{"phase":"ros_import_begin","pid":444,"monotonic_ns":2292474239009,"perf_counter_ns":2292474239418}
+{"phase":"ros_import_end","pid":444,"monotonic_ns":2292632872633,"perf_counter_ns":2292632872983}
+{"phase":"rclpy_init_begin","pid":444,"monotonic_ns":2292633639618,"perf_counter_ns":2292633639840}
+{"phase":"rclpy_init_end","pid":444,"monotonic_ns":2292640583306,"perf_counter_ns":2292640583564}
+{"phase":"node_begin","pid":444,"monotonic_ns":2292641121366,"perf_counter_ns":2292641121475}
+{"phase":"node_end","pid":444,"monotonic_ns":2292681476587,"perf_counter_ns":2292681477018}
+{"phase":"transport_ready","pid":444,"monotonic_ns":2292681970339,"perf_counter_ns":2292681970565}
+{"phase":"reset_received","pid":444,"monotonic_ns":2292682533720,"perf_counter_ns":2292682533916}
+{"phase":"graph_wait_enter","pid":444,"monotonic_ns":2292682901068,"perf_counter_ns":2292682901298}
+{"phase":"graph_counts","pid":444,"monotonic_ns":2292683374615,"perf_counter_ns":2292683374768,"counts":[1,1,1,1]}
+{"phase":"graph_ready","pid":444,"monotonic_ns":2292683765741,"perf_counter_ns":2292683768270}
+{"phase":"reset_ack","pid":444,"monotonic_ns":2292684069190,"perf_counter_ns":2292684069298}

@@ -1,0 +1,78 @@
+{
+  "schema": "polar.pb-controller-diagnostic-build-driver.v1",
+  "command": [
+    "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/build_pb_nav2_plugins.py",
+    "--source-root",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/polarbear-navigation-source-e05eb08e",
+    "--environment",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "--out",
+    "/root/polar-controller-diag-build-20261014-01",
+    "--controller-only",
+    "--build-timeout-seconds",
+    "1800"
+  ],
+  "elapsed_seconds": 195.130948186,
+  "exit_code": 0,
+  "timed_out": false,
+  "source_before": {
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "rm_match/integrations/pb_navigation_workspace.py": "5089f88baed2a0aac776d63ff92c609e83778a6dca105b8c6d258f38bc5ce205",
+    "tools/build_pb_nav2_plugins.py": "26d60f88ffa9e855cd2084ddd1c155d10cbed3e50b483e87e4c8c6ab32b36c68"
+  },
+  "source_after": {
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "rm_match/integrations/pb_navigation_workspace.py": "5089f88baed2a0aac776d63ff92c609e83778a6dca105b8c6d258f38bc5ce205",
+    "tools/build_pb_nav2_plugins.py": "26d60f88ffa9e855cd2084ddd1c155d10cbed3e50b483e87e4c8c6ab32b36c68"
+  },
+  "source_unchanged": true,
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "workspace": "/root/polar-controller-diag-build-20261014-01",
+  "nodes_started": false,
+  "ROS_DDS_initialized": false,
+  "build_result": {
+    "schema": "polar.sim.pb-nav2-build.v1",
+    "command": [
+      "colcon",
+      "--log-base",
+      "/root/polar-controller-diag-build-20261014-01/logs",
+      "build",
+      "--base-paths",
+      "/root/polar-controller-diag-build-20261014-01/src",
+      "--build-base",
+      "/root/polar-controller-diag-build-20261014-01/build",
+      "--install-base",
+      "/root/polar-controller-diag-build-20261014-01/install",
+      "--executor",
+      "sequential",
+      "--cmake-args",
+      "-DBUILD_TESTING=OFF",
+      "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+      "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+    ],
+    "elapsed_seconds": 194.368259992,
+    "exit_code": 0,
+    "timed_out": false,
+    "build_process_reaped": true,
+    "build_timeout_seconds": 1800,
+    "build_budget_reason": "600s combined build timed out; independent original package builds succeeded",
+    "navigation_nodes_started": false,
+    "algorithm_changed": false,
+    "controller_compute_hook": true,
+    "qualification": "build_only_not_lio_nav2_sil_acceptance",
+    "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "environment": {
+      "CMAKE_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+      "AMENT_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+      "LD_LIBRARY_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+      "PKG_CONFIG_PATH": "/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "source_identity_sha256": {
+      "pb_omni_pid_pursuit_controller": "270e1525b90929893416faf87c7429761c8b633823f3b307d6432327fd75a755"
+    }
+  }
+}

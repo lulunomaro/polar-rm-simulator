@@ -1,0 +1,21 @@
+{
+  "qualification": "References to previous signed apt/wheel/compat evidence; no new download or system installation",
+  "files": {
+    "ENVIRONMENT_COMPAT.json": {
+      "path": "artifacts\\pb2025-humble-environment-20261013\\ENVIRONMENT_COMPAT.json",
+      "sha256": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49"
+    },
+    "ENVIRONMENT_MANIFEST.json": {
+      "path": "artifacts\\pb2025-humble-environment-20261013\\ENVIRONMENT_MANIFEST.json",
+      "sha256": "b6f3841d60a7aeead3ca00ad04a936c4d6e88ba710c148a099b3def7d16816dc"
+    },
+    "PYTHON_RUNTIME_RESULT.json": {
+      "path": "artifacts\\pb2025-humble-environment-20261013\\PYTHON_RUNTIME_RESULT.json",
+      "sha256": "0b87123ad3a8f7363bc0477f98b917871aceb490e07555ebd7aef7b4ec1aa929"
+    },
+    "NAV2_COMPAT_MANIFEST.json": {
+      "path": "artifacts\\pb2025-humble-environment-20261013\\NAV2_COMPAT_MANIFEST.json",
+      "sha256": "c80304f12375c64ae5297aabdfbbbfca8b199b2d4d0cd9c67e7632b144ca04db"
+    }
+  }
+}

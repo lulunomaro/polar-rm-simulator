@@ -1,0 +1,77 @@
+{
+  "schema": "polar.evidence.preservation.v1",
+  "files": [
+    {
+      "path": "acceptance_preset.log",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/acceptance_preset.log",
+      "bytes": 1166,
+      "sha256": "9354e08a48fcc8ef4c7e5385ea37f0ddc62b47b4fa52523b6ee702014871306b"
+    },
+    {
+      "path": "camera/a-real-camera.jpg",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/camera/a-real-camera.jpg",
+      "bytes": 38020,
+      "sha256": "e7b6e68576ee03bd6089a4926ab44281506b646347abe5d92793cb1f7bba4bce"
+    },
+    {
+      "path": "camera/b-real-camera.jpg",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/camera/b-real-camera.jpg",
+      "bytes": 37868,
+      "sha256": "b419e0292dc8442044908daaefae5c0e4b6bfc22a4caaee22e4138ff33206cb8"
+    },
+    {
+      "path": "camera/qualification.json",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/camera/qualification.json",
+      "bytes": 13473,
+      "sha256": "9bd06d09796dba88000628b1a07de1da1f393312d162440c3f611badedeafbb5"
+    },
+    {
+      "path": "camera/spectator-real-camera.jpg",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/camera/spectator-real-camera.jpg",
+      "bytes": 38020,
+      "sha256": "e7b6e68576ee03bd6089a4926ab44281506b646347abe5d92793cb1f7bba4bce"
+    },
+    {
+      "path": "camera.log",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/camera.log",
+      "bytes": 202,
+      "sha256": "6eaa4e87f60d9c2f4404948d19fe35a287a65808fb2bbf9b2fa44d4703c26abb"
+    },
+    {
+      "path": "interface_static.log",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/interface_static.log",
+      "bytes": 23957,
+      "sha256": "e1072df15ac9aa382e6344d40f3273143a53a73b04c02194dbab0fb4b42636ff"
+    },
+    {
+      "path": "manifest.json",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/manifest.json",
+      "bytes": 142726,
+      "sha256": "061dc5a8b1e163e5b17790596102d5447b23c7422d198bb67045e946ed0a7c57"
+    },
+    {
+      "path": "preset.json",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/preset.json",
+      "bytes": 1166,
+      "sha256": "9354e08a48fcc8ef4c7e5385ea37f0ddc62b47b4fa52523b6ee702014871306b"
+    },
+    {
+      "path": "pytest.log",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/pytest.log",
+      "bytes": 3536,
+      "sha256": "25df6d5b1e895f5630bf7a9a07d1ed516303916e0f6e413322dd162a2a8a6576"
+    },
+    {
+      "path": "pytest.xml",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/pytest.xml",
+      "bytes": 182140,
+      "sha256": "9664905b5079c8f1376d7d225ed55b3ed2e03f75a6894c2138d56691674abc52"
+    },
+    {
+      "path": "source_provenance.log",
+      "original_path": "artifacts/quality-20261014-navigation-startup-checkpoint/source_provenance.log",
+      "bytes": 1537,
+      "sha256": "c81023cfcd0e89e87848fe84a4e8432417eb0a0d6a43188fd3f501413ddb76b5"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-tfmessage-ext4-20261014-attempt2/peer_fixture.py"
+  ],
+  "exit_code": 2,
+  "elapsed_seconds": 1.808835175999775,
+  "timed_out": false,
+  "process_reaped": true,
+  "environment_path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "wrapper_sha256": "d43cd8dd36bce888b3b582433e5902c8a481dba77b7d00d4f2b06e4a60617fb3",
+  "qualification": "actual DDS explicit sensor fixture, not 9 node SIL or physics or navigation"
+}

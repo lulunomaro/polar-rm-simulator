@@ -1,0 +1,22 @@
+{
+  "schema": "polar.pb-runtime-archive-index.v1",
+  "evidence_files": 89,
+  "groups": {
+    "a7": 18,
+    "b04": 16,
+    "dds_ext4": 12,
+    "dds_fail": 10,
+    "ext4": 23,
+    "imports": 10
+  },
+  "manifest_path": "MANIFEST.json",
+  "manifest_sha256": "fa49aca1d6e69cc9d1afa13e5c45c89f0e8f86eb23e9ad24a786524568eb6190",
+  "README_sha256": "ca442f2fc868694547492805589dd9a979e93f861b05fb68020d4b38ad414158",
+  "raw_total_bytes": 16964186,
+  "stored_total_bytes": 1837250,
+  "independent_raw_stored_source_recheck_passed": true,
+  "errors": [],
+  "not_navigation_qualified": true,
+  "not_hardware_qualified": true,
+  "scope": "04 build; ext4 migration/import and serialized message zero-step probes; original DDS failure + ext4 nine-check fixture pass + additional QoS wrapper fail; actual7 physical sensing/planning success but zero actuation and navigation FAIL"
+}

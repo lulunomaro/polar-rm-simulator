@@ -1,0 +1,43 @@
+{
+  "schema": "polar.sim.pb-navigation-manifest.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_pb_navigation",
+      "label": "PB2025 sourced Smac + PID",
+      "command": [
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+        "-m",
+        "rm_match.integrations.pb_navigation_bridge",
+        "--domain-id",
+        "84",
+        "--node-name",
+        "polar_pb_bridge_c536bf3f6e6e4155",
+        "--cloud-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/livox/lidar",
+        "--pointcloud-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/livox/lidar/pointcloud",
+        "--imu-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/livox/imu",
+        "--request-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/polar/pb/request",
+        "--result-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/polar/pb/result",
+        "--odom-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/odometry",
+        "--clock-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/clock",
+        "--tf-static-topic",
+        "/polar_sil_c536bf3f6e6e41558f1f071f4d023d8f/red_sentry/tf_static",
+        "--response-timeout",
+        "0.05",
+        "--expected-robot-id",
+        "red_sentry",
+        "--expected-episode",
+        "0",
+        "--expected-binding-epoch",
+        "1"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator"
+    }
+  ]
+}

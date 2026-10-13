@@ -1,0 +1,27 @@
+{
+  "qualification": "Windows focused unit and harmless child regressions; no ROS/NN/GL/navigation qualification",
+  "evidence_origin": "captured exec_command transcript",
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "-m",
+    "unittest",
+    "rm_match.platform_v2.test_runtime",
+    "rm_match.platform_v2.test_native_adapter",
+    "rm_match.platform_v2.test_native_decoded_boundary",
+    "rm_match.platform_v2.test_native_early_pixels",
+    "rm_match.platform_v2.test_native_early_pixels_review",
+    "rm_match.platform_v2.test_slot_shutdown",
+    "tests.test_navigation_runtime",
+    "tests.test_runtime_native_import_isolation",
+    "-q"
+  ],
+  "exit_code": 0,
+  "tests_run": 73,
+  "skipped": 0,
+  "test_elapsed_s": 6.976,
+  "raw_captured_output": "Ran 73 tests in 6.976s\nOK\n",
+  "source_sha256": {
+    "rm_match\\platform_v2\\runtime.py": "04fdb4695d1ac9387b1ee9e09c33803519ced2599f3be6f01b2ca337bf763682",
+    "tests\\test_runtime_native_import_isolation.py": "2991f26448ef73e5cf980b6acdd3df0699c17b7ef0ef6e772fce5dbde886a62e"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "evidence_origin": "captured exec_command transcript",
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "-m",
+    "unittest",
+    "rm_match.platform_v2.test_runtime",
+    "rm_match.platform_v2.test_native_adapter",
+    "rm_match.platform_v2.test_native_decoded_boundary",
+    "rm_match.platform_v2.test_native_early_pixels",
+    "rm_match.platform_v2.test_native_early_pixels_review",
+    "rm_match.platform_v2.test_offline_runtime",
+    "tests.test_navigation_runtime",
+    "-q"
+  ],
+  "exit_code": 1,
+  "tests_run_including_failed_loader": 64,
+  "errors": 1,
+  "error": "ModuleNotFoundError: No module named rm_match.platform_v2.test_offline_runtime",
+  "qualification": "mistyped test module; preserved failed command; corrected focused command has separate result"
+}

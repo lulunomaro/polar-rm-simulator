@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_pb_navigation_sil.py", line 258, in main
+    ready=stack.start();observer=AlgorithmObserver(ready['namespace'],84)
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/pb_navigation_stack.py", line 345, in start
+    self._lifecycle(name, 1)  # CONFIGURE, never dummy sensor data.
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/pb_navigation_stack.py", line 296, in _lifecycle
+    if time.perf_counter() >= deadline: raise StackFault('stack_lifecycle_service_timeout:' + name)
+tools.pb_navigation_stack.StackFault: stack_lifecycle_service_timeout:controller_server

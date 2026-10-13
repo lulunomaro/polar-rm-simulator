@@ -1,0 +1,7 @@
+{
+  "source": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/lib/python3.10/site-packages/owned_humble.pth",
+  "destination": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/owned_humble.pth",
+  "source_sha256": "7813dd0655cbe09e0803efe66e3ace91e1e7746fb088321460b6a63742438530",
+  "destination_sha256": "7cfc456dca4948692d6263fc38e6aabe4d042ac3de83ac0c8e9ac1e4f6095dc6",
+  "reason": "explicit owned import path relocation; /opt ROS paths retained"
+}
