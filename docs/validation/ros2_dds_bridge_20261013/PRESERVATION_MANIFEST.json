@@ -47,9 +47,10 @@
       "bytes": 665914
     },
     {
-      "path": "ros.key",
+      "path": "ROS_PUBLIC_KEY.gpg",
       "sha256": "4a91c49af0d6f0016108b93698782b596c27ccd836937e18e0e36c3347dc602f",
-      "bytes": 1167
+      "bytes": 1167,
+      "original_path": "ros.key"
     },
     {
       "path": "actual_attempt1/ACTUAL_ROS_RESULT.json",

@@ -231,5 +231,17 @@
     }
   ],
   "previous_local_checkpoint": "3ecd226",
-  "failed_clone": "artifacts/checkpoint-3ecd226-clone"
+  "failed_clone": "artifacts/checkpoint-3ecd226-clone",
+  "public_key_archive": {
+    "source": "https://raw.githubusercontent.com/ros/rosdistro/master/ros.key",
+    "public_key_only": true,
+    "reason": "Generic *.key ignore rule excluded this official public key from ordinary clone",
+    "original": "docs/validation/ros2_dds_bridge_20261013/ros.key",
+    "archived": "docs/validation/ros2_dds_bridge_20261013/ROS_PUBLIC_KEY.gpg",
+    "fingerprint": "C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654",
+    "public_key_verification": "gpg --show-keys --with-colons: pub 4096 RSA, matching fpr, Open Robotics uid; no sec/ssb rows",
+    "sha256": "4a91c49af0d6f0016108b93698782b596c27ccd836937e18e0e36c3347dc602f",
+    "manifest_before_sha256": "97377f3a5dcc94f1308a2f0583595687d70b15755742f9c5a145cd95e765054b",
+    "manifest_after_sha256": "22cad32a478a9e1c620ef1ff3cfca9e9617c538d7fcdd08984946dfab8380fd1"
+  }
 }

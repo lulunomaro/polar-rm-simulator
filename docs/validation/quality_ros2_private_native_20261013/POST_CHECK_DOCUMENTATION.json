@@ -5,12 +5,17 @@
     {
       "path": ".gitattributes",
       "before_sha256": "080a0d2380c51ebd362981b6dff7779b5b326c0a14898fda2fa55dad3e0136db",
-      "after_sha256": "dbe9f69ddfe2c8a8d080af14e8b06661d56e8c69afbf241cbda3ffdf2c0ad3ca"
+      "after_sha256": "3407c189a3c24841f8dff70a26767c7d064cf437edf1f987201ceb3ac68e175d"
     },
     {
       "path": "docs/IMPLEMENTATION_PROGRESS.md",
       "before_sha256": "c64c601fac3e1b3d6be3500e86582e05b29e56dde29da5acb57df331d9e5954d",
       "after_sha256": "0120971f17d25ae2a4e41a14374700a90996578f30f2e688f43f73926eecfa90"
+    },
+    {
+      "path": "docs/validation/ros2_dds_bridge_20261013/PRESERVATION_MANIFEST.json",
+      "before_sha256": "97377f3a5dcc94f1308a2f0583595687d70b15755742f9c5a145cd95e765054b",
+      "after_sha256": "22cad32a478a9e1c620ef1ff3cfca9e9617c538d7fcdd08984946dfab8380fd1"
     },
     {
       "path": "docs/validation/wsl_native_live_20261013_attempt10/PRESERVATION_MANIFEST.json",
@@ -101,7 +106,8 @@
   "camera_checks": 35,
   "milestone_accepted": false,
   "byte_attributes": "Protect actual archived .log/.xml bytes; literal CRLF is preserved, not normalized into a different evidence SHA",
-  "all_other_quality_source_files_unchanged": 717,
+  "all_other_quality_source_files_unchanged": 716,
   "relocated_byte_identical_files": 41,
-  "archive_path_mapping": "WINDOWS_ARCHIVE_PATHS.json"
+  "archive_path_mapping": "WINDOWS_ARCHIVE_PATHS.json",
+  "official_public_key_archive": "ROS_PUBLIC_KEY.gpg, public only; generic secret-key ignore policy retained"
 }
