@@ -1,0 +1,14 @@
+{
+  "schema": "polar.pb.wsl-session-cleanup.v1",
+  "run_uuid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "config_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "clean": false,
+  "owned_groups": [],
+  "errors": [
+    "source_recheck:FileNotFoundError",
+    "session_source_changed"
+  ],
+  "supervisor_pid": 384,
+  "start_ticks": 3663,
+  "boot_id": "6a2b8505-136f-475b-8615-e2653ed4997d"
+}

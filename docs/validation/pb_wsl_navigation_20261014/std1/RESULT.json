@@ -1,0 +1,16 @@
+{
+  "returncode": 1,
+  "elapsed_s": 8.336902299997746,
+  "timed_out": false,
+  "driver_reaped": true,
+  "source_before": {
+    "tests/test_pb_wsl_navigation_stdio.py": "412b81e02ece7d6797c1e16e7a852bdd7535d38e735d154cc6b24bb8be8c818d",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "cce64313e54570c0a24972d8963dd632b07be54f183ed6178c4fe1b6abd77bb1"
+  },
+  "source_after": {
+    "tests/test_pb_wsl_navigation_stdio.py": "412b81e02ece7d6797c1e16e7a852bdd7535d38e735d154cc6b24bb8be8c818d",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "cce64313e54570c0a24972d8963dd632b07be54f183ed6178c4fe1b6abd77bb1"
+  },
+  "source_unchanged": true,
+  "qualification": "harmless actual Linux protocol/cancel only; no navigation qualification"
+}

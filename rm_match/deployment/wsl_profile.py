@@ -199,7 +199,8 @@ def validate_wsl_spec(spec_path,*,repo_root,shared_out,distribution=DISTRIBUTION
     elf=_elf(Path(host['binary']));elf['class']=elf.pop('class_')
     if frozen.get('elf')!=elf or build.get('elf')!=elf:raise ValueError('wsl_declared_ELF_identity_mismatch')
     transport_sources={}
-    for rel in ('rm_match/deployment/wsl_profile.py',SUPERVISOR,WORKER):
+    for rel in ('rm_match/deployment/wsl_profile.py',SUPERVISOR,WORKER,
+                'rm_match/integrations/owned_linux_group.py'):
         selected=_relative_file(repo,rel);expected=profile.digest(selected)
         _check_hash(selected,expected,'transport_source',identities);transport_sources[rel]=expected
     metadata=dict(transport=TRANSPORT,distribution=DISTRIBUTION,windows_native=False,

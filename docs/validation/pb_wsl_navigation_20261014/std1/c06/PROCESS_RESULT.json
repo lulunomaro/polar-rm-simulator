@@ -1,0 +1,1 @@
+{"pid": 389, "returncode": 0, "owned_child_reaped": true, "test_source_sha256": "412b81e02ece7d6797c1e16e7a852bdd7535d38e735d154cc6b24bb8be8c818d", "child_script_sha256": "8efceb6b867a84bab9e688719b71976c358333981e0250f0ad18894ac8fa9426", "qualification": "harmless real stdio with injected fake stack/transport; no ROS/DDS/NN/SIL"}

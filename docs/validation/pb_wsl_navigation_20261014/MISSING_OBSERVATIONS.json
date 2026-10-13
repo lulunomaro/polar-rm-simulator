@@ -1,0 +1,39 @@
+{
+  "schema": "polar.pb-evidence-missing-observation.v1",
+  "qualification": "Structured handoff observations only; no fabricated raw log or historical source reconstruction",
+  "historical_source": {
+    "path": "tools/qa_pb_navigation_sil.py",
+    "executed_sha256": "5daa30c2a0070a46a11e0083d262af5e2212e7fa5b58e39abfb39f2f6c25d58a",
+    "used_by": "Windows/WSL attempt1",
+    "snapshot_saved": false,
+    "checked_by": "pnp_diagnosis",
+    "notes": "Not saved before UUID repair. Git 6a8bfbd and old Linux SIL8 snapshot are SHA58313c94... and do not match. stdio02 contains only source SHA declarations and fixture child.py; it is not a recorder source snapshot."
+  },
+  "raw_test_logs_not_saved": [
+    {
+      "label": "40 session tests",
+      "raw_log_available": false,
+      "basis": "Parent's earlier execution observation; no exact saved path supplied at archive preparation"
+    },
+    {
+      "label": "81 identity/session checks, 18 skips, 93 subtests",
+      "raw_log_available": false,
+      "basis": "Parent's execution observation; not a raw-file test report"
+    },
+    {
+      "command": ".venv-sim/Scripts/python.exe -m pytest tests/test_pb_navigation_goal_evidence.py tests/test_pb_navigation_sil_audit.py -q",
+      "observed_result": "22 passed / 68 subtests / 0.19 seconds",
+      "raw_log_available": false,
+      "basis": "pnp_diagnosis actual tool output chunk ff371a, described by handoff; no filesystem raw log"
+    }
+  ],
+  "pure_humble_uuid_probe": {
+    "raw_log_available": false,
+    "scope": "Construct actual UUID message only; no rclpy init/node/DDS",
+    "generated_source": "/opt/ros/humble/local/lib/python3.10/dist-packages/unique_identifier_msgs/msg/_uuid.py",
+    "generated_source_sha256": "f875ea8a5e69de93dada1f811b38791db8f49a27a787ab02c80623621ba9bc85",
+    "observed_type": "numpy.ndarray uint8 shape [16]",
+    "observed_repaired_helper_result": "00000000000000000000000000000000",
+    "basis": "pnp_diagnosis actual execution handoff; not reconstructed stdout"
+  }
+}

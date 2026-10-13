@@ -1,0 +1,44 @@
+..............................................ss........................ [  5%]
+.......................................s.............................. [ 11%]
+..s................................s.................................... [ 16%]
+.......s............... [ 18%]
+............................................................... [ 23%]
+.........................................ssssss..........s.s....s...............s...................s...........s [ 32%]
+s....s............................................sssssss................................ [ 39%]
+........................s...... [ 42%]
+........................................................................ [ 47%]
+......................................... [ 51%]
+........s............sssss........ssssssssssssss.................................................................................................................................................. [ 66%]
+................................................................................................................................................................... [ 79%]
+.................................... [ 82%]
+............................................. [ 85%]
+.............................................................................................. [ 93%]
+.............................................................. [ 98%]
+........................                                                 [100%]
+============================== warnings summary ===============================
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_camera.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_native_timing.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:28
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:28: PytestCollectionWarning: cannot collect test class 'TestAdapter' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestAdapter:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_server.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_spin_feedback.py)
+    class TestRegistry:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1216 passed, 48 skipped, 6 warnings, 776 subtests passed in 89.66s (0:01:29)

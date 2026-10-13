@@ -1,0 +1,44 @@
+{
+  "schema": "polar.quality.archive-byte-verification.v1",
+  "count": 7,
+  "manifest_sha256": "31e431fc5e66e0a2d7ebf1b20432f110e7bc94bf0840f2267350bf81d9dc1c78",
+  "all_raw_stored_original_bytes_equal": true,
+  "files": [
+    {
+      "path": "f1/acceptance_preset.log",
+      "raw_sha256": "7ea23060b06d4b7eaa668ea50afc46fd521165d75d14449018b41113062836e3",
+      "verified": true
+    },
+    {
+      "path": "f1/interface_static.log",
+      "raw_sha256": "9ad3d6a56a5ca6942d0f7c5f9612a6dcc0c6713d4d106f248a7a99e51877a8c6",
+      "verified": true
+    },
+    {
+      "path": "f1/manifest.json.gz",
+      "raw_sha256": "9f7b413f57a86e74040bcfdc7b7ae023d65f35533f144169fe302947b566c62f",
+      "verified": true
+    },
+    {
+      "path": "f1/preset.json",
+      "raw_sha256": "7ea23060b06d4b7eaa668ea50afc46fd521165d75d14449018b41113062836e3",
+      "verified": true
+    },
+    {
+      "path": "f1/pytest.log",
+      "raw_sha256": "d1c6559baf2868be4e5f23cc4c01db77682a85f57f3071eb1d0aeb04593ceb62",
+      "verified": true
+    },
+    {
+      "path": "f1/pytest.xml.gz",
+      "raw_sha256": "22f6e83fa360a03cfd92a592be9b64f8803e79a0643ad1b7d559edc46339c735",
+      "verified": true
+    },
+    {
+      "path": "f1/source_provenance.log",
+      "raw_sha256": "05887c8426646296d025ee91099b4ff6d2d511513637ab677a1cc4da9feb9603",
+      "verified": true
+    }
+  ],
+  "scope": "Archive identity verification only; does not claim source unchanged during quality run"
+}

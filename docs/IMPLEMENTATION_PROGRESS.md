@@ -12,13 +12,13 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 局部SIL通过：严格导航schema/PB桥/实际Humble DDS；SIL8真实定位、地图、Smac与FollowPath成功，18结果/779非零物理消费，原SDK与deadline保持 | 单车/单代/单目标30s；完整任务与第二实现、Windows↔WSL入口、第二机器未验收；旧七轮失败保留 |
+| T07 | 局部SIL通过：Linux SIL8以及Windows→WSL实际3/4均由自家Point-LIO/SLAM/Smac/PID产生真实物理消费；新增显式Windows服务入口，原SDK与deadline保持 | 单车/单代/单目标30s；第2轮间歇超时根因未关闭，生产无测试目标模式/完整任务/第二实现/第二机器仍需验证；旧失败保留 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；SIL8由实际Point-LIO/Nav2产生779非零消费步；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
+| T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式 role/robot/audit admission、state/frame 白名单、撤权和跨 scope 拒绝、客户端兼容 | 两物理电脑 LAN、多人冲突/断线及完整可见 GUI 验收 |
+| T13 | 本地局部修复：显式 role/robot/audit admission、state/frame 白名单、撤权和跨 scope 拒绝、客户端兼容；Operator HTTP拒绝响应/有界正文收尾修复 | 两物理电脑 LAN、多人冲突/断线及完整可见 GUI 验收 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
@@ -143,8 +143,51 @@ raw ROS的Reached the goal为旁证；完整path/goal TF未记录，14-pose和�
 
 本轮config04 SHA affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26，
 FINALd601...、Point-LIO05 fd2b50c7...、诊断controller d4539050...与build/source/ELF引用完整冻结于RESULT/PLAN。
-入口/构建依据见[PB桥说明](PB_NAVIGATION_BRIDGE.md)；Win↔WSL服务、第二机器、更多目标/障碍/恢复与定位精度仍待验证。
+入口/构建依据见[PB桥说明](PB_NAVIGATION_BRIDGE.md)；Windows专用入口与实际验证见下节，第二机器、更多目标/障碍/恢复与定位精度仍待验证。
 fullQA1144/37skip/685subtests为独立质量证据，不能扩大本次SIL范围。
+
+## Windows 物理仿真 → owned WSL 自家导航
+
+[专用接入说明](PB_WSL_NAVIGATION.md)与[永久证据](validation/pb_wsl_navigation_20261014/README.md)
+新增受信本地 `--pb-wsl-navigation-manifest`、持久有界管道、原主机期限校验和Linux整栈收尾。
+HTTP只选择已注册ID，不选择命令；准备先于backend/physics且不预热传感器数据，原reset2s/graph1s/ROS50ms保持。
+服务显示独立namespace/Domain84；生产入口没有自动测试目标，完整外部目标/行为树模式仍需专项验证。
+
+| Windows→WSL实测 | 实际证据与结论 |
+| --- | --- |
+| attempt1 | prepare7.349s；880step/12request/10LIO/0command；真实Humble UUID ndarray(uint8,16)被旧记录校验误拒，整体失败，九组资源回收但业务CLEANUP=false；旧字节保留 |
+| attempt2 | UUID修复后Smac14/status4、FollowPath/status4；3808step/20result/326非零消费；seq67主机接收超原activation deadline，SDK退出是STOP后继，30s验证失败；resource/runtime全部clean |
+| attempt3 | 15000step/30simsec/299request/297LIO/42result/553非零消费；Smac14/status4与FollowPath/status4，原身份/SDK150ms/消费期限审计errors=[]；source/assets/runtime/session全部clean |
+| attempt4 | 再次15000step/30simsec/299request/297LIO/55result/514非零消费；Smac14/status4与FollowPath/status4，原期限与全部收尾通过；source/assets unchanged |
+
+第3轮原RTF .980798实际含runtime.run内部 .58698s close，不作为纯物理RTF。
+第4轮分开保存实际最后physics step：29.9995142s物理区间、RTF约1.0000；
+run+cleanup30.5623169s、比率.981601，join .561446s/1.5s。指标分母和源字节均保留。
+新增完整raw目标TF、14pose路径/原stamp、两个action UUID/接受/状态以及退出后estimatedTF，
+不使用truth、idealodom、旧cmd重贴、不同domain时钟相减或放宽80/150ms。
+独立只读复核3/4全部553/514个非零消费分别关联21/20个实际消费命令及两端SDK原窗口，
+host capture age分别53.988–120.290ms/51.226–140.888ms；raw目标/路径/action原时刻和UUID核验通过。
+两个单车/单代/单相对目标成功短测不关闭attempt2间歇超时根因、完整哨兵任务、定位精度、第二机器或比赛验收。
+
+新增 bounded host/Linux scalar RPC phase账本与STOP共享盘耗时元数据（只在内存记录、收尾写盘），
+用于后续定位尾延迟。修复 native WSL leader先退出时可能留下孙进程的owned-group回收，
+真实Linux9项清理、8项stdio夹具与Windows source/spec回归分别标明范围；它们没有NN/硬件闭环资格。
+当前M0–M5完整状态保持未签收，默认T2实时仍0返回/0消费；下一步继续production gate/外部目标、
+导航异常与恢复矩阵、自瞄首帧80ms链、长期负载，所有旧失败保留。
+
+本轮首统一质量检查1208passed/1failed/48skip/768subtests，未标通过，见
+[质量与HTTP修复记录](validation/quality_wsl_navigation_20261014/README.md)。
+失败是原Operator HTTP超大正文拒绝时Windows偶发RST，40真实loopback对照中20个延迟正文全部复现；
+修复先送拒绝响应/FIN，再最多64KiB/100ms总预算弃正文，accepted limit仍4096，拒绝仍先neutral。
+合法正文保留原2s、改为总deadline避免逐字续时；40同脚本真实对照全部413，25focused/31subtests通过。
+这与导航attempt2未关闭的跨WSL超时是两个不同故障，不能把HTTP修复计作导航尾延迟根因关闭。
+
+最终第二轮统一质量记录 `artifacts/quality-20261014-wsl-navigation-frozen-02`：
+1216passed、48明确skip、776subtests（6条已有fixture collection warnings），preset/source/interface/pytest全部退出0，
+source_unchanged_during_checks=true、checks_passed_not_milestone_acceptance。
+原161未改源/29归属修改/1派生fixture核验通过；本轮未重复camera，前轮35checks另存，
+实际Linux清理/stdio与Windows导航3/4范围分别按上述原件记录，不以条件skip计通过。
+归档只追加验证字节和此最终说明，执行源码保持质量检查时的身份；M0–M5仍未完整签收。
 
 [原host2s实测](validation/ros2_startup_20261013/README.md)：Lyrical module因清理PYTHONPATH缺rclpy，
 固定bootstrap仍未在原2s内完成rclpy初始化；两次0观测/0动作且清理完成，不能把先前DDS通过推成host通过。
@@ -159,7 +202,7 @@ pure preallocation没有可信改善，未生产采纳；主要infer约23–24ms
 [永久证据](validation/ros2_dds_bridge_20261013/README.md)保留两个依赖失败和第三次实际成功，
 97ROS deb+11Ubuntu依赖只解压到owned prefix并核验官方签名/SHA。它使用明确DTO/零速度fixture；
 不证明host启动时窗、真实导航、自瞄、物理SIL、Nav2、TF、点云、LAN或硬件。
-Windows服务到WSL ROS的专用监督器尚未提供，不能把Linux注册路径直接视为Windows部署完成。
+上述通用Lyrical桥没有Windows专用监督器；本轮另提供受审的PB/Humble Windows监督器，两个入口与证据不能混用。
 
 JSONL修复了Windows Python3.12的monotonic/QPC origin差异；注册接口可注入与runtime相同clock，
 默认统一perf_counter；实际child测试证明不误过期，排队恢复后超过原deadline会关闭child/IO并拒绝。

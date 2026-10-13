@@ -1,0 +1,7 @@
+[INFO] [1791921512.190217624] [ImuProcess]: IMU Initializing: 1.0 %
+[WARN] [1791921512.191041034] [ImuProcess]: reset ImuProcess
+[INFO] [1791921512.250136597] [ImuProcess]: IMU Initializing: 50.0 %
+[INFO] [1791921512.252179226] [ImuProcess]: IMU Initializing: 100.0 %
+[INFO] [1791921513.304421743] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+Failed to delete datawriter, at ./src/publisher.cpp:48 during '__function__'
+[ERROR] [1791921513.422441611] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.point_lio.rclcpp]: Error in destruction of rcl publisher handle: cannot publish data, at ./src/rmw_publish.cpp:62, at ./src/rcl/publisher.c:187

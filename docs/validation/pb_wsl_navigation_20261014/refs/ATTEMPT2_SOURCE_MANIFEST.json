@@ -1,0 +1,86 @@
+{
+  "schema": "polar.source.snapshot.v1",
+  "source_of_identity": "actual2/RESULT.json",
+  "files": [
+    {
+      "path": "rm_match/integrations/pb_wsl_navigation.py",
+      "sha256": "6ce48bc65ed4fca6dc0ac7ec329a8d3c7482a1d122f606aeeedc2ab096e4f9d9"
+    },
+    {
+      "path": "rm_match/integrations/pb_wsl_navigation_worker.py",
+      "sha256": "a9ae3d5cee8c3511a7983982e34416405ab55d492eaccfc5035e15ac2643ede8"
+    },
+    {
+      "path": "tools/pb_navigation_stack.py",
+      "sha256": "44554cbb0d931409deda02f70599da70cda16c71ed13cb4f3cfd538a3f2e9ba7"
+    },
+    {
+      "path": "tools/qa_pb_navigation_sil.py",
+      "sha256": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a"
+    },
+    {
+      "path": "rm_match/integrations/pb_navigation_bridge.py",
+      "sha256": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8"
+    },
+    {
+      "path": "rm_match/integrations/pb_navigation_transport.py",
+      "sha256": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6"
+    },
+    {
+      "path": "rm_match/integrations/pb_navigation_phases.py",
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "rm_match/integrations/ros2_bridge.py",
+      "sha256": "5372c8a3afe5bb530560a2287b71f1898dd347f9eed08d1aacce8c4355a18241"
+    },
+    {
+      "path": "rm_match/integrations/pb_request_context.hpp",
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    {
+      "path": "rm_match/integrations/pb_controller_context.hpp",
+      "sha256": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c"
+    },
+    {
+      "path": "rm_match/platform_v2/contracts.py",
+      "sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631"
+    },
+    {
+      "path": "rm_match/platform_v2/navigation_contracts.py",
+      "sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+    },
+    {
+      "path": "rm_match/deployment/profile.py",
+      "sha256": "c571aefa6cf5ba44c2385be26f015d50557c21eb6edd59a4ea1a90de6eaf9c57"
+    },
+    {
+      "path": "rm_match/deployment/wsl_profile.py",
+      "sha256": "2d05ec3e0c9e79d771d790093414c62af798f2ae7d8e1dea09b59de03e80b758"
+    },
+    {
+      "path": "tools/qa_pb_wsl_navigation_sil.py",
+      "sha256": "0ed24bef1115d187620c963577548bc2d5cd5820babc53355fc5079a6547e75e"
+    },
+    {
+      "path": "rm_match/integrations/pb_wsl_navigation_registry.py",
+      "sha256": "674620ee8661dd4429a88952348722678e6c572adfa98f2991c539337d4f53c2"
+    },
+    {
+      "path": "rm_match/platform_v2/runtime.py",
+      "sha256": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481"
+    },
+    {
+      "path": "rm_match/platform_v2/backend.py",
+      "sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e"
+    },
+    {
+      "path": "rm_match/navigation_sensors.py",
+      "sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e"
+    },
+    {
+      "path": "rm_match/harness.xml",
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    }
+  ]
+}

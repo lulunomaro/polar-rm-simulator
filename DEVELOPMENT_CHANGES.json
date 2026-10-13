@@ -3,6 +3,13 @@
   "baseline_manifest": "EXTRACTION_MANIFEST.json",
   "files": [
     {
+      "path": "rm_match/operator/server.py",
+      "original_sha256": "c739354795b0ff550d5a18750561bc962008a165e26c40da364d47cdde3c7e39",
+      "current_sha256": "a68f603043c576549424d604afba6e4719a0b001c55b11c6417c5574339f27a6",
+      "task": "T13",
+      "reason": "Preserve 4096-byte control limit and neutralization; flush rejected HTTP responses and half-close before bounded 64KiB/100ms disposal to prevent Windows unread-body resets; valid bodies use the original 2s timeout value as one total read budget against slow dripping"
+    },
+    {
       "path": "pyproject.toml",
       "original_sha256": "8c9d9e751a197d91313dc690c355ae021bf69156d76877e0523ee504493f0837",
       "current_sha256": "7740a17e2ae52f173942faa5ada361118a5e341fa1240b88d36afcc15b562159",
@@ -19,9 +26,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "55218f17bcb755dc798f60353c9ace9c02033dbb4621097503fc34c7292fb48f",
+      "current_sha256": "cf5ea2214f221ca541dc52c82fd0b35ab77503c8d4d764510b99b2d777e68fc3",
       "task": "T09",
-      "reason": "Preserve loopback admission and existing native/GUI entry; opt-in reviewed PB navigation manifest enables actual pointcloud/IMU sensing and local registration without HTTP argv"
+      "reason": "Preserve loopback admission, native camera entry and original deadlines; mutually exclusive trusted local PB manifests include opt-in Windows-to-WSL preparation before backend/physics; all setup/run/normal shutdown paths close the captured Session and report cleanup failures without HTTP argv"
     },
     {
       "path": "rm_match/platform_v2/backend.py",

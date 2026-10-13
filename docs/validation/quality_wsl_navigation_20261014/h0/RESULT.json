@@ -1,0 +1,271 @@
+{
+  "scope": "actual loopback Windows HTTP transport only",
+  "source_sha256": {
+    "rm_match\\operator\\server.py": "c739354795b0ff550d5a18750561bc962008a165e26c40da364d47cdde3c7e39",
+    "artifacts\\operator-http413-20261014-before01\\reproduce.py": "5956a49e5cc1fb1eaaf1a138013874eaec9bdd4faa5f2529743b77dbeaf14027"
+  },
+  "rows": [
+    {
+      "mode": "http_client",
+      "trial": 0,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 1,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 2,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 3,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 4,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 5,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 6,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 7,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 8,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 9,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 10,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 11,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 12,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 13,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 14,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 15,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 16,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 17,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 18,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "http_client",
+      "trial": 19,
+      "status": 413,
+      "body": "{\"schema\":\"polar.sim.operator.v1\",\"accepted\":false,\"reason\":\"invalid_body_length\"}",
+      "error": null
+    },
+    {
+      "mode": "split_body",
+      "trial": 0,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 1,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 2,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 3,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 4,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 5,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 6,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 7,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 8,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 9,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 10,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 11,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 12,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 13,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 14,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 15,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 16,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 17,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 18,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    },
+    {
+      "mode": "split_body",
+      "trial": 19,
+      "error": "ConnectionAbortedError",
+      "message": "[WinError 10053] \u4f60\u7684\u4e3b\u673a\u4e2d\u7684\u8f6f\u4ef6\u4e2d\u6b62\u4e86\u4e00\u4e2a\u5df2\u5efa\u7acb\u7684\u8fde\u63a5\u3002"
+    }
+  ],
+  "failures": 20,
+  "server_reaped": true
+}

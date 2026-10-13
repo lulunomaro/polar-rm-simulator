@@ -1,0 +1,20 @@
+{
+  "bounded_navigation_consumption_passed": false,
+  "relative_goal_completed": true,
+  "actual_steps": 3808,
+  "physics_rtf": 0.9923724010861248,
+  "consumption_audit": {
+    "consumed_steps": 326,
+    "nonzero_consumed_steps": 326,
+    "actual_sensor_requests": 67,
+    "actual_controller_results": 20,
+    "actual_localizations": 65,
+    "errors": [
+      "actual_navigation_adapter_fault:TimeoutError"
+    ],
+    "passed": false
+  },
+  "errors": [
+    "sdk:RuntimeError:owned_wsl_supervisor_exited"
+  ]
+}

@@ -1,0 +1,61 @@
+[INFO] [1791921510.208571674] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: 
+	controller_server lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791921510.474813701] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Creating controller server
+[INFO] [1791921510.487092822] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: 
+	local_costmap lifecycle node launched. 
+	Waiting on external lifecycle transitions to activate
+	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [1791921510.553233408] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Creating Costmap
+[INFO] [1791921510.555488017] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Configuring controller interface
+[INFO] [1791921510.555840559] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: getting goal checker plugins..
+[INFO] [1791921510.556224431] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Controller frequency set to 20.0000Hz
+[INFO] [1791921510.556707162] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Configuring
+[INFO] [1791921510.587736782] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Using plugin "static_layer"
+[INFO] [1791921510.617144127] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Subscribing to the map topic (/polar_sil_6bf6f8367b594c63954bd308b0367364/red_sentry/map) with transient local durability
+[INFO] [1791921510.627061297] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Initialized plugin "static_layer"
+[INFO] [1791921510.627473263] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Using plugin "intensity_voxel_layer"
+[INFO] [1791921510.657767750] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Subscribed to Topics: terrain_map
+[INFO] [1791921510.663581651] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Initialized plugin "intensity_voxel_layer"
+[INFO] [1791921510.664777050] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Using plugin "inflation_layer"
+[INFO] [1791921510.665870860] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[INFO] [1791921510.681888830] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[INFO] [1791921510.686210794] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[INFO] [1791921510.687051200] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[INFO] [1791921510.693492788] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Created controller : FollowPath of type pb_omni_pid_pursuit_controller::OmniPidPursuitController
+[INFO] [1791921510.705162721] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Controller Server has FollowPath  controllers available.
+[INFO] [1791921512.352868898] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_no_pending field=none active=0 configured=1 generation_fault=0 pending=0 seq=-1 frame=-1 source_seq=-1 pose_ns=298000000 computed_ns=-1 sim_window_s=-1 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.450958220] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_no_pending field=none active=0 configured=1 generation_fault=0 pending=0 seq=-1 frame=-1 source_seq=-1 pose_ns=398000000 computed_ns=-1 sim_window_s=-1 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.551003543] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_no_pending field=none active=0 configured=1 generation_fault=0 pending=0 seq=-1 frame=-1 source_seq=-1 pose_ns=498000000 computed_ns=-1 sim_window_s=-1 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.662971532] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_no_pending field=none active=0 configured=1 generation_fault=0 pending=0 seq=-1 frame=-1 source_seq=-1 pose_ns=598000000 computed_ns=-1 sim_window_s=-1 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.754838285] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_no_pending field=none active=0 configured=1 generation_fault=0 pending=0 seq=-1 frame=-1 source_seq=-1 pose_ns=698000000 computed_ns=-1 sim_window_s=-1 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.814083665] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: StaticLayer: Resizing static layer to 107 X 155 at 0.050000 m/pix
+[INFO] [1791921512.827404957] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Activating
+[INFO] [1791921512.827665662] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Activating
+[INFO] [1791921512.827952543] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Checking transform
+[INFO] [1791921512.828206636] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: start
+[INFO] [1791921512.929310436] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Activating controller: FollowPath of type regulated_pure_pursuit_controller::OmniPidPursuitController
+[INFO] [1791921512.929650535] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Creating bond (controller_server) to lifecycle manager.
+[INFO] [1791921512.934853472] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=request_installed field=none active=1 configured=1 generation_fault=0 pending=1 seq=8 frame=7 source_seq=-1 pose_ns=-1 computed_ns=-1 sim_window_s=0.80000000000000004 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.935437301] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_accepted field=none active=1 configured=1 generation_fault=0 pending=1 seq=8 frame=7 source_seq=-1 pose_ns=797999999 computed_ns=-1 sim_window_s=0.80000000000000004 source_window_s=-1 loc_count=1 loc_first_ns=797999999 loc_last_ns=797999999 loc_contains=1 norm=0 wz=0
+[INFO] [1791921512.946421937] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=request_installed field=none active=1 configured=1 generation_fault=0 pending=1 seq=9 frame=8 source_seq=-1 pose_ns=-1 computed_ns=-1 sim_window_s=0.90000000000000002 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921512.952815341] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_accepted field=none active=1 configured=1 generation_fault=0 pending=1 seq=9 frame=8 source_seq=-1 pose_ns=898000000 computed_ns=-1 sim_window_s=0.90000000000000002 source_window_s=-1 loc_count=1 loc_first_ns=898000000 loc_last_ns=898000000 loc_contains=1 norm=0 wz=0
+[INFO] [1791921513.047946012] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=request_installed field=none active=1 configured=1 generation_fault=0 pending=1 seq=10 frame=9 source_seq=-1 pose_ns=-1 computed_ns=-1 sim_window_s=1 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921513.054855820] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_accepted field=none active=1 configured=1 generation_fault=0 pending=1 seq=10 frame=9 source_seq=-1 pose_ns=998000000 computed_ns=-1 sim_window_s=1 source_window_s=-1 loc_count=1 loc_first_ns=998000000 loc_last_ns=998000000 loc_contains=1 norm=0 wz=0
+[INFO] [1791921513.147090384] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=request_installed field=none active=1 configured=1 generation_fault=0 pending=1 seq=11 frame=10 source_seq=-1 pose_ns=-1 computed_ns=-1 sim_window_s=1.1000000000000001 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921513.152886617] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_accepted field=none active=1 configured=1 generation_fault=0 pending=1 seq=11 frame=10 source_seq=-1 pose_ns=1098000000 computed_ns=-1 sim_window_s=1.1000000000000001 source_window_s=-1 loc_count=1 loc_first_ns=1098000000 loc_last_ns=1098000000 loc_contains=1 norm=0 wz=0
+[INFO] [1791921513.248716308] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=request_installed field=none active=1 configured=1 generation_fault=0 pending=1 seq=12 frame=11 source_seq=-1 pose_ns=-1 computed_ns=-1 sim_window_s=1.2000000000000002 source_window_s=-1 loc_count=0 loc_first_ns=-1 loc_last_ns=-1 loc_contains=0 norm=0 wz=0
+[INFO] [1791921513.255323942] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: polar_sourced_diag reason=localization_accepted field=none active=1 configured=1 generation_fault=0 pending=1 seq=12 frame=11 source_seq=-1 pose_ns=1198000000 computed_ns=-1 sim_window_s=1.2000000000000002 source_window_s=-1 loc_count=1 loc_first_ns=1198000000 loc_last_ns=1198000000 loc_contains=1 norm=0 wz=0
+[INFO] [1791921513.304495362] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [1791921513.306109854] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[INFO] [1791921513.307038912] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Deactivating
+[INFO] [1791921513.307430996] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Deactivating controller: FollowPath of type regulated_pure_pursuit_controller::OmniPidPursuitController
+[INFO] [1791921513.307736200] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Deactivating
+[INFO] [1791921513.328422334] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[INFO] [1791921513.339228231] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Cleaning up
+[INFO] [1791921513.339524007] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Cleaning up controller: FollowPath of type pb_omni_pid_pursuit_controller::OmniPidPursuitController
+[INFO] [1791921513.339924075] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Cleaning up
+[INFO] [1791921513.351156028] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[INFO] [1791921513.353116602] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.local_costmap.local_costmap]: Destroying
+[INFO] [1791921513.359944638] [polar_sil_6bf6f8367b594c63954bd308b0367364.red_sentry.controller_server]: Destroying

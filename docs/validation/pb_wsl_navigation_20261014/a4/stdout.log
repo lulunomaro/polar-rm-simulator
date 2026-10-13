@@ -1,0 +1,53 @@
+{
+  "schema": "polar.pb.windows-wsl-independent-audit.v1",
+  "passed": true,
+  "attempt": 4,
+  "qualification": "read-only original receipts/ROS/SDK/action chain; no ROS/physics run, no Linux/Windows wall clock subtraction; two passes do not establish the root cause of earlier intermittent timeout",
+  "clock_domains": {
+    "receipt_and_sdk": "Windows host QPC",
+    "observer": "Linux local perf_counter",
+    "ros_stamps": "original simulation clock",
+    "cross_domain_subtraction": false
+  },
+  "commands": 20,
+  "nonzero_consumed_steps": 514,
+  "ROS_counts": {
+    "request": 299,
+    "dispatch_diagnostic": 186,
+    "localization": 297,
+    "goal_source_tf": 1,
+    "planner_goal_accepted": 1,
+    "planner_path_result": 1,
+    "follow_path_goal_accepted": 1,
+    "controller_result": 55,
+    "follow_path_result": 1,
+    "ending_estimated_tf": 1
+  },
+  "original_audit": {
+    "consumed_steps": 514,
+    "nonzero_consumed_steps": 514,
+    "actual_sensor_requests": 299,
+    "actual_controller_results": 55,
+    "actual_localizations": 297,
+    "errors": [],
+    "passed": true
+  },
+  "capture_age_host_wall_s": {
+    "min": 0.05122570000094129,
+    "max": 0.1408882000032463
+  },
+  "physics_rtf_qualification": "Attempt3 original physics_rtf includes runtime.close; attempt4 separately measures physics run and run+cleanup. No independent physical performance run in this audit.",
+  "source_files_sha256": {
+    "TRACE.jsonl": "246366b98ac1d8e9117cc273253106634d3ed4606664f68a86381aee4052ac7e",
+    "session/ROS_SOURCE.jsonl": "62a31d4935cf595d820e38c5a8f64768074b3ca8f8c5011dee127e9dcc945063",
+    "RESULT.json": "10ecbc73958cb98b590d26cabe74f76156ea76016e4589110f6083c1d10207ad",
+    "session/SESSION_SPEC.json": "80fe75b6069765603cd3427f259a090685d9885ef5fbc93e2297cb61d3be0a0d",
+    "session/GOAL_REPORT.json": "c3496f14445a7c1162baad4f6c8f6a54e0643472591aa217ec7ec352a0ea52a7",
+    "session/stack/controller_server.log": "05c6135dea6b46c306b5d75b10d3f16c98c4d95040e2415f95e21d00b40a1ead",
+    "session/CLEANUP.json": "f3315c49dc3bf403c7c87e41028b900e6bfef8194f13863a623d3fdd560f57a6",
+    "session/stack/CLEANUP.json": "197742a6769478af6a76ec8394663b7e110b89a00e5453aecb5b8c236a19cd8c"
+  },
+  "qa_source_sha256": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+  "audit_script_sha256": "56d20221add91c15a2ccb460fad0d5ed54b468c6a736ec3065d258c71692fb22",
+  "sources_unchanged": true
+}

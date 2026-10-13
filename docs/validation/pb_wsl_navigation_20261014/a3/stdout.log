@@ -1,0 +1,53 @@
+{
+  "schema": "polar.pb.windows-wsl-independent-audit.v1",
+  "passed": true,
+  "attempt": 3,
+  "qualification": "read-only original receipts/ROS/SDK/action chain; no ROS/physics run, no Linux/Windows wall clock subtraction; two passes do not establish the root cause of earlier intermittent timeout",
+  "clock_domains": {
+    "receipt_and_sdk": "Windows host QPC",
+    "observer": "Linux local perf_counter",
+    "ros_stamps": "original simulation clock",
+    "cross_domain_subtraction": false
+  },
+  "commands": 21,
+  "nonzero_consumed_steps": 553,
+  "ROS_counts": {
+    "request": 299,
+    "dispatch_diagnostic": 194,
+    "localization": 297,
+    "goal_source_tf": 1,
+    "planner_goal_accepted": 1,
+    "planner_path_result": 1,
+    "follow_path_goal_accepted": 1,
+    "controller_result": 42,
+    "follow_path_result": 1,
+    "ending_estimated_tf": 1
+  },
+  "original_audit": {
+    "consumed_steps": 553,
+    "nonzero_consumed_steps": 553,
+    "actual_sensor_requests": 299,
+    "actual_controller_results": 42,
+    "actual_localizations": 297,
+    "errors": [],
+    "passed": true
+  },
+  "capture_age_host_wall_s": {
+    "min": 0.0539883999954327,
+    "max": 0.12028989999816986
+  },
+  "physics_rtf_qualification": "Attempt3 original physics_rtf includes runtime.close; attempt4 separately measures physics run and run+cleanup. No independent physical performance run in this audit.",
+  "source_files_sha256": {
+    "TRACE.jsonl": "d8a42d25b937aa5592299ef7682a293353aa4018fb666b6fd6d4bf087a8bfebd",
+    "session/ROS_SOURCE.jsonl": "9f0ad633cac7e0c4bbfee1abca0bf8eb77a907e52af3bff48def3966cc7f6758",
+    "RESULT.json": "22c5e178afd8f0e6616412062449cd89cf3b2bdb9737e0781fe3fddfeb25c1bd",
+    "session/SESSION_SPEC.json": "2d8aeb79e7dd4aa021e44424ea2768ad27c33aca5e6fa3d750e4b69c71acd9b6",
+    "session/GOAL_REPORT.json": "ffe3dcd64b6c7e5b476fe21827999b57a2795c32c90ae40e92be462b86d26310",
+    "session/stack/controller_server.log": "2f5222bd64823d4294bbea6f3fa8498a2a5a8c0d30082b6b7e712fe7339f1045",
+    "session/CLEANUP.json": "4b158a6aece366451018286be9635f3ca19e7f8edb8baeefb8ebfb50c4156b02",
+    "session/stack/CLEANUP.json": "bf2d267b7a4d3f7493cdabd5434012adaa91efbc574d3515daf6b4372e549133"
+  },
+  "qa_source_sha256": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+  "audit_script_sha256": "56d20221add91c15a2ccb460fad0d5ed54b468c6a736ec3065d258c71692fb22",
+  "sources_unchanged": true
+}

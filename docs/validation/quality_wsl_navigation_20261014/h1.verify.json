@@ -1,0 +1,13 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\quality_wsl_navigation_20261014\\verify_archives.py"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 0.07077279999793973,
+  "stdout_sha256": "d15cd0ebdb587043fdb635d1e125889c29a3ae14ec9ae2bc270ccc6f060d529a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "preservation_sha256": "061a5eae6ad066ab99bba7b3aaf2e67fcf93a7f520db2abd7a59cdef31f96118",
+  "index_sha256": "93a0daf974cbe6517c5969d831be99b87b3ec4141e89e00f086b8176fcb525ac",
+  "scope": "Actual archive verification; no quality/ROS/navigation rerun"
+}

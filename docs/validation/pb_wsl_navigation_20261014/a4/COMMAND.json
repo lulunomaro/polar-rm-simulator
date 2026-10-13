@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-navigation-audit-20261014-04\\audit.py",
+    "--attempt",
+    "4"
+  ],
+  "audit_script_sha256": "56d20221add91c15a2ccb460fad0d5ed54b468c6a736ec3065d258c71692fb22",
+  "driver_sha256": "c3a300ff37cfef45531005196e1f29b9e60ec22e62f1970d93e44979e69ef142",
+  "scope": "pure Python read-only original artifact audit; no ROS/physics/NN"
+}

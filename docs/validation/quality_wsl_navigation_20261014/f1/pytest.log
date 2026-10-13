@@ -1,0 +1,97 @@
+..............................................ss........................ [  5%]
+.......................................s.............................. [ 11%]
+..s................................s.................................... [ 17%]
+.......s............... [ 18%]
+............................................................... [ 23%]
+..................................ssssss..........s.s....s....... [ 29%]
+........s................... [ 31%]
+s...........ss....s...... [ 33%]
+......................................sssss [ 36%]
+ss......................................... [ 40%]
+...............s..................... [ 43%]
+........................................................................ [ 48%]
+................................. [ 51%]
+.s............sssss........ssssssssssssss............................................................... [ 59%]
+.................................................. [ 63%]
+.....F.......................................... [ 67%]
+................................................................................................... [ 75%]
+............................................................................................. [ 82%]
+............................................................................... [ 89%]
+................................................................... [ 94%]
+.............................................................. [ 99%]
+.........                                                                [100%]
+================================== FAILURES ===================================
+___________________ HTTPTests.test_oversized_body_rejected ____________________
+
+self = <rm_match.operator.test_protocol.HTTPTests testMethod=test_oversized_body_rejected>
+
+    def test_oversized_body_rejected(self):
+>       self.assertEqual(self.request('POST','/control','x'*4097,{'Content-Type':'application/json'})[0],413)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+rm_match\operator\test_protocol.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\operator\test_protocol.py:95: in request
+    response=connection.getresponse();data=response.read();hdrs=dict(response.getheaders())
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:1478: in getresponse
+    response.begin()
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:343: in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py:304: in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <socket.SocketIO object at 0x00000268805D0760>
+b = <memory at 0x0000026803772F80>
+
+    def readinto(self, b):
+        """Read up to len(b) bytes into the writable buffer *b* and return
+        the number of bytes read.  If the socket is non-blocking and no bytes
+        are available, None is returned.
+    
+        If *b* is non-empty, a 0 return value indicates that the connection
+        was shutdown at the other end.
+        """
+        self._checkClosed()
+        self._checkReadable()
+        if self._timeout_occurred:
+            raise OSError("cannot read from timed out object")
+        while True:
+            try:
+>               return self._sock.recv_into(b)
+                       ^^^^^^^^^^^^^^^^^^^^^^^
+E               ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\socket.py:720: ConnectionResetError
+============================== warnings summary ===============================
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_camera.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_native_timing.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:28
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:28: PytestCollectionWarning: cannot collect test class 'TestAdapter' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestAdapter:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_server.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_spin_feedback.py)
+    class TestRegistry:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED rm_match/operator/test_protocol.py::HTTPTests::test_oversized_body_rejected
+1 failed, 1208 passed, 48 skipped, 6 warnings, 768 subtests passed in 85.59s (0:01:25)

@@ -1,0 +1,13 @@
+{
+  "scope": "Actual independent archive byte/SHA validation only; no algorithm/ROS/WSL rerun",
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\pb_wsl_navigation_20261014\\verify_archives.py"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 0.2637771000008797,
+  "stdout_sha256": "07f699aec079cb3ee1ed309936161a200bf42116e6666b0397f7abac26258e19",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "manifest_sha256": "6b4c5d013cbe94cbbdbc59dcaa1cb22bb5520a52f2280cc773088c1491aa7768",
+  "index_sha256": "a88016bfe1283701702147f0d3ff5e7b99318fe6e3f889305d87708e9e61ca56"
+}

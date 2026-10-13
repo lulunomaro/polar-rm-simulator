@@ -54,7 +54,7 @@
 
 ## 真实构建与单代 SIL：2026-10-14
 
-实际源码来自当前 Windows 工作区的固定对象与 reviewed overlay；运行环境是 WSL Ubuntu 22.04 / ROS2 Humble。当前 SIL 的 MuJoCo、SDK、桥与 ROS 栈均在 Linux 环境运行，不是 Windows 服务跨 WSL 的入口验收。每轮使用 DOMAIN 84、新 namespace、新 generation 和全新 owned 进程；不喂假传感器、不预热算法、不刷新原时刻。
+实际源码来自当前 Windows 工作区的固定对象与 reviewed overlay；运行环境是 WSL Ubuntu 22.04 / ROS2 Humble。本节早期 SIL 的 MuJoCo、SDK、桥与 ROS 栈均在 Linux 环境运行；后续另提供[Windows专用入口及实际3/4轮验证](PB_WSL_NAVIGATION.md)，不能混用两个环境的记录。每轮使用 DOMAIN 84、新 namespace、新 generation 和全新 owned 进程；不喂假传感器、不预热算法、不刷新原时刻。
 
 Point-LIO、loam_interface、sensor_scan_generation、terrain 以及 PB 控制器/插件已经真实编译。PB 原 `liblayers.so` 与 Nav2 基类库同 SONAME，实际加载出现 `ObstacleLayer::deactivate` 未解析；仅将 owned 输出库与 XML 绑定改为 `libpb_intensity_layers.so`，原类与算法源字节保持。独立 03 插件构建 412.657 秒成功；02 控制器复用同 SHA 的已编译对象，独立 resume 23.838 秒成功，旧 combined 600 秒超时报告保留。构建工具默认资源预算改为 1800 秒，可选 60–3600 秒；这不改变 SDK 的 2 秒 reset / 150 ms 控制期限。
 
@@ -98,7 +98,7 @@ owned ext4 环境逐文件核验并复制 venv、受信前缀、compat 与 Livox
 
 [第八轮冻结证据](validation/pb_navigation_sil_20261014_attempt8/README.md)：实际退出 0，30 秒/15000 步，RTF 0.9995295364；294 原身份请求、292 定位事件、59 地图消息，Smac 返回 14-pose 路径（status4），FollowPath 成功（status4）。18 个原控制器 source result 对应 779 个非零物理运动消费步，原 sensor/SDK 权限、wall/sim期限与原身份审计 errors=[]；fire_permission=false。source 不变、runtime clean join 0.013611 秒，九个 owned 算法组全部回收且资产身份不变。七轮旧失败保持原结果。
 
-目标由实际算法 `map→base_link` 估计 pose 沿 map 的 x 方向偏移 1 m、y 保持不变生成；它不是基于仿真真值的目标。退出后的真实 qpos `[1.434108,-0.0204169,0.0000558]` 仅用于隔离评测，没有进入算法输入，也不能据此声称定位精度、所有导航目标或障碍场景通过。本次证据限 red_sentry、单 episode/binding、单目标与本机 Linux/Humble；完整任务、动态障碍/恢复/漂移、多车比赛、第二机器、Windows↔WSL服务入口和硬件仍待验证。
+目标由实际算法 `map→base_link` 估计 pose 沿 map 的 x 方向偏移 1 m、y 保持不变生成；它不是基于仿真真值的目标。退出后的真实 qpos `[1.434108,-0.0204169,0.0000558]` 仅用于隔离评测，没有进入算法输入，也不能据此声称定位精度、所有导航目标或障碍场景通过。本次证据限 red_sentry、单 episode/binding、单目标与本机 Linux/Humble；完整任务、动态障碍/恢复/漂移、多车比赛、第二机器和硬件仍待验证。Windows专用入口的后续局部验证见[独立记录](PB_WSL_NAVIGATION.md)。
 
 `stack/controller_server.log` 前 256 条诊断已达到上限：request_installed42，localization_accepted28，localization_context_mismatch13，localization_no_pending15，begin_accepted18，begin_no_pending35，begin_pose_not_localized26，finish_no_request61，finish_published18。18 发布与实际 source result 数一致；该有界前缀未出现 velocity/clock/pending_changed 的 finish 拒绝，不代表日志停止后的所有回调均已统计。pose不匹配和旧 context 仍安全拒绝。
 

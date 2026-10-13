@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/rm_match/integrations/pb_wsl_navigation_worker.py", line 242, in session_worker
+    op,serial,packet=checked_rpc(request,last_id,spec['run_uuid']);last_id=serial
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/rm_match/integrations/pb_wsl_navigation_worker.py", line 104, in checked_rpc
+    if type(serial) is not int or serial!=last_id+1:raise ValueError('wsl_request_sequence')
+ValueError: wsl_request_sequence

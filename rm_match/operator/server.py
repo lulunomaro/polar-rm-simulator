@@ -5,12 +5,17 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import copy
 import ipaddress
 import json
+import socket
 import threading
+import time
 from urllib.parse import urlsplit
 
 from .protocol import SCHEMA, ControlGate
 
 MAX_BODY_BYTES = 4096
+BODY_TIMEOUT_S = 2.
+REJECT_DRAIN_BYTES = 64 * 1024
+REJECT_DRAIN_TIMEOUT_S = .1
 
 
 class BridgeState:
@@ -132,7 +137,52 @@ class OperatorHandler(BaseHTTPRequestHandler):
 
     def setup(self):
         super().setup()
-        self.connection.settimeout(2.)
+        self.connection.settimeout(BODY_TIMEOUT_S)
+        self._body_bytes_read = 0
+        self._discard_body_on_close = False
+
+    def _read_body(self, size):
+        """One total deadline, rather than a fresh idle timeout per byte."""
+        deadline = time.perf_counter() + BODY_TIMEOUT_S
+        raw = bytearray()
+        while len(raw) < size:
+            remaining = deadline - time.perf_counter()
+            if remaining <= 0:raise TimeoutError('Request body deadline expired')
+            self.connection.settimeout(remaining)
+            chunk = self.rfile.read1(size-len(raw))
+            if not chunk:raise ValueError('Incomplete request')
+            self._body_bytes_read += len(chunk)
+            raw.extend(chunk)
+        if time.perf_counter() >= deadline:raise TimeoutError('Request body deadline expired')
+        return bytes(raw)
+
+    def finish(self):
+        try:
+            if self._discard_body_on_close:
+                # Closing with unread TCP data can reset Winsock and discard
+                # the 413 already sent. Send FIN first, then discard only bounded
+                # data/time; the rejected body is never parsed or authorized.
+                self.wfile.flush()
+                try:self.connection.shutdown(socket.SHUT_WR)
+                except OSError:pass
+                try:
+                    declared = int(self.headers.get('Content-Length','-1'))
+                except ValueError:declared = -1
+                remaining = (REJECT_DRAIN_BYTES if declared < 0 else
+                    min(REJECT_DRAIN_BYTES,max(0,declared-self._body_bytes_read)))
+                deadline = time.perf_counter() + REJECT_DRAIN_TIMEOUT_S
+                while remaining > 0:
+                    timeout = deadline - time.perf_counter()
+                    if timeout <= 0:break
+                    self.connection.settimeout(timeout)
+                    try:chunk = self.rfile.read1(min(4096,remaining))
+                    except OSError:break
+                    if not chunk:break
+                    remaining -= len(chunk)
+        except OSError:
+            pass  # Peer aborts never authorize a control message.
+        finally:
+            super().finish()
 
     def _safe_request(self):
         try:
@@ -154,11 +204,16 @@ class OperatorHandler(BaseHTTPRequestHandler):
         return True
 
     def _reply(self, code, content, content_type, headers=None):
+        self.close_connection = True
+        if code >= 400 and (self.command in ('POST','PUT','PATCH')
+                or self.headers.get('Content-Length') is not None or self.headers.get('Transfer-Encoding')):
+            self._discard_body_on_close = True
         self.send_response(code)
         self.send_header('Content-Type',content_type)
         self.send_header('Content-Length',str(len(content)))
         self.send_header('Cache-Control','no-store')
         self.send_header('X-Content-Type-Options','nosniff')
+        self.send_header('Connection','close')
         for key,value in (headers or {}).items():
             self.send_header(key,str(value))
         self.end_headers()
@@ -224,11 +279,9 @@ class OperatorHandler(BaseHTTPRequestHandler):
             invalid(413,'invalid_body_length')
             return
         try:
-            raw = self.rfile.read(size)
-            if len(raw) != size:
-                raise ValueError('Incomplete request')
+            raw = self._read_body(size)
             message = json.loads(raw,parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
-        except (ValueError,UnicodeError,TimeoutError,RecursionError,OverflowError):
+        except (ValueError,UnicodeError,OSError,RecursionError,OverflowError):
             invalid(400,'invalid_json')
             return
         result = (self.server.state.select_robot(message) if path == '/select_robot'

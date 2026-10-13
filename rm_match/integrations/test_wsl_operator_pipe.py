@@ -23,7 +23,8 @@ class PipeHostTests(unittest.TestCase):
         from ..deployment.wsl_profile import CheckedWslSpec
         with tempfile.TemporaryDirectory(dir=ROOT/'artifacts',prefix='wsl_pipe_identity_') as directory:
             repo=Path(directory);out=repo/'out';out.mkdir()
-            paths=('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py')
+            paths=('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py',
+                   'rm_match/integrations/owned_linux_group.py')
             for rel in paths:
                 target=repo/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes((ROOT/rel).read_bytes())
             original=CheckedWslSpec({},'a'*64,{},dict(transport='wsl_stdio_v1',transport_source_sha256={}),repo/'spec.json',repo,out,{})
@@ -262,9 +263,11 @@ class ActualPipeTests(unittest.TestCase):
         self.child.stdin.close();self.cleanup()
 
     def test_actual_blocked_whole_writer_unblocks_after_owned_worker_exit_and_close(self):
-        self.launch(ignore_term=True);a=WslPipeOperatorProcess.__new__(WslPipeOperatorProcess)
+        ready=self.launch(ignore_term=True);a=WslPipeOperatorProcess.__new__(WslPipeOperatorProcess)
         a._stop=threading.Event();a._broken=threading.Event();a._outgoing=queue.Queue(maxsize=1)
-        a.evidence_out=self.out/'worker';a.diagnostics=[];a.ready={};a.process=self.child;a.stderr=self.child.stderr
+        from types import SimpleNamespace
+        a.checked=SimpleNamespace(linux_spec_sha256='harmless')
+        a.evidence_out=self.out/'worker';a.diagnostics=[];a.ready=ready;a.process=self.child;a.stderr=self.child.stderr
         entered=threading.Event();finished=threading.Event();stream=self.child.stdin
         class TrackingStream:
             def write(self,v):

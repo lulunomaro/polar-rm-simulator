@@ -158,13 +158,90 @@ def audit_navigation_consumption(rows,ros_rows):
         errors=errors,passed=bool(consumed and nonzero) and not errors)
 
 
+MAX_RECORDED_PATH_POSES=4096
+MAX_ALGORITHM_RECORD_BYTES=2*1024*1024
+
+
+def _ros_stamp(value):
+    sec=value.sec;ns=value.nanosec
+    if type(sec) is not int or type(ns) is not int or not 0<=sec<=2147483647 or not 0<=ns<1000000000:
+        raise ValueError('algorithm_evidence_stamp')
+    return dict(sec=sec,nanosec=ns)
+
+
+def _ros_header(value):
+    frame=value.frame_id
+    if type(frame) is not str or len(frame.encode('utf8'))>128 or any(ord(c)<32 for c in frame):
+        raise ValueError('algorithm_evidence_frame')
+    return dict(stamp=_ros_stamp(value.stamp),frame_id=frame)
+
+
+def _ros_vector(value,axes):
+    values={key:getattr(value,key) for key in axes}
+    if any(type(v) not in (int,float) or not math.isfinite(v) or abs(v)>1e6 for v in values.values()):
+        raise ValueError('algorithm_evidence_nonfinite_or_unbounded')
+    return values
+
+
+def recorded_pose(value):
+    """Exact ROS message fields, without clock conversion or stamp substitution."""
+    return dict(header=_ros_header(value.header),pose=dict(position=_ros_vector(value.pose.position,'xyz'),
+        orientation=_ros_vector(value.pose.orientation,'xyzw')))
+
+
+def recorded_transform(value):
+    header=_ros_header(value.header)
+    if header['frame_id']!='map' or value.child_frame_id!='base_link':
+        raise ValueError('algorithm_evidence_transform_frames')
+    return dict(header=header,child_frame_id=value.child_frame_id,
+        transform=dict(translation=_ros_vector(value.transform.translation,'xyz'),
+                       rotation=_ros_vector(value.transform.rotation,'xyzw')))
+
+
+def recorded_goal_uuid(handle):
+    from array import array
+    value=handle.goal_id.uuid
+    if type(value) in (bytes,bytearray):
+        raw=bytes(value)
+    elif type(value) is array and value.typecode=='B':
+        raw=value.tobytes()
+    elif type(value) in (list,tuple):
+        if len(value)!=16 or any(type(v) is not int or not 0<=v<=255 for v in value):
+            raise ValueError('algorithm_evidence_goal_uuid')
+        raw=bytes(value)
+    elif type(value).__module__=='numpy':
+        # Humble generated uint8 arrays use ndarray/numpy.uint8, not Python int.
+        # Accept only the exact ROS wire dtype/shape, never integer coercion.
+        import numpy as np
+        if type(value) is not np.ndarray or value.dtype!=np.dtype('uint8') or value.shape!=(16,):
+            raise ValueError('algorithm_evidence_goal_uuid')
+        raw=value.tobytes(order='C')
+    else:raise ValueError('algorithm_evidence_goal_uuid')
+    if len(raw)!=16:
+        raise ValueError('algorithm_evidence_goal_uuid')
+    return raw.hex()
+
+
+def recorded_path_result(result,handle):
+    path=result.result.path
+    if type(result.status) is not int or not 0<=result.status<=6:
+        raise ValueError('algorithm_evidence_action_status')
+    if len(path.poses)>MAX_RECORDED_PATH_POSES:raise ValueError('algorithm_evidence_path_oversized')
+    return dict(goal_uuid=recorded_goal_uuid(handle),status=result.status,
+        path=dict(header=_ros_header(path.header),poses=[recorded_pose(pose) for pose in path.poses]),
+        planning_time=_ros_stamp(result.result.planning_time))
+
+
 class AlgorithmObserver:
     """Only estimated ROS poses can select the relative test goal."""
-    def __init__(self,namespace,domain_id,diagnostics=False):
+    def __init__(self,namespace,domain_id,diagnostics=False,receive_clock='host_perf_counter'):
         from tools.pb_navigation_stack import DDS_ENVIRONMENT,_DDS_INIT_LOCK,namespace_checked
         namespace_checked(namespace)
         if type(domain_id) is not int or domain_id!=84:raise ValueError('observer_domain_84_required')
         if type(diagnostics) is not bool:raise ValueError('observer_diagnostics_boolean_required')
+        if type(receive_clock) is not str or receive_clock not in ('host_perf_counter','linux_local_perf_counter'):
+            raise ValueError('observer_receive_clock_required')
+        self.receive_clock=receive_clock
         import rclpy
         from rclpy.context import Context
         from rclpy.executors import SingleThreadedExecutor
@@ -174,6 +251,7 @@ class AlgorithmObserver:
         from tf2_ros import Buffer,TransformListener
         self.rclpy=rclpy;self.context=Context();self.rows=[];self.errors=[];self.lock=threading.Lock()
         self.odom_count=0;self.map_count=0;self.goal_report={};self.closed=False
+        self.action_request_id=None;self.action_request_seq=0
         with _DDS_INIT_LOCK:
             previous={k:os.environ.get(k) for k in DDS_ENVIRONMENT}
             try:
@@ -205,7 +283,8 @@ class AlgorithmObserver:
                     value=json.loads(msg.data,parse_constant=lambda _:(_ for _ in ()).throw(ValueError('nonfinite')))
                     with self.lock:
                         if len(self.rows)>=20000:raise ValueError('observer_queue_full')
-                        self.rows.append(dict(topic_kind=kind,receive_wall=time.perf_counter(),value=value))
+                        self.rows.append(dict(topic_kind=kind,receive_wall=time.perf_counter(),
+                                              receive_clock=self.receive_clock,value=value))
                 except Exception as exc:self.errors.append(type(exc).__name__+':'+str(exc))
             return callback
         for kind,topic in [('request','request'),('localization','localization'),('controller_result','result')]:
@@ -220,6 +299,42 @@ class AlgorithmObserver:
         while not future.done():
             if stop.wait(.01) or time.perf_counter()>=end:raise TimeoutError('bounded_algorithm_service')
         return future.result()
+
+    def record_algorithm(self,kind,**fields):
+        """Bounded observation only: never publish these records back to ROS."""
+        if kind not in ('goal_source_tf','planner_goal_accepted','planner_path_result',
+                        'follow_path_goal_accepted','follow_path_result','ending_estimated_tf',
+                        'ending_estimated_tf_unavailable'):
+            raise ValueError('algorithm_evidence_kind')
+        value=dict(schema='polar.pb.algorithm-action-evidence.v1',namespace=self.namespace,
+                   action_request_id=self.action_request_id,action_request_seq=self.action_request_seq,**fields)
+        if type(self.action_request_seq) is not int or self.action_request_seq<0:
+            raise ValueError('algorithm_evidence_request_sequence')
+        if self.action_request_id is None:
+            if not kind.startswith('ending_estimated_tf') or self.action_request_seq!=0:
+                raise ValueError('algorithm_evidence_request_identity')
+        elif (type(self.action_request_id) is not str or len(self.action_request_id)!=32 or
+              any(c not in '0123456789abcdef' for c in self.action_request_id) or self.action_request_seq<1):
+            raise ValueError('algorithm_evidence_request_identity')
+        if len(json.dumps(value,allow_nan=False,separators=(',',':')).encode('utf8'))>MAX_ALGORITHM_RECORD_BYTES:
+            raise ValueError('algorithm_evidence_record_oversized')
+        with self.lock:
+            if len(self.rows)>=20000:raise ValueError('observer_queue_full')
+            self.rows.append(dict(topic_kind=kind,receive_wall=time.perf_counter(),
+                                 receive_clock=self.receive_clock,value=value))
+
+    def record_ending_estimate(self):
+        # Lookup is immediate from the actual buffer, with no wait, new input or TF retagging.
+        from rclpy.time import Time
+        try:
+            pose=self.buffer.lookup_transform('map','base_link',Time())
+        except Exception as exc:
+            self.record_algorithm('ending_estimated_tf_unavailable',error_type=type(exc).__name__,
+                                  postprocess_only=True,groundtruth_frame_comparison_qualified=False)
+            return
+        self.record_algorithm('ending_estimated_tf',source_kind='actual_tf_buffer_lookup',
+            transform=recorded_transform(pose),postprocess_only=True,algorithm_input=False,
+            groundtruth_frame_comparison_qualified=False)
 
     def drive_goal(self,stack,stop):
         from geometry_msgs.msg import PoseStamped
@@ -241,6 +356,11 @@ class AlgorithmObserver:
             goal.pose.position.x=pose.transform.translation.x+1.0
             goal.pose.position.y=pose.transform.translation.y
             goal.pose.orientation=pose.transform.rotation
+            self.action_request_id=secrets.token_hex(16)
+            self.action_request_seq+=1
+            self.record_algorithm('goal_source_tf',source_kind='actual_tf_buffer_lookup',
+                transform=recorded_transform(pose),goal=recorded_pose(goal),relative_offset_m=[1.,0.],
+                action_name=self.namespace+'/compute_path_to_pose',planner_id='GridBased',use_start=False)
             self.goal_report=dict(source='actual_algorithm_map_to_base_link_tf',frame='map',
                 source_stamp_ns=pose.header.stamp.sec*1000000000+pose.header.stamp.nanosec,
                 relative_offset_m=[1.,0.],goal_xy=[goal.pose.position.x,goal.pose.position.y])
@@ -249,12 +369,21 @@ class AlgorithmObserver:
             if not planner.wait_for_server(timeout_sec=2.) or not controller.wait_for_server(timeout_sec=2.):raise TimeoutError('actual_nav2_action_server_unavailable')
             request=ComputePathToPose.Goal();request.goal=goal;request.planner_id='GridBased';request.use_start=False
             handle=self.wait_future(planner.send_goal_async(request),stop)
+            planner_uuid=recorded_goal_uuid(handle)
+            self.record_algorithm('planner_goal_accepted',action_name=self.namespace+'/compute_path_to_pose',
+                goal_uuid=planner_uuid,accepted=handle.accepted)
             if not handle.accepted:raise ValueError('actual_planner_goal_rejected')
             result=self.wait_future(handle.get_result_async(),stop)
+            self.record_algorithm('planner_path_result',action_name=self.namespace+'/compute_path_to_pose',
+                planner_id=request.planner_id,use_start=request.use_start,**recorded_path_result(result,handle))
             if result.status!=4 or len(result.result.path.poses)<2:raise ValueError('actual_planner_failed_or_empty_path')
             self.goal_report['path_poses']=len(result.result.path.poses);self.goal_report['planner_status']=result.status
             request=FollowPath.Goal();request.path=result.result.path;request.controller_id='FollowPath';request.goal_checker_id='general_goal_checker'
             handle=self.wait_future(controller.send_goal_async(request),stop)
+            controller_uuid=recorded_goal_uuid(handle)
+            self.record_algorithm('follow_path_goal_accepted',action_name=self.namespace+'/follow_path',
+                goal_uuid=controller_uuid,planner_goal_uuid=planner_uuid,accepted=handle.accepted,
+                controller_id=request.controller_id,goal_checker_id=request.goal_checker_id)
             if not handle.accepted:raise ValueError('actual_controller_path_rejected')
             self.goal_report['follow_path_accepted']=True
             future=handle.get_result_async()
@@ -263,8 +392,12 @@ class AlgorithmObserver:
                 self.wait_future(handle.cancel_goal_async(),threading.Event(),timeout=.5)
                 self.goal_report['follow_path_canceled_at_bounded_end']=True
             elif future.done():
-                self.goal_report['follow_path_status']=future.result().status
-                if future.result().status!=4:raise ValueError('actual_controller_path_failed')
+                result=future.result()
+                if type(result.status) is not int or not 0<=result.status<=6:raise ValueError('algorithm_evidence_action_status')
+                self.record_algorithm('follow_path_result',action_name=self.namespace+'/follow_path',
+                    goal_uuid=controller_uuid,planner_goal_uuid=planner_uuid,status=result.status)
+                self.goal_report['follow_path_status']=result.status
+                if result.status!=4:raise ValueError('actual_controller_path_failed')
         except Exception as exc:
             if stop.is_set():self.goal_report['interrupted_at_bounded_end']=type(exc).__name__+':'+str(exc)
             else:self.errors.append(type(exc).__name__+':'+str(exc))
@@ -394,6 +527,8 @@ def main(argv=None):
         runtime.run(max_wall_seconds=args.seconds,real_time_factor=1.)
         elapsed=time.perf_counter()-started
         final=backend._sim.data.qpos[backend._sim.qindices['red_sentry'][:3]].copy().tolist()
+        try:observer.record_ending_estimate()
+        except Exception as exc:errors.append('ending_estimate_record:'+type(exc).__name__+':'+str(exc))
         stop.set();sdk_thread.join(.5)
         if sdk_thread.is_alive():errors.append('sdk_thread_not_reaped')
     except Exception as exc:

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--",
+    "env",
+    "POLAR_TEST_WSL=1",
+    "POLAR_WSL_STDIO_ARTIFACTS=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-wsl-navigation-stdio-fixture-20261014-02",
+    "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "-m",
+    "unittest",
+    "tests.test_pb_wsl_navigation_stdio",
+    "-v"
+  ],
+  "source_before": {
+    "tests/test_pb_wsl_navigation_stdio.py": "412b81e02ece7d6797c1e16e7a852bdd7535d38e735d154cc6b24bb8be8c818d",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "a749190978f085f07ddfc1148e3b07a0d72c191f562daccd415b2b33cf196148"
+  },
+  "driver_sha256": "682a7875bd65d170242ca90a5c9189fb622ceb804086917531496f976914626b",
+  "qualification": "actual Linux stdio fixture only: fake stack/transport/gate; no ROS/DDS/NN/GL/SIL"
+}

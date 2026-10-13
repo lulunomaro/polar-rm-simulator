@@ -1,0 +1,92 @@
+{
+  "schema": "polar.quality.wsl-navigation-preservation.v1",
+  "count": 7,
+  "files": [
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/acceptance_preset.log",
+      "stored_path": "f1/acceptance_preset.log",
+      "original_bytes": 1166,
+      "original_sha256": "7ea23060b06d4b7eaa668ea50afc46fd521165d75d14449018b41113062836e3",
+      "stored_bytes": 1166,
+      "stored_sha256": "7ea23060b06d4b7eaa668ea50afc46fd521165d75d14449018b41113062836e3",
+      "encoding": "original_bytes",
+      "archive_input_unchanged": true
+    },
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/interface_static.log",
+      "stored_path": "f1/interface_static.log",
+      "original_bytes": 23957,
+      "original_sha256": "9ad3d6a56a5ca6942d0f7c5f9612a6dcc0c6713d4d106f248a7a99e51877a8c6",
+      "stored_bytes": 23957,
+      "stored_sha256": "9ad3d6a56a5ca6942d0f7c5f9612a6dcc0c6713d4d106f248a7a99e51877a8c6",
+      "encoding": "original_bytes",
+      "archive_input_unchanged": true
+    },
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/manifest.json",
+      "stored_path": "f1/manifest.json.gz",
+      "original_bytes": 245894,
+      "original_sha256": "9f7b413f57a86e74040bcfdc7b7ae023d65f35533f144169fe302947b566c62f",
+      "stored_bytes": 80573,
+      "stored_sha256": "9c0efbcc1dca2f10450330e9782402e1b7f86560f1c96be76f46093dbc3f1303",
+      "encoding": "gzip_mtime0",
+      "archive_input_unchanged": true
+    },
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/preset.json",
+      "stored_path": "f1/preset.json",
+      "original_bytes": 1166,
+      "original_sha256": "7ea23060b06d4b7eaa668ea50afc46fd521165d75d14449018b41113062836e3",
+      "stored_bytes": 1166,
+      "stored_sha256": "7ea23060b06d4b7eaa668ea50afc46fd521165d75d14449018b41113062836e3",
+      "encoding": "original_bytes",
+      "archive_input_unchanged": true
+    },
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/pytest.log",
+      "stored_path": "f1/pytest.log",
+      "original_bytes": 6327,
+      "original_sha256": "d1c6559baf2868be4e5f23cc4c01db77682a85f57f3071eb1d0aeb04593ceb62",
+      "stored_bytes": 6327,
+      "stored_sha256": "d1c6559baf2868be4e5f23cc4c01db77682a85f57f3071eb1d0aeb04593ceb62",
+      "encoding": "original_bytes",
+      "archive_input_unchanged": true
+    },
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/pytest.xml",
+      "stored_path": "f1/pytest.xml.gz",
+      "original_bytes": 200897,
+      "original_sha256": "22f6e83fa360a03cfd92a592be9b64f8803e79a0643ad1b7d559edc46339c735",
+      "stored_bytes": 35831,
+      "stored_sha256": "3978559dbe67028310e3fd0faf22a991ed5cfdfc3df09b85ed1abac2ea6bd5a6",
+      "encoding": "gzip_mtime0",
+      "archive_input_unchanged": true
+    },
+    {
+      "source": "artifacts/quality-20261014-wsl-navigation-frozen/source_provenance.log",
+      "stored_path": "f1/source_provenance.log",
+      "original_bytes": 1538,
+      "original_sha256": "05887c8426646296d025ee91099b4ff6d2d511513637ab677a1cc4da9feb9603",
+      "stored_bytes": 1538,
+      "stored_sha256": "05887c8426646296d025ee91099b4ff6d2d511513637ab677a1cc4da9feb9603",
+      "encoding": "original_bytes",
+      "archive_input_unchanged": true
+    }
+  ],
+  "runs": {
+    "f1": {
+      "source_manifest": "artifacts/quality-20261014-wsl-navigation-frozen/manifest.json",
+      "status": "failed",
+      "step_exit_codes": {
+        "acceptance_preset": 0,
+        "source_provenance": 0,
+        "interface_static": 0,
+        "pytest": 1
+      },
+      "source_unchanged_during_checks": "not_recorded",
+      "milestone_accepted": false
+    }
+  },
+  "archive_script_sha256": "5ca5a63045320c3402bcba825c334b31a09e59e9da6ed15a6e33ff1a1b88eca2",
+  "qualification": "Exact quality reports, not navigation/match/hardware acceptance"
+}

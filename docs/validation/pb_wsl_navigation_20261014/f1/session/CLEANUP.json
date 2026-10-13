@@ -1,0 +1,14 @@
+{
+  "schema": "polar.pb.wsl-session-cleanup.v1",
+  "run_uuid": "6bf6f8367b594c63954bd308b0367364",
+  "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+  "clean": false,
+  "owned_groups": [],
+  "errors": [
+    "RuntimeError:wsl_actual_goal_failed:['ValueError:algorithm_evidence_goal_uuid']",
+    "ValueError:algorithm_evidence_goal_uuid"
+  ],
+  "supervisor_pid": 315,
+  "start_ticks": 8058,
+  "boot_id": "f3818955-08dd-4ca2-8e15-b7f23f12a60c"
+}

@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_pb_wsl_navigation_sil.py",
+    "--environment",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json",
+    "--stack-config",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-config-20261014-04.json",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-navigation-sil-actual-20261014-attempt3",
+    "--seconds",
+    "30",
+    "--diagnostics",
+    "--run"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator"
+}

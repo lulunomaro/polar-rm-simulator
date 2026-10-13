@@ -28,7 +28,8 @@ class WslPipeOperatorProcess(WslOperatorProcess):
         super().__init__(*args,**kwargs)
         from ..deployment.profile import digest
         metadata=copy.deepcopy(self.checked.metadata);identities=dict(self.checked._identities)
-        for rel in ('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py'):
+        for rel in ('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py',
+                    'rm_match/integrations/owned_linux_group.py'):
             selected=checked_host_path(self.repo_root/rel)
             if not selected.is_relative_to(self.repo_root):raise ValueError('pipe source outside repository')
             sha=digest(selected);identities[str(selected)]=sha;metadata['transport_source_sha256'][rel]=sha

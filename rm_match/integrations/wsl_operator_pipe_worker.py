@@ -15,6 +15,7 @@ import subprocess
 import tempfile
 import time
 from .wsl_operator_worker import MAX_IMAGE,MAX_LINE,_record,_emit,_stdin_wait,validate_linux_spec,validate_sensor_frame
+from .owned_linux_group import LinuxOwnedProcessGroup
 
 TRANSPORT='wsl_stdio_bgr_v2'
 CHUNK=65536
@@ -33,6 +34,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
     native_stdin_bytes=0;native_stdin_complete=False;native_stdin_started=None
     native_stdin_expected=0;native_stdin_finished=None
     try:
+        owner=LinuxOwnedProcessGroup()
         tmp=tempfile.TemporaryDirectory(prefix='polar-wsl-bgr-',dir='/dev/shm')
         os.chmod(tmp.name,0o700);image_path=Path(tmp.name)/'sensor_input.bgr'
         # Original ELF checks this exact LF file on every control request. Keep
@@ -41,7 +43,8 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         errorlog=(out/'native_stderr.log').open('wb')
         child=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=errorlog,
             cwd=tmp.name,env=env,bufsize=0,start_new_session=True)
-        _record(out,'OWNED_CHILD.json',dict(pid=child.pid,pgid=child.pid,spec_sha256=spec_sha,tmpfs_directory=tmp.name,tmpfs_mode=oct(os.stat(tmp.name).st_mode&0o777)))
+        owned=owner.attach(child)
+        _record(out,'OWNED_CHILD.json',dict(owned,spec_sha256=spec_sha,transport=TRANSPORT,tmpfs_directory=tmp.name,tmpfs_mode=oct(os.stat(tmp.name).st_mode&0o777)))
         os.set_blocking(0,False);os.set_blocking(child.stdin.fileno(),False);os.set_blocking(child.stdout.fileno(),False)
         ready=False;active_deadline=startup+startup_timeout;next_stop_poll=startup
         while True:
@@ -55,7 +58,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                 readiness=_stdin_wait(child.pid)
                 if readiness:
                     ready=True;active_deadline=None
-                    data=dict(event='ready',transport=TRANSPORT,native_pid=child.pid,spec_sha256=spec_sha,
+                    data=dict(event='ready',transport=TRANSPORT,native_pid=child.pid,run_id=owned['run_id'],supervisor_pid=owned['supervisor_pid'],spec_sha256=spec_sha,
                         readiness=readiness,startup_elapsed_linux_s=now-startup,tmpfs_directory=tmp.name,tmpfs_mode='0o700',
                         native_cwd=tmp.name,tracking_mode_sha256=hashlib.sha256(b'multi_ekf\n').hexdigest(),
                         native_ticks=0,inference_calls=0,camera_captures=0,physics_steps=0)
@@ -153,24 +156,15 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         return 2
     finally:
         if child is not None:
-            if child.poll() is None:
-                try:os.killpg(child.pid,signal.SIGTERM)
-                except ProcessLookupError:pass
-                try:child.wait(timeout=.5)
-                except subprocess.TimeoutExpired:
-                    killed=True
-                    try:os.killpg(child.pid,signal.SIGKILL)
-                    except ProcessLookupError:pass
-                    child.wait(timeout=.5)
-            else:child.wait(timeout=.5)
+            result=owner.cleanup()
             for stream in (child.stdin,child.stdout):stream.close()
         tmp_path=tmp.name if tmp is not None else None
         if tmp is not None:tmp.cleanup()
         if child is not None:
             import resource
             usage=resource.getrusage(resource.RUSAGE_CHILDREN)
-            _record(out,'CLEANUP.json',dict(transport=TRANSPORT,pid=child.pid,reason=reason,killed=killed,
-                returncode=child.returncode,reaped=True,tmpfs_directory=tmp_path,tmpfs_removed=not Path(tmp_path).exists(),
+            _record(out,'CLEANUP.json',dict(result,transport=TRANSPORT,spec_sha256=spec_sha,reason=reason,
+                tmpfs_directory=tmp_path,tmpfs_removed=not Path(tmp_path).exists(),
                 native_lifetime_cpu=dict(user_s=usage.ru_utime,system_s=usage.ru_stime,max_rss_kib=usage.ru_maxrss,
                     scope='Owned child process lifetime including model startup; Linux getrusage, not timed-run NN latency'),
                 cleanup_linux_monotonic=time.monotonic(),clock_domain='linux_local_diagnostic_only'))

@@ -1,0 +1,13 @@
+{
+  "schema": "polar.pb.wsl-session-cleanup.v1",
+  "run_uuid": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "config_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "clean": false,
+  "owned_groups": [],
+  "errors": [
+    "BridgeError:ros2_message_oversized"
+  ],
+  "supervisor_pid": 388,
+  "start_ticks": 4052,
+  "boot_id": "6a2b8505-136f-475b-8615-e2653ed4997d"
+}

@@ -1,0 +1,18 @@
+{
+  "elapsed_s": 7.446286300000793,
+  "ready": {
+    "schema": "polar.pb.wsl-session.v1",
+    "event": "ready",
+    "run_uuid": "772f015302a24fffb7f1d6d939c8fd70",
+    "namespace": "/polar_sil_772f015302a24fffb7f1d6d939c8fd70/red_sentry",
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "state": "CONFIGURED",
+    "supervisor_pid": 318,
+    "start_ticks": 7478,
+    "boot_id": "f5b45a75-31ce-4a95-a241-ea7574489050"
+  },
+  "physics_steps": 0,
+  "sensor_frames": 0,
+  "algorithm_data_warmup": false
+}

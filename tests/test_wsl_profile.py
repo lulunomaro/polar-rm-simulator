@@ -28,7 +28,8 @@ def fixture():
             selected=runtime/rel;selected.parent.mkdir(parents=True,exist_ok=True);selected.write_bytes(('fixture '+rel).encode())
         overlay=runtime/'overlays/corners_contour_v3.cpp';overlay.parent.mkdir()
         overlay.write_bytes((ROOT/'operator_native/runtime/overlays/corners_contour_v3.cpp').read_bytes())
-        for rel in ('rm_match/deployment/wsl_profile.py',wsl.SUPERVISOR,wsl.WORKER):
+        for rel in ('rm_match/deployment/wsl_profile.py',wsl.SUPERVISOR,wsl.WORKER,
+                    'rm_match/integrations/owned_linux_group.py'):
             selected=repo/rel;selected.parent.mkdir(parents=True,exist_ok=True)
             selected.write_bytes((ROOT/rel).read_bytes() if (ROOT/rel).exists() else b'# synthetic transport never launched\n')
         source=dict(base_commit=profile.T2_BASE,tracker_patch_sha256=profile.T2_PATCH,
@@ -101,7 +102,7 @@ class WslProfileTests(unittest.TestCase):
             self.assertEqual(checked.host_checked_spec['sha256'],f['spec']['sha256'])
             self.assertEqual(checked.verify_unchanged(),checked.linux_spec_sha256)
             self.assertEqual(checked.metadata['transport'],'wsl_stdio_v1');self.assertFalse(checked.metadata['windows_native'])
-            self.assertEqual(set(checked.metadata['transport_source_sha256']),{'rm_match/deployment/wsl_profile.py',wsl.SUPERVISOR,wsl.WORKER})
+            self.assertEqual(set(checked.metadata['transport_source_sha256']),{'rm_match/deployment/wsl_profile.py',wsl.SUPERVISOR,wsl.WORKER,'rm_match/integrations/owned_linux_group.py'})
             start.assert_not_called()
 
     def test_only_fixed_trusted_ubuntu_and_exact_registered_spec_sha(self):

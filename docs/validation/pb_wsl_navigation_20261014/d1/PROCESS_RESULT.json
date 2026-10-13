@@ -1,0 +1,5 @@
+{
+  "exit_code": 2,
+  "scope": "actual Windows physics/WSL navigation; original deadlines",
+  "command": "Windows .venv-sim tools/qa_pb_wsl_navigation_sil.py --seconds 30 --diagnostics --run"
+}

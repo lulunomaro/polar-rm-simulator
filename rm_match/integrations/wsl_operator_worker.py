@@ -14,6 +14,7 @@ import select
 import signal
 import subprocess
 import time
+from .owned_linux_group import LinuxOwnedProcessGroup
 
 MAX_LINE = 65536
 MAX_IMAGE = 4665600
@@ -91,10 +92,12 @@ def supervise(command, out, fov, *, env=None, spec_sha=None, startup_timeout=15.
     child = None; errorlog = None; reason = 'startup_failure'; killed = False
     startup = time.monotonic(); reads = {}; pending = None; writebuf = b''
     try:
+        owner=LinuxOwnedProcessGroup()
         errorlog = (out / 'native_stderr.log').open('wb')
         child = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
             stderr=errorlog, cwd=out.parent, env=env, bufsize=0, start_new_session=True)
-        _record(out, 'OWNED_CHILD.json', dict(pid=child.pid, pgid=child.pid, spec_sha256=spec_sha))
+        owned=owner.attach(child)
+        _record(out, 'OWNED_CHILD.json', dict(owned,spec_sha256=spec_sha,transport='wsl_stdio_v1'))
         os.set_blocking(0, False)
         os.set_blocking(child.stdin.fileno(), False); os.set_blocking(child.stdout.fileno(), False)
         ready = False; readiness = None; active_deadline = startup + startup_timeout
@@ -108,7 +111,7 @@ def supervise(command, out, fov, *, env=None, spec_sha=None, startup_timeout=15.
                 readiness = _stdin_wait(child.pid)
                 if readiness:
                     ready = True; active_deadline = None
-                    data = dict(event='ready', transport='wsl_stdio_v1', native_pid=child.pid,
+                    data = dict(event='ready', transport='wsl_stdio_v1', native_pid=child.pid,run_id=owned['run_id'],supervisor_pid=owned['supervisor_pid'],
                         spec_sha256=spec_sha, readiness=readiness, startup_elapsed_linux_s=now-startup,
                         native_ticks=0, inference_calls=0, camera_captures=0, physics_steps=0)
                     _record(out, 'STARTUP.json', data); _emit(data)
@@ -169,19 +172,10 @@ def supervise(command, out, fov, *, env=None, spec_sha=None, startup_timeout=15.
         return 2
     finally:
         if child is not None:
-            if child.poll() is None:
-                try: os.killpg(child.pid, signal.SIGTERM)
-                except ProcessLookupError: pass
-                try: child.wait(timeout=.5)
-                except subprocess.TimeoutExpired:
-                    killed = True
-                    try: os.killpg(child.pid, signal.SIGKILL)
-                    except ProcessLookupError: pass
-                    child.wait(timeout=.5)
-            else: child.wait(timeout=.5)
+            result=owner.cleanup()
             for stream in (child.stdin, child.stdout): stream.close()
-            _record(out, 'CLEANUP.json', dict(transport='wsl_stdio_v1', pid=child.pid,
-                reason=reason, killed=killed, returncode=child.returncode, reaped=True,
+            _record(out, 'CLEANUP.json', dict(result,transport='wsl_stdio_v1',spec_sha256=spec_sha,
+                reason=reason,
                 cleanup_linux_monotonic=time.monotonic(), clock_domain='linux_local_diagnostic_only'))
         if errorlog is not None: errorlog.close()
 

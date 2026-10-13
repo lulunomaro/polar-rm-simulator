@@ -1,0 +1,41 @@
+{
+  "scope": "actual precommit index bytes before attribute repair; not pytest or algorithm failure",
+  "guard_failed": true,
+  "files": [
+    {
+      "path": "docs/validation/pb_wsl_navigation_20261014/VERIFICATION.stdout.bin",
+      "raw_sha256": "07f699aec079cb3ee1ed309936161a200bf42116e6666b0397f7abac26258e19",
+      "index_sha256": "96b07070c084d8d86d440eeecbaf360e36258e34f2e64e6863133e3510814621",
+      "raw_size": 187,
+      "index_size": 186
+    },
+    {
+      "path": "docs/validation/pb_wsl_navigation_20261014/clean/windows-final.stdout.bin",
+      "raw_sha256": "f82e959f10f6a6ac09232d648c78f9b4341be96c727eb6aeec550b6c8c19eba9",
+      "index_sha256": "4a0be9f2dfda96a7a3afd78eb7bed88e8d56a48f5499e731742b6c8a31fb4524",
+      "raw_size": 113,
+      "index_size": 111
+    },
+    {
+      "path": "docs/validation/quality_wsl_navigation_20261014/f1.verify.stdout.bin",
+      "raw_sha256": "8c969fcf9de6c8bf03c1d94571d779a6f8bad4414cb62c0ef994f09bcaf1d1fb",
+      "index_sha256": "fb6cde17bc76661d2848f5d36a51e1deeefee188ca157cb14a2fa70b9547771c",
+      "raw_size": 185,
+      "index_size": 184
+    },
+    {
+      "path": "docs/validation/quality_wsl_navigation_20261014/h1.verify.stdout.bin",
+      "raw_sha256": "d15cd0ebdb587043fdb635d1e125889c29a3ae14ec9ae2bc270ccc6f060d529a",
+      "index_sha256": "a4b29dbbce7873138a92b1f5b68c795342f94db01d04b18693dc6560bd58c7d6",
+      "raw_size": 186,
+      "index_size": 185
+    },
+    {
+      "path": "docs/validation/quality_wsl_navigation_20261014/s2.verify.stdout.bin",
+      "raw_sha256": "67e324cafa3ea1d986483d474f256eaa22865211ee7f956f539c715f9d901f13",
+      "index_sha256": "847583e62ea08822e6b73712654deecb5e07ee095f16ed9bc763368c14d5ebb2",
+      "raw_size": 186,
+      "index_size": 185
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "scope": "Actual Windows loopback HTTP only; no MuJoCo/WSL/ROS/GL",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source_sha256": {
+    "rm_match/operator/server.py": "a68f603043c576549424d604afba6e4719a0b001c55b11c6417c5574339f27a6",
+    "rm_match/operator/test_protocol.py": "ba55092ed2ddca5e0e419ae3ff6c8ce93133f0b4300faf797e09e08288ddea1b",
+    "tests/test_operator_http_rejection.py": "7cfed2a9106f5db13a5cacffed6cdf8b5dfd82f13000c4d7741bb484fbebfd6a"
+  },
+  "before_original_bytes_verified": {
+    "method": "git HEAD original bytes, exact SHA verified",
+    "sha256": "c739354795b0ff550d5a18750561bc962008a165e26c40da364d47cdde3c7e39"
+  },
+  "before_trials": 40,
+  "before_failures": 20,
+  "after_trials": 40,
+  "after_failures": 0,
+  "before_server_reaped": true,
+  "after_server_reaped": true,
+  "focused": {
+    "passed": 25,
+    "subtests_passed": 31,
+    "log": "focused-final.log",
+    "log_sha256": "70895ce83149153530cdbf142ae4ad636d26e835763c8bfc04808ba8edb7361f"
+  },
+  "limits": {
+    "accepted_body_max_bytes": 4096,
+    "discard_max_bytes": 65536,
+    "discard_total_seconds": 0.1,
+    "accepted_body_total_seconds": 2.0
+  },
+  "cases": [
+    "8 delayed4097body responses must each deliver complete413 JSON without retries",
+    "delayed untrustedHost body receives403 without JSON parse",
+    "exact4096byte JSON reaches gate",
+    "declared1TB/no-body responds413 and finishes bounded",
+    "64KiB disposal cap finishes before missing declared tail",
+    "slow valid body shares totaldeadline and neutralizes",
+    "continuous nonreading sender cannot keep handler alive"
+  ],
+  "original_protocol_test_unchanged": true
+}

@@ -1,0 +1,21 @@
+{
+  "bounded_navigation_consumption_passed": false,
+  "relative_goal_completed": false,
+  "actual_steps": 880,
+  "physics_rtf": 0.9752871112297933,
+  "consumption_audit": {
+    "consumed_steps": 0,
+    "nonzero_consumed_steps": 0,
+    "actual_sensor_requests": 12,
+    "actual_controller_results": 0,
+    "actual_localizations": 10,
+    "errors": [
+      "actual_navigation_adapter_fault:TimeoutError"
+    ],
+    "passed": false
+  },
+  "errors": [
+    "sdk:RuntimeError:owned_wsl_supervisor_exited",
+    "session_cleanup:RuntimeError:RuntimeError:session_linux_cleanup_incomplete;session_supervisor_exit_nonzero;session_linux_cleanup_unproved"
+  ]
+}

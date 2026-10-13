@@ -186,24 +186,49 @@ class WslOperatorProcess:
         self.request_stop(); child=self.process
         if child is None:
             if self.stderr is not None and not self.stderr.closed: self.stderr.close()
+            if getattr(self,'_close_error',None):raise RuntimeError(self._close_error)
             return
         # STOP is independent of a potentially blocked pipe writer. Linux owns
         # native cleanup; do not terminate a distro or rely on killing wsl.exe.
         deadline=time.perf_counter()+1.3
-        cleanup_path=self.evidence_out/'CLEANUP.json'
-        while not cleanup_path.exists() and time.perf_counter()<deadline and child.poll() is None:
-            time.sleep(.01)
-        if cleanup_path.exists():
+        errors=[];cleanup_path=self.evidence_out/'CLEANUP.json'
+        try:
+            while not cleanup_path.exists() and time.perf_counter()<deadline-.1 and child.poll() is None:
+                time.sleep(.01)
+            if not cleanup_path.exists():raise RuntimeError('missing Linux child cleanup proof')
             self.cleanup=json.loads(cleanup_path.read_text())
-            if self.cleanup.get('reaped') is not True: raise RuntimeError('Linux cleanup not proved')
-        try: child.wait(timeout=max(.01,deadline-time.perf_counter()))
-        except subprocess.TimeoutExpired:
-            # Leave the durable Linux STOP request and report the failure. Never
-            # claim that killing the launcher would prove native-child cleanup.
-            raise RuntimeError('Linux supervisor cleanup timed out') from None
-        for thread in self._threads: thread.join(timeout=max(0.,min(.05,deadline-time.perf_counter())))
-        for stream in (child.stdin,child.stdout): stream.close()
-        self.stderr.close(); self.process=None
-        self._record('closed',linux_child_reaped=self.cleanup is not None)
-        (self.evidence_out/'HOST_TRACE.json').write_text(json.dumps(self.diagnostics,indent=2)+'\n',encoding='utf8')
-        if self.ready is not None and self.cleanup is None: raise RuntimeError('missing Linux child cleanup proof')
+            owned=json.loads((self.evidence_out/'OWNED_CHILD.json').read_text())
+            ready=self.ready
+            for key in ('run_id','supervisor_pid','pid','pgid','boot_id','leader_start_ticks','spec_sha256','transport'):
+                if key not in owned or type(self.cleanup.get(key)) is not type(owned[key]) or self.cleanup[key]!=owned[key]:
+                    raise RuntimeError('Linux cleanup ownership mismatch: '+key)
+            if owned['spec_sha256']!=self.checked.linux_spec_sha256:
+                raise RuntimeError('Linux cleanup spec mismatch')
+            if ready is not None and any(type(ready.get(k)) is not type(owned[v]) or ready[k]!=owned[v]
+                for k,v in (('run_id','run_id'),('supervisor_pid','supervisor_pid'),('native_pid','pid'),('transport','transport'))):
+                raise RuntimeError('Linux cleanup belongs to another startup')
+            if self.cleanup.get('clean') is not True or self.cleanup.get('reaped') is not True or self.cleanup.get('group_empty') is not True or self.cleanup.get('remaining_members')!=[] or self.cleanup.get('errors')!=[]:
+                raise RuntimeError('Linux owned process group cleanup not proved')
+            child.wait(timeout=max(0.,deadline-.1-time.perf_counter()))
+        except Exception as exc:errors.append(type(exc).__name__+':'+str(exc))
+        finally:
+            # Host launcher cleanup never proves Linux descendants have exited.
+            # Durable STOP remains even when an unresponsive launcher is killed.
+            if child.poll() is None:
+                errors.append('Linux supervisor did not exit within original cleanup budget')
+                try:child.kill();child.wait(timeout=max(0.,deadline-time.perf_counter()))
+                except Exception as exc:errors.append('launcher_close:'+type(exc).__name__)
+            for stream in (child.stdin,child.stdout,self.stderr):
+                try:
+                    if stream is not None:stream.close()
+                except Exception as exc:errors.append('pipe_close:'+type(exc).__name__)
+            for thread in self._threads:
+                if thread is threading.current_thread():continue
+                thread.join(timeout=max(0.,deadline-time.perf_counter()))
+                if thread.is_alive():errors.append('owned_IO_thread_did_not_stop')
+            self.process=None
+            self._record('closed',clean=not errors,linux_child_reaped=not errors,errors=errors)
+            try:(self.evidence_out/'HOST_TRACE.json').write_text(json.dumps(self.diagnostics,indent=2)+'\n',encoding='utf8')
+            except Exception as exc:errors.append('trace_write:'+type(exc).__name__)
+            self._close_error='; '.join(errors) if errors else None
+        if errors:raise RuntimeError(self._close_error)

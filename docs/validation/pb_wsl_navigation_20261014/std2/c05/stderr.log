@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/rm_match/integrations/pb_wsl_navigation_worker.py", line 234, in session_worker
+    if buffer:raise ValueError('wsl_partial_request_at_eof')
+ValueError: wsl_partial_request_at_eof
