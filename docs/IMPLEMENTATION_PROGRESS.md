@@ -8,7 +8,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设及可执行校验 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败复现；独立图像 contour-v3 修复，完整 T2 新构建成功 | 静态 OFFLINE24 跟踪/执行与实际清理已过；模型漏检、移动目标与 live 门禁仍未关闭 |
-| T03 | 局部修复验证：raw/JPEG 分离、高精度时钟、固定壁钟起点的实际物理补步、每阶段期限检查 | native+GUI 全链期限、更多视角、完整比赛和长期负载 |
+| T03 | 局部修复验证：raw/JPEG 分离、高精度时钟、实际补步、曝光起算的双 80ms 期限、帧发布唤醒；显式 Windows GPU/WSL native v1/v2、有界图像证据及静态描述符查询 | 第8轮RTF0.962、原ELF stdin完整但仍超时0返回/0执行；旧0.840根因未充分解释；native+GUI 全链、更多视角、完整比赛和长期负载 |
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 进行中：统一质量入口、明确测试范围、源提取/后续修改哈希分离 | 当前最终全量质量检查与许可/发布门禁；尚未发布 |
+| T17 | 进行中：统一质量入口、明确测试范围、源提取/后续修改哈希分离；WSL 传输/私有像素/原始证据安全回归 | 本轮冻结质量记录见下文；许可/发布门禁尚未完成 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -139,3 +139,71 @@ Windows条件跳过的2项原尺寸EGL/lens投影用WSL实际EGL另跑，2passed
 Windows symlink权限skip保持显式，不为测试改系统权限。最后没有遗留构建或native运行。
 下一项可执行M1工作是显式Windows GPU/持久WSL native传输与真实80/150ms全链测量；
 现WSL单独GLFW/D3D12原尺寸相机不满足80ms，不能直接启动该配置当实时通过。
+
+## 显式 Windows GPU / WSL native 开发检查点
+
+本轮新增 [WSL 传输说明](WSL_NATIVE_TRANSPORT.md)，注册和启动校验同一 raw spec、ELF、
+模型、配置、生成 main、原 94 源文件及 contour-v3 复合身份。模型初始化完成后只使用
+实际 Linux `read(0)` readiness；没有先拍帧、推理或推进物理。换代、取消、启动失败、
+blocked pipe 和超时均回收 owned 子进程，v2 同时回收专属 0700 tmpfs。
+Windows GPU 相机与 Linux ELF 组合不等于 Windows 原生构建或可见桌面验收。
+
+v1 共享盘路径和 v2 真实 BGR pipe 明确区分、没有自动回退。v2 只传同一实际不可变
+4,665,600-byte BGR，Linux 校验 SHA 后写 tmpfs，保留曝光状态、标定与时间。
+Windows 端图像改由独立有界线程写入逐帧文件/manifest 并读回 SHA；收尾必须写完已接受
+图像，队列满或 IO 错误不能吞掉。公共 JSON 与第三方 adapter 不获得该私有 byte 入口。
+
+修复的边界包括：先快照再严格校验同一元数据/像素；枚举值和字段类型拒伪造 Python
+等值对象；实际原子 sensor packet 帧号去重；新帧发布可及时唤醒原生调度；每个执行阶段
+仍按原曝光检查 wall/sim 双 80ms；原生结果和请求统一 Windows QPC 时钟。
+私有像素凭据只在相机编码工厂产生，与原始 bytes、编码字符串对象、完整帧身份、
+尺寸及曝光配对；伪造、JSON 往返或错配仍严格解码，不能携带到 HTTP/公共日志。
+原 150ms SDK server window、静止 red_sentry 限制和 fire_permission=false 保持。
+
+实时实验全部保留原文件与失败结论，见 [第七轮](validation/wsl_native_live_20261013/ATTEMPT7_TOKEN_ASYNC.md)
+及同目录第一至六轮。固定六车、2ms、1440×1080、15总FPS、一视角：
+
+| 实验 | 实际边界与结果 |
+| --- | --- |
+| v1 第1轮 | RTF0.997893，147raw；准备已耗尽80ms，native0返回/0执行 |
+| v1 第2轮 | 实际运行后统计对字符串求百分位异常；只恢复已保存的startup/请求/清理，不虚构丢失RTF/raw数据 |
+| v1 第3轮 | RTF0.992233，148raw；host准备期限失败，未进入bridge native_request |
+| v2 第4轮 | 1,835,008/4,665,600 bytes接收后期限耗尽，无完整ELF输入 |
+| v2 第5轮 | 3,211,264 bytes接收后期限耗尽，无完整ELF输入 |
+| v2 第6轮 | 首次接收完整图像；接收/核验/写tmpfs14.35ms超剩余12.56ms，在ELF stdin前拒绝 |
+| v2 第7轮 | RTF0.840138，149raw均≤37.94ms；准备15.73ms，Linux完整图像阶段16.75ms，generic control_timeout；native1请求/0返回/0执行；原图保存与reap/tmpfs清理均过 |
+| v2 第8轮 | RTF0.961608，149raw均≤37.661ms；实际BGR完整，原ELF stdin1733/1733字节，仍超时0返回/0执行；source unchanged与证据/清理通过 |
+
+第七轮旧报告未记录真正写入 ELF 的字节数，不能判断开始 NN 与否；新 worker 累计
+实际 os.write 返回、完整 JSON+LF 长度、输入完成标记及等待原生结果时长。完整输入不等于
+推理完成或控制通过。旧报告 native_identity 中 v1 标签有误，STARTUP/请求实际均为 v2；
+新 v2 checked metadata 绑定两个 pipe 程序 SHA，旧报告原字节保留。
+
+Linux 保存实际失败帧离线诊断中，四个 fresh 模型的第一真实响应 P50 84.87ms，包含
+DrvFs 文件读取；独立文件读取 P50 58.46ms 是未配对测量，不能相减宣称纯 NN 时延。
+重复同帧请求约3ms绕过新帧NN，不计吞吐或实时资格。无 native、同源码相机独立实际
+诊断 RTF0.998367；编码工厂仅约多0.26ms/帧，不能单凭这些数字断定第七轮退化原因。
+所有诊断都是相应范围的证据，T03/M1 实时完整链仍未签收，M0–M5 状态保持上表。
+
+新的 [第八轮实际报告](validation/wsl_native_live_20261013_attempt8/README.md) 同时保存
+16个关键执行源码确切快照、实际 BGR 无损压缩、完整字节交付/CPU/清理证据。
+活跃故障绑定+SDK150ms独立Windows GPU诊断RTF0.9983966，说明它们不能充分解释旧退化。
+静态能力查询消除重复 descriptor 深拷贝，公开副本隔离和每阶段权限/80ms/速度/epoch
+检查保留；短paired FakeBackend step+demand P50 .4919→.4026ms，不等于实际RTF。
+后续补上select返回后原期限重检：过期的已可读结果不得接受。实际无害子进程验证
+完整输入但回复超时、短写、跨事务计数清零、过期可读拒绝与期限内通过；不称原NN通过。
+保存帧工具已兼容v2异步逐帧文件，按唯一原请求帧号/SHA及严格manifest选择，拒绝
+错图、歧义和路径变化；Windows11单位通过/1symlink权限skip，Linux12单位通过。
+第八轮包的解压输入与离线复现步骤已保存，离线2s等待不写成实时80ms通过。
+只读 Windows 库存未在已查标准目录找到编译器/OpenVINO，未安装或下载，非全盘搜索。
+
+本轮统一入口（需独占实际 GL/native 测试窗口，先更新修改归属 SHA）：
+
+```powershell
+$env:POLAR_TEST_WSL='1'
+.venv-sim/Scripts/python.exe tools/check_project.py --out artifacts/quality-20261013-wsl-frozen-checkpoint --camera
+```
+
+唯一计数与当前代码 SHA 见该目录 manifest、pytest.xml/log 和 camera 记录。只允许
+各检查退出0且 source_unchanged_during_checks=true 时声明本地质量通过，不能据此关闭
+M1或发布。按计划优先继续修复实际跨平台期限；下一次实验使用新目录，保持全部旧失败。

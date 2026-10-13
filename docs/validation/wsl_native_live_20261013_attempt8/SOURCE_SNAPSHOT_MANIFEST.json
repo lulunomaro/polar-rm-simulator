@@ -1,0 +1,101 @@
+{
+  "scope": "16 exact executing critical modules/tool, not an all-source snapshot",
+  "files": [
+    {
+      "source": "rm_match/platform_v2/adapters.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/adapters.py.txt",
+      "sha256": "8c3a1ef6cc777205aa3357ef42490cb6e41311394ecf12c89b6d2a2269821539",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/runtime.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/runtime.py.txt",
+      "sha256": "8daaf180e50c4daa112f08154bef51766c97cb69379692c58cb0178b02c4764b",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/contracts.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/contracts.py.txt",
+      "sha256": "172df372d9b165fce28b6f3646445b862fbea4e5f2a2f518f2d9910c7697a487",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/camera.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/camera.py.txt",
+      "sha256": "cc6f5b862116f94d1d772cfe87b5e4ade8c0836a668d6ecfa5403787366d6c96",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/camera_pixels.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/camera_pixels.py.txt",
+      "sha256": "5f8a13424d58cc2a0018fc2931fd1c76b35f1adaeeba5635eb37ce6e81210000",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/native_adapter.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/native_adapter.py.txt",
+      "sha256": "ad2330ed5e8bd1f2b26cd98e8f53a03d7fd1668b92ce265c7f2a4344d2705979",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/native_image.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/native_image.py.txt",
+      "sha256": "ac5c656d4011395ea6dcd2ce45464b995b6b4c2e5b7f78639ba8fe161ebde898",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/native_evidence.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/native_evidence.py.txt",
+      "sha256": "297a7f80182a7bb27fac871cab6fd368a5c76e1170de54abbf67e71691d5efe3",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/platform_v2/wsl_native_adapter.py",
+      "snapshot": "SOURCE/rm_match/platform_v2/wsl_native_adapter.py.txt",
+      "sha256": "9fe7c40cc389174f2b7b2f95235fc5cf71c406bb795b296e6596e0b552602421",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/deployment/wsl_profile.py",
+      "snapshot": "SOURCE/rm_match/deployment/wsl_profile.py.txt",
+      "sha256": "7d5e766eae9647045dfcb8e884adaa36c5ceedd620e5b9fce625141cf3428bb2",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/deployment/wsl_registry.py",
+      "snapshot": "SOURCE/rm_match/deployment/wsl_registry.py.txt",
+      "sha256": "86c8403b1edca24f08e97be6cb903c4046fd0d142cd73ef61b6a7dc2be1ee035",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/integrations/wsl_operator.py",
+      "snapshot": "SOURCE/rm_match/integrations/wsl_operator.py.txt",
+      "sha256": "a137710d9c6bea069087a83d337646d3353472d2c2b3a2714931394a0bcd2a1c",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/integrations/wsl_operator_worker.py",
+      "snapshot": "SOURCE/rm_match/integrations/wsl_operator_worker.py.txt",
+      "sha256": "e7ea9b46c778d747567d3c2537a50dd256e4d4f3de6f2823ea712183fb1d3bcf",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/integrations/wsl_operator_pipe.py",
+      "snapshot": "SOURCE/rm_match/integrations/wsl_operator_pipe.py.txt",
+      "sha256": "06699e3a24418ccb61235480df7e25610ca4f73cfa3902b66664942009f7afbb",
+      "method": "Byte-exact current file; executed SHA verified"
+    },
+    {
+      "source": "rm_match/integrations/wsl_operator_pipe_worker.py",
+      "snapshot": "SOURCE/rm_match/integrations/wsl_operator_pipe_worker.py.txt",
+      "sha256": "915f7733e21dce2a3897bd6c070fd38996dbdadbce1335d00f54bf5f67098ac0",
+      "method": "Reverse only the later post-select deadline diff; exact executed SHA verified"
+    },
+    {
+      "source": "tools/smoke_wsl_native_live.py",
+      "snapshot": "SOURCE/tools/smoke_wsl_native_live.py.txt",
+      "sha256": "a2fcde789f9ae6420d103b8ce068e1e91ffc429947fb06374c44d9faf6305e39",
+      "method": "Byte-exact current file; executed SHA verified"
+    }
+  ]
+}

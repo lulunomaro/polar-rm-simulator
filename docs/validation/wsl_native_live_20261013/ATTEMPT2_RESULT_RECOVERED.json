@@ -1,0 +1,85 @@
+{
+  "schema": "polar.wsl.native.partial-recovery.v1",
+  "original_result_sha256": "dcd0e7cb68f27f38176fb6503d4ae2ec506e49b40aaef51a3f4f1cb83d4807f3",
+  "actual_startup_admitted": {
+    "setup_s": 7.197866499998781,
+    "captures": 0,
+    "native_requests": 0,
+    "physics_time_s": 0,
+    "renderer": {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    }
+  },
+  "actual_transport_timeline": [
+    {
+      "event": "startup_begin",
+      "host_perf_counter": 21099.9171142,
+      "transport": "wsl_stdio_v1",
+      "windows_native": false,
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+        "--",
+        "/usr/bin/python3",
+        "-m",
+        "rm_match.integrations.wsl_operator_worker",
+        "--spec",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-contour-v3-final-default-build/operator_source.local.json",
+        "--spec-sha256",
+        "a808f11e8f8088ba89c2cf2a8e94d4bf18c386dc69d3d4114b9b2b40e57a3cdd",
+        "--out",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/wsl-native-live-20261013-attempt2/native/binding_2946fd95fa624c4b875d12f1c72996b0/wsl_supervisor_c5b4b311d6f947429089c861e416b317",
+        "--fov-degrees",
+        "180.0",
+        "--radius-x",
+        "1.0",
+        "--radius-y",
+        "1.0",
+        "--startup-timeout",
+        "15.0",
+        "--control-timeout",
+        "0.08"
+      ]
+    },
+    {
+      "event": "startup_ready",
+      "host_perf_counter": 21106.0112041,
+      "native_pid": 696
+    },
+    {
+      "event": "native_request",
+      "host_perf_counter": 21106.6003992,
+      "request_id": 1,
+      "control_time_ns": 450000000,
+      "image_sha256": "cfe3f70a202bac96df55763d8986bba5ba9fd130ff82c48205df851240dcffd1"
+    },
+    {
+      "event": "closed",
+      "host_perf_counter": 21106.7045059,
+      "linux_child_reaped": true
+    }
+  ],
+  "actual_child_cleanup": {
+    "transport": "wsl_stdio_v1",
+    "pid": 696,
+    "reason": "host_cancel",
+    "killed": false,
+    "returncode": -15,
+    "reaped": true,
+    "cleanup_linux_monotonic": 6.339070953,
+    "clock_domain": "linux_local_diagnostic_only"
+  },
+  "runtime_observations_complete": false,
+  "physics_rtf": null,
+  "raw_frame_count": null,
+  "actuator_receipt_count": null,
+  "native_results_in_host_trace": 0,
+  "live_static_chain_qualified": false,
+  "report_failure": "image_stages converter/clock_domain strings passed to distribution caused TypeError; no saved ledger before report failed; unknown measurements cannot be recovered honestly",
+  "qualification": "Partial source evidence only; original failed RESULT remains untouched"
+}

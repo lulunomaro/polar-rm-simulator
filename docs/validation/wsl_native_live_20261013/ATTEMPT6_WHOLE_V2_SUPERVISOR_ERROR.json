@@ -1,0 +1,12 @@
+{
+  "reason": "control_timeout",
+  "error_type": "TimeoutError",
+  "error": "Linux receive/hash/write deadline expired",
+  "linux_stages_s": {
+    "pipe_receive_s": 0.009653335999999513,
+    "payload_sha256_s": 0.0020571629999999175,
+    "tmpfs_write_s": 0.00264172500000015
+  },
+  "received_bgr_bytes": 4665600,
+  "clock_domain": "linux_local_diagnostic_only"
+}

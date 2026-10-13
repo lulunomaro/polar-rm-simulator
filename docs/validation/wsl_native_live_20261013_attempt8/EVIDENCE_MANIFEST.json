@@ -1,0 +1,151 @@
+{
+  "schema": "polar.frozen.evidence.v1",
+  "scope": "Exact attempt8 reports and critical snapshots; actual gzip pixels; no live pass",
+  "files": [
+    {
+      "path": "CLIENT_IDENTITY.json",
+      "bytes": 489,
+      "sha256": "b2befb54231b0001e1324f80c0d609161dc47df9069b5c5b3ca60f903485f1ab"
+    },
+    {
+      "path": "EXECUTED_SOURCE.json",
+      "bytes": 16954,
+      "sha256": "bd72235e60215dce0a79504acdaaba5b306579441189efe8df892cb5a7f96a11"
+    },
+    {
+      "path": "FRAME_BINDINGS.json",
+      "bytes": 45246,
+      "sha256": "d6ebbf84121db770c03f6151ae0114f76049c8c0111f7bf1e5982b9aa1f4fbf3"
+    },
+    {
+      "path": "ledger.jsonl",
+      "bytes": 17979,
+      "sha256": "7cd4526dff0202ae8bf195d7a1c15802188e2aec26755d49af483b09d8988048"
+    },
+    {
+      "path": "PLAN.json",
+      "bytes": 2212,
+      "sha256": "881363389a4634b5ef9949932f39daf06b0f61460010638a71190343ab0150a8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5335,
+      "sha256": "8dfad40bbe0b754db1eafc8db2f27f80c2281691548cb3115a7cb933099f5bc6"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 34778,
+      "sha256": "de6f065cc25f7c25cedcb94e83429c52ab6ac6997337a32c946c6814258da4a6"
+    },
+    {
+      "path": "RUNTIME_OBSERVATION.json",
+      "bytes": 1872,
+      "sha256": "a2340876c22123979522717de1d58c1f09a6f07b5637d13959f3593c8ca7989e"
+    },
+    {
+      "path": "sensor_9.bgr.gz",
+      "bytes": 77460,
+      "sha256": "bbc940a022dc00bfa219ee90e5c3df282e339b9fe5f1101266fc7f68b4dcb0eb"
+    },
+    {
+      "path": "sensor_9.json",
+      "bytes": 264,
+      "sha256": "a65362e1032861c733ae100a71918e1c9410281ee5201059dc19aef810df76e2"
+    },
+    {
+      "path": "SOURCE/rm_match/deployment/wsl_profile.py.txt",
+      "bytes": 12445,
+      "sha256": "7d5e766eae9647045dfcb8e884adaa36c5ceedd620e5b9fce625141cf3428bb2"
+    },
+    {
+      "path": "SOURCE/rm_match/deployment/wsl_registry.py.txt",
+      "bytes": 6119,
+      "sha256": "86c8403b1edca24f08e97be6cb903c4046fd0d142cd73ef61b6a7dc2be1ee035"
+    },
+    {
+      "path": "SOURCE/rm_match/integrations/wsl_operator.py.txt",
+      "bytes": 12617,
+      "sha256": "a137710d9c6bea069087a83d337646d3353472d2c2b3a2714931394a0bcd2a1c"
+    },
+    {
+      "path": "SOURCE/rm_match/integrations/wsl_operator_pipe.py.txt",
+      "bytes": 11001,
+      "sha256": "06699e3a24418ccb61235480df7e25610ca4f73cfa3902b66664942009f7afbb"
+    },
+    {
+      "path": "SOURCE/rm_match/integrations/wsl_operator_pipe_worker.py.txt",
+      "bytes": 12408,
+      "sha256": "915f7733e21dce2a3897bd6c070fd38996dbdadbce1335d00f54bf5f67098ac0"
+    },
+    {
+      "path": "SOURCE/rm_match/integrations/wsl_operator_worker.py.txt",
+      "bytes": 14337,
+      "sha256": "e7ea9b46c778d747567d3c2537a50dd256e4d4f3de6f2823ea712183fb1d3bcf"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/adapters.py.txt",
+      "bytes": 10499,
+      "sha256": "8c3a1ef6cc777205aa3357ef42490cb6e41311394ecf12c89b6d2a2269821539"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/camera.py.txt",
+      "bytes": 23384,
+      "sha256": "cc6f5b862116f94d1d772cfe87b5e4ade8c0836a668d6ecfa5403787366d6c96"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/camera_pixels.py.txt",
+      "bytes": 4461,
+      "sha256": "5f8a13424d58cc2a0018fc2931fd1c76b35f1adaeeba5635eb37ce6e81210000"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/contracts.py.txt",
+      "bytes": 11559,
+      "sha256": "172df372d9b165fce28b6f3646445b862fbea4e5f2a2f518f2d9910c7697a487"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/native_adapter.py.txt",
+      "bytes": 12461,
+      "sha256": "ad2330ed5e8bd1f2b26cd98e8f53a03d7fd1668b92ce265c7f2a4344d2705979"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/native_evidence.py.txt",
+      "bytes": 6465,
+      "sha256": "297a7f80182a7bb27fac871cab6fd368a5c76e1170de54abbf67e71691d5efe3"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/native_image.py.txt",
+      "bytes": 2588,
+      "sha256": "ac5c656d4011395ea6dcd2ce45464b995b6b4c2e5b7f78639ba8fe161ebde898"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/runtime.py.txt",
+      "bytes": 41043,
+      "sha256": "8daaf180e50c4daa112f08154bef51766c97cb69379692c58cb0178b02c4764b"
+    },
+    {
+      "path": "SOURCE/rm_match/platform_v2/wsl_native_adapter.py.txt",
+      "bytes": 7486,
+      "sha256": "9fe7c40cc389174f2b7b2f95235fc5cf71c406bb795b296e6596e0b552602421"
+    },
+    {
+      "path": "SOURCE/tools/smoke_wsl_native_live.py.txt",
+      "bytes": 25753,
+      "sha256": "a2fcde789f9ae6420d103b8ce068e1e91ffc429947fb06374c44d9faf6305e39"
+    },
+    {
+      "path": "SOURCE_FRAME.json",
+      "bytes": 421,
+      "sha256": "232c97e95f7c08c90cea6aa096b02e85798d62e6c6d1fa44dce6b51f8100cac0"
+    },
+    {
+      "path": "SOURCE_SNAPSHOT_MANIFEST.json",
+      "bytes": 4752,
+      "sha256": "1f6aea7e37ea1fe654b8e594a9ccba20c3dfa93b3f414335a8ef4a42a3a89283"
+    },
+    {
+      "path": "STARTUP_ADMISSION.json",
+      "bytes": 271,
+      "sha256": "0377e43362e990a8fea05756ced547d87b350aed0282e797546ba563bad0043a"
+    }
+  ]
+}

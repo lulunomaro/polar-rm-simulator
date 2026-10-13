@@ -16,6 +16,7 @@ import json
 import threading
 import time
 from ..telemetry import TimingLedger
+from .camera_pixels import encode_camera_pixels
 
 MAX_VIEWS=8
 MAX_JPEG_BYTES=2*1024*1024
@@ -192,12 +193,15 @@ class CameraProvider:
         import numpy as np
         p=self.profile
         if rgb.dtype!=np.uint8 or rgb.shape!=(p.height,p.width,3):raise ValueError('Renderer image contract mismatch')
+        raw_bytes=rgb.tobytes()
+        payload,pixel_token=encode_camera_pixels(raw_bytes,robot_id=cap.robot_id,episode=cap.episode,
+            frame_id=cap.frame_seq,capture_sim_time=cap.sim_time,encoding='rgb8',width=p.width,height=p.height,stride_bytes=p.width*3)
         camera=dict(available=True,reason='available',frame_id=cap.frame_seq,capture_sim_time=cap.sim_time,
             **cap.own,image=dict(encoding='rgb8',width=p.width,height=p.height,stride_bytes=p.width*3,
-                data_base64=encode_raw_base64(rgb.tobytes())),
+                data_base64=payload),
             intrinsics=self.calibrations[cap.robot_id]['intrinsics'],extrinsics=self.calibrations[cap.robot_id]['extrinsics'],
             provenance='simulated_raw_camera')
-        return dict(camera=camera,capture=replace(cap,buffer=None,projectiles=()),encoded_wall=self.clock())
+        return dict(camera=camera,capture=replace(cap,buffer=None,projectiles=()),encoded_wall=self.clock(),pixel_token=pixel_token)
 
     def _encode_display(self,cap,rgb):
         from PIL import Image
@@ -306,6 +310,18 @@ class CameraProvider:
         if sim_time is not None and not 0<=sim_time-cap.sim_time<=max_sim_age:return None,'camera_sim_expired'
         return result,'available'
 
+    def sensor_identity(self,rid,episode,consumer,sim_time,ttl):
+        """Cheap private scheduling identity with the exact sensor admission gates.
+
+        Three original scalar timestamps only: no raw pixels, calibration, own
+        state or deep copy. A cached exposure never receives a new timestamp.
+        """
+        with self.lock:
+            value,_=self._get_locked(rid,episode,consumer,max_wall_age=ttl,sim_time=sim_time,max_sim_age=ttl)
+            if value is None:return None
+            cap=value['capture']
+            return cap.frame_seq,cap.wall_time,cap.sim_time
+
     def sensor_packet(self,rid,episode,consumer,sim_time,ttl):
         """Atomic sensor plus trusted exposure budget; never refresh an old age.
 
@@ -313,12 +329,12 @@ class CameraProvider:
         """
         with self.lock:
             value,reason=self._get_locked(rid,episode,consumer,max_wall_age=ttl,sim_time=sim_time,max_sim_age=ttl)
-            if value is None:return dict(camera=dict(available=False,reason=reason),budget=None)
+            if value is None:return dict(camera=dict(available=False,reason=reason),budget=None,pixel_token=None)
             cap=value['capture']
             return dict(camera=copy.deepcopy(value['camera']),budget=dict(
                 robot_id=rid,episode=episode,frame_id=cap.frame_seq,
                 capture_wall=cap.wall_time,capture_sim_time=cap.sim_time,
-                wall_deadline=cap.wall_time+ttl,sim_deadline=cap.sim_time+ttl))
+                wall_deadline=cap.wall_time+ttl,sim_deadline=cap.sim_time+ttl),pixel_token=value.get('pixel_token'))
 
     def sensor_camera(self,rid,episode,consumer,sim_time,ttl):
         return self.sensor_packet(rid,episode,consumer,sim_time,ttl)['camera']

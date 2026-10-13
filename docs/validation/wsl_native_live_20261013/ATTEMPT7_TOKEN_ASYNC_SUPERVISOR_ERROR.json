@@ -1,0 +1,12 @@
+{
+  "reason": "control_timeout",
+  "error_type": "TimeoutError",
+  "error": "control_timeout",
+  "linux_stages_s": {
+    "pipe_receive_s": 0.012051636999999893,
+    "payload_sha256_s": 0.0020916710000005168,
+    "tmpfs_write_s": 0.0026016909999997395
+  },
+  "received_bgr_bytes": 4665600,
+  "clock_domain": "linux_local_diagnostic_only"
+}

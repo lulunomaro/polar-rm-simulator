@@ -1,0 +1,21 @@
+{
+  "phase": "Post-attempt5 independent clock API inspection",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "clocks": {
+    "perf_counter": {
+      "implementation": "QueryPerformanceCounter()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 1e-07
+    },
+    "monotonic": {
+      "implementation": "GetTickCount64()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 0.015625
+    }
+  },
+  "observed_qpc_minus_monotonic_s": 0.029221699998743134,
+  "rule": "Do not subtract GetTickCount trace fields from QPC or Linux-local clock fields; stage joins use host_received_wall QPC"
+}

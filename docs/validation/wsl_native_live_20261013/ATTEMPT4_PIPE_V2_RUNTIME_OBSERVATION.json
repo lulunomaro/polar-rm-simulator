@@ -1,0 +1,65 @@
+{
+  "counts": {
+    "actuator_consumed": 89928,
+    "integration_boundary": 4996,
+    "physics_apply": 4996,
+    "fire_true": 0,
+    "adapter_enqueue": 9,
+    "adapter_result": 8,
+    "adapter_sample_rejected": 5,
+    "native_frame_prepare": 1,
+    "native_request": 1
+  },
+  "camera": {
+    "available": false,
+    "reason": "runtime_stopped",
+    "total_fps_limit": 15,
+    "max_frame_age_wall_s": 2.5,
+    "max_views": 1,
+    "max_renderer_threads": 1,
+    "max_display_encoder_threads": 1,
+    "max_pending": 1,
+    "max_data_buffers": 2,
+    "max_display_pending": 1,
+    "max_display_rgb_bytes": 13996800,
+    "max_cached_raw_bytes": 4665600,
+    "max_cached_raw_base64_bytes": 6220800,
+    "max_cached_jpeg_bytes": 2097152,
+    "pending": 0,
+    "cached": 0,
+    "display_cached": 0,
+    "display_pending": 0,
+    "display_running": false,
+    "max_display_pending_seen": 1,
+    "raw_published": 147,
+    "running": false,
+    "rendered": 146,
+    "display_dropped": 1,
+    "display_error": null,
+    "renderer_identity": {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    "timing_report_available": true,
+    "dropped": 1,
+    "error": null,
+    "calibration_resolution_association": "ASSUMED; absent from source YAML"
+  },
+  "camera_closed": true,
+  "physics_thread_alive": false,
+  "shutdown_status": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.06808169999931124
+  },
+  "runtime_error": null,
+  "sim_time": 9.992000000000006,
+  "timing": {
+    "start": 23331.2633509,
+    "end": 23341.3404631
+  },
+  "errors": []
+}

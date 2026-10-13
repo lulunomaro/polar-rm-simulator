@@ -86,8 +86,13 @@ class AdapterSlot:
                     # Raw-image validation/JSON copying is CPU work on this worker,
                     # never on physics or HTTP threads.
                     from .contracts import validate_observation
-                    o=validate_observation(o)
-                    value=json_copy(instance.act(copy.deepcopy(o)))
+                    from .native_adapter import NativeSourceAdapter
+                    if isinstance(instance,NativeSourceAdapter) and getattr(instance.act,'__func__',None) is NativeSourceAdapter.act:
+                        decoded={};o=validate_observation(o,image_bytes=decoded,image_token=job.get('pixel_token'))
+                        value=json_copy(NativeSourceAdapter._act_validated(instance,o,decoded['raw']))
+                    else:
+                        o=validate_observation(o)
+                        value=json_copy(instance.act(copy.deepcopy(o)))
                     # Validate before publishing into the latest-result slot: an
                     # invalid result must not be overwritten by a later good one.
                     from .contracts import validate_action
@@ -132,7 +137,7 @@ class PlatformRuntime:
         if not 0<observation_period<=.2 or not 0<action_ttl<=.25:raise ValueError('Invalid scheduling bounds')
         self.observation_period=observation_period;self.action_ttl=action_ttl
         self.slots={};self.outputs={};self.observed={};self.next_observation={};self.status={}
-        self._fault_epochs={};self._slot_bound={};self._own_samples={}
+        self._fault_epochs={};self._slot_bound={};self._own_samples={};self._camera_samples={}
         self.stop_event=threading.Event();self.cache_lock=threading.Lock()
         self.cached={'runtime_state':'starting','telemetry_available':False}
         self._authority=None;self._episode=None;self.steps=0;self.last_step_wall=None;self.error=None
@@ -206,6 +211,17 @@ class PlatformRuntime:
     @staticmethod
     def _camera_binding(rid,kind,b):return ('adapter',rid,kind,b['owner'],b['epoch'])
 
+    def _registry_capability(self,adapter_id,key):
+        query=getattr(self.registry,'capability',None)
+        if callable(query):return query(adapter_id,key)
+        # Existing duck-typed local registries retain their live get semantics.
+        from .contracts import ContractError
+        if type(key) is not str or key not in ('stationary_only','requires_camera'):
+            raise ContractError('unknown_adapter_capability')
+        metadata=self.registry.get(adapter_id).descriptor
+        if key=='stationary_only':return bool(metadata.get(key,False))
+        return 'camera' in metadata['required_sensors']
+
     def _camera_desired(self,snapshot):
         desired={}
         for watch in self.control.watches():
@@ -213,7 +229,7 @@ class PlatformRuntime:
         for rid in self.control.robot_ids:
             for kind in KINDS:
                 b=snapshot['bindings'][rid][kind]
-                if b['owner'] is not None and 'camera' in self.registry.get(b['adapter_id']).descriptor['required_sensors']:
+                if b['owner'] is not None and self._registry_capability(b['adapter_id'],'requires_camera'):
                     desired.setdefault(rid,set()).add(self._camera_binding(rid,kind,b))
         return desired
 
@@ -309,6 +325,7 @@ class PlatformRuntime:
                 key=(rid,kind);b=snapshot['bindings'][rid][kind]
                 if b['owner'] is None:
                     self._own_samples.pop(key,None)
+                    self._camera_samples.pop(key,None)
                     if self._slot_bound.pop(key,False) and key in self.slots:self.slots[key].submit({'deactivate':True})
                     continue
                 if not self._binding_active(b,self.clock()):
@@ -319,21 +336,35 @@ class PlatformRuntime:
                 previous=self.next_observation.get(key)
                 spec=self.registry.get(b['adapter_id']).descriptor
                 own_refresh=self._own_refresh_profile(kind,b,spec)
+                camera_identity=getattr(self.camera,'sensor_identity',None)
+                camera_paced=(spec.get('schedule_on_camera_frame') is True
+                    and 'camera' in spec['required_sensors'] and callable(camera_identity))
+                next_camera=None
+                if camera_paced:
+                    latest=camera_identity(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,
+                        min(self.action_ttl,spec.get('max_camera_age_wall_s',self.action_ttl),spec.get('max_camera_age_sim_s',self.action_ttl)))
+                    if latest is not None:
+                        next_camera=(self._episode,*schedule_identity,latest[0])
+                        if self._camera_samples.get(key)==next_camera:continue
                 reason='simulation_period'
                 if previous and previous[0]==schedule_identity and sim_time<previous[1]:
-                    if not (own_refresh and self._own_refresh_due(key,b,sim_time,self.clock())):continue
-                    reason='new_activation_own_sample'
+                    if next_camera is not None:reason='new_camera_frame'
+                    elif own_refresh and self._own_refresh_due(key,b,sim_time,self.clock()):reason='new_activation_own_sample'
+                    else:continue
+                elif next_camera is not None:reason='new_camera_frame'
                 try:
                     if raw is None:
                         capture_start=self.clock();raw=self.backend.sensor_sample(rid);capture_end=self.clock()
                     seq=self.observed.get(key,0)+1;self.observed[key]=seq
-                    camera=None;budget=None
+                    camera=None;budget=None;pixel_token=None
                     spec=self.registry.get(b['adapter_id']).descriptor
                     if self.camera is not None and 'camera' in spec['required_sensors']:
                         packet=self.camera.sensor_packet(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,self.action_ttl)
                         camera=packet['camera'];budget=packet['budget']
+                        pixel_token=packet.get('pixel_token')
                         if budget is not None:
                             budget['sim_deadline']=budget['capture_sim_time']+min(self.action_ttl,spec.get('max_camera_age_sim_s',self.action_ttl))
+                            budget['wall_deadline']=min(budget['wall_deadline'],budget['capture_wall']+min(self.action_ttl,spec.get('max_camera_age_wall_s',self.action_ttl)))
                     observation=validate_observation(build_observation(raw,binding_epoch=b['epoch'],observed_seq=seq,
                         wall_deadline=self.clock()+self.action_ttl))
                     if own_refresh and (not math.isfinite(raw.sim_time)
@@ -373,9 +404,21 @@ class PlatformRuntime:
                         continue
                 if missing:
                     self.outputs.pop(key,None);self.status[key]='required_sensor_unavailable:'+','.join(missing);continue
+                if budget is not None and not self._budget_valid(budget,self.clock(),sim_time):
+                    self.status[key]='camera_sample_expired'
+                    self._trace('adapter_sample_rejected',robot_id=rid,kind=kind,binding_epoch=b['epoch'],
+                        observed_seq=seq,reason='original_camera_deadline_expired',sensor_budget=budget,
+                        wall_deadline=observation['wall_deadline'])
+                    continue
+                if camera_paced and budget is not None:
+                    # Publication can advance between the cheap identity peek
+                    # and this atomic sensor packet. Bind the ACTUAL job frame.
+                    next_camera=(self._episode,*schedule_identity,budget['frame_id'])
+                    if self._camera_samples.get(key)==next_camera:continue
                 if key not in self.slots:self.slots[key]=AdapterSlot(self.registry,self.clock)
+                if next_camera is not None:self._camera_samples[key]=next_camera
                 self._trace('adapter_enqueue',robot_id=rid,kind=kind,binding_epoch=b['epoch'],episode=self._episode,observed_seq=seq,observation_sim_time=observation['sim_time'],wall_deadline=observation['wall_deadline'],sensor_budget=budget,schedule_reason=reason,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')})
-                self.slots[key].submit(dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')}))
+                self.slots[key].submit(dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,pixel_token=pixel_token,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')}))
                 if key not in self.outputs:self.status[key]='waiting_for_adapter'
 
     def _targets(self,snapshot,sim_time,*,sampled_wall=None):
@@ -403,7 +446,7 @@ class PlatformRuntime:
                         if self.backend.validate_target(rid,channel,command):t[channel]=command
                         else:self.status[rid,kind]='robot_limit_rejected'
             aim_binding=bindings['aim']
-            if aim_binding['owner'] is not None and self.registry.get(aim_binding['adapter_id']).descriptor.get('stationary_only',False):
+            if aim_binding['owner'] is not None and self._registry_capability(aim_binding['adapter_id'],'stationary_only'):
                 pose=self.backend.own_pose(rid)
                 from .spin import requested_yaw
                 requested_motion=t['motion'] is not None and (any(abs(t['motion'][k])>1e-9 for k in ('vx_mps','vy_mps')) or abs(requested_yaw(t['motion']))>1e-9)
@@ -419,7 +462,7 @@ class PlatformRuntime:
         if self.stop_event.is_set() or self.control.stopped:return False
         episode=self.backend.episode
         if self._episode is not None and self._episode!=episode:
-            self.control.reset_episode();self.outputs.clear();self._own_samples.clear()
+            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear()
         self._episode=episode
         sim_time=self.backend.sim_time
         snapshot=self.control.snapshot()

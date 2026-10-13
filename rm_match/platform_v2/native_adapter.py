@@ -15,6 +15,7 @@ import threading
 from pathlib import Path
 import uuid
 import numpy as np
+from .native_image import prepare_native_image
 from .adapters import BaseAdapter,raw_observation,require_sensors
 from .contracts import ContractError,action_for,finite
 
@@ -48,6 +49,7 @@ class NativeSourceAdapter(BaseAdapter):
         self.trace=trace
         self.spec_path=Path(spec_path);self.spec,self.spec_sha=validate_native_spec(self.spec_path,registered_spec_sha)
         self.root=Path(out);self.process=None
+        self._evidence_writer=None;self._evidence_required=False;self._last_evidence_status=None
         self._cancelled=threading.Event();self._lifecycle_lock=threading.Lock()
         self.stable_since=None;self.anchor=None;self.last_capture=-1;self.last_time=None
     def reset(self,context):
@@ -56,28 +58,68 @@ class NativeSourceAdapter(BaseAdapter):
     def cancel(self):
         """Trusted lifecycle hook, no waiting or pipe closure on the authority."""
         self._cancelled.set()
-        with self._lifecycle_lock:process=self.process
+        with self._lifecycle_lock:process=self.process;evidence=getattr(self,'_evidence_writer',None)
+        if evidence is not None:evidence.request_stop()
         if process is not None:
             stop=getattr(process,'request_stop',None)
             if callable(stop):stop()
     def close(self):
-        with self._lifecycle_lock:process=self.process;self.process=None
-        if process is not None:process.close()
+        with self._lifecycle_lock:
+            process=self.process;self.process=None
+            evidence=getattr(self,'_evidence_writer',None);self._evidence_writer=None
+        errors=[]
+        if evidence is not None:
+            try:evidence.close(timeout=.15)
+            except BaseException as exc:errors.append(exc)
+            self._last_evidence_status=evidence.shutdown_status
+            if self.trace:
+                try:self.trace(dict(event='native_evidence_closed',wall_time=time.perf_counter(),wall_clock='host_perf_counter',status=evidence.shutdown_status))
+                except BaseException as exc:errors.append(exc)
+        if process is not None:
+            try:process.close()
+            except BaseException as exc:errors.append(exc)
+        if errors:raise errors[0]
     def _hold(self,o):
         q=o['own']['qpos']
         return action_for(o,'aim','gimbal_target',dict(frame='base_link',yaw_rad=math.atan2(math.sin(q[3]),math.cos(q[3])),pitch_rad=max(-math.pi/2,min(math.pi/2,q[4])),active=False,confidence=None,fire_permission=False))
     def act(self,o):
-        o=self.checked(o)
-        return self._act_sensor(o,lambda:self._hold(o),lambda c:action_for(o,'aim','gimbal_target',c))
+        from .contracts import validate_observation
+        decoded={};o=validate_observation(o,image_bytes=decoded)
+        return self._act_validated(o,decoded['raw'])
 
-    def _act_sensor(self,o,hold,emit):
+    def _act_validated(self,o,decoded_image):
+        # Only the reviewed native slot calls this after strict validation. Direct
+        # act() remains fully validated; no private pixel cache enters the DTO.
+        if any(o[k]!=self.context[k] for k in self.context):raise ContractError('adapter_context_mismatch')
+        return self._act_sensor(o,lambda:self._hold(o),lambda c:action_for(o,'aim','gimbal_target',c),decoded_image=decoded_image)
+
+    def _start_process(self,episode):
+        from ..operator.source_aim import OperatorFovProcess
+        validate_native_spec(self.spec_path,self.spec_sha)
+        self.directory=self.root/('binding_'+uuid.uuid4().hex);self.directory.mkdir(parents=True,exist_ok=False)
+        (self.directory/'tracking_mode').write_text(self.spec['runtime_mode_contents'])
+        env=os.environ.copy();env.update(self.spec.get('environment',{}))
+        env.update(AUTOAIM_CONFIG=str(Path(self.spec['autoaim_config']).absolute()),RMCS_HEADLESS_SHARE=str(Path(self.spec['model_share']).absolute()),ORT_DISABLE_TELEMETRY='1')
+        process=OperatorFovProcess(self.spec['binary'],self.spec['executor_yaml'],self.directory,env,fov=self.fov,timeout=2.)
+        with self._lifecycle_lock:
+            if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
+            self.process=process
+        process.reset(dict(episode=episode))
+        if self._cancelled.is_set():
+            stop=getattr(process,'request_stop',None)
+            if callable(stop):stop()
+            self.close();raise ContractError('native_adapter_cancelled')
+
+    def _native_control(self,packet,observation,*,image_bytes=None):
+        return self.process.control(packet)
+
+    def _act_sensor(self,o,hold,emit,*,decoded_image=None):
         # Shared sensor computation only. Callers validate a distinct live or
         # offline envelope before entry; runtime acceptance policies stay separate.
-        from ..operator.source_aim import OperatorFovProcess
         from ..integrations.rmcs_contract import own_state,command_from_direction
         from ..camera_profile import SourceCameraProfile
         if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
-        require_sensors(o,('camera','odometry'));raw=raw_observation(o);cam=o['sensors']['camera'];p=SourceCameraProfile()
+        require_sensors(o,('camera','odometry'));cam=o['sensors']['camera'];p=SourceCameraProfile()
         if o['robot_id']!='red_sentry':raise ContractError('native_robot_unsupported')
         intr=cam['intrinsics'];im=cam['image'];ext=cam['extrinsics']
         if (im['width'],im['height'])!=(p.width,p.height):raise ContractError('native_camera_resolution_mismatch')
@@ -95,30 +137,26 @@ class NativeSourceAdapter(BaseAdapter):
         if self.stable_since is None:self.stable_since=t;self.anchor=list(xy)
         if t-self.stable_since<.4 or t-cam['capture_sim_time']>.08:return hold()
         if cam['frame_id']<=self.last_capture:return hold()
+        raw=raw_observation(o,decoded_image=decoded_image)
         if self.process is None:
-            validate_native_spec(self.spec_path,self.spec_sha)
-            self.directory=self.root/('binding_'+uuid.uuid4().hex);self.directory.mkdir(parents=True,exist_ok=False)
-            (self.directory/'tracking_mode').write_text(self.spec['runtime_mode_contents'])
-            env=os.environ.copy();env.update(self.spec.get('environment',{}))
-            env.update(AUTOAIM_CONFIG=str(Path(self.spec['autoaim_config']).absolute()),RMCS_HEADLESS_SHARE=str(Path(self.spec['model_share']).absolute()),ORT_DISABLE_TELEMETRY='1')
-            process=OperatorFovProcess(self.spec['binary'],self.spec['executor_yaml'],self.directory,env,fov=self.fov,timeout=2.)
-            with self._lifecycle_lock:
-                if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
-                self.process=process
-            process.reset(dict(episode=o['episode']))
-            if self._cancelled.is_set():
-                stop=getattr(process,'request_stop',None)
-                if callable(stop):stop()
-                self.close();raise ContractError('native_adapter_cancelled')
-        bgr=np.ascontiguousarray(raw.rgb[:,:,::-1]);path=self.directory/'sensor_input.bgr';path.write_bytes(bgr.tobytes())
+            self._start_process(o['episode'])
+        inline=getattr(self,'transport',None)=='wsl_stdio_bgr_v2'
+        prepared=prepare_native_image(raw.rgb,self.directory/'sensor_input.bgr',trace_rgb=self.trace is not None,return_bytes=inline,write_artifact=not inline)
+        image,rgb_sha,image_stages=prepared[:3];image_bytes=prepared[3] if inline else None
+        if inline:
+            writer=self._evidence_writer
+            if writer is None:raise ContractError('native_evidence_not_prepared')
+            receipt=writer.submit(cam['frame_id'],image_bytes,image['sha256'])
+            if self.trace:self.trace(dict(event='native_evidence_accepted',wall_time=time.perf_counter(),wall_clock='host_perf_counter',receipt=receipt,sha256=image['sha256']))
         captured=replace(raw,sim_time=cam['capture_sim_time'],own_qpos=tuple(cam['own_qpos_at_capture']),own_qvel=tuple(cam['own_qvel_at_capture']),odom_xyyaw=tuple(cam['own_odom_at_capture']),odom_vxyw=tuple(cam['own_odom_velocity_at_capture']))
-        frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=7,own_team='red',image=dict(encoding='bgr8',width=p.width,height=p.height,stride_bytes=p.width*3,bytes=bgr.nbytes,sha256=hashlib.sha256(bgr.tobytes()).hexdigest(),path=str(path.absolute())),camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))
+        frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=7,own_team='red',image=image,camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))
         self.last_capture=cam['frame_id']
         if self.trace:
-            trace_identity=dict(robot_id=o['robot_id'],episode=o['episode'],binding_epoch=o['binding_epoch'],observed_seq=o['observed_seq'],frame_id=cam['frame_id'],capture_sim_time=cam['capture_sim_time'],observation_sim_time=t,clock_profile=o.get('clock_profile','wall_deadline_live'),wall_deadline=o.get('wall_deadline'),schedule=o.get('schedule'),raw_bgr_sha256=frame['image']['sha256'],raw_rgb_sha256=hashlib.sha256(raw.rgb.tobytes()).hexdigest(),own_at_capture={k:cam[k] for k in ('own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture')})
-            self.trace(dict(event='native_request',wall_time=time.monotonic(),**trace_identity))
-        response=self.process.control(dict(episode=o['episode'],control_time_ns=round(t*1e9),frame=frame))
-        if self.trace:self.trace(dict(event='native_result',wall_time=time.monotonic(),response=response,**trace_identity))
+            trace_identity=dict(robot_id=o['robot_id'],episode=o['episode'],binding_epoch=o['binding_epoch'],observed_seq=o['observed_seq'],frame_id=cam['frame_id'],capture_sim_time=cam['capture_sim_time'],observation_sim_time=t,clock_profile=o.get('clock_profile','wall_deadline_live'),wall_deadline=o.get('wall_deadline'),schedule=o.get('schedule'),raw_bgr_sha256=frame['image']['sha256'],raw_rgb_sha256=rgb_sha,own_at_capture={k:cam[k] for k in ('own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture')})
+            self.trace(dict(event='native_frame_prepare',wall_time=time.perf_counter(),image_stages=image_stages,**trace_identity))
+            self.trace(dict(event='native_request',wall_time=time.perf_counter(),wall_clock='host_perf_counter',**trace_identity))
+        response=self._native_control(dict(episode=o['episode'],control_time_ns=round(t*1e9),frame=frame),o,image_bytes=image_bytes)
+        if self.trace:self.trace(dict(event='native_result',wall_time=time.perf_counter(),wall_clock='host_perf_counter',response=response,**trace_identity))
         age=response.get('target_age_s')
         active=(response.get('should_control') is True and response.get('observation_shoot_allowed') is True and type(age) in (int,float) and math.isfinite(age) and 0<=age<=.08)
         if not active:return hold()

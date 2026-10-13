@@ -1,0 +1,12 @@
+{
+  "transport": "wsl_stdio_bgr_v2",
+  "pid": 694,
+  "reason": "control_timeout",
+  "killed": false,
+  "returncode": -15,
+  "reaped": true,
+  "tmpfs_directory": "/dev/shm/polar-wsl-bgr-c_lu2jxy",
+  "tmpfs_removed": true,
+  "cleanup_linux_monotonic": 6.113616738,
+  "clock_domain": "linux_local_diagnostic_only"
+}

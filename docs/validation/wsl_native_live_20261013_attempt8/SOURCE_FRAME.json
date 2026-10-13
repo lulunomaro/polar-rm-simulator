@@ -1,0 +1,7 @@
+{
+  "source": "artifacts/wsl-native-live-20261013-attempt8-stdin-scalar-caps/native/binding_12a799e010b94c8fa06a697766dfec65/actual_frames/sensor_9.bgr",
+  "artifact": "sensor_9.bgr.gz",
+  "uncompressed_bytes": 4665600,
+  "uncompressed_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422",
+  "qualification": "Byte-exact lossless gzip of actual preserved MuJoCo BGR input; no pixel modification"
+}

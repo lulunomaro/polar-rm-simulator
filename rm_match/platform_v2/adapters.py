@@ -8,6 +8,7 @@ import base64
 import copy
 from dataclasses import dataclass
 import math
+from types import MappingProxyType
 import numpy as np
 from .contracts import ContractError,action_for,validate_observation,exact,finite,vector
 
@@ -17,12 +18,30 @@ class AdapterSpec:
     factory: object
 
 class Registry:
-    def __init__(self):self._specs={}
+    def __init__(self):self._specs={};self._capabilities={}
     def register(self,descriptor,factory):
         d=copy.deepcopy(descriptor);aid=d['adapter_id']
         if aid in self._specs or len(self._specs)>=32:raise ContractError('duplicate_or_full_registry')
         if d['kind'] not in ('navigation','aim') or not callable(factory):raise ContractError('invalid_adapter')
+        # Only detached, immutable scalar metadata belongs on the physics hot
+        # path. Keep public descriptor registration/get compatibility, including
+        # partial descriptors; unavailable capabilities fail when queried.
+        try:requires_camera='camera' in d['required_sensors']
+        except Exception:requires_camera=None
+        try:stationary_only=bool(d.get('stationary_only',False))
+        except Exception:stationary_only=None
+        self._capabilities[aid]=MappingProxyType(dict(
+            stationary_only=stationary_only,requires_camera=requires_camera))
         self._specs[aid]=AdapterSpec(d,factory)
+    def capability(self,adapter_id,key):
+        """Return a frozen boolean without exposing internal descriptor data."""
+        if type(key) is not str or key not in ('stationary_only','requires_camera'):
+            raise ContractError('unknown_adapter_capability')
+        try:capabilities=self._capabilities[adapter_id]
+        except (KeyError,TypeError):raise ContractError('unknown_adapter') from None
+        value=capabilities[key]
+        if value is None:raise ContractError('adapter_capability_unavailable')
+        return value
     def get(self,adapter_id):
         if adapter_id not in self._specs:raise ContractError('unknown_adapter')
         s=self._specs[adapter_id];return AdapterSpec(copy.deepcopy(s.descriptor),s.factory)
@@ -46,13 +65,20 @@ def require_sensors(o,names):
         elif not o['sensors'][n]['available']:raise ContractError(n+'_unavailable')
         elif o['sim_time']-o['sensors'][n]['capture_sim_time']>.2:raise ContractError(n+'_stale')
 
-def raw_observation(o):
+def raw_observation(o,*,decoded_image=None):
     """Rebuild the existing OWN-only DTO; never reconstruct a simulator object."""
     from ..contracts import Observation
     own=o['own'];cam=o['sensors']['camera'];scan=o['sensors']['ranges']
     rgb=np.zeros((0,0,3),dtype=np.uint8);fovy=0.
     if cam['available']:
-        im=cam['image'];rgb=np.frombuffer(base64.b64decode(im['data_base64']),dtype=np.uint8).reshape(im['height'],im['width'],3).copy()
+        im=cam['image']
+        if decoded_image is None:
+            rgb=np.frombuffer(base64.b64decode(im['data_base64']),dtype=np.uint8).reshape(im['height'],im['width'],3).copy()
+        else:
+            # Private bytes from the slot's strict validation, never a DTO field.
+            # Immutable bytes keep this view read-only and detached from callers.
+            if type(decoded_image) is not bytes:raise ContractError('invalid_decoded_image')
+            rgb=np.frombuffer(decoded_image,dtype=np.uint8).reshape(im['height'],im['width'],3)
         if im['encoding']=='bgr8':rgb=rgb[:,:,::-1].copy()
         fovy=math.degrees(2*math.atan(im['height']/(2*cam['intrinsics']['fy'])))
     return Observation(episode=o['episode'],sim_time=o['sim_time'],rgb=rgb,fovy_degrees=fovy,
@@ -134,5 +160,5 @@ def default_registry(*,native_spec=None,native_out=None,native_trace=None):
     def make_native(config):
         from .native_adapter import NativeSourceAdapter
         return NativeSourceAdapter(config,spec_path=native_spec,out=native_out,registered_spec_sha=registered_sha,trace=native_trace)
-    r.register(descriptor('aim_native_rmcs_v1','aim','Actual opt-in native RMCS sensor wrapper',('camera','odometry'),available=ready,reason='available' if ready else 'explicit_trusted_native_spec_required',supported_robots=['red_sentry'],stationary_only=True,confidence_available=False,max_camera_age_sim_s=.08),make_native)
+    r.register(descriptor('aim_native_rmcs_v1','aim','Actual opt-in native RMCS sensor wrapper',('camera','odometry'),available=ready,reason='available' if ready else 'explicit_trusted_native_spec_required',supported_robots=['red_sentry'],stationary_only=True,confidence_available=False,max_camera_age_sim_s=.08,max_camera_age_wall_s=.08,schedule_on_camera_frame=True),make_native)
     return r

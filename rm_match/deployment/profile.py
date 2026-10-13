@@ -142,7 +142,7 @@ def own_registry(spec_path, native_out, *, adapters_json=None, native_trace=None
         'aim_native_rmcs_v1', 'aim', 'Own RMCS T2 native (stationary red sentry)',
         ('camera', 'odometry'), supported_robots=['red_sentry'],
         stationary_only=True, confidence_available=False,
-        max_camera_age_sim_s=.08, source_identity=checked_spec['source_identity'],
+        max_camera_age_sim_s=.08, max_camera_age_wall_s=.08, schedule_on_camera_frame=True, source_identity=checked_spec['source_identity'],
         deployment_profile=PROFILE), make_native)
     if adapters_json:
         from .json_adapter import register_json_adapters
