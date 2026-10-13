@@ -95,6 +95,12 @@ class MuJoCoBackend:
         self._check()
         return bool(self._navigation_sensors and self._navigation_sensors.capture_valid(rid,episode,budget,sim_time))
 
+    def prepare_navigation_sensors(self):
+        """Authority-only sampling before the runtime acquires its control lock."""
+        producer=getattr(self,'_navigation_sensors',None)
+        if producer is None:return
+        self._check();producer.capture()
+
     def sensor_sample(self,rid):
         self._check()
         # Only the pre-existing own-sensor API is accessed. Never enumerate
@@ -143,7 +149,9 @@ class MuJoCoBackend:
 
     def _step(self,targets,guard=None,clock=time.monotonic):
         self._check()
-        if getattr(self,'_navigation_sensors',None) is not None:self._navigation_sensors.capture()
+        # Direct backend callers still sample here. Runtime already sampled this
+        # data.time outside its lock; capture() keeps the exact original sample.
+        self.prepare_navigation_sensors()
         from ..contracts import Command
         import numpy as np
         s=self._sim;commands={}

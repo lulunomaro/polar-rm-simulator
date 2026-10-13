@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-humble-environment-20261013/venv/bin/python",
+    "-m",
+    "unittest",
+    "tests.test_runtime_native_import_isolation.NativeImportIsolationTests.test_fresh_navigation_and_json_slots_never_attempt_vision_import",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 5.72600085,
+  "LD_preexec": true,
+  "PYTHONPATH_scrubbed": true,
+  "navigation_algorithm_nodes_started": false,
+  "sensor_frames": 0,
+  "physics_steps": 0,
+  "source_sha256": {
+    "rm_match/platform_v2/runtime.py": "04fdb4695d1ac9387b1ee9e09c33803519ced2599f3be6f01b2ca337bf763682",
+    "tests/test_runtime_native_import_isolation.py": "2991f26448ef73e5cf980b6acdd3df0699c17b7ef0ef6e772fce5dbde886a62e"
+  },
+  "source_unchanged": true,
+  "fresh_process_import_finder_rejects_native_and_cv2": true,
+  "actual_case_passed": true,
+  "qualification": "Humble actual non-native slot/JSON subprocess only; no ROS, NN or SIL qualification"
+}

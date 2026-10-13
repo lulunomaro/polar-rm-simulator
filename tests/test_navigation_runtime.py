@@ -1,6 +1,7 @@
 """Sensor-profile scheduling, no-action initialization and original deadlines."""
 from copy import deepcopy
 import time
+import threading
 import unittest
 from rm_match.platform_v2.runtime import PlatformRuntime
 from rm_match.platform_v2.adapters import Registry, descriptor
@@ -90,6 +91,18 @@ class NavigationRuntimeTests(unittest.TestCase):
         self.assertEqual(self.runtime.status['alpha','navigation'],'navigation_sensor_expired')
         self.assertEqual(self.backend.packet['capture_wall'],original)
         self.assertEqual(len(self.instances),0);self.assertIsNone(self.backend.targets['alpha']['motion'])
+
+    def test_sensor_preparation_allows_concurrent_control_access(self):
+        done=threading.Event();threads=[]
+        def prepare():
+            def control_access():
+                self.runtime.control.snapshot();done.set()
+            worker=threading.Thread(target=control_access,daemon=True);threads.append(worker);worker.start()
+            self.assertTrue(done.wait(.5),'Sensor work held the lease/control lock')
+        self.backend.prepare_navigation_sensors=prepare
+        self.runtime.step_once()
+        for worker in threads:worker.join(.1)
+        self.assertTrue(done.is_set())
 
 
 if __name__=='__main__':unittest.main()

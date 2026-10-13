@@ -86,6 +86,23 @@ class ActualNavigationSensorTests(unittest.TestCase):
         finally:sim.close()
 
 
+class PreparedSensorBoundaryTests(unittest.TestCase):
+    def test_prepare_and_step_use_one_original_sample_per_physics_time(self):
+        backend=MuJoCoBackend(navigation_sensors=NavigationSensorConfig(point_rate_hz=4000))
+        targets={r:dict(motion=None,gimbal=None,fire=False) for r in backend.robot_ids}
+        try:
+            backend.prepare_navigation_sensors()
+            first=deepcopy(backend._navigation_sensors.states['red_sentry'])
+            backend.prepare_navigation_sensors();backend.step(targets)
+            state=backend._navigation_sensors.states['red_sentry']
+            self.assertEqual(state['imu'],first['imu']);self.assertEqual(state['chunks'],first['chunks'])
+            self.assertEqual(state['ray_index'],first['ray_index'])
+            backend.prepare_navigation_sensors()
+            self.assertEqual(len(state['imu']),2)
+            self.assertEqual([m['sample_sim_ns'] for m in state['imu']],[0,2000000])
+        finally:backend.close()
+
+
 class NavigationContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

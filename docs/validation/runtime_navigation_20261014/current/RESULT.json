@@ -1,0 +1,30 @@
+{
+  "scope": "focused runtime/physical sensors/private native and harmless process lifecycle; no actual ROS/navigation/NN/match qualification",
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "rm_match/platform_v2/test_runtime.py",
+    "rm_match/platform_v2/test_native_adapter.py",
+    "rm_match/platform_v2/test_native_decoded_boundary.py",
+    "rm_match/platform_v2/test_native_early_pixels.py",
+    "rm_match/platform_v2/test_native_early_pixels_review.py",
+    "rm_match/platform_v2/test_slot_shutdown.py",
+    "tests/test_navigation_runtime.py",
+    "tests/test_navigation_sensors.py",
+    "tests/test_runtime_native_import_isolation.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\runtime-navigation-checkpoint-20261014\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 7.911847999996098,
+  "source_sha256": {
+    "DEVELOPMENT_CHANGES.json": "39eb2d6e2943859a7fb87bb38be3fe20574e9139283159bc6bdda8213397639b",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/runtime.py": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
+    "tests/test_navigation_runtime.py": "727f0963501fb76f79b450e51ca5dd9a6bcbab0ca6e942747e64cd9b9ddbefd0",
+    "tests/test_navigation_sensors.py": "7648acfc2ef8bcdc3b18bb4f740e13a23eaaa31900340c5506c3bddd6b608ab0",
+    "tests/test_runtime_native_import_isolation.py": "a2261109e58752e47e5d21245a21d854e46e0ac4f89e8773b82b8d8f1e99a8a1"
+  },
+  "source_unchanged": true
+}

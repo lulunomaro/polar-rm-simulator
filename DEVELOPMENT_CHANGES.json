@@ -26,9 +26,9 @@
     {
       "path": "rm_match/platform_v2/backend.py",
       "original_sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
-      "current_sha256": "4aeebb98795f3f8507624f4ed908221768a55ca7111d2d50861101e20c2630fb",
+      "current_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
       "task": "T09",
-      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation sensor profile samples actual rays/gyro/accelerometer only on physics authority"
+      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation profile samples actual rays/gyro/accelerometer on physics authority outside the control lock; repeated preparation at the same physical time preserves the original sensor bytes and capture clock"
     },
     {
       "path": "rm_match/platform_v2/camera.py",
@@ -75,9 +75,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "2c303e117888926d1e4420c3d91556619e73c290eaae0203c9a4f3d609348e7f",
+      "current_sha256": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
       "task": "T09",
-      "reason": "Keep original leases, activation, camera80ms and SDK150ms; explicit navigation sensor jobs use original scan end deadlines, reject old generations and retain waiting localization without synthetic actions"
+      "reason": "Keep original leases, activation, camera80ms and SDK150ms; navigation jobs preserve original scan deadlines/generations and trace exact validated cloud acquisition scalars; non-native slots avoid vision imports while preserving reviewed native dispatch/cancellation guards"
     },
     {
       "path": "rm_match/platform_v2/server.py",

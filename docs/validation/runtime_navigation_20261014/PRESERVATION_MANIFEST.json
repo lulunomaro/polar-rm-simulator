@@ -1,0 +1,53 @@
+{
+  "schema": "polar.evidence.preservation.v1",
+  "files": [
+    {
+      "path": "current/RESULT.json",
+      "original_path": "artifacts/runtime-navigation-checkpoint-20261014/RESULT.json",
+      "bytes": 1701,
+      "sha256": "c90598ebe3f416d017d6bef435a4249e0cb396b8e28a34f183bd41d26e4d4258"
+    },
+    {
+      "path": "current/pytest.log",
+      "original_path": "artifacts/runtime-navigation-checkpoint-20261014/pytest.log",
+      "bytes": 955,
+      "sha256": "3ef87b051bfd21d4eed9cd3ab3dcbf6b866614730e0960e55bf3825e2cf59f7e"
+    },
+    {
+      "path": "current/pytest.xml",
+      "original_path": "artifacts/runtime-navigation-checkpoint-20261014/pytest.xml",
+      "bytes": 13193,
+      "sha256": "a328543bed25c92e1068629700168383aa733de98fcdaa5e2df81ecdd7d5c783"
+    },
+    {
+      "path": "humble/RESULT.json",
+      "original_path": "artifacts/pb-slot-import-isolation-20261014-01/RESULT.json",
+      "bytes": 1003,
+      "sha256": "5890e8f79cfc1ef3af341cd8e5792e6e5b15cd0f1c6600f2d5f92305dc306cb4"
+    },
+    {
+      "path": "humble/stdout.log",
+      "original_path": "artifacts/pb-slot-import-isolation-20261014-01/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "humble/stderr.log",
+      "original_path": "artifacts/pb-slot-import-isolation-20261014-01/stderr.log",
+      "bytes": 241,
+      "sha256": "d601fc53ecb3a45c378fb976f043646322ac9f825441993d15fcb61b90401bfd"
+    },
+    {
+      "path": "humble/FAILED_FOCUSED_COMMAND.json",
+      "original_path": "artifacts/pb-slot-import-isolation-20261014-01/FAILED_FOCUSED_COMMAND.json",
+      "bytes": 800,
+      "sha256": "dec77e91848eb5560cd78c835a3d9e08586b018e8220ffb88de47eb8fd3bd28e"
+    },
+    {
+      "path": "humble/WINDOWS_FOCUSED_RESULT.json",
+      "original_path": "artifacts/pb-slot-import-isolation-20261014-01/WINDOWS_FOCUSED_RESULT.json",
+      "bytes": 1075,
+      "sha256": "0791fbccec58de3b4e024d792dd870b4f20ee0051e5feebb4df2a28d89d035e6"
+    }
+  ]
+}

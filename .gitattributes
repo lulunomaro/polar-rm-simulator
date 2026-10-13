@@ -1,5 +1,7 @@
 # Hash-pinned source artifacts must retain Git's LF bytes on Windows clones.
 * text=auto eol=lf
+# This manifest is also captured literally by source/evidence SHA checks.
+DEVELOPMENT_CHANGES.json -text diff
 *.onnx binary
 *.gz binary
 *.png binary
@@ -15,6 +17,10 @@ docs/validation/**/*.txt -text diff
 docs/validation/**/*.log -text diff -whitespace
 docs/validation/**/*.xml -text diff
 docs/validation/**/*.cpp -text diff
+docs/validation/**/*.py -text diff
+docs/validation/**/*.yaml -text diff
+docs/validation/**/*.stdout -text diff
+docs/validation/**/*.stderr -text diff
 docs/validation/**/*.gpg binary
 tools/report_pnp_static_chain.py -text diff
 tools/diagnose_pnp_corner_roi.py -text diff

@@ -19,6 +19,19 @@ def json_copy(value):
     return json.loads(json.dumps(value,allow_nan=False))
 
 
+def _loaded_native_class():
+    """Recognize an already constructed native adapter without loading vision."""
+    module=sys.modules.get(__package__+'.native_adapter')
+    cls=getattr(module,'NativeSourceAdapter',None) if module is not None else None
+    return cls if isinstance(cls,type) else None
+
+
+def _reviewed_native_instance(instance,cls):
+    if cls is None or not isinstance(instance,cls):return False
+    from .native_observation import reviewed_native_instance
+    return reviewed_native_instance(instance)
+
+
 def _exception_location(exc,phase):
     """Bounded code locations only: never exception arguments, locals or inputs."""
     frames=[];tb=exc.__traceback__
@@ -61,8 +74,8 @@ class AdapterSlot:
     def _cancel_native(instance):
         # Arbitrary Python cancel/close hooks may hang. Only the reviewed native
         # lifecycle has a nonblocking authority-side cancellation contract.
-        from .native_adapter import NativeSourceAdapter
-        if isinstance(instance,NativeSourceAdapter):NativeSourceAdapter.cancel(instance)
+        cls=_loaded_native_class()
+        if cls is not None and isinstance(instance,cls):cls.cancel(instance)
 
     def _run(self):
         instance=None;identity=None;failed_identity=None
@@ -103,8 +116,7 @@ class AdapterSlot:
                     # Raw-image validation/JSON copying is CPU work on this worker,
                     # never on physics or HTTP threads.
                     from .contracts import validate_observation
-                    from .native_adapter import NativeSourceAdapter
-                    from .native_observation import reviewed_native_instance
+                    NativeSourceAdapter=_loaded_native_class()
                     phase='admission_deadline_recheck'
                     if self.clock()>=o['wall_deadline']:
                         # Setup is not algorithm execution. Discard this old
@@ -112,7 +124,7 @@ class AdapterSlot:
                         # original-budget job of the same generation.
                         discarded_reason='original_deadline_expired_after_admission'
                     elif job.get('native_pixels') is not None:
-                        if b['adapter_id']!='aim_native_rmcs_v1' or not reviewed_native_instance(instance):
+                        if b['adapter_id']!='aim_native_rmcs_v1' or not _reviewed_native_instance(instance,NativeSourceAdapter):
                             # Never hand a private object to a custom class/hook.
                             # Retry this generation through the complete public DTO.
                             private_rejected=True
@@ -129,7 +141,7 @@ class AdapterSlot:
                                     value=json_copy(NativeSourceAdapter._act_native_pixels(instance,o,job['native_pixels'],
                                         consumer=job['native_consumer'],budget=job['sensor_budget'],now=self.clock()))
                                 finally:admission_timings['act_s']=self.clock()-phase_started
-                    elif (isinstance(instance,NativeSourceAdapter)
+                    elif (NativeSourceAdapter is not None and isinstance(instance,NativeSourceAdapter)
                         and getattr(instance.act,'__func__',None) is NativeSourceAdapter.act):
                         phase='public_native_validation';decoded={};o=validate_observation(o,image_bytes=decoded,image_token=job.get('pixel_token'))
                         phase='public_native_act';phase_started=self.clock()
@@ -580,9 +592,14 @@ class PlatformRuntime:
             if key not in self.slots:self.slots[key]=AdapterSlot(self.registry,self.clock)
             authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires',
                 'activation_window_id','activation_window_deadline')}
+            validated_cloud=observation['sensors']['pointcloud']
+            cloud_acquisition=dict(frame_id=budget['frame_id'],
+                acquisition_start_ns=validated_cloud['acquisition_start_ns'],
+                acquisition_end_ns=validated_cloud['acquisition_end_ns'],profile_sha256=budget['profile_sha256'])
             self._trace('adapter_enqueue',robot_id=rid,kind=kind,binding_epoch=b['epoch'],episode=self._episode,
                 observed_seq=seq,observation_sim_time=observation['sim_time'],wall_deadline=deadline,
-                sensor_budget=budget,schedule_reason='new_navigation_scan',operator_authorization=authorization)
+                sensor_budget=budget,cloud_acquisition=cloud_acquisition,
+                schedule_reason='new_navigation_scan',operator_authorization=authorization)
             self.slots[key].submit(dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,
                 operator_authorization=authorization))
             if key not in self.outputs:self.status[key]='waiting_for_navigation'
@@ -635,6 +652,8 @@ class PlatformRuntime:
             self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._navigation_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear()
         self._episode=episode
         sim_time=self.backend.sim_time
+        prepare=getattr(self.backend,'prepare_navigation_sensors',None)
+        if callable(prepare):prepare()
         snapshot=self.control.snapshot()
         if self.camera is not None:
             try:self.camera.capture_from_authority(self.backend._sim,self._camera_desired(snapshot))
