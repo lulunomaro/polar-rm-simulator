@@ -1,0 +1,50 @@
+<mujoco model="RMUL 2026 rule-dimensioned V1.2 fallback, incomplete CAD fidelity">
+  <compiler angle="radian" />
+  <visual />
+  <worldbody>
+    <light name="arena_light" pos="0 0 10" diffuse=".8 .8 .8" />
+    <camera name="arena_overview" pos="0 -12 12" xyaxes="1 0 0 0 .70710678 .70710678" fovy="55" />
+    <geom name="arena_floor" type="box" pos="0 0 -0.05" size="6 4 0.05" rgba=".52 .54 .55 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_red_highground" type="box" pos="-2.5 1.5 0.1" size="1 2.5 0.1" rgba=".40 .49 .57 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_red_rail" type="box" pos="-1.575 0.8 0.3" size="0.075 0.9 0.1" rgba=".54 .61 .68 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_red_supply" type="box" pos="-5.25 3 0.001" size="0.75 1 0.001" rgba=".32 .33 .35 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_red_supply_mark_0" type="box" pos="-5.25 3 0.004" size="0.3 0.035 0.001" rgba=".62 .13 .12 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_red_supply_mark_1" type="box" pos="-5.25 3 0.004" size="0.035 0.3 0.001" rgba=".62 .13 .12 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_blue_highground" type="box" pos="2.5 -1.5 0.1" size="1 2.5 0.1" rgba=".40 .49 .57 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_blue_rail" type="box" pos="1.575 -0.8 0.3" size="0.075 0.9 0.1" rgba=".54 .61 .68 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_blue_supply" type="box" pos="5.25 -3 0.001" size="0.75 1 0.001" rgba=".32 .33 .35 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_blue_supply_mark_0" type="box" pos="5.25 -3 0.004" size="0.3 0.035 0.001" rgba=".12 .22 .65 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_blue_supply_mark_1" type="box" pos="5.25 -3 0.004" size="0.035 0.3 0.001" rgba=".12 .22 .65 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control" type="box" pos="0 0 0.001" size="1.5 1.5 0.001" rgba=".29 .52 .61 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_0" type="box" pos="-1.5 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_0" type="box" pos="0 -1.5 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_1" type="box" pos="-1.25 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_1" type="box" pos="0 -1.25 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_2" type="box" pos="-1.0 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_2" type="box" pos="0 -1.0 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_3" type="box" pos="-0.75 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_3" type="box" pos="0 -0.75 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_4" type="box" pos="-0.5 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_4" type="box" pos="0 -0.5 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_5" type="box" pos="-0.25 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_5" type="box" pos="0 -0.25 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_6" type="box" pos="0.0 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_6" type="box" pos="0 0.0 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_7" type="box" pos="0.25 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_7" type="box" pos="0 0.25 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_8" type="box" pos="0.5 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_8" type="box" pos="0 0.5 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_9" type="box" pos="0.75 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_9" type="box" pos="0 0.75 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_10" type="box" pos="1.0 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_10" type="box" pos="0 1.0 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_11" type="box" pos="1.25 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_11" type="box" pos="0 1.25 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_x_12" type="box" pos="1.5 0 0.003" size="0.008 1.5 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_control_y_12" type="box" pos="0 1.5 0.003" size="1.5 0.008 0.001" rgba=".16 .7 .37 1" contype="0" conaffinity="0" group="1" friction=".8 .1 .01" />
+    <geom name="arena_wall_x_-1" type="box" pos="-6.15 0 .21" size=".15 4.3 .21" rgba=".12 .13 .14 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_wall_y_-1" type="box" pos="0 -4.15 .21" size="6 .15 .21" rgba=".12 .13 .14 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_wall_x_1" type="box" pos="6.15 0 .21" size=".15 4.3 .21" rgba=".12 .13 .14 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+    <geom name="arena_wall_y_1" type="box" pos="0 4.15 .21" size="6 .15 .21" rgba=".12 .13 .14 1" contype="1" conaffinity="1" group="0" friction=".8 .1 .01" />
+  </worldbody>
+</mujoco>

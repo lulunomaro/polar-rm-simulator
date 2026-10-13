@@ -1,0 +1,489 @@
+"""Single physics authority with isolated, bounded per-robot algorithm slots.
+
+Trusted adapters get copied, validated JSON observations only. This is a data
+boundary for reviewed adapters, not a Python sandbox for malicious code.
+"""
+from __future__ import annotations
+import copy
+import json
+import math
+import queue
+import threading
+import time
+from .control import ControlPlane, Rejected, KINDS
+
+
+def json_copy(value):
+    return json.loads(json.dumps(value,allow_nan=False))
+
+
+class AdapterSlot:
+    """At most one running and one replaceable pending task, per robot/kind.
+
+    A stalled adapter cannot create new threads on rebind. It can make this slot
+    unavailable until process restart, but the authority and other slots never
+    wait on it. Lifecycle calls run on the same slot thread, outside all locks.
+    """
+    def __init__(self,registry,clock):
+        self.registry=registry;self.clock=clock
+        self.pending=queue.Queue(maxsize=1);self.results=queue.Queue(maxsize=1)
+        self.stop=threading.Event();self.dropped=0;self.running=False;self.lifecycle_error=None
+        self.thread=threading.Thread(target=self._run,name='sim-v2-adapter',daemon=True)
+        self.thread.start()
+
+    @staticmethod
+    def _latest(q,value):
+        replaced=False
+        while True:
+            try:q.put_nowait(value);return replaced
+            except queue.Full:
+                try:q.get_nowait();replaced=True
+                except queue.Empty:pass
+
+    def submit(self,job):
+        if self._latest(self.pending,job):self.dropped+=1
+
+    def _run(self):
+        instance=None;identity=None;failed_identity=None
+        try:
+            while not self.stop.is_set():
+                try:job=self.pending.get(timeout=.05)
+                except queue.Empty:continue
+                if job.get('deactivate'):
+                    if instance is not None:
+                        try:instance.close()
+                        except BaseException as exc:self.lifecycle_error=type(exc).__name__
+                    instance=None;identity=None
+                    continue
+                if self.clock()>=job['observation']['wall_deadline']:continue
+                started_wall=self.clock();self.running=True;error=None;value=None
+                try:
+                    b=job['binding'];o=job['observation']
+                    current=(o['robot_id'],job['kind'],o['episode'],b['epoch'])
+                    if current==failed_identity:
+                        continue  # Sticky worker fault until an explicit new generation.
+                    if current!=identity:
+                        if instance is not None:instance.close()
+                        instance=None;identity=None
+                        instance=self.registry.create(b['adapter_id'],json_copy(b['config']))
+                        instance.reset(dict(episode=o['episode'],robot_id=o['robot_id'],binding_epoch=b['epoch']))
+                        identity=current
+                    # Raw-image validation/JSON copying is CPU work on this worker,
+                    # never on physics or HTTP threads.
+                    from .contracts import validate_observation
+                    o=validate_observation(o)
+                    value=json_copy(instance.act(copy.deepcopy(o)))
+                    # Validate before publishing into the latest-result slot: an
+                    # invalid result must not be overwritten by a later good one.
+                    from .contracts import validate_action
+                    value=validate_action(value,o,self.registry.get(b['adapter_id']).descriptor)
+                except BaseException as exc:
+                    error=type(exc).__name__;failed_identity=current
+                finally:self.running=False
+                self._latest(self.results,dict(job=job,value=value,error=error,started_wall=started_wall,completed=self.clock()))
+                if error and instance is not None:
+                    try:instance.close()
+                    except BaseException as exc:self.lifecycle_error=type(exc).__name__
+                    instance=None;identity=None
+        finally:
+            if instance is not None:
+                try:instance.close()
+                except BaseException as exc:self.lifecycle_error=type(exc).__name__
+
+    def poll(self):
+        try:return self.results.get_nowait()
+        except queue.Empty:return None
+
+    def close(self):self.stop.set()
+
+
+class PlatformRuntime:
+    def __init__(self,backend,*,registry=None,clock=time.monotonic,observation_period=.05,
+                 action_ttl=.2,control=None,camera=None,trace=None):
+        from .adapters import default_registry
+        self.camera=camera;self.trace=trace;self.output_budgets={};self.output_authorizations={};self.real_time_factor=1.
+        self.backend=backend;self.registry=registry or default_registry();self.clock=clock
+        self.control=control or ControlPlane(backend.robot_ids,clock=clock,spin_capabilities=backend.declared_spin_capabilities() if hasattr(backend,'declared_spin_capabilities') else {})
+        if tuple(self.control.robot_ids)!=tuple(backend.robot_ids):raise ValueError('Registry/backend mismatch')
+        if not 0<observation_period<=.2 or not 0<action_ttl<=.25:raise ValueError('Invalid scheduling bounds')
+        self.observation_period=observation_period;self.action_ttl=action_ttl
+        self.slots={};self.outputs={};self.observed={};self.next_observation={};self.status={}
+        self._fault_epochs={};self._slot_bound={};self._own_samples={}
+        self.stop_event=threading.Event();self.cache_lock=threading.Lock()
+        self.cached={'runtime_state':'starting','telemetry_available':False}
+        self._authority=None;self._episode=None;self.steps=0;self.last_step_wall=None;self.error=None
+        self._started=self.clock();self._closed=False
+
+    def _trace(self,event,**values):
+        if self.trace is not None:self.trace(dict(event=event,wall_time=self.clock(),**values))
+
+    @staticmethod
+    def _budget_valid(budget,now,sim_time):
+        return budget is None or (budget['capture_wall']<=now<budget['wall_deadline']
+            and budget['capture_sim_time']<=sim_time<=budget['sim_deadline'])
+
+    def _check_authority(self):
+        current=threading.get_ident()
+        if self._authority is None:self._authority=current
+        if self._authority!=current:raise RuntimeError('Only one thread may advance physics')
+
+    def capabilities(self,token):
+        # Session/watch identity comes from ControlPlane; model metadata is cached.
+        with self.control.lock:
+            session=self.control._session(token)
+            with self.cache_lock:episode=self.cached.get('episode')
+            return dict(capability_schema='rm.sim.platform.capabilities.v1',session_id=session.sid,
+                watch_robot_id=session.watch_robot_id,watch_epoch=session.watch_epoch,episode=episode,
+                robots=[dict(robot_id=r,spin_control=copy.deepcopy(self.control._spin_capabilities.get(r,dict(version=1,available=False,reason='unsupported_yaw_actuator_mapping')))) for r in self.control.robot_ids])
+
+    def adapter_descriptors(self):
+        return self.registry.descriptors()
+
+    def adapter_catalog(self,token=None):
+        support=self.backend.declared_sensor_support() if hasattr(self.backend,'declared_sensor_support') else {}
+        robots=[]
+        for rid in self.control.robot_ids:
+            sensors=list(support.get(rid,[]))
+            if self.camera is not None and 'camera' not in sensors:sensors.append('camera')
+            robots.append(dict(robot_id=rid,declared_sensors=sensors))
+        result=dict(adapter_ui_version=1,adapter_activation_version=1,
+                    adapters=self.adapter_descriptors(),robots=robots,
+                    readiness='declared_support_only',fire_authority='manual_only')
+        if token is not None:result['control_capabilities']=self.capabilities(token)
+        return result
+
+    @staticmethod
+    def _binding_active(b,now):
+        return b['owner'] is not None and (not b.get('activation_required',False)
+            or (b.get('activation_seq',-1)>=0 and now<b.get('activation_expires',0.)))
+
+    def bind(self,token,robot_id,kind,lease_epochs,adapter_id,config):
+        # Never call adapter constructors on an HTTP thread.
+        try:spec=self.registry.get(adapter_id)
+        except (KeyError,ValueError):raise Rejected('unknown_adapter',404)
+        descriptor=spec.descriptor
+        if not descriptor.get('available',True):raise Rejected('adapter_unavailable:'+descriptor.get('reason','unknown'),409)
+        if descriptor.get('supported_robots') is not None and robot_id not in descriptor['supported_robots']:
+            raise Rejected('adapter_robot_unsupported',400)
+        if descriptor['kind']!=kind:raise Rejected('adapter_kind_mismatch',400)
+        try:encoded=json.dumps(config,allow_nan=False)
+        except (ValueError,TypeError):raise Rejected('invalid_config',400)
+        if len(encoded.encode())>4096:raise Rejected('config_too_large',413)
+        with self.control.lock:
+            if self.camera is not None and 'camera' in descriptor['required_sensors']:
+                desired=self._camera_desired(self.control.snapshot())
+                if robot_id not in desired and len(desired)>=self.camera.max_views:raise Rejected('camera_view_capacity',429)
+            return self.control.bind(token,robot_id,kind,lease_epochs,adapter_id,json.loads(encoded))
+
+    @staticmethod
+    def _camera_binding(rid,kind,b):return ('adapter',rid,kind,b['owner'],b['epoch'])
+
+    def _camera_desired(self,snapshot):
+        desired={}
+        for watch in self.control.watches():
+            desired.setdefault(watch['robot_id'],set()).add(('watch',watch['session_id'],watch['watch_epoch']))
+        for rid in self.control.robot_ids:
+            for kind in KINDS:
+                b=snapshot['bindings'][rid][kind]
+                if b['owner'] is not None and 'camera' in self.registry.get(b['adapter_id']).descriptor['required_sensors']:
+                    desired.setdefault(rid,set()).add(self._camera_binding(rid,kind,b))
+        return desired
+
+    def watch(self,token,rid):
+        with self.control.lock:
+            self.control.watch_sample(token)
+            if rid is not None:self.control._robot(rid)
+            if self.camera is not None and rid is not None:
+                desired=self._camera_desired(self.control.snapshot())
+                # Remove this session's previous watch before checking capacity.
+                old=self.control.watch_sample(token)
+                key=('watch',old['session_id'],old['watch_epoch'])
+                desired={r:tokens-{key} for r,tokens in desired.items()}
+                desired={r:t for r,t in desired.items() if t}
+                if rid not in desired and len(desired)>=self.camera.max_views:raise Rejected('camera_view_capacity',429)
+            return self.control.watch(token,rid)
+
+    def frame(self,token):
+        # Lock order is always control -> camera. There is no render work here.
+        with self.control.lock:
+            watch=self.control.watch_sample(token)
+            rid=watch['robot_id'];epoch=self._episode
+            reason='runtime_stopped' if self.control.stopped else ('not_watching' if rid is None else 'no_gl_stage')
+            if self.control.stopped or rid is None or self.camera is None:
+                return dict(available=False,reason=reason,robot_id=rid,episode=epoch,watch_epoch=watch['watch_epoch'])
+            return self.camera.display_frame(rid,epoch,('watch',watch['session_id'],watch['watch_epoch']),watch['watch_epoch'])
+
+    def _collect(self,snapshot,sim_time):
+        from .contracts import validate_action
+        now=self.clock()
+        for key,slot in self.slots.items():
+            rid,kind=key;b=snapshot['bindings'][rid][kind]
+            output=self.outputs.get(key)
+            if output is not None and (output['binding_epoch']!=b['epoch'] or now>=output['wall_deadline']
+                                      or not 0<=sim_time-output['sim_time']<=self.action_ttl
+                                      or output['episode']!=self._episode or output['robot_id']!=rid
+                                      or not self._budget_valid(self.output_budgets.get(key),now,sim_time)):
+                self.outputs.pop(key,None)
+                self.status[key]='expired_or_rebound'
+            result=slot.poll()
+            if result is None:continue
+            job=result['job'];o=job['observation'];old=job['binding'];budget=job.get('sensor_budget')
+            self._trace('adapter_result',robot_id=rid,kind=kind,binding_epoch=old['epoch'],observed_seq=o['observed_seq'],episode=o['episode'],observation_sim_time=o['sim_time'],wall_deadline=o['wall_deadline'],sensor_budget=budget,sample_identity=job.get('sample_identity'),operator_authorization=job.get('operator_authorization'),started_wall=result.get('started_wall'),completed_wall=result['completed'],error=result['error'],command=result['value'].get('command') if result['value'] else None)
+            if b['owner'] is None or (b['epoch'],b['owner'],b['lease_epochs'])!=(old['epoch'],old['owner'],old['lease_epochs']):
+                continue
+            if self._fault_epochs.get(key)==b['epoch']:
+                self.outputs.pop(key,None)
+                continue  # No queued or late same-generation result can recover a fault.
+            if result['error']:
+                self.outputs.pop(key,None);self.status[key]='adapter_error:'+result['error'];self._fault_epochs[key]=b['epoch'];continue
+            if (o['robot_id']!=rid or o['episode']!=self._episode
+                or now>=o['wall_deadline'] or not 0<=sim_time-o['sim_time']<=self.action_ttl
+                or not self._budget_valid(budget,now,sim_time)):
+                self.outputs.pop(key,None);self.status[key]='late_result';continue
+            try:
+                action=validate_action(result['value'],o,self.registry.get(b['adapter_id']).descriptor)
+                if action['kind']!=kind:raise ValueError('kind mismatch')
+                current=self.outputs.get(key)
+                if current and action['observed_seq']<=current['observed_seq']:raise ValueError('replayed result')
+                self.outputs[key]=action;self.output_budgets[key]=budget;self.output_authorizations[key]=job.get('operator_authorization');self.status[key]='active'
+            except (ValueError,TypeError,KeyError):
+                self.outputs.pop(key,None);self.status[key]='invalid_result';self._fault_epochs[key]=b['epoch']
+
+    @staticmethod
+    def _own_refresh_profile(kind,b,spec):
+        # Bounded, trusted synchronous-ray rule profile only. Camera, custom
+        # adapters and legacy bindings retain their original scheduling.
+        return (kind=='navigation' and b.get('activation_required') is True
+                and b['adapter_id']=='nav_rule_v1'
+                and set(spec['required_sensors'])=={'odometry','ranges'})
+
+    def _own_refresh_due(self,key,b,sim_time,now):
+        old=self._own_samples.get(key)
+        identity=(self._episode,b['epoch'],b['owner'])
+        return bool(old and old['identity']==identity
+            and now-old['wall_capture_end']>=self.observation_period
+            and sim_time>old['sim_time']
+            and b['activation_window_id']!=old['window_id']
+            and b['activation_expires']>old['activation_expires'])
+
+    def _schedule(self,snapshot,sim_time):
+        from .contracts import build_observation,validate_observation
+        for rid in self.control.robot_ids:
+            raw=None;capture_start=None;capture_end=None
+            for kind in KINDS:
+                key=(rid,kind);b=snapshot['bindings'][rid][kind]
+                if b['owner'] is None:
+                    self._own_samples.pop(key,None)
+                    if self._slot_bound.pop(key,False) and key in self.slots:self.slots[key].submit({'deactivate':True})
+                    continue
+                if not self._binding_active(b,self.clock()):
+                    self.status[key]='waiting_for_operator_activation';continue
+                if self._fault_epochs.get(key)==b['epoch']:continue
+                self._slot_bound[key]=True
+                schedule_identity=(b['epoch'],b['owner'])
+                previous=self.next_observation.get(key)
+                spec=self.registry.get(b['adapter_id']).descriptor
+                own_refresh=self._own_refresh_profile(kind,b,spec)
+                reason='simulation_period'
+                if previous and previous[0]==schedule_identity and sim_time<previous[1]:
+                    if not (own_refresh and self._own_refresh_due(key,b,sim_time,self.clock())):continue
+                    reason='new_activation_own_sample'
+                try:
+                    if raw is None:
+                        capture_start=self.clock();raw=self.backend.sensor_sample(rid);capture_end=self.clock()
+                    seq=self.observed.get(key,0)+1;self.observed[key]=seq
+                    camera=None;budget=None
+                    spec=self.registry.get(b['adapter_id']).descriptor
+                    if self.camera is not None and 'camera' in spec['required_sensors']:
+                        packet=self.camera.sensor_packet(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,self.action_ttl)
+                        camera=packet['camera'];budget=packet['budget']
+                        if budget is not None:
+                            budget['sim_deadline']=budget['capture_sim_time']+min(self.action_ttl,spec.get('max_camera_age_sim_s',self.action_ttl))
+                    observation=validate_observation(build_observation(raw,binding_epoch=b['epoch'],observed_seq=seq,
+                        wall_deadline=self.clock()+self.action_ttl))
+                    if own_refresh and (not math.isfinite(raw.sim_time)
+                        or abs(raw.sim_time-sim_time)>.5e-9
+                        or (observation['sensors']['ranges']['available'] and
+                            abs(observation['sensors']['ranges']['capture_sim_time']-sim_time)>.5e-9)):
+                        raise ValueError('fresh_own_sample_time_mismatch')
+                    if b.get('activation_required',False):observation['wall_deadline']=min(observation['wall_deadline'],b['activation_expires'])
+                    if camera is not None:observation['sensors']['camera']=camera
+                    if budget is not None:observation['wall_deadline']=min(observation['wall_deadline'],budget['wall_deadline'])
+                    if (observation['robot_id']!=rid or observation['episode']!=self._episode
+                        or not 0<=sim_time-observation['sim_time']<=self.action_ttl):
+                        raise ValueError('sensor_authority_identity_or_time_mismatch')
+                except Exception as exc:
+                    self._own_samples.pop(key,None)
+                    self.outputs.pop(key,None);self._fault_epochs[key]=b['epoch']
+                    self.status[key]='sensor_error:'+type(exc).__name__
+                    if key in self.slots:self.slots[key].submit({'deactivate':True})
+                    continue
+                spec=self.registry.get(b['adapter_id']).descriptor
+                missing=[name for name in spec['required_sensors']
+                         if not (all(observation['own'][k] is not None for k in ('odom_xyyaw','odom_vxyw'))
+                                 if name=='odometry' else observation['sensors'].get(name,{}).get('available',False))]
+                self.next_observation[key]=(schedule_identity,sim_time+self.observation_period)
+                sample_identity=None
+                if own_refresh:
+                    sample_identity=dict(episode=self._episode,robot_id=rid,sim_time=observation['sim_time'],
+                        sim_ns=round(observation['sim_time']*1e9),wall_capture_start=capture_start,wall_capture_end=capture_end)
+                    self._own_samples[key]=dict(identity=(self._episode,b['epoch'],b['owner']),
+                        sim_time=observation['sim_time'],wall_capture_end=capture_end,
+                        window_id=b['activation_window_id'],activation_expires=b['activation_expires'])
+                    if self.clock()>=observation['wall_deadline']:
+                        self.status[key]='sample_authorization_expired'
+                        self._trace('adapter_sample_rejected',robot_id=rid,kind=kind,binding_epoch=b['epoch'],
+                            observed_seq=seq,reason='original_authorization_expired',sample_identity=sample_identity,
+                            wall_deadline=observation['wall_deadline'])
+                        continue
+                if missing:
+                    self.outputs.pop(key,None);self.status[key]='required_sensor_unavailable:'+','.join(missing);continue
+                if key not in self.slots:self.slots[key]=AdapterSlot(self.registry,self.clock)
+                self._trace('adapter_enqueue',robot_id=rid,kind=kind,binding_epoch=b['epoch'],episode=self._episode,observed_seq=seq,observation_sim_time=observation['sim_time'],wall_deadline=observation['wall_deadline'],sensor_budget=budget,schedule_reason=reason,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')})
+                self.slots[key].submit(dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')}))
+                if key not in self.outputs:self.status[key]='waiting_for_adapter'
+
+    def _targets(self,snapshot,sim_time,*,sampled_wall=None):
+        now=self.clock() if sampled_wall is None else sampled_wall;result={}
+        for rid in self.control.robot_ids:
+            leases=snapshot['leases'][rid];bindings=snapshot['bindings'][rid]
+            t=dict(motion=None,gimbal=None,fire=False)
+            for channel in ('motion','gimbal','fire'):
+                l=leases[channel]
+                if l['owner'] is None or now>=l['expires'] or (channel=='motion' and l.get('mode_fault',False)):continue
+                if channel=='fire':
+                    t['fire']=bool(l['input'] and now<l['input_expires'] and l['input']['fire']);continue
+                kind='navigation' if channel=='motion' else 'aim';b=bindings[kind]
+                if b['owner'] is None:
+                    t[channel]=l['input'] if now<l['input_expires'] else None
+                    continue
+                if not self._binding_active(b,now):continue
+                output=self.outputs.get((rid,kind))
+                if (output is not None and output['binding_epoch']==b['epoch']
+                    and output['robot_id']==rid and output['episode']==self._episode
+                    and now<output['wall_deadline'] and 0<=sim_time-output['sim_time']<=self.action_ttl
+                    and self._budget_valid(self.output_budgets.get((rid,kind)),now,sim_time)):
+                    command=output['command']
+                    if kind=='navigation' or command['active']:
+                        if self.backend.validate_target(rid,channel,command):t[channel]=command
+                        else:self.status[rid,kind]='robot_limit_rejected'
+            aim_binding=bindings['aim']
+            if aim_binding['owner'] is not None and self.registry.get(aim_binding['adapter_id']).descriptor.get('stationary_only',False):
+                pose=self.backend.own_pose(rid)
+                from .spin import requested_yaw
+                requested_motion=t['motion'] is not None and (any(abs(t['motion'][k])>1e-9 for k in ('vx_mps','vy_mps')) or abs(requested_yaw(t['motion']))>1e-9)
+                measured_motion=abs(pose['wz'])>.03 or (pose['vx']**2+pose['vy']**2)**.5>.03
+                if requested_motion or measured_motion:
+                    t['gimbal']=None;self.status[rid,'aim']='stationary_required'
+            if not self.backend.allowed(rid):t=dict(motion=None,gimbal=None,fire=False)
+            result[rid]=t
+        return result
+
+    def step_once(self):
+        self._check_authority()
+        if self.stop_event.is_set() or self.control.stopped:return False
+        episode=self.backend.episode
+        if self._episode is not None and self._episode!=episode:
+            self.control.reset_episode();self.outputs.clear();self._own_samples.clear()
+        self._episode=episode
+        sim_time=self.backend.sim_time
+        snapshot=self.control.snapshot()
+        if self.camera is not None:
+            try:self.camera.capture_from_authority(self.backend._sim,self._camera_desired(snapshot))
+            except Exception as exc:
+                self.camera.fault(type(exc).__name__)  # Camera faults never stop physics or lease expiry.
+        self._collect(snapshot,sim_time)
+        self._schedule(snapshot,sim_time)
+        # Linearization point: recheck ownership/expiry immediately before applying
+        # commands. A release/bind accepted by HTTP cannot race a stale write.
+        # Only the short authoritative physics step holds this lock, not sensors,
+        # rendering, plugin construction or inference.
+        with self.control.lock:
+            current=self.control.snapshot()
+            targets=self._targets(current,sim_time)
+            apply_wall=self.clock()
+            consumed=[]
+            def command_guard(rid,command,phase,sampled_wall=None):
+                guard_snapshot=self.control.snapshot()
+                checked=self._targets(guard_snapshot,self.backend.sim_time,sampled_wall=sampled_wall)[rid]
+                # Every displayed applied target reflects the final guard too.
+                targets[rid]=checked
+                consumed.append(dict(episode=self._episode,robot_id=rid,phase=phase,consume_wall=self.clock() if sampled_wall is None else sampled_wall,consume_sim_time=self.backend.sim_time,
+                    target=checked,binding_epoch=guard_snapshot['bindings'][rid]['aim']['epoch'],
+                    adapter_authorizations={k:{f:guard_snapshot['bindings'][rid][k].get(f) for f in ('epoch','owner','adapter_id','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')} for k in KINDS},
+                    adapter_output_authorizations={k:self.output_authorizations.get((rid,k)) for k in KINDS},
+                    manual_inputs={c:{k:guard_snapshot['leases'][rid][c].get(k) for k in ('owner','epoch','seq','expires','input_expires','input_window_id','input_window_deadline')} for c in ('motion','gimbal','fire')},
+                    budget=self.output_budgets.get((rid,'aim'))))
+                return checked
+            if hasattr(self.backend,'guarded_step'):self.backend.guarded_step(targets,command_guard,clock=self.clock)
+            else:self.backend.step(targets)
+        for receipt in consumed:self._trace('actuator_consumed',**receipt)
+        if getattr(self.backend,'last_integration_timing',None):
+            self._trace('integration_boundary',episode=self._episode,sim_time=sim_time,targets=targets,output_budgets={r:self.output_budgets.get((r,'aim')) for r in self.control.robot_ids},**self.backend.last_integration_timing)
+        self._trace('physics_apply',apply_wall=apply_wall,sim_time=sim_time,episode=self._episode,targets=targets,output_budgets={r:self.output_budgets.get((r,'aim')) for r in self.control.robot_ids},aim_bindings={r:current['bindings'][r]['aim']['epoch'] for r in self.control.robot_ids})
+        self.steps+=1;self.last_step_wall=self.clock()
+        display=self.backend.display_snapshot()
+        if self.camera is not None:
+            display['camera']=self.camera.status()
+            display['limitations']=[v for v in display.get('limitations',[]) if v!='no_gl_camera_unavailable']
+            display['scenario']='existing_3v3_scene_role_v23_optics'
+        display.update(runtime_state='running',telemetry_available=True,steps=self.steps,
+            clock_profile=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=self.real_time_factor),
+            authority_thread=self._authority,applied_targets=json_copy(targets),
+            motion_feedback=json_copy(getattr(self.backend,'last_motion_feedback',{})),
+            spin_consumption_receipts={r:dict(entry=json_copy(next((v for v in reversed(consumed) if v['robot_id']==r and v['phase']=='integration_entry'),None)),final=json_copy(next((v for v in reversed(consumed) if v['robot_id']==r),None))) for r in self.control.robot_ids},
+            manual_consumption_receipts={r:json_copy(next((v for v in reversed(consumed) if v['robot_id']==r),None)) for r in self.control.robot_ids},
+            algorithm_status={r:{k:self.status.get((r,k),'unbound') if current['bindings'][r][k]['owner'] else 'unbound'
+                for k in KINDS} for r in self.control.robot_ids},
+            worker_limits=dict(max_slots=2*len(self.control.robot_ids),created=len(self.slots),
+                max_pending_per_slot=1,max_running_per_slot=1,dropped=sum(s.dropped for s in self.slots.values()),
+                lifecycle_errors=sum(s.lifecycle_error is not None for s in self.slots.values())))
+        with self.cache_lock:self.cached=display
+        return True
+
+    def snapshot(self,token):
+        # Current lease state and historical applied sample have separate stamps.
+        control=self.control.snapshot(token)
+        with self.cache_lock:value=copy.deepcopy(self.cached)
+        value['control']=control
+        value['applied_sample_is_historical']=True
+        return value
+
+    def health(self):
+        with self.cache_lock:
+            return dict(runtime_state=self.cached['runtime_state'],steps=self.steps,
+                error=self.error,transport='loopback_only',cross_machine_LAN_verified=False)
+
+    def run(self,*,max_wall_seconds=None,real_time_factor=1.):
+        if type(real_time_factor) not in (int,float) or not 0<real_time_factor<=1:raise ValueError('real_time_factor must be within (0, 1]')
+        self.real_time_factor=float(real_time_factor)
+        self._check_authority();start=self.clock();deadline=start
+        try:
+            while not self.stop_event.is_set() and not self.control.stopped:
+                if max_wall_seconds is not None and self.clock()-start>=max_wall_seconds:break
+                self.step_once()
+                deadline=max(deadline+self.backend.timestep/real_time_factor,self.clock())
+                self.stop_event.wait(max(0.,deadline-self.clock()))
+        except Exception as exc:
+            self.error=type(exc).__name__
+            raise
+        finally:self.close()
+
+    def request_stop(self):
+        self.stop_event.set();self.control.stop()
+        if self.camera is not None:self.camera.stop()
+
+    def close(self):
+        self._check_authority()
+        if self._closed:return
+        self._closed=True;self.request_stop()
+        for slot in self.slots.values():slot.close()
+        # Zero actuator intent on the authority thread; no simulated time jump.
+        neutral={r:dict(motion=None,gimbal=None,fire=False) for r in self.control.robot_ids}
+        self.backend.neutralize()
+        display=self.backend.display_snapshot()
+        if self.camera is not None:display['camera']=self.camera.status()
+        display.update(runtime_state='error' if self.error else 'stopped',telemetry_available=True,
+            steps=self.steps,applied_targets=neutral,error=self.error)
+        with self.cache_lock:self.cached=display
+        self.backend.close()

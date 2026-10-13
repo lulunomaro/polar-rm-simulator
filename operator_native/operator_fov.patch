@@ -1,0 +1,73 @@
+--- headless_rebuild/main.cpp
++++ operator_native/generated/main.cpp
+@@ -10,6 +10,8 @@
+ #include "kernel/command_safety.hpp"
+ #endif
+ #include <opencv2/imgcodecs.hpp>
++#include <opencv2/calib3d.hpp>
++#include <algorithm>
+ #include <eigen3/Eigen/Geometry>
+ #include <yaml-cpp/yaml.h>
+ #include <array>
+@@ -68,6 +70,8 @@
+     Point3d direction=Point3d::kNaN(), center=Point3d::kNaN();
+     std::uint64_t inference_calls=0;
+     bool manual_shoot=false;
++    bool fov_initialized=false;
++    std::array<double,3> operator_fov{};
+ #ifdef REBUILD_CANDIDATE
+     std::string runtime_mode_contents;
+     ObservationOrder submitted, consumed, processed;
+@@ -122,6 +126,16 @@
+                 throw std::runtime_error("Candidate tracking_mode changed during episode");
+         }
+ #endif
++        // Simulation operator fork: FOV changes require a fresh process/track state.
++        const auto af=request["operator_fov"];
++        if (!af || !af.IsMap() || af.size()!=3) throw std::runtime_error("operator_fov required");
++        const std::array<double,3> requested_fov{af["fov_degrees"].as<double>(),af["circle_radius_x_norm"].as<double>(),af["circle_radius_y_norm"].as<double>()};
++        for (double v : requested_fov) if (!std::isfinite(v)) throw std::runtime_error("Nonfinite operator FOV");
++        if (requested_fov[0]<10. || requested_fov[0]>180. || requested_fov[1]<=0. || requested_fov[1]>2. || requested_fov[2]<=0. || requested_fov[2]>2.)
++            throw std::runtime_error("Operator FOV outside contract");
++        if (fov_initialized && requested_fov!=operator_fov) throw std::runtime_error("FOV changed: restart source process to clear tracks");
++        operator_fov=requested_fov; fov_initialized=true;
++        std::size_t fov_admitted2d=0, fov_rejected2d=0;
+         bool detector_executed=false, frame_accepted=false, completed=false;
+         [[maybe_unused]] bool observed_now=false;
+         std::string stats="null";
+@@ -177,6 +191,21 @@
+                 detector.update_detect_color(enemy); tracker->update_track_color(enemy);
+                 auto detections=detector.detect(image); detector_executed=true; ++inference_calls;
+                 raw2d=detections.armors.size();
++                // Gate actual detector output before source PnP/association/selection.
++                // This sees camera pixels and calibration only, never enemy truth.
++                std::erase_if(detections.armors,[&](const auto& armor) {
++                    const auto point=armor.center;
++                    if (!std::isfinite(point.x) || !std::isfinite(point.y) || point.x<0 || point.y<0 || point.x>=image.cols || point.y>=image.rows) return true;
++                    const double dx=(point.x-image.cols*.5)/(operator_fov[1]*image.cols);
++                    const double dy=(point.y-image.rows*.5)/(operator_fov[2]*image.rows);
++                    if (dx*dx+dy*dy>1.+1e-12) return true;
++                    std::vector<cv::Point2f> pixel{point},normalized;
++                    cv::undistortPoints(pixel,normalized,cv::Mat(3,3,CV_64F,const_cast<double*>(K.data())),cv::Mat(1,5,CV_64F,const_cast<double*>(D.data())));
++                    if (normalized.size()!=1 || !std::isfinite(normalized[0].x) || !std::isfinite(normalized[0].y)) return true;
++                    const double angle=std::atan(std::hypot(normalized[0].x,normalized[0].y))*180./std::acos(-1.);
++                    return angle>operator_fov[0]*.5+1e-12;
++                });
++                fov_admitted2d=detections.armors.size(); fov_rejected2d=raw2d-fov_admitted2d;
+                 estimator.update_camera_transform(iso);
+                 auto armors3d=estimator.estimate_armor(detections.armors,image); pose_estimated3d=armors3d.size();
+                 tracker->update_camera(iso);
+@@ -228,11 +257,12 @@
+ #endif
+         const double age=current ? std::chrono::duration<double>(Clock::now()-current->get_timestamp()).count() : kNaN;
+         std::ostringstream out;
+-        out << "{\"status\":\"ok\",\"runner_identity\":\"rmcs-sync-rebuild-v2\",\"time_s\":" << num(t) << ",\"clock_time_ns\":" << headless::nanoseconds_from_timestamp(Clock::now())
++        out << "{\"status\":\"ok\",\"runner_identity\":\"rmcs-sim-operator-fov-v1\",\"time_s\":" << num(t) << ",\"clock_time_ns\":" << headless::nanoseconds_from_timestamp(Clock::now())
+             << ",\"tracking\":" << (tracking?"true":"false") << ",\"should_shoot\":" << (shooting?"true":"false")
+             << ",\"direction\":" << vec(direction) << ",\"direction_frame\":\"world\",\"robot_center\":" << vec(center)
+             << ",\"detector_executed\":" << (detector_executed?"true":"false") << ",\"inference_calls\":" << inference_calls
+             << ",\"frame_accepted\":" << (frame_accepted?"true":"false") << ",\"frame_stats\":" << stats
++            << ",\"fov_raw2d\":" << raw2d << ",\"fov_admitted2d\":" << fov_admitted2d << ",\"fov_rejected2d\":" << fov_rejected2d
+             << ",\"pose_estimated3d\":" << pose_estimated3d << ",\"target_age_s\":" << num(age)
+             << ",\"completed_result_event\":" << (completed?"true":"false") << ",\"result_exposure_time_s\":" << num(result_exposure);
+ #ifdef REBUILD_CANDIDATE

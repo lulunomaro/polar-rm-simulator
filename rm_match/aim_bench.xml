@@ -1,0 +1,61 @@
+<mujoco model="Source-dimension armor aim bench; provisional materials and plant">
+  <compiler angle="radian" />
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" />
+  <visual>
+    <global offwidth="960" offheight="720" />
+    <headlight ambient=".45 .45 .45" />
+  </visual>
+  <default>
+    <geom friction=".8 .1 .01" />
+    <joint damping="2" />
+  </default>
+  <worldbody>
+    <light pos="0 0 6" diffuse=".8 .8 .8" />
+    <geom name="floor" type="plane" size="10 8 .1" rgba=".22 .25 .28 1" />
+    <geom name="backwall" type="box" pos="8 0 1" size=".1 4 1" rgba=".3 .35 .4 1" />
+    <camera name="spectator" pos="-2 -10 8" xyaxes=".94 -.34 0 .20 .55 .81" fovy="58" />
+    <body name="robot" pos="0 -1.8 .25">
+      <joint name="base_x" type="slide" axis="1 0 0" damping="8" />
+      <joint name="base_y" type="slide" axis="0 1 0" damping="8" />
+      <joint name="base_yaw" type="hinge" axis="0 0 1" damping="2" />
+      <geom name="chassis" type="box" size=".28 .23 .20" mass="15" rgba=".05 .18 .8 1" />
+      <body name="yaw" pos="0 0 .4">
+        <joint name="gimbal_yaw" axis="0 0 1" damping=".2" />
+        <geom type="box" size=".10 .1 .08" mass=".6" rgba=".1 .1 .3 1" />
+        <body name="pitch">
+          <joint name="gimbal_pitch" axis="0 -1 0" range="-.4 .5" damping=".15" />
+          <geom type="box" pos=".15 0 0" size=".20 .035 .035" mass=".4" rgba=".1 .15 .3 1" />
+          <site name="muzzle" pos=".38 0 0" size=".01" />
+          <camera name="aim" pos=".24 0 .06" xyaxes="0 -1 0 0 0 1" fovy="50" />
+        </body>
+      </body>
+    </body>
+    <body name="target" pos="2.5 -1.8 .65">
+      <joint name="target_y" type="slide" axis="0 1 0" damping="3" />
+      <geom name="target_body" type="box" size=".2 .35 .3" mass="10" rgba=".2 .2 .2 1" />
+      <body name="bench_plate" pos="-0.225 0 0" euler="0 0 3.141592653589793">
+        <geom name="target_armor" type="box" size=".0015 0.07 0.0625" rgba=".025 .025 .03 1" mass=".05" />
+        <geom name="bench_plate_light_-1" type="box" pos=".003 -0.0675 0" size=".001 .003 0.028" rgba="1 .03 .01 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="box" pos=".0041 -0.0675 0" size=".0002 .0007 0.0252" rgba="1 .8 .8 1" contype="0" conaffinity="0" mass="0" />
+        <geom name="bench_plate_light_1" type="box" pos=".003 0.0675 0" size=".001 .003 0.028" rgba="1 .03 .01 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="box" pos=".0041 0.0675 0" size=".0002 .0007 0.0252" rgba="1 .8 .8 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="capsule" fromto=".004 0.015 0.025 .004 -0.015 0.025" size=".0018" rgba=".92 .92 .92 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="capsule" fromto=".004 -0.015 0.025 .004 -0.015 0" size=".0018" rgba=".92 .92 .92 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="capsule" fromto=".004 0.015 0 .004 -0.015 0" size=".0018" rgba=".92 .92 .92 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="capsule" fromto=".004 -0.015 0 .004 -0.015 -0.025" size=".0018" rgba=".92 .92 .92 1" contype="0" conaffinity="0" mass="0" />
+        <geom type="capsule" fromto=".004 0.015 -0.025 .004 -0.015 -0.025" size=".0018" rgba=".92 .92 .92 1" contype="0" conaffinity="0" mass="0" />
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="drive_x" joint="base_x" ctrlrange="-100 100" />
+    <motor name="drive_y" joint="base_y" ctrlrange="-100 100" />
+    <motor name="drive_yaw" joint="base_yaw" ctrlrange="-20 20" />
+    <position name="aim_yaw" joint="gimbal_yaw" kp="25" kv="3" ctrlrange="-3.14 3.14" />
+    <position name="aim_pitch" joint="gimbal_pitch" kp="25" kv="3" ctrlrange="-.4 .5" />
+    <position name="target_motion" joint="target_y" kp="40" kv="15" />
+  </actuator>
+  <equality>
+    <weld body1="robot" solref=".002 1" />
+  </equality>
+</mujoco>

@@ -1,0 +1,3 @@
+# Camera server only: no ONNX/Isaac/OpenVINO policy runtime is implied.
+-r requirements.txt
+opencv-python-headless==5.0.0.93

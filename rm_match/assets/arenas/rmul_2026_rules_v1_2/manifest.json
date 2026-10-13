@@ -1,0 +1,761 @@
+{
+  "id": "rmul_2026_rules_v1_2",
+  "status": "rule_dimensioned_fallback_not_official_cad_export",
+  "source": {
+    "title": "RoboMaster 2026 RMUL competition rules V1.2.0",
+    "official_index": "https://bbs.robomaster.com/wiki/20204847/809872",
+    "sha256": "8d825c9eb62238288ddcf1cc962cbab3e25d7c683c2355f230b5930f18fe60d1",
+    "geometry_pages": [
+      21,
+      22,
+      23,
+      24,
+      25
+    ]
+  },
+  "coordinates": {
+    "unit": "metre",
+    "origin": "centre of playable floor",
+    "x": "right in rulebook top view",
+    "y": "up in rulebook top view",
+    "z": "up",
+    "floor_top_z": 0,
+    "red_supply_center": [
+      -5.25,
+      3,
+      0
+    ],
+    "blue_supply_center": [
+      5.25,
+      -3,
+      0
+    ]
+  },
+  "cad_source": "https://bbs.robomaster.com/article/814728",
+  "cad_imported": false,
+  "collision": {
+    "method": "independent analytic boxes",
+    "full_field_mesh_convex_hull_used": false,
+    "material_parameters": "uncalibrated friction; not official measured material model",
+    "visual_and_collision_separate": true
+  },
+  "coverage": {
+    "verified_dimensions": [
+      "12x8m playable floor",
+      "2x5x0.2m highgrounds",
+      "0.15x1.8m rails with top z0.4m",
+      "3x3m control zone",
+      "1.5x2m supply zones",
+      "plan placements from page22",
+      "official V1 CAD wall envelope thickness0.3m height0.42m and substrate0.1m"
+    ],
+    "provisional": [
+      "hollow boundary wall interior replaced with solid envelope",
+      "colours and simple markers",
+      "friction",
+      "flooring seams and small surface relief omitted"
+    ],
+    "not_implemented": [
+      "official CAD tessellation",
+      "RFID hardware geometry",
+      "actual flooring seams/material texture",
+      "official artwork",
+      "2027 revised field",
+      "full RMUC arena"
+    ]
+  },
+  "license": {
+    "generated_code_geometry": "newly authored from cited published dimensions",
+    "source_document": "DJI copyright retained; document not relicensed",
+    "official_artwork_copied": false
+  },
+  "features": [
+    {
+      "name": "arena_floor",
+      "position_m": [
+        0,
+        0,
+        -0.05
+      ],
+      "half_size_m": [
+        6,
+        4,
+        0.05
+      ],
+      "collision": true,
+      "source_pdf_page": 21,
+      "status": "rule_xy_floor_thickness_arbitrary_below_zero"
+    },
+    {
+      "name": "arena_red_highground",
+      "position_m": [
+        -2.5,
+        1.5,
+        0.1
+      ],
+      "half_size_m": [
+        1,
+        2.5,
+        0.1
+      ],
+      "collision": true,
+      "source_pdf_page": 24,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_red_rail",
+      "position_m": [
+        -1.575,
+        0.8,
+        0.3
+      ],
+      "half_size_m": [
+        0.075,
+        0.9,
+        0.1
+      ],
+      "collision": true,
+      "source_pdf_page": 24,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_red_supply",
+      "position_m": [
+        -5.25,
+        3,
+        0.001
+      ],
+      "half_size_m": [
+        0.75,
+        1,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 23,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_red_supply_mark_0",
+      "position_m": [
+        -5.25,
+        3,
+        0.004
+      ],
+      "half_size_m": [
+        0.3,
+        0.035,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 23,
+      "status": "original_visual_marker"
+    },
+    {
+      "name": "arena_red_supply_mark_1",
+      "position_m": [
+        -5.25,
+        3,
+        0.004
+      ],
+      "half_size_m": [
+        0.035,
+        0.3,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 23,
+      "status": "original_visual_marker"
+    },
+    {
+      "name": "arena_blue_highground",
+      "position_m": [
+        2.5,
+        -1.5,
+        0.1
+      ],
+      "half_size_m": [
+        1,
+        2.5,
+        0.1
+      ],
+      "collision": true,
+      "source_pdf_page": 24,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_blue_rail",
+      "position_m": [
+        1.575,
+        -0.8,
+        0.3
+      ],
+      "half_size_m": [
+        0.075,
+        0.9,
+        0.1
+      ],
+      "collision": true,
+      "source_pdf_page": 24,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_blue_supply",
+      "position_m": [
+        5.25,
+        -3,
+        0.001
+      ],
+      "half_size_m": [
+        0.75,
+        1,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 23,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_blue_supply_mark_0",
+      "position_m": [
+        5.25,
+        -3,
+        0.004
+      ],
+      "half_size_m": [
+        0.3,
+        0.035,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 23,
+      "status": "original_visual_marker"
+    },
+    {
+      "name": "arena_blue_supply_mark_1",
+      "position_m": [
+        5.25,
+        -3,
+        0.004
+      ],
+      "half_size_m": [
+        0.035,
+        0.3,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 23,
+      "status": "original_visual_marker"
+    },
+    {
+      "name": "arena_control",
+      "position_m": [
+        0,
+        0,
+        0.001
+      ],
+      "half_size_m": [
+        1.5,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "rule_dimensioned"
+    },
+    {
+      "name": "arena_control_x_0",
+      "position_m": [
+        -1.5,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_0",
+      "position_m": [
+        0,
+        -1.5,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_1",
+      "position_m": [
+        -1.25,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_1",
+      "position_m": [
+        0,
+        -1.25,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_2",
+      "position_m": [
+        -1.0,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_2",
+      "position_m": [
+        0,
+        -1.0,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_3",
+      "position_m": [
+        -0.75,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_3",
+      "position_m": [
+        0,
+        -0.75,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_4",
+      "position_m": [
+        -0.5,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_4",
+      "position_m": [
+        0,
+        -0.5,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_5",
+      "position_m": [
+        -0.25,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_5",
+      "position_m": [
+        0,
+        -0.25,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_6",
+      "position_m": [
+        0.0,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_6",
+      "position_m": [
+        0,
+        0.0,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_7",
+      "position_m": [
+        0.25,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_7",
+      "position_m": [
+        0,
+        0.25,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_8",
+      "position_m": [
+        0.5,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_8",
+      "position_m": [
+        0,
+        0.5,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_9",
+      "position_m": [
+        0.75,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_9",
+      "position_m": [
+        0,
+        0.75,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_10",
+      "position_m": [
+        1.0,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_10",
+      "position_m": [
+        0,
+        1.0,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_11",
+      "position_m": [
+        1.25,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_11",
+      "position_m": [
+        0,
+        1.25,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_x_12",
+      "position_m": [
+        1.5,
+        0,
+        0.003
+      ],
+      "half_size_m": [
+        0.008,
+        1.5,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_control_y_12",
+      "position_m": [
+        0,
+        1.5,
+        0.003
+      ],
+      "half_size_m": [
+        1.5,
+        0.008,
+        0.001
+      ],
+      "collision": false,
+      "source_pdf_page": 25,
+      "status": "original_visual_grid"
+    },
+    {
+      "name": "arena_wall_x_-1",
+      "position_m": [
+        -6.15,
+        0.0,
+        0.21
+      ],
+      "half_size_m": [
+        0.15,
+        4.3,
+        0.21
+      ],
+      "collision": true,
+      "source_pdf_page": null,
+      "status": "official_v1_cad_outer_envelope_hollow_detail_omitted"
+    },
+    {
+      "name": "arena_wall_y_-1",
+      "position_m": [
+        0.0,
+        -4.15,
+        0.21
+      ],
+      "half_size_m": [
+        6.0,
+        0.15,
+        0.21
+      ],
+      "collision": true,
+      "source_pdf_page": null,
+      "status": "official_v1_cad_outer_envelope_hollow_detail_omitted"
+    },
+    {
+      "name": "arena_wall_x_1",
+      "position_m": [
+        6.15,
+        0.0,
+        0.21
+      ],
+      "half_size_m": [
+        0.15,
+        4.3,
+        0.21
+      ],
+      "collision": true,
+      "source_pdf_page": null,
+      "status": "official_v1_cad_outer_envelope_hollow_detail_omitted"
+    },
+    {
+      "name": "arena_wall_y_1",
+      "position_m": [
+        0.0,
+        4.15,
+        0.21
+      ],
+      "half_size_m": [
+        6.0,
+        0.15,
+        0.21
+      ],
+      "collision": true,
+      "source_pdf_page": null,
+      "status": "official_v1_cad_outer_envelope_hollow_detail_omitted"
+    }
+  ],
+  "cad_reference_inspected": true,
+  "cad_reference": {
+    "url": "https://hz-rm-bbs-web-prod.oss-cn-hangzhou.aliyuncs.com/390f5a969de14811948cc0e102fc699f1761107116899/RMUL2026.stp",
+    "sha256": "b0d380030c3d0dacf21bc53345bd3dc5c4c11763ab180f1de0b86fb0240d651c",
+    "bytes": 1680693,
+    "units": "mm",
+    "source_to_world": "(x,z,-y)*0.001",
+    "wall_outer_xy_m": [
+      12.6,
+      8.6
+    ],
+    "wall_top_with_cover_m": 0.42,
+    "highground_v1_length_m": 6.5,
+    "rule_v1_2_override_length_m": 5.0
+  }
+}

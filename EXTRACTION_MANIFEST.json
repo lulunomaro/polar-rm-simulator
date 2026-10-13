@@ -1,0 +1,1548 @@
+{
+  "schema": "polar.simulator.public-extraction.v1",
+  "source_repository": "lulunomaro/llm-RM-navigation",
+  "source_commit": "7663ae744d69b27813abaefeaa9ae3e73be46a9f",
+  "source_subtree": "simulation/mujoco_match",
+  "destination_repository": "lulunomaro/polar-rm-simulator",
+  "history": "Selected source snapshot; not full Git history or full private subtree",
+  "copied_file_count": 190,
+  "files": [
+    {
+      "path": "config/season_manifest.json",
+      "source_path": "simulation/mujoco_match/config/season_manifest.json",
+      "git_blob_sha1": "f96050c41a7f9f45c26a9de784ad5ea501152b78",
+      "sha256": "ad7f18f0315705794e2e4aae462366d33de84d542041ae0f11089a9af103c1e6",
+      "size": 1145,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/ARENA_ASSETS.md",
+      "source_path": "simulation/mujoco_match/docs/ARENA_ASSETS.md",
+      "git_blob_sha1": "fbf1ec4f5487ddcc740c8e37e7ba79d85bd3e972",
+      "sha256": "8644d5119a1966ae2bc557c08097b629a991b16ae1f22969cde166be414e51fe",
+      "size": 3719,
+      "mode": "100644"
+    },
+    {
+      "path": "docs/MATCH_TIMING_V5.md",
+      "source_path": "simulation/mujoco_match/docs/MATCH_TIMING_V5.md",
+      "git_blob_sha1": "c720c70c00133d49b52f08dc2291f8e5ce68096b",
+      "sha256": "3cfa6c8125c78d9f4bf08a48ea7ac25f2f94c51c4ece940605ee4c833d144909",
+      "size": 4514,
+      "mode": "100644"
+    },
+    {
+      "path": "install_aim_windows.bat",
+      "source_path": "simulation/mujoco_match/install_aim_windows.bat",
+      "git_blob_sha1": "97c16bb1d324f4902905754401ca5a34cef57fb8",
+      "sha256": "1d58d669fc957b98a371a4dfd52939479c2762320465aa25e8542ac938018ab5",
+      "size": 351,
+      "mode": "100644"
+    },
+    {
+      "path": "install_windows.bat",
+      "source_path": "simulation/mujoco_match/install_windows.bat",
+      "git_blob_sha1": "b54c1b40d9069aebf88ef03abc1d7043b0020cbf",
+      "sha256": "6a0a0a38fbfea66196ce9fb5ef1bd238ed765f88456567b7a08ac1b9ebbec337",
+      "size": 347,
+      "mode": "100644"
+    },
+    {
+      "path": "launch_live_windows.bat",
+      "source_path": "simulation/mujoco_match/launch_live_windows.bat",
+      "git_blob_sha1": "921490d79bf3e47a810f6eca15801294838ef199",
+      "sha256": "a5ec232ae87edd08c5082a11d1fabe9e88797ab6d2417ce0f32336099e914253",
+      "size": 238,
+      "mode": "100644"
+    },
+    {
+      "path": "launch_match_windows.bat",
+      "source_path": "simulation/mujoco_match/launch_match_windows.bat",
+      "git_blob_sha1": "c0c7e5ceb557bc06f3afd554c468d766e5cbc790",
+      "sha256": "7d3949227a103c33140fc57bd12e114966881027fc6f57ed135f9a082f511e0c",
+      "size": 211,
+      "mode": "100644"
+    },
+    {
+      "path": "licenses/RMCS_MIT.txt",
+      "source_path": "simulation/mujoco_match/licenses/RMCS_MIT.txt",
+      "git_blob_sha1": "78bea7ffe32d19b4d45cce6db977b245cfc16936",
+      "sha256": "d415250801c46571ba8bb11b1587b46ecb00ac60c826050a2ee6bd19f1bc3ca5",
+      "size": 1080,
+      "mode": "100644"
+    },
+    {
+      "path": "operator_native/.gitignore",
+      "source_path": "simulation/mujoco_match/operator_native/.gitignore",
+      "git_blob_sha1": "0322c793282ba30d91d0ecc6e833fb5b16d0a775",
+      "sha256": "139d97fc3b52e192044b01bce7afb44babc3fe3a884c194904403cce543dd9a8",
+      "size": 60,
+      "mode": "100644"
+    },
+    {
+      "path": "operator_native/README.md",
+      "source_path": "simulation/mujoco_match/operator_native/README.md",
+      "git_blob_sha1": "f37e957d198114b6449ada59a4aba674ed9e9185",
+      "sha256": "c0627c06337b29aa807eb018d48dd0ab6be437341f26a9cd2c8707fa388fd9e1",
+      "size": 2047,
+      "mode": "100644"
+    },
+    {
+      "path": "operator_native/build_native.py",
+      "source_path": "simulation/mujoco_match/operator_native/build_native.py",
+      "git_blob_sha1": "ee55f64426a7ae86aa68a67a3c954db71947ead5",
+      "sha256": "be18811cab27d744b5e7b0655986b8943b9adbfdb21908a72a58f1ad78f7b204",
+      "size": 2724,
+      "mode": "100644"
+    },
+    {
+      "path": "operator_native/operator_fov.patch",
+      "source_path": "simulation/mujoco_match/operator_native/operator_fov.patch",
+      "git_blob_sha1": "51cb36d6efbd7c89479e1430c680c295a7ab1706",
+      "sha256": "a1ef1152ceb04be4303004352bba064ac9dea32e92e8e45c17844e9c67c16dac",
+      "size": 5188,
+      "mode": "100644"
+    },
+    {
+      "path": "operator_native/prepare_fov_hook.py",
+      "source_path": "simulation/mujoco_match/operator_native/prepare_fov_hook.py",
+      "git_blob_sha1": "7b4ac6a0c49db2e62b6814fcccaa90cbdae77b2f",
+      "sha256": "26a33ad0e6a1bb4dfb3e00abce8ba4f5cc4a75002a62f094349069e5a0d49aee",
+      "size": 4064,
+      "mode": "100644"
+    },
+    {
+      "path": "operator_native/prepare_operator_spec.py",
+      "source_path": "simulation/mujoco_match/operator_native/prepare_operator_spec.py",
+      "git_blob_sha1": "b640600bcc9fd43ff8c10360fb7c33a709a3f134",
+      "sha256": "8e1fc824d1198c2de12ada403b9fe697bc38eb086c7ffbefd6644c3cf39d1fe3",
+      "size": 1187,
+      "mode": "100644"
+    },
+    {
+      "path": "pyproject.toml",
+      "source_path": "simulation/mujoco_match/pyproject.toml",
+      "git_blob_sha1": "9a1643aad99ba51ecf24b4e923f45eb4b9df8b5f",
+      "sha256": "8c9d9e751a197d91313dc690c355ae021bf69156d76877e0523ee504493f0837",
+      "size": 894,
+      "mode": "100644"
+    },
+    {
+      "path": "record_match_windows.bat",
+      "source_path": "simulation/mujoco_match/record_match_windows.bat",
+      "git_blob_sha1": "f61b24bd9fc2aa7943900e545e355b3a99e2bdb8",
+      "sha256": "32b93016a3ef4976eb7a406aa4511ac1dfab6ef20568975c2c768944e5d85722",
+      "size": 211,
+      "mode": "100644"
+    },
+    {
+      "path": "record_opening_match_windows.bat",
+      "source_path": "simulation/mujoco_match/record_opening_match_windows.bat",
+      "git_blob_sha1": "60c45cf611d528f062de30e9a7bc971b55505f1f",
+      "sha256": "bd15efc316859b3ca9060b3b18854d3b06f435bbd31efd1d96f9a8296c32448f",
+      "size": 265,
+      "mode": "100644"
+    },
+    {
+      "path": "record_opening_windows.bat",
+      "source_path": "simulation/mujoco_match/record_opening_windows.bat",
+      "git_blob_sha1": "bd9526d1ed00847bbd21cea9f545f58bfd582942",
+      "sha256": "76aee94264cc412eeee670c62225268b1e720544153705fdd042c073d686f7dd",
+      "size": 277,
+      "mode": "100644"
+    },
+    {
+      "path": "replay.html",
+      "source_path": "simulation/mujoco_match/replay.html",
+      "git_blob_sha1": "633f3988c957def94ba71f193d2901d9bed6985f",
+      "sha256": "200aeb5e7c7984929ee80133bdf1f917aa3f7cb5036045584da8dce559887e3a",
+      "size": 11865,
+      "mode": "100644"
+    },
+    {
+      "path": "requirements-aim.txt",
+      "source_path": "simulation/mujoco_match/requirements-aim.txt",
+      "git_blob_sha1": "65be6c82e5806eefae27d6bb834b506998305ac6",
+      "sha256": "b065803310ecc9d18a7ef7ced47a17aa02793fccbfd02c89cc17af330fba5343",
+      "size": 86,
+      "mode": "100644"
+    },
+    {
+      "path": "requirements-camera.txt",
+      "source_path": "simulation/mujoco_match/requirements-camera.txt",
+      "git_blob_sha1": "6355f806ebb111f67c8a3917902296d1fd22b7f6",
+      "sha256": "358495c0a2794543df6893fc2f402ad8a63321c76df7087a78f3341f1f45bddf",
+      "size": 125,
+      "mode": "100644"
+    },
+    {
+      "path": "requirements.txt",
+      "source_path": "simulation/mujoco_match/requirements.txt",
+      "git_blob_sha1": "1f906478018523fc8c2e96047139ad508c85954d",
+      "sha256": "85bd8ca6e526a44d55bb7374ca13b0405655866a325ddbd084f118e8b5496e40",
+      "size": 95,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/__init__.py",
+      "source_path": "simulation/mujoco_match/rm_match/__init__.py",
+      "git_blob_sha1": "c21f1b43bb6fd8253faa253fd86b3740c6e180be",
+      "sha256": "5988284300ba0a2e64c0dde4b8f67e3b1557728003b852bb13c208ef3fe0a1be",
+      "size": 156,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/adapters.py",
+      "source_path": "simulation/mujoco_match/rm_match/adapters.py",
+      "git_blob_sha1": "aa7ff65075c405caa4390fc0aa31a959e87f8c83",
+      "sha256": "739f74febb79f1d93fbcec1910dd608368dac129d91f98ac3886e8d06b1b3011",
+      "size": 711,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/aim_bench.xml",
+      "source_path": "simulation/mujoco_match/rm_match/aim_bench.xml",
+      "git_blob_sha1": "069dbf5f32ae8c9422d6049a74b89f59da0196d0",
+      "sha256": "9b55c408251f0d8f2a769f9c550ad65d1454cb494d10a0aba20e0dcfa1d577e2",
+      "size": 3862,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/aim_evaluation.py",
+      "source_path": "simulation/mujoco_match/rm_match/aim_evaluation.py",
+      "git_blob_sha1": "a3222e1fd08fa5c225157e70970dbbb6db1cc31f",
+      "sha256": "26a1761158d62c9c78cb6ab79d11581786fc48b83032096966b4b3aaf08697fd",
+      "size": 14779,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/aim_scenarios.py",
+      "source_path": "simulation/mujoco_match/rm_match/aim_scenarios.py",
+      "git_blob_sha1": "071d6af68b39fd1d584dbc793318db2f786e2717",
+      "sha256": "5086bb8be4fbe5a017d57eb68fe868dbefd50ff09cc49ac954bf7fd61b09d911",
+      "size": 6971,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/arena.py",
+      "source_path": "simulation/mujoco_match/rm_match/arena.py",
+      "git_blob_sha1": "18a087b6bc622b5a0ba759f26694dad899e705b0",
+      "sha256": "7d67c46c718df7c1511b1ede564b3f6b657db4e17c3920dff4bb907c48f2b711",
+      "size": 1570,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/armor_visual.py",
+      "source_path": "simulation/mujoco_match/rm_match/armor_visual.py",
+      "git_blob_sha1": "9a0b7f1fcb6b0da4c2824fe3344036714caecc9a",
+      "sha256": "1e26607a6c8ab0ff8e34dae937e5eba776f8d04f2df8f1f8dea35873d65e1036",
+      "size": 2816,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/armor_visual_v2.py",
+      "source_path": "simulation/mujoco_match/rm_match/armor_visual_v2.py",
+      "git_blob_sha1": "acdc91fd09c9fe2b183dbdbb848cb03abbae01be",
+      "sha256": "9b43b99f9a7a9e980ba9d907f6759db4c91eb419fb6e12985d1f78d8e1312df6",
+      "size": 4725,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/armor_visual_v21.py",
+      "source_path": "simulation/mujoco_match/rm_match/armor_visual_v21.py",
+      "git_blob_sha1": "c827ce9d0866350038af2c7dc78ebe139e17d7b6",
+      "sha256": "e58e49b4a0a1a014fa190e649705bb9932af7994f32c70ecb0200cd1b0194135",
+      "size": 1987,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/armor_visual_v22.py",
+      "source_path": "simulation/mujoco_match/rm_match/armor_visual_v22.py",
+      "git_blob_sha1": "ca41b9cb13a8eb8e6c6096eae7e22e1bd04833cc",
+      "sha256": "3e2302be7e41846b0602539326a1f3ed1553893b00dc05db468d83d2f7a3d280",
+      "size": 1129,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/armor_visual_v23.py",
+      "source_path": "simulation/mujoco_match/rm_match/armor_visual_v23.py",
+      "git_blob_sha1": "d5ff3adbad35a0df40776b0e5562b2cf85d527be",
+      "sha256": "5fd1ef16940b434efb2b7d61ac92a86af3cf63033644047a7a38d934ee058163",
+      "size": 2317,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/assets/arenas/rmul_2026_rules_v1_2/arena.xml",
+      "source_path": "simulation/mujoco_match/rm_match/assets/arenas/rmul_2026_rules_v1_2/arena.xml",
+      "git_blob_sha1": "4fc6378e97ef593298109d1951f6be4ad829337e",
+      "sha256": "e668017d40a963360d41bae435668c7bfeb75d2f2c9be60dd43dc88bbe564bc4",
+      "size": 7442,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/assets/arenas/rmul_2026_rules_v1_2/manifest.json",
+      "source_path": "simulation/mujoco_match/rm_match/assets/arenas/rmul_2026_rules_v1_2/manifest.json",
+      "git_blob_sha1": "7bfa7ec144e6445806d9b44b9940fb3b0487e12a",
+      "sha256": "102a51f7679cc219061604b678157e9e928bb003c69decfb08027ddcdfbeee18",
+      "size": 14708,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/assets/arenas/rmul_2026_rules_v1_2/preview.png",
+      "source_path": "simulation/mujoco_match/rm_match/assets/arenas/rmul_2026_rules_v1_2/preview.png",
+      "git_blob_sha1": "4acec5b19763dc68462412f8ad8868a3793c286d",
+      "sha256": "c70ec13a505516b4ff3246a3f3d4538f886f6b81bdc11325d41126ee3699f85e",
+      "size": 31400,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/assets/arenas/rmul_2026_rules_v1_2/spawns.json",
+      "source_path": "simulation/mujoco_match/rm_match/assets/arenas/rmul_2026_rules_v1_2/spawns.json",
+      "git_blob_sha1": "69069fdd4c82be9ad1cedf8b103ca00622d03b8c",
+      "sha256": "25d1e74eeee36737773adf633a6d6ebc8fdf7803ac93e24eb0f821df21607873",
+      "size": 1773,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/assets/arenas/rmul_2026_rules_v1_2/verification.json",
+      "source_path": "simulation/mujoco_match/rm_match/assets/arenas/rmul_2026_rules_v1_2/verification.json",
+      "git_blob_sha1": "c6c17f05089711d09075a1a28cb25ae016900090",
+      "sha256": "55fffa8e486006e591619ea94d639801e2183314698069d301a34f8405380e6c",
+      "size": 1404,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/ballistics.py",
+      "source_path": "simulation/mujoco_match/rm_match/ballistics.py",
+      "git_blob_sha1": "01a32d73fd93fb6e638439850e75fd94a97bace2",
+      "sha256": "4b0c8e53efe565022f95038c074faa7ec7e03104f8ec5db7cc507a02c1364f02",
+      "size": 5428,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/broadcast.py",
+      "source_path": "simulation/mujoco_match/rm_match/broadcast.py",
+      "git_blob_sha1": "48fa490f80960ee33a52f3b60689e44917571437",
+      "sha256": "7298b6191b8b911881a2d367b332683f81e209947c79f221ace54c6e8537efb5",
+      "size": 6330,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/cad_appearance.py",
+      "source_path": "simulation/mujoco_match/rm_match/cad_appearance.py",
+      "git_blob_sha1": "47cbc97c61de0d5a13bba73ea9cdc52a32509b92",
+      "sha256": "95e198a6ed67fb4f8ef6f7f62afbf8974525efed42206b3027cf0b218677d63e",
+      "size": 2059,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/camera_profile.py",
+      "source_path": "simulation/mujoco_match/rm_match/camera_profile.py",
+      "git_blob_sha1": "66d16636e124e5444915b03dcfdbc015571b061b",
+      "sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "size": 4914,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/competition_judge.py",
+      "source_path": "simulation/mujoco_match/rm_match/competition_judge.py",
+      "git_blob_sha1": "ea33bbf7d9c675bedebc811180b645eb7c775719",
+      "sha256": "cfe18e6c70e6ab4cf104c00910b39969be20b68e11abc6a9db79009f2ab9b5fa",
+      "size": 22374,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/contracts.py",
+      "source_path": "simulation/mujoco_match/rm_match/contracts.py",
+      "git_blob_sha1": "fe83b400995a2cd9745d22d571abdd681ebc2be6",
+      "sha256": "c60bf2965269bc8f809ef088c0d602ab6192cd12813986c0b72a990da0075f7f",
+      "size": 1758,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/controllers.py",
+      "source_path": "simulation/mujoco_match/rm_match/controllers.py",
+      "git_blob_sha1": "35103b48406e22995e065f26e04bdd70a1c79a9b",
+      "sha256": "c501c5c4f3db3ca119be132354d13f5c865fd0fb916a1299e2da41bbf45ea4e5",
+      "size": 1566,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/decision_bridge_core.py",
+      "source_path": "simulation/mujoco_match/rm_match/decision_bridge_core.py",
+      "git_blob_sha1": "ed0aadca5493e004c782cf6a91c701510709bb69",
+      "sha256": "b401f3ae65a8d9d87c2204fac7451014477ce21020597197b9b9c765ea83ff43",
+      "size": 7627,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/demo.py",
+      "source_path": "simulation/mujoco_match/rm_match/demo.py",
+      "git_blob_sha1": "b6e48635823c0c6b3c24bfc4157905e202c32b0b",
+      "sha256": "7437327ae63103674e9b255b344031905149e5fe0820f5e53757d1ae85715508",
+      "size": 3408,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/diagnostics.py",
+      "source_path": "simulation/mujoco_match/rm_match/diagnostics.py",
+      "git_blob_sha1": "15ba5d413ce32f1888d113fc1644f30bfd63afb0",
+      "sha256": "b9a42b702e6ff7ac9d74ae169caab5d275af53d19935ecb96548456ac8d9ac1a",
+      "size": 2462,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/engine.py",
+      "source_path": "simulation/mujoco_match/rm_match/engine.py",
+      "git_blob_sha1": "fbfa1ca0dfc0d09dca5ee16ef437f5a0fc1ba50e",
+      "sha256": "22514eb2e641f679d28baf59d1192e0d0786af994a6a9061e85860df29881aca",
+      "size": 5487,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/harness.xml",
+      "source_path": "simulation/mujoco_match/rm_match/harness.xml",
+      "git_blob_sha1": "ce2caf2a21589c1cd34b3cbd923fe1391068d2eb",
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "size": 2412,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/integrations/__init__.py",
+      "source_path": "simulation/mujoco_match/rm_match/integrations/__init__.py",
+      "git_blob_sha1": "6df2f6573ddeef9d29a5425509d2153010257655",
+      "sha256": "aacf1a46cf3914d7f06ee22d3a869aa038c8ea1ab9709e50ed61d7285f0c6d68",
+      "size": 64,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/integrations/own_gravity.py",
+      "source_path": "simulation/mujoco_match/rm_match/integrations/own_gravity.py",
+      "git_blob_sha1": "cf404b26f434abf1055e17a2d2db52868029fc19",
+      "sha256": "7e2ea631472c91a304f6f672777003ff0212de72dfc95bb19b604de75b8c7f32",
+      "size": 5804,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/integrations/rmcs_contract.py",
+      "source_path": "simulation/mujoco_match/rm_match/integrations/rmcs_contract.py",
+      "git_blob_sha1": "b1a547ea2955afd93f30026160aa663ee9865364",
+      "sha256": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf",
+      "size": 2485,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/integrations/rmcs_process.py",
+      "source_path": "simulation/mujoco_match/rm_match/integrations/rmcs_process.py",
+      "git_blob_sha1": "e24b499137c024fddcd7cab7ea4158cb5a1b79d5",
+      "sha256": "6806e6a094ed7ab4f9af698e55b87460afe85b461b5d4e54d340785834adaf16",
+      "size": 2088,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/judge.py",
+      "source_path": "simulation/mujoco_match/rm_match/judge.py",
+      "git_blob_sha1": "9afd1d240ae86dccfb9ce800e5b49c08346bca30",
+      "sha256": "8286fd5ea3a7a5a64f743c27b2c59676ad8f67d294a7bb5fed8d99bd3720be32",
+      "size": 1111,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_controllers.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_controllers.py",
+      "git_blob_sha1": "146efe1ee2f269506091add31ce4fa7038710959",
+      "sha256": "5b6a15d98045db480c95f8c65f29aaf9b45ff4f02c57a81b6c75dba254bb2d0b",
+      "size": 13539,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_engine.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_engine.py",
+      "git_blob_sha1": "b384a3640dc8fc9f936a440557109e21f2b87deb",
+      "sha256": "6c3f542ae3511a638cd15994941a08b6682760b9d10f272b0707e4ce05404abd",
+      "size": 15997,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_evidence.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_evidence.py",
+      "git_blob_sha1": "20b66de482f5a1b711f26101b44032973c839a9d",
+      "sha256": "bbd17c35c7b4289019cce0a421bbb92b1ed74386762426115e5ba882be383dbc",
+      "size": 3405,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_model.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_model.py",
+      "git_blob_sha1": "ffb15ac384e874500e535287fbd71263164b2297",
+      "sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "size": 4701,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_pixel_aim.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_pixel_aim.py",
+      "git_blob_sha1": "c0252dcd76729234cad2e1dd1f5034e21ff30683",
+      "sha256": "e94c35dc029a6513393dbad4dcb382fc57499f21d3254a64aff04bf12793b7b6",
+      "size": 2572,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_runner.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_runner.py",
+      "git_blob_sha1": "b0557c448f544ade037642d7acb31ef145d6811c",
+      "sha256": "f27fa973bd58b7e5441ab6f2079e12718f0a7dcfbd271d3dbd23fa16a994ffe3",
+      "size": 8716,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/match_viewer.py",
+      "source_path": "simulation/mujoco_match/rm_match/match_viewer.py",
+      "git_blob_sha1": "fdcbb58ade27bd830a83cdddfb800d2c3b192d6e",
+      "sha256": "14cb3f78debcf7281020fcb8595b94b9b5cd566e1aaac389fa8d0353f57d86c1",
+      "size": 4107,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/navigation.py",
+      "source_path": "simulation/mujoco_match/rm_match/navigation.py",
+      "git_blob_sha1": "cf330d24c9db05d8cb8043c78f198ceec6e5686c",
+      "sha256": "ff150d8bbf80349f34d80dce08e17800c7b6b8ce686ee14139c8b12a9f82a1d1",
+      "size": 16137,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/opening_runner.py",
+      "source_path": "simulation/mujoco_match/rm_match/opening_runner.py",
+      "git_blob_sha1": "5034529e1835d3e10a82bcad724b14ced52fb4f1",
+      "sha256": "203342f8c44fa5e454a83fee27efd5557eb3e7c4e2c0fb62eb0d07183bdc0639",
+      "size": 14682,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/opening_strategy.py",
+      "source_path": "simulation/mujoco_match/rm_match/opening_strategy.py",
+      "git_blob_sha1": "2f9199f40e13aba82eabda1bb0c5ccdf464159a1",
+      "sha256": "15e691dc7b85e70c88f217eb7a14ebe4a32931a6996f43dd1c5687276776ce1f",
+      "size": 3292,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/MOUSE_ANGLE.md",
+      "source_path": "simulation/mujoco_match/rm_match/operator/MOUSE_ANGLE.md",
+      "git_blob_sha1": "33f404bbb9da4072940a1d572dd7bb811e326eca",
+      "sha256": "59beb692fe2b2b2172244874c40e50f76d2f89602857ba9dceb604fffc96a24d",
+      "size": 2547,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/PROTOCOL.md",
+      "source_path": "simulation/mujoco_match/rm_match/operator/PROTOCOL.md",
+      "git_blob_sha1": "9048909a53ff80e1d1c3d4dacfbb7b13a9cf226a",
+      "sha256": "887e54910a56b03aa0abd9bdbf29a02fb96ca86f55e5dab74c83637fe76987ad",
+      "size": 16875,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/__init__.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/__init__.py",
+      "git_blob_sha1": "a854a9562e38c2f84e50975a25f1ef96eb02fb97",
+      "sha256": "9ece99aafdb42cb2ca0004d20f5f9256bd6bc24d683bfa92eac775592364de81",
+      "size": 81,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/__main__.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/__main__.py",
+      "git_blob_sha1": "87b7a6cf87f340364a7432490f166f2b0a4b86d4",
+      "sha256": "2e311f698608f175a6d1ed25d217c4b877907572d57bbdd12824a8d9225a99da",
+      "size": 2933,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/autoaim.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/autoaim.py",
+      "git_blob_sha1": "cb56c3128071306c06d0be37f806f47b8466773e",
+      "sha256": "b355e83370260ae4d1c59c4af3b25cfadc1dcae81311e24ef744a0553ff9cf2b",
+      "size": 4892,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/protocol.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/protocol.py",
+      "git_blob_sha1": "669904bd5ea083ecfcbcf407ffe747ca54ccbd24",
+      "sha256": "c72bdf1d3d8d6675a86117e14c23f3fa1cc190221e2cf34fd85f836b942a9cb8",
+      "size": 23462,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/qa_drive_frames.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/qa_drive_frames.py",
+      "git_blob_sha1": "a6409865f6af9a954e3a94b1640dda585af7fd55",
+      "sha256": "4770414038152aff9d6bd885a438049fa549da6a4891241f029258c1ed527014",
+      "size": 6811,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/qa_modes.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/qa_modes.py",
+      "git_blob_sha1": "5eeb1388a56d270b5eac3eebe61d1ea3eb07e22b",
+      "sha256": "3c8da6289f637d00e00537670209b774ef1484eeb26d96b6afbc9f946a8dafbf",
+      "size": 4010,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/qa_smoke.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/qa_smoke.py",
+      "git_blob_sha1": "3c4ab3a88c85ad7d33f50bf6977e88eb4fdced4c",
+      "sha256": "f5dc04b77d9c74f9e638d425d4ab3d7f5b2cc1611305690048a2757de0c8a461",
+      "size": 4095,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/runtime.py",
+      "git_blob_sha1": "d52dea003e29842806c1cb9c813cede36ca7f160",
+      "sha256": "d73bf5c74f4249bb1a0ba3c78d1aac510334791f1441daa04a3933e4572dc983",
+      "size": 23513,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/server.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/server.py",
+      "git_blob_sha1": "4b8ecfaac23683923ea7eea4b0bbdd2a116c8a34",
+      "sha256": "c739354795b0ff550d5a18750561bc962008a165e26c40da364d47cdde3c7e39",
+      "size": 11247,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/source_aim.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/source_aim.py",
+      "git_blob_sha1": "f087f5fc661f661e21dfb566589a9d549e20eabb",
+      "sha256": "53171e19912692459a36aa6f358b172b57aa5cb4e688d4aa02e270b31e451e1a",
+      "size": 9204,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/source_runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/source_runtime.py",
+      "git_blob_sha1": "6a3079a99189eb955548bd38ea961acc78a0bdba",
+      "sha256": "85a35f697a06f8661f927bcd60e946bfd0df3b84afc2118d56f6d36882f93b4b",
+      "size": 16436,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_autoaim.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_autoaim.py",
+      "git_blob_sha1": "afd4c3452b4f92d317199fd613de0cf1aea3a93a",
+      "sha256": "20c56c1b3c33620dff252686f8cd335eb6f3f6814e7b52dc94cb6d3c35b1c569",
+      "size": 4646,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_drive_frames.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_drive_frames.py",
+      "git_blob_sha1": "d3c2c357b498e1772ad0f1ac168356e130f582e0",
+      "sha256": "dcdfa7ef74ca17edfbe2acdf6902e71c68d77c4793296013f41982ebb9840c45",
+      "size": 21208,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_mode_safety.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_mode_safety.py",
+      "git_blob_sha1": "4b58a88c18f1663e8c8632b88d944b76120fe9ad",
+      "sha256": "ac59274366d7cf324a23b5906d6e691a62b77be1d2513290470e2e322c22a98b",
+      "size": 6559,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_modes.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_modes.py",
+      "git_blob_sha1": "8cbc1a67f150bb607bce183d98b41c4a2b328441",
+      "sha256": "e8023eab91e730e2e94d74ef3bacdc51df51cb434867ab2905bf6d8540965149",
+      "size": 11201,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_mouse_angle.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_mouse_angle.py",
+      "git_blob_sha1": "6be8df804549155bfb5d78741935dab426ba4d3f",
+      "sha256": "3fb6988f5672b94f8c9ae4aaec4245a1a08ddd3f1ca31df1689f5c9c2773ee09",
+      "size": 6818,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_own_damage.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_own_damage.py",
+      "git_blob_sha1": "da90ace453db7c10898630dd1c1a227df2a8ae6e",
+      "sha256": "8740ec0080a2d9193da2d351c101f3b6a48e54d134f98fa674945ef7c2895df8",
+      "size": 6033,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_protocol.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_protocol.py",
+      "git_blob_sha1": "8a4d0ecaba69944362a5999953e367bdc4ecd9df",
+      "sha256": "ba55092ed2ddca5e0e419ae3ff6c8ce93133f0b4300faf797e09e08288ddea1b",
+      "size": 10138,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_robot_selection.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_robot_selection.py",
+      "git_blob_sha1": "dc3c243cabaa7829169819ac31a48806e03db065",
+      "sha256": "c16cd7e3c419e0f0e020425b36578cd99a65d195bad61aaec83219df3d99e371",
+      "size": 17576,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_runtime.py",
+      "git_blob_sha1": "9c58478acfc337caddfb622e65aae5f9107f7eb8",
+      "sha256": "02edabad666adf28533d7093ecbbadc0c32af76701ab2def250788b076d21886",
+      "size": 5204,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_source_aim.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_source_aim.py",
+      "git_blob_sha1": "47ecccd5aaa48f8579ef6988690666a70ab7731f",
+      "sha256": "1d24f2553cbb21945905c31a8f805f97bf1f0af07d0ff921812d2c17176a7025",
+      "size": 3583,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_source_profile.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_source_profile.py",
+      "git_blob_sha1": "1bdd48ee5cc32f5c4abfc220fddac1c12516acc6",
+      "sha256": "64395f6056d92c21713c13722c4c4dc9568d24297d6ba76ab6df70d59d85e189",
+      "size": 1839,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/operator/test_source_runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/operator/test_source_runtime.py",
+      "git_blob_sha1": "fc773c2e8d566b1b16117d07cf1dd040939febcb",
+      "sha256": "005e8d4e565c09859f466478b7a8ca013fc045b6546d993a1ee447c5e4845757",
+      "size": 8056,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/original_decision_adapter.py",
+      "source_path": "simulation/mujoco_match/rm_match/original_decision_adapter.py",
+      "git_blob_sha1": "96aae56a1743c07c009a005533cbce8a2ba295c3",
+      "sha256": "75a7f2be19fca227a1c337750d4b439338985e12a4b5ce233950ba462dc5c3d8",
+      "size": 2378,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/CONTRACT.md",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/CONTRACT.md",
+      "git_blob_sha1": "c97d70042d763721859d73db3352c8a71f4ef575",
+      "sha256": "150c3e342f8353eacc271580ad83bb17660dba59148a66934505d6cf184c6db6",
+      "size": 10162,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/SPIN.md",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/SPIN.md",
+      "git_blob_sha1": "ce9cbc8250eace744a5fe5da54c8090f3100affb",
+      "sha256": "dea7b8d457b80e7c609c172f1a638e1c803accc3274a61686a32198483ec49a1",
+      "size": 5289,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/__init__.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/__init__.py",
+      "git_blob_sha1": "bedda6171b48560bf44c800ec863485ceaa78117",
+      "sha256": "12239a84f8ab68329d1afa4ba84187cdc8e6f35820273c4500a0a91de5875e94",
+      "size": 78,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/__main__.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/__main__.py",
+      "git_blob_sha1": "707842266ef59adb9b6eeb7d2d2b7641b516ce85",
+      "sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
+      "size": 2962,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/adapters.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/adapters.py",
+      "git_blob_sha1": "f94d8189f1012ab2f75d4a5368b95c253081d736",
+      "sha256": "dadb5bd731327270d0314d90648abfcebcf112adc54ea15ab348b81647d372e2",
+      "size": 8824,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/backend.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/backend.py",
+      "git_blob_sha1": "537753ba89227ef986bfe65cf6080f015afc1be7",
+      "sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
+      "size": 11198,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/camera.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/camera.py",
+      "git_blob_sha1": "811e6db7ebad51a475cc3bf032ba26638d29ef42",
+      "sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
+      "size": 15056,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/client.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/client.py",
+      "git_blob_sha1": "5ff4069de940088375c65ce36480c26ac1c6c9b3",
+      "sha256": "a0597ecec1f9407cf3c3df6a4b1420e101d3ec4607fa59fe7a3b8f309c6232c5",
+      "size": 14796,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/contracts.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/contracts.py",
+      "git_blob_sha1": "63ed5c32b07fbbf57ca84956182cc899c2caea0f",
+      "sha256": "400d417505c93f28884e48d0c4bca6434fc395ab347d4833faa888ac8fc448e1",
+      "size": 9938,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/control.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/control.py",
+      "git_blob_sha1": "0fe1280cd01fe7102fd40a680319a8bed9d9f69d",
+      "sha256": "2e4f0c1d2ce316c880c1f49ff3bca1a8bb898d19168b4723eb910c51eaf3ae2d",
+      "size": 20141,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/native_adapter.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/native_adapter.py",
+      "git_blob_sha1": "4f9c16ecdf083687ac0b0f0b2e874330204e7f6b",
+      "sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
+      "size": 9232,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/offline_contract.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/offline_contract.py",
+      "git_blob_sha1": "02dceb384a75f9c22719d3b09513998635231b0d",
+      "sha256": "e36129c0153a660d32dd9982c05dbcb35683bd0af9270613496a953f0be8a11d",
+      "size": 5796,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/offline_lifecycle.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/offline_lifecycle.py",
+      "git_blob_sha1": "148971155fc060a103fb40d71e4fb253ecbbb0eb",
+      "sha256": "61b65a6d71d06d846f81435ef5dc29c5e0788a13920672b0d8e71094bce8e80f",
+      "size": 2018,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/offline_native.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/offline_native.py",
+      "git_blob_sha1": "0522d4e0519117d6db33bdcf6fa0eeb2d42803d8",
+      "sha256": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd",
+      "size": 1025,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/offline_runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/offline_runtime.py",
+      "git_blob_sha1": "f9c4286f2888ec7ba6c05fc21717b3293f11ef11",
+      "sha256": "9e70871452313d2268ad793d68204658d684f88abc42ffa042bfce1f9d6bf529",
+      "size": 14550,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/qa_camera.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/qa_camera.py",
+      "git_blob_sha1": "a34481e59ebcf8d02b69836451a67afd3ccac010",
+      "sha256": "a20dc2e530740edcad3bea113dc1cf6537431d93b7a2ef091dbb3681b9fdd5b5",
+      "size": 9168,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/qa_multiclient.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/qa_multiclient.py",
+      "git_blob_sha1": "9bb4a381bdd68f62291d3dbdb65bb030b1ca3ed0",
+      "sha256": "a10e184c852ee8b2285d94fcc33e0e433dfe72392cb79b72cd542f07b25e30ef",
+      "size": 10314,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/qa_resupply.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/qa_resupply.py",
+      "git_blob_sha1": "ef7b711cd9499f44e41e2e79e77d0651e62f5a65",
+      "sha256": "0de520cf612965e51c14b3d4be88c72be4423bf7831fbe81c38aea458625d55d",
+      "size": 7455,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/resupply.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/resupply.py",
+      "git_blob_sha1": "06d025ee4b8426949eb86c3fb95c9da01513df8d",
+      "sha256": "a3f05ab3d0f933255afca2258c7008d7b7d82877cac7730c8e55cc91bbaa8750",
+      "size": 2895,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/runtime.py",
+      "git_blob_sha1": "0c521709e805fb21cf1d78ef1e00d6f7da95a39b",
+      "sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
+      "size": 31729,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/server.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/server.py",
+      "git_blob_sha1": "e00009602aaf5caedeab880a251a36ea6e86249d",
+      "sha256": "93d51c5610e191075030fb8cdcd89a7f0c5369c662e570943fe72b69ea22bccf",
+      "size": 8494,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/spin.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/spin.py",
+      "git_blob_sha1": "51a366871252031098a400bcca16456ea563441e",
+      "sha256": "b1610e2a1e20e461b1c01b41f986f1878b28f5a8ac19374a51a76327b2f650dd",
+      "size": 3385,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_adapter_activation.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_adapter_activation.py",
+      "git_blob_sha1": "ed9d5c29b4927ba6b10093610ffd05781e140d06",
+      "sha256": "786421be8f65829dc9927acd23ca12a9f45b506b24974f66cc231129d663ff63",
+      "size": 9666,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_adapters.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_adapters.py",
+      "git_blob_sha1": "d65222b3d53143dd4d59cb2339af546e55b2385d",
+      "sha256": "91a69692d5f0f26d7495c179e774f2c0fe9903329da3618140b0c23b87cbbbdd",
+      "size": 3426,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_camera.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_camera.py",
+      "git_blob_sha1": "edeb1784fd6021db96daaef341d25fb644d0bdb7",
+      "sha256": "adfd110cbcb95e22972a07a3ef52deff9dde0acd32a88b333ab48a48e1871821",
+      "size": 13195,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_camera_entry_guard.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_camera_entry_guard.py",
+      "git_blob_sha1": "da4aae22432971e6ea3ba72db5bd55e97b2a3d54",
+      "sha256": "148b87861d32ae7eac2a06e22fda900205882eed2a71989bab900c3fc11dba02",
+      "size": 1261,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_client.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_client.py",
+      "git_blob_sha1": "02aa87913fd61e77194dcc2b496688c0c62a741a",
+      "sha256": "9dc80191b51cac5d37f78959856fbbc9dcb3e6f2cf4a9548ba37d13cf36a0014",
+      "size": 6392,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_contracts.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_contracts.py",
+      "git_blob_sha1": "ee51036bb64c088014def8d1cb7ab5af667f0193",
+      "sha256": "f8f9b5b1082c7dda21f5dd5f855c1ccdd0783f3d240baa08e50dfb87861b5ea9",
+      "size": 5396,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_control.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_control.py",
+      "git_blob_sha1": "da9b378280da8a063d4f5fc44b22e1ddd391a646",
+      "sha256": "9521ad2d7cacc568917ee08d5ece0d2fbe2378ced5979b44199059d9b2c55b1c",
+      "size": 6006,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_control_windows.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_control_windows.py",
+      "git_blob_sha1": "385c061592d4b236c5af98d9a2035786745e5e15",
+      "sha256": "86a49428ee7f318da1c01906699a3c4f0ecee7671c2f80688f3200db672ff44c",
+      "size": 5071,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_native_adapter.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_native_adapter.py",
+      "git_blob_sha1": "37426c1668e38ac9702abf2bf810aa50682b9629",
+      "sha256": "3c0ad4316329854df347bfe884fb3895a2d7afbc340c63bec6ece017898c5954",
+      "size": 6428,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_native_timing.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_native_timing.py",
+      "git_blob_sha1": "b87c769015042411c6f2e23304a8c924631bbe04",
+      "sha256": "ce6e81beb5154cb540ecfa410bb93d8734f26d3308a314c6e8d318d804cf7c3a",
+      "size": 3824,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_observation_refresh.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_observation_refresh.py",
+      "git_blob_sha1": "c0a19f44d8c46b3680dd9c9ba1acc831334e973c",
+      "sha256": "9b690cb01413f48a05e0f722252765e83389eeeb16b5d553bef78653185a4e7c",
+      "size": 10379,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_offline.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_offline.py",
+      "git_blob_sha1": "af9dd5e15c3e209e260067f488a8a2c623f4b4d3",
+      "sha256": "c6140a1b2dfbca7ee46ce40f6be2caaa778de5d309db0e0adcacd1ebeb3948e3",
+      "size": 8021,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_offline_lifecycle.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_offline_lifecycle.py",
+      "git_blob_sha1": "da0e1cd056198a433ae8f37d2db121927b6f47c3",
+      "sha256": "cb4f5d2c5fa1d6141aaf847e7aa064844bfac7199949810a3885f64fbc763732",
+      "size": 2518,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_resupply.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_resupply.py",
+      "git_blob_sha1": "f7ee1c6c783c6b65a174710c63f7133cb93dbde8",
+      "sha256": "26b700f7241989c6e812fc1d2ced68e84bfaedd4ad5998f6f1b45f7be339b300",
+      "size": 6331,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_runtime.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_runtime.py",
+      "git_blob_sha1": "8042deab51f18188716f71ac11adb1095cb1e144",
+      "sha256": "74ccb589f98f6c84785ad76eb9a88125a1215061e214ac2c1960537601c8d0f5",
+      "size": 18535,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_server.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_server.py",
+      "git_blob_sha1": "49aa46613deba24be54bee3a23a9712f133059a0",
+      "sha256": "9f5485a80c7d46d18d652fcf05a8cde352a6996b8f389cba6eef2dc517eb5340",
+      "size": 4888,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_spin.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_spin.py",
+      "git_blob_sha1": "c084c69b725429315b91aa5c8ae1071e40920541",
+      "sha256": "682c5628275119af8c4a8707bd6f1f604c76bafc426fe23daad2a8a76d95d763",
+      "size": 4692,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_spin_feedback.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_spin_feedback.py",
+      "git_blob_sha1": "f26b6d53ddae36b91bad745def035a594bc51e98",
+      "sha256": "e4afe0f05c1ef9990be78fcf3512b8819be00f6fc416cf1c85ffd8e8aaf4ba2a",
+      "size": 4455,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_spin_model_metadata.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_spin_model_metadata.py",
+      "git_blob_sha1": "e11104711baee8736d1c938f7193bcc1466c3607",
+      "sha256": "81e9950a94c366c43f1838dc0ddf4870df4cab6b7a7ae08a8e16f4c7f3bb2cf2",
+      "size": 1303,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_window_client.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_window_client.py",
+      "git_blob_sha1": "9229044554376828d40f560b60f9a0243e14ca60",
+      "sha256": "02865def36b2c1e7c509961b96517d26aaf2517724faacd57fca4a596d261994",
+      "size": 4090,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/platform_v2/test_window_consumption.py",
+      "source_path": "simulation/mujoco_match/rm_match/platform_v2/test_window_consumption.py",
+      "git_blob_sha1": "58ecc8410f04d41059685269d287120c779ca985",
+      "sha256": "e1afbd92f3db52939b3bcc085a8701d31a9b5e0ac9d4d1b057002fbe149c4e37",
+      "size": 7100,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/recording_health.py",
+      "source_path": "simulation/mujoco_match/rm_match/recording_health.py",
+      "git_blob_sha1": "b36572122b2904d5bbec690b917c9481fb023b07",
+      "sha256": "653cb4db26642b919af1272b25d80a72e5045bc3356bed0a3d443636abf0ba08",
+      "size": 2384,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/rmcs_stop_aim.py",
+      "source_path": "simulation/mujoco_match/rm_match/rmcs_stop_aim.py",
+      "git_blob_sha1": "44a259c7825437e5d315fb51e3b73689737d2170",
+      "sha256": "971e1f9f5b71e4d3aa5e88c61167a94077c034f07c6a739bcb64ad51addb455c",
+      "size": 17104,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/sensor_schedule.py",
+      "source_path": "simulation/mujoco_match/rm_match/sensor_schedule.py",
+      "git_blob_sha1": "2fccdee7f36d3be27e00b769191783c7331238ad",
+      "sha256": "d549c3268f8668233b5e65b068b5f9fae9f24ed190ae001b167652d3fafdb0f4",
+      "size": 1343,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/serialization.py",
+      "source_path": "simulation/mujoco_match/rm_match/serialization.py",
+      "git_blob_sha1": "17e1bd4a44f3366b9c81a29ac964d67555e386c5",
+      "sha256": "e16aa541b23665f8c227397f2d847ac2790a77d79d5f34e462b257031e7ae34a",
+      "size": 538,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/spectator_effects.py",
+      "source_path": "simulation/mujoco_match/rm_match/spectator_effects.py",
+      "git_blob_sha1": "d5287c57eeaf9ed844d0dda194aa8d0bbfb0e4af",
+      "sha256": "b03deecfc6c3eb9ba4bb1843488eeecc552ded0d4accae483358275c4bb13349",
+      "size": 11818,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/__init__.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/__init__.py",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/aim.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/aim.py",
+      "git_blob_sha1": "c543927dd21f026b832c49c220b759998ac54e16",
+      "sha256": "b8b16a44893f9d262eeb9539ba75bd971a8f5d20f1d8909504e94df57e4ae035",
+      "size": 3581,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/camera_view.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/camera_view.py",
+      "git_blob_sha1": "cec40ba782970f5d3e22c1077185cc7af3bc8fe5",
+      "sha256": "d726218a5214201280e63bfdbfd75178bae5facb94e4c88e538391dcd5952cb9",
+      "size": 1496,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/fire_level_delay.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/fire_level_delay.py",
+      "git_blob_sha1": "202b79e50155e17a870ba8feccd2788ab4bb05e9",
+      "sha256": "4d041ff41169c95065343b2d9c2903f0cf410ceb01af53d342797186970d0ac6",
+      "size": 11342,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/plant.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/plant.py",
+      "git_blob_sha1": "821f35c4f55b895b3d3203d8f70277ae1318a9f7",
+      "sha256": "4d4a7ed2ff7c05682c4fd8f8af1adf8f0f9d9e59319f231a77d78d1b06bac2b1",
+      "size": 4673,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/strict_process.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/strict_process.py",
+      "git_blob_sha1": "1ec5cd023ea7e530eceb32a1bd6829a7532d5de1",
+      "sha256": "6e2adbd5f87dc57ad6dfddfcf9393b3810d6c6ddfdadb5bbe9dcdea682668713",
+      "size": 1993,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/timing/transport.py",
+      "source_path": "simulation/mujoco_match/rm_match/timing/transport.py",
+      "git_blob_sha1": "7660aa47f7aceac574bf64e40b944b9767affea8",
+      "sha256": "ccac362a76d9103e4be09fcc84fe67fab728ccdb52ee7e3d6270e26fcabf102e",
+      "size": 3594,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/upstream_rule.py",
+      "source_path": "simulation/mujoco_match/rm_match/upstream_rule.py",
+      "git_blob_sha1": "862dc633909979302a7c9451fba9ac93b8af0547",
+      "sha256": "d7f7e6b9a01b83b98b169c8ed9ee5f499d05e1887cd1c994372d561b80ebf7d3",
+      "size": 3005,
+      "mode": "100644"
+    },
+    {
+      "path": "rm_match/viewer.py",
+      "source_path": "simulation/mujoco_match/rm_match/viewer.py",
+      "git_blob_sha1": "c262736dac02c3fe1bb880e910e5ea1d61d3ea11",
+      "sha256": "801f75a71afb2dcb2d33ddc8a7c58cdfc038cd3dd3afe611c31dd5dcb3c6236c",
+      "size": 3119,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/conftest.py",
+      "source_path": "simulation/mujoco_match/tests/conftest.py",
+      "git_blob_sha1": "f506d51b5964d99afb3148a2c9a074674ae52038",
+      "sha256": "eeacf96a0a16877896155e4766d88922f41aa75c1b67442d912a7cfa51f40743",
+      "size": 248,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_aim_scenarios.py",
+      "source_path": "simulation/mujoco_match/tests/test_aim_scenarios.py",
+      "git_blob_sha1": "879c1cc9c476ac0c7319d81d909a6b753b1f85c9",
+      "sha256": "3aa8b7da15282a421f0937f0c1273466a02984c2cf279ec204d60f6126f034af",
+      "size": 1187,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_arena.py",
+      "source_path": "simulation/mujoco_match/tests/test_arena.py",
+      "git_blob_sha1": "72e46d48e74d0c2a939da9163bf29649d64a5379",
+      "sha256": "d85f48615ad8f1f029ce8ef718a3456fca527fddbbb8fc7e2455163936adf98e",
+      "size": 2665,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_armor_visual_v21.py",
+      "source_path": "simulation/mujoco_match/tests/test_armor_visual_v21.py",
+      "git_blob_sha1": "a2f2cb8491ff2882db5b414b1fa1ef80a54b94b6",
+      "sha256": "469f67f603dc89de9c5334046c3363e575e874a48ae11bcacd878d3466e3d29c",
+      "size": 1827,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_armor_visual_v23.py",
+      "source_path": "simulation/mujoco_match/tests/test_armor_visual_v23.py",
+      "git_blob_sha1": "35c51ca26d6198bf403b8ae2aec53761ee7d004c",
+      "sha256": "89adaf0b10dd7c3e63604cfd078fac1b1e9c96144b77a700156f458398ca4567",
+      "size": 1866,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_cad_appearance.py",
+      "source_path": "simulation/mujoco_match/tests/test_cad_appearance.py",
+      "git_blob_sha1": "13a1b8a7ebabb016ecf742585a70261637bf48fb",
+      "sha256": "1248283374ba5402d619b77f949e8950a603070cbe55ca773748d768798b685c",
+      "size": 1186,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_camera_profile.py",
+      "source_path": "simulation/mujoco_match/tests/test_camera_profile.py",
+      "git_blob_sha1": "c77eb9ba15527d3a75ef7cac6a56207cc52af096",
+      "sha256": "6502bfc0f1f5949fc5a18516a16ca102fb964310721ef29c3c4c1cbfdf5a7d3c",
+      "size": 3278,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_competition_judge.py",
+      "source_path": "simulation/mujoco_match/tests/test_competition_judge.py",
+      "git_blob_sha1": "37276d19f67987bb33249b4907b0a5f6fa3e8c9a",
+      "sha256": "125769a8c751f44b5f8e1b53cf527a7e51c2c626bbfede663781c0c8ef7e8cf7",
+      "size": 8984,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_continuous_start_connector.py",
+      "source_path": "simulation/mujoco_match/tests/test_continuous_start_connector.py",
+      "git_blob_sha1": "2a60c2f2831c9ef8f17aadbde3f9afa89018423f",
+      "sha256": "95a7096df731f9ece185c326956e0ee32ae50d5d68db23e46ce79b640084e2c4",
+      "size": 5040,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_core.py",
+      "source_path": "simulation/mujoco_match/tests/test_core.py",
+      "git_blob_sha1": "a6d9f3ebef1aa8e5ea89dd22f0a1ee48b90afc84",
+      "sha256": "1dc16a6c8c7795dd9a84b54972ba8aa7be04eb099bcbd36812b2d6773b9832f0",
+      "size": 3767,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_decision_bridge_core.py",
+      "source_path": "simulation/mujoco_match/tests/test_decision_bridge_core.py",
+      "git_blob_sha1": "24ea228596c71ad52da3a0eb2ea6f4369ad0c221",
+      "sha256": "58d24da6f29f7873399dca48b9fea7a969fcb94ad27e9aa7110febb257a0c1ca",
+      "size": 3617,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_diagnostics.py",
+      "source_path": "simulation/mujoco_match/tests/test_diagnostics.py",
+      "git_blob_sha1": "1f1cfe4785306e91623c01a0b67ed224699371f8",
+      "sha256": "e87733e7b4ad3cf1d4ec107bf31a9798665e056446b30fce905b889fa6458cbe",
+      "size": 1283,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_match_controllers.py",
+      "source_path": "simulation/mujoco_match/tests/test_match_controllers.py",
+      "git_blob_sha1": "a4f4dcfd7045c91e6e6fdfcf80a064943bf2aa80",
+      "sha256": "0715ff300655677ad4ad0a99d8f1f487f8150d8cda7bc684c1b3fbac1611639d",
+      "size": 3992,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_match_engine.py",
+      "source_path": "simulation/mujoco_match/tests/test_match_engine.py",
+      "git_blob_sha1": "92857af614cf1ce9987477a8e306380adb01cd17",
+      "sha256": "46c71bd78e19bf02df16e2950567ed6914119d97ca7c769dd7b7b64f8a73fcda",
+      "size": 4547,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_navigation.py",
+      "source_path": "simulation/mujoco_match/tests/test_navigation.py",
+      "git_blob_sha1": "0f8f90d5101a6594cad85e1499a54766ec0aab39",
+      "sha256": "f098f32820797ad3d3e5e8d2e866916272472482de54b34ed18eaf3d2984b81a",
+      "size": 5023,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_opening_egress_lifecycle.py",
+      "source_path": "simulation/mujoco_match/tests/test_opening_egress_lifecycle.py",
+      "git_blob_sha1": "e97d086232243af6aaad798ba28f9d436ecb45df",
+      "sha256": "2d6519a5e2393b3fc02db9a9e15f760b24ab9712d430e11060545d43ecf99b5e",
+      "size": 9683,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_opening_strategy.py",
+      "source_path": "simulation/mujoco_match/tests/test_opening_strategy.py",
+      "git_blob_sha1": "8efd73af43cb0c05706f6487f0eb989a92a65fd8",
+      "sha256": "281995e851ba91d7f77b30c7319576533bd7075a5bd8648ec6b36f1319d686ec",
+      "size": 5805,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_recording_health.py",
+      "source_path": "simulation/mujoco_match/tests/test_recording_health.py",
+      "git_blob_sha1": "f9d837f20602d7923610424a17f9a4a759b7b50f",
+      "sha256": "985e3028cc99c8d3746178cc02031ae3935c28523f8cb84c50e0472d440cb202",
+      "size": 1285,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_rmcs_stop_aim.py",
+      "source_path": "simulation/mujoco_match/tests/test_rmcs_stop_aim.py",
+      "git_blob_sha1": "c6e5f862303d8a7832960de3d82801ecec579e67",
+      "sha256": "6ac9450d967fb5823f76dfd23fb24c938a2e857413de1c2a46f072864ea9b648",
+      "size": 7604,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_sensor_schedule.py",
+      "source_path": "simulation/mujoco_match/tests/test_sensor_schedule.py",
+      "git_blob_sha1": "5d655f9de6d9502686608e5dc98f9d7627a6fe8c",
+      "sha256": "8dbd422ab5f40e19fbfca380986cd77e3718c244c469013680959cb80c33f3b2",
+      "size": 1014,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_spectator_effects.py",
+      "source_path": "simulation/mujoco_match/tests/test_spectator_effects.py",
+      "git_blob_sha1": "da86ffcb32a61235d4d22603afe96567920ca207",
+      "sha256": "ee358d7d99dc7f43158e752f7a6207ee0bb8f706b022b205ffe1efceb1f0a088",
+      "size": 9724,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_timing_match_identity.py",
+      "source_path": "simulation/mujoco_match/tests/test_timing_match_identity.py",
+      "git_blob_sha1": "973463c6bb1aed979985aeb8b6aa8b7cb4cfa515",
+      "sha256": "105816f6ccac41abd0481f0172095a16bbaf977bffc3f35e52a1f4de4e3131eb",
+      "size": 829,
+      "mode": "100644"
+    },
+    {
+      "path": "tests/test_timing_match_v5.py",
+      "source_path": "simulation/mujoco_match/tests/test_timing_match_v5.py",
+      "git_blob_sha1": "ca9ec06607d49c48e19cebc475d542865802b378",
+      "sha256": "893ec1dcac4a1a00bfeaeea83f8962c70f25fb4791067d434b5456f77a481b6a",
+      "size": 12887,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/assemble_native_diagnostic.py",
+      "source_path": "simulation/mujoco_match/tools/assemble_native_diagnostic.py",
+      "git_blob_sha1": "3910c130334156fe71ae7fae83b48eb66331d029",
+      "sha256": "352bbb6014b9014fccd71d5e15d9f2917e75407b10003ea3ed8caf3044b49805",
+      "size": 16002,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/audit_match_v5_result.py",
+      "source_path": "simulation/mujoco_match/tools/audit_match_v5_result.py",
+      "git_blob_sha1": "38b5641de6ee8fd00507e4d8d0324c667ad82b77",
+      "sha256": "a87bb1c81edd0035a871b0ff0a94cfadcf82af5502afa7ce216e04afe5358707",
+      "size": 4580,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/collect_aim_evaluations.py",
+      "source_path": "simulation/mujoco_match/tools/collect_aim_evaluations.py",
+      "git_blob_sha1": "128075f0f71d20c84b15fae7d05c65f7d5646912",
+      "sha256": "f41d5494cda64100514f4cfacc07338bc5d76535f718209230306bb6fbbc2fda",
+      "size": 1852,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/diagnose_drive_dropout.py",
+      "source_path": "simulation/mujoco_match/tools/diagnose_drive_dropout.py",
+      "git_blob_sha1": "218da5217e15db01a86988cc2039636f66232da0",
+      "sha256": "060cf99efccd19a852041fb00bbabf90fb2f768992164ead89340414c967bb5f",
+      "size": 2085,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/platform_v2/control_window/serve_no_gl.py",
+      "source_path": "simulation/mujoco_match/tools/platform_v2/control_window/serve_no_gl.py",
+      "git_blob_sha1": "698db3922a34f962363742ee442367697b1189a7",
+      "sha256": "55b3797902fc46620c134f7e53f794dd0b1e60c1160e4cf35bfd7c012e0fdf10",
+      "size": 2710,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/platform_v2/native_stage5/profile_pipeline.py",
+      "source_path": "simulation/mujoco_match/tools/platform_v2/native_stage5/profile_pipeline.py",
+      "git_blob_sha1": "dafa83461fb5dc86844278fbc0de2b337b77a2ae",
+      "sha256": "16567427ac22d74b58ed772aa76bfe892b001169aec856735d45ec05b352b86c",
+      "size": 4103,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/platform_v2/native_stage5/qa_live_native.py",
+      "source_path": "simulation/mujoco_match/tools/platform_v2/native_stage5/qa_live_native.py",
+      "git_blob_sha1": "66f433fabae46f9846a5b45da2020bc4d0c2ae05",
+      "sha256": "1a48f9a47da9647254bb609ac98e29c0c96f3bd114a1937ce8d0d76a2baa5eff",
+      "size": 6516,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/platform_v2/offline_stage6/serve.py",
+      "source_path": "simulation/mujoco_match/tools/platform_v2/offline_stage6/serve.py",
+      "git_blob_sha1": "45014c3259e058657d4de15dc6c5b69d4a3d87aa",
+      "sha256": "e71d188b988d7da826197e657ebdd1b77514f26708f6f0a90ca497899dc2e9de",
+      "size": 5914,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/platform_v2/verify_native_sensor_replay.py",
+      "source_path": "simulation/mujoco_match/tools/platform_v2/verify_native_sensor_replay.py",
+      "git_blob_sha1": "c63e6df95508726f4516db6108cb82174911ebde",
+      "sha256": "797211b895db41d808006eab79f1b62ce4433d612a78931e09c0e28b9d136ac7",
+      "size": 4309,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/platform_v2/verify_observation_refresh.py",
+      "source_path": "simulation/mujoco_match/tools/platform_v2/verify_observation_refresh.py",
+      "git_blob_sha1": "f576648cd008770c29c1915b4b94099b2dd8129e",
+      "sha256": "ad9a06291732a72cf54f68fab5c3c49442c693c770a051baf74adf0a666357e4",
+      "size": 3037,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/prepare_match_v5_spec.py",
+      "source_path": "simulation/mujoco_match/tools/prepare_match_v5_spec.py",
+      "git_blob_sha1": "ea712a4d2aac7fbce24f68f7c1f5a3f1fd1b1efc",
+      "sha256": "365ea8982a38f8e90f244643bcf0645dc0cd1e002445a6f5d510e399dd51542e",
+      "size": 1364,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/qualify_native_v5.py",
+      "source_path": "simulation/mujoco_match/tools/qualify_native_v5.py",
+      "git_blob_sha1": "bb0b12114d9e62dbb3bf78edb34d84b6d40cb901",
+      "sha256": "78399c07af978f8ff98bf851cbd4f70390c6980ec16dea055d1e2b2f9fec439d",
+      "size": 2628,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/review_opening_egress_compatibility.py",
+      "source_path": "simulation/mujoco_match/tools/review_opening_egress_compatibility.py",
+      "git_blob_sha1": "470dac1ed3b262e74b8af14c21e2b1a8be86beab",
+      "sha256": "ecdc97be902b7c48353d86dd434e20a0ced22132e67c785b7411a8a209c291d9",
+      "size": 4303,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/run_navigation_extended_matrix.py",
+      "source_path": "simulation/mujoco_match/tools/run_navigation_extended_matrix.py",
+      "git_blob_sha1": "8a95b7fabdb0919c7e8d32fcc314f3f659508e3d",
+      "sha256": "47e4aefa343bfa2387cf75b0ad2d92000e81d93e7a5b3537864c93172a07cd80",
+      "size": 3142,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/run_navigation_safety_matrix.py",
+      "source_path": "simulation/mujoco_match/tools/run_navigation_safety_matrix.py",
+      "git_blob_sha1": "d7018d9166df5c63327abd704626f278f27cd44e",
+      "sha256": "3371a2b7d80ed9cf66c0e80a635a2a680ca7e5b9a64d39e03cebc09ddde5ee27",
+      "size": 4776,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/source_gate_layers_v5.py",
+      "source_path": "simulation/mujoco_match/tools/source_gate_layers_v5.py",
+      "git_blob_sha1": "48c2e679aacbb5fa3dadeb688f475cf3079d307c",
+      "sha256": "cd8c8d0d31bd04b3f5615c2520662d7190b4d0d7e12ec566011df967e7b70734",
+      "size": 4151,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_navigation_cpu.py",
+      "source_path": "simulation/mujoco_match/tools/test_navigation_cpu.py",
+      "git_blob_sha1": "f8a1c6933652aa5e522e5fcd35c20cc65ef78202",
+      "sha256": "025d865aa7e2b3e53508136a6e066747ab2dc20abf06edb29daa2371e378b67a",
+      "size": 1478,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/verify_hit_policy_client.py",
+      "source_path": "simulation/mujoco_match/tools/verify_hit_policy_client.py",
+      "git_blob_sha1": "6c36e59642cb09f9340610a6c1641345ead4555f",
+      "sha256": "3bb621bc3fea3617d484e2cc5471ebaea83482b31ca57fa09447db998393a3d2",
+      "size": 4943,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/verify_video.py",
+      "source_path": "simulation/mujoco_match/tools/verify_video.py",
+      "git_blob_sha1": "43e455f7277f52ac6a2be64ae0837004d1e51854",
+      "sha256": "8c88e928b145bee7bb47e17f42bf97b4d10f0e8d9fee3174e4dee4ff399d05ac",
+      "size": 1077,
+      "mode": "100644"
+    }
+  ],
+  "derived_files": [
+    {
+      "path": "upstream_reference/sentry_decide_server.py",
+      "source_path": "simulation/mujoco_match/upstream_reference/sentry_decide_server.py",
+      "source_git_blob_sha1": "e18c6a3c0770ef04d54f29dff0b154bb432a5269",
+      "source_sha256": "d93263c998c822fc055e1decbda08c20c47163caaf78d194cb0da3c638c84908",
+      "git_blob_sha1": "e7fc31c19a14198b1c7d4f548e50afcb62177266",
+      "sha256": "a23028e4a7a51219ffa7031d936c2b54ad07456aa84358bde0ee4a6878f7c1bf",
+      "size": 2197,
+      "mode": "100644",
+      "derivation": "Exact AST source segment of rule_decide with attribution-only header; no algorithm edit",
+      "function_sha256": "39e5ae5134b515051583cd4256daa119dbcee733cb74b54a8b0ab71043e62fcf"
+    }
+  ],
+  "excluded_source_file_count": 191,
+  "original_subtree_file_count": 382,
+  "adapted_source_file_count": 1
+}

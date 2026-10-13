@@ -1,0 +1,41 @@
+{
+  "schema": "polar.simulator.public-validation.v1",
+  "date_utc": "2026-10-13",
+  "source_commit": "7663ae744d69b27813abaefeaa9ae3e73be46a9f",
+  "unchanged_source_files": 190,
+  "adapted_reference_fixtures": 1,
+  "excluded_original_files": 191,
+  "original_subtree_files": 382,
+  "byte_integrity": "PASS: remote Git blob SHA-1/size validated on retrieval; public copied files verified against those bytes; derived fixture independently hashed",
+  "function_identity": "PASS: rule_decide AST source text matches original reference and unchanged runtime exactly",
+  "syntax": "PASS: all published Python, JSON and XML parse",
+  "selected_synthetic_tests": {
+    "result": "PASS",
+    "tests": 161,
+    "modules": 12,
+    "command": "python tools/check_standalone_contracts.py",
+    "mujoco_loaded": false,
+    "scope": "Synthetic contracts, control, spin, lifecycle, runtime and bounded loopback HTTP only"
+  },
+  "cli_help": "PASS: python -m rm_match.platform_v2 --help",
+  "python": "3.12.14",
+  "dependency_installation_performed": false,
+  "native_or_physics_run_performed": false,
+  "paid_service_or_ci_started": false,
+  "missing_environment_packages": [
+    "mujoco",
+    "opencv",
+    "pytest"
+  ],
+  "not_qualified": [
+    "fresh pinned installation",
+    "full pytest",
+    "physics/rendering",
+    "native build/runtime",
+    "Windows visible UI",
+    "cross-device LAN",
+    "full match or real-time-native benchmark",
+    "hardware or complete official rules"
+  ],
+  "publication_claim": "Public source preparation checks; no new native/physics evidence. Arena verification metadata is historical."
+}

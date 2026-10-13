@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+artifacts/
+build/
+dist/
+
+# Machine-local inputs and generated evidence; keep source/examples tracked.
+.env
+.env.*
+*.local.json
+config/*runtime*spec.json
+*.onnx
+*.pt
+*.pth
+*.so
+*.dll
+*.exe
+*.mp4
+*.mkv
+*.pem
+*.key

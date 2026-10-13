@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rm-match-mujoco"
+version = "0.1.0"
+description = "Provisional MuJoCo sensor/actuator/judge integration foundation"
+requires-python = ">=3.10"
+dependencies = ["mujoco==3.15.0", "numpy>=2.0", "Pillow>=11"]
+
+[project.optional-dependencies]
+camera = ["opencv-python-headless==5.0.0.93"]
+test = ["pytest>=8"]
+video = ["imageio>=2.37", "imageio-ffmpeg>=0.6"]
+aim = ["onnxruntime==1.31.0", "onnx==1.23.2", "opencv-python-headless==5.0.0.93"]
+
+[project.scripts]
+rm-match-viewer = "rm_match.viewer:main"
+rm-match-record = "rm_match.demo:main"
+rm-match-3v3 = "rm_match.match_viewer:main"
+rm-match-record-3v3 = "rm_match.match_runner:main"
+
+[tool.setuptools.packages.find]
+include = ["rm_match*"]
+
+[tool.setuptools.package-data]
+rm_match = ["*.xml", "assets/arenas/*/*.xml", "assets/arenas/*/*.json"]

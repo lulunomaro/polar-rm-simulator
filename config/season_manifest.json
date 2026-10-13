@@ -1,0 +1,17 @@
+{
+  "requested_season": 2027,
+  "status": "transition_pending_authoritative_parameters",
+  "active_profile": "phase_a_test_only",
+  "official_match_supported": false,
+  "precedence": "Verified published 2027 change overrides compatible verified 2026 fallback; unknown stays unknown",
+  "reference_profiles": [
+    {"id":"rmuc_2026_rules_v2.2.0_20260807","source_year":2026,"source":"https://bbs.robomaster.com/wiki/20204847/809871","numeric_parameters_imported":false},
+    {"id":"rmul_2026_3v3_rules_v1.2.0_20260109","source_year":2026,"source":"https://bbs.robomaster.com/wiki/20204847/809872","numeric_parameters_imported":false}
+  ],
+  "test_parameters": {
+    "damage": {"value":10,"source_year":null,"source_version":"phase_a","temporary_assumption":true},
+    "target_hp": {"value":200,"source_year":null,"source_version":"phase_a","temporary_assumption":true},
+    "projectile_speed_mps": {"value":22.5,"source_year":2026,"source_version":"upper-computer configured value, not measured","temporary_assumption":true},
+    "camera_fovy_degrees": {"value":50,"source_year":null,"source_version":"phase_a","temporary_assumption":true}
+  }
+}
