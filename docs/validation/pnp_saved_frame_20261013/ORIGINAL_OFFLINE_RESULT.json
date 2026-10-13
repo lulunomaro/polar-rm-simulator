@@ -1,0 +1,209 @@
+{
+  "profile": "offline_modeled_latency_v1",
+  "state": "COMPLETED",
+  "reason": null,
+  "completed_captures": 24,
+  "sim_time": 0.9420000000000007,
+  "wall_seconds": 23.347343710000132,
+  "counts": {
+    "offline_capture": 24,
+    "offline_physics": 471,
+    "fire_true": 0,
+    "native_gimbal_consumed": 0,
+    "offline_observation": 24,
+    "offline_worker": 24,
+    "offline_action_available": 24,
+    "native_request": 13,
+    "native_result": 13
+  },
+  "camera": {
+    "available": false,
+    "reason": "runtime_stopped",
+    "total_fps_limit": 2.0,
+    "max_frame_age_wall_s": 2.5,
+    "max_views": 6,
+    "max_renderer_threads": 1,
+    "max_pending": 6,
+    "max_data_buffers": 7,
+    "max_cached_raw_bytes": 27993600,
+    "max_cached_raw_base64_bytes": 37324800,
+    "max_cached_jpeg_bytes": 12582912,
+    "pending": 0,
+    "cached": 0,
+    "running": false,
+    "rendered": 24,
+    "dropped": 0,
+    "error": null,
+    "calibration_resolution_association": "ASSUMED; absent from source YAML"
+  },
+  "renderer_timings": [
+    {
+      "stage": "renderer_initialize",
+      "seconds": 3.2036471989995334
+    },
+    {
+      "stage": "render",
+      "frame": 1,
+      "seconds": 2.2575613080007315,
+      "age_s": 2.2640600410013576
+    },
+    {
+      "stage": "render",
+      "frame": 2,
+      "seconds": 0.4521493100000953,
+      "age_s": 0.4530353190002643
+    },
+    {
+      "stage": "render",
+      "frame": 3,
+      "seconds": 0.3685864839990245,
+      "age_s": 0.37039967800046725
+    },
+    {
+      "stage": "render",
+      "frame": 4,
+      "seconds": 0.319019135000417,
+      "age_s": 0.3207902889989782
+    },
+    {
+      "stage": "render",
+      "frame": 5,
+      "seconds": 0.2925773520000803,
+      "age_s": 0.29319866399964667
+    },
+    {
+      "stage": "render",
+      "frame": 6,
+      "seconds": 0.3350686410012713,
+      "age_s": 0.3359330929997668
+    },
+    {
+      "stage": "render",
+      "frame": 7,
+      "seconds": 0.38405047400010517,
+      "age_s": 0.3870154780015582
+    },
+    {
+      "stage": "render",
+      "frame": 8,
+      "seconds": 0.267136953998488,
+      "age_s": 0.2706470619996253
+    },
+    {
+      "stage": "render",
+      "frame": 9,
+      "seconds": 0.25621404299999995,
+      "age_s": 0.257026199999018
+    },
+    {
+      "stage": "render",
+      "frame": 10,
+      "seconds": 0.24156627299998945,
+      "age_s": 0.24258997700053442
+    },
+    {
+      "stage": "render",
+      "frame": 11,
+      "seconds": 0.21006065500114346,
+      "age_s": 0.2112400139994861
+    },
+    {
+      "stage": "render",
+      "frame": 12,
+      "seconds": 0.2814941739998176,
+      "age_s": 0.28236306899998453
+    },
+    {
+      "stage": "render",
+      "frame": 13,
+      "seconds": 0.36638271199990413,
+      "age_s": 0.36710295400007453
+    },
+    {
+      "stage": "render",
+      "frame": 14,
+      "seconds": 0.27470147300118697,
+      "age_s": 0.2752825389998179
+    },
+    {
+      "stage": "render",
+      "frame": 15,
+      "seconds": 0.2581969089987979,
+      "age_s": 0.2587761889990361
+    },
+    {
+      "stage": "render",
+      "frame": 16,
+      "seconds": 0.25430379700082995,
+      "age_s": 0.254575326000122
+    },
+    {
+      "stage": "render",
+      "frame": 17,
+      "seconds": 0.22902259299917205,
+      "age_s": 0.22968408100132365
+    },
+    {
+      "stage": "render",
+      "frame": 18,
+      "seconds": 0.2531210930010275,
+      "age_s": 0.2548348939999414
+    },
+    {
+      "stage": "render",
+      "frame": 19,
+      "seconds": 0.24029688500013435,
+      "age_s": 0.24141184799918847
+    },
+    {
+      "stage": "render",
+      "frame": 20,
+      "seconds": 0.2895339149999927,
+      "age_s": 0.2937601869998616
+    },
+    {
+      "stage": "render",
+      "frame": 21,
+      "seconds": 0.37808265300009225,
+      "age_s": 0.37945750300059444
+    },
+    {
+      "stage": "render",
+      "frame": 22,
+      "seconds": 0.23313762699945073,
+      "age_s": 0.2333274659995368
+    },
+    {
+      "stage": "render",
+      "frame": 23,
+      "seconds": 0.238639630999387,
+      "age_s": 0.24454522499945597
+    },
+    {
+      "stage": "render",
+      "frame": 24,
+      "seconds": 0.3055755109999154,
+      "age_s": 0.3071125580008811
+    }
+  ],
+  "driver_exit": 0,
+  "driver": {
+    "watched": true,
+    "frame_decoded": false,
+    "visible_window": false,
+    "qt_event_loop": true,
+    "cleanup": {
+      "completed": true,
+      "quiesced": true,
+      "session_close_ack": true,
+      "errors": [],
+      "prior_renew_errors": [],
+      "network_lifecycle_error_free": true
+    },
+    "errors": []
+  },
+  "native_binary_sha256": "7dfd20a1c35a8074bb6ece6bccbae0a1e66615b2bee72bec29e119464603ba2b",
+  "spec_sha256": "19ce256858ee38bc5c73dfd1912d642805f1cde296842f1f245b0c1cbe1e9fd3",
+  "clean_shutdown": true,
+  "qualified_static_offline_chain": false
+}

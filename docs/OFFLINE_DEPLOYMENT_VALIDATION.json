@@ -1,0 +1,256 @@
+{
+  "schema": "polar-offline-deployment-evidence-v1",
+  "date_utc": "2026-10-13",
+  "base_simulator_commit": "9575def400c5c8540062fab1575bbbfa093fddbc",
+  "scope": "Two bounded fixed-scene OFFLINE attempts; no live/default gameplay qualification",
+  "client_repository": "https://github.com/lulunomaro/polar-rm-client",
+  "client_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+  "native_source_base": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+  "native_t2_patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+  "native_binary_sha256": "7dfd20a1c35a8074bb6ece6bccbae0a1e66615b2bee72bec29e119464603ba2b",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "criteria": {
+    "profile": "offline_modeled_latency_v1",
+    "captures": 24,
+    "wall_limit_s": 90,
+    "camera_native_barrier_watchdog_s": 5,
+    "camera_wall_cache_ttl_s": 2.5,
+    "max_native_age_sim_s": 0.08,
+    "modeled_sensor_delay_ms": 10,
+    "modeled_compute_delay_ms": 10,
+    "capture_period_ms": 40,
+    "initialization": "Renderer initialization before admission; maximum 10 wall seconds; no physics/capture/inference and no timestamp refresh",
+    "scene": "Public analytic 3v3 scene, explicit stationary red_sentry at (-3.5,3.0), blue_infantry at (-1.2,3.0), all chassis velocities zero; target scene poses remain inside simulator and never enter algorithm DTO",
+    "required": [
+      "24 actual rendered exposures complete",
+      "13 own T2 requests and responses after unchanged warmup",
+      "original Qt transport decodes at least one fresh actual camera frame within unchanged age bound",
+      "zero fire",
+      "clean camera/native/http shutdown and original-client lifecycle completed, quiesced, session-close acknowledged, no errors"
+    ],
+    "scope": "One bounded static scene only; separate offline modeled clock; never a realtime/full-match/aim-quality verdict",
+    "expected_known_failure": "Same scene/model/gates as OFFLINE001: learned 2D corners produce pitch-gated PnP; zero 3D poses and zero active gimbal expected. A display pass cannot qualify native closed-loop control.",
+    "only_change": "Qt observer admission waits for acknowledged watch/state/catalog; decoder dependencies preloaded after QApplication initialization; diagnostics captured. No scene/native/model/timing limit changes.",
+    "prior_run_preserved": true
+  },
+  "attempts": [
+    {
+      "attempt": "deployment_offline_001",
+      "clock_profile": "offline_modeled_latency_v1",
+      "state": "COMPLETED",
+      "halt_reason": null,
+      "completed_captures": 24,
+      "sim_time_s": 0.9420000000000007,
+      "wall_seconds": 23.347343710000132,
+      "counts": {
+        "offline_capture": 24,
+        "offline_physics": 471,
+        "fire_true": 0,
+        "native_gimbal_consumed": 0,
+        "offline_observation": 24,
+        "offline_worker": 24,
+        "offline_action_available": 24,
+        "native_request": 13,
+        "native_result": 13
+      },
+      "rendered": 24,
+      "dropped": 0,
+      "camera_error": null,
+      "native_results": {
+        "count": 13,
+        "raw2d": 13,
+        "accepted2d": 13,
+        "pose_estimated3d": 0,
+        "accepted3d": 0,
+        "tracking_true": 0
+      },
+      "qt": {
+        "frame_decoded": false,
+        "admitted_frame_count": null,
+        "visible_window": false,
+        "event_loop": true,
+        "retained_detailed_frame_ids": [],
+        "retained_detailed_server_frame_age_range_s": null,
+        "first_decoded_frame": null,
+        "request_error_count": null,
+        "final_connected": null,
+        "final_uncertain": null,
+        "note": "No decoded frame; initial harness did not retain transport failure cause."
+      },
+      "cleanup": {
+        "completed": true,
+        "quiesced": true,
+        "session_close_ack": true,
+        "errors": [],
+        "prior_renew_errors": [],
+        "network_lifecycle_error_free": true
+      },
+      "driver_error_count": 0,
+      "driver_exit": 0,
+      "clean_shutdown": true,
+      "qualified_static_offline_chain": false,
+      "source_artifact_sha256": {
+        "ACCEPTANCE_CRITERIA.json": "1e267829e167ad08ee03d5f9d169dc22b9151612549e119a1a1a575e85cbfbfb",
+        "run_offline.py": "930f613a545a2bcc83d6cccfffab751549ae2a8975d428d58e40993ca1b1a2bd",
+        "RESULT.json": "63b98967b647a434f4b332642155ef632b39eb183fb0165cf2bbbbe0dad8db75",
+        "ledger.jsonl": "3dafc134f0a80b14a1158faa979020878b5864ab9e8296c50af5b61e0242b2f3",
+        "driver.json": "976a028d070540230f33e9e0db4eb36ec1f70304d94c76371f46c2cb2d98e62d",
+        "driver_events.json": "9d4212d955f7e891eaf904eaf41b7b12923a372f952020d3eb234715be1a1d56",
+        "public_scene_initial.json": "8b67593a679a9b87f5ccf7836cf296d0cac073d33b2314d5cb69d2752c30042a"
+      }
+    },
+    {
+      "attempt": "deployment_offline_002",
+      "clock_profile": "offline_modeled_latency_v1",
+      "state": "COMPLETED",
+      "halt_reason": null,
+      "completed_captures": 24,
+      "sim_time_s": 0.9420000000000007,
+      "wall_seconds": 22.109226512000532,
+      "counts": {
+        "offline_capture": 24,
+        "offline_physics": 471,
+        "fire_true": 0,
+        "native_gimbal_consumed": 0,
+        "offline_observation": 24,
+        "offline_worker": 24,
+        "offline_action_available": 24,
+        "native_request": 13,
+        "native_result": 13
+      },
+      "rendered": 24,
+      "dropped": 0,
+      "camera_error": null,
+      "native_results": {
+        "count": 13,
+        "raw2d": 13,
+        "accepted2d": 13,
+        "pose_estimated3d": 0,
+        "accepted3d": 0,
+        "tracking_true": 0
+      },
+      "qt": {
+        "frame_decoded": true,
+        "admitted_frame_count": 24,
+        "visible_window": false,
+        "event_loop": true,
+        "retained_detailed_frame_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "retained_detailed_server_frame_age_range_s": [
+          0.22803068600114784,
+          0.5121802329995262
+        ],
+        "first_decoded_frame": {
+          "sequence": 1,
+          "shape": [
+            1080,
+            1440,
+            3
+          ],
+          "decoded_bgr_sha256": "1fd1851708cadd35a27bb6379134964ffbab2031a8399a85a4942c77280c2e33"
+        },
+        "request_error_count": 0,
+        "final_connected": true,
+        "final_uncertain": false,
+        "note": "Admission counter and transition sequences establish 24 decoded frames; bounded128-call ring retains detailed admission rows only for frames3\u201324, and only the first decoded BGR hash is retained. No independently recomputed pixels."
+      },
+      "cleanup": {
+        "completed": true,
+        "quiesced": true,
+        "session_close_ack": true,
+        "errors": [],
+        "prior_renew_errors": [],
+        "network_lifecycle_error_free": true
+      },
+      "driver_error_count": 0,
+      "driver_exit": 0,
+      "clean_shutdown": true,
+      "qualified_static_offline_chain": false,
+      "source_artifact_sha256": {
+        "ACCEPTANCE_CRITERIA.json": "44130fe8c0bd2794edf39b2cac01a4c8bebb0f31da28068068ab4ec1eba56d22",
+        "run_offline.py": "2c727c3f3398fd0abdf02cfc0daba98d7df8fb23db93013a85b10264908503d2",
+        "RESULT.json": "27833c697a9f413c62a9508952d8604da3c61d9846bc46c0d8bd22d0617d90eb",
+        "ledger.jsonl": "09bb16f3be658bd6b9dd9c04a37256bc0f4f0d133dd95d726a796f34c3faf89b",
+        "driver.json": "c49bc8ab2534753cffe6486e2cd0d4d29961b3d076a2a935524a26a577d5666a",
+        "driver_events.json": "f464a2ae71a96ae40762306727b8e05ca7a3f4d53ea3aceada710a8a10f7d053",
+        "public_scene_initial.json": "8b67593a679a9b87f5ccf7836cf296d0cac073d33b2314d5cb69d2752c30042a"
+      }
+    }
+  ],
+  "conclusion": {
+    "offline_original_client_fresh_display_observed": true,
+    "actual_t2_2d_detection_observed": true,
+    "native_3d_pose_observed": false,
+    "native_gimbal_physics_consumption_observed": false,
+    "live_default_qualified": false,
+    "full_match_qualified": false,
+    "cross_machine_qualified": false,
+    "windows_qualified": false
+  },
+  "pnp_diagnostic": {
+    "source_attempt": "deployment_offline_001",
+    "saved_bgr_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+    "actual_model_inference_calls": 1,
+    "detected_label": "BLUE INFANTRY_3",
+    "confidence": 0.8840392827987671,
+    "original_estimator_3d_count": 0,
+    "original_robust_pnp_result": false,
+    "candidates": [
+      {
+        "pitch_degrees": -36.01464270456741,
+        "depth_m": 1.7893970402835067,
+        "depth_pass": true,
+        "facing_pass": true,
+        "pitch_pass": false,
+        "reprojection_error_px": 0.4445327154644725
+      },
+      {
+        "pitch_degrees": 59.0600190239671,
+        "depth_m": 1.7893621648652174,
+        "depth_pass": true,
+        "facing_pass": true,
+        "pitch_pass": false,
+        "reprojection_error_px": 0.60195389106501
+      }
+    ],
+    "allowed_pitch_degrees": [
+      -25,
+      55
+    ],
+    "detector_bar_height_px_approx": 37,
+    "source_endpoint_projected_bar_height_px_approx": 54.51,
+    "actual_rendered_bar_height_px_approx": 54,
+    "geometry_finding": "Projection, corner ordering, resize and ROI association are consistent. The55mm diffuser/56mm source approximation cannot explain the observed17px corner-height difference. Synthetic optics remain uncalibrated; learned corner localization mismatch is the current failure locus, not a justified threshold/config fix.",
+    "no_scene_truth_in_algorithm": true,
+    "no_thresholds_changed": true,
+    "geometry_report_sha256": "dac03062282dba398445a04858b84a4f54e1adda75b11033aad0359881f330ba",
+    "native_report_sha256": "9d4846bdfcbf85690536f3f54f9d1721c5542fa7d1622d5c6a81e5397b7e3cce"
+  },
+  "portable_wrapper_validation": "Parameterization of executed bounded harness; reviewed and synthetic-tested after run002. No extra physics run of the public wrapper.",
+  "privacy": "Only explicit public scene, aggregate counts and hashes published here; raw local specs, paths, session tokens and run logs excluded.",
+  "executed_simulator_stage_commit": "267b9e628e567444cb332ae9af0fc3b4a05f0da5",
+  "executed_deployment_overlay_sha256": "f7141c040d57951e96236d476727e6e2a8ccef8b41bebfcdbda055c6e68693ff",
+  "portable_wrapper_synthetic_tests": 14
+}

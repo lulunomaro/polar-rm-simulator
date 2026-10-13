@@ -88,3 +88,7 @@ The present pinned Qt UI begins in Manual and requires explicit selection/arming
 [Custom interfaces](CUSTOM_INTERFACES.md) documents the JSONL navigation/aim adapter boundary and alternative HTTP clients. Extensions are optional local registrations and are never fallback policies.
 
 Before claiming the user's complete requested game works, separately validate a fresh native build and inference, camera calibration/timing, deadline-safe operator/native closed loop, intended roster and motion/fire behavior, visible client interaction, sustained match and cleanup on the actual target machine. Do not substitute the 24-exposure OFFLINE diagnostic or old timing-v5/40f7 run for these tests. No such full-match result is claimed by this deployment addition.
+
+## Separate bounded OFFLINE diagnostic
+
+[OFFLINE_DEPLOYMENT_VALIDATION.md](OFFLINE_DEPLOYMENT_VALIDATION.md) provides a parameterized, no-fire 24-exposure reproduction command. Actual original-client camera display and 13 own-T2 inference calls were observed, but this fixed scene yielded zero accepted 3D poses and zero consumed native gimbal commands. It remains an opt-in modeled-clock diagnostic; the default live path and full-match quality are still unqualified.

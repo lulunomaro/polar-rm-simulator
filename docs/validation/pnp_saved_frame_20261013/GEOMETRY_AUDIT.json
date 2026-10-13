@@ -1,0 +1,409 @@
+{
+  "schema": "rmcs-offline-geometry-audit-v1",
+  "scope": "Offline model/geometry audit only; no target truth or derived corners sent to algorithm; no rendering, physics integration or new model inference.",
+  "saved_frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "target_state_source": "Public initial static scene; red captured qpos restored exactly. Blue front armor is chassis-fixed. Unrecorded target chassis drift was not reconstructed; this audit compares projected initial static target geometry with observed saved pixels.",
+  "camera_position_world_m": [
+    -3.258654953403927,
+    2.9999999999999996,
+    0.7043376915196314
+  ],
+  "camera_optical_to_world": [
+    [
+      -2.1649348980190553e-15,
+      -0.023523771451724795,
+      0.9997232778007559
+    ],
+    [
+      -1.0,
+      5.551115123125783e-17,
+      -2.220446049250313e-15
+    ],
+    [
+      5.551115123125783e-17,
+      -0.9997232778007558,
+      -0.023523771451724823
+    ]
+  ],
+  "camera_K": [
+    [
+      1722.231837421459,
+      0.0,
+      701.3056440882832
+    ],
+    [
+      0.0,
+      1724.876404292754,
+      564.5821718351237
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "camera_distortion": [
+    -0.064232403853946,
+    -0.087667493884102,
+    0.0,
+    0.0,
+    0.792381808294582
+  ],
+  "target_armor_body_rotation_world": [
+    [
+      -1.0,
+      -1.2246467991473532e-16,
+      0.0
+    ],
+    [
+      1.2246467991473532e-16,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "target_armor_geometric_pitch_degrees": 0.0,
+  "expected_native_armor_pitch_degrees": 15.0,
+  "native_allowed_pitch_degrees": [
+    -25.0,
+    55.0
+  ],
+  "source_PnP_object_span_m": [
+    0.135,
+    0.056
+  ],
+  "geometry": [
+    {
+      "geom_index": 15,
+      "material": null,
+      "radius_m": 0.0032,
+      "local_axis_endpoints_m": [
+        [
+          0.001,
+          -0.0675,
+          -0.0278
+        ],
+        [
+          0.001,
+          -0.0675,
+          0.0278
+        ]
+      ],
+      "axis_length_m": 0.0556,
+      "outer_tip_to_tip_m": 0.062,
+      "projected_axis_endpoints_px": [
+        [
+          635.2820049757171,
+          898.5581130723631
+        ],
+        [
+          635.1825759934981,
+          844.5267117625708
+        ]
+      ],
+      "projected_outer_tips_px": [
+        [
+          635.2879921529741,
+          901.6614915226478
+        ],
+        [
+          635.1771230573343,
+          841.4108710047403
+        ]
+      ],
+      "projected_axis_length_px": 54.031492794687125
+    },
+    {
+      "geom_index": 16,
+      "material": "blue_infantry__visual_front_led",
+      "radius_m": 0.0025,
+      "local_axis_endpoints_m": [
+        [
+          0.004,
+          -0.0675,
+          -0.025
+        ],
+        [
+          0.004,
+          -0.0675,
+          0.025
+        ]
+      ],
+      "axis_length_m": 0.05,
+      "outer_tip_to_tip_m": 0.055,
+      "projected_axis_endpoints_px": [
+        [
+          635.1644881660112,
+          896.4747347055089
+        ],
+        [
+          635.0746759142655,
+          847.8036940189468
+        ]
+      ],
+      "projected_outer_tips_px": [
+        [
+          635.1691644981249,
+          898.9038508287593
+        ],
+        [
+          635.070374133069,
+          845.3658443992182
+        ]
+      ],
+      "projected_axis_length_px": 48.67112355137851
+    },
+    {
+      "geom_index": 17,
+      "material": "blue_infantry__visual_front_luminous_core",
+      "radius_m": 0.00065,
+      "local_axis_endpoints_m": [
+        [
+          0.006,
+          -0.0675,
+          -0.0245
+        ],
+        [
+          0.006,
+          -0.0675,
+          0.0245
+        ]
+      ],
+      "axis_length_m": 0.049,
+      "outer_tip_to_tip_m": 0.050300000000000004,
+      "projected_axis_endpoints_px": [
+        [
+          635.0884730212546,
+          896.4112838591898
+        ],
+        [
+          635.0001973737924,
+          848.6602398150687
+        ]
+      ],
+      "projected_outer_tips_px": [
+        [
+          635.0896898696394,
+          897.0436234729713
+        ],
+        [
+          634.9990729229224,
+          848.02574617564
+        ]
+      ],
+      "projected_axis_length_px": 47.75112564006761
+    },
+    {
+      "geom_index": 18,
+      "material": null,
+      "radius_m": 0.0032,
+      "local_axis_endpoints_m": [
+        [
+          0.001,
+          0.0675,
+          -0.0278
+        ],
+        [
+          0.001,
+          0.0675,
+          0.0278
+        ]
+      ],
+      "axis_length_m": 0.0556,
+      "outer_tip_to_tip_m": 0.062,
+      "projected_axis_endpoints_px": [
+        [
+          767.329283200841,
+          898.5581130723629
+        ],
+        [
+          767.42871218306,
+          844.5267117625708
+        ]
+      ],
+      "projected_outer_tips_px": [
+        [
+          767.3232960235839,
+          901.6614915226478
+        ],
+        [
+          767.4341651192238,
+          841.4108710047402
+        ]
+      ],
+      "projected_axis_length_px": 54.0314927946869
+    },
+    {
+      "geom_index": 19,
+      "material": "blue_infantry__visual_front_led",
+      "radius_m": 0.0025,
+      "local_axis_endpoints_m": [
+        [
+          0.004,
+          0.0675,
+          -0.025
+        ],
+        [
+          0.004,
+          0.0675,
+          0.025
+        ]
+      ],
+      "axis_length_m": 0.05,
+      "outer_tip_to_tip_m": 0.055,
+      "projected_axis_endpoints_px": [
+        [
+          767.4468000105468,
+          896.4747347055088
+        ],
+        [
+          767.5366122622926,
+          847.8036940189467
+        ]
+      ],
+      "projected_outer_tips_px": [
+        [
+          767.4421236784332,
+          898.9038508287592
+        ],
+        [
+          767.5409140434891,
+          845.3658443992181
+        ]
+      ],
+      "projected_axis_length_px": 48.67112355137851
+    },
+    {
+      "geom_index": 20,
+      "material": "blue_infantry__visual_front_luminous_core",
+      "radius_m": 0.00065,
+      "local_axis_endpoints_m": [
+        [
+          0.006,
+          0.0675,
+          -0.0245
+        ],
+        [
+          0.006,
+          0.0675,
+          0.0245
+        ]
+      ],
+      "axis_length_m": 0.049,
+      "outer_tip_to_tip_m": 0.050300000000000004,
+      "projected_axis_endpoints_px": [
+        [
+          767.5228151553034,
+          896.4112838591896
+        ],
+        [
+          767.6110908027657,
+          848.6602398150687
+        ]
+      ],
+      "projected_outer_tips_px": [
+        [
+          767.5215983069187,
+          897.0436234729711
+        ],
+        [
+          767.6122152536357,
+          848.02574617564
+        ]
+      ],
+      "projected_axis_length_px": 47.751125640067386
+    }
+  ],
+  "source_object_endpoint_projection_tl_bl_br_tr_px": [
+    [
+      635.0695159606471,
+      844.8782269476856
+    ],
+    [
+      635.1701018434693,
+      899.389621909281
+    ],
+    [
+      767.4411863330888,
+      899.389621909281
+    ],
+    [
+      767.541772215911,
+      844.8782269476856
+    ]
+  ],
+  "detector_corners_tl_bl_br_tr_px": [
+    [
+      642.83203125,
+      854.0947265625
+    ],
+    [
+      639.6416015625,
+      891.087890625
+    ],
+    [
+      768.9990234375,
+      893.3115234375
+    ],
+    [
+      772.189453125,
+      856.773193359375
+    ]
+  ],
+  "detector_minus_projected_source_points_px": [
+    [
+      7.762515289352905,
+      9.216499614814438
+    ],
+    [
+      4.471499719030703,
+      -8.301731284281004
+    ],
+    [
+      1.5578371044111918,
+      -6.078098471781004
+    ],
+    [
+      4.64768090908899,
+      11.894966411689438
+    ]
+  ],
+  "source_preprocessing": {
+    "resize_scale": 0.4444444477558136,
+    "resized_resolution": [
+      640,
+      480
+    ],
+    "tensor_resolution": [
+      640,
+      640
+    ],
+    "padding": "bottom160 black rows, no top/left offset",
+    "ROI_enabled": false,
+    "corner_decode": "All corner x/y multiplied by same inverse scale, plus zero ROI offset; returned order tl,bl,br,tr is geometrically consistent.",
+    "color": "BGR uint8 converted to RGB float32 and divided by255 inside OpenVINO preprocessor.",
+    "predicted_corners_on_tensor_px": [
+      [
+        285.70312712865416,
+        379.59765907822293
+      ],
+      [
+        284.28515836808947,
+        396.03906545072095
+      ],
+      [
+        341.77734629643965,
+        397.0273467080842
+      ],
+      [
+        343.19531505700434,
+        380.7880887745923
+      ]
+    ]
+  },
+  "clipping": "Projected endpoints and actual luminous pixels lie wholly within1440x1080 image and640x480 populated resized tensor; no plate/corner clipping or padding overlap."
+}

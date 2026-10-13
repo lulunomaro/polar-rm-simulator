@@ -54,3 +54,5 @@ python -m unittest discover -s tests -p test_deployment.py -v
 190 个初始提取源文件和一个精确函数夹具保留原字节；新部署层单独新增。提取来源为 [7663ae7](https://github.com/lulunomaro/llm-RM-navigation/tree/7663ae744d69b27813abaefeaa9ae3e73be46a9f/simulation/mujoco_match)，详情见 [EXTRACTION_MANIFEST.json](EXTRACTION_MANIFEST.json)、[SOURCE_PROVENANCE.md](SOURCE_PROVENANCE.md)、[部署变更验证](docs/DEPLOYMENT_VALIDATION.md)。这些轻量检查不运行 MuJoCo 物理、渲染或 native 推理，不等于全量测试或完整对局通过。
 
 自有实现按 [MIT](LICENSE) 开源；保留所有第三方许可。外部依赖和第三方资产的授权不会被本仓库许可证覆盖。
+
+新增 [OFFLINE24 复现工具与记录](docs/OFFLINE_DEPLOYMENT_VALIDATION.md)：本次原客户端离屏会话解码了 24 帧，触发 13 次自有 native 推理；PnP 接受位姿和进入物理的有效云台命令均为 0，静态跟踪/控制链仍未通过。这不代表默认实时路径、完整对局或换机部署通过。保留失败结果、原始合成画面、单帧角点/PnP 诊断与独立复现入口，见 [单帧诊断](docs/validation/pnp_saved_frame_20261013/README.md)。

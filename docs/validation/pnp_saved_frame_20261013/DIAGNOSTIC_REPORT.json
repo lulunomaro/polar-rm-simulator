@@ -1,0 +1,149 @@
+{
+  "schema": "rmcs-saved-frame-pnp-diagnostic-v1",
+  "created_at_utc": "2026-10-13T03:15:20.333757+00:00",
+  "status": "native_runs_but_original_static_closed_loop_qualification_failed",
+  "original_case": {
+    "profile": "offline_modeled_latency_v1",
+    "captures": 24,
+    "native_inferences": 13,
+    "native_gimbal_consumed": 0,
+    "qualified_static_offline_chain": false,
+    "original_result_preserved": true
+  },
+  "diagnostic_scope": {
+    "model_inferences": 1,
+    "physics_steps": 0,
+    "new_rendered_frames": 0,
+    "algorithm_source_modified": false,
+    "production_binary_modified": false,
+    "thresholds_modified": false,
+    "ground_truth_sent_to_algorithm": false,
+    "separate_diagnostic_binary": true
+  },
+  "production_binary_sha256": "7dfd20a1c35a8074bb6ece6bccbae0a1e66615b2bee72bec29e119464603ba2b",
+  "diagnostic_binary_sha256": "5824262b86e80e937142ebcfb662bf59522f0a653dc8452ce4cdffbbd674d2fd",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "saved_raw_frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "input_image": {
+    "encoding": "bgr8",
+    "width": 1440,
+    "height": 1080,
+    "bytes": 4665600,
+    "compressed_file": "saved_frame.bgr.gz"
+  },
+  "native_detection": {
+    "genre": "INFANTRY_3",
+    "color": "BLUE",
+    "confidence": 0.8840392827987671,
+    "corners_order": "tl,bl,br,tr",
+    "corners_px": [
+      [
+        642.83203125,
+        854.0947265625
+      ],
+      [
+        639.6416015625,
+        891.087890625
+      ],
+      [
+        768.9990234375,
+        893.3115234375
+      ],
+      [
+        772.189453125,
+        856.773193359375
+      ]
+    ],
+    "lightbar_lengths_px": [
+      37.13048651641832,
+      36.67735550021151
+    ]
+  },
+  "original_pnp_gate": {
+    "expected_pitch_degrees": 15,
+    "tolerance_degrees": 40,
+    "accepted_pitch_range_degrees": [
+      -25,
+      55
+    ],
+    "original_estimator_output_count": 0,
+    "original_robust_pnp_result": false,
+    "candidates": [
+      {
+        "z_m": 1.7893970402835067,
+        "front_facing_dot": 0.674357129138047,
+        "pitch_degrees": -36.01464270456741,
+        "pitch_delta_degrees": 51.01464270456741,
+        "reprojection_error_px": 0.4445327154644725,
+        "depth_pass": true,
+        "facing_pass": true,
+        "pitch_pass": false
+      },
+      {
+        "z_m": 1.7893621648652174,
+        "front_facing_dot": 0.6743096809812008,
+        "pitch_degrees": 59.0600190239671,
+        "pitch_delta_degrees": 44.06001902396711,
+        "reprojection_error_px": 0.60195389106501,
+        "depth_pass": true,
+        "facing_pass": true,
+        "pitch_pass": false
+      }
+    ]
+  },
+  "geometry_audit": {
+    "source_PnP_span_m": [
+      0.135,
+      0.056
+    ],
+    "actual_diffuser_full_height_m": 0.055,
+    "actual_luminous_core_full_height_m": 0.0503,
+    "projected_source_height_px": 54.51149,
+    "projected_diffuser_height_px": 53.5381,
+    "projected_core_height_px": 49.01796,
+    "observed_blue_bar_pixel_y_ranges": [
+      [
+        846,
+        899
+      ],
+      [
+        846,
+        898
+      ]
+    ],
+    "physical_plate_pitch_degrees": 0,
+    "physical_pitch_inside_original_gate": true,
+    "finding": "Actual rendered luminous pixels agree with projected geometry; model corners are pulled inward by6\u201312px. The small55mm-vs56mm optical approximation and50.3mm core semantics do not account for approximately37px predicted bar height. No gross camera projection, corner-order, resize, padding or clipping bug found."
+  },
+  "configuration_audit": {
+    "detector_matches_historical_except_model_path": true,
+    "pose_estimator_matches_historical": true,
+    "tracker_matches_historical": true,
+    "preprocessing": "1440x1080 uniformly resized to640x480 then bottom-padded to640x640; BGR uint8 converted to RGB float32/255; same inverse scale used for every corner."
+  },
+  "conclusion": "Observed detector keypoint-localization failure in this one saved frame with uncalibrated synthetic optics yields two geometrically inadmissible poses. No current small deployment-code, threshold, brightness or lightbar-stretch fix is justified. A separate optical/model-domain investigation with validation is required. Training annotation and preprocessing provenance is unavailable, so the precise training-domain cause is not established.",
+  "non_claims": [
+    "No full-tracker qualification",
+    "No target tracking or control success",
+    "No source gate relaxation",
+    "No ground-truth injection",
+    "No new simulation benchmark",
+    "No geometry truth supplied to native inference"
+  ],
+  "evidence": {
+    "CONFIG_COMPARISON.json": "a6d42149b1e70db430385a729f6c01f24d12d7b8459591bf311ee8688d8f497c",
+    "GEOMETRY_AUDIT.json": "a80b95ea7c80a37de19de9c9eda60e43987749082f0e965e9c4adc06f19161b4",
+    "ORIGINAL_OFFLINE_RESULT.json": "63b98967b647a434f4b332642155ef632b39eb183fb0165cf2bbbbe0dad8db75",
+    "README.md": "81a2e50719490b4e055f39b8013f026633cc9f7c0d9d97e0a6cba640630eba6a",
+    "UPSTREAM_LICENSE": "d415250801c46571ba8bb11b1587b46ecb00ac60c826050a2ee6bd19f1bc3ca5",
+    "audit_geometry.py": "4b2c295c5627d7e5dc36cf1c8184edfd621921befaea306b652fb26954ad312d",
+    "inspect_saved_frame.cpp": "3eee469da9c5b5b932bbdc5e8eee56b72559580b2ccc6d959d5f2e186ad8f10e",
+    "public_scene_initial.json": "8b67593a679a9b87f5ccf7836cf296d0cac073d33b2314d5cb69d2752c30042a",
+    "render_bar_measurements.json": "f31076e79ab34efa64dc8ad7f4d9680e6745e8c7f37cc4e071069f2c0e2359d3",
+    "reproduce_saved_frame.py": "9d3d615ced309c075988bcfd02bd3c2bd917aed9be76562ea2a50fbed5ac6d17",
+    "result.txt": "9d4846bdfcbf85690536f3f54f9d1721c5542fa7d1622d5c6a81e5397b7e3cce",
+    "saved_frame.bgr.gz": "a59274f009f3233a88f1bb442154bc67410120bbb06aad222af28e3e3a89d2c6",
+    "saved_frame_metadata.json": "13084ddb0dd52b41c0c337bc4a9a4e92f1fe4db9b47b1688726d42bce9bcdcda"
+  },
+  "replay_helper_caveat": "Source/header, generated inputs, model/config and production ELF bindings are checked. Existing object provenance is unverified because the build manifest does not bind individual object hashes; replay records those hashes and is not historical-equivalence proof."
+}

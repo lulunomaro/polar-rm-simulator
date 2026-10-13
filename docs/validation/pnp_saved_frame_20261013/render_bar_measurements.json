@@ -1,0 +1,36 @@
+{
+  "saved_frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "measurements": [
+    {
+      "bar": "left",
+      "mask": "B>100 and B-G>80 and B-R>80",
+      "bright_pixel_count": 215,
+      "pixel_bbox_xyxy": [
+        633,
+        846,
+        637,
+        899
+      ],
+      "pixel_centroid_xy": [
+        635.0093023255814,
+        872.1348837209302
+      ]
+    },
+    {
+      "bar": "right",
+      "mask": "B>100 and B-G>80 and B-R>80",
+      "bright_pixel_count": 313,
+      "pixel_bbox_xyxy": [
+        765,
+        846,
+        770,
+        898
+      ],
+      "pixel_centroid_xy": [
+        767.5079872204473,
+        872.0798722044728
+      ]
+    }
+  ],
+  "note": "Read-only pixel characterization; these coordinates were never supplied to detector, PnP or simulation."
+}
