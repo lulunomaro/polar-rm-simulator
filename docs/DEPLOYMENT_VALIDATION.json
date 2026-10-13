@@ -1,0 +1,153 @@
+{
+  "schema": "polar.sim.deployment.validation.v1",
+  "date_utc": "2026-10-13",
+  "target_base_commit": "b4e48c669d86b1a5c88896a9b2a5fc94b79e312e",
+  "client_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+  "native_binary_sha256": "7dfd20a1c35a8074bb6ece6bccbae0a1e66615b2bee72bec29e119464603ba2b",
+  "tests": {
+    "new_deployment_synthetic": 28,
+    "existing_synthetic_contracts": 161,
+    "original_source_blobs_unchanged": 190,
+    "function_fixture_unchanged": 1
+  },
+  "doctor": {
+    "prerequisite_checks_passed": [
+      "linux_x86_64",
+      "sim_dependency_imports",
+      "client_dependency_imports",
+      "pinned_client_clean",
+      "own_T2_spec_and_assets",
+      "native_shared_library_lookup",
+      "fresh_output"
+    ],
+    "visible_desktop": false,
+    "ready_to_attempt_visible_launch": false
+  },
+  "live_smokes": [
+    {
+      "attempt": 1,
+      "result": "incomplete_or_failed_bounded_smoke",
+      "physics_steps": 240,
+      "camera_capture_count": null,
+      "camera_admitted_frames": 0,
+      "camera_dropped": 21,
+      "camera_error": null,
+      "native_request_count": 0,
+      "native_result_count": 0,
+      "native_gimbal_consumed_count": 0,
+      "fire_outputs_true": 0,
+      "clean_shutdown": true,
+      "errors": [
+        "operator_client: ClientError: binding_mismatch"
+      ],
+      "renderer_timings": [],
+      "qt_offscreen": {
+        "qt_event_loop": true,
+        "pinned_client_transport": true,
+        "watched": true,
+        "frame_decoded": false,
+        "catalog": true,
+        "visible_window": false,
+        "role": "spectator"
+      },
+      "operator_process_isolated": false,
+      "result_sha256": "9d41ae78b0a65b429a5c9f2332453763ee2036b4d54f4a16abe336ddb218cc0f"
+    },
+    {
+      "attempt": 2,
+      "result": "incomplete_or_failed_bounded_smoke",
+      "physics_steps": 235,
+      "camera_capture_count": 29,
+      "camera_admitted_frames": 0,
+      "camera_dropped": 29,
+      "camera_error": null,
+      "native_request_count": 0,
+      "native_result_count": 0,
+      "native_gimbal_consumed_count": 0,
+      "fire_outputs_true": 0,
+      "clean_shutdown": true,
+      "errors": [
+        "operator_client: ClientError: binding_mismatch"
+      ],
+      "renderer_timings": [
+        {
+          "stage": "renderer_init",
+          "duration_s": 2.512206278001031
+        },
+        {
+          "stage": "render",
+          "frame": 16,
+          "duration_s": 1.2685244090007473,
+          "capture_age_at_start_s": 0.01227242999993905,
+          "capture_age_at_finish_s": 1.2807993419992272
+        }
+      ],
+      "qt_offscreen": {
+        "qt_event_loop": true,
+        "pinned_client_transport": true,
+        "watched": true,
+        "frame_decoded": false,
+        "catalog": true,
+        "visible_window": false,
+        "role": "spectator"
+      },
+      "operator_process_isolated": false,
+      "result_sha256": "8bb5fbf551d447bd5e58c66ec3189663c3996942d2a52cfa2879ebff73681df5"
+    },
+    {
+      "attempt": 3,
+      "result": "incomplete_or_failed_bounded_smoke",
+      "physics_steps": 313,
+      "camera_capture_count": 42,
+      "camera_admitted_frames": 0,
+      "camera_dropped": 41,
+      "camera_error": null,
+      "native_request_count": 0,
+      "native_result_count": 0,
+      "native_gimbal_consumed_count": 0,
+      "fire_outputs_true": 0,
+      "clean_shutdown": true,
+      "errors": [
+        "operator_client: ClientError: Uncertain request; explicit release/reconnect required"
+      ],
+      "renderer_timings": [
+        {
+          "stage": "renderer_init",
+          "duration_s": 2.866853651999918
+        },
+        {
+          "stage": "render",
+          "frame": 20,
+          "duration_s": 1.5599173649989098,
+          "capture_age_at_start_s": 1.0565335720002622,
+          "capture_age_at_finish_s": 2.616452443999151
+        },
+        {
+          "stage": "encode",
+          "frame": 20,
+          "duration_s": 0.2649806509998598,
+          "capture_age_at_finish_s": 2.8814377470007457
+        }
+      ],
+      "qt_offscreen": {
+        "qt_event_loop": true,
+        "pinned_client_transport": true,
+        "watched": true,
+        "frame_decoded": false,
+        "catalog": true,
+        "visible_window": false,
+        "role": "spectator"
+      },
+      "operator_process_isolated": true,
+      "result_sha256": "1c243e80bf055616904dc27276722e96ffe304bc0bfc90eb8c8d75a9ccc4a1fa"
+    }
+  ],
+  "live_native_closed_loop_qualified": false,
+  "complete_match_qualified": false,
+  "windows_native_qualified": false,
+  "limits_unchanged": {
+    "native_camera_age_sim_s": 0.08,
+    "server_control_window_s": 0.15
+  },
+  "scope": "Synthetic tests + failed bounded live smoke only. Qt event loop and client transport/catalog/watch observed offscreen, no decoded camera frame or visible window. No native actor invoked through these live attempts. Separate native build/protocol checks have their own report."
+}

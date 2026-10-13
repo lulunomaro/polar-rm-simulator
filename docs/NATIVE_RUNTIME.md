@@ -1,6 +1,8 @@
 # Native RMCS source build
 
-The source and model are present. Native deployment and end-to-end execution remain separately qualified steps. This guide does not claim a working native executable, detector inference, MuJoCo feedback control, interactive gameplay, Windows support, or real-time deadlines.
+The source and model are present. A new clean native build was compiled and linked on Debian 13 Linux x86-64 with GCC 14.2.0 and the pinned historical dependencies. All 29 native translation units passed compiler syntax checks and clean compilation, with zero reported compiler warnings. Five bounded software smoke cases passed, including one blank-frame model inference. The exact hashes, expected failure cases, toolchain and limitations are recorded in [NATIVE_BUILD_VALIDATION.json](NATIVE_BUILD_VALIDATION.json).
+
+This is not a full simulator or deployment qualification: no successful MuJoCo closed-loop qualification, aim-quality/hit-rate evaluation, interactive gameplay, real-time deadline validation, hardware use, or execution on another machine/Windows/macOS/ARM was established. The local ELF includes machine-specific dependency paths and is not distributed. Later deployment attempts and any failed or incomplete verdicts are recorded separately in the deployment guide; the bounded native result is not a live-success claim.
 
 ## Included identity
 
@@ -28,4 +30,6 @@ The generated spec binds actual binary/config/model hashes and absolute local pa
 
 ## Publication verification
 
-The source recovery and portable-setup manifests describe static preparation and ten synthetic setup tests. Those tests do not compile C++ or execute native code. The repository's original 190 source blobs and exact deterministic-function fixture remain unchanged. Native compile and runtime results, if established later, must name their exact source, toolchain, dependency and binary hashes. No compiled binary, external library, build log, generated local spec, private calibration, or raw recovery archive is included in this source stage.
+The source recovery and portable-setup manifests remain the historical record of static preparation and ten synthetic setup tests. A later [public build-validation report](NATIVE_BUILD_VALIDATION.json) separately records the actual clean compile and five bounded software smoke cases. The build used the immediately preceding build-script snapshot; its only subsequent change moves the existing ELF check before success recording. The final reviewed ELF validator and spec generator were checked against the actual compiled binary; the final script was not separately recompiled. Both script hashes and this distinction are retained in the report.
+
+The repository's original 190 source blobs, exact deterministic-function fixture, 94 recovered native source files, and model bytes remain unchanged. No compiled binary, external library, raw build log, generated local spec, private calibration, or recovery archive is included. Rebuild on the destination machine and independently qualify runtime behavior there.

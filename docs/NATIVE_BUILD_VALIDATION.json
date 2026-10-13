@@ -1,0 +1,139 @@
+{
+  "schema": "rmcs-portable-native-build-validation-v1",
+  "completed_at_utc": "2026-10-13T02:45:18.587913+00:00",
+  "status": "clean_native_build_and_bounded_software_smoke_passed",
+  "platform": "Debian 13 Linux x86-64",
+  "compiler": "GCC (Debian 14.2.0-19) 14.2.0, C++23, -O2, _GLIBCXX_USE_CXX11_ABI=1",
+  "cmake": "3.31.6",
+  "dependency_versions": {
+    "compiler_observed_in_recovered_elf": "GCC (Debian 14.2.0-19) 14.2.0",
+    "cpp_standard": "C++23",
+    "glibcxx_abi": 1,
+    "eigen": "3.4.0-4",
+    "opencv": "4.10.0+dfsg-5",
+    "yaml_cpp": "0.8.0+dfsg-7",
+    "openvino": "2025.4.0, C++ ABI=1 official archive"
+  },
+  "exact_dependency_package_hashes_verified": {
+    "libeigen3-dev_3.4.0-4_all.deb": "1a167bb381acb90c1d8450a8f3e66a09d216dbc64b33ac8a082a0912513ef939",
+    "libopencv-calib3d-dev_4.10.0+dfsg-5_amd64.deb": "9db0e8b4f57d7e48fcc85d2f1afbe3ea33e3b85648eb9dbf2b7fbaa19e781eaa",
+    "libopencv-contrib-dev_4.10.0+dfsg-5_amd64.deb": "bd005f08f09d1c620c1834f8f76314b910ed130abaca1710d8613a4575014d33",
+    "libopencv-core-dev_4.10.0+dfsg-5_amd64.deb": "06ecdfca0a8ce36c1120f5467d64ad258e128b03419c90dec90e863529d11927",
+    "libopencv-dnn-dev_4.10.0+dfsg-5_amd64.deb": "b6644bbf9e1929c75d6404715878b7b87aeb784422d23b1b6d8d9aceaf661b08",
+    "libopencv-features2d-dev_4.10.0+dfsg-5_amd64.deb": "351404fb3d68b38ad5cbf2a0928b51896ab15cd14058461442db19f5b4436d37",
+    "libopencv-flann-dev_4.10.0+dfsg-5_amd64.deb": "f212723891375714b6354645df54d86d361f9aaf47240f0fd9afc0cc9d2dede1",
+    "libopencv-highgui-dev_4.10.0+dfsg-5_amd64.deb": "6022c1ff90daae7c919b8137327758d7aa0e14a711ba38d744ccc7e34f2f5fa2",
+    "libopencv-imgcodecs-dev_4.10.0+dfsg-5_amd64.deb": "c4af24bbe24e588de336e241ef45b49354186a84f091fd011fbb2ce250d09a46",
+    "libopencv-imgproc-dev_4.10.0+dfsg-5_amd64.deb": "7fca2f9b4298240100978ddbfd6f1c72954d4cbd0c847d2809658ffe1c4472fb",
+    "libopencv-videoio-dev_4.10.0+dfsg-5_amd64.deb": "09470833e78d514d9ddc306c71c69750ed37364c87f52e645f2955823e388c34",
+    "libyaml-cpp-dev_0.8.0+dfsg-7_amd64.deb": "0103d77ce1535dea4499ab5ad970ab6a343ef63dd93f2a9fdbbf529249719ce0",
+    "openvino_cpp.tgz": "c57bc759a04bf316d66dc42d644433cf3bd590ad640933630a0616efb380a630"
+  },
+  "source_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "is_original_upstream": false,
+    "is_baseline_40f7": false
+  },
+  "recovered_source_file_count": 94,
+  "source_files_match_recovered_manifest": true,
+  "no_prior_rmcs_objects_or_binary_used": true,
+  "native_translation_units_syntax_checked": 29,
+  "native_translation_units_compiled_and_linked": 29,
+  "compiler_warning_count": 0,
+  "clang_tidy": "not installed; real GCC syntax checks used",
+  "native_elf": {
+    "class": "ELF64",
+    "endianness": "little",
+    "machine": "EM_X86_64",
+    "elf_type": 3,
+    "program_headers": 14
+  },
+  "binary_sha256": "7dfd20a1c35a8074bb6ece6bccbae0a1e66615b2bee72bec29e119464603ba2b",
+  "operator_identity": "rmcs-sim-operator-fov-v1",
+  "build_snapshot_entry_sha256": "39203769320dfcf8bae27e25f1aaa2a322ba7e226a99835aef2cdf8587f1fe65",
+  "entrypoint_delta_review": {
+    "only_change": "Validate the same ELF before declaring build success and include ELF metadata in BUILD_MANIFEST; no native sources, configure/build commands, flags, generation or acceptance logic changed.",
+    "final_entry_elf_validator_and_spec_generation_tested_with_actual_binary": true,
+    "final_entry_not_recompiled_separately": true
+  },
+  "cmake_project_sha256": "b16acc817f8cf3f8dc3a9e41b7a3133710120de0eb3899a6d1262f966482a934",
+  "recovery_manifest_sha256": "37e09d876fd579336feb694802e95a72315ef3d428ac5947aae98298ac823869",
+  "generated_main_sha256": "4357b6e6b3495730229b0b08e9eeb94d0de7db57a5dc435b916a4ae26772e5ca",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "software_smoke_cases": [
+    {
+      "name": "usage",
+      "exit_code": 1,
+      "response_count": 0,
+      "unexpected_stdout": []
+    },
+    {
+      "name": "no_frame",
+      "exit_code": 0,
+      "response_count": 2,
+      "unexpected_stdout": []
+    },
+    {
+      "name": "blank_frame",
+      "exit_code": 0,
+      "response_count": 2,
+      "unexpected_stdout": []
+    },
+    {
+      "name": "fov_change_rejected",
+      "exit_code": 2,
+      "response_count": 2,
+      "unexpected_stdout": []
+    },
+    {
+      "name": "backwards_clock_rejected",
+      "exit_code": 2,
+      "response_count": 2,
+      "unexpected_stdout": []
+    }
+  ],
+  "native_model_loaded": true,
+  "synthetic_blank_frame_inference_calls": 1,
+  "abi0_python_wheel_rejection": "actual CMake configuration rejected ABI0 package with clear diagnostic",
+  "runtime_dependency_loading": "Official libraries extracted into isolated workspace prefixes; explicit local LD_LIBRARY_PATH used for smoke execution. No system install, user computer or external paid services.",
+  "scope_limits": [
+    "Not historical binary equivalence",
+    "No physical hardware",
+    "No MuJoCo closed-loop run",
+    "No aim-quality or hit-rate validation",
+    "No live deployment qualification",
+    "No Windows, macOS, ARM or other-machine execution claimed"
+  ],
+  "evidence_sha256": {
+    "BUILD_MANIFEST.json": "52726658a0b5ac73b5ed1236964db88bcf25a3d3a655df68acd4f33ba834eb52",
+    "NATIVE_SMOKE_REPORT.json": "ca4623d9f297628ba71bccbc631f1beb9c17ce80d81c8f76236f618d8bbf683e",
+    "DEPENDENCY_MANIFEST.json": "5ef58c944617b31762616e0671b1029a247a350d58bec811b7f6593d59c03df1",
+    "ENVIRONMENT_MANIFEST.json": "ccf2deeb51fd450ec24f32db08464065ce2ac220437b7619ee011aabe3417e92",
+    "configure.log": "4bc0f9ee1d91bb50848859b3d3452840d1c2ab40da72f71a6fabd462d007f4b0",
+    "build.log": "c717191257f58ce5c550c195c3e8270343ccd043203e5681828b047b5bc0b738"
+  },
+  "native_library_sonames": [
+    "libyaml-cpp.so.0.8",
+    "libopenvino.so.2540",
+    "libopencv_ximgproc.so.410",
+    "libopencv_imgcodecs.so.410",
+    "libopencv_calib3d.so.410",
+    "libopencv_dnn.so.410",
+    "libopencv_imgproc.so.410",
+    "libopencv_core.so.410",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "native_loader_dependency_check": "ldd resolved every dependency with and without the explicit local prefix environment; no missing libraries. CMake embeds machine-local dependency paths in local build output; this report is evidence of source rebuild, not a redistributable binary package.",
+  "final_reviewed_entry_sha256": "365ec788c1d931ee4fb902f375e1a7228888d7152a00024299e4d9795d223f3a"
+}

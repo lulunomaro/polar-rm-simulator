@@ -22,3 +22,8 @@ config/*runtime*spec.json
 *.mkv
 *.pem
 *.key
+
+# External client and consumer-local deployment/build outputs.
+external/
+.venv-*/
+operator_native/runtime/local_build*/

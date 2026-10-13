@@ -1,0 +1,21 @@
+{
+  "schema": "polar.sim.adapter.jsonl.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_navigation_example",
+      "kind": "navigation",
+      "label": "Custom JSONL zero-motion example (not a navigation policy)",
+      "command": ["{python}", "-u", "adapter_jsonl.py", "--kind", "navigation"],
+      "cwd": ".",
+      "required_sensors": []
+    },
+    {
+      "adapter_id": "custom_aim_example",
+      "kind": "aim",
+      "label": "Custom JSONL hold example (not a detector)",
+      "command": ["{python}", "-u", "adapter_jsonl.py", "--kind", "aim"],
+      "cwd": ".",
+      "required_sensors": []
+    }
+  ]
+}
