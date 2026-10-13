@@ -48,6 +48,9 @@ class MuJoCoBackend:
             except (KeyError,IndexError,ValueError,TypeError,OverflowError):mapping={}
             self._control_caps[rid]=capability(mapping)
         self.last_motion_feedback={}
+        # Model indices/ranges do not change during one loaded simulation.
+        self._pose_indices={r:tuple(sim.qindices[r])+tuple(sim.vindices[r][:3]) for r in self.robot_ids}
+        self._yaw_ctrlrange={r:tuple(map(float,sim.model.actuator_ctrlrange[sim.aindices[r][2]])) for r in self.robot_ids}
 
     def declared_spin_capabilities(self):
         import copy
@@ -77,9 +80,9 @@ class MuJoCoBackend:
 
     def own_pose(self,rid):
         self._check();s=self._sim
-        q=s.data.qpos[s.qindices[rid]];v=s.data.qvel[s.vindices[rid]]
-        return dict(yaw=float(q[2]),gimbal_yaw=float(q[3]),gimbal_pitch=float(q[4]),
-                    vx=float(v[0]),vy=float(v[1]),wz=float(v[2]))
+        ix=self._pose_indices[rid];q=s.data.qpos;v=s.data.qvel
+        return dict(yaw=float(q[ix[2]]),gimbal_yaw=float(q[ix[3]]),gimbal_pitch=float(q[ix[4]]),
+                    vx=float(v[ix[5]]),vy=float(v[ix[6]]),wz=float(v[ix[7]]))
 
     def allowed(self,rid):
         self._check();s=self._sim
@@ -120,6 +123,10 @@ class MuJoCoBackend:
         from ..contracts import Command
         import numpy as np
         s=self._sim;commands={}
+        if not hasattr(self,'_pose_indices'):
+            # Also support explicitly supplied minimal/synthetic backend fixtures.
+            self._pose_indices={r:tuple(s.qindices[r])+tuple(s.vindices[r][:3]) for r in self.robot_ids}
+            self._yaw_ctrlrange={r:tuple(map(float,s.model.actuator_ctrlrange[s.aindices[r][2]])) for r in self.robot_ids}
         self._resupply.apply(s,self.allowed)
         for rid in self.robot_ids:
             pose=self.own_pose(rid);t=targets[rid]
@@ -140,7 +147,7 @@ class MuJoCoBackend:
                 from .spin import requested_yaw
                 yaw_target=requested_yaw(m)
                 raw=2*yaw_target+6*(yaw_target-pose['wz'])
-                low,high=s.model.actuator_ctrlrange[s.aindices[rid][2]]
+                low,high=self._yaw_ctrlrange[rid]
                 torque=float(np.clip(raw,low,high))
             commands[rid]=Command(force_x=fx,force_y=fy,yaw_torque=torque,
                 gimbal_yaw=hold_yaw if g is None else g['yaw_rad'],
@@ -173,7 +180,7 @@ class MuJoCoBackend:
             valid=math.isfinite(measured) and math.isfinite(torque)
             is_spin=bool(m is not None and m.get('mode')=='spin_v1')
             target=requested_yaw(m) if m is not None else 0.
-            lo,hi=map(float,s.model.actuator_ctrlrange[a])
+            lo,hi=self._yaw_ctrlrange[rid]
             feedback[rid]=dict(integration_sim_time=integration_sim_time,timestep_seconds=self.timestep,sample_sim_time=self.sim_time,measurement_valid=valid,
                 measured_yaw_rate_rps=measured if valid else None,applied_yaw_torque_nm=torque if valid else None,
                 target_yaw_rate_rps=target,spin_requested=is_spin,

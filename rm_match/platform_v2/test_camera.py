@@ -71,7 +71,11 @@ class CameraTests(unittest.TestCase):
         sim=self.backend._sim;rid='red_sentry';self.runtime.watch(self.a,rid)
         q=sim.data.qpos[sim.qindices[rid]].copy();v=sim.data.qvel[sim.vindices[rid]].copy();self.tick();self.rendered()
         frame=self.runtime.frame(self.a)
-        np.testing.assert_array_equal(frame['own_qpos_at_capture'],q);np.testing.assert_array_equal(frame['own_qvel_at_capture'],v)
+        self.assertEqual(frame['source'],'operator_camera_display_v1')
+        self.assertNotIn('own_qpos_at_capture',frame);self.assertNotIn('own_odom_at_capture',frame)
+        watch=self.p.watch_sample(self.a);key=('watch',watch['session_id'],watch['watch_epoch'])
+        sensor=self.provider.sensor_camera(rid,self.backend.episode,key,self.backend.sim_time,.2)
+        np.testing.assert_array_equal(sensor['own_qpos_at_capture'],q);np.testing.assert_array_equal(sensor['own_qvel_at_capture'],v)
         self.assertEqual(frame['image']['width'],1440);self.assertEqual(frame['image']['height'],1080)
         ext=frame['calibration']['extrinsics'];self.assertEqual(ext['translation_m'],[.24,0.,.06])
         self.assertIn(rid,ext['calibration_id']);self.assertTrue(frame['full_frame']);self.assertFalse(frame['algorithm_input'])
@@ -140,6 +144,80 @@ class CameraTests(unittest.TestCase):
         finally:r.close()
 
 class BlockingCameraTests(unittest.TestCase):
+    def test_display_stall_does_not_hold_sensor_or_refresh_deadline(self):
+        entered=threading.Event();release=threading.Event();clock=Clock()
+        class SlowDisplay(CameraProvider):
+            def _encode_display(self,cap,rgb):
+                entered.set();release.wait(3)
+                return super()._encode_display(cap,rgb)
+        backend=MuJoCoBackend(camera=True)
+        provider=SlowDisplay(backend._sim,clock=clock,renderer_factory=FakeRenderer,total_fps=15)
+        key=('adapter','red_sentry','aim','fixture',1)
+        try:
+            provider.capture_from_authority(backend._sim,{'red_sentry':{key}})
+            self.assertTrue(entered.wait(2))
+            packet=provider.sensor_packet('red_sentry',0,key,backend.sim_time,.08)
+            self.assertTrue(packet['camera']['available'])
+            self.assertEqual(packet['budget']['capture_wall'],1000.)
+            self.assertAlmostEqual(packet['budget']['wall_deadline'],1000.08)
+            self.assertFalse(provider.display_frame('red_sentry',0,key,1)['available'])
+            clock.advance(.081)
+            self.assertEqual(provider.sensor_packet('red_sentry',0,key,backend.sim_time,.08)['camera']['reason'],'camera_expired')
+            release.set()
+            deadline=time.monotonic()+2
+            while provider.rendered==0 and time.monotonic()<deadline:time.sleep(.005)
+            display=provider.display_frame('red_sentry',0,key,1)
+            self.assertTrue(display['available']);self.assertEqual(display['capture_wall_monotonic'],1000.)
+            self.assertFalse(provider.sensor_packet('red_sentry',0,key,backend.sim_time,.08)['camera']['available'])
+        finally:
+            release.set();provider.stop();self.assertTrue(provider.wait_closed());backend.close()
+
+    def test_blocked_display_has_latest_bounded_queue_and_no_rebind_leak(self):
+        entered=threading.Event();release=threading.Event();clock=Clock()
+        class SlowDisplay(CameraProvider):
+            def _encode_display(self,cap,rgb):
+                entered.set();release.wait(3)
+                return super()._encode_display(cap,rgb)
+        backend=MuJoCoBackend(camera=True)
+        provider=SlowDisplay(backend._sim,clock=clock,renderer_factory=FakeRenderer,total_fps=15,max_views=1)
+        old=('adapter','red_sentry','aim','fixture',1);new=(*old[:-1],2)
+        try:
+            provider.capture_from_authority(backend._sim,{'red_sentry':{old}})
+            self.assertTrue(entered.wait(2))
+            for i in range(2,6):
+                clock.advance(.07);provider.capture_from_authority(backend._sim,{'red_sentry':{new}})
+                deadline=time.monotonic()+2
+                while provider.raw_published<i and time.monotonic()<deadline:time.sleep(.005)
+                self.assertEqual(provider.raw_published,i)
+            status=provider.status()
+            self.assertLessEqual(status['display_pending'],1)
+            self.assertLessEqual(status['max_display_pending_seen'],1)
+            self.assertGreaterEqual(status['display_dropped'],2)
+            self.assertFalse(provider.sensor_camera('red_sentry',0,old,backend.sim_time,.08)['available'])
+            self.assertTrue(provider.sensor_camera('red_sentry',0,new,backend.sim_time,.08)['available'])
+            release.set();deadline=time.monotonic()+2
+            while provider.rendered==0 and time.monotonic()<deadline:time.sleep(.005)
+            display=provider.display_frame('red_sentry',0,new,1)
+            self.assertTrue(display['available']);self.assertEqual(display['frame_seq'],5)
+            self.assertFalse(provider.display_frame('red_sentry',0,old,1)['available'])
+        finally:
+            release.set();provider.stop();self.assertTrue(provider.wait_closed());backend.close()
+
+    def test_display_codec_failure_is_explicit_and_keeps_sensor_usable(self):
+        class BrokenDisplay(CameraProvider):
+            def _encode_display(self,cap,rgb):raise ValueError('fixture codec failure')
+        backend=MuJoCoBackend(camera=True)
+        provider=BrokenDisplay(backend._sim,renderer_factory=FakeRenderer)
+        key=('fixture',1)
+        try:
+            provider.capture_from_authority(backend._sim,{'red_sentry':{key}})
+            deadline=time.monotonic()+2
+            while provider.display_error is None and time.monotonic()<deadline:time.sleep(.005)
+            self.assertEqual(provider.display_error,'ValueError');self.assertIsNone(provider.error)
+            self.assertTrue(provider.sensor_camera('red_sentry',0,key,backend.sim_time,.08)['available'])
+            self.assertEqual(provider.display_frame('red_sentry',0,key,1)['reason'],'display_error:ValueError')
+        finally:provider.stop();self.assertTrue(provider.wait_closed());backend.close()
+
     def test_render_stall_never_blocks_release_physics_or_shutdown(self):
         entered=threading.Event();release=threading.Event();closed=[]
         class Blocked(FakeRenderer):
@@ -153,7 +231,10 @@ class BlockingCameraTests(unittest.TestCase):
         try:
             self.assertTrue(entered.wait(2));before=runtime.steps;start=time.monotonic();p.release(tkn,'red_sentry',epochs)
             self.assertLess(time.monotonic()-start,.15);time.sleep(.08);self.assertGreater(runtime.steps,before)
-            snap=runtime.snapshot(tkn);self.assertIsNone(snap['applied_targets']['red_sentry']['motion'])
+            # Release also revokes operator HUD/control evidence. Actual neutral
+            # consumption is inspected only through the spectator audit plane.
+            snap=runtime.snapshot(tkn);self.assertNotIn('red_sentry',snap['applied_targets'])
+            audit=p.open_session('spectator')['token'];self.assertIsNone(runtime.snapshot(audit)['applied_targets']['red_sentry']['motion'])
             start=time.monotonic();runtime.request_stop();authority.join(1);self.assertFalse(authority.is_alive());self.assertLess(time.monotonic()-start,1)
             self.assertFalse(runtime.frame(tkn)['available']);self.assertLessEqual(provider.status()['pending'],6)
         finally:

@@ -83,9 +83,11 @@ Minimal bounded example for the zero-motion JSONL navigation fixture after start
 
 ```python
 import time
+import os
 from rm_match.platform_v2.client import PlatformClient
 
-client = PlatformClient('http://127.0.0.1:8766', control_profile='server_window_v1')
+client = PlatformClient('http://127.0.0.1:8766', control_profile='server_window_v1',
+                        admission_credential=os.environ['POLAR_SIM_ADMISSION_CREDENTIAL'])
 client.open('operator')
 try:
     client.claim('red_sentry', ['motion'])
@@ -109,7 +111,7 @@ This intentionally starts an explicit one-second zero-motion adapter binding, no
 Endpoint: `http://127.0.0.1:8766`. Scheme is plain HTTP only on local loopback; no LAN listener, TLS or remote admission policy is implemented. Run a new client on the same machine. Do not expose this server through a network proxy without a separate approved security design.
 
 - Unauthenticated `GET /v2/health` checks runtime status.
-- `POST /v2/sessions` with `{"role":"spectator"}` opens read-only viewing; use `{"role":"operator","control_profile":"server_window_v1"}` for current window-bound operator control.
+- `POST /v2/sessions` requires a server-approved `credential` plus matching `role`; use `control_profile: server_window_v1` for window-bound operator control. Role and allowed robots come from the local admission manifest. Without policy/credential enrollment is rejected. Spectator truth needs an explicit audit grant; body fields cannot grant it. See [ADMISSION.md](ADMISSION.md).
 - The server returns a short-lived bearer capability. Send it only in `Authorization: Bearer …`; keep it in memory and out of logs or URLs. Session creation does not claim any vehicle.
 - `GET /v2/robots`, `/v2/capabilities`, `/v2/adapters`, `/v2/state`; `POST /v2/watch` then `GET /v2/frame` provide viewing and negotiation.
 - `POST /v2/claim`, `/v2/renew`, `/v2/release` manage per-robot motion/gimbal/fire leases. Do not steal occupied channels.
@@ -117,4 +119,4 @@ Endpoint: `http://127.0.0.1:8766`. Scheme is plain HTTP only on local loopback; 
 - `POST /v2/control` sends explicit channel controls with lease epoch, increasing sequence, current window ID and bounded validity.
 - `POST /v2/keepalive` and `/v2/close` maintain/end the session. Reading state does not renew a lease or an input.
 
-The exact request keys and responses are in [`server.py`](../rm_match/platform_v2/server.py), [`client.py`](../rm_match/platform_v2/client.py) and [CONTRACT.md](../rm_match/platform_v2/CONTRACT.md). All successful service replies carry `schema: rm.sim.platform.v2`. The server rejects browser Origin, unexpected Host, redirects, duplicate/unknown body keys and oversized bodies. Build native/desktop clients against the reference SDK rather than a browser page. State/frames are labeled display-only truth and are not the algorithm-sensor API; JSONL adapters receive the approved sensor DTO separately.
+The exact request keys and responses are in [`server.py`](../rm_match/platform_v2/server.py), [`client.py`](../rm_match/platform_v2/client.py) and [CONTRACT.md](../rm_match/platform_v2/CONTRACT.md). All successful service replies carry `schema: rm.sim.platform.v2`. The server rejects browser Origin, unexpected Host, redirects, duplicate/unknown body keys and oversized bodies. Build native/desktop clients against the SDK. Operator state is scoped `operator_limited_display`; frames are `operator_camera_display_v1`, with actual JPEG/static calibration/timestamps and no capture own pose/odometry. Only explicit audit spectators receive full truth. These displays are not the algorithm-sensor API; JSONL adapters receive the approved sensor DTO separately.

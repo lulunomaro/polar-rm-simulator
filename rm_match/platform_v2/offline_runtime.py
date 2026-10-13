@@ -8,7 +8,7 @@ import copy
 import queue
 import threading
 import time
-from .runtime import PlatformRuntime
+from .runtime import PlatformRuntime,AdapterSlot
 from .control import ControlPlane,Rejected
 from .contracts import ContractError
 from .offline_contract import OfflineClock,PROFILE,build_offline_observation,validate_offline_action
@@ -29,20 +29,26 @@ class OfflineWorker:
  def __init__(self,factory,context,*,host_delay_s=0.,clock=time.monotonic,trace=None):
   self.factory=factory;self.context=context;self.delay=host_delay_s;self.clock=clock;self.trace=trace
   self.jobs=queue.Queue(maxsize=1);self.results=queue.Queue(maxsize=1);self.stop=threading.Event()
+  self._instance=None;self._lifecycle_lock=threading.Lock();self.lifecycle_error=None
   self.thread=threading.Thread(target=self._run,name='offline-native-worker',daemon=True);self.thread.start()
  def _run(self):
   instance=None
   try:
-   instance=self.factory();instance.reset(self.context)
+   instance=self.factory()
+   with self._lifecycle_lock:self._instance=instance
+   if self.stop.is_set():AdapterSlot._cancel_native(instance);return
+   instance.reset(self.context)
    while not self.stop.is_set():
     try:o=self.jobs.get(timeout=.02)
     except queue.Empty:continue
     started=self.clock()
     if self.delay and self.stop.wait(self.delay):return
+    if self.stop.is_set():return
     try:value=instance.act(copy.deepcopy(o));error=None
     except BaseException as e:value=None;error=type(e).__name__+':'+str(e)
     if self.trace:self.trace(dict(event='offline_worker',wall_start=started,wall_end=self.clock(),host_delay_s=self.delay,observed_seq=o['observed_seq']))
-    self.results.put((value,error))
+    if self.stop.is_set():return
+    self.results.put_nowait((value,error))
     if error:return
   except BaseException as e:
    try:self.results.put_nowait((None,type(e).__name__+':'+str(e)))
@@ -50,12 +56,18 @@ class OfflineWorker:
   finally:
    if instance is not None:
     try:instance.close()
-    except BaseException:pass
+    except BaseException as e:self.lifecycle_error=type(e).__name__
+   with self._lifecycle_lock:self._instance=None
  def submit(self,o):self.jobs.put_nowait(o)
  def poll(self):
   try:return self.results.get_nowait()
   except queue.Empty:return None
- def close(self):self.stop.set()
+ def close(self):
+  self.stop.set()
+  with self._lifecycle_lock:instance=self._instance
+  if instance is not None:
+   try:AdapterSlot._cancel_native(instance)
+   except BaseException as e:self.lifecycle_error=type(e).__name__
 
 class OfflineRuntime(PlatformRuntime):
  def __init__(self,backend,*,camera,selected_robot='red_sentry',native_factory,clock=time.monotonic,
@@ -194,12 +206,18 @@ class OfflineRuntime(PlatformRuntime):
    self.halt_reason=str(e) if isinstance(e,OfflineHalt) else type(e).__name__+':'+str(e);self.state='HALTED';self.backend.neutralize();self.offline_output=None;self._publish()
    self._trace('offline_halt',reason=str(e),simulation_ns=self._ns())
   finally:
-   if self.worker is not None:self.worker.close()
    self.close()
+ def _shutdown_workers(self):
+  workers=super()._shutdown_workers()
+  if self.worker is not None:workers[self.selected_robot,'offline_aim']=self.worker
+  return workers
  def close(self):
   # Preserve the immutable offline label and terminal reason for observers;
   # base close still revokes all rights and neutralizes without advancing time.
   super().close()
+  if self.error=='adapter_shutdown_incomplete':
+   self.state='HALTED'
+   if self.halt_reason is None:self.halt_reason='resource_cleanup_incomplete'
   with self.cache_lock:
    self.cached.update(clock_profile=dict(kind=PROFILE,label='OFFLINE / SIL',barrier_state=self.state,
     episode_origin_mj_time_ns=self.origin_ns,simulation_tick=self.tick,

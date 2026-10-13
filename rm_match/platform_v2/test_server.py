@@ -7,11 +7,12 @@ import unittest
 from .runtime import PlatformRuntime
 from .server import PlatformHTTPServer,TransportConfig,MAX_BODY_BYTES
 from .test_runtime import FakeBackend,TestRegistry
+from .test_support_admission import fixture_policy,OPERATOR_CREDENTIAL,AUDIT_CREDENTIAL
 
 class ServerTests(unittest.TestCase):
     def setUp(self):
         self.runtime=PlatformRuntime(FakeBackend(),registry=TestRegistry());self.runtime.step_once()
-        self.server=PlatformHTTPServer(TransportConfig(port=0,max_http_workers=2),self.runtime)
+        self.server=PlatformHTTPServer(TransportConfig(port=0,max_http_workers=2,admission_policy=fixture_policy(self.runtime.control.robot_ids)),self.runtime)
         self.thread=threading.Thread(target=self.server.serve_forever,daemon=True);self.thread.start()
         self.port=self.server.server_address[1]
     def tearDown(self):
@@ -25,7 +26,7 @@ class ServerTests(unittest.TestCase):
         conn.request('POST' if body is not None else 'GET',path,raw,h)
         response=conn.getresponse();value=json.loads(response.read());status=response.status;conn.close()
         return status,value
-    def operator(self):return self.request('/v2/sessions',{'role':'operator'})[1]['token']
+    def operator(self):return self.request('/v2/sessions',{'role':'operator','credential':OPERATOR_CREDENTIAL})[1]['token']
     def test_auth_required_for_state(self):self.assertEqual(self.request('/v2/state')[0],401)
     def test_origin_blocked_for_state_and_session(self):
         self.assertEqual(self.request('/v2/sessions',{'role':'operator'},headers={'Origin':'https://example.com'})[0],403)
@@ -58,7 +59,7 @@ class ServerTests(unittest.TestCase):
     def test_client_cannot_obtain_algorithm_gt_endpoint(self):
         self.assertEqual(self.request('/v2/observation',token=self.operator())[0],404)
     def test_session_token_not_in_spectator_status(self):
-        token=self.operator();other=self.request('/v2/sessions',{'role':'spectator'})[1]['token']
+        token=self.operator();other=self.request('/v2/sessions',{'role':'spectator','credential':AUDIT_CREDENTIAL})[1]['token']
         status,value=self.request('/v2/state',token=other)
         self.assertEqual(status,200);self.assertNotIn(token,json.dumps(value));self.assertNotIn(other,json.dumps(value))
     def test_http_threads_bounded_under_partial_requests(self):
@@ -66,10 +67,17 @@ class ServerTests(unittest.TestCase):
         try:
             for _ in range(2):
                 s=socket.create_connection(('127.0.0.1',self.port),timeout=2.);s.sendall(b'GET /v2/health HTTP/1.1\r\n');sockets.append(s)
-            time.sleep(.05)
-            self.assertFalse(self.server._slots.acquire(blocking=False))
+            deadline=time.monotonic()+.5
+            while time.monotonic()<deadline:
+                if not self.server._slots.acquire(blocking=False):break
+                self.server._slots.release();time.sleep(.005)
+            else:self.fail('Partial requests did not occupy bounded workers')
             s=socket.create_connection(('127.0.0.1',self.port),timeout=2.);s.settimeout(1.)
-            s.sendall(b'GET /v2/health HTTP/1.1\r\n');self.assertEqual(s.recv(1),b'');s.close()
+            try:
+                s.sendall(b'GET /v2/health HTTP/1.1\r\n')
+                try:self.assertEqual(s.recv(1),b'')
+                except (ConnectionResetError,ConnectionAbortedError):pass  # OS reports refused socket as reset.
+            finally:s.close()
             self.assertEqual(self.runtime.health()['steps'],1)
         finally:
             for s in sockets:s.close()

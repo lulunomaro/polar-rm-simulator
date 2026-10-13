@@ -13,7 +13,29 @@ python3 tools/deploy.py setup-client
 python3 tools/deploy.py setup-client --run
 ```
 
-The first command only prints the Git commands. The second fetches exactly `0cedf99b70b1beec99865b9980af6789e6c53d99` from `https://github.com/lulunomaro/polar-rm-client.git` into `external/polar-rm-client` and checks out that commit detached. It does not initialize submodules, install software, start the client or change the user's other checkout. The destination must not exist. Use `--client-root /absolute/existing-client` to reuse a clean checkout at the same pin. The doctor verifies the commit, required files and absence of tracked-source modifications. It does not upload anything.
+The first command prints the Git commands and explicit client patch operation.
+The second fetches exactly `0cedf99b70b1beec99865b9980af6789e6c53d99` from
+`https://github.com/lulunomaro/polar-rm-client.git` into `external/polar-rm-client`,
+checks out that commit detached, then applies the hash-bound patch in
+`client_patches/CLIENT_PATCH_MANIFEST.json`. This is the fixed own client **plus an
+explicit operator-state compatibility patch**, not the original byte-exact client.
+The patch accepts the restricted operator HUD, permits claim before own HUD becomes
+authorized, and keeps arm dependent on a fresh leased own state. Unavailable map
+positions are hidden rather than fabricated. CPU and HTTP checks do not qualify GUI.
+
+Setup does not initialize submodules, install software, start the client or modify
+another checkout. The destination must not exist. For an existing clean checkout at
+the same pin, first inspect and explicitly apply the patch:
+
+```sh
+python tools/apply_client_patch.py --client-root /absolute/existing-client
+python tools/apply_client_patch.py --client-root /absolute/existing-client --run
+```
+
+Repeated application verifies the already-patched bytes. Unexpected edits, partial
+patches, a different base commit or staged modifications fail closed. Doctor checks
+the exact fixed base and approved patched file hashes; other tracked edits are
+rejected. It never resets user changes, commits, pushes or uploads.
 
 `external/` is ignored by this simulator's Git rules. Preserve the client's own licenses. A downloaded external component is not relicensed by the simulator.
 
@@ -53,9 +75,13 @@ Rebuild on the target machine. Generated specs contain consumer-local absolute p
 - A matching clean-build manifest plus binary, executor, autoaim config and tracking-mode hashes
 - Linux ELF64 x86-64 binary identity
 
-The operator protocol remains `rmcs-sim-operator-fov-v1`; it does not identify the underlying algorithm revision on its own. The T2 source/build checks distinguish the owner's RMCS from a legacy binary that speaks that same protocol. Hashes provide reproducibility checks, not a sandbox against a malicious local compiler, binary or dependency.
+The operator protocol remains `rmcs-sim-operator-fov-v1`; it does not identify the underlying algorithm revision on its own. The contour frontend has a composite patch SHA binding its reviewed source and the original T2 tracker SHA; the build manifest must include that exact copied source. New builds default to the repaired `contour-v3`; `--corner-refinement original` preserves historical reproduction. See [native frontend development](NATIVE_RUNTIME.md) for commands and its static offline qualification scope. The T2 source/build checks distinguish the owner's RMCS from a legacy binary that speaks that same protocol. Hashes provide reproducibility checks, not a sandbox against a malicious local compiler, binary or dependency.
 
 ## 4. Doctor and explicit launch
+
+HTTP enrollment now requires server-owned local grants. A normal launcher run provisions one operator credential for `red_sentry`, writes only its SHA-256 grant to the fresh output directory, and passes the clear credential to the Qt client in memory via `POLAR_SIM_ADMISSION_CREDENTIAL`. Credentials never appear in command arguments, saved plans or readiness reports. The default grant has no audit permission. Operator state and camera metadata are restricted to the authorized robot; actual pose/odometry are omitted from the display frame.
+
+For an existing local policy, supply `--admission-manifest /absolute/admission.json` and set `POLAR_SIM_ADMISSION_CREDENTIAL` in the launching environment. Doctor validates the operator grant before starting either process. The manifest schema is `polar.sim.admission.v1`, with `grants` entries containing exactly `credential_sha256`, `role`, `allowed_robots`, and `audit_authorized`. Spectator truth requires a separate explicit audit grant. Direct server entry points require `--admission-manifest`; missing credentials cannot enroll over HTTP.
 
 ```sh
 python3 tools/deploy.py doctor \
@@ -69,7 +95,7 @@ python3 tools/deploy.py launch \
 
 `plan` and `launch` without `--run` start nothing. The doctor checks target interpreters, client pin, native lineage/bytes, `ldd` lookup of the trusted local binary, visible-display environment and a fresh output path. It reports every blocker it can find. `ready_to_attempt: true` means prerequisites passed, not that native inference, camera timing or visible UI is working. There is no automatic download, build, package installation, credentials setup, hardware access or paid service call.
 
-Launch reruns the doctor, verifies the server ready message against profile and spec hash, then starts the original Qt SIM v2 entry. It never starts a hardware backend. Defaults are port 8766, up to 300 wall seconds, camera budget 15 total FPS, real-time factor at most 1, EGL server rendering and no virtual resupply. `--gl glfw` selects an alternative existing renderer; `--gl osmesa` needs its system libraries. Changing rendering options does not qualify timing. The 80 ms native camera gate and 150 ms server input-window mechanism are unchanged.
+Launch reruns the doctor, verifies the server ready message against profile and spec hash, then starts the explicitly patched own Qt SIM v2 entry. It never starts a hardware backend. Defaults are port 8766, up to 300 wall seconds, camera budget 15 total FPS, real-time factor at most 1, EGL server rendering and no virtual resupply. `--gl glfw` selects an alternative existing renderer; `--gl osmesa` needs its system libraries. Changing rendering options does not qualify timing. The 80 ms native camera gate and 150 ms server input-window mechanism are unchanged.
 
 Runtime evidence stays under fresh `artifacts/deployment/`; choose `--out` for another attempt. The launch records its plan, doctor report, verified ready message, process logs and exit reason. It gives the client separate `POLAR_USER_DATA_ROOT` storage under that output, avoiding edits to the external source checkout. Closing either side, Ctrl-C, or the bounded duration cleans up owned processes. `launch_result.json` is launch evidence, not a full-match pass.
 

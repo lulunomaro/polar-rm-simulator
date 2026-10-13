@@ -1,0 +1,318 @@
+{
+  "schema": "polar.pnp.static-chain-evidence.v1",
+  "run_root": "artifacts/pnp-native-contour-v3-aftercleanup-offline24-20261013",
+  "result": {
+    "profile": "offline_modeled_latency_v1",
+    "state": "COMPLETED",
+    "reason": null,
+    "wall_seconds": 16.405614913000004,
+    "sim_time": 0.9420000000000007,
+    "counts": {
+      "offline_capture": 24,
+      "offline_physics": 471,
+      "fire_true": 0,
+      "native_gimbal_consumed": 241,
+      "offline_observation": 24,
+      "offline_worker": 24,
+      "offline_action_available": 24,
+      "native_request": 13,
+      "native_result": 13
+    },
+    "native_binary_sha256": "4d3570674a7a150da0e86f64bbbd25adcfa8bb9e2731672ac6aeaa296cf92b42",
+    "spec_sha256": "a808f11e8f8088ba89c2cf2a8e94d4bf18c386dc69d3d4114b9b2b40e57a3cdd",
+    "client_identity": {
+      "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "tracked_source_clean": false,
+      "patched_source_verified": true,
+      "client_patch": {
+        "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+        "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+        "manifest_sha256": "ab7a3f21d0f44b5c2f14752bd140d40f71d6240fa9e14be262ec69b547799d83",
+        "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+      }
+    },
+    "errors": [],
+    "clean_shutdown": true,
+    "qualified_static_offline_chain": true,
+    "live_default_qualified": false,
+    "full_match_qualified": false
+  },
+  "native_measurements": {
+    "results": 13,
+    "pose_results": 13,
+    "total_estimated_poses": 13,
+    "tracking": 13,
+    "should_control": 13,
+    "observation_shoot_allowed": 13,
+    "should_shoot": 7,
+    "target_age_s": [
+      0.02
+    ],
+    "mode": [
+      "multi_ekf"
+    ],
+    "source_frame_ids": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "request_result_sensor_binding_verified": true
+  },
+  "physical_consumption": {
+    "active_steps": 241,
+    "exact_actuator_target_matches": 241,
+    "steps_with_actual_joint_change": 241,
+    "first_active_step": {
+      "event": "offline_physics",
+      "wall_time": 44.497494562,
+      "sim_apply_ns": 460000000,
+      "episode": 0,
+      "robot_id": "red_sentry",
+      "binding_epoch": 1,
+      "target": {
+        "motion": null,
+        "gimbal": {
+          "frame": "base_link",
+          "yaw_rad": 2.7410076176971994e-05,
+          "pitch_rad": -0.13580366938213595,
+          "active": true,
+          "confidence": null,
+          "fire_permission": false
+        },
+        "fire": false
+      },
+      "source_schedule": {
+        "episode_origin_mj_time_ns": 0,
+        "exposure_ns": 440000000,
+        "camera_capture_mj_time_ns": 440000000,
+        "sensor_ready_ns": 450000000,
+        "controller_sample_ns": 450000000,
+        "own_sample_ns": 450000000,
+        "result_available_ns": 460000000,
+        "actuation_ns": 460000000,
+        "sim_expiry_ns": 520000000
+      },
+      "authority_receipt": {
+        "checked_wall": 44.497195164,
+        "owner_present": true,
+        "lease_epoch": 1,
+        "expires_wall": 45.474278672,
+        "binding_epoch": 1,
+        "observed_seq": 12,
+        "sampled_integration_wall": 44.497105136
+      },
+      "qpos_before": [
+        1.7500000320308857,
+        -0.6500000000000004,
+        1.9237492563965515e-15,
+        -1.2586390586556106e-16,
+        -0.02300530631009627
+      ],
+      "qpos_after": [
+        1.7500000090411973,
+        -0.6499999998639592,
+        1.0122708463557527e-09,
+        1.090486926040504e-07,
+        -0.023667103309360882
+      ],
+      "actuator_ctrl": [
+        0.0,
+        0.0,
+        0.0,
+        2.7410076176971994e-05,
+        -0.13580366938213595
+      ],
+      "integration_start_wall": 44.497105136,
+      "integration_call_wall": 44.497371437,
+      "post_step_wall": 44.497460524
+    },
+    "last_active_step": {
+      "event": "offline_physics",
+      "wall_time": 47.27563769,
+      "sim_apply_ns": 940000000,
+      "episode": 0,
+      "robot_id": "red_sentry",
+      "binding_epoch": 1,
+      "target": {
+        "motion": null,
+        "gimbal": {
+          "frame": "base_link",
+          "yaw_rad": -9.280191458995545e-05,
+          "pitch_rad": -0.13579805826178556,
+          "active": true,
+          "confidence": null,
+          "fire_permission": false
+        },
+        "fire": false
+      },
+      "source_schedule": {
+        "episode_origin_mj_time_ns": 0,
+        "exposure_ns": 920000000,
+        "camera_capture_mj_time_ns": 920000000,
+        "sensor_ready_ns": 930000000,
+        "controller_sample_ns": 930000000,
+        "own_sample_ns": 930000000,
+        "result_available_ns": 940000000,
+        "actuation_ns": 940000000,
+        "sim_expiry_ns": 1000000000
+      },
+      "authority_receipt": {
+        "checked_wall": 47.275356791,
+        "owner_present": true,
+        "lease_epoch": 1,
+        "expires_wall": 48.210140923,
+        "binding_epoch": 1,
+        "observed_seq": 24,
+        "sampled_integration_wall": 47.275266379
+      },
+      "qpos_before": [
+        1.7500011080336924,
+        -0.649999998477988,
+        1.1438999827371288e-08,
+        -2.456458330204899e-05,
+        -0.1566605677055755
+      ],
+      "qpos_after": [
+        1.750001109042224,
+        -0.6499999989518441,
+        7.935966725795584e-09,
+        -2.468518289982627e-05,
+        -0.15670140883106393
+      ],
+      "actuator_ctrl": [
+        0.0,
+        0.0,
+        0.0,
+        -9.280191458995545e-05,
+        -0.13579805826178556
+      ],
+      "integration_start_wall": 47.275266379,
+      "integration_call_wall": 47.275526731,
+      "post_step_wall": 47.275605738
+    }
+  },
+  "preload_admission": {
+    "startup_ready": {
+      "schema": "polar.offline.preload_ready.v1",
+      "pid": 1000,
+      "nonce": "425c94d64f4b4d2d97314f63d907298e",
+      "output_root": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pnp-native-contour-v3-aftercleanup-offline24-20261013",
+      "started_monotonic_s": 37.782404784,
+      "ready_monotonic_s": 40.631756314,
+      "preloaded_versions": {
+        "Qt": "6.12.0",
+        "cv2": "5.0.0",
+        "numpy": "2.5.4"
+      }
+    },
+    "setup_seconds": 4.615371087999996,
+    "pre_run_work_counters": {
+      "physics_time_s": 0.0,
+      "captures": 0,
+      "raw_published": 0,
+      "native_requests": 0
+    },
+    "setup_bound_s": 15.0,
+    "parent_initial_binding_watchdog_s": 5.0,
+    "client_watch_admission_bound_s": 3.5,
+    "readiness_is_network_or_lease_ack": false,
+    "physics_or_capture_before_readiness": false
+  },
+  "input_boundary": {
+    "native_image": "Actual MuJoCo RGB rendered pixels converted to contiguous BGR; no synthetic corners",
+    "packet": "BGR image, source K/D calibration, exposure time and own capture-state only",
+    "no_target_truth": "Target truth is absent from native_adapter frame construction; ledger sensor binding records own state only",
+    "qualification": "Source inspection plus actual trace; complete input bytes were not independently logged for all frames"
+  },
+  "source_snapshot_semantics": "EXECUTED_SOURCE records hashes before renderer/client/runtime creation; actual execution compared all ten hashes again after shutdown with no changes. Supplemental post-run snapshot is not a substitute for that check.",
+  "simulator_post_run_source_sha256": {
+    "tools/smoke_offline_deployment.py": "da56bb6010c50260a50f009a26f6ab9d078e5226aa3cecbe8b3acdbfba5c9c55",
+    "tools/offline_smoke/offline_client_driver.py": "3c26f203bea689938de918e440912bf6905e9a27bbeedda95f2ea4e847b85653",
+    "tools/offline_smoke/preload_contract.py": "7d92383065e8a35c72adf18b385253acd99786e1a4a5a3d3a45223e9f1d99cc7",
+    "rm_match/platform_v2/offline_runtime.py": "7cf3033acb6f9b99283ff2e7b213d9f132d4a64e63aaea8d7e78095934b0c8df",
+    "rm_match/platform_v2/offline_native.py": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd",
+    "rm_match/platform_v2/native_adapter.py": "0ddf5f1b3f25268f8ecbde65e62961a770ddbbdafcd00b5366ade1f843425d62",
+    "rm_match/operator/source_aim.py": "53171e19912692459a36aa6f358b172b57aa5cb4e688d4aa02e270b31e451e1a",
+    "rm_match/platform_v2/state_projection.py": "8cea406ecbbb7b6a7fffd35ecb51ec79ca195a293498ca621d8bdb83e69b722d",
+    "operator_native/runtime/overlays/corners_contour_v3.cpp": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c"
+  },
+  "native_model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "evidence_sha256": {
+    "ACCEPTANCE_CRITERIA.json": "8d94ffece33efed2e45bd51a11b60327506a2c1a5e3c41bca44b83f757d54c97",
+    "client.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "driver.json": "0c6fa39c04f4394b3ceeb88ea299ba1b938798c674495c5ae74c813b7e8d52c6",
+    "driver_events.json": "f3da16f1df23069266c10f63a55990f1e6c9f99d6cce0adcb6cd7fa2d813f479",
+    "EXECUTED_SOURCE.json": "42d277cc73258de5e6c5fa1f7973a8ad9afc582b9a09e3ee94320440b06ce0b5",
+    "ledger.jsonl": "1f560c5e76914b4c9f672f3b0ce034c7f6ebfa917380e0ca6996ae0d4059216f",
+    "PRELOAD_ADMISSION.json": "2a97d1f176340a91895bbbed39964f5230bd2ccd6d98998c770b7af8cd2d17b8",
+    "preload_ready.json": "1d7b9175097cff88e157045ca4aaefb306853188de2bbf9530a6a9ffc3864f6a",
+    "preload_request.json": "fd4cb6cbac2911d245d88b59e3f18efd7951d0fa0a7a6b6c4ddfaf292892f1e6",
+    "public_scene_initial.json": "8b67593a679a9b87f5ccf7836cf296d0cac073d33b2314d5cb69d2752c30042a",
+    "RESULT.json": "d1e58a063791f8b56a26605ac3cf1d29e875ed21c1ca2cc9062e8279a6a4c804"
+  },
+  "preserved_failures": [
+    "artifacts/pnp-native-contour-v3-offline24-attempt2-20261013",
+    "artifacts/pnp-native-contour-v3-offline24-attempt3-20261013"
+  ],
+  "scope": "Final default contour-v3 fixed-scene OFFLINE24 static tracker/actuator chain with revised native cancellation cleanup, verified no lingering child/worker. Not realtime, full-match, hardware or optical calibration.",
+  "native_cleanup": {
+    "shutdown_status": {
+      "clean": true,
+      "unfinished_slots": [],
+      "lifecycle_errors": [],
+      "join_budget_s": 1.5,
+      "join_elapsed_s": 0.013950469999997495
+    },
+    "worker_thread_alive": false,
+    "worker_instance_released": true,
+    "runtime_error": null,
+    "native_processes": [
+      {
+        "pid": 1216,
+        "returncode": -15,
+        "stdin_closed": true,
+        "stdout_closed": true
+      }
+    ],
+    "clean": true
+  },
+  "execution_source_unchanged": true,
+  "executed_source": {
+    "phase": "Before renderer, Qt client and runtime creation",
+    "file_sha256": {
+      "tools/smoke_offline_deployment.py": "da56bb6010c50260a50f009a26f6ab9d078e5226aa3cecbe8b3acdbfba5c9c55",
+      "tools/offline_smoke/offline_client_driver.py": "3c26f203bea689938de918e440912bf6905e9a27bbeedda95f2ea4e847b85653",
+      "tools/offline_smoke/preload_contract.py": "7d92383065e8a35c72adf18b385253acd99786e1a4a5a3d3a45223e9f1d99cc7",
+      "rm_match/platform_v2/offline_runtime.py": "7cf3033acb6f9b99283ff2e7b213d9f132d4a64e63aaea8d7e78095934b0c8df",
+      "rm_match/platform_v2/runtime.py": "b0c8dc3d9f88bc992f57d331069b8dfd156415487b857356733cce72e7d92760",
+      "rm_match/platform_v2/offline_native.py": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd",
+      "rm_match/platform_v2/native_adapter.py": "0ddf5f1b3f25268f8ecbde65e62961a770ddbbdafcd00b5366ade1f843425d62",
+      "rm_match/integrations/rmcs_process.py": "2fa115b0aa26b48949dc72f961e74bf0fa9a57993af0b526793e43b7d1ee3a08",
+      "rm_match/operator/source_aim.py": "53171e19912692459a36aa6f358b172b57aa5cb4e688d4aa02e270b31e451e1a",
+      "rm_match/platform_v2/state_projection.py": "8cea406ecbbb7b6a7fffd35ecb51ec79ca195a293498ca621d8bdb83e69b722d"
+    },
+    "native_spec_sha256": "a808f11e8f8088ba89c2cf2a8e94d4bf18c386dc69d3d4114b9b2b40e57a3cdd",
+    "client_identity": {
+      "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "tracked_source_clean": false,
+      "patched_source_verified": true,
+      "client_patch": {
+        "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+        "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+        "manifest_sha256": "ab7a3f21d0f44b5c2f14752bd140d40f71d6240fa9e14be262ec69b547799d83",
+        "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+      }
+    }
+  },
+  "preserved_prior_success": "artifacts/pnp-native-contour-v3-offline24-attempt4-20261013"
+}

@@ -18,11 +18,14 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,*args,**kwargs):raise ClientError('Redirect forbidden')
 
 class PlatformClient:
-    def __init__(self,url,*,timeout=.25,control_profile='legacy_v2'):
+    def __init__(self,url,*,timeout=.25,control_profile='legacy_v2',admission_credential=None):
         u=urllib.parse.urlsplit(url)
         if (u.scheme!='http' or u.hostname!='127.0.0.1' or u.username or u.password or u.path not in ('','/') or u.query or u.fragment or u.port is None or not 1024<=u.port<=65535):raise ValueError('Explicit nonprivileged loopback HTTP endpoint required')
         if not 0<timeout<=2:raise ValueError('Bounded timeout required')
         if type(control_profile) is not str or control_profile not in ('legacy_v2','server_window_v1'):raise ValueError('Unknown control profile')
+        if admission_credential is not None and (type(admission_credential) is not str or not 32<=len(admission_credential)<=256):raise ValueError('Bounded admission credential required')
+        self._admission_credential=admission_credential
+        self.allowed_robots=();self.audit_authorized=False
         self.control_profile=control_profile;self._windows={};self._last_window_ids={};self._bindings={};self._adapter_seq={}
         self.url=f'http://127.0.0.1:{u.port}';self.timeout=timeout
         self._opener=urllib.request.build_opener(urllib.request.ProxyHandler({}),NoRedirect())
@@ -74,12 +77,22 @@ class PlatformClient:
             if self._token is not None:raise ClientError('Session already open')
             if role not in ('operator','spectator'):raise ValueError('Unknown session role')
             body={'role':role}
+            if self._admission_credential is not None:body['credential']=self._admission_credential
             if self.control_profile!='legacy_v2':body['control_profile']=self.control_profile
             result=self._request('/v2/sessions',body,authenticated=False)
             if (type(result.get('token')) is not str or not 1<=len(result['token'])<=256 or type(result.get('session_id')) is not str or not 1<=len(result['session_id'])<=128 or result.get('role')!=role or not self._number(result.get('session_expires')) or not self._number(result.get('server_monotonic_s')) or result['session_expires']<=result['server_monotonic_s']):self._invalid('Invalid session response')
             if self.control_profile=='server_window_v1':
                 if result.get('control_profile')!=self.control_profile or type(result.get('control_window_version')) is not int or result['control_window_version']!=1 or not self._number(result.get('control_window_ttl_s')) or not 0<result['control_window_ttl_s']<=.15:self._invalid('Required server input window profile unavailable')
             self._token=result['token'];self.session_id=result['session_id'];self.role=role;self.uncertain=False
+            scope=result.get('allowed_robots')
+            if self._admission_credential is not None and (scope is None or type(result.get('audit_authorized')) is not bool
+                    or (role=='spectator' and not result['audit_authorized'])
+                    or (role=='operator' and (not scope or result['audit_authorized']))):
+                self._invalid('Missing admitted role/scope acknowledgement')
+            if scope is not None:
+                if type(scope) is not list or any(type(r) is not str or not r for r in scope) or len(set(scope))!=len(scope):self._invalid('Invalid admission scope acknowledgement')
+                self.allowed_robots=tuple(scope)
+            self.audit_authorized=result.get('audit_authorized') is True
             # Bearer stays memory-only and is deliberately absent from return data.
             return {k:v for k,v in result.items() if k!='token'}
     def watch(self,robot_id):

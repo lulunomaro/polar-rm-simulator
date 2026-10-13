@@ -1,0 +1,1985 @@
+{
+  "schema": "rmcs-contour-overlay-comparison-v1",
+  "status": "executed",
+  "measurements": [
+    {
+      "name": "near_2p25",
+      "frame_sha256": "d5346c2370442bde6bc8dccfa123af785d02b7c9c995fee808158182a516cc80",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  641.7973022460938,
+                  615.55419921875
+                ],
+                "bl": [
+                  640.9927978515625,
+                  652.5747680664062
+                ],
+                "br": [
+                  775.0120849609375,
+                  647.5286865234375
+                ],
+                "tr": [
+                  775.546142578125,
+                  611.4885864257812
+                ]
+              },
+              "armor_color": "DARK",
+              "confidence": 0.7304702997207642,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 1.733435306902115,
+                  "back_dot": 0.6537647882091605,
+                  "pitch_degrees": 59.757457772007584,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 44.75745777200759,
+                  "reprojection_error": 0.5738784449876889,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 1.733418870697998,
+                  "back_dot": 0.6537864782937493,
+                  "pitch_degrees": -38.19262757770651,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 53.1926275777065,
+                  "reprojection_error": 0.6312878763336351,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                }
+              ],
+              "original_robust_pnp_result": 0.0,
+              "lightbar_lengths_px": [
+                37.02930927150649,
+                36.04405682754867
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 1.733435306902115,
+              "back_dot": 0.6537647882091605,
+              "pitch_degrees": 59.757457772007584,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 44.75745777200759,
+              "reprojection_error": 0.5738784449876889,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            },
+            {
+              "candidate": 1.0,
+              "z": 1.733418870697998,
+              "back_dot": 0.6537864782937493,
+              "pitch_degrees": -38.19262757770651,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 53.1926275777065,
+              "reprojection_error": 0.6312878763336351,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": []
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  633.4034423828125,
+                  604.497314453125
+                ],
+                "bl": [
+                  633.7721557617188,
+                  659.5082397460938
+                ],
+                "br": [
+                  768.785400390625,
+                  659.5044555664062
+                ],
+                "tr": [
+                  769.0951538085938,
+                  604.494873046875
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.7304702997207642,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 1.7173863253248518,
+                  "back_dot": 0.977703254106799,
+                  "pitch_degrees": -1.2852916897990068,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 16.285291689799006,
+                  "reprojection_error": 0.01788846286089004,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 1.7173333549971894,
+                  "back_dot": 0.9776828538909894,
+                  "pitch_degrees": 22.956180283995103,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 7.956180283995106,
+                  "reprojection_error": 0.3095789694988606,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                55.01216093869039,
+                55.0104546077658
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 1.7173863253248518,
+              "back_dot": 0.977703254106799,
+              "pitch_degrees": -1.2852916897990068,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 16.285291689799006,
+              "reprojection_error": 0.01788846286089004,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 1.7173333549971894,
+              "back_dot": 0.9776828538909894,
+              "pitch_degrees": 22.956180283995103,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 7.956180283995106,
+              "reprojection_error": 0.3095789694988606,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=1.9343281100994782 y=4.7754328585028812e-05 z=-0.29964664358820264 qw=0.99993699052991847 qx=-5.2031210242863338e-06 qy=-0.011216049534768173 qz=-0.00046387038165798903",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 1.9343281100994782,
+              "y": 4.775432858502881e-05,
+              "z": -0.29964664358820264,
+              "qw": 0.9999369905299185,
+              "qx": -5.203121024286334e-06,
+              "qy": -0.011216049534768173,
+              "qz": -0.00046387038165798903
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 0,
+            "corner_rmse_px": 11.940153662675339
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.13367917851753816,
+            "position_error_m": 0.001709490295124071
+          }
+        }
+      }
+    },
+    {
+      "name": "mid_3p05",
+      "frame_sha256": "714228f45ce9869cd320c1d41b71ecfdae726a761e33fb132030fe38e5f0522b",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  660.2320556640625,
+                  516.5980834960938
+                ],
+                "bl": [
+                  658.5771484375,
+                  545.2694702148438
+                ],
+                "br": [
+                  746.9423217773438,
+                  543.8722534179688
+                ],
+                "tr": [
+                  748.3513793945312,
+                  516.1090698242188
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.8214601278305054,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.626423107925348,
+                  "back_dot": 0.7643659007145964,
+                  "pitch_degrees": 47.31603060161081,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 32.31603060161081,
+                  "reprojection_error": 0.24238685330161944,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.6265001050755625,
+                  "back_dot": 0.7644018707088187,
+                  "pitch_degrees": -32.45254841523915,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 47.45254841523915,
+                  "reprojection_error": 0.29667544878866897,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                28.71910747750777,
+                27.798917364329554
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.626423107925348,
+              "back_dot": 0.7643659007145964,
+              "pitch_degrees": 47.31603060161081,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 32.31603060161081,
+              "reprojection_error": 0.24238685330161944,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.6265001050755625,
+              "back_dot": 0.7644018707088187,
+              "pitch_degrees": -32.45254841523915,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 47.45254841523915,
+              "reprojection_error": 0.29667544878866897,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.8509881811118296 y=-0.0032566069126995696 z=-0.3175123385115261 qw=0.91578461172192649 qx=0.0077822961352195111 qy=0.40120122619074428 qz=-0.01776392139217611",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.8509881811118296,
+              "y": -0.0032566069126995696,
+              "z": -0.3175123385115261,
+              "qw": 0.9157846117219265,
+              "qx": 0.007782296135219511,
+              "qy": 0.4012012261907443,
+              "qz": -0.01776392139217611
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  654.9329833984375,
+                  509.4975280761719
+                ],
+                "bl": [
+                  655.0333862304688,
+                  547.5025634765625
+                ],
+                "br": [
+                  747.3975830078125,
+                  547.5060424804688
+                ],
+                "tr": [
+                  747.9723510742188,
+                  509.49951171875
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.8214601278305054,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.5061578047351163,
+                  "back_dot": 0.9853345507567925,
+                  "pitch_degrees": -2.20532046080503,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 17.20532046080503,
+                  "reprojection_error": 0.053625457091591375,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.506094448121069,
+                  "back_dot": 0.9853219642264947,
+                  "pitch_degrees": 16.991713156584208,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 1.9917131565842083,
+                  "reprojection_error": 0.17420122656917267,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                38.00516802375204,
+                38.01087658646711
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.5061578047351163,
+              "back_dot": 0.9853345507567925,
+              "pitch_degrees": -2.20532046080503,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 17.20532046080503,
+              "reprojection_error": 0.053625457091591375,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.506094448121069,
+              "back_dot": 0.9853219642264947,
+              "pitch_degrees": 16.991713156584208,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 1.9917131565842083,
+              "reprojection_error": 0.17420122656917267,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.7321139135518346 y=-0.00010782588433772788 z=-0.29927157578946939 qw=0.99981458019797786 qx=1.3320238199039148e-05 qy=-0.019243858991911847 qz=0.00069205289691151996",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.7321139135518346,
+              "y": -0.00010782588433772788,
+              "z": -0.2992715757894694,
+              "qw": 0.9998145801979779,
+              "qx": 1.3320238199039148e-05,
+              "qy": -0.019243858991911847,
+              "qz": 0.00069205289691152
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 6.210611140012572,
+            "position_error_m": 0.11635965488146269
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.23931991460963994,
+            "position_error_m": 0.003955236545951844
+          }
+        }
+      }
+    },
+    {
+      "name": "far_3p85",
+      "frame_sha256": "512ea4f9613432c2a5b5465d421599a1fb3556da4304c7dfa63bb5503aafcc47",
+      "results": {
+        "original": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        },
+        "contour_v3": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 0,
+            "native_poses": 0
+          },
+          "contour_v3": {
+            "detected_armors": 0,
+            "native_poses": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "far_4p2",
+      "frame_sha256": "755f7455d4143bc5d36bed9d31e11467eab75c3dddd0c3dd2cedab6fef1536c3",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  671.6685180664062,
+                  448.51007080078125
+                ],
+                "bl": [
+                  671.6531982421875,
+                  469.68463134765625
+                ],
+                "br": [
+                  735.9591674804688,
+                  469.3048095703125
+                ],
+                "tr": [
+                  735.491455078125,
+                  448.4742736816406
+                ]
+              },
+              "armor_color": "DARK",
+              "confidence": 0.7165629267692566,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 3.628060501749802,
+                  "back_dot": 0.7879496960554428,
+                  "pitch_degrees": 43.09248127515801,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 28.09248127515801,
+                  "reprojection_error": 0.061122664876585624,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 3.6278046955194685,
+                  "back_dot": 0.7879164758213968,
+                  "pitch_degrees": -32.91461437585186,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 47.914614375851855,
+                  "reprojection_error": 0.2097648759265716,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                21.174566088831416,
+                20.835786049500342
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 3.628060501749802,
+              "back_dot": 0.7879496960554428,
+              "pitch_degrees": 43.09248127515801,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 28.09248127515801,
+              "reprojection_error": 0.061122664876585624,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 3.6278046955194685,
+              "back_dot": 0.7879164758213968,
+              "pitch_degrees": -32.91461437585186,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 47.914614375851855,
+              "reprojection_error": 0.2097648759265716,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=3.8668052114050622 y=-0.0050403570216175459 z=-0.2989554537427398 qw=0.9301050105311951 qx=-0.002185461308415669 qy=0.36724549932944045 qz=0.0055350127285182004",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 3.866805211405062,
+              "y": -0.005040357021617546,
+              "z": -0.2989554537427398,
+              "qw": 0.9301050105311951,
+              "qx": -0.002185461308415669,
+              "qy": 0.36724549932944045,
+              "qz": 0.0055350127285182
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  669.4407958984375,
+                  445.4950866699219
+                ],
+                "bl": [
+                  669.529296875,
+                  471.5050048828125
+                ],
+                "br": [
+                  732.865234375,
+                  471.5163269042969
+                ],
+                "tr": [
+                  733.3541870117188,
+                  445.48779296875
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.7165629267692566,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 3.650324176551065,
+                  "back_dot": 0.9813966130100826,
+                  "pitch_degrees": -5.759310425482461,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 20.75931042548246,
+                  "reprojection_error": 0.06159079186626025,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 3.650236971505384,
+                  "back_dot": 0.9813854680087991,
+                  "pitch_degrees": 15.90325973865426,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 0.9032597386542613,
+                  "reprojection_error": 0.12537317107998527,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                26.010068778534823,
+                26.033126080339823
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 3.650324176551065,
+              "back_dot": 0.9813966130100826,
+              "pitch_degrees": -5.759310425482461,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 20.75931042548246,
+              "reprojection_error": 0.06159079186626025,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 3.650236971505384,
+              "back_dot": 0.9813854680087991,
+              "pitch_degrees": 15.90325973865426,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 0.9032597386542613,
+              "reprojection_error": 0.12537317107998527,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=3.8891563020169726 y=-3.2055953089936709e-05 z=-0.30004997253236171 qw=0.99873447198991616 qx=0.00011868308037825692 qy=-0.050238167917787582 qz=0.0023594189145131395",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 3.8891563020169726,
+              "y": -3.205595308993671e-05,
+              "z": -0.3000499725323617,
+              "qw": 0.9987344719899162,
+              "qx": 0.00011868308037825692,
+              "qy": -0.05023816791778758,
+              "qz": 0.0023594189145131395
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 3.637680407921096,
+            "position_error_m": 0.019873001408777832
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.2776976242240492,
+            "position_error_m": 0.0031568603485842826
+          }
+        }
+      }
+    },
+    {
+      "name": "yaw_plus12",
+      "frame_sha256": "fe2d21020dbdec92e7d9cf72bd13513686f4be7b096345416d73a39c9358eb3b",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  705.9824829101562,
+                  556.0240478515625
+                ],
+                "bl": [
+                  705.1644897460938,
+                  591.0467529296875
+                ],
+                "br": [
+                  807.6917724609375,
+                  584.8233032226562
+                ],
+                "tr": [
+                  808.2640991210938,
+                  550.8363037109375
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.7827726602554321,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.255414780165561,
+                  "back_dot": 0.7993646914006517,
+                  "pitch_degrees": 44.767312572307986,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 29.76731257230799,
+                  "reprojection_error": 0.31006490664019604,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.255537280394002,
+                  "back_dot": 0.7994289848074703,
+                  "pitch_degrees": -27.379951360730583,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 42.37995136073058,
+                  "reprojection_error": 0.352023948364517,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                35.032256333353345,
+                33.99181803927963
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.255414780165561,
+              "back_dot": 0.7993646914006517,
+              "pitch_degrees": 44.767312572307986,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 29.76731257230799,
+              "reprojection_error": 0.31006490664019604,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.255537280394002,
+              "back_dot": 0.7994289848074703,
+              "pitch_degrees": -27.379951360730583,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 42.37995136073058,
+              "reprojection_error": 0.352023948364517,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.4751907221987852 y=-0.072393784175363241 z=-0.32132214773401235 qw=0.92446543847412921 qx=-0.0077043347285286057 qy=0.38072868903827534 qz=0.018707261596051229",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.475190722198785,
+              "y": -0.07239378417536324,
+              "z": -0.32132214773401235,
+              "qw": 0.9244654384741292,
+              "qx": -0.007704334728528606,
+              "qy": 0.38072868903827534,
+              "qz": 0.01870726159605123
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  700.9814453125,
+                  549.5
+                ],
+                "bl": [
+                  700.9819946289062,
+                  594.5
+                ],
+                "br": [
+                  806.8508911132812,
+                  590.4976196289062
+                ],
+                "tr": [
+                  807.5879516601562,
+                  545.5095825195312
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.7827726602554321,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.1148793263304335,
+                  "back_dot": 0.9515565508554916,
+                  "pitch_degrees": -1.0829658369386423,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 16.08296583693864,
+                  "reprojection_error": 0.12112456949312532,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.114811266156755,
+                  "back_dot": 0.9515218498361416,
+                  "pitch_degrees": 18.009398945134137,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 3.009398945134137,
+                  "reprojection_error": 0.25785352545944323,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                45.00000000335276,
+                44.99407451214284
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.1148793263304335,
+              "back_dot": 0.9515565508554916,
+              "pitch_degrees": -1.0829658369386423,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 16.08296583693864,
+              "reprojection_error": 0.12112456949312532,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.114811266156755,
+              "back_dot": 0.9515218498361416,
+              "pitch_degrees": 18.009398945134137,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 3.009398945134137,
+              "reprojection_error": 0.25785352545944323,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.3364032022050036 y=-0.065317826985569996 z=-0.29919681712343443 qw=0.99325461753943756 qx=0.0010922259489433458 qy=-0.0093871909298301609 qz=0.11556795587665757",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.3364032022050036,
+              "y": -0.06531782698557,
+              "z": -0.29919681712343443,
+              "qw": 0.9932546175394376,
+              "qx": 0.0010922259489433458,
+              "qy": -0.009387190929830161,
+              "qz": 0.11556795587665757
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 6.460611686607527,
+            "position_error_m": 0.13422429593768867
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.404730625409274,
+            "position_error_m": 0.006508288575981078
+          }
+        }
+      }
+    },
+    {
+      "name": "yaw_minus28",
+      "frame_sha256": "e7d3ba0d8279b6a8b1f1ef37784ac642f572531c788a594f9d71aa11d4aa1b90",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  570.8231811523438,
+                  504.18719482421875
+                ],
+                "bl": [
+                  570.6931762695312,
+                  535.0047607421875
+                ],
+                "br": [
+                  641.9562377929688,
+                  539.8485107421875
+                ],
+                "tr": [
+                  641.66259765625,
+                  509.75341796875
+                ]
+              },
+              "armor_color": "DARK",
+              "confidence": 0.9010022878646851,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 3.09598020604204,
+                  "back_dot": 0.9225150043089072,
+                  "pitch_degrees": 18.48779934633492,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 3.48779934633492,
+                  "reprojection_error": 0.05464678431511706,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 3.0953148828891734,
+                  "back_dot": 0.922357781479932,
+                  "pitch_degrees": -4.971636954539015,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 19.971636954539015,
+                  "reprojection_error": 0.22755793530127977,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                30.817840131617015,
+                30.096525274052855
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 3.09598020604204,
+              "back_dot": 0.9225150043089072,
+              "pitch_degrees": 18.48779934633492,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 3.48779934633492,
+              "reprojection_error": 0.05464678431511706,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 3.0953148828891734,
+              "back_dot": 0.922357781479932,
+              "pitch_degrees": -4.971636954539015,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 19.971636954539015,
+              "reprojection_error": 0.22755793530127977,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=3.318860182660917 y=0.17035394174139656 z=-0.36394489688234699 qw=0.98537945301697361 qx=0.0092395221109064472 qy=0.16037153956211839 qz=-0.056770891323000068",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 3.318860182660917,
+              "y": 0.17035394174139656,
+              "z": -0.363944896882347,
+              "qw": 0.9853794530169736,
+              "qx": 0.009239522110906447,
+              "qy": 0.1603715395621184,
+              "qz": -0.05677089132300007
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  565.4359130859375,
+                  500.494873046875
+                ],
+                "bl": [
+                  565.5640869140625,
+                  536.505126953125
+                ],
+                "br": [
+                  642.5214233398438,
+                  542.5007934570312
+                ],
+                "tr": [
+                  642.4583129882812,
+                  505.49749755859375
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.9010022878646851,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.624508146021323,
+                  "back_dot": 0.860916003744386,
+                  "pitch_degrees": -0.0026888790532345014,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 15.002688879053233,
+                  "reprojection_error": 0.043360831328204896,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.6234543466299076,
+                  "back_dot": 0.8605930788887531,
+                  "pitch_degrees": 12.364140029354882,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 2.635859970645117,
+                  "reprojection_error": 0.35381851323974967,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                36.01048201458583,
+                37.00334971679991
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.624508146021323,
+              "back_dot": 0.860916003744386,
+              "pitch_degrees": -0.0026888790532345014,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 15.002688879053233,
+              "reprojection_error": 0.043360831328204896,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.6234543466299076,
+              "back_dot": 0.8605930788887531,
+              "pitch_degrees": 12.364140029354882,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 2.635859970645117,
+              "reprojection_error": 0.35381851323974967,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.8511654849403913 y=0.14900971729729626 z=-0.30352477879624412 qw=0.97303011902702374 qx=-5.4128377596304673e-06 qy=-2.2832050876459723e-05 qz=-0.23067810237570155",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.8511654849403913,
+              "y": 0.14900971729729626,
+              "z": -0.3035247787962441,
+              "qw": 0.9730301190270237,
+              "qx": -5.412837759630467e-06,
+              "qy": -2.2832050876459723e-05,
+              "qz": -0.23067810237570155
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 4.962488533978492,
+            "position_error_m": 0.5007355386850867
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.31648343357287567,
+            "position_error_m": 0.028673275501615955
+          }
+        }
+      }
+    },
+    {
+      "name": "light_dim_0p75",
+      "frame_sha256": "e47bc902c5b9e2eded207d26de8cd459fae208fa94e6659d3e5e60c32b7726d2",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  660.2020874023438,
+                  516.6023559570312
+                ],
+                "bl": [
+                  658.5545654296875,
+                  545.2847900390625
+                ],
+                "br": [
+                  746.9732055664062,
+                  543.8729248046875
+                ],
+                "tr": [
+                  748.3743896484375,
+                  516.10791015625
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.8223499655723572,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.62489218784898,
+                  "back_dot": 0.7641086759866689,
+                  "pitch_degrees": 47.3404412421912,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 32.3404412421912,
+                  "reprojection_error": 0.24372332718623618,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.624969990171926,
+                  "back_dot": 0.7641449476640603,
+                  "pitch_degrees": -32.476416426638245,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 47.476416426638245,
+                  "reprojection_error": 0.2979138367246141,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                28.72971203337153,
+                27.80034811400186
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.62489218784898,
+              "back_dot": 0.7641086759866689,
+              "pitch_degrees": 47.3404412421912,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 32.3404412421912,
+              "reprojection_error": 0.24372332718623618,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.624969990171926,
+              "back_dot": 0.7641449476640603,
+              "pitch_degrees": -32.476416426638245,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 47.476416426638245,
+              "reprojection_error": 0.2979138367246141,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.849468855274508 y=-0.0032554981359943984 z=-0.31732058939107277 qw=0.91570270745559268 qx=0.0077047166269179068 qy=0.40139787029218083 qz=-0.017576649996451872",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.849468855274508,
+              "y": -0.0032554981359943984,
+              "z": -0.31732058939107277,
+              "qw": 0.9157027074555927,
+              "qx": 0.007704716626917907,
+              "qy": 0.4013978702921808,
+              "qz": -0.017576649996451872
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  654.9329833984375,
+                  509.4975280761719
+                ],
+                "bl": [
+                  655.0333862304688,
+                  547.5025634765625
+                ],
+                "br": [
+                  747.3975830078125,
+                  547.5060424804688
+                ],
+                "tr": [
+                  747.9723510742188,
+                  509.49951171875
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.8223499655723572,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.5061578047351163,
+                  "back_dot": 0.9853345507567925,
+                  "pitch_degrees": -2.20532046080503,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 17.20532046080503,
+                  "reprojection_error": 0.053625457091591375,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.506094448121069,
+                  "back_dot": 0.9853219642264947,
+                  "pitch_degrees": 16.991713156584208,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 1.9917131565842083,
+                  "reprojection_error": 0.17420122656917267,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                38.00516802375204,
+                38.01087658646711
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.5061578047351163,
+              "back_dot": 0.9853345507567925,
+              "pitch_degrees": -2.20532046080503,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 17.20532046080503,
+              "reprojection_error": 0.053625457091591375,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.506094448121069,
+              "back_dot": 0.9853219642264947,
+              "pitch_degrees": 16.991713156584208,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 1.9917131565842083,
+              "reprojection_error": 0.17420122656917267,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.7321139135518346 y=-0.00010782588433772788 z=-0.29927157578946939 qw=0.99981458019797786 qx=1.3320238199039148e-05 qy=-0.019243858991911847 qz=0.00069205289691151996",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.7321139135518346,
+              "y": -0.00010782588433772788,
+              "z": -0.2992715757894694,
+              "qw": 0.9998145801979779,
+              "qx": 1.3320238199039148e-05,
+              "qy": -0.019243858991911847,
+              "qz": 0.00069205289691152
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 6.200213664231188,
+            "position_error_m": 0.11482936123777271
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.23931991460963994,
+            "position_error_m": 0.003955236545951844
+          }
+        }
+      }
+    },
+    {
+      "name": "light_bright_1p15",
+      "frame_sha256": "da623382341f2292159260dbcb7a6e51162b972f21a1663afa3cf0a76b852b07",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  660.2296142578125,
+                  516.5939331054688
+                ],
+                "bl": [
+                  658.5690307617188,
+                  545.27099609375
+                ],
+                "br": [
+                  746.9393310546875,
+                  543.8843383789062
+                ],
+                "tr": [
+                  748.3552856445312,
+                  516.1109008789062
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.8208817839622498,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.6262194067484903,
+                  "back_dot": 0.7645146571308936,
+                  "pitch_degrees": 47.302165334474196,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 32.3021653344742,
+                  "reprojection_error": 0.2419598339413979,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.626296452611718,
+                  "back_dot": 0.764550561671325,
+                  "pitch_degrees": -32.43860586286686,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 47.43860586286686,
+                  "reprojection_error": 0.29602301468300574,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 0.0,
+                  "reject_reasons": [
+                    "pitch"
+                  ]
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                28.725101900277906,
+                27.80950840929961
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.6262194067484903,
+              "back_dot": 0.7645146571308936,
+              "pitch_degrees": 47.302165334474196,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 32.3021653344742,
+              "reprojection_error": 0.2419598339413979,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.626296452611718,
+              "back_dot": 0.764550561671325,
+              "pitch_degrees": -32.43860586286686,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 47.43860586286686,
+              "reprojection_error": 0.29602301468300574,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 0.0,
+              "reject_reasons": [
+                "pitch"
+              ]
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.8507855234066768 y=-0.0032523903923500591 z=-0.31749012798716425 qw=0.91583051761356948 qx=0.0078393384208188793 qy=0.40108926326540445 qz=-0.017900018826820976",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.850785523406677,
+              "y": -0.003252390392350059,
+              "z": -0.31749012798716425,
+              "qw": 0.9158305176135695,
+              "qx": 0.00783933842081888,
+              "qy": 0.40108926326540445,
+              "qz": -0.017900018826820976
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  654.9329833984375,
+                  509.4975280761719
+                ],
+                "bl": [
+                  655.0333862304688,
+                  547.5025634765625
+                ],
+                "br": [
+                  747.3975830078125,
+                  547.5060424804688
+                ],
+                "tr": [
+                  747.9723510742188,
+                  509.49951171875
+                ]
+              },
+              "armor_color": "BLUE",
+              "confidence": 0.8208817839622498,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 2.5061578047351163,
+                  "back_dot": 0.9853345507567925,
+                  "pitch_degrees": -2.20532046080503,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 17.20532046080503,
+                  "reprojection_error": 0.053625457091591375,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 2.506094448121069,
+                  "back_dot": 0.9853219642264947,
+                  "pitch_degrees": 16.991713156584208,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 1.9917131565842083,
+                  "reprojection_error": 0.17420122656917267,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                38.00516802375204,
+                38.01087658646711
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 2.5061578047351163,
+              "back_dot": 0.9853345507567925,
+              "pitch_degrees": -2.20532046080503,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 17.20532046080503,
+              "reprojection_error": 0.053625457091591375,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 2.506094448121069,
+              "back_dot": 0.9853219642264947,
+              "pitch_degrees": 16.991713156584208,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 1.9917131565842083,
+              "reprojection_error": 0.17420122656917267,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=2.7321139135518346 y=-0.00010782588433772788 z=-0.29927157578946939 qw=0.99981458019797786 qx=1.3320238199039148e-05 qy=-0.019243858991911847 qz=0.00069205289691151996",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 2.7321139135518346,
+              "y": -0.00010782588433772788,
+              "z": -0.2992715757894694,
+              "qw": 0.9998145801979779,
+              "qx": 1.3320238199039148e-05,
+              "qy": -0.019243858991911847,
+              "qz": 0.00069205289691152
+            }
+          ]
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": false,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 6.206396772559979,
+            "position_error_m": 0.1161559253934832
+          },
+          "contour_v3": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "corner_rmse_px": 0.23931991460963994,
+            "position_error_m": 0.003955236545951844
+          }
+        }
+      }
+    },
+    {
+      "name": "blank_2",
+      "frame_sha256": "2d1c9052c6a085ca2c545c71d20942be2dc41af8fa51c93e9cb43a528e2fd3d4",
+      "results": {
+        "original": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        },
+        "contour_v3": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": true,
+        "modes": {
+          "original": {
+            "detected_armors": 0,
+            "native_poses": 0,
+            "false_positive_pose_count": 0
+          },
+          "contour_v3": {
+            "detected_armors": 0,
+            "native_poses": 0,
+            "false_positive_pose_count": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "full_occlusion_2",
+      "frame_sha256": "261c9ecf7f9a666c333ca5b161d1a65647c556ff62481c43417da5cd7a17063d",
+      "results": {
+        "original": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        },
+        "contour_v3": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": true,
+        "modes": {
+          "original": {
+            "detected_armors": 0,
+            "native_poses": 0,
+            "false_positive_pose_count": 0
+          },
+          "contour_v3": {
+            "detected_armors": 0,
+            "native_poses": 0,
+            "false_positive_pose_count": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "one_bar_occlusion_2",
+      "frame_sha256": "69459007b313d10022cbdffa05f9e5bae56c845518719b469d0ddf7ac401c020",
+      "results": {
+        "original": {
+          "armors": [
+            {
+              "genre": "INFANTRY_3",
+              "corners_px": {
+                "tl": [
+                  671.9223022460938,
+                  515.8724975585938
+                ],
+                "bl": [
+                  670.1398315429688,
+                  544.1285400390625
+                ],
+                "br": [
+                  742.820068359375,
+                  544.7996826171875
+                ],
+                "tr": [
+                  744.3303833007812,
+                  516.3716430664062
+                ]
+              },
+              "armor_color": "DARK",
+              "confidence": 0.8502287268638611,
+              "candidates": [
+                {
+                  "candidate": 0.0,
+                  "z": 3.1777171199265544,
+                  "back_dot": 0.924840059550607,
+                  "pitch_degrees": 28.586121733028605,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 13.586121733028605,
+                  "reprojection_error": 0.02741483451938957,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                },
+                {
+                  "candidate": 1.0,
+                  "z": 3.1775904815653235,
+                  "back_dot": 0.9248129367273518,
+                  "pitch_degrees": -13.798269289810584,
+                  "expected_pitch_degrees": 14.999999999999998,
+                  "pitch_delta_degrees": 28.79826928981058,
+                  "reprojection_error": 0.14332893366095711,
+                  "depth_pass": 1.0,
+                  "facing_pass": 1.0,
+                  "pitch_pass": 1.0,
+                  "reject_reasons": []
+                }
+              ],
+              "original_robust_pnp_result": 1.0,
+              "lightbar_lengths_px": [
+                28.312208293694674,
+                28.4681310226544
+              ]
+            }
+          ],
+          "candidates": [
+            {
+              "candidate": 0.0,
+              "z": 3.1777171199265544,
+              "back_dot": 0.924840059550607,
+              "pitch_degrees": 28.586121733028605,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 13.586121733028605,
+              "reprojection_error": 0.02741483451938957,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            },
+            {
+              "candidate": 1.0,
+              "z": 3.1775904815653235,
+              "back_dot": 0.9248129367273518,
+              "pitch_degrees": -13.798269289810584,
+              "expected_pitch_degrees": 14.999999999999998,
+              "pitch_delta_degrees": 28.79826928981058,
+              "reprojection_error": 0.14332893366095711,
+              "depth_pass": 1.0,
+              "facing_pass": 1.0,
+              "pitch_pass": 1.0,
+              "reject_reasons": []
+            }
+          ],
+          "inference_calls": 1.0,
+          "armor_count": 1,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 1.0,
+          "native_pose id": "0 x=3.3977586983227566 y=-0.010883146696432989 z=-0.38886720716792056 qw=0.96774946043018706 qx=0.012764939571834246 qy=0.24655142823288578 qz=-0.050104205323840093",
+          "pnp_success": 2.0,
+          "pnp_candidates": 2.0,
+          "native_poses": [
+            {
+              "id": 0.0,
+              "x": 3.3977586983227566,
+              "y": -0.01088314669643299,
+              "z": -0.38886720716792056,
+              "qw": 0.9677494604301871,
+              "qx": 0.012764939571834246,
+              "qy": 0.24655142823288578,
+              "qz": -0.05010420532384009
+            }
+          ]
+        },
+        "contour_v3": {
+          "armors": [],
+          "candidates": [],
+          "inference_calls": 1.0,
+          "armor_count": 0,
+          "q_odom_camera_wxyz": "0.9971888181122075,0,0.074929707272742341,0",
+          "t_odom_camera": " 0.24627134665306608                    0 0.023461112882498723",
+          "original_estimator_output_count": 0.0,
+          "native_poses": []
+        }
+      },
+      "confidence_and_genre_preserved_for_retained_armors": true,
+      "offline_evaluation": {
+        "negative": true,
+        "modes": {
+          "original": {
+            "detected_armors": 1,
+            "native_poses": 1,
+            "false_positive_pose_count": 1
+          },
+          "contour_v3": {
+            "detected_armors": 0,
+            "native_poses": 0,
+            "false_positive_pose_count": 0
+          }
+        }
+      }
+    }
+  ],
+  "original_native_binary_sha256": "797e6ba7240aef29cacd8ac624afbba5cae1c751a62a7fa8eb41570451e17250",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "overlay_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c",
+  "diagnostic_main_sha256": "162012f5ef474042be4b228b4575ee075247320ad9c9c5a5a42673a8848a01e2",
+  "diagnostic_binaries_sha256": {
+    "original": "0209ff63255d83810ef2adb38ee6feba33a2af4474c1f7bf7b1f521721aab89a",
+    "contour_v3": "0cfbd76db94dbf55d7b34b2eac07d5bf3a18b0f8f2d0195e1e5426d477087f40"
+  },
+  "build_manifest_sha256": "a0782b5485a8602c84fd81f7303ad6030c2be8a5ad41006c8eb5f1e7b677762c",
+  "binding_sha256": "ce52c5c533a557591d379c9a82e204ed6e1158e22e9a528f2223bcd2d0d25e73",
+  "native_objects_original_and_unchanged": true,
+  "original_corner_object_replaced_only_in_candidate_diagnostic": true,
+  "original_thresholds_unchanged": true,
+  "candidate_name": "contour_v3",
+  "model_confidence_unchanged": true,
+  "model_inferences": 22,
+  "algorithm_receives_truth": false,
+  "truth_read_only_after_native_processes_exit": true,
+  "full_tracker_qualified": false,
+  "reused_diagnostic_report_sha256": "bbd08ff1719fb07dbe9cf6b96ef453963be4715d363b538a471851a72bb0c1e2"
+}

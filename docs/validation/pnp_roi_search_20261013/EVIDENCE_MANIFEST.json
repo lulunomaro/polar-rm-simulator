@@ -1,0 +1,14 @@
+{
+  "schema": "rmcs-pnp-roi-search-evidence-v1",
+  "files": {
+    "README.md": "2d366b012296e3fdfbf3f64cf923bc9ad5d74f2e3c3c3f62ac986e1040855d22",
+    "PAD12_REPORT.json": "98a089a7dd115b4243e1bb5282d04942bc6368ff4f1c07a0c6b2fea02fbced2f",
+    "PAD20_REPORT.json": "ed5e0d17abc0563ee7c97c12b85a6ef10a97bc809bae07f32b11dafc5ebb70af",
+    "PAD12_RESULT.txt": "b87077292477ce73100c0ad6dd99428444cfefbb0698c2a3d30391a9bb19adb6",
+    "PAD20_RESULT.txt": "7a4cabf1c02935bcb33ab4543c7e742130f024e2ff58207be5c5386d7e2ea95c"
+  },
+  "tool_sha256": "178f2bcf748af22c1b41f30f0e9e6eac51ea2fdf2cccea07ef673dd0b3660986",
+  "additional_model_inferences": 2,
+  "axis_end_0p9_executed": false,
+  "original_failure_preserved": true
+}

@@ -63,6 +63,31 @@ def args(**overrides):
 
 
 class ProfileTests(unittest.TestCase):
+    def test_contour_build_requires_matching_copied_source_and_descriptor_identity(self):
+        with native_fixture() as (root,path,value):
+            overlay=root/'overlays/corners_contour_v1.cpp';overlay.parent.mkdir()
+            overlay.write_bytes(b'unit source fixture, never executed')
+            frontend_hash=profile.digest(overlay)
+            source=value['source_identity']
+            source.update(tracker_patch_sha256=profile.T2_PATCH,
+                patch_identity_format='rmcs-own-source-composition.v1',
+                vision_frontend=dict(id='image_contour_corners_v1',source_path='overlays/corners_contour_v1.cpp',source_sha256=frontend_hash))
+            source['patch_sha256']=hash_bytes(json.dumps(dict(schema='rmcs-own-source-composition.v1',
+                tracker_patch_sha256=profile.T2_PATCH,vision_frontend_sha256=frontend_hash),sort_keys=True,separators=(',',':')).encode())
+            generated=root/'generated/corners_contour_v1.cpp';generated.parent.mkdir();generated.write_bytes(overlay.read_bytes())
+            manifest=root/'BUILD_MANIFEST.json'
+            build=json.loads(manifest.read_text())
+            build['input_identity']=dict(algorithm_identity=source,corner_refinement='contour-v1',
+                additional_source_files={'overlays/corners_contour_v1.cpp':frontend_hash},
+                generated_sha256={'generated/corners_contour_v1.cpp':frontend_hash})
+            manifest.write_text(json.dumps(build));value['frozen_build']['manifest_sha256']=profile.digest(manifest)
+            path.write_text(json.dumps(value))
+            with patch.object(profile,'RUNTIME_ROOT',root):
+                self.assertEqual(profile.own_registry(path,root/'out').descriptors()[0]['source_identity'],source)
+                generated.write_bytes(b'tampered generated source')
+                with self.assertRaisesRegex(ValueError,'Prepared contour source'):
+                    profile.validate_t2_spec(path)
+
     def test_own_registry_never_contains_baseline(self):
         with native_fixture() as (root, path, _):
             reg = profile.own_registry(path, root / 'out')
@@ -140,7 +165,12 @@ class LauncherTests(unittest.TestCase):
 
     def test_preserves_venv_python_symlink(self):
         with tempfile.TemporaryDirectory() as td:
-            path = Path(td) / 'python'; path.symlink_to(sys.executable)
+            path = Path(td) / 'python'
+            try:path.symlink_to(sys.executable)
+            except OSError as exc:
+                if getattr(exc,'winerror',None)==1314:
+                    self.skipTest('Windows symlink privilege unavailable; no elevated system changes requested')
+                raise
             self.assertEqual(launcher.executable(path), str(path))
             self.assertNotEqual(launcher.executable(path), str(path.resolve()))
 
@@ -152,12 +182,15 @@ class LauncherTests(unittest.TestCase):
 
     def test_server_ready_requires_native_identity(self):
         p = launcher.plan(args())
+        p['admission_policy_sha256']='b'*64
         ready = dict(event='ready', profile=profile.PROFILE, url=p['url'], spec_sha256='a',
+                     admission_policy_sha256=p['admission_policy_sha256'],
                      native_registered=True, transport='loopback_only', automatic_binding=False,
                      fire_authority='manual_only', adapter_ids=['aim_native_rmcs_v1'])
         launcher.verify_ready(ready, p, 'a')
         for changes in ({'profile': 'manual'}, {'native_registered': False}, {'spec_sha256': 'b'},
-                        {'automatic_binding': True}, {'fire_authority': 'native'}, {'adapter_ids': []}):
+                        {'automatic_binding': True}, {'fire_authority': 'native'}, {'adapter_ids': []},
+                        {'admission_policy_sha256':None},{'admission_policy_sha256':'c'*64}):
             with self.assertRaises(ValueError):
                 launcher.verify_ready(dict(ready, **changes), p, 'a')
 
@@ -231,6 +264,7 @@ class JsonAdapterTests(unittest.TestCase):
             with self.assertRaises(Exception):
                 a.act(o)
             self.assertTrue(a.failed); self.assertIsNotNone(child.poll())
+            self.assertFalse(a.thread.is_alive())
         finally:
             a.close(); td.cleanup()
 
@@ -240,6 +274,7 @@ class JsonAdapterTests(unittest.TestCase):
             with self.assertRaisesRegex(ContractError, 'oversized'):
                 a.reset(dict(robot_id='red_sentry', episode=1, binding_epoch=1))
             self.assertTrue(a.failed)
+            self.assertFalse(a.thread.is_alive())
         finally:
             a.close(); td.cleanup()
 
@@ -250,6 +285,18 @@ class JsonAdapterTests(unittest.TestCase):
                 a.reset(dict(robot_id='red_sentry', episode=1, binding_epoch=1))
         finally:
             a.close(); td.cleanup()
+
+    def test_close_joins_idle_io_thread_and_prevents_instance_restart(self):
+        a=self.adapter()
+        try:
+            o=self.observation();context={k:o[k] for k in ('episode','robot_id','binding_epoch')}
+            a.reset(context);child=a.process
+            a.close()
+            self.assertIsNotNone(child.poll())
+            self.assertFalse(a.thread.is_alive())
+            with self.assertRaisesRegex(ContractError,'cannot_restart'):a.reset(context)
+            a.close()
+        finally:a.close()
 
     def test_serialization_cannot_refresh_action_timeout(self):
         a = self.adapter()
@@ -303,6 +350,24 @@ class JsonAdapterTests(unittest.TestCase):
             a = registry.create('custom_navigation_example', {})
             with self.assertRaisesRegex(ContractError, 'changed_after_registration'):
                 a.reset(dict(robot_id='red_sentry', episode=1, binding_epoch=1))
+
+    def test_registration_hash_binds_the_same_snapshot_as_its_command(self):
+        with tempfile.TemporaryDirectory() as td:
+            path=Path(td)/'adapters.json'
+            value=profile.read_json(ROOT/'examples/adapters.json')
+            path.write_text(json.dumps(value))
+            from rm_match.deployment import json_adapter
+            original_reader=json_adapter.read_json_snapshot
+            def replace_before_read(filename):
+                revised=deepcopy(value);revised['adapters'][0]['label']='New local revision'
+                path.write_text(json.dumps(revised))
+                return original_reader(filename)
+            registry=Registry()
+            with patch.object(json_adapter,'read_json_snapshot',side_effect=replace_before_read):
+                register_json_adapters(registry,path)
+            adapter=registry.create(value['adapters'][0]['adapter_id'],{})
+            self.assertEqual(adapter.registration['label'],'New local revision')
+            self.assertEqual(adapter.manifest_sha,profile.digest(path))
 
 
 class SmokeClassificationTests(unittest.TestCase):

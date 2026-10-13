@@ -32,4 +32,16 @@ The generated spec binds actual binary/config/model hashes and absolute local pa
 
 The source recovery and portable-setup manifests remain the historical record of static preparation and ten synthetic setup tests. A later [public build-validation report](NATIVE_BUILD_VALIDATION.json) separately records the actual clean compile and five bounded software smoke cases. The build used the immediately preceding build-script snapshot; its only subsequent change moves the existing ELF check before success recording. The final reviewed ELF validator and spec generator were checked against the actual compiled binary; the final script was not separately recompiled. Both script hashes and this distinction are retained in the report.
 
-The repository's original 190 source blobs, exact deterministic-function fixture, 94 recovered native source files, and model bytes remain unchanged. No compiled binary, external library, raw build log, generated local spec, private calibration, or recovery archive is included. Rebuild on the destination machine and independently qualify runtime behavior there.
+The historical extraction sealed 190 source blobs and one deterministic-function fixture. Subsequent simulator changes are separately attributed by original/current hash in `DEVELOPMENT_CHANGES.json`; that historical manifest is not overwritten. The 94 recovered native files and model bytes remain unchanged. Rebuild on the destination machine and independently qualify runtime behavior there.
+
+## Explicit image frontend development revision
+
+The original corner optimizer is retained for explicit reproduction with `--corner-refinement original`. New CLI builds default to `contour-v3`, following the independent rendered-frame check and the actual 24-frame static offline tracking/control chain. The separately authored image-contour frontend uses actual colored lightbar pixels, rejects incomplete pairs, and retains the learned model confidence/genre and original PnP gates. Evidence and failures are recorded in [the contour report](validation/pnp_contour_v3_20261013/README.md) and [the static chain report](validation/pnp_contour_v3_static_chain_20261013/README.md). This is not live or full-match qualification.
+
+Build it explicitly with a new output directory:
+
+```sh
+python3 operator_native/runtime/build_portable.py build --corner-refinement contour-v3 --out /tmp/rmcs-contour-v3 --jobs 4 --prefix /absolute/openvino/runtime/cmake
+```
+
+Each frontend version has a distinct source SHA and composite patch identity containing the original own-T2 tracker patch SHA. Build manifests bind the copied frontend bytes. Deployment rejects unknown identities, mismatching source/build bytes and substitution of the historical patch identity. Historical saved-frame helpers continue to require the original identity. The repaired default retains stationary-only and manual-fire restrictions; selecting it does not imply realtime or full-match qualification.

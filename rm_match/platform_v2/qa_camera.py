@@ -1,4 +1,4 @@
-"""Bounded real MuJoCo/EGL camera qualification; loopback only, not native aim/LAN."""
+"""Bounded real MuJoCo calibrated-camera QA; loopback only, not native aim/LAN."""
 import argparse
 import base64
 import io
@@ -11,7 +11,7 @@ from .backend import MuJoCoBackend
 from .camera import CameraProvider,MuJoCoCameraRenderer
 from .runtime import PlatformRuntime
 from .server import PlatformHTTPServer,TransportConfig
-from .qa_multiclient import HTTPClient
+from .qa_multiclient import HTTPClient,local_qa_admission
 
 
 def run(out):
@@ -29,14 +29,15 @@ def run(out):
             return super().render(cap)
         def close(self):identities['closed']=threading.get_ident();super().close()
     backend=MuJoCoBackend(camera=True);provider=CameraProvider(backend._sim,renderer_factory=RecordedRenderer,total_fps=2.)
-    runtime=PlatformRuntime(backend,camera=provider);server=PlatformHTTPServer(TransportConfig(port=0),runtime)
+    runtime=PlatformRuntime(backend,camera=provider);admission,credentials=local_qa_admission(runtime.control.robot_ids)
+    server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=admission),runtime)
     def authority():
         try:runtime.run(max_wall_seconds=30.)
         except Exception as exc:errors.append(type(exc).__name__+': '+str(exc))
     http=threading.Thread(target=server.serve_forever,daemon=True,name='qa-camera-http')
     physics=threading.Thread(target=authority,daemon=True,name='qa-camera-physics')
     http.start();physics.start();base=f'http://127.0.0.1:{server.server_address[1]}'
-    a,b,s=[HTTPClient(base) for _ in range(3)]
+    a,b,s=[HTTPClient(base,admission_credential=credentials[role]) for role in ('operator','operator','spectator')]
     def check(name,condition,evidence=None):
         checks.append(dict(name=name,passed=bool(condition),evidence=evidence))
         if not condition:raise RuntimeError('Failed check: '+name)
@@ -59,7 +60,9 @@ def run(out):
         for name,value,rid,watch in [('a',fa,ra,wa),('b',fb,rb,wb),('spectator',fs,ra,ws)]:
             check(name+'_correct_robot_episode_generation',value['robot_id']==rid and value['episode']==0 and value['watch_epoch']==watch['watch_epoch'])
             check(name+'_fresh_exposure_not_encode_restamped',0<=value['age_wall_s']<=value['max_frame_age_wall_s'] and value['capture_wall_monotonic']<=value['encode_completed_wall_monotonic'])
-            check(name+'_real_full_resolution_calibration',value['source']=='simulated_raw_camera_display_jpeg' and value['full_frame'] and (value['image']['width'],value['image']['height'])==(1440,1080) and rid in value['calibration']['extrinsics']['calibration_id'])
+            source='simulated_raw_camera_display_jpeg' if name=='spectator' else 'operator_camera_display_v1'
+            check(name+'_real_full_resolution_calibration',value['source']==source and value['full_frame'] and (value['image']['width'],value['image']['height'])==(1440,1080) and rid in value['calibration']['extrinsics']['calibration_id'])
+            if name!='spectator':check(name+'_operator_pixels_without_pose',not any(k.startswith('own_') for k in value) and 'profile' not in value['calibration'])
             raw=base64.b64decode(value['image']['data_base64'],validate=True);im=Image.open(io.BytesIO(raw));im.load()
             check(name+'_jpeg_decodes_actual_dimensions',im.size==(1440,1080) and len(im.getextrema())==3 and any(high>low for low,high in im.getextrema()))
             (out/(name+'-real-camera.jpg')).write_bytes(raw);samples[name]=slim(value)
@@ -90,7 +93,10 @@ def run(out):
         check('renderer_cleanly_closes_own_context',provider.wait_closed(3) and identities['closed']==identities['created'])
         check('physics_no_error',not errors and runtime.error is None and not physics.is_alive())
         return dict(scope='same_machine_loopback_real_cameras_not_LAN_or_native_aim',passed=True,checks=checks,samples=samples,renderer=identities,
-            limitations=['CPU llvmpipe low FPS only','source YAML calibration resolution association remains ASSUMED','native aim live inference not exercised','no third party models or CAD bundled'])
+            limitations=['2 total FPS local camera QA; not the candidate 25 FPS operator target',
+                'actual GL renderer identity is recorded in renderer; no full-match qualification',
+                'source YAML calibration resolution association remains ASSUMED',
+                'native aim live inference not exercised','no third party models or CAD bundled'])
     finally:
         runtime.request_stop();physics.join(2);provider.wait_closed(3);server.shutdown();server.server_close();http.join(2)
 

@@ -8,6 +8,7 @@ A transport pass is independent of native 3D/aim quality and live qualification.
 from __future__ import annotations
 import argparse
 from collections import Counter
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -28,7 +29,7 @@ CRITERIA = dict(profile='offline_modeled_latency_v1', captures=24, wall_limit_s=
     transport_required=['24 rendered exposures', '13 actual own T2 request/result pairs after original warmup',
         'original pinned Qt client admits a fresh actual camera frame', 'zero fire', 'error-free clean shutdown'],
     native_control_required=['accepted active native gimbal target consumed by physics'],
-    expected_known_failure='Recorded fixed-scene saved-frame diagnostic: learned corners were rejected by original PnP pitch gate; no native gimbal expected in this reproduction',
+    historical_baseline_failure='Original learned corners were rejected by the unchanged PnP pitch gate. A separately identified contour-v3 build is expected to restore pose and native gimbal consumption; the actual execution decides qualification.',
     scope='Single fixed-scene OFFLINE diagnostic; not realtime, full-match, visible desktop, aim-quality or cross-PC qualification')
 
 
@@ -93,15 +94,51 @@ def cleanup_resources(*, camera, runtime, driver, server, http, errors):
     return camera_closed
 
 
+def inspect_native_cleanup(runtime, children):
+    """Local resource audit, independent of public state or a terminal label."""
+    worker = getattr(runtime, 'worker', None)
+    status = getattr(runtime, 'shutdown_status', None)
+    processes = [dict(pid=p.pid, returncode=p.poll(),
+        stdin_closed=p.stdin is None or p.stdin.closed,
+        stdout_closed=p.stdout is None or p.stdout.closed) for p in children]
+    value = dict(shutdown_status=status,
+        worker_thread_alive=worker is not None and worker.thread.is_alive(),
+        worker_instance_released=worker is None or worker._instance is None,
+        runtime_error=getattr(runtime, 'error', None), native_processes=processes)
+    value['clean'] = bool(type(status) is dict and status.get('clean') is True
+        and status.get('unfinished_slots') == [] and status.get('lifecycle_errors') == []
+        and not value['worker_thread_alive'] and value['worker_instance_released']
+        and value['runtime_error'] is None
+        and all(p['returncode'] is not None and p['stdin_closed'] and p['stdout_closed'] for p in processes))
+    return value
+
+
 def run(a):
+    from offline_smoke.preload_contract import create_request,wait_ready
     from rm_match.deployment.profile import validate_t2_spec
     from rm_match.deployment.launcher import check_client, python_probe
+    from rm_match.deployment.enrollment import provision_operator
+    from rm_match.platform_v2.admission import AdmissionPolicy
     spec, specsha = validate_t2_spec(a.native_spec)
     client_identity = check_client(a.client_root)
     dependencies = dict(simulator=python_probe(sys.executable, ['mujoco', 'numpy', 'PIL', 'cv2']),
         client=python_probe(a.client_python, ['PySide6', 'numpy', 'cv2']))
     out = a.out.absolute()
     out.mkdir(parents=True, exist_ok=False)
+    execution_sources = ['tools/smoke_offline_deployment.py',
+        'tools/offline_smoke/offline_client_driver.py', 'tools/offline_smoke/preload_contract.py',
+        'rm_match/platform_v2/offline_runtime.py', 'rm_match/platform_v2/runtime.py',
+        'rm_match/platform_v2/offline_native.py', 'rm_match/platform_v2/native_adapter.py',
+        'rm_match/integrations/rmcs_process.py', 'rm_match/operator/source_aim.py',
+        'rm_match/platform_v2/state_projection.py']
+    execution_hashes = {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in execution_sources}
+    (out/'EXECUTED_SOURCE.json').write_text(json.dumps(dict(
+        phase='Before renderer, Qt client and runtime creation',
+        file_sha256=execution_hashes, native_spec_sha256=specsha,
+        client_identity=client_identity), indent=2)+'\n')
+    preload_request=create_request(out)
+    credential=provision_operator(out/'admission.json')
+    admission=AdmissionPolicy.from_manifest(out/'admission.json')
     (out / 'ACCEPTANCE_CRITERIA.json').write_text(json.dumps(CRITERIA, indent=2) + '\n')
     os.environ.setdefault('MUJOCO_GL', 'egl')
     os.environ['XDG_CACHE_HOME'] = str(out / 'cache')
@@ -126,8 +163,15 @@ def run(a):
               scene_origin='explicit_public_analytic_static_test')], indent=2))
     rows, timings, errors, renderer_errors = [], [], [], []
     counts = Counter()
+    native_adapters, native_children = [], []
     ready = threading.Event()
     def trace(v):
+        if v['event'] == 'native_request':
+            for adapter in native_adapters:
+                wrapper = adapter.process
+                child = getattr(wrapper, 'process', None)
+                if child is not None and child not in native_children:
+                    native_children.append(child)
         rows.append(v)
         counts[v['event']] += 1
         if v['event'] == 'offline_physics':
@@ -159,22 +203,37 @@ def run(a):
         if not ready.wait(10) or renderer_errors:
             raise RuntimeError('Renderer initialization failed: ' + str(renderer_errors))
         def factory():
-            return OfflineNativeAdapter(dict(fov_degrees=180., circle_radius_x_norm=1.,
+            adapter = OfflineNativeAdapter(dict(fov_degrees=180., circle_radius_x_norm=1.,
                 circle_radius_y_norm=1.), spec_path=a.native_spec, out=out/'native',
                 registered_spec_sha=specsha, trace=trace)
+            native_adapters.append(adapter)
+            return adapter
         runtime = OfflineRuntime(backend, camera=camera, native_factory=factory,
             captures=24, host_delay_s=0., trace=trace)
-        server = PlatformHTTPServer(TransportConfig(port=0), runtime)
+        server = PlatformHTTPServer(TransportConfig(port=0,admission_policy=admission), runtime)
         http = threading.Thread(target=server.serve_forever, daemon=True)
         http.start()
         url = 'http://127.0.0.1:' + str(server.server_address[1])
-        env = dict(os.environ, QT_QPA_PLATFORM='offscreen')
+        env = dict(os.environ, QT_QPA_PLATFORM='offscreen',POLAR_SIM_ADMISSION_CREDENTIAL=credential)
         env.pop('PYTHONPATH', None)
         with (out / 'client.log').open('wb') as log:
+            preload_started=time.monotonic()
             driver = subprocess.Popen([str(Path(a.client_python).absolute()),
                 str(ROOT/'tools/offline_smoke/offline_client_driver.py'),
                 str(a.client_root.absolute()), url, str(out)], cwd=a.client_root,
                 env=env, stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT)
+            preload=wait_ready(driver,out,preload_request,preload_started,timeout_s=15.)
+            preload_work=dict(physics_time_s=float(sim.time),captures=camera.capture_count,
+                raw_published=camera.raw_published,native_requests=counts.get('native_request',0))
+            if any(preload_work.values()):
+                raise RuntimeError('Camera/native/physics work occurred before startup admission')
+            (out/'PRELOAD_ADMISSION.json').write_text(json.dumps({
+                'startup_ready':preload,'setup_seconds':time.monotonic()-preload_started,
+                'pre_run_work_counters':preload_work,
+                'setup_bound_s':15.,'parent_initial_binding_watchdog_s':5.,
+                'client_watch_admission_bound_s':3.5,
+                'readiness_is_network_or_lease_ack':False,
+                'physics_or_capture_before_readiness':False},indent=2)+'\n')
             runtime.run(max_wall_seconds=90.)
     except Exception as exc:
         errors.append(type(exc).__name__ + ': ' + str(exc))
@@ -187,7 +246,12 @@ def run(a):
             driverdata = json.loads((out/'driver.json').read_text())
         except (ValueError, OSError) as exc:
             errors.append('Unreadable original-client report: ' + str(exc))
-    resources = (camera_closed and (http is None or not http.is_alive())
+    native_cleanup = inspect_native_cleanup(runtime, native_children)
+    after_source_hashes = {p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in execution_sources}
+    source_unchanged = after_source_hashes == execution_hashes
+    if not source_unchanged:
+        errors.append('Execution source changed during actual run')
+    resources = (native_cleanup['clean'] and camera_closed and (http is None or not http.is_alive())
         and (runtime is None or not runtime.worker or not runtime.worker.thread.is_alive()))
     state = runtime.state if runtime is not None else 'SETUP_FAILED'
     completed = runtime.completed_captures if runtime is not None else 0
@@ -198,7 +262,9 @@ def run(a):
         driver_exit=driver.returncode if driver is not None else None,
         driver={k: v for k, v in driverdata.items() if k != 'last_state'},
         native_binary_sha256=spec['sha256']['binary'], spec_sha256=specsha,
-        client_identity=client_identity, dependencies=dependencies, errors=errors)
+        client_identity=client_identity, dependencies=dependencies, errors=errors,
+        native_cleanup=native_cleanup, execution_source_unchanged=source_unchanged,
+        execution_source_sha256=hashlib.sha256((out/'EXECUTED_SOURCE.json').read_bytes()).hexdigest())
     result.update(classify_result(state=state, captures=completed, counts=counts,
         driver=driverdata, resources_closed=resources and not errors,
         driver_exit=result['driver_exit']))

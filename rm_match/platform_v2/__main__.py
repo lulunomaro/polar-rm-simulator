@@ -16,9 +16,13 @@ def main():
     parser.add_argument('--virtual-resupply',choices=('disabled','v1-baseline'),default='disabled',
         help='Explicit scenario baseline automatic virtual ammo purchase; not full official-rule qualification')
     parser.add_argument('--native-spec',help='Explicit trusted local frozen native source specification')
+    parser.add_argument('--admission-manifest',required=True,
+        help='Local server-owned role/robot grants; no implicit HTTP enrollment')
     parser.add_argument('--native-out',help='Local native process output root; never a network-selected executable')
     parser.add_argument('--real-time-factor',type=float,default=1.,help='Maximum simulation/wall rate; wall leases and deadlines never scale')
     args=parser.parse_args()
+    from .admission import AdmissionPolicy
+    admission=AdmissionPolicy.from_manifest(args.admission_manifest)
     if bool(args.native_spec)!=bool(args.native_out):parser.error('--native-spec and --native-out are required together')
     if args.native_spec and not args.camera:parser.error('Native source requires --camera')
     if not 0<args.real_time_factor<=1:parser.error('--real-time-factor must be within (0, 1]')
@@ -30,7 +34,7 @@ def main():
     from .adapters import default_registry
     registry=default_registry(native_spec=args.native_spec,native_out=args.native_out)
     runtime=PlatformRuntime(backend,camera=camera,registry=registry)
-    server=PlatformHTTPServer(TransportConfig(port=args.port),runtime)
+    server=PlatformHTTPServer(TransportConfig(port=args.port,admission_policy=admission),runtime)
     http=threading.Thread(target=server.serve_forever,name='sim-v2-http',daemon=True);http.start()
     def stop(*_):runtime.request_stop()
     signal.signal(signal.SIGINT,stop);signal.signal(signal.SIGTERM,stop)

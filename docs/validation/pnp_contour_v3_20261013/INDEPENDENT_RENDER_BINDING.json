@@ -1,0 +1,137 @@
+{
+  "schema": "rmcs-pnp-render-holdout-v1",
+  "case_count": 11,
+  "suite": "independent2",
+  "source_xml_sha256": "6e1d3574ca8238eaa3fd43340aa27ab48ae4f7c5eeb84c1407d57fb1e3f3ab58",
+  "predeclared_cases_sha256": "588449007f6ead28b8e56d0fbe71d8def0bc7668702aff18fef00466900a795e",
+  "algorithm_inputs_sha256": "bf61b529ce2cbf789c4840321372c3b9fbf01d2cc94d2c6b6ae4bd1a69be7c1c",
+  "renderer_identities": [
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    }
+  ],
+  "profile": {
+    "name": "rmcs_config_KD_assumed_1440x1080_v1_overscan64_v2",
+    "render_resolution": [
+      1568,
+      1208
+    ],
+    "overscan_pixels": 64,
+    "resolution": [
+      1440,
+      1080
+    ],
+    "K": [
+      [
+        1722.231837421459,
+        0.0,
+        701.3056440882832
+      ],
+      [
+        0.0,
+        1724.876404292754,
+        564.5821718351237
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "distortion": [
+      -0.064232403853946,
+      -0.087667493884102,
+      0.0,
+      0.0,
+      0.792381808294582
+    ],
+    "ideal_render_K": [
+      [
+        1724.876404292754,
+        0.0,
+        783.5
+      ],
+      [
+        0.0,
+        1724.876404292754,
+        603.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "ideal_render_fovy_degrees": 38.597447888301296,
+    "source_repository": "lulunomaro/polar-upper-computer-control",
+    "source_commit": "fafe897dfffd5989789871225d7ca5d551b0674f",
+    "source_path": "sentry-rmcs/autaim/autoaim_config.yaml",
+    "source_git_blob": "4e63337a47c929d977f2af45807780ce976e27f5",
+    "calibration_resolution_association": "ASSUMED; absent from source YAML",
+    "optical_model": "ideal centered MuJoCo render then source-configured Brown-Conrady lens warp",
+    "exposure_us_configured": 2000,
+    "exposure_blur_modeled": false,
+    "gain": null,
+    "binning": null,
+    "sensor_roi": null
+  },
+  "physics_steps": 0,
+  "real_mujoco_render": true,
+  "positive_fov_check_required": true,
+  "own_gimbal_pitch_radians": -0.15,
+  "image_painting": false,
+  "model_inferences": 0,
+  "truth_isolated_from_algorithm_inputs": true
+}

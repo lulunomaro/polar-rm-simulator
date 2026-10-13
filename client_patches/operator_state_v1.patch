@@ -1,0 +1,1135 @@
+diff --git a/rm_client/sim_operator_runtime.py b/rm_client/sim_operator_runtime.py
+index 9f129a1..fa43feb 100644
+--- a/rm_client/sim_operator_runtime.py
++++ b/rm_client/sim_operator_runtime.py
+@@ -255,9 +255,10 @@ class OperatorRuntime:
+         state.chassis_power_w=state.power_limit=state.capacitor_percent=state.heat_cooldown_rate=0
+         state.remaining_economy=0;state.supply_zone_known=False
+         state.match_mode='RMUL3v3';state.match_title='MuJoCo operator / SIM ONLY'
+-        if telemetry is None:
++        if telemetry is None or telemetry.get('own') is None:
+             state.current_stage='NOT_STARTED';state.stage_countdown_sec=0;state.current_health=0
+             state.max_health=1;state.remaining_ammo=0;state.current_heat=0;state.max_heat=1;state.map_robots=[]
++            state.robot_rows=[]
+             return
+         own=telemetry['own'];state.robot_id=IDS[own['robot_id']];state.alliance_color=own['team'].title()
+         state.robot_profile={'hero':'Hero','infantry':'Infantry1','sentry':'Sentinel'}[own['role']]
+diff --git a/rm_client/sim_platform_client.py b/rm_client/sim_platform_client.py
+index cb501ce..2189881 100644
+--- a/rm_client/sim_platform_client.py
++++ b/rm_client/sim_platform_client.py
+@@ -22,11 +22,13 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
+     def redirect_request(self,*args,**kwargs):raise ClientError('Redirect forbidden')
+ 
+ class PlatformClient:
+-    def __init__(self,url,*,timeout=.25,control_profile='legacy_v2',diagnostic_clock=time.monotonic):
++    def __init__(self,url,*,timeout=.25,control_profile='legacy_v2',diagnostic_clock=time.monotonic,admission_credential=None):
+         u=urllib.parse.urlsplit(url)
+         if (u.scheme!='http' or u.hostname!='127.0.0.1' or u.username or u.password or u.path not in ('','/') or u.query or u.fragment or u.port is None or not 1024<=u.port<=65535):raise ValueError('Explicit nonprivileged loopback HTTP endpoint required')
+         if not 0<timeout<=2:raise ValueError('Bounded timeout required')
+         if type(control_profile) is not str or control_profile not in ('legacy_v2','server_window_v1'):raise ValueError('Unknown control profile')
++        if admission_credential is not None and (type(admission_credential) is not str or not 32<=len(admission_credential)<=256):raise ValueError('Invalid admission credential')
++        self._admission_credential=admission_credential
+         self._diagnostic_failures=0;self._diagnostics=DiagnosticLog(clock=diagnostic_clock);self._diagnostic_local=threading.local()
+         self.control_profile=control_profile;self._windows={};self._last_window_ids={};self._bindings={};self._adapter_seq={}
+         self.url=f'http://127.0.0.1:{u.port}';self.timeout=timeout
+@@ -104,6 +106,7 @@ class PlatformClient:
+             if self._token is not None:raise ClientError('Session already open')
+             if role not in ('operator','spectator'):raise ValueError('Unknown session role')
+             body={'role':role}
++            if self._admission_credential is not None:body['credential']=self._admission_credential
+             if self.control_profile!='legacy_v2':body['control_profile']=self.control_profile
+             result=self._request('/v2/sessions',body,authenticated=False)
+             if (type(result.get('token')) is not str or not 1<=len(result['token'])<=256 or type(result.get('session_id')) is not str or not 1<=len(result['session_id'])<=128 or result.get('role')!=role or not self._number(result.get('session_expires')) or not self._number(result.get('server_monotonic_s')) or result['session_expires']<=result['server_monotonic_s']):self._invalid('Invalid session response')
+@@ -111,7 +114,7 @@ class PlatformClient:
+                 if result.get('control_profile')!=self.control_profile or type(result.get('control_window_version')) is not int or result['control_window_version']!=1 or not self._number(result.get('control_window_ttl_s')) or not 0<result['control_window_ttl_s']<=.15:self._invalid('Required server input window profile unavailable')
+             self._token=result['token'];self.session_id=result['session_id'];self.role=role;self.uncertain=False
+             # Bearer stays memory-only and is deliberately absent from return data.
+-            return {k:v for k,v in result.items() if k!='token'}
++            return {k:v for k,v in result.items() if k not in ('token','credential','admission_credential')}
+     def watch(self,robot_id):
+         result=self._request('/v2/watch',{'robot_id':robot_id})
+         if result.get('robot_id')!=robot_id or not self._epoch(result.get('watch_epoch')):self._invalid('Invalid watch acknowledgement')
+diff --git a/rm_client/sim_platform_runtime.py b/rm_client/sim_platform_runtime.py
+index fd19c74..f045126 100644
+--- a/rm_client/sim_platform_runtime.py
++++ b/rm_client/sim_platform_runtime.py
+@@ -69,12 +69,14 @@ class PlatformRuntime(OperatorRuntime):
+             self._generation=t._generation;self.disarm('New watch/session; fresh F2 required')
+         data,video,*_=t.snapshot()
+         if data is None or video is None or not t.selection_ready():self.note='Need current watched state and camera before requesting control';return False
+-        if data['robot_id'] not in IDS or data['phase']!='running' or not data['own']['alive']:
++        if data['robot_id'] not in IDS or data['phase']!='running':
+             self.note='Watched robot/profile is not eligible for manual control';return False
+         if t.owned_robot!=t.watch_robot:
+             try:t.request_claim();self.note='Claim requested; input remains disarmed. After acknowledgement press F2 again.'
+             except (ValueError,RuntimeError) as exc:self.note=str(exc)
+             return False
++        if not t.operator_hud_ready():
++            self.note='Waiting for actual own gimbal HUD under current leases';return False
+         if self.backend and self.backend.safety.estop_active:self.backend.safety.estop_active=False
+         self.armed=t.activate();self.note=('V2 adapter plan authorized; waiting for bind/sensor feedback' if t.plan else 'V2 manual operator: WASD / absolute mouse target / left click') if self.armed else 'Lease/camera not ready'
+         return self.armed
+@@ -85,7 +87,7 @@ class PlatformRuntime(OperatorRuntime):
+         data,video,*_=self.transport.snapshot()
+         allowed=bool(self.armed and self.transport.role=='operator' and not self.transport.client.uncertain
+             and window.isActiveWindow() and window.combat_control_input_allowed()
+-            and data is not None and video is not None and data['own']['alive'] and data['phase']=='running')
++            and data is not None and video is not None and self.transport.operator_hud_ready())
+         if self.armed and not allowed:self.disarm('V2 focus/state/camera lost; controls released');window.control.reset_inputs()
+         self.transport.heartbeat(allowed)
+         if self.armed and not self.transport._focus:self.armed=False;self.note=self.transport.note;window.control.reset_inputs()
+@@ -122,11 +124,22 @@ class PlatformRuntime(OperatorRuntime):
+             state.mujoco_telemetry_valid=False;state.mujoco_partial=True;return
+         super().apply_state(state)
+         required=('hp','max_hp','ammo','heat','heat_max')
+-        complete=bool(state.mujoco_telemetry_valid and data and all(data['own'].get(k) is not None for k in required)
++        limited=self.transport.role=='operator'
++        state.mujoco_operator_limited=limited
++        own=(data or {}).get('own') or {}
++        complete=bool(state.mujoco_telemetry_valid and data and all(own.get(k) is not None for k in required)
+             and data['own']['max_hp']>0 and data['own']['heat_max']>0
+-            and data.get('remaining_seconds') is not None and all(data.get('vp',{}).get(k) is not None for k in ('red','blue')))
++            and (limited or (data.get('remaining_seconds') is not None and all(data.get('vp',{}).get(k) is not None for k in ('red','blue')))))
+         state.mujoco_telemetry_valid=complete;state.mujoco_partial=bool(data and not complete)
+         state.mujoco_session_role=self.transport.role;state.match_title='MuJoCo platform v2 / '+self.transport.role
+         if not complete:
+-            missing=tuple(k for k in required if data is None or data['own'].get(k) is None)
++            missing=tuple(k for k in required if own.get(k) is None)
+             state.mujoco_unknown_fields=tuple(state.mujoco_unknown_fields)+missing
++        if limited:
++            state.map_robots=[];state.map_markers=[];state.mujoco_map_available=False
++            state.mujoco_unknown_fields=tuple(state.mujoco_unknown_fields)+('position','chassis_yaw_deg','absolute_gimbal_yaw_deg','ally_victory_points','enemy_victory_points')
++            state.ally_victory_points=state.enemy_victory_points=None
++            if own:
++                # Gimbal HUD is relative to the owned robot, no chassis/world yaw.
++                import math
++                state.relative_yaw_deg=math.degrees(own['gimbal_yaw'])
+diff --git a/rm_client/sim_platform_transport.py b/rm_client/sim_platform_transport.py
+index e0b791b..205b857 100644
+--- a/rm_client/sim_platform_transport.py
++++ b/rm_client/sim_platform_transport.py
+@@ -7,6 +7,7 @@ from __future__ import annotations
+ import base64
+ import copy
+ import math
++import os
+ import threading
+ import time
+ from .sim_platform_client import PlatformClient,ClientError
+@@ -46,12 +47,55 @@ def integer(v,label,minimum=0):
+     if type(v) is not int or not minimum<=v<=2**53-1:raise ValueError('Invalid '+label)
+     return v
+ 
++def validate_operator_clock(data):
++    """Scheduler/lifecycle metadata only; no world objects or error text."""
++    offline_fields={'offline_final_state','completed_captures','offline_halt_code'}
++    profile=data.get('clock_profile')
++    if profile is None:
++        if offline_fields.intersection(data):raise ValueError('Offline lifecycle requires explicit clock profile')
++        return
++    if type(profile) is not dict:raise ValueError('Invalid operator clock profile')
++    kind=profile.get('kind')
++    if kind=='wall_deadline_live':
++        if set(profile)-{'kind','simulation_time_unit','wall_clock','real_time_factor_limit'} or offline_fields.intersection(data):raise ValueError('Unexpected live clock fields')
++        if profile.get('simulation_time_unit')!='seconds' or profile.get('wall_clock')!='server_monotonic':raise ValueError('Unknown live clock semantics')
++        if finite(profile.get('real_time_factor_limit'),'real time factor',0,1)<=0:raise ValueError('Invalid real time factor')
++        return
++    if kind!='offline_modeled_latency_v1':raise ValueError('Unknown operator clock kind')
++    allowed={'kind','label','barrier_state','simulation_tick','simulation_ns','episode_origin_mj_time_ns',
++        'delays_are_engineering_configuration_not_device_calibration','host_delay_s','wall_elapsed_s','delays'}
++    if set(profile)-allowed:raise ValueError('Unexpected offline clock fields')
++    if 'label' in profile and profile['label']!='OFFLINE / SIL':raise ValueError('Unknown offline label')
++    states={'waiting_for_binding','advancing_to_capture','camera_barrier','advancing_to_controller_sample',
++        'native_barrier','advancing_to_actuation','applying','COMPLETED','HALTED'}
++    if profile.get('barrier_state') not in states:raise ValueError('Unknown offline barrier state')
++    for key in ('simulation_tick','simulation_ns'):
++        if key in profile:integer(profile[key],key)
++    if profile.get('episode_origin_mj_time_ns') is not None:integer(profile['episode_origin_mj_time_ns'],'episode origin')
++    if 'delays_are_engineering_configuration_not_device_calibration' in profile and profile['delays_are_engineering_configuration_not_device_calibration'] is not True:raise ValueError('Offline delays must be explicit engineering configuration')
++    for key in ('host_delay_s','wall_elapsed_s'):
++        if key in profile:finite(profile[key],key,0)
++    delay_keys={'physics_step_ns','capture_period_ns','controller_period_ns','sensor_delay_ns','compute_delay_ns','actuation_delay_ns','max_age_ns'}
++    delays=profile.get('delays')
++    if type(delays) is not dict or set(delays)!=delay_keys:raise ValueError('Invalid offline delay schema')
++    for key,value in delays.items():integer(value,key,0 if key.endswith('delay_ns') else 1)
++    if delays['max_age_ns']!=80_000_000:raise ValueError('Offline camera age bound changed')
++    if delays['capture_period_ns']%delays['physics_step_ns'] or delays['controller_period_ns']%delays['physics_step_ns']:raise ValueError('Offline period not on physics grid')
++    if 'completed_captures' in data:integer(data['completed_captures'],'completed captures')
++    if 'offline_final_state' in data and data['offline_final_state'] not in ('COMPLETED','HALTED'):raise ValueError('Unknown offline terminal state')
++    codes={'stop_requested','attempt_wall_watchdog','episode_changed','lease_or_binding_changed',
++        'referee_or_alive_gate','stationary_required','physics_tick_clock_mismatch','initial_binding_wall_watchdog',
++        'camera_barrier_wall_watchdog','native_barrier_wall_watchdog','native_error','camera_error',
++        'modeled_age_exceeded','robot_limit_rejected','offline_halted'}
++    if 'offline_halt_code' in data and data['offline_halt_code'] not in codes:raise ValueError('Invalid offline halt code')
++
+ from .sim_platform_diagnostics import DiagnosticLog,cancellation_code
+ 
+ class PlatformTransport:
+-    def __init__(self,url='http://127.0.0.1:8766',*,role='spectator',clock=time.monotonic,client=None):
++    def __init__(self,url='http://127.0.0.1:8766',*,role='spectator',clock=time.monotonic,client=None,admission_credential=None):
+         if role not in ('operator','spectator'):raise ValueError('Explicit operator/spectator role required')
+-        self.client=client or PlatformClient(url,timeout=.15,control_profile='server_window_v1' if role=='operator' else 'legacy_v2',diagnostic_clock=clock);self.role=role;self.clock=clock
++        credential=admission_credential if admission_credential is not None else os.environ.get('POLAR_SIM_ADMISSION_CREDENTIAL')
++        self.client=client or PlatformClient(url,timeout=.15,control_profile='server_window_v1' if role=='operator' else 'legacy_v2',diagnostic_clock=clock,admission_credential=credential);self.role=role;self.clock=clock
+         self._diagnostic_failures=0;self._diagnostics=DiagnosticLog(clock=clock)
+         self._lock=threading.RLock();self._stop=threading.Event();self._threads=[]
+         self._wake_control=threading.Event();self._handoff=HandoffSchedule();self._batch_revision=-1
+@@ -68,6 +112,8 @@ class PlatformTransport:
+         self._selection_busy=False;self.selection_pending=False;self.selection_status='';self.selection_target=None
+         self.catalog=parse_catalog(None);self._catalog_serial=0;self._catalog_at=-1e9
+         self.plan={};self._plan_generation=0;self._bindings={};self._bind_pending=False;self._activation_acks={}
++        self._operator_hud_sample=None;self._operator_hud_at=-1e9;self._operator_hud_deadline=-1e9
++        self._operator_lease_deadlines={}
+     def _diagnostic_context(self):
+         try:now=self.clock()
+         except BaseException:now=None
+@@ -138,6 +184,10 @@ class PlatformTransport:
+             self._claim_job=None;self.claim_pending=False;self._bindings={};self._bind_pending=False;self._activation_acks={}
+             if self.owned_robot is not None:self._release_job=(self.owned_robot,dict(self.owned_epochs))
+             self.owned_robot=None;self.owned_epochs={};self.note=reason
++            if self.role=='operator':
++                self._operator_hud_deadline=-1e9;self._operator_lease_deadlines={}
++                if self.telemetry is not None:
++                    self.telemetry=dict(self.telemetry,own=None,robots=[{k:r[k] for k in ('robot_id','team','role')} for r in self.telemetry['robots']])
+     def watch(self,rid):
+         with self._lock:
+             self.neutral('Watching '+str(rid)+'; no control requested')
+@@ -163,6 +213,7 @@ class PlatformTransport:
+     def activate(self):
+         with self._lock:
+             if self.role!='operator' or self.client.uncertain or self.owned_robot!=self.watch_robot or not self.selection_ready():return False
++            if not self.operator_hud_ready():return False
+             own=self.telemetry['own'];self._angles=[own['gimbal_yaw'],own['pitch']]
+             self._bindings={};self._activation_acks={};self._bind_pending=bool(self.plan)
+             self._focus=True;self._heartbeat_at=self.clock();self._input_at=self.clock();self._intent=dict(vx=0.,vy=0.,wz=0.,fire=False,spin=None)
+@@ -175,6 +226,7 @@ class PlatformTransport:
+     def submit_input(self,*,vx_mps,vy_mps,chassis_yaw_rps=0.,spin_request=None,yaw_rate_rps=0.,pitch_rate_rps=0.,fire=False):
+         with self._lock:
+             if not self._focus:return
++            if not self.operator_hud_ready():self.neutral('Own HUD expired; explicit reclaim required');return
+             vx=finite(vx_mps,'vx',-1,1);vy=finite(vy_mps,'vy',-1,1);norm=max(1.,math.hypot(vx,vy))
+             wz=finite(chassis_yaw_rps,'chassis yaw',-1.,1.)
+             from .sim_platform_spin import request
+@@ -266,10 +318,94 @@ class PlatformTransport:
+     def selection_ready(self):
+         data,video,*_=self.snapshot()
+         return bool(not self.client.uncertain and self.watch_robot is not None and self.watch_epoch is not None and data is not None and video is not None and not self.selection_pending)
+-    def install_state(self,data,*,connection_generation=None):
++    def operator_hud_ready(self):
++        with self._lock:
++            data=self.snapshot()[0]
++            if data is None or data.get('own') is None or not data['own'].get('alive'):return False
++            if self.role!='operator':return False
++            leases=(self.raw_state or {}).get('control',{}).get('leases',{}).get(self.watch_robot,{})
++            return (self.owned_robot==self.watch_robot and bool(self.owned_epochs) and data['phase']=='running'
++                and (self.raw_state or {}).get('control',{}).get('stopped') is False
++                and all(leases.get(c,{}).get('owner')==self.client.session_id
++                    and leases.get(c,{}).get('epoch')==self.owned_epochs.get(c)
++                    and self.clock()<self._operator_lease_deadlines.get((self.watch_robot,c),-1e9) for c in CHANNELS))
++    def _install_operator_state(self,data,generation,request_started):
++        if (data.get('schema')!='rm.sim.platform.v2' or data.get('source')!='operator_limited_display'
++            or data.get('data_plane')!='operator_limited_display' or data.get('state_projection_version')!=1
++            or data.get('algorithm_input') is not False):raise ValueError('Operator limited display required')
++        allowed={'schema','display_schema','source','data_plane','state_projection_version','algorithm_input',
++            'episode','sim_time','sample_sim_time','remaining_seconds','duration_seconds','phase','winner',
++            'runtime_state','applied_sample_is_historical','robots','control','applied_targets'}
++        allowed.update({'clock_profile','offline_final_state','completed_captures','offline_halt_code'})
++        if set(data)-allowed:raise ValueError('Unexpected operator state fields')
++        validate_operator_clock(data)
++        stamp=finite(data.get('sim_time'),'simulation time',0);episode=integer(data.get('episode'),'episode')
++        sample=finite(data.get('sample_sim_time',stamp),'sample simulation time',0,stamp)
++        if data.get('phase') not in ('running','paused','idle','finished','countdown'):raise ValueError('Unknown match phase')
++        control=data.get('control')
++        if type(control) is not dict:raise ValueError('Missing limited control state')
++        server_now=finite(control.get('server_monotonic_s'),'server clock',0)
++        rows=data.get('robots')
++        if type(rows) is not list or not 1<=len(rows)<=64:raise ValueError('Invalid robot registry')
++        static={'robot_id','team','role'};hud={'hp','max_hp','ammo','heat','heat_max','alive','gimbal_yaw','gimbal_pitch','pitch'}
++        mapped=[];seen=set();deadlines={};lease_deadlines={}
++        received=self.clock();anchor=received if request_started is None else finite(request_started,'state request start',0,received)
++        for raw in rows:
++            if type(raw) is not dict or set(raw)-(static|hud):raise ValueError('Unexpected operator robot fields')
++            rid=raw.get('robot_id')
++            if type(rid) is not str or not rid or len(rid)>128 or rid in seen:raise ValueError('Invalid robot identity')
++            if raw.get('team') not in ('red','blue') or raw.get('role') not in ('hero','infantry','sentry'):raise ValueError('Unsupported current HUD robot profile')
++            seen.add(rid);r={k:raw[k] for k in static}
++            leases=control.get('leases',{}).get(rid,{})
++            live=[]
++            for channel in CHANNELS:
++                lease=leases.get(channel,{})
++                if lease.get('owner')==self.client.session_id:
++                    expiry=finite(lease.get('expires'),'lease expiry',0)
++                    integer(lease.get('epoch'),'lease epoch')
++                    if expiry>server_now:
++                        live.append(expiry);lease_deadlines[rid,channel]=anchor+expiry-server_now
++            if set(raw)&hud:
++                if not live:raise ValueError('Operator HUD without live own lease')
++                if type(raw.get('alive')) is not bool:raise ValueError('Invalid own alive state')
++                r['alive']=raw['alive']
++                for key in ('hp','max_hp','ammo','heat','heat_max'):r[key]=None if raw.get(key) is None else finite(raw[key],key,0)
++                r['gimbal_yaw']=finite(raw.get('gimbal_yaw'),'own relative gimbal yaw')
++                r['pitch']=finite(raw.get('pitch',raw.get('gimbal_pitch')),'own gimbal pitch')
++                deadlines[rid]=anchor+max(live)-server_now
++            mapped.append(r)
++        if control.get('robot_ids')!=[r['robot_id'] for r in mapped]:raise ValueError('Limited roster mismatch')
++        remaining=None if data.get('remaining_seconds') is None else finite(data['remaining_seconds'],'remaining seconds',0)
++        with self._lock:
++            if generation!=self._connection_generation or not self._connected or self._stop.is_set() or self.client.uncertain:return False
++            if self.raw_state and (episode<self.raw_state['episode'] or (episode==self.raw_state['episode'] and stamp<self.raw_state['sim_time'])):raise ValueError('Old display state')
++            if self.raw_state and episode!=self.raw_state['episode']:
++                self.neutral('New episode; explicit claim required');self._clear_frame('New episode',reset_identity=True)
++                self.watch_epoch=None;self._watch_generation+=1;self._watch_job=(self.watch_robot,self._watch_generation);self._generation+=1
++            self.raw_state=copy.deepcopy(data);self.raw_state_at=received;self.robot_ids=tuple(r['robot_id'] for r in mapped)
++            row=next((r for r in mapped if r['robot_id']==self.watch_robot),None)
++            own=row if row is not None and 'gimbal_yaw' in row else None
++            identity=(self._connection_generation,self._watch_generation,self.watch_robot,episode,sample)
++            if own is not None and identity!=self._operator_hud_sample:
++                self._operator_hud_sample=identity;self._operator_hud_at=anchor
++            self._operator_hud_deadline=deadlines.get(self.watch_robot,-1e9)
++            self._operator_lease_deadlines=lease_deadlines
++            self.telemetry=None if row is None else dict(robot_id=self.watch_robot,episode=episode,sim_time=stamp,
++                own=own,robots=mapped,phase=data['phase'],remaining_seconds=remaining,vp={'red':None,'blue':None},
++                map_source='operator_limited_display',map_available=False)
++            self.telemetry_at=received;self.last_error=''
++            if self.owned_robot:
++                leases=control.get('leases',{}).get(self.owned_robot,{})
++                if any(leases.get(c,{}).get('owner')!=self.client.session_id
++                    or leases.get(c,{}).get('epoch')!=self.owned_epochs.get(c) for c in CHANNELS):
++                    self.neutral('Control ownership changed; explicit claim required')
++                elif own is None and self._focus:self.neutral('Own HUD unavailable; explicit claim required')
++            return True
++    def install_state(self,data,*,connection_generation=None,request_started=None):
+         with self._lock:
+             generation=self._connection_generation if connection_generation is None else connection_generation
+             if generation!=self._connection_generation or not self._connected or self._stop.is_set() or self.client.uncertain:return False
++        if self.role=='operator':return self._install_operator_state(data,generation,request_started)
+         if data.get('schema')!='rm.sim.platform.v2' or data.get('source')!='simulator_truth_display_only' or data.get('algorithm_input') is not False:raise ValueError('Wrong v2 display provenance')
+         stamp=finite(data.get('sim_time'),'simulation time',0);episode=integer(data.get('episode'),'episode')
+         robots=data.get('robots')
+@@ -309,6 +445,8 @@ class PlatformTransport:
+             now=self.clock()
+             if not self._connected or self._stop.is_set() or self.client.uncertain:return None,None,0.,self.video_sequence,self.video_sim_time
+             state=self.telemetry if now-self.telemetry_at<=.5 else None
++            if state is not None and self.role=='operator' and (now-self._operator_hud_at>.5 or now>=self._operator_hud_deadline):
++                state=dict(state,own=None,robots=[{k:r[k] for k in ('robot_id','team','role')} for r in state['robots']])
+             video=self.video if now-self.video_at<=self.max_frame_age else None
+             return state,video,self.video_at if video is not None else 0.,self.video_sequence,self.video_sim_time
+     def process_jobs(self):
+@@ -350,7 +488,7 @@ class PlatformTransport:
+             now=self.clock();rid=self.owned_robot;epochs=dict(self.owned_epochs)
+             if rid is None:return
+             state,video,*_=self.snapshot()
+-            if self.client.uncertain or state is None or video is None or now-self._heartbeat_at>.15:
++            if self.client.uncertain or state is None or state.get('own') is None or not self.operator_hud_ready() or video is None or now-self._heartbeat_at>.15:
+                 self.neutral('V2 state/camera/heartbeat expired');return
+             renew=now-self._renew_at>.3
+             active=self._focus and now-self._input_at<=.15
+@@ -422,7 +560,7 @@ class PlatformTransport:
+                 reason=self._handoff.expired(now)
+                 if self._intent.get('spin') is not None and self.spin_capability() is None:
+                     reason='spin_capability_unavailable'
+-                if state is None or video is None or now-self._heartbeat_at>.15 or now-self._input_at>.15:
++                if state is None or state.get('own') is None or not self.operator_hud_ready() or video is None or now-self._heartbeat_at>.15 or now-self._input_at>.15:
+                     reason='state_camera_or_input_expired'
+                 if reason:
+                     self._record('handoff_cancelled',failure=True,stage='deadline_recheck',reason_code=reason)
+@@ -545,7 +683,8 @@ class PlatformTransport:
+                     if hasattr(self.client,'adapters') and self.clock()-self._catalog_at>2:
+                         serial=self._catalog_serial+1;raw=self.client.adapters()
+                         self.install_catalog(raw,connection_generation=generation,serial=serial,watch_generation=watch_generation);self._catalog_at=self.clock()
+-                    self.install_state(self.client.state(),connection_generation=generation)
++                    request_started=self.clock()
++                    self.install_state(self.client.state(),connection_generation=generation,request_started=request_started)
+                 except Exception as exc:
+                     with self._lock:
+                         if generation==self._connection_generation:self._failed(exc,stage='state_loop')
+@@ -567,6 +706,13 @@ class PlatformTransport:
+         # The camera provider supplies this extension in its separate checkpoint.
+         with self._lock:
+             if generation!=self._watch_generation or not self._connected or self._stop.is_set() or self.client.uncertain:return False
++            if self.role=='operator':
++                allowed={'schema','available','reason','robot_id','episode','watch_epoch','max_frame_age_wall_s',
++                    'source','algorithm_input','full_frame','frame_seq','capture_sim_time','capture_wall_monotonic',
++                    'encode_completed_wall_monotonic','age_wall_s','calibration','image','data_plane','camera_display_version'}
++                if (data.get('source')!='operator_camera_display_v1' or data.get('algorithm_input') is not False
++                    or data.get('data_plane')!='operator_limited_display' or type(data.get('camera_display_version')) is not int or data['camera_display_version']!=1
++                    or set(data)-allowed):raise ValueError('Operator camera projection required; exposure poses forbidden')
+             if type(data.get('available')) is not bool:raise ValueError('Invalid camera availability')
+             if not data['available']:
+                 self._clear_frame(str(data.get('reason','Camera unavailable')));return False
+@@ -583,11 +729,16 @@ class PlatformTransport:
+             if received_at-capture_local>ttl:raise ValueError('Expired camera sample')
+             capture_wall=finite(data.get('capture_wall_monotonic'),'capture wall',0)
+             encoded_wall=finite(data.get('encode_completed_wall_monotonic'),'encode wall',capture_wall)
+-            for key,size in [('own_qpos_at_capture',5),('own_qvel_at_capture',5),('own_odom_at_capture',3),('own_odom_velocity_at_capture',3)]:
+-                v=data.get(key)
+-                if type(v) is not list or len(v)!=size:raise ValueError('Missing exposure state')
+-                for n in v:finite(n,key)
++            if self.role=='spectator':
++                for key,size in [('own_qpos_at_capture',5),('own_qvel_at_capture',5),('own_odom_at_capture',3),('own_odom_velocity_at_capture',3)]:
++                    v=data.get(key)
++                    if type(v) is not list or len(v)!=size:raise ValueError('Missing exposure state')
++                    for n in v:finite(n,key)
+             cal=data.get('calibration',{});intr=cal.get('intrinsics',{});ext=cal.get('extrinsics',{})
++            if self.role=='operator':
++                if set(cal)-{'intrinsics','extrinsics'}:raise ValueError('Unexpected operator calibration')
++                if set(intr)-{'fx','fy','cx','cy','distortion_model','distortion'}:raise ValueError('Unexpected operator intrinsics')
++                if set(ext)-{'parent_frame','calibration_id','translation_m','rotation_xyzw'}:raise ValueError('Unexpected operator extrinsics')
+             for k in ('fx','fy'):finite(intr.get(k),k,1e-6)
+             for k in ('cx','cy'):finite(intr.get(k),k)
+             if intr.get('distortion_model')!='brown_conrady_5' or type(intr.get('distortion')) is not list or len(intr['distortion'])!=5:raise ValueError('Unknown camera distortion')
+@@ -598,11 +749,13 @@ class PlatformTransport:
+                 if type(values) is not list or len(values)!=n:raise ValueError('Invalid camera extrinsics')
+                 for v in values:finite(v,k)
+             if abs(sum(v*v for v in ext['rotation_xyzw'])-1)>1e-6:raise ValueError('Nonunit camera rotation')
+-            if data.get('source')!='simulated_raw_camera_display_jpeg' or data.get('full_frame') is not True or data.get('algorithm_input') is not False:raise ValueError('Raw full-frame display required')
++            expected='operator_camera_display_v1' if self.role=='operator' else 'simulated_raw_camera_display_jpeg'
++            if data.get('source')!=expected or data.get('full_frame') is not True or data.get('algorithm_input') is not False:raise ValueError('Raw full-frame display required')
+             if stamp>self.raw_state['sim_time']+.05:raise ValueError('Camera time is ahead of state')
+             if index<=self.video_sequence:return False
+             if self.video_sim_time is not None and stamp<self.video_sim_time:raise ValueError('Reversed camera time')
+         im=data.get('image',{})
++        if self.role=='operator' and set(im)-{'encoding','width','height','data_base64'}:raise ValueError('Unexpected operator image fields')
+         if im.get('encoding')!='jpeg':raise ValueError('Expected display JPEG')
+         w=integer(im.get('width'),'image width',1);h=integer(im.get('height'),'image height',1)
+         if w>1920 or h>1440:raise ValueError('Camera size exceeds display bound')
+diff --git a/rm_client/ui/minecraft_hud.py b/rm_client/ui/minecraft_hud.py
+index 06950fb..041970e 100644
+--- a/rm_client/ui/minecraft_hud.py
++++ b/rm_client/ui/minecraft_hud.py
+@@ -408,7 +408,8 @@ class MinecraftCombatHudRenderer:
+             role = getattr(state, "mujoco_session_role", None)
+             sim_title = "§e§lSIM SPECTATOR" if role == "spectator" else "§e§lSIM OPERATOR"
+             if not valid:
+-                texts = (sim_title, "§cDISCONNECTED / STALE", "§fHP: §7?", "§fAmmo: §7?", "§fHeat: §7?", "§fTime: §7?", "§7Virtual input disabled")
++                unavailable = "§cOWN HUD UNAVAILABLE / NO LEASE OR STALE DATA" if getattr(state,"mujoco_operator_limited",False) else "§cDISCONNECTED / STALE"
++                texts = (sim_title, unavailable, "§fHP: §7?", "§fAmmo: §7?", "§fHeat: §7?", "§fTime: §7?", "§7Virtual input disabled")
+             else:
+                 seconds = max(0, int(state.stage_countdown_sec))
+                 texts = (sim_title, "§7" + str(state.current_stage),
+@@ -417,9 +418,9 @@ class MinecraftCombatHudRenderer:
+                     f"§fHP: §a{int(state.current_health)}/{int(state.max_health)}",
+                     f"§fAmmo: §a{int(state.remaining_ammo)}",
+                     f"§fHeat: §a{int(state.current_heat)}/{int(state.max_heat)}", "",
+-                    f"§fAlly VP: §a{state.ally_victory_points}",
+-                    f"§fEnemy VP: §c{state.enemy_victory_points}",
+-                    "§7Map: simulator truth", "§7Physical TX: disabled")
++                    f"§fAlly VP: §a{'?' if state.ally_victory_points is None else state.ally_victory_points}",
++                    f"§fEnemy VP: §c{'?' if state.enemy_victory_points is None else state.enemy_victory_points}",
++                    "§7Map: unavailable" if role == "operator" else "§7Map: simulator truth", "§7Physical TX: disabled")
+             return tuple((text, QColor("#ffffff")) for text in texts)
+         seconds = max(0, int(getattr(state, "stage_countdown_sec", 0)))
+         allies, enemies = MinecraftCombatHudRenderer._team_rows(state)
+diff --git a/rm_client/ui/sim_operator_window.py b/rm_client/ui/sim_operator_window.py
+index bb85c60..cd23c39 100644
+--- a/rm_client/ui/sim_operator_window.py
++++ b/rm_client/ui/sim_operator_window.py
+@@ -204,7 +204,8 @@ class OperatorWindow(PolarRMWindow):
+             y=fit.top()+fit.height()*i/4
+             p.drawLine(int(fit.left()),int(y),int(fit.right()),int(y))
+         p.setFont(QFont('Sans Serif',7));p.setPen(QColor('#b3c8d2'))
+-        p.drawText(fit.adjusted(4,2,-4,-2),Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignLeft,'SIM XY · display only')
++        label='MAP POSITIONS unavailable' if getattr(self._simulation_runtime.transport,'role',None)=='operator' else 'SIM XY · display only'
++        p.drawText(fit.adjusted(4,2,-4,-2),Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignLeft,label)
+         p.restore();return fit
+ 
+     def refresh_vision_runtime(self):
+diff --git a/rm_client/ui/sim_platform_window.py b/rm_client/ui/sim_platform_window.py
+index 9c75cb1..1b2ae0a 100644
+--- a/rm_client/ui/sim_platform_window.py
++++ b/rm_client/ui/sim_platform_window.py
+@@ -35,6 +35,17 @@ class PlatformWindow(OperatorWindow):
+             self.invalidate_gui_cache();return
+         return super().after_setting_changed(setting)
+     def chassis_follow_mode(self):return 'V2 BODY'
++    def draw_chassis_gimbal_indicator(self,p,width,height):
++        t=self._simulation_runtime.transport
++        if t.role!='operator':return super().draw_chassis_gimbal_indicator(p,width,height)
++        # No compass without measured chassis/world yaw. Show only owned HUD.
++        data=t.snapshot()[0];own=(data or {}).get('own')
++        text='GIMBAL unavailable | claim and await own HUD'
++        if own is not None:
++            import math
++            text='REL GIMBAL %.1f / %.1f deg | chassis yaw unavailable' % (math.degrees(own['gimbal_yaw']),math.degrees(own['pitch']))
++        p.save();p.setFont(self.font('poppins_medium',8));p.setPen(QColor('#91b8c3'))
++        p.drawText(QRectF(14,height-52,max(0,width-28),18),Qt.AlignmentFlag.AlignLeft,text);p.restore()
+     def draw_watermark(self,p):
+         r=self._simulation_runtime;t=r.transport
+         p.save();p.setFont(self.font('museo',18,QFont.Weight.Bold));p.setPen(QColor('#eff5ff'))
+@@ -109,6 +120,7 @@ class PlatformWindow(OperatorWindow):
+             try:spin=presenter.snapshot() if presenter is not None else dict(reason='unknown')
+             except Exception:spin=dict(reason='presentation unavailable')
+             lines=['SIM ONLY | '+label,detail]+status_lines(spin)
++            if t.role=='operator':lines.append('MAP positions unavailable | roster + actual camera only | scores unknown')
+             font=QFont('Sans Serif',8);metrics=QFontMetricsF(font)
+             p.save();p.setFont(font)
+             regions=reserved_regions(self,width,height)
+diff --git a/tests/test_platform_adapters.py b/tests/test_platform_adapters.py
+index 57ed617..d8ff7f0 100644
+--- a/tests/test_platform_adapters.py
++++ b/tests/test_platform_adapters.py
+@@ -1,7 +1,7 @@
+ """Synthetic capability/worker arbitration; no image/physics qualification."""
+ import copy
+ import unittest
+-from test_sim_platform_v2 import state,frame
++from platform_v2_fixtures import state,frame,install_owned_state
+ from test_platform_control_windows import WindowClient
+ from rm_client.sim_platform_adapters import parse_catalog,options,make_plan,feedback
+ from rm_client.sim_platform_transport import PlatformTransport
+@@ -68,7 +68,7 @@ class WorkerTests(unittest.TestCase):
+         self.t.connect_once();self.t.install_catalog(catalog(),connection_generation=self.t._connection_generation,serial=1)
+         self.t.install_state(state());self.t.watch('red_infantry');self.t.process_jobs();self.t.install_state(state());self.t.install_frame(frame(self.t),generation=self.t._watch_generation)
+     def choose(self,both=True):self.t.configure_adapters({'navigation':'nav_rule_v1','aim':'aim_pixel_baseline_v1' if both else 'Manual'},{'V2 Goal X':1})
+-    def claim(self):self.t.request_claim();self.t.process_jobs();self.t.heartbeat(False)
++    def claim(self):self.t.request_claim();self.t.process_jobs();install_owned_state(self.t);self.t.heartbeat(False)
+     def arm(self):self.assertTrue(self.t.activate());self.t.heartbeat(True)
+     def sample(self):self.t.submit_input(vx_mps=1,vy_mps=0,fire=True)
+     def ops(self,kind):return [c for c in self.c.calls if c[0]==kind]
+@@ -145,7 +145,7 @@ class OriginalUiTests(unittest.TestCase):
+         from PySide6.QtCore import Qt,QEvent
+         self.choose_nav()
+         event=lambda:QKeyEvent(QEvent.Type.KeyPress,Qt.Key.Key_F2,Qt.KeyboardModifier.NoModifier)
+-        self.w.keyPressEvent(event());self.t.process_jobs();self.assertFalse(self.r.armed);self.assertFalse(any(x[0]=='bind' for x in self.c.calls))
++        self.w.keyPressEvent(event());self.t.process_jobs();install_owned_state(self.t);self.assertFalse(self.r.armed);self.assertFalse(any(x[0]=='bind' for x in self.c.calls))
+         self.w.keyPressEvent(event());self.assertTrue(self.r.armed);self.t.submit_input(vx_mps=0,vy_mps=0);self.t.control_tick()
+         self.assertTrue(any(x[0]=='bind' for x in self.c.calls));self.assertFalse(any(x[0]=='pulse' for x in self.c.calls))
+     def test_settings_are_sim_only_and_native_na(self):
+diff --git a/tests/test_platform_control_windows.py b/tests/test_platform_control_windows.py
+index ff3ec36..28445dd 100644
+--- a/tests/test_platform_control_windows.py
++++ b/tests/test_platform_control_windows.py
+@@ -1,6 +1,6 @@
+ """Synthetic Qt-worker sampling and in-flight reply boundaries; no camera claims."""
+ import unittest
+-from test_sim_platform_v2 import Client,state,frame
++from platform_v2_fixtures import Client,state,frame,install_owned_state
+ from rm_client.sim_platform_transport import PlatformTransport
+ 
+ class WindowClient(Client):
+@@ -20,7 +20,7 @@ class SamplingTests(unittest.TestCase):
+     def setUp(self):
+         self.now=[100.];self.c=WindowClient();self.t=PlatformTransport(role='operator',clock=lambda:self.now[0],client=self.c)
+         self.t.connect_once();self.t.install_state(state());self.t.watch('red_infantry');self.t.process_jobs();self.t.install_state(state());self.t.install_frame(frame(self.t),generation=self.t._watch_generation)
+-        self.t.request_claim();self.t.process_jobs();self.t.activate();self.t.heartbeat(True)
++        self.t.request_claim();self.t.process_jobs();install_owned_state(self.t);self.t.activate();self.t.heartbeat(True)
+     def input(self):self.t.submit_input(vx_mps=1.,vy_mps=0.,fire=True)
+     def controls(self):return [c for c in self.c.calls if c[0]=='control']
+     def test_pre_ack_cached_input_never_sent(self):
+diff --git a/tests/test_platform_diagnostics.py b/tests/test_platform_diagnostics.py
+index 1c3566b..e8ca971 100644
+--- a/tests/test_platform_diagnostics.py
++++ b/tests/test_platform_diagnostics.py
+@@ -4,7 +4,7 @@ from rm_client.sim_platform_diagnostics import DiagnosticLog
+ from rm_client.sim_platform_client import PlatformClient,ClientError
+ from rm_client.sim_platform_transport import PlatformTransport
+ from test_platform_adapters import AdapterClient,catalog
+-from test_sim_platform_v2 import state
++from platform_v2_fixtures import state,install_owned_state
+ 
+ class Response:
+  def __init__(self,body):self.body=body
+diff --git a/tests/test_platform_display_generation.py b/tests/test_platform_display_generation.py
+index 8e015f2..e09ad19 100644
+--- a/tests/test_platform_display_generation.py
++++ b/tests/test_platform_display_generation.py
+@@ -2,7 +2,7 @@
+ import unittest
+ from unittest.mock import patch
+ import cv2
+-from test_sim_platform_v2 import Client,state,frame
++from platform_v2_fixtures import Client,state,frame,install_owned_state
+ from rm_client.sim_platform_transport import PlatformTransport
+ 
+ class CompletionTests(unittest.TestCase):
+diff --git a/tests/test_platform_handoff.py b/tests/test_platform_handoff.py
+index 9f728b3..f5b9e2c 100644
+--- a/tests/test_platform_handoff.py
++++ b/tests/test_platform_handoff.py
+@@ -10,7 +10,7 @@ from rm_client.sim_platform_client import PlatformClient
+ from rm_client.sim_platform_transport import PlatformTransport
+ from rm_match.platform_v2.control import ControlPlane, Rejected
+ from test_platform_adapters import catalog
+-from test_sim_platform_v2 import state
++from platform_v2_fixtures import state,install_owned_state
+ 
+ 
+ def window(index=1, issued=10000., ttl=.15):
+@@ -80,10 +80,16 @@ class Harness:
+         t=self.t;t.connect_once();t.install_catalog(catalog(),connection_generation=t._connection_generation,serial=1)
+         t.install_state(state());t.watch('red_infantry');t.process_jobs();t.install_state(state());t.video=object();t.video_at=self.now
+         t.configure_adapters({'navigation':'nav_rule_v1','aim':'aim_pixel_baseline_v1' if both else 'Manual'},{'V2 Goal X':.75})
+-        t.request_claim();t.process_jobs();t.activate();self.sample();t.control_tick();self.sample();t.control_tick()
++        t.request_claim();t.process_jobs();install_owned_state(t);t.activate();self.sample();t.control_tick();self.sample();t.control_tick()
+         self.now+=.001;self.sample();t.control_tick()
+     def sample(self):
+         # Synthetic UI/state freshness is explicit; no image or physics claim.
++        sample=state(owner=self.client.session_id,epoch=self.t.owned_epochs.get('motion',1),stamp=1.001+(self.now-100.))
++        sample['control']['server_monotonic_s']=self.now+self.offset
++        for leases in sample['control']['leases'].values():
++            for lease in leases.values():
++                if lease['owner']==self.client.session_id:lease['expires']=self.now+self.offset+1.
++        if self.t.owned_robot:self.t.install_state(sample)
+         self.t.heartbeat(True);self.t.submit_input(vx_mps=0,vy_mps=0,fire=False)
+         self.t.telemetry_at=self.now;self.t.video_at=self.now
+     def tick(self):
+diff --git a/tests/test_platform_manual_yaw.py b/tests/test_platform_manual_yaw.py
+index d27b467..32b8b76 100644
+--- a/tests/test_platform_manual_yaw.py
++++ b/tests/test_platform_manual_yaw.py
+@@ -5,6 +5,7 @@ from unittest.mock import Mock
+ from dataclasses import replace
+ from test_platform_control_windows import SamplingTests
+ from test_platform_adapters import WorkerTests
++from platform_v2_fixtures import install_owned_state
+ from rm_client.sim_platform_input import PlatformInputBridge
+ from rm_client.model import RobotState,build_default_registry
+ 
+@@ -28,7 +29,7 @@ class YawSamplingTests(SamplingTests):
+         self.assertEqual(self.t._intent['wz'],0.)
+         self.t.submit_input(vx_mps=0,vy_mps=0,chassis_yaw_rps=1.);self.t.neutral()
+         self.assertEqual(self.t._intent['wz'],0.);self.assertFalse(self.t._focus)
+-        self.t.process_jobs();self.t.request_claim();self.t.process_jobs();self.assertTrue(self.t.activate())
++        self.t.process_jobs();self.t.request_claim();self.t.process_jobs();install_owned_state(self.t);self.assertTrue(self.t.activate())
+         self.assertEqual(self.t._intent['wz'],0.)
+     def test_invalid_chassis_yaw_exact_finite_unit_axis(self):
+         for value in (True,False,float('nan'),float('inf'),1.01,-1.01,10**999):
+diff --git a/tests/test_platform_manual_yaw_ui.py b/tests/test_platform_manual_yaw_ui.py
+index d70bb22..975fe10 100644
+--- a/tests/test_platform_manual_yaw_ui.py
++++ b/tests/test_platform_manual_yaw_ui.py
+@@ -4,13 +4,14 @@ os.environ.setdefault('QT_QPA_PLATFORM','offscreen')
+ from PySide6.QtCore import Qt,QEvent
+ from PySide6.QtGui import QKeyEvent,QFocusEvent
+ from test_platform_adapters import OriginalUiTests
++from platform_v2_fixtures import install_owned_state
+ 
+ class RoutedUiTests(OriginalUiTests):
+     def key(self,key,pressed=True,repeat=False):
+         e=QKeyEvent(QEvent.Type.KeyPress if pressed else QEvent.Type.KeyRelease,key,Qt.KeyboardModifier.NoModifier,'',repeat)
+         (self.w.keyPressEvent if pressed else self.w.keyReleaseEvent)(e)
+     def arm_manual(self):
+-        self.key(Qt.Key.Key_F2);self.t.process_jobs();self.key(Qt.Key.Key_F2)
++        self.key(Qt.Key.Key_F2);self.t.process_jobs();install_owned_state(self.t);self.key(Qt.Key.Key_F2)
+         self.assertTrue(self.r.armed);self.assertTrue(self.t._focus)
+     def routed_hold(self):
+         self.assertTrue(self.w.control.set_bind('E','Right'))
+diff --git a/tests/test_platform_spin.py b/tests/test_platform_spin.py
+index ef21155..67014a0 100644
+--- a/tests/test_platform_spin.py
++++ b/tests/test_platform_spin.py
+@@ -27,7 +27,9 @@ class UI(OriginalUiTests):
+  def enable_cap(self):
+   raw=catalog();raw['control_capabilities']=cap(self.t);self.t.install_catalog(raw,connection_generation=self.t._connection_generation,serial=2);self.r.modes.sync(self.w)
+  def key(self,k):self.w.keyPressEvent(QKeyEvent(QEvent.Type.KeyPress,k,Qt.KeyboardModifier.NoModifier))
+- def arm(self):self.key(Qt.Key.Key_F2);self.t.process_jobs();self.key(Qt.Key.Key_F2);self.assertTrue(self.r.armed)
++ def arm(self):
++  from platform_v2_fixtures import install_owned_state
++  self.key(Qt.Key.Key_F2);self.t.process_jobs();install_owned_state(self.t);self.key(Qt.Key.Key_F2);self.assertTrue(self.r.armed)
+  def test_capability_never_auto_enables(self):self.enable_cap();self.assertTrue(self.r.modes.support[0]);self.assertFalse(self.w.registry.get('SpinMode').enabled);self.assertFalse(self.r.armed)
+  def test_x_changes_clear_then_rearm_with_fresh_sample(self):
+   self.enable_cap();self.arm();self.key(Qt.Key.Key_X);self.assertTrue(self.w.registry.get('SpinMode').enabled);self.assertFalse(self.r.armed);self.assertIsNone(self.t._intent['spin']);self.t.process_jobs();self.arm()
+diff --git a/tests/test_platform_status.py b/tests/test_platform_status.py
+index dd8be04..55f5e51 100644
+--- a/tests/test_platform_status.py
++++ b/tests/test_platform_status.py
+@@ -113,7 +113,9 @@ class StaleSidebarTests(unittest.TestCase):
+         from rm_client.ui.minecraft_hud import MinecraftCombatHudRenderer
+         case=OriginalUiTests();case.setUp()
+         try:
+-            case.r.apply_state(case.w.state);self.assertTrue(case.w.state.mujoco_telemetry_valid)
++            case.t.request_claim();case.t.process_jobs();
++            from platform_v2_fixtures import install_owned_state
++            install_owned_state(case.t);case.r.apply_state(case.w.state);self.assertTrue(case.w.state.mujoco_telemetry_valid)
+             case.now+=.75
+             before=tuple(x[0] for x in MinecraftCombatHudRenderer.scoreboard_lines(case.w.state))
+             self.assertFalse(any('STALE' in x for x in before))
+@@ -148,7 +150,9 @@ class MappedIdentityTests(unittest.TestCase):
+         from rm_client.ui.sim_platform_window import PolarRMWindow
+         case=OriginalUiTests();case.setUp()
+         try:
+-            case.r.apply_state(case.w.state);self.assertTrue(case.w.state.mujoco_telemetry_valid)
++            case.t.request_claim();case.t.process_jobs();
++            from platform_v2_fixtures import install_owned_state
++            install_owned_state(case.t);case.r.apply_state(case.w.state);self.assertTrue(case.w.state.mujoco_telemetry_valid)
+             t=case.t
+             if kind=='robot':t.watch_robot='red_sentry';t.telemetry['robot_id']='red_sentry';t._watch_generation+=1
+             elif kind=='episode':t.raw_state['episode']+=1
+@@ -170,6 +174,8 @@ class MappedIdentityTests(unittest.TestCase):
+         from rm_client.ui.sim_platform_window import PolarRMWindow
+         case=OriginalUiTests();case.setUp()
+         try:
++            from platform_v2_fixtures import install_owned_state
++            case.t.request_claim();case.t.process_jobs();install_owned_state(case.t)
+             case.r.apply_state(case.w.state)
+             with patch.object(PolarRMWindow,'paint_overlay',return_value=True):case.w.paint_overlay(None,painter=Painter(),logical_size=(1360,900))
+             self.assertTrue(case.w.state.mujoco_telemetry_valid)
+diff --git a/tests/test_sim_platform_v2.py b/tests/test_sim_platform_v2.py
+index 37c076e..42e4ada 100644
+--- a/tests/test_sim_platform_v2.py
++++ b/tests/test_sim_platform_v2.py
+@@ -5,40 +5,21 @@ import unittest
+ from unittest.mock import patch
+ import cv2
+ import numpy as np
+-from PySide6.QtWidgets import QApplication
+-from PySide6.QtCore import QPointF,QRectF
++try:
++    from PySide6.QtWidgets import QApplication
++    from PySide6.QtCore import QPointF,QRectF
++    from rm_client.ui.sim_platform_window import PlatformWindow
++except ModuleNotFoundError as exc:
++    if not exc.name.startswith('PySide6'):raise
++    QApplication=None
++from platform_v2_fixtures import Client,state,frame,install_owned_state
+ from rm_client.sim_platform_transport import PlatformTransport,jpeg_dimensions
+ from rm_client.sim_platform_runtime import PlatformRuntime
+-from rm_client.ui.sim_platform_window import PlatformWindow
+ from rm_client.sim_robot_selection import SELECTION_SETTING
+ from rm_client.model import build_default_registry
+ 
+-class Client:
+-    uncertain=False;session_id='synthetic-client'
+-    def __init__(self):self.calls=[];self.epoch=0;self.lease_epoch=0
+-    def open(self,role):return dict(schema='rm.sim.platform.v2',session_id=self.session_id,role=role)
+-    def watch(self,rid):self.calls.append(('watch',rid));self.epoch+=1;return dict(robot_id=rid,watch_epoch=self.epoch)
+-    def claim(self,rid,channels):self.calls.append(('claim',rid));self.lease_epoch+=1;return dict(robot_id=rid,lease_epochs={c:self.lease_epoch for c in channels})
+-    def release(self,rid,channels):self.calls.append(('release',rid));return {'released':True}
+-    def renew(self,rid,channels):self.calls.append(('renew',rid));return {}
+-    def control(self,rid,ch,value,**kw):self.calls.append(('control',rid,ch,copy.deepcopy(value)));return {'accepted':True}
+-    def keepalive(self):self.calls.append(('keepalive',));return {}
+-    def close(self):self.calls.append(('close',))
+ 
+-def state(*,complete=True,episode=0,stamp=1.,owner=None,epoch=1):
+-    robots=[]
+-    for team in ('red','blue'):
+-        for role in ('hero','infantry','sentry'):
+-            r=dict(robot_id=team+'_'+role,team=team,role=role,xy=[0.,0.],hp=300.,alive=True,yaw=0.,gimbal_yaw=0.,gimbal_pitch=0.,vx=0.,vy=0.,wz=0.)
+-            if complete:r.update(max_hp=300.,ammo=25.,heat=0.,heat_max=100.)
+-            robots.append(r)
+-    value=dict(schema='rm.sim.platform.v2',source='simulator_truth_display_only',algorithm_input=False,sim_time=stamp,episode=episode,phase='running',robots=robots,control={'leases':{'red_infantry':{c:{'owner':owner,'epoch':epoch} for c in ('motion','gimbal','fire')}}})
+-    if complete:value.update(remaining_seconds=299.,victory_points={'red':0,'blue':0})
+-    return value
+ 
+-def frame(t,*,seq=1,age=0.,robot=None,watch_epoch=None,episode=0):
+-    image=np.zeros((6,8,3),dtype=np.uint8);ok,encoded=cv2.imencode('.jpg',image);assert ok
+-    return dict(schema='rm.sim.platform.v2',available=True,reason='available',robot_id=robot or t.watch_robot,watch_epoch=t.watch_epoch if watch_epoch is None else watch_epoch,episode=episode,frame_seq=seq,capture_sim_time=.9,age_wall_s=age,max_frame_age_wall_s=2.5,capture_wall_monotonic=100.-age,encode_completed_wall_monotonic=100.,source='simulated_raw_camera_display_jpeg',full_frame=True,algorithm_input=False,own_qpos_at_capture=[0.]*5,own_qvel_at_capture=[0.]*5,own_odom_at_capture=[0.]*3,own_odom_velocity_at_capture=[0.]*3,calibration={'intrinsics':{'fx':10.,'fy':10.,'cx':4.,'cy':3.,'distortion_model':'brown_conrady_5','distortion':[0.]*5},'extrinsics':{'parent_frame':'gimbal_link','translation_m':[.24,0.,.06],'rotation_xyzw':[-.5,.5,-.5,.5],'calibration_id':'synthetic-fixture'}},image=dict(encoding='jpeg',width=8,height=6,data_base64=base64.b64encode(encoded.tobytes()).decode()))
+ 
+ class TransportTests(unittest.TestCase):
+     def setUp(self):
+@@ -46,8 +27,8 @@ class TransportTests(unittest.TestCase):
+     def test_watch_never_claims(self):
+         self.assertFalse(any(c[0]=='claim' for c in self.client.calls));self.assertIsNone(self.t.owned_robot)
+     def test_explicit_claim_still_requires_activate(self):
+-        self.assertFalse(self.t.request_claim());self.t.process_jobs();self.assertEqual(self.t.owned_robot,'red_infantry');self.assertFalse(self.t._focus);self.assertFalse(any(c[0]=='control' for c in self.client.calls));self.assertTrue(self.t.activate())
+-    def claim_arm(self):self.t.request_claim();self.t.process_jobs();self.t.activate();self.t.heartbeat(True)
++        self.assertFalse(self.t.request_claim());self.t.process_jobs();self.assertEqual(self.t.owned_robot,'red_infantry');self.assertFalse(self.t._focus);self.assertFalse(any(c[0]=='control' for c in self.client.calls));self.assertFalse(self.t.activate());install_owned_state(self.t);self.assertTrue(self.t.activate())
++    def claim_arm(self):self.t.request_claim();self.t.process_jobs();install_owned_state(self.t);self.t.activate();self.t.heartbeat(True)
+     def test_mouse_is_absolute_integrated_target_not_rate_time(self):
+         self.claim_arm();self.t.submit_input(vx_mps=0,vy_mps=0,fire=False);self.t.submit_mouse(-.024,.012);self.t.control_tick();self.t.control_tick();targets=[c[3] for c in self.client.calls if c[0]=='control' and c[2]=='gimbal'];self.assertEqual(targets[0],targets[1]);self.assertAlmostEqual(targets[0]['yaw_rad'],-.024)
+     def test_focus_and_late_heartbeat_release_without_fire(self):
+@@ -61,11 +42,11 @@ class TransportTests(unittest.TestCase):
+     def test_duplicate_frame_never_refreshes_capture_freshness(self):
+         stamp=self.t.video_at;self.now[0]+=.5;self.assertFalse(self.t.install_frame(frame(self.t),generation=self.t._watch_generation));self.assertEqual(self.t.video_at,stamp)
+     def test_unavailable_keeps_sequence_floor_and_clears_pixels(self):
+-        self.t.install_frame({'available':False,'reason':'expired'},generation=self.t._watch_generation);self.assertIsNone(self.t.video);self.assertEqual(self.t.video_sequence,1);self.assertFalse(self.t.install_frame(frame(self.t),generation=self.t._watch_generation))
++        self.t.install_frame({'available':False,'reason':'expired','source':'operator_camera_display_v1','data_plane':'operator_limited_display','camera_display_version':1,'algorithm_input':False},generation=self.t._watch_generation);self.assertIsNone(self.t.video);self.assertEqual(self.t.video_sequence,1);self.assertFalse(self.t.install_frame(frame(self.t),generation=self.t._watch_generation))
+     def test_invalid_state_latches_uncertain(self):
+         self.claim_arm();self.t._failed(ValueError('bad state'));self.assertTrue(self.client.uncertain);self.assertFalse(self.t.selection_ready());self.assertIsNone(self.t.snapshot()[0])
+     def test_missing_display_fields_stay_unknown(self):
+-        self.t.install_state(state(complete=False));self.assertIsNone(self.t.telemetry['own']['ammo']);self.assertIsNone(self.t.telemetry['remaining_seconds']);self.assertIsNone(self.t.telemetry['vp']['red'])
++        self.t.request_claim();self.t.process_jobs();install_owned_state(self.t,complete=False);self.assertIsNone(self.t.telemetry['own']['ammo']);self.assertIsNone(self.t.telemetry['remaining_seconds']);self.assertIsNone(self.t.telemetry['vp']['red'])
+     def test_frame_metadata_and_jpeg_header_are_checked(self):
+         for change in [dict(full_frame=False),dict(age_wall_s=3.),dict(own_qpos_at_capture=[]),dict(source='overlaid_truth')]:
+             value=frame(self.t,seq=2);value.update(change)
+@@ -94,6 +75,7 @@ class TransportTests(unittest.TestCase):
+         with self.assertRaises(ValueError):self.t.request_claim()
+         self.assertFalse(self.t.activate());self.t.submit_input(vx_mps=1,vy_mps=0,fire=True);self.t.control_tick();self.assertFalse(any(c[0] in ('control','claim') for c in self.client.calls))
+ 
++@unittest.skipIf(QApplication is None,'PySide6 unavailable; actual Qt tests require GUI dependency')
+ class WindowTests(unittest.TestCase):
+     @classmethod
+     def setUpClass(cls):cls.app=QApplication.instance() or QApplication([])
+@@ -109,13 +91,13 @@ class WindowTests(unittest.TestCase):
+     def test_original_jello_selection_changes_watch_only(self):
+         s=self.w.registry.get('RobotProfile').get_setting(SELECTION_SETTING);self.w.dispatch('jello_mode_select',(s,'blue_hero'),QPointF(),1,QRectF(0,0,100,20));self.t.process_jobs();self.assertEqual(self.t.watch_robot,'blue_hero');self.assertFalse(self.r.armed);self.assertFalse(any(c[0]=='claim' for c in self.client.calls))
+     def test_two_explicit_f2_steps(self):
+-        self.ready();self.assertFalse(self.r.arm());self.t.process_jobs();self.assertFalse(self.r.armed);self.assertTrue(self.r.arm());self.r.heartbeat(self.w);self.assertTrue(self.r.armed)
++        self.ready();self.assertFalse(self.r.arm());self.t.process_jobs();self.assertFalse(self.r.armed);self.assertFalse(self.r.arm());install_owned_state(self.t);self.assertTrue(self.r.arm());self.r.heartbeat(self.w);self.assertTrue(self.r.armed)
+     def test_observer_f2_and_keyboard_cannot_send(self):
+         self.ready();self.t.role='spectator';self.assertFalse(self.r.arm());self.w.control.key_state['W']=True;self.w.control.left_button_down=True;self.w.control.tick(self.w.state,self.w.registry);self.t.control_tick();self.assertFalse(any(c[0] in ('claim','control') for c in self.client.calls))
+     def test_no_camera_means_no_claim_and_no_fake_hud_values(self):
+         self.r.select_robot(self.w,'red_infantry');self.t.process_jobs();self.t.install_state(state(complete=False));self.r.apply_state(self.w.state);self.assertFalse(self.r.arm());self.assertFalse(self.w.state.mujoco_telemetry_valid);self.assertTrue(self.w.state.mujoco_partial);self.assertFalse(any(c[0]=='claim' for c in self.client.calls))
+     def test_gui_open_releases_existing_lease(self):
+-        self.ready();self.r.arm();self.t.process_jobs();self.r.arm();self.w.combat_control_input_allowed=lambda:False;self.r.heartbeat(self.w);self.assertFalse(self.r.armed);self.t.control_tick();self.assertIn(('release','red_infantry'),self.client.calls)
++        self.ready();self.r.arm();self.t.process_jobs();install_owned_state(self.t);self.r.arm();self.w.combat_control_input_allowed=lambda:False;self.r.heartbeat(self.w);self.assertFalse(self.r.armed);self.t.control_tick();self.assertIn(('release','red_infantry'),self.client.calls)
+     def test_spectator_label_is_read_only_and_blocks_local_combat_state(self):
+         from PySide6.QtGui import QKeyEvent,QMouseEvent
+         from PySide6.QtCore import Qt,QEvent
+diff --git a/tools/verify_offline_platform.py b/tools/verify_offline_platform.py
+index 3893665..4a91cdd 100644
+--- a/tools/verify_offline_platform.py
++++ b/tools/verify_offline_platform.py
+@@ -9,7 +9,11 @@ import argparse,copy,hashlib,json,os,select,subprocess,threading,time
+ from contextlib import ExitStack
+ from pathlib import Path
+ from unittest.mock import patch
+-p=argparse.ArgumentParser();p.add_argument('--bridge-root',type=Path,required=True);p.add_argument('--bridge-python',type=Path,required=True);p.add_argument('--scene-json',type=Path,required=True);p.add_argument('--native-spec',type=Path,required=True);p.add_argument('--out',type=Path,required=True);args=p.parse_args()
++p=argparse.ArgumentParser();p.add_argument('--bridge-root',type=Path,required=True);p.add_argument('--bridge-python',type=Path,required=True);p.add_argument('--scene-json',type=Path,required=True);p.add_argument('--native-spec',type=Path,required=True);p.add_argument('--out',type=Path,required=True);p.add_argument('--admission-manifest',type=Path,required=True);args=p.parse_args()
++operator_credential=os.environ.get('POLAR_SIM_OPERATOR_ADMISSION_CREDENTIAL') or os.environ.get('POLAR_SIM_ADMISSION_CREDENTIAL')
++audit_credential=os.environ.get('POLAR_SIM_AUDIT_ADMISSION_CREDENTIAL')
++if any(type(v) is not str or not 32<=len(v)<=256 for v in (operator_credential,audit_credential)):
++ raise SystemExit('Explicit operator and audit admission environment credentials required')
+ args.out.mkdir(parents=True,exist_ok=False);root=Path(__file__).resolve().parents[1];sys.path.insert(0,str(root));os.environ.setdefault('QT_QPA_PLATFORM','offscreen')
+ from PySide6.QtCore import Qt,QPointF,QRectF
+ from PySide6.QtGui import QImage,QPainter
+@@ -18,6 +22,7 @@ from rm_client.ui import polar_app
+ from rm_client.ui.sim_platform_window import PlatformWindow
+ from rm_client.sim_platform_runtime import PlatformRuntime
+ from rm_client.sim_platform_client import PlatformClient
++from rm_client.sim_platform_transport import PlatformTransport
+ from rm_client.sim_platform_lifecycle import RenewalLifecycle
+ from rm_client.sim_robot_selection import SELECTION_SETTING
+ app=QApplication.instance() or QApplication(['POLAR-OFFLINE-SIL-qualification'])
+@@ -26,7 +31,7 @@ source=source_hashes();source['tools/verify_offline_platform.py']=hashlib.sha256
+ results=[]
+ for delay in (0.,.15):
+  out=args.out/('host-000' if delay==0 else 'host-150');out.mkdir();env=os.environ.copy();env.update(PYTHONPATH=str(args.bridge_root.absolute()),MUJOCO_GL='egl',LIBGL_ALWAYS_SOFTWARE='1',MESA_SHADER_CACHE_DISABLE='true')
+- log=(out/'server-stderr.log').open('x');child=subprocess.Popen([str(args.bridge_python.absolute()),str(args.bridge_root.absolute()/'tools/platform_v2/offline_stage6/serve.py'),'--out',str(out.absolute()/'server'),'--scene-json',str(args.scene_json.absolute()),'--native-spec',str(args.native_spec.absolute()),'--host-delay',str(delay)],env=env,stdout=subprocess.PIPE,stderr=log,text=True)
++ log=(out/'server-stderr.log').open('x');child=subprocess.Popen([str(args.bridge_python.absolute()),str(args.bridge_root.absolute()/'tools/platform_v2/offline_stage6/serve.py'),'--out',str(out.absolute()/'server'),'--scene-json',str(args.scene_json.absolute()),'--native-spec',str(args.native_spec.absolute()),'--host-delay',str(delay),'--admission-manifest',str(args.admission_manifest.absolute())],env=env,stdout=subprocess.PIPE,stderr=log,text=True)
+  result=dict(host_delay_s=delay,passed=False,checks=[],captures=[],scope='offline_SIL_original_Qt_CPU_display_not_realtime_or_Windows');results.append(result)
+  operator=None;window=None;lifecycle=None;terminal=None;cleanup=None
+  def check(name,value):
+@@ -35,13 +40,13 @@ for delay in (0.,.15):
+  try:
+   if not select.select([child.stdout],[],[],12)[0]:raise RuntimeError('Offline server startup timeout')
+   line=child.stdout.readline();ready=json.loads(line);result['ready']=ready;url=ready['url']
+-  operator=PlatformClient(url,timeout=.5);operator.open('operator');owner_session_id=operator.session_id;operator.claim('red_sentry',['gimbal']);operator.bind('red_sentry','aim','aim_native_rmcs_offline_v1',{})
++  operator=PlatformClient(url,timeout=.5,admission_credential=operator_credential);operator.open('operator');owner_session_id=operator.session_id;operator.claim('red_sentry',['gimbal']);operator.bind('red_sentry','aim','aim_native_rmcs_offline_v1',{})
+   lifecycle=RenewalLifecycle(operator,'red_sentry',['gimbal']);lifecycle.observe(operator.state());lifecycle.start()
+   with ExitStack() as stack:
+    for name in ('BackendManager','CameraCaptureWorker','TongjiVisionReceiver','LocalAlignedVision','TongjiVisionBridge'):
+     stack.enter_context(patch.object(polar_app,name,side_effect=AssertionError('Physical constructor called: '+name)))
+    for name in ('polar_port_choices','dt7_port_choices'):stack.enter_context(patch('rm_client.model.'+name,side_effect=AssertionError('Physical discovery called: '+name)))
+-   view=PlatformRuntime(url,role='spectator');window=PlatformWindow(view);window.timer.stop();window.resize(1360,900);window.isActiveWindow=lambda:True
++   view=PlatformRuntime(transport=PlatformTransport(url,role='spectator',admission_credential=audit_credential));window=PlatformWindow(view);window.timer.stop();window.resize(1360,900);window.isActiveWindow=lambda:True
+    chosen=False;captured=False;started=time.monotonic()
+    while child.poll() is None:
+     if terminal is None and select.select([child.stdout],[],[],0)[0]:
+diff --git a/tests/platform_v2_fixtures.py b/tests/platform_v2_fixtures.py
+new file mode 100644
+--- /dev/null
++++ b/tests/platform_v2_fixtures.py
+@@ -0,0 +1,54 @@
++"""Explicit synthetic state/camera fixtures without importing the Qt window."""
++import base64
++import copy
++import cv2
++import numpy as np
++
++class Client:
++    uncertain=False;session_id='synthetic-client'
++    def __init__(self):self.calls=[];self.epoch=0;self.lease_epoch=0
++    def open(self,role):return dict(schema='rm.sim.platform.v2',session_id=self.session_id,role=role)
++    def watch(self,rid):self.calls.append(('watch',rid));self.epoch+=1;return dict(robot_id=rid,watch_epoch=self.epoch)
++    def claim(self,rid,channels):self.calls.append(('claim',rid));self.lease_epoch+=1;return dict(robot_id=rid,lease_epochs={c:self.lease_epoch for c in channels})
++    def release(self,rid,channels):self.calls.append(('release',rid));return {'released':True}
++    def renew(self,rid,channels):self.calls.append(('renew',rid));return {}
++    def control(self,rid,ch,value,**kw):self.calls.append(('control',rid,ch,copy.deepcopy(value)));return {'accepted':True}
++    def keepalive(self):self.calls.append(('keepalive',));return {}
++    def close(self):self.calls.append(('close',))
++
++def state(*,complete=True,episode=0,stamp=1.,owner=None,epoch=1,role='operator'):
++    robots=[]
++    for team in ('red','blue'):
++        for role in ('hero','infantry','sentry'):
++            r=dict(robot_id=team+'_'+role,team=team,role=role,xy=[0.,0.],hp=300.,alive=True,yaw=0.,gimbal_yaw=0.,gimbal_pitch=0.,vx=0.,vy=0.,wz=0.)
++            if complete:r.update(max_hp=300.,ammo=25.,heat=0.,heat_max=100.)
++            robots.append(r)
++    value=dict(schema='rm.sim.platform.v2',source='simulator_truth_display_only',algorithm_input=False,sim_time=stamp,episode=episode,phase='running',robots=robots,control={'leases':{'red_infantry':{c:{'owner':owner,'epoch':epoch} for c in ('motion','gimbal','fire')}}})
++    if complete:value.update(remaining_seconds=299.,victory_points={'red':0,'blue':0})
++    if role=='spectator':return value
++    leases={};bindings={};limited=[]
++    for row in robots:
++        rid=row['robot_id'];own=owner is not None and rid=='red_infantry'
++        small={k:row[k] for k in ('robot_id','team','role')}
++        if own:small.update({k:row[k] for k in ('hp','alive','gimbal_yaw','gimbal_pitch','max_hp','ammo','heat','heat_max') if k in row})
++        limited.append(small)
++        leases[rid]={c:dict(owner=owner if own else None,epoch=epoch if own else 0,occupied=own,**({'expires':101.,'input_expires':0.,'input':None} if own else {})) for c in ('motion','gimbal','fire')}
++        bindings[rid]={k:{'owner':None} for k in ('navigation','aim')}
++    return dict(schema='rm.sim.platform.v2',source='operator_limited_display',data_plane='operator_limited_display',
++        state_projection_version=1,algorithm_input=False,sim_time=stamp,sample_sim_time=stamp,episode=episode,
++        phase='running',robots=limited,remaining_seconds=value.get('remaining_seconds'),control=dict(robot_ids=[r['robot_id'] for r in limited],leases=leases,bindings=bindings,server_monotonic_s=100.,stopped=False,revision=1),applied_targets={})
++
++def frame(t,*,seq=1,age=0.,robot=None,watch_epoch=None,episode=0):
++    image=np.zeros((6,8,3),dtype=np.uint8);ok,encoded=cv2.imencode('.jpg',image);assert ok
++    value=dict(schema='rm.sim.platform.v2',available=True,reason='available',robot_id=robot or t.watch_robot,watch_epoch=t.watch_epoch if watch_epoch is None else watch_epoch,episode=episode,frame_seq=seq,capture_sim_time=.9,age_wall_s=age,max_frame_age_wall_s=2.5,capture_wall_monotonic=100.-age,encode_completed_wall_monotonic=100.,source='simulated_raw_camera_display_jpeg',full_frame=True,algorithm_input=False,own_qpos_at_capture=[0.]*5,own_qvel_at_capture=[0.]*5,own_odom_at_capture=[0.]*3,own_odom_velocity_at_capture=[0.]*3,calibration={'intrinsics':{'fx':10.,'fy':10.,'cx':4.,'cy':3.,'distortion_model':'brown_conrady_5','distortion':[0.]*5},'extrinsics':{'parent_frame':'gimbal_link','translation_m':[.24,0.,.06],'rotation_xyzw':[-.5,.5,-.5,.5],'calibration_id':'synthetic-fixture'}},image=dict(encoding='jpeg',width=8,height=6,data_base64=base64.b64encode(encoded.tobytes()).decode()))
++    if t.role=='operator':
++        value['source']='operator_camera_display_v1'
++        value['data_plane']='operator_limited_display';value['camera_display_version']=1
++        for key in ('own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture'):value.pop(key)
++    return value
++
++def install_owned_state(t,*,complete=True):
++    """A new synthetic server HUD sample after claim ACK; never auto-arm."""
++    epoch=t.owned_epochs.get('motion',1)
++    return t.install_state(state(owner=t.client.session_id,epoch=epoch,complete=complete,
++                                 stamp=(t.raw_state or {}).get('sim_time',1.)+.001))
+diff --git a/tests/test_operator_state_projection.py b/tests/test_operator_state_projection.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_operator_state_projection.py
+@@ -0,0 +1,147 @@
++"""Pure CPU operator transport boundary tests; no Qt, renderer or hardware."""
++import copy
++import unittest
++from types import SimpleNamespace
++
++from rm_client.sim_platform_transport import PlatformTransport
++from platform_v2_fixtures import frame
++
++
++class Client:
++    uncertain=False;session_id='own-session';control_profile='server_window_v1'
++    def __init__(self):self.calls=[]
++    def open(self,role):return dict(session_id=self.session_id,role=role)
++    def watch(self,rid):self.calls.append(('watch',rid));return dict(watch_epoch=1,robot_id=rid)
++    def claim(self,rid,channels):self.calls.append(('claim',rid));return dict(lease_epochs={c:2 for c in channels})
++    def release(self,rid,channels):self.calls.append(('release',rid));return {'released':True}
++    def renew(self,rid,channels):self.calls.append(('renew',rid));return {}
++    def keepalive(self):return {}
++    def control(self,*args,**kwargs):self.calls.append(('control',args));return {'accepted':True}
++
++
++def state(*,owned=False,stamp=1.,server_now=1000.,expires=1001.,alive=True):
++    rows=[];leases={};bindings={}
++    for team in ('red','blue'):
++        for role in ('hero','infantry','sentry'):
++            rid=team+'_'+role;row=dict(robot_id=rid,team=team,role=role)
++            live=owned and rid=='red_infantry'
++            if live:row.update(hp=300.,max_hp=300.,ammo=20.,heat=0.,heat_max=100.,alive=alive,gimbal_yaw=.25,gimbal_pitch=-.1)
++            rows.append(row)
++            leases[rid]={c:dict(owner='own-session' if live else None,epoch=2 if live else 0,occupied=live,**({'expires':expires,'input':None,'input_expires':0.} if live else {})) for c in ('motion','gimbal','fire')}
++            bindings[rid]={k:{'owner':None} for k in ('navigation','aim')}
++    return dict(schema='rm.sim.platform.v2',display_schema='polar.sim.display.v2',source='operator_limited_display',
++        data_plane='operator_limited_display',state_projection_version=1,algorithm_input=False,sim_time=stamp,
++        sample_sim_time=stamp,episode=0,phase='running',remaining_seconds=299.,robots=rows,
++        control=dict(robot_ids=[r['robot_id'] for r in rows],leases=leases,bindings=bindings,
++                     stopped=False,server_monotonic_s=server_now,revision=1),applied_targets={})
++
++
++class OperatorProjectionTests(unittest.TestCase):
++    def setUp(self):
++        self.now=[10.];self.client=Client()
++        self.t=PlatformTransport(role='operator',clock=lambda:self.now[0],client=self.client)
++        self.t.connect_once();self.t.install_state(state());self.t.watch('red_infantry');self.t.process_jobs()
++        self.t.install_state(state());self.t.video=object();self.t.video_at=10.
++    def claim(self):
++        self.t.request_claim();self.t.process_jobs()
++    def own(self,**kwargs):
++        self.claim();self.t.install_state(state(owned=True,**kwargs))
++    def test_static_roster_and_real_camera_allow_claim_but_cannot_arm(self):
++        self.assertTrue(self.t.selection_ready());self.assertIsNone(self.t.snapshot()[0]['own'])
++        self.assertFalse(self.t.request_claim());self.t.process_jobs()
++        self.assertEqual(self.t.owned_robot,'red_infantry');self.assertFalse(self.t.activate())
++        self.assertFalse(any(c[0]=='control' for c in self.client.calls))
++        self.t.install_state(state(owned=True));self.assertTrue(self.t.activate())
++        self.assertEqual(self.t._angles,[.25,-.1])
++    def test_operator_rejects_legacy_truth_and_position_or_enemy_dynamic_data(self):
++        values=[]
++        legacy=state();legacy['source']='simulator_truth_display_only';values.append(legacy)
++        xy=state();xy['robots'][0]['xy']=[0.,0.];values.append(xy)
++        enemy=state();enemy['robots'][-1]['hp']=300.;values.append(enemy)
++        future=state();future['motion_feedback']={};values.append(future)
++        for value in values:
++            with self.subTest(value=value),self.assertRaises(ValueError):self.t.install_state(value)
++    def test_own_hud_has_no_position_and_enemy_health_or_invented_score(self):
++        self.own();data=self.t.snapshot()[0]
++        self.assertNotIn('xy',data['own']);self.assertNotIn('chassis_yaw',data['own'])
++        self.assertEqual(data['vp'],{'red':None,'blue':None});self.assertFalse(data['map_available'])
++        self.assertEqual(set(data['robots'][-1]),{'robot_id','team','role'})
++    def test_duplicate_sample_cannot_rejuvenate_own_gimbal(self):
++        self.own();self.assertTrue(self.t.activate());self.now[0]+=.4
++        self.t.install_state(state(owned=True,server_now=1000.4,expires=1001.4))
++        self.now[0]+=.11
++        self.assertIsNone(self.t.snapshot()[0]['own']);self.assertFalse(self.t.activate())
++    def test_transfer_and_lease_expiry_cannot_rejuvenate_hud(self):
++        self.claim();self.t.install_state(state(owned=True,expires=1000.1),request_started=9.85)
++        self.assertIsNone(self.t.snapshot()[0]['own']);self.assertFalse(self.t.activate())
++    def test_release_or_expired_hud_neutralizes_focus(self):
++        self.own();self.assertTrue(self.t.activate())
++        self.t.install_state(state(stamp=1.1))
++        self.assertFalse(self.t._focus);self.assertIsNone(self.t.owned_robot)
++    def test_explicit_local_release_cannot_continue_using_old_hud_cache(self):
++        self.own();self.assertTrue(self.t.activate());self.t.neutral('Explicit release')
++        self.assertIsNone(self.t.snapshot()[0]['own']);self.assertFalse(self.t.activate())
++        self.assertTrue(all(set(r)=={'robot_id','team','role'} for r in self.t.snapshot()[0]['robots']))
++    def test_dead_robot_cannot_activate(self):
++        self.own(alive=False);self.assertFalse(self.t.activate())
++    def test_missing_actual_gimbal_is_rejected(self):
++        self.claim();value=state(owned=True)
++        del value['robots'][1]['gimbal_yaw']
++        with self.assertRaises(ValueError):self.t.install_state(value)
++    def test_stale_own_hud_cannot_issue_a_control_window_or_fire(self):
++        self.own();self.assertTrue(self.t.activate());self.t.heartbeat(True)
++        self.t.submit_input(vx_mps=0,vy_mps=0,fire=True);self.now[0]+=.51
++        self.t.control_tick()
++        self.assertFalse(self.t._focus);self.assertFalse(any(c[0]=='control' for c in self.client.calls))
++    def test_spectator_validation_remains_full_and_strict(self):
++        spectator=PlatformTransport(role='spectator',clock=lambda:self.now[0],client=Client());spectator.connect_once()
++        with self.assertRaises(ValueError):spectator.install_state(state())
++        full=state();full['source']='simulator_truth_display_only';full.pop('data_plane')
++        for row in full['robots']:
++            row.update(xy=[1.,2.],hp=300.,alive=True,yaw=.5,gimbal_yaw=.2,gimbal_pitch=.1)
++        self.assertIsNone(spectator.install_state(full));self.assertEqual(spectator.robot_ids,self.t.robot_ids)
++        broken=copy.deepcopy(full);broken['robots'][0].pop('xy')
++        with self.assertRaises(ValueError):spectator.install_state(broken)
++    def test_operator_camera_before_claim_uses_actual_jpeg_without_exposure_pose(self):
++        value=frame(self.t)
++        self.assertEqual(value['source'],'operator_camera_display_v1')
++        self.assertNotIn('own_odom_at_capture',value)
++        self.assertTrue(self.t.install_frame(value,generation=self.t._watch_generation))
++        self.assertEqual(self.t.video.shape,(6,8,3));self.assertTrue(self.t.selection_ready())
++    def test_operator_camera_rejects_any_world_exposure_field_or_legacy_source(self):
++        for key,value in [('xy',[1,2]),('own_qpos_at_capture',[0.]*5),('own_qvel_at_capture',[0.]*5),
++                          ('own_odom_at_capture',[0.]*3),('own_odom_velocity_at_capture',[0.]*3),
++                          ('source','simulated_raw_camera_display_jpeg')]:
++            payload=frame(self.t);payload[key]=value
++            with self.subTest(key=key),self.assertRaises(ValueError):
++                self.t.install_frame(payload,generation=self.t._watch_generation)
++    def test_operator_camera_rejects_future_nested_pose_in_calibration_or_image(self):
++        for location in ('calibration','image'):
++            payload=frame(self.t);payload[location]['world_pose']=[1,2,3]
++            with self.subTest(location=location),self.assertRaises(ValueError):
++                self.t.install_frame(payload,generation=self.t._watch_generation)
++    def test_actual_ui_runtime_can_claim_before_own_hud_then_arm_only_after_hud(self):
++        from rm_client.sim_platform_runtime import PlatformRuntime
++        runtime=PlatformRuntime(transport=self.t)
++        try:
++            self.assertFalse(runtime.arm());self.t.process_jobs()
++            self.assertFalse(runtime.arm())
++            self.t.install_state(state(owned=True));self.assertTrue(runtime.arm())
++        finally:runtime._tmp.cleanup()
++    def test_actual_model_projection_clears_map_and_released_robot_rows(self):
++        from rm_client.sim_platform_runtime import PlatformRuntime
++        runtime=PlatformRuntime(transport=self.t);model=SimpleNamespace()
++        try:
++            runtime.apply_state(model)
++            self.assertFalse(model.mujoco_telemetry_valid);self.assertEqual(model.map_robots,[])
++            self.own();runtime.apply_state(model)
++            self.assertTrue(model.mujoco_telemetry_valid);self.assertEqual(model.current_health,300)
++            self.assertEqual(model.map_robots,[]);self.assertEqual(model.map_markers,[])
++            self.assertIsNone(model.enemy_victory_points)
++            self.assertEqual([row['name'] for row in model.robot_rows],['red_infantry'])
++            self.t.install_state(state(stamp=1.1));runtime.apply_state(model)
++            self.assertEqual(model.robot_rows,[]);self.assertFalse(model.mujoco_telemetry_valid)
++        finally:runtime._tmp.cleanup()
++
++
++if __name__=='__main__':unittest.main()
+diff --git a/tests/test_platform_admission_client.py b/tests/test_platform_admission_client.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_platform_admission_client.py
+@@ -0,0 +1,36 @@
++"""Memory-only SDK and environment admission; no sockets, Qt or real secrets."""
++import json
++from unittest.mock import patch
++import unittest
++
++from rm_client.sim_platform_client import PlatformClient
++from rm_client.sim_platform_transport import PlatformTransport
++
++
++class AdmissionTests(unittest.TestCase):
++    def test_open_sends_credential_but_diagnostics_and_return_do_not_expose_it(self):
++        secret='synthetic-test-credential-1234567890123456'
++        c=PlatformClient('http://127.0.0.1:8766',admission_credential=secret)
++        sent=[]
++        def request(path,body,**kwargs):
++            sent.append(dict(body))
++            return dict(token='synthetic-session-token',session_id='s',role='operator',
++                        session_expires=101.,server_monotonic_s=100.,admission_credential=secret)
++        c._request=request
++        result=c.open('operator')
++        self.assertEqual(sent[0]['credential'],secret)
++        self.assertNotIn(secret,json.dumps(result));self.assertNotIn(secret,json.dumps(c.diagnostics()))
++    def test_transport_environment_is_read_into_sdk_memory_and_explicit_value_wins(self):
++        with patch.dict('os.environ',{'POLAR_SIM_ADMISSION_CREDENTIAL':'synthetic-env-credential-1234567890123456'}):
++            transport=PlatformTransport(role='operator')
++            self.assertEqual(transport.client._admission_credential,'synthetic-env-credential-1234567890123456')
++            explicit=PlatformTransport(role='operator',admission_credential='synthetic-explicit-credential-1234567890123456')
++            self.assertEqual(explicit.client._admission_credential,'synthetic-explicit-credential-1234567890123456')
++            self.assertNotIn('synthetic-env-credential',json.dumps(transport.diagnostics()))
++    def test_invalid_admission_values_fail_without_storing_or_diagnostic_secret(self):
++        for value in (True,15,'short','x'*257):
++            with self.subTest(type=type(value).__name__),self.assertRaisesRegex(ValueError,'Invalid admission credential'):
++                PlatformClient('http://127.0.0.1:8766',admission_credential=value)
++
++
++if __name__=='__main__':unittest.main()
+diff --git a/tests/test_operator_offline_clock.py b/tests/test_operator_offline_clock.py
+new file mode 100644
+--- /dev/null
++++ b/tests/test_operator_offline_clock.py
+@@ -0,0 +1,59 @@
++"""Strict scoped operator clock/lifecycle support without truth fallback."""
++import copy
++import unittest
++
++from rm_client.sim_platform_transport import PlatformTransport
++from test_operator_state_projection import Client,state
++
++
++def offline():
++    value=state()
++    value.update(clock_profile=dict(kind='offline_modeled_latency_v1',label='OFFLINE / SIL',barrier_state='native_barrier',
++        simulation_tick=5,simulation_ns=10_000_000,episode_origin_mj_time_ns=0,
++        delays_are_engineering_configuration_not_device_calibration=True,host_delay_s=.15,wall_elapsed_s=1.,
++        delays=dict(physics_step_ns=2_000_000,capture_period_ns=40_000_000,controller_period_ns=10_000_000,
++            sensor_delay_ns=10_000_000,compute_delay_ns=10_000_000,actuation_delay_ns=0,max_age_ns=80_000_000)),
++        completed_captures=3)
++    return value
++
++
++class OfflineClockTests(unittest.TestCase):
++    def setUp(self):
++        self.t=PlatformTransport(role='operator',clock=lambda:10.,client=Client());self.t.connect_once()
++    def test_real_projection_shape_and_terminal_are_accepted(self):
++        value=offline();self.assertTrue(self.t.install_state(value))
++        value['clock_profile']['barrier_state']='HALTED';value.update(offline_final_state='HALTED',offline_halt_code='native_error')
++        self.assertTrue(self.t.install_state(value))
++        self.assertEqual(self.t.raw_state['offline_halt_code'],'native_error')
++        self.assertEqual(self.t.raw_state['completed_captures'],3)
++    def test_live_clock_shape_is_accepted(self):
++        value=state();value['clock_profile']=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=1.)
++        self.assertTrue(self.t.install_state(value))
++    def test_offline_private_or_unknown_nested_fields_are_rejected(self):
++        cases=[]
++        for container,key,value in [('clock_profile','world_pose',[1,2]),('delays','private_path','SECRET_PATH'),
++            ('clock_profile','label','SECRET_PATH'),('clock_profile','barrier_state','future:SECRET_PATH')]:
++            item=offline();target=item['clock_profile']['delays'] if container=='delays' else item['clock_profile'];target[key]=value;cases.append(item)
++        item=offline();item['offline_halt_code']='native_error:SECRET_PATH';cases.append(item)
++        item=offline();item['offline_halt_reason']='SECRET_PATH';cases.append(item)
++        for item in cases:
++            with self.subTest(item=item),self.assertRaises(ValueError):self.t.install_state(item)
++        self.assertIsNone(self.t.raw_state)
++    def test_offline_scalar_bool_nonfinite_negative_and_relaxed_age_are_rejected(self):
++        for key,bad in [('simulation_ns',True),('simulation_tick',-1),('host_delay_s',float('nan')),('wall_elapsed_s',-1),('episode_origin_mj_time_ns',{})]:
++            item=offline();item['clock_profile'][key]=bad
++            with self.subTest(key=key),self.assertRaises(ValueError):self.t.install_state(item)
++        for key,bad in [('compute_delay_ns',True),('max_age_ns',81_000_000),('capture_period_ns',40_000_001)]:
++            item=offline();item['clock_profile']['delays'][key]=bad
++            with self.subTest(delay=key),self.assertRaises(ValueError):self.t.install_state(item)
++        for key,bad in [('completed_captures',True),('offline_final_state','future')]:
++            item=offline();item[key]=bad
++            with self.subTest(field=key),self.assertRaises(ValueError):self.t.install_state(item)
++    def test_offline_terminal_cannot_be_smuggled_into_live_or_absent_clock(self):
++        item=state();item['completed_captures']=1
++        with self.assertRaises(ValueError):self.t.install_state(item)
++        item['clock_profile']=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=1.)
++        with self.assertRaises(ValueError):self.t.install_state(item)
++
++
++if __name__=='__main__':unittest.main()

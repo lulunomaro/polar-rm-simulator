@@ -8,6 +8,7 @@ import copy
 import json
 import math
 import queue
+import sys
 import threading
 import time
 from .control import ControlPlane, Rejected, KINDS
@@ -28,6 +29,7 @@ class AdapterSlot:
         self.registry=registry;self.clock=clock
         self.pending=queue.Queue(maxsize=1);self.results=queue.Queue(maxsize=1)
         self.stop=threading.Event();self.dropped=0;self.running=False;self.lifecycle_error=None
+        self._instance=None;self._lifecycle_lock=threading.Lock()
         self.thread=threading.Thread(target=self._run,name='sim-v2-adapter',daemon=True)
         self.thread.start()
 
@@ -43,6 +45,13 @@ class AdapterSlot:
     def submit(self,job):
         if self._latest(self.pending,job):self.dropped+=1
 
+    @staticmethod
+    def _cancel_native(instance):
+        # Arbitrary Python cancel/close hooks may hang. Only the reviewed native
+        # lifecycle has a nonblocking authority-side cancellation contract.
+        from .native_adapter import NativeSourceAdapter
+        if isinstance(instance,NativeSourceAdapter):NativeSourceAdapter.cancel(instance)
+
     def _run(self):
         instance=None;identity=None;failed_identity=None
         try:
@@ -54,6 +63,7 @@ class AdapterSlot:
                         try:instance.close()
                         except BaseException as exc:self.lifecycle_error=type(exc).__name__
                     instance=None;identity=None
+                    with self._lifecycle_lock:self._instance=None
                     continue
                 if self.clock()>=job['observation']['wall_deadline']:continue
                 started_wall=self.clock();self.running=True;error=None;value=None
@@ -66,8 +76,13 @@ class AdapterSlot:
                         if instance is not None:instance.close()
                         instance=None;identity=None
                         instance=self.registry.create(b['adapter_id'],json_copy(b['config']))
+                        with self._lifecycle_lock:self._instance=instance
+                        if self.stop.is_set():
+                            self._cancel_native(instance)
+                            break
                         instance.reset(dict(episode=o['episode'],robot_id=o['robot_id'],binding_epoch=b['epoch']))
                         identity=current
+                    if self.stop.is_set():break
                     # Raw-image validation/JSON copying is CPU work on this worker,
                     # never on physics or HTTP threads.
                     from .contracts import validate_observation
@@ -85,20 +100,29 @@ class AdapterSlot:
                     try:instance.close()
                     except BaseException as exc:self.lifecycle_error=type(exc).__name__
                     instance=None;identity=None
+                    with self._lifecycle_lock:self._instance=None
         finally:
             if instance is not None:
                 try:instance.close()
                 except BaseException as exc:self.lifecycle_error=type(exc).__name__
+            with self._lifecycle_lock:self._instance=None
 
     def poll(self):
         try:return self.results.get_nowait()
         except queue.Empty:return None
 
-    def close(self):self.stop.set()
+    def close(self):
+        self.stop.set()
+        # No plugin action or blocking close here. Reviewed native adapters expose
+        # a nonblocking cancel hook; the worker remains the close/reap owner.
+        with self._lifecycle_lock:instance=self._instance
+        if instance is not None:
+            try:self._cancel_native(instance)
+            except BaseException as exc:self.lifecycle_error=type(exc).__name__
 
 
 class PlatformRuntime:
-    def __init__(self,backend,*,registry=None,clock=time.monotonic,observation_period=.05,
+    def __init__(self,backend,*,registry=None,clock=time.perf_counter,observation_period=.05,
                  action_ttl=.2,control=None,camera=None,trace=None):
         from .adapters import default_registry
         self.camera=camera;self.trace=trace;self.output_budgets={};self.output_authorizations={};self.real_time_factor=1.
@@ -134,7 +158,7 @@ class PlatformRuntime:
             with self.cache_lock:episode=self.cached.get('episode')
             return dict(capability_schema='rm.sim.platform.capabilities.v1',session_id=session.sid,
                 watch_robot_id=session.watch_robot_id,watch_epoch=session.watch_epoch,episode=episode,
-                robots=[dict(robot_id=r,spin_control=copy.deepcopy(self.control._spin_capabilities.get(r,dict(version=1,available=False,reason='unsupported_yaw_actuator_mapping')))) for r in self.control.robot_ids])
+                robots=[dict(robot_id=r,spin_control=copy.deepcopy(self.control._spin_capabilities.get(r,dict(version=1,available=False,reason='unsupported_yaw_actuator_mapping')))) for r in self.control.visible_robot_ids(token)])
 
     def adapter_descriptors(self):
         return self.registry.descriptors()
@@ -143,6 +167,7 @@ class PlatformRuntime:
         support=self.backend.declared_sensor_support() if hasattr(self.backend,'declared_sensor_support') else {}
         robots=[]
         for rid in self.control.robot_ids:
+            if token is not None and rid not in self.control.visible_robot_ids(token):continue
             sensors=list(support.get(rid,[]))
             if self.camera is not None and 'camera' not in sensors:sensors.append('camera')
             robots.append(dict(robot_id=rid,declared_sensors=sensors))
@@ -159,6 +184,9 @@ class PlatformRuntime:
 
     def bind(self,token,robot_id,kind,lease_epochs,adapter_id,config):
         # Never call adapter constructors on an HTTP thread.
+        with self.control.lock:
+            session=self.control._session(token,True)
+            self.control.authorize_robot(session,robot_id)
         try:spec=self.registry.get(adapter_id)
         except (KeyError,ValueError):raise Rejected('unknown_adapter',404)
         descriptor=spec.descriptor
@@ -191,8 +219,8 @@ class PlatformRuntime:
 
     def watch(self,token,rid):
         with self.control.lock:
-            self.control.watch_sample(token)
-            if rid is not None:self.control._robot(rid)
+            session=self.control._session(token)
+            if rid is not None:self.control.authorize_robot(session,rid)
             if self.camera is not None and rid is not None:
                 desired=self._camera_desired(self.control.snapshot())
                 # Remove this session's previous watch before checking capacity.
@@ -206,12 +234,19 @@ class PlatformRuntime:
     def frame(self,token):
         # Lock order is always control -> camera. There is no render work here.
         with self.control.lock:
+            session=self.control._session(token)
             watch=self.control.watch_sample(token)
             rid=watch['robot_id'];epoch=self._episode
+            if rid is not None:self.control.authorize_robot(session,rid)
             reason='runtime_stopped' if self.control.stopped else ('not_watching' if rid is None else 'no_gl_stage')
             if self.control.stopped or rid is None or self.camera is None:
-                return dict(available=False,reason=reason,robot_id=rid,episode=epoch,watch_epoch=watch['watch_epoch'])
-            return self.camera.display_frame(rid,epoch,('watch',watch['session_id'],watch['watch_epoch']),watch['watch_epoch'])
+                value=dict(available=False,reason=reason,robot_id=rid,episode=epoch,watch_epoch=watch['watch_epoch'])
+            else:value=self.camera.display_frame(rid,epoch,('watch',watch['session_id'],watch['watch_epoch']),watch['watch_epoch'])
+            if session.role=='operator':
+                from .state_projection import operator_camera_display
+                return operator_camera_display(value)
+            if not session.audit_authorized:raise Rejected('audit_authorization_required',403)
+            return value
 
     def _collect(self,snapshot,sim_time):
         from .contracts import validate_action
@@ -345,7 +380,7 @@ class PlatformRuntime:
 
     def _targets(self,snapshot,sim_time,*,sampled_wall=None):
         now=self.clock() if sampled_wall is None else sampled_wall;result={}
-        for rid in self.control.robot_ids:
+        for rid in snapshot['robot_ids']:
             leases=snapshot['leases'][rid];bindings=snapshot['bindings'][rid]
             t=dict(motion=None,gimbal=None,fire=False)
             for channel in ('motion','gimbal','fire'):
@@ -403,8 +438,26 @@ class PlatformRuntime:
             targets=self._targets(current,sim_time)
             apply_wall=self.clock()
             consumed=[]
+            guard_cache={}
+            guard_revision=[current['revision']]
+            guard_state=[current]
             def command_guard(rid,command,phase,sampled_wall=None):
-                guard_snapshot=self.control.snapshot()
+                # The control lock spans this entire integration. Expiry and the
+                # revision are still checked at EVERY consumption boundary; a
+                # revocation/rebind invalidates all detached cached metadata.
+                # Input/window/result expiry is independently checked by _targets
+                # with a fresh clock (or the uniform integration-entry sample).
+                # Re-copying unchanged binding configs 18 times per 2ms step
+                # provides no additional authority and competes for the GIL.
+                self.control._expire()
+                if self.control.revision!=guard_revision[0]:
+                    guard_state[0]=self.control.snapshot()
+                    guard_revision[0]=guard_state[0]['revision'];guard_cache.clear()
+                if rid not in guard_cache:
+                    state=guard_state[0]
+                    guard_cache[rid]=dict(robot_ids=[rid],leases={rid:state['leases'][rid]},
+                                         bindings={rid:state['bindings'][rid]})
+                guard_snapshot=guard_cache[rid]
                 checked=self._targets(guard_snapshot,self.backend.sim_time,sampled_wall=sampled_wall)[rid]
                 # Every displayed applied target reflects the final guard too.
                 targets[rid]=checked
@@ -427,12 +480,22 @@ class PlatformRuntime:
             display['camera']=self.camera.status()
             display['limitations']=[v for v in display.get('limitations',[]) if v!='no_gl_camera_unavailable']
             display['scenario']='existing_3v3_scene_role_v23_optics'
+        # Index receipts once; serialize each retained entry/final only once.
+        # The complete phase stream still goes to _trace above. A final receipt
+        # is shared between the two display indexes, never with live control.
+        receipt_index={r:dict(entry=None,final=None) for r in self.control.robot_ids}
+        for receipt in consumed:
+            indexed=receipt_index[receipt['robot_id']]
+            indexed['final']=receipt
+            if receipt['phase']=='integration_entry':indexed['entry']=receipt
+        detached=json_copy(dict(targets=targets,feedback=getattr(self.backend,'last_motion_feedback',{}),
+                                receipts=receipt_index))
         display.update(runtime_state='running',telemetry_available=True,steps=self.steps,
             clock_profile=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=self.real_time_factor),
-            authority_thread=self._authority,applied_targets=json_copy(targets),
-            motion_feedback=json_copy(getattr(self.backend,'last_motion_feedback',{})),
-            spin_consumption_receipts={r:dict(entry=json_copy(next((v for v in reversed(consumed) if v['robot_id']==r and v['phase']=='integration_entry'),None)),final=json_copy(next((v for v in reversed(consumed) if v['robot_id']==r),None))) for r in self.control.robot_ids},
-            manual_consumption_receipts={r:json_copy(next((v for v in reversed(consumed) if v['robot_id']==r),None)) for r in self.control.robot_ids},
+            authority_thread=self._authority,applied_targets=detached['targets'],
+            motion_feedback=detached['feedback'],
+            spin_consumption_receipts=detached['receipts'],
+            manual_consumption_receipts={r:detached['receipts'][r]['final'] for r in self.control.robot_ids},
             algorithm_status={r:{k:self.status.get((r,k),'unbound') if current['bindings'][r][k]['owner'] else 'unbound'
                 for k in KINDS} for r in self.control.robot_ids},
             worker_limits=dict(max_slots=2*len(self.control.robot_ids),created=len(self.slots),
@@ -443,11 +506,15 @@ class PlatformRuntime:
 
     def snapshot(self,token):
         # Current lease state and historical applied sample have separate stamps.
-        control=self.control.snapshot(token)
-        with self.cache_lock:value=copy.deepcopy(self.cached)
-        value['control']=control
-        value['applied_sample_is_historical']=True
-        return value
+        from .state_projection import project_state
+        with self.control.lock:
+            session=self.control._session(token)
+            control=self.control.snapshot(token)
+            with self.cache_lock:value=copy.deepcopy(self.cached)
+            value['control']=control
+            value['applied_sample_is_historical']=True
+            return project_state(value,control,session_id=session.sid,role=session.role,
+                                 allowed_robots=session.allowed_robots,audit_authorized=session.audit_authorized)
 
     def health(self):
         with self.cache_lock:
@@ -462,8 +529,22 @@ class PlatformRuntime:
             while not self.stop_event.is_set() and not self.control.stopped:
                 if max_wall_seconds is not None and self.clock()-start>=max_wall_seconds:break
                 self.step_once()
-                deadline=max(deadline+self.backend.timestep/real_time_factor,self.clock())
-                self.stop_event.wait(max(0.,deadline-self.clock()))
+                # Keep the wall-clock origin: an OS/GIL/render stall must not
+                # permanently discard physical steps. While behind, integrate
+                # the original dt without sleeping; when caught up, wait again.
+                # Every catch-up step still gates commands on ACTUAL wall time,
+                # and never waits for an algorithm or refreshes its timestamps.
+                deadline+=self.backend.timestep/real_time_factor
+                if sys.platform=='win32' and self.clock is time.perf_counter:
+                    # Event.wait uses a coarse Windows wait; a sub-2ms remainder
+                    # can sleep an entire scheduler tick. CPython's sleep uses a
+                    # high-resolution waitable timer without global timer changes.
+                    # Check stop at most every 5ms and retain the original deadline.
+                    while not self.stop_event.is_set() and not self.control.stopped:
+                        remaining=deadline-self.clock()
+                        if remaining<=0:break
+                        time.sleep(min(remaining,.005))
+                else:self.stop_event.wait(max(0.,deadline-self.clock()))
         except Exception as exc:
             self.error=type(exc).__name__
             raise
@@ -473,17 +554,33 @@ class PlatformRuntime:
         self.stop_event.set();self.control.stop()
         if self.camera is not None:self.camera.stop()
 
+    def _shutdown_workers(self):
+        return dict(self.slots)
+
     def close(self):
         self._check_authority()
         if self._closed:return
         self._closed=True;self.request_stop()
-        for slot in self.slots.values():slot.close()
+        workers=self._shutdown_workers()
+        for slot in workers.values():slot.close()
+        # One wall budget for ALL slots, not N independent waits. This occurs
+        # only during shutdown, after authority revocation, never a physics tick.
+        join_started=time.perf_counter();join_deadline=join_started+1.5
+        for slot in workers.values():
+            thread=getattr(slot,'thread',None)
+            if thread is not None:thread.join(max(0.,join_deadline-time.perf_counter()))
+        unfinished=[dict(robot_id=r,kind=k) for (r,k),slot in workers.items()
+                    if getattr(slot,'thread',None) is not None and slot.thread.is_alive()]
+        faults=[dict(robot_id=r,kind=k,error=slot.lifecycle_error) for (r,k),slot in workers.items() if getattr(slot,'lifecycle_error',None)]
+        self.shutdown_status=dict(clean=not unfinished and not faults,unfinished_slots=unfinished,
+                                  lifecycle_errors=faults,join_budget_s=1.5,join_elapsed_s=time.perf_counter()-join_started)
+        if not self.shutdown_status['clean'] and self.error is None:self.error='adapter_shutdown_incomplete'
         # Zero actuator intent on the authority thread; no simulated time jump.
         neutral={r:dict(motion=None,gimbal=None,fire=False) for r in self.control.robot_ids}
         self.backend.neutralize()
         display=self.backend.display_snapshot()
         if self.camera is not None:display['camera']=self.camera.status()
         display.update(runtime_state='error' if self.error else 'stopped',telemetry_available=True,
-            steps=self.steps,applied_targets=neutral,error=self.error)
+            steps=self.steps,applied_targets=neutral,error=self.error,shutdown_status=self.shutdown_status)
         with self.cache_lock:self.cached=display
         self.backend.close()

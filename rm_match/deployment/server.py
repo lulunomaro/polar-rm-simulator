@@ -14,6 +14,8 @@ def main(argv=None):
     p.add_argument('--native-spec', type=Path, required=True)
     p.add_argument('--native-out', type=Path, required=True)
     p.add_argument('--adapters-json', type=Path)
+    p.add_argument('--admission-manifest', type=Path, required=True,
+                   help='Local server-owned role/robot grants; contains credential hashes only')
     p.add_argument('--port', type=int, default=8766)
     p.add_argument('--camera-total-fps', type=float, default=15.)
     p.add_argument('--max-wall-seconds', type=float, default=300.)
@@ -26,6 +28,9 @@ def main(argv=None):
     if not 0 < a.camera_total_fps <= 15 or not 0 < a.real_time_factor <= 1:
         p.error('Camera FPS must be (0,15], real-time factor (0,1]')
     spec, spec_sha = validate_t2_spec(a.native_spec)
+    from ..platform_v2.admission import AdmissionPolicy
+    admission = AdmissionPolicy.from_manifest(a.admission_manifest)
+    admission_sha = admission.manifest_sha256
     registry = own_registry(a.native_spec, a.native_out, adapters_json=a.adapters_json)
     from ..platform_v2.backend import MuJoCoBackend
     from ..platform_v2.camera import CameraProvider
@@ -38,16 +43,19 @@ def main(argv=None):
         runtime = PlatformRuntime(backend, camera=camera, registry=registry)
         # Publish a first authoritative state before announcing readiness.
         runtime.step_once()
-        server = PlatformHTTPServer(TransportConfig(port=a.port), runtime)
+        admission.verify_manifest_unchanged(a.admission_manifest)
+        server = PlatformHTTPServer(TransportConfig(port=a.port, admission_policy=admission), runtime)
         http = threading.Thread(target=server.serve_forever, name='own-rmcs-http', daemon=True)
         http.start()
         def stop(*_):
             runtime.request_stop()
         signal.signal(signal.SIGINT, stop)
         signal.signal(signal.SIGTERM, stop)
+        admission.verify_manifest_unchanged(a.admission_manifest)
         print(json.dumps(dict(event='ready', profile=PROFILE,
             url=f'http://127.0.0.1:{a.port}', transport='loopback_only',
             native_registered=True, spec_sha256=spec_sha,
+            admission_policy_sha256=admission_sha,
             source_identity=spec['source_identity'],
             adapter_ids=[v['adapter_id'] for v in registry.descriptors()],
             automatic_binding=False, fire_authority='manual_only',

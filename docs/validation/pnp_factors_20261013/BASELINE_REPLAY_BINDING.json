@@ -1,0 +1,131 @@
+{
+  "diagnostic_built": true,
+  "diagnostic_executed": true,
+  "production_binary_sha256": "797e6ba7240aef29cacd8ac624afbba5cae1c751a62a7fa8eb41570451e17250",
+  "diagnostic_binary_sha256": "ef54321a7052e5653bb193dc760fbf289823a0b23f759697240f4907f5b960a7",
+  "frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "config_sha256": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3",
+  "scope": "One saved image; no simulator, hardware, threshold changes or target truth supplied to algorithm.",
+  "verified_bindings": {
+    "source_and_header_count": 94,
+    "generated_input_count": 6,
+    "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+    "executor_config_sha256": "c3a08938bce9b0347ae255f90964897cbf144dc872ad86bc5bcb6794e82d17dd",
+    "autoaim_config_sha256": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3"
+  },
+  "object_provenance": "UNVERIFIED local objects: original BUILD_MANIFEST does not bind individual object hashes. These exact current hashes are recorded, but correspondence to the production ELF is not proven; this replay is a separately bound local diagnostic, not historical equivalence.",
+  "object_bindings": [
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/detector.cpp.o",
+      "sha256": "e12912fa70fb0c7d9cf65f534f8a5365dcf78140c9c1d86b24fba4878955233b"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/pose_estimator.cpp.o",
+      "sha256": "c0461a14910bd2764f0543b08deb7ff4a0b2fdcaa45b7c17e44487903ca6e08e"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/tracker.cpp.o",
+      "sha256": "49c50eb3081eab1ded96aac0adf59d6f6d747bcd4520bed20c31db0d8952e4b2"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/kernel/fire_control.cpp.o",
+      "sha256": "f62a7bb5635a92619773b5c539d195241bd667935ceee9e2bcbad8a1c0888d5e"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/logging/printer.cpp.o",
+      "sha256": "c3fc6dbbad414637a16cffc19ca617d95734da8b365f09cbf683c59496122b07"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/panic.cpp.o",
+      "sha256": "a0bdf4f01fa72c5560413cf80318976f86bba8838522d0587264085f12e6993b"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/image/process.cpp.o",
+      "sha256": "0ccb8a829a6fa273649bec5e60581dd49ac48a376e7760c0ffeaddd0b87a6b1e"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/camera.cpp.o",
+      "sha256": "975cc6e1faea3a4590648e0dc5fadeef82e629d1368bdd1ef25eec2ad316a727"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/corners_optimizor.cpp.o",
+      "sha256": "ef58fb0ea18392f47c86db27fb5f89bf86ab9a1260992626e76e798f8a785548"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/outpost.cpp.o",
+      "sha256": "b543238427c69c4c55ee68ccb33989271265033c9e5aa3088674400a681b7516"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/reprojection.cpp.o",
+      "sha256": "5440dbd7392c516231b161b7705ad7af92de855200471b4b34dacdfc1ae17960"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/robot.cpp.o",
+      "sha256": "86ca38dda5a75a889b70e9e4f5e21a7cd343b25fae5bcfdd5afbab03f4f6f32d"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_armors.cpp.o",
+      "sha256": "eb335e5e73267142203d1d54a3d56b74fe5a4df2a6822568b510e2864c49f101"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_pnp/outpost_distance_optimizer.cpp.o",
+      "sha256": "4c25f847948021eb0bdeb28deb694e79747f792e3217ab06256329f5fa0b4aef"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_pnp/pnp_solution.cpp.o",
+      "sha256": "1d4bd53334fa76c7abae448fea25d5110d5be40c590d5968a89145d9bca88e93"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/utility/math/solve_pnp/yaw_optimizer.cpp.o",
+      "sha256": "d74907f5536dce2507d43ada31604f80cb3461a752dbe996ad2cd7f4602d8b15"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/outpost.cpp.o",
+      "sha256": "e6858dcf382f05e94adcbf21eaa8c382af478f356a17904b10602808b3fcdd4d"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/robot.cpp.o",
+      "sha256": "e5d4ee79f9cacfb0e15825284a462b7a265b7d695aaf5d27297151aae23886a0"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/rune.cpp.o",
+      "sha256": "69acc94a6cc389d11768c1b947f7629fa8b8bb4be15f64df9dbcc31dacc05474"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/rune_energy_fitter.cpp.o",
+      "sha256": "b4a06cd161a497ead5d55ae0fc33f25f560f6dc3ecf9bf74a625b9bf91abe821"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/tracker/model/virtual_rune.cpp.o",
+      "sha256": "c603cf8a7a5096d8abf02816c0c12d5e203a5c3817a1b2ff72c494caa4668714"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/adjacency_lightbar.cpp.o",
+      "sha256": "94c6e6bb5011d75755450668391e75d6678a10d4bcb768a16933086628947ac1"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/armor_detection.cpp.o",
+      "sha256": "cfaf91632fc1b4f48ab8ec72355bbfe442ec2c48468524f42ff4ca0232666647"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/green_light.cpp.o",
+      "sha256": "5b6e3aaa72253233512a88869582dd09e990a89fae28a0352b9bbb2ab97a7d46"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/lightbar.cpp.o",
+      "sha256": "91a01994ae50f9e7843b4de90128448f15f3f7569fe16f85e18932eebf38b94d"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/detector/rune.cpp.o",
+      "sha256": "ca5ac77988ced69b38a82f37f21fac90933847a58bcb38df0dc46e9233e54326"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/fire_control/shoot_evaluator.cpp.o",
+      "sha256": "3420326268378717af17cccb710b8ebcb803da092a4fe5e9800ebb0f4ed08023"
+    },
+    {
+      "object_relative_to_build": "CMakeFiles/rmcs_sim_operator_fov.dir/candidate/src/module/fire_control/trajectory_solution.cpp.o",
+      "sha256": "2a053d0f2d53dfcf4f3794007d2fd5f4f37102ec5abb82a3abf651da144d1838"
+    }
+  ]
+}

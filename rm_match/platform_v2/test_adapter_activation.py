@@ -98,10 +98,11 @@ class HttpActivationTests(unittest.TestCase):
         from .server import PlatformHTTPServer,TransportConfig
         from .client import PlatformClient
         from .test_runtime import FakeBackend
+        from .test_support_admission import fixture_policy,OPERATOR_CREDENTIAL
         self.now=30.;self.runtime=PlatformRuntime(FakeBackend(),clock=lambda:self.now)
-        self.server=PlatformHTTPServer(TransportConfig(port=0),self.runtime)
+        self.server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=fixture_policy(self.runtime.control.robot_ids)),self.runtime)
         self.thread=threading.Thread(target=self.server.serve_forever,kwargs={'poll_interval':.01},daemon=True);self.thread.start()
-        self.c=PlatformClient('http://127.0.0.1:'+str(self.server.server_address[1]),control_profile='server_window_v1');self.c.open('operator');self.c.claim('alpha',['motion','gimbal','fire'])
+        self.c=PlatformClient('http://127.0.0.1:'+str(self.server.server_address[1]),control_profile='server_window_v1',admission_credential=OPERATOR_CREDENTIAL);self.c.open('operator');self.c.claim('alpha',['motion','gimbal','fire'])
     def tearDown(self):
         self.c.close();self.server.shutdown();self.server.server_close();self.thread.join(1);self.runtime.close()
     def bound(self):return self.c.bind('alpha','navigation','nav_stop_test_v1',{})

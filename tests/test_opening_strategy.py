@@ -69,8 +69,8 @@ def test_arrival_hands_off_to_original_rule_and_low_hp_recovers():
 def test_upstream_function_is_exact_original_not_similar_reimplementation():
     from rm_match import upstream_rule
     root=Path(__file__).resolve().parents[1]
-    original=(root/'upstream_reference/sentry_decide_server.py').read_text()
-    copied=Path(upstream_rule.__file__).read_text()
+    original=(root/'upstream_reference/sentry_decide_server.py').read_text(encoding='utf-8')
+    copied=Path(upstream_rule.__file__).read_text(encoding='utf-8')
     def fn(s):
         return ast.get_source_segment(s,next(n for n in ast.parse(s).body if isinstance(n,ast.FunctionDef) and n.name=='rule_decide'))
     assert fn(original)==fn(copied)

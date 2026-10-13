@@ -5,7 +5,7 @@ import os
 os.environ.setdefault('MUJOCO_GL','egl');os.environ.setdefault('EGL_PLATFORM','surfaceless');os.environ.setdefault('OMP_NUM_THREADS','1');os.environ.setdefault('MESA_SHADER_CACHE_DISABLE','true')
 import argparse,base64,hashlib,json,time,threading
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--scene-json',required=True);p.add_argument('--native-spec',required=True);p.add_argument('--max-wall-seconds',type=float,default=25.);p.add_argument('--real-time-factor',type=float,default=.1);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--scene-json',required=True);p.add_argument('--native-spec',required=True);p.add_argument('--max-wall-seconds',type=float,default=25.);p.add_argument('--real-time-factor',type=float,default=.1);p.add_argument('--admission-manifest',required=True);a=p.parse_args()
 if not 5<a.max_wall_seconds<=90:raise SystemExit('Bounded 5..90 wall seconds required')
 out=Path(a.out);out.mkdir(parents=True,exist_ok=False)
 source_root=Path(__file__).resolve().parents[3]
@@ -52,13 +52,14 @@ class Render(MuJoCoCameraRenderer):
 provider=CameraProvider(sim,renderer_factory=Render,total_fps=2.)
 registry=default_registry(native_spec=a.native_spec,native_out=out/'native',native_trace=trace)
 runtime=PlatformRuntime(backend,camera=provider,registry=registry,observation_period=.001,trace=trace)
-server=PlatformHTTPServer(TransportConfig(port=0),runtime)
+from rm_match.platform_v2.admission import AdmissionPolicy
+server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=AdmissionPolicy.from_manifest(a.admission_manifest)),runtime)
 http=threading.Thread(target=server.serve_forever,daemon=True)
 def authority():
  try:runtime.run(max_wall_seconds=a.max_wall_seconds+5,real_time_factor=a.real_time_factor)
  except BaseException as e:errors.append(type(e).__name__+':'+str(e))
 physics=threading.Thread(target=authority,daemon=True)
-http.start();physics.start();client=HTTPClient(f'http://127.0.0.1:{server.server_address[1]}');start=time.monotonic();ep=None
+http.start();physics.start();client=HTTPClient(f'http://127.0.0.1:{server.server_address[1]}',admission_credential=os.environ.get('POLAR_SIM_ADMISSION_CREDENTIAL'));start=time.monotonic();ep=None
 try:
  client.open('operator');client.call('/v2/watch',dict(robot_id='red_sentry'))
  ep=client.call('/v2/claim',dict(robot_id='red_sentry',channels=['gimbal']))['lease_epochs']

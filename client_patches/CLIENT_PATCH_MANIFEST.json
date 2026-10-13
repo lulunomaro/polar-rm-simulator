@@ -1,0 +1,185 @@
+{
+  "schema": "polar.sim.own_client_patch.v1",
+  "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+  "patch_file": "operator_state_v1.patch",
+  "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+  "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF; checkout hashes recorded separately",
+  "files": {
+    "rm_client/sim_operator_runtime.py": {
+      "before_sha256": "e8cb19fd0074b5eed6d357400a8a3df2660dfccf0b9171ed350412fa73df3f4f",
+      "after_sha256": "93ed9b6201e36d956fd2d585cfebcc0f4513702f68bb20a093865e0122d99b4c",
+      "before_checkout_sha256": "1ecffe31cb569bbee99e66e3aebf0a29f5c89827495dc981a788248419a9096d",
+      "after_checkout_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/sim_platform_client.py": {
+      "before_sha256": "68dda6f599ce04830ca6b5d28bac8f911de67c194d983f86362785b3a5f39d8d",
+      "after_sha256": "dce4053a924d4d580739d5b17a53482322dfb049a3ba7f6324c63d867e4eb450",
+      "before_checkout_sha256": "e061d6976abac1dc6c8b2b5e99c17da34ff135a7b7c6c529138ee565ba6f9597",
+      "after_checkout_sha256": "39ca9cd87a1e8f46b136fe74210f47625bc25f538cc0c1bf4d3585831195ec21",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/sim_platform_runtime.py": {
+      "before_sha256": "f8d05245fe9d1833d3ca8a637687572790f4f4799f2832a9e1f4275c33ecaa9e",
+      "after_sha256": "0eea8506d27e03a0f34c303d59464207c886a36ceb2e3a5debbc94b7a93cc7b4",
+      "before_checkout_sha256": "3d9f84594ad7448ef58380be67c6fde167b64334d9e53fb41accf1ae6c51cbe7",
+      "after_checkout_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/sim_platform_transport.py": {
+      "before_sha256": "60e75908172c4dcf431d121ffb9fd215bc59922048020e38cfa46b8746662161",
+      "after_sha256": "a1c3ae2795f56d8841fcfe83794078cc6097c4f66d0e32210ac4ec03076387ca",
+      "before_checkout_sha256": "e89e762c710325d347a8814b124437f33f3b70c8e5a7aff7d3eba70fe221c464",
+      "after_checkout_sha256": "f88da5f4cbceef176bc0748e869af85d276bfb8723f3ad09e7b1e68a72a6db51",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/ui/minecraft_hud.py": {
+      "before_sha256": "2749ea427023d712a7df7992b29f3f07e9a4b9e54adcab0140cea823abb58034",
+      "after_sha256": "469c505c30de03adb8fd8a93a39117b1bda06916004ff04de56a42ba4048cd13",
+      "before_checkout_sha256": "ee4b7ce620dcf9d33c405d8ecb6069a01457efbdfe769eace25e1874e235e31b",
+      "after_checkout_sha256": "636c5847b73f010898f12b3e350915fed742dba4b308df9c71cce5e7262c7714",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/ui/sim_operator_window.py": {
+      "before_sha256": "3b727cddf1fbc787da7bed3e242447e4f39af233692fe37ede013321fa5674ee",
+      "after_sha256": "8ee38cdec14bb08bec74e76ba8181151cbdfec597777718ba7179722affd5dbd",
+      "before_checkout_sha256": "d0376424d6e780efb2e7de807fdc0af0430bc955e291dd2f8a2bfd5053eb4423",
+      "after_checkout_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/ui/sim_platform_window.py": {
+      "before_sha256": "cdf1db241fef739cccef999f7f2fb8b6abb034246e586fa63be4ddb69903491f",
+      "after_sha256": "360c51f8b2f144b50a73f82219e468b0c7bc20e5668bf07b4b0ac66c9c7ab112",
+      "before_checkout_sha256": "afcd38fdbc3d37ef709c7851183785c75db9e4fe5495f32b732191b5b3328be9",
+      "after_checkout_sha256": "ed7cf513b7c2f6786dd2afc2d7b5c492aa22f5b1ddffa8ff7e26e29c4297c86d",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "tests/test_platform_adapters.py": {
+      "before_sha256": "6a133b71780546cb66a8c52a5a3ad54a96b3e743d2bd9c3db9bd29b98829ecef",
+      "after_sha256": "501144fde7035f130aaaedca9e7585f383eaf2727ba6c5b153e937e79c1db21e",
+      "before_checkout_sha256": "2d313f51dc85d5cb686731accf9c83ca3439264153c907d323f4afa4062a7975",
+      "after_checkout_sha256": "3105206af72b4f5858f13eb737bf1eae542b9c7cb5c9f433b71cb41ec9c74994",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_control_windows.py": {
+      "before_sha256": "37f9a8ebb6bf08a9ac898dc5d62bf2771f58a10579e806f19b3decfac2262264",
+      "after_sha256": "68df5aeab89d869269cf5345103a194a851cd53faecf975dcbf1d46506eabb1c",
+      "before_checkout_sha256": "0fa65dffd1b4146b6c62072346c93d06965a5ae5452f93fe11a1e052042c0e71",
+      "after_checkout_sha256": "5b89ad5edf3ecf06bd25a46b583fae8f39ff5da72a910167ac15094e83708be0",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_diagnostics.py": {
+      "before_sha256": "2fe580d6743e8a0481aae5e8a187abd64534453e539ee272e283faa7243c4af8",
+      "after_sha256": "c163fd64c74bc345dd3ef0f0a8f167084bd59562a5e9178b2bbb42d48bb94088",
+      "before_checkout_sha256": "2ac26f4894bc862e558a805c36fd3aa34a7761843d048cf53f0e44231b25b7ee",
+      "after_checkout_sha256": "f8c38ee5c6d18266a82e640789fa209c69903f4d62324d7ef1fceda7be17a115",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_display_generation.py": {
+      "before_sha256": "33b66c4ddd2c59dd76d6dcbab452b6812c9488537981cdeb75d363b214315e42",
+      "after_sha256": "dbda4f589e2098acab0fda887b8396da8e2d608f11d4a3bf7178e365217526cb",
+      "before_checkout_sha256": "2125665de429ddfa9b7d070cc95f55d68fa8eb5e845f5d5bd72c4cdfea3d814c",
+      "after_checkout_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_handoff.py": {
+      "before_sha256": "65fb4cee070338ce47391a303549b960b4d382dd498450ba863a315a79a8dd04",
+      "after_sha256": "6247d975826a7b11260f4bbfea8289d080fb9971e12d100938827bcb0734a456",
+      "before_checkout_sha256": "7293c977cea4db47b4a65db48f19b5d896432bed24c0fb41dfbad1ca0ad72ee5",
+      "after_checkout_sha256": "98c39311aaec5125afef43999a742eb96ad825fcc593282c4ff6e2f94ae3ddd4",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_manual_yaw.py": {
+      "before_sha256": "7cdb41c60b9ba77d4ccc93cca7352872ea76ef8eb53558fcd6173bdabff494fd",
+      "after_sha256": "79d75de27159cb34a72b1c099f3d0004f8c100b1693a80d3304442725bbbfeca",
+      "before_checkout_sha256": "45eb37ec2293ac6be27bf94e2336ba53ff224ea2a20917f1cb0046902837d29e",
+      "after_checkout_sha256": "aec55b80ac91dd08ff583cc744eab32eaee7b007ace6be99a5c2065ed1c1643f",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_manual_yaw_ui.py": {
+      "before_sha256": "94e021e51a22bed53d3592c978399de4b83e4d581c5076f07beea200965a3a05",
+      "after_sha256": "33ff0c40c6a80be073d461cb2519d383b3fcabfa0329ba2e71bd3b83440a2b2e",
+      "before_checkout_sha256": "7023da8d87a6a949117b7f2103872d83bb216895b78e09a3365c39f139220ffe",
+      "after_checkout_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_spin.py": {
+      "before_sha256": "b3baa618f9a78cd208f7801147d7649dc3b7f74451af94dfe5dc2b5825434db9",
+      "after_sha256": "9874f56964d8e2c425c150094b3babab61b0294f0aa5aa914c0b49419fd3630a",
+      "before_checkout_sha256": "d9eaa035c9f21d21586c21f1e948f82b65a418639868355a3d490aff1f5eb839",
+      "after_checkout_sha256": "e82166f36ea9c7b75f3ea97c8922ab25733d65013162fd1672f4bdfb73a8e463",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_status.py": {
+      "before_sha256": "609bf47ccd7bd5a35ade33d31744961b811934532b6050318043d7641b97df27",
+      "after_sha256": "f3965c8506917f21e03f55892662c8d3cdaa9ea6e3a89b33a67382f70ea8a8ba",
+      "before_checkout_sha256": "a32d39c38828cb4b59c9498a1b3ca0c84ebaac5d1c3464e8468970f92374f5cb",
+      "after_checkout_sha256": "f2cd24b60af1f18aa55a611f4ef71e44bb53bc8d34beb31826cf61cf13d0d51c",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_sim_platform_v2.py": {
+      "before_sha256": "16b068242f1242c1970b203e6495f150c5c83ebc573e5b379012f7808e3dc2bb",
+      "after_sha256": "f7d792cfc90cd4e9ceced203d9461f37be6d9628acea31cded206beecf50e1e3",
+      "before_checkout_sha256": "50803edb8da4c0ff401fee7a12f59f03a49f82e5b997004924f5deb02a826bbf",
+      "after_checkout_sha256": "cac03bde27c5a7bc49209973656b148ca056158015f15229148623a4e8828ffa",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tools/verify_offline_platform.py": {
+      "before_sha256": "d1ce592cd6d052c54b7d6a3a902067f2fb21411e311a5d1836c5c28a429ee18b",
+      "after_sha256": "93043f3f2a2ecbe6aad4ccf21597f7ccd736bd4588b488308ce8932a6b253415",
+      "before_checkout_sha256": "e5d821925d9a5cda8f8761839c57861f1b8d0164a47ebf0b8204e282b77d6715",
+      "after_checkout_sha256": "eef7040b69e454120334479b8b0a1949ade76e3d7b204c27f828d97bd4692810",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/platform_v2_fixtures.py": {
+      "before_sha256": null,
+      "after_sha256": "fc2edfd3cb3a8140e180a440aa3402c14b1d1d3636d41d2128547a2322168762",
+      "before_checkout_sha256": null,
+      "after_checkout_sha256": "1234ea8d6c761b47ada7d0e77787e324d010703c84b5edb092c97886fb07b435",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_operator_state_projection.py": {
+      "before_sha256": null,
+      "after_sha256": "74be67a8b01cd7653ce3629e677c551c819094e6827bd1ea487689ef0a389f15",
+      "before_checkout_sha256": null,
+      "after_checkout_sha256": "74be67a8b01cd7653ce3629e677c551c819094e6827bd1ea487689ef0a389f15",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_admission_client.py": {
+      "before_sha256": null,
+      "after_sha256": "0ec7d848dfa6d64247b9aa423a76d6bf5394f66d3f4df3823530df45533ec8ba",
+      "before_checkout_sha256": null,
+      "after_checkout_sha256": "0ec7d848dfa6d64247b9aa423a76d6bf5394f66d3f4df3823530df45533ec8ba",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_operator_offline_clock.py": {
+      "before_sha256": null,
+      "after_sha256": "4c2cafc539a26e8d663c421c390b9fc8c44cb589a3324a904d1158e7164877cf",
+      "before_checkout_sha256": null,
+      "after_checkout_sha256": "4c2cafc539a26e8d663c421c390b9fc8c44cb589a3324a904d1158e7164877cf",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    }
+  },
+  "reason": "Own Qt client compatibility with operator_limited_display / operator_camera_display_v1 and admission, without world-position metadata or opponent dynamic HUD; preserve explicit claim/HUD/arm/window/focus/fire guards",
+  "qualification": "Own client at pinned base with reviewed patch, not original byte-exact client",
+  "validation": {
+    "actual_qt_and_corresponding_regressions_passed": 282,
+    "skipped": 0,
+    "subtests_passed": 67,
+    "qt_version": "6.12.0",
+    "qpa_platform": "offscreen",
+    "visible_window": false,
+    "patch_tool_tests": 10,
+    "actual_http_gl_qt_smoke": "artifacts/operator_admission_http_gl_qt_20261013_01/RESULT.json",
+    "actual_http_gl_qt_smoke_passed": true,
+    "actual_http_gl_qt_checks": 16,
+    "manual_motion_consumption_steps": 108,
+    "manual_gimbal_consumption_steps": 106,
+    "fire_outputs_true": 0,
+    "strict_offline_clock_focused_tests_passed": 5,
+    "strict_offline_clock_and_transport_tests_passed": 43,
+    "actual_qt_regression_log": "artifacts/plan-start/client-qt-offline-clock-regressions.log"
+  },
+  "apply_command": "python tools/apply_client_patch.py --client-root PATH --run",
+  "previous_patch_sha256": "52fe289ea953e39110d00e4b58d63ddff20eee2c9155c30b3d4139ffc7d6bc19"
+}

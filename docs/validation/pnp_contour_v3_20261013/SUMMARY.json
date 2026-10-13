@@ -1,0 +1,257 @@
+{
+  "schema": "rmcs-contour-v3-validation-summary-v1",
+  "source_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c",
+  "source_path": "operator_native/runtime/overlays/corners_contour_v3.cpp",
+  "independent_positive_cases": 8,
+  "independent_native_detected_positive_cases": 7,
+  "independent_valid_candidate_poses": 7,
+  "independent_negative_cases": 3,
+  "independent_false_positive_candidate_poses": 0,
+  "confidence_and_genre_preserved": true,
+  "original_pnp_gates_unchanged": true,
+  "full_native_tracker_control_chain_qualified": false,
+  "remaining_detection_miss_cases": [
+    "far_3p85"
+  ],
+  "cases": [
+    {
+      "name": "near_2p25",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 0,
+          "corner_rmse_px": 11.940153662675339
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.13367917851753816,
+          "position_error_m": 0.001709490295124071
+        }
+      },
+      "original_colors": [
+        "DARK"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "mid_3p05",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 6.210611140012572,
+          "position_error_m": 0.11635965488146269
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.23931991460963994,
+          "position_error_m": 0.003955236545951844
+        }
+      },
+      "original_colors": [
+        "BLUE"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "far_3p85",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 0,
+          "native_poses": 0
+        },
+        "contour_v3": {
+          "detected_armors": 0,
+          "native_poses": 0
+        }
+      },
+      "original_colors": [],
+      "candidate_colors": []
+    },
+    {
+      "name": "far_4p2",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 3.637680407921096,
+          "position_error_m": 0.019873001408777832
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.2776976242240492,
+          "position_error_m": 0.0031568603485842826
+        }
+      },
+      "original_colors": [
+        "DARK"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "yaw_plus12",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 6.460611686607527,
+          "position_error_m": 0.13422429593768867
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.404730625409274,
+          "position_error_m": 0.006508288575981078
+        }
+      },
+      "original_colors": [
+        "BLUE"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "yaw_minus28",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 4.962488533978492,
+          "position_error_m": 0.5007355386850867
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.31648343357287567,
+          "position_error_m": 0.028673275501615955
+        }
+      },
+      "original_colors": [
+        "DARK"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "light_dim_0p75",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 6.200213664231188,
+          "position_error_m": 0.11482936123777271
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.23931991460963994,
+          "position_error_m": 0.003955236545951844
+        }
+      },
+      "original_colors": [
+        "BLUE"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "light_bright_1p15",
+      "negative": false,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 6.206396772559979,
+          "position_error_m": 0.1161559253934832
+        },
+        "contour_v3": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "corner_rmse_px": 0.23931991460963994,
+          "position_error_m": 0.003955236545951844
+        }
+      },
+      "original_colors": [
+        "BLUE"
+      ],
+      "candidate_colors": [
+        "BLUE"
+      ]
+    },
+    {
+      "name": "blank_2",
+      "negative": true,
+      "modes": {
+        "original": {
+          "detected_armors": 0,
+          "native_poses": 0,
+          "false_positive_pose_count": 0
+        },
+        "contour_v3": {
+          "detected_armors": 0,
+          "native_poses": 0,
+          "false_positive_pose_count": 0
+        }
+      },
+      "original_colors": [],
+      "candidate_colors": []
+    },
+    {
+      "name": "full_occlusion_2",
+      "negative": true,
+      "modes": {
+        "original": {
+          "detected_armors": 0,
+          "native_poses": 0,
+          "false_positive_pose_count": 0
+        },
+        "contour_v3": {
+          "detected_armors": 0,
+          "native_poses": 0,
+          "false_positive_pose_count": 0
+        }
+      },
+      "original_colors": [],
+      "candidate_colors": []
+    },
+    {
+      "name": "one_bar_occlusion_2",
+      "negative": true,
+      "modes": {
+        "original": {
+          "detected_armors": 1,
+          "native_poses": 1,
+          "false_positive_pose_count": 1
+        },
+        "contour_v3": {
+          "detected_armors": 0,
+          "native_poses": 0,
+          "false_positive_pose_count": 0
+        }
+      },
+      "original_colors": [
+        "DARK"
+      ],
+      "candidate_colors": []
+    }
+  ]
+}

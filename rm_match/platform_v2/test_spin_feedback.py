@@ -24,14 +24,14 @@ class ReceiptTests(unittest.TestCase):
  def test_entry_and_final_receipts_separate_on_late_fire_gate(self):
   r,t=self.make(True)
   try:
-   r.step_once();s=r.snapshot(t);receipt=s['spin_consumption_receipts']['alpha']
+   r.step_once();audit=r.control.open_session('spectator')['token'];s=r.snapshot(audit);receipt=s['spin_consumption_receipts']['alpha']
    self.assertEqual(receipt['entry']['phase'],'integration_entry');self.assertEqual(receipt['entry']['target']['motion']['mode'],'spin_v1')
    self.assertEqual(receipt['final']['phase'],'fire');self.assertIsNone(receipt['final']['target']['motion']);self.assertIsNone(s['applied_targets']['alpha']['motion']);self.assertFalse(s['motion_feedback']['alpha']['spin_requested'])
   finally:r.close()
  def test_fresh_receipts_share_same_step_identity(self):
   r,t=self.make()
   try:
-   r.step_once();s=r.snapshot(t);q=s['spin_consumption_receipts']['alpha'];self.assertEqual(q['entry']['target'],q['final']['target']);self.assertEqual(q['entry']['consume_sim_time'],q['final']['consume_sim_time']);self.assertEqual(s['motion_feedback']['alpha']['sample_sim_time'],s['sim_time'])
+   r.step_once();audit=r.control.open_session('spectator')['token'];s=r.snapshot(audit);q=s['spin_consumption_receipts']['alpha'];self.assertEqual(q['entry']['target'],q['final']['target']);self.assertEqual(q['entry']['consume_sim_time'],q['final']['consume_sim_time']);self.assertEqual(s['motion_feedback']['alpha']['sample_sim_time'],s['sim_time'])
   finally:r.close()
  def test_http_capability_path_never_reenters_backend(self):
   r,t=self.make()

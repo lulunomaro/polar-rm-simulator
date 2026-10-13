@@ -1,0 +1,17 @@
+{
+  "schema": "rmcs-pnp-factors-evidence-v1",
+  "files": {
+    "README.md": "67e5a2e068d73b11562dcc3d402a87eff75c958771260c72bb2ff1a2ce2ba415",
+    "RESULTS.md": "56c3be8fd36fb3b31e00dfbb08e1a1fa87b1b450604924ef0ad350131b65234a",
+    "FACTOR_REPORT.json": "aecce80d096b2824d5d301be3a3f6115b00d99ce98906c9aba43805d056844c7",
+    "EXPERIMENTAL_CORNER_BODY_REPORT.json": "6a583800729b1af799e6ae683b54c4e2f5a78c2dc0c84663cf18c99e7824be33",
+    "BASELINE_REPLAY_BINDING.json": "ce52c5c533a557591d379c9a82e204ed6e1158e22e9a528f2223bcd2d0d25e73"
+  },
+  "tools": {
+    "tools\\diagnose_pnp_factors.py": "12f75d44963785f165ff28291d6172c9e7395c59dc7c54d1319eb15552a445f7",
+    "tools\\diagnose_pnp_corner_body.py": "05e7870dbe927fe45ed9a155d88466c5d843999eb00f57f1e49acf3d2cd3d547"
+  },
+  "factor_output": "artifacts/pnp-factors-20261013",
+  "experimental_output": "artifacts/pnp-corner-body-20261013",
+  "historical_fixture_preserved": true
+}

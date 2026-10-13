@@ -17,6 +17,18 @@ from .profile import (PROFILE, CLIENT_REPOSITORY, CLIENT_COMMIT, LIMITATIONS,
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def client_patch_identity():
+    manifest=read_json(ROOT/'client_patches/CLIENT_PATCH_MANIFEST.json')
+    if manifest.get('base_commit')!=CLIENT_COMMIT:
+        raise ValueError('Client patch base differs from the fixed own-client commit')
+    path=ROOT/'client_patches'/manifest['patch_file']
+    if path.parent!=ROOT/'client_patches' or digest(path)!=manifest['patch_sha256']:
+        raise ValueError('Client patch bytes differ from their declared identity')
+    return dict(base_commit=CLIENT_COMMIT,patch_sha256=manifest['patch_sha256'],
+                manifest_sha256=digest(ROOT/'client_patches/CLIENT_PATCH_MANIFEST.json'),
+                qualification='Fixed own client plus explicit reviewed operator-state patch')
+
+
 def executable(path):
     # Preserve venv interpreter invocation identity, including symlinked parents.
     path = Path(path).expanduser().absolute()
@@ -27,7 +39,7 @@ def executable(path):
 
 def clean_environment():
     env = dict(os.environ)
-    for name in ('PYTHONPATH', 'PYTHONHOME', 'POLAR_APP_ROOT'):
+    for name in ('PYTHONPATH', 'PYTHONHOME', 'POLAR_APP_ROOT','POLAR_SIM_ADMISSION_CREDENTIAL'):
         env.pop(name, None)
     env['PYTHONDONTWRITEBYTECODE'] = '1'
     return env
@@ -44,11 +56,14 @@ def plan(a):
     # Plan is side-effect free, and can be printed before dependencies exist.
     sim_python = str(a.sim_python.expanduser().absolute())
     client_python = str(a.client_python.expanduser().absolute())
+    supplied_admission = getattr(a,'admission_manifest',None)
+    admission = supplied_admission.expanduser().absolute() if supplied_admission else out / 'admission.json'
     server = [sim_python, '-u', '-m', 'rm_match.deployment.server',
               '--native-spec', str(spec), '--native-out', str(out / 'native'),
               '--port', str(a.port), '--camera-total-fps', str(a.camera_fps),
               '--max-wall-seconds', str(a.max_wall_seconds),
-              '--real-time-factor', str(a.real_time_factor)]
+              '--real-time-factor', str(a.real_time_factor),
+              '--admission-manifest',str(admission)]
     if a.adapters_json:
         server += ['--adapters-json', str(a.adapters_json.expanduser().absolute())]
     return dict(schema='polar.sim.deployment.plan.v1', profile=PROFILE,
@@ -57,7 +72,10 @@ def plan(a):
                      '--sim-role', 'operator', '--sim-endpoint', f'http://127.0.0.1:{a.port}'],
         sim_root=str(ROOT), client_root=str(root), out=str(out), native_spec=str(spec),
         adapters_json=str(a.adapters_json.expanduser().absolute()) if a.adapters_json else None,
+        admission_manifest=str(admission), provision_local_admission=supplied_admission is None,
+        admission_scope=['red_sentry'] if supplied_admission is None else 'local_manifest',
         client_repository=CLIENT_REPOSITORY, client_commit=CLIENT_COMMIT,
+        client_patch=client_patch_identity(),
         url=f'http://127.0.0.1:{a.port}', max_wall_seconds=a.max_wall_seconds,
         gl=a.gl, automatic_binding=False, fire_authority='manual_only',
         limitations=LIMITATIONS,
@@ -95,12 +113,17 @@ def check_client(root):
     actual = run_checked(['git', '-C', str(root), 'rev-parse', 'HEAD'])
     if actual != CLIENT_COMMIT:
         raise ValueError('Client must be at pinned commit ' + CLIENT_COMMIT)
-    run_checked(['git', '-C', str(root), 'diff', '--exit-code', 'HEAD', '--'])
+    from tools.apply_client_patch import inspect_client
+    identity=client_patch_identity()
+    patched=inspect_client(root)
+    if patched['apply_required']:
+        raise ValueError('Pinned client requires the explicit operator-state patch; run tools/apply_client_patch.py --client-root PATH --run')
     for rel in ('main.py', 'rm_client/ui/sim_platform_window.py',
                 'rm_client/sim_platform_adapters.py', 'requirements-core.txt'):
         if not (root / rel).is_file():
             raise ValueError('Pinned client file missing: ' + rel)
-    return {'commit': actual, 'tracked_source_clean': True}
+    return {'commit': actual, 'tracked_source_clean': False, 'patched_source_verified': True,
+            'client_patch': identity}
 
 
 def doctor(p):
@@ -122,6 +145,17 @@ def doctor(p):
     check('sim_python_dependencies', lambda: python_probe(p['server_argv'][0], ['numpy', 'mujoco', 'PIL', 'cv2']))
     check('client_python_dependencies', lambda: python_probe(p['client_argv'][0], ['PySide6.QtCore', 'PySide6.QtWidgets', 'cv2', 'numpy', 'paho.mqtt.client', 'serial']))
     check('pinned_client', lambda: check_client(p['client_root']))
+    def admission():
+        if p['provision_local_admission']:
+            return {'scope':['red_sentry'],'credential':'provisioned_in_memory_at_launch',
+                    'audit_authorized':False}
+        from ..platform_v2.admission import AdmissionPolicy
+        policy=AdmissionPolicy.from_manifest(p['admission_manifest'])
+        grant=policy.authenticate('operator',os.environ.get('POLAR_SIM_ADMISSION_CREDENTIAL'))
+        policy.verify_manifest_unchanged(p['admission_manifest'])
+        return {'scope':list(grant.allowed_robots),'audit_authorized':grant.audit_authorized,
+                'manifest_sha256':policy.manifest_sha256}
+    check('local_admission',admission)
     def native():
         code = ('import json; from rm_match.deployment.profile import validate_t2_spec; '
                 's,h=validate_t2_spec(' + repr(p['native_spec']) + '); '
@@ -208,6 +242,8 @@ def verify_ready(value, p, spec_sha):
             or value.get('native_registered') is not True
             or value.get('transport') != 'loopback_only'
             or value.get('automatic_binding') is not False
+            or not p.get('admission_policy_sha256')
+            or value.get('admission_policy_sha256') != p.get('admission_policy_sha256')
             or value.get('fire_authority') != 'manual_only'
             or 'aim_native_rmcs_v1' not in value.get('adapter_ids', [])):
         raise ValueError('Server ready message does not match own-RMCS deployment')
@@ -217,7 +253,24 @@ def launch(p):
     report = doctor(p)
     if not report['ready_to_attempt']:
         print(json.dumps(report, indent=2)); return 2
+    from ..platform_v2.admission import AdmissionPolicy
+    if not p['provision_local_admission']:
+        expected=next(c['detail'] for c in report['checks'] if c['name']=='local_admission')
+        policy=AdmissionPolicy.from_manifest(p['admission_manifest'])
+        if policy.manifest_sha256!=expected['manifest_sha256']:
+            raise ValueError('admission_manifest_changed_after_doctor')
+        credential=os.environ['POLAR_SIM_ADMISSION_CREDENTIAL']
+        grant=policy.authenticate('operator',credential)
+        if list(grant.allowed_robots)!=expected['scope'] or grant.audit_authorized!=expected['audit_authorized']:
+            raise ValueError('admission_grant_changed_after_doctor')
     out = Path(p['out']); out.mkdir(parents=True, exist_ok=False)
+    if p['provision_local_admission']:
+        from .enrollment import provision_operator
+        credential=provision_operator(p['admission_manifest'],p['admission_scope'])
+        policy=AdmissionPolicy.from_manifest(p['admission_manifest'])
+        policy.authenticate('operator',credential)
+    policy.verify_manifest_unchanged(p['admission_manifest'])
+    p=dict(p,admission_policy_sha256=policy.manifest_sha256)
     (out / 'plan.json').write_text(json.dumps(p, indent=2) + '\n')
     (out / 'doctor.json').write_text(json.dumps(report, indent=2) + '\n')
     spec_sha = next(c['detail']['spec_sha256'] for c in report['checks'] if c['name'] == 'own_t2_native_assets')
@@ -227,6 +280,7 @@ def launch(p):
         with (out / 'server.stderr.log').open('wb') as serr, (out / 'client.log').open('wb') as clog:
             env = clean_environment(); env['POLAR_USER_DATA_ROOT'] = str(out / 'client_user_data')
             senv = dict(env, MUJOCO_GL=p['gl'], OMP_NUM_THREADS='1')
+            policy.verify_manifest_unchanged(p['admission_manifest'])
             server = subprocess.Popen(p['server_argv'], cwd=p['sim_root'], env=senv,
                 stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=serr, bufsize=0)
             reader = ReadyLines(server.stdout)
@@ -245,6 +299,13 @@ def launch(p):
                     if time.monotonic() >= deadline:
                         raise TimeoutError('Server readiness timeout')
             (out / 'server_ready.json').write_text(json.dumps(ready, indent=2) + '\n')
+            policy.verify_manifest_unchanged(p['admission_manifest'])
+            # Ready may take seconds. Do not grant the credential to a client
+            # whose tracked source/patch identity changed during server startup.
+            current_client=check_client(p['client_root'])
+            if current_client['client_patch']!=p['client_patch']:
+                raise ValueError('client_patch_changed_after_plan')
+            env['POLAR_SIM_ADMISSION_CREDENTIAL']=credential
             client = subprocess.Popen(p['client_argv'], cwd=p['client_root'], env=env,
                 stdin=subprocess.DEVNULL, stdout=clog, stderr=subprocess.STDOUT)
             print(json.dumps({'profile': PROFILE, 'event': 'client_started', 'out': str(out),
@@ -280,12 +341,14 @@ def setup_client(root, run=False):
     commands = [['git', 'init', str(root)],
                 ['git', '-C', str(root), 'remote', 'add', 'origin', CLIENT_REPOSITORY],
                 ['git', '-C', str(root), 'fetch', '--depth=1', 'origin', CLIENT_COMMIT],
-                ['git', '-C', str(root), 'checkout', '--detach', 'FETCH_HEAD']]
+                ['git', '-C', str(root), 'checkout', '--detach', 'FETCH_HEAD'],
+                [sys.executable,str(ROOT/'tools/apply_client_patch.py'),'--client-root',str(root),'--run']]
     if run:
         for cmd in commands:
             run_checked(cmd, timeout=180)
         check_client(root)
     return {'repository': CLIENT_REPOSITORY, 'commit': CLIENT_COMMIT,
+            'client_patch': client_patch_identity(),
             'commands': commands, 'executed': run, 'submodules': 'not initialized',
             'scope': 'External client only; no dependency installation or application startup'}
 
@@ -299,6 +362,8 @@ def main(argv=None):
     p.add_argument('--native-spec', type=Path, default=ROOT / 'operator_native/runtime/local_build/operator_source.local.json')
     p.add_argument('--out', type=Path, default=ROOT / 'artifacts/deployment')
     p.add_argument('--adapters-json', type=Path)
+    p.add_argument('--admission-manifest',type=Path,
+        help='Existing local grants; supply the operator credential via POLAR_SIM_ADMISSION_CREDENTIAL')
     p.add_argument('--port', type=int, default=8766)
     p.add_argument('--max-wall-seconds', type=float, default=300.)
     p.add_argument('--camera-fps', type=float, default=15.)

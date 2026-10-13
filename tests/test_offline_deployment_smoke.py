@@ -66,6 +66,29 @@ class ClassificationTests(unittest.TestCase):
         self.assertFalse(result['live_default_qualified'])
 
 class CleanupTests(unittest.TestCase):
+    def test_local_native_resource_audit_requires_actual_exit_and_release(self):
+        worker = SimpleNamespace(thread=SimpleNamespace(is_alive=lambda:False), _instance=None)
+        runtime = SimpleNamespace(worker=worker, error=None,
+            shutdown_status=dict(clean=True, unfinished_slots=[], lifecycle_errors=[]))
+        child = SimpleNamespace(pid=123, poll=lambda:0,
+            stdin=SimpleNamespace(closed=True), stdout=SimpleNamespace(closed=True))
+        self.assertTrue(smoke.inspect_native_cleanup(runtime,[child])['clean'])
+        child.poll=lambda:None
+        self.assertFalse(smoke.inspect_native_cleanup(runtime,[child])['clean'])
+        child.poll=lambda:0
+        worker._instance=object()
+        self.assertFalse(smoke.inspect_native_cleanup(runtime,[child])['clean'])
+        worker._instance=None
+        worker.thread.is_alive=lambda:True
+        self.assertFalse(smoke.inspect_native_cleanup(runtime,[child])['clean'])
+    def test_failed_aggregate_shutdown_cannot_be_hidden_by_later_worker_exit(self):
+        runtime=SimpleNamespace(worker=None, error='adapter_shutdown_incomplete',
+            shutdown_status=dict(clean=False, unfinished_slots=[{'robot_id':'red_sentry','kind':'offline_aim'}],
+                lifecycle_errors=[]))
+        self.assertFalse(smoke.inspect_native_cleanup(runtime,[])['clean'])
+        runtime.error=None;runtime.shutdown_status=None
+        self.assertFalse(smoke.inspect_native_cleanup(runtime,[])['clean'])
+
     def test_cleanup_failure_does_not_skip_remaining_resources(self):
         calls=[];errors=[]
         def boom():

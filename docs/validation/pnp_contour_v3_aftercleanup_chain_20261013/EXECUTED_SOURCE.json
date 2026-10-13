@@ -1,0 +1,27 @@
+{
+  "phase": "Before renderer, Qt client and runtime creation",
+  "file_sha256": {
+    "tools/smoke_offline_deployment.py": "da56bb6010c50260a50f009a26f6ab9d078e5226aa3cecbe8b3acdbfba5c9c55",
+    "tools/offline_smoke/offline_client_driver.py": "3c26f203bea689938de918e440912bf6905e9a27bbeedda95f2ea4e847b85653",
+    "tools/offline_smoke/preload_contract.py": "7d92383065e8a35c72adf18b385253acd99786e1a4a5a3d3a45223e9f1d99cc7",
+    "rm_match/platform_v2/offline_runtime.py": "7cf3033acb6f9b99283ff2e7b213d9f132d4a64e63aaea8d7e78095934b0c8df",
+    "rm_match/platform_v2/runtime.py": "b0c8dc3d9f88bc992f57d331069b8dfd156415487b857356733cce72e7d92760",
+    "rm_match/platform_v2/offline_native.py": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd",
+    "rm_match/platform_v2/native_adapter.py": "0ddf5f1b3f25268f8ecbde65e62961a770ddbbdafcd00b5366ade1f843425d62",
+    "rm_match/integrations/rmcs_process.py": "2fa115b0aa26b48949dc72f961e74bf0fa9a57993af0b526793e43b7d1ee3a08",
+    "rm_match/operator/source_aim.py": "53171e19912692459a36aa6f358b172b57aa5cb4e688d4aa02e270b31e451e1a",
+    "rm_match/platform_v2/state_projection.py": "8cea406ecbbb7b6a7fffd35ecb51ec79ca195a293498ca621d8bdb83e69b722d"
+  },
+  "native_spec_sha256": "a808f11e8f8088ba89c2cf2a8e94d4bf18c386dc69d3d4114b9b2b40e57a3cdd",
+  "client_identity": {
+    "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "tracked_source_clean": false,
+    "patched_source_verified": true,
+    "client_patch": {
+      "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+      "manifest_sha256": "ab7a3f21d0f44b5c2f14752bd140d40f71d6240fa9e14be262ec69b547799d83",
+      "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+    }
+  }
+}

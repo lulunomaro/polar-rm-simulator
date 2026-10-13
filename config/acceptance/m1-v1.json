@@ -1,0 +1,87 @@
+{
+  "schema": "polar.acceptance.v1",
+  "revision": 1,
+  "milestone": "M1",
+  "status": "draft",
+  "source_plan": "docs/PROJECT_PLAN.md",
+  "baseline_commit": "cf6a6e4f04fce36ed2b1b3174fa3b9f8297fffe8",
+  "development_base_commit": "1fdcd24",
+  "components": {
+    "profile": "own-rmcs-t2-v1",
+    "client_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "native_base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255"
+  },
+  "profiles": {
+    "live": {
+      "clock_profile": "wall_deadline_live",
+      "native_image_max_age_s": 0.08,
+      "input_window_s": 0.15,
+      "real_time_factor": 1.0,
+      "wait_for_algorithm": false
+    },
+    "offline": {
+      "clock_profile": "offline_modeled_latency_v1",
+      "native_image_max_age_s": 0.08,
+      "input_window_s": 0.15,
+      "real_time_factor": null,
+      "wait_for_algorithm": true
+    }
+  },
+  "conditions": {
+    "target_hardware": null,
+    "operating_system_and_driver": null,
+    "physics_step_s": 0.002,
+    "server_wall_clock": "python_perf_counter_monotonic",
+    "camera_resolution": [1440, 1080],
+    "camera_profile": "rmcs_config_KD_assumed_1440x1080_v1_overscan64_v2",
+    "camera_total_fps_limit": 15,
+    "lidar_configuration": null,
+    "robot_count": 6,
+    "active_views": 1,
+    "network": "loopback",
+    "duration_s": 5.0,
+    "seed": 0,
+    "rules_version": null,
+    "dependency_lock": "requirements-camera.txt"
+  },
+  "candidate_targets_not_accepted": {
+    "match_rtf_mean_min": 0.95,
+    "operator_fps_min": 25,
+    "input_to_physics_p95_s_max": 0.1,
+    "sample_to_display_p95_s_max": 0.15
+  },
+  "quality_thresholds": {
+    "hit_rate_min": null,
+    "corner_error_px_max": null,
+    "tracking_retention_min": null,
+    "localization_drift_m_max": null
+  },
+  "unresolved": [
+    {"id": "U01", "topic": "Windows/Linux target hardware, driver and accepted performance targets", "responsible_role": "project_and_runtime", "owner": null},
+    {"id": "U02", "topic": "Official rules version and approved vehicle/CAD asset sources", "responsible_role": "referee_and_assets", "owner": null},
+    {"id": "U03", "topic": "Camera calibration resolution, point cloud profile and quality thresholds", "responsible_role": "vision_and_navigation", "owner": null},
+    {"id": "U04", "topic": "Second independent algorithms/client and physical LAN test machine", "responsible_role": "integration_and_network", "owner": null},
+    {"id": "U05", "topic": "Milestone signoff and independent evidence reviewer", "responsible_role": "project_and_test", "owner": null}
+  ],
+  "requirements": {
+    "R01": ["A07", "A08"],
+    "R02": ["A01", "A02", "A03", "A05", "A11"],
+    "R03": ["A02", "A09"],
+    "R04": ["A03", "A04", "A08"],
+    "R05": ["A04", "A05", "A06", "A14"],
+    "R06": ["A07", "A10"],
+    "R07": ["A10", "A11"],
+    "R08": ["A06", "A12"],
+    "R09": ["A01"],
+    "R10": ["A13"],
+    "R11": ["A14"],
+    "R12": ["A15"]
+  },
+  "acceptance": {
+    "A01": "not_run", "A02": "not_run", "A03": "not_run", "A04": "not_run",
+    "A05": "not_run", "A06": "not_run", "A07": "not_run", "A08": "not_run",
+    "A09": "not_run", "A10": "not_run", "A11": "not_run", "A12": "not_run",
+    "A13": "not_run", "A14": "not_run", "A15": "requires_separate_hardware_authorization"
+  }
+}

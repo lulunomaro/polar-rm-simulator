@@ -5,6 +5,7 @@ not launch a simulator and does not change any network, camera or action deadlin
 """
 import hashlib
 import json
+import os
 from pathlib import Path
 import sys
 import time
@@ -17,18 +18,23 @@ from rm_client.sim_platform_transport import PlatformTransport
 from rm_client.sim_platform_client import PlatformClient
 from rm_client.sim_platform_lifecycle import RenewalLifecycle
 from transport_probe import TransportProbe
+from preload_contract import write_ready
 
 
 def main():
     url, output = sys.argv[2:]
     out = Path(output)
-    app = QApplication(['offline-spectator'])
+    preload_started=time.monotonic()
+    app = QApplication(['offline-operator-observer'])
     # Initialize Qt before OpenCV can alter its plugin search environment.
     # Then load decoder dependencies before time-sensitive transport admission;
     # no decode, sample, timestamp or inference occurs during this preload.
     import cv2
     import numpy
-    t = PlatformTransport(url, role='spectator')
+    from PySide6.QtCore import qVersion
+    write_ready(out,os.getpid(),preload_started,
+                {"Qt":qVersion(),"cv2":cv2.__version__,"numpy":numpy.__version__})
+    t = PlatformTransport(url, role='operator')
     probe = TransportProbe(t)
     client = None
     lifecycle = None
@@ -58,7 +64,8 @@ def main():
             time.sleep(.01)
         if not watched:
             raise RuntimeError('Original observer did not acknowledge watch/state/catalog before admission')
-        client = PlatformClient(url, timeout=.25)
+        client = PlatformClient(url, timeout=.25,
+            admission_credential=os.environ.get('POLAR_SIM_ADMISSION_CREDENTIAL'))
         client.open('operator')
         client.claim('red_sentry', ['gimbal'])
         client.bind('red_sentry', 'aim', 'aim_native_rmcs_offline_v1', {})

@@ -4,20 +4,36 @@ This is not a cross-machine LAN, renderer, native-aim, or 7v7 qualification.
 """
 from __future__ import annotations
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
 import sys
 import threading
 import time
+import secrets
 from urllib.error import HTTPError
 from urllib.request import Request,build_opener,ProxyHandler
 from .backend import MuJoCoBackend
 from .runtime import PlatformRuntime
 from .server import PlatformHTTPServer,TransportConfig
+from .admission import AdmissionPolicy
+
+
+def local_qa_admission(robot_ids):
+    """Trusted QA owner explicitly grants scoped operators and a truth auditor.
+
+    Fresh enrollment credentials remain only in this local process. Neither
+    fixture secrets nor session bearer values belong in evidence reports.
+    """
+    credentials={role:secrets.token_urlsafe(32) for role in ('operator','spectator')}
+    policy=AdmissionPolicy([dict(credential_sha256=hashlib.sha256(secret.encode()).hexdigest(),
+        role=role,allowed_robots=list(robot_ids) if role=='operator' else [],audit_authorized=role=='spectator')
+        for role,secret in credentials.items()])
+    return policy,credentials
 
 class HTTPClient:
-    def __init__(self,base):self.base=base;self.token=None;self.opener=build_opener(ProxyHandler({}))
+    def __init__(self,base,admission_credential=None):self.base=base;self.token=None;self._admission_credential=admission_credential;self.opener=build_opener(ProxyHandler({}))
     def call(self,path,body=None,expect=200,headers=None):
         h={} if headers is None else dict(headers)
         if self.token:h['Authorization']='Bearer '+self.token
@@ -30,13 +46,17 @@ class HTTPClient:
         if status!=expect:raise RuntimeError(f'{path}: expected {expect}, got {status}: {value}')
         return value
     def open(self,role):
-        result=self.call('/v2/sessions',{'role':role});self.token=result['token'];return result
+        body={'role':role}
+        if self._admission_credential is not None:body['credential']=self._admission_credential
+        result=self.call('/v2/sessions',body);self.token=result['token']
+        return {k:v for k,v in result.items() if k!='token'}
 
 
 def run():
     if not __debug__:raise RuntimeError('Qualification must run without Python -O')
     runtime=PlatformRuntime(MuJoCoBackend())
-    server=PlatformHTTPServer(TransportConfig(port=0),runtime)
+    admission,credentials=local_qa_admission(runtime.control.robot_ids)
+    server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=admission),runtime)
     http=threading.Thread(target=server.serve_forever,name='qa-v2-http',daemon=True)
     errors=[]
     def authority():
@@ -45,7 +65,7 @@ def run():
     physics=threading.Thread(target=authority,name='qa-v2-physics',daemon=True)
     http.start();physics.start()
     base=f'http://127.0.0.1:{server.server_address[1]}'
-    a,b,s=[HTTPClient(base) for _ in range(3)];checks=[];samples={}
+    a,b,s=[HTTPClient(base,admission_credential=credentials[role]) for role in ('operator','operator','spectator')];checks=[];samples={}
     def check(name,condition,evidence=None):
         row=dict(name=name,passed=bool(condition),evidence=evidence);checks.append(row)
         if not condition:raise RuntimeError('Failed check: '+name)

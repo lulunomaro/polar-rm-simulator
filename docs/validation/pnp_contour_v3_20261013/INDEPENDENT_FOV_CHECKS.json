@@ -1,0 +1,57 @@
+[
+  {
+    "name": "near_2p25",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "mid_3p05",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "far_3p85",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "far_4p2",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "yaw_plus12",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "yaw_minus28",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "light_dim_0p75",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "light_bright_1p15",
+    "negative": false,
+    "in_fov": true
+  },
+  {
+    "name": "blank_2",
+    "negative": true,
+    "in_fov": false
+  },
+  {
+    "name": "full_occlusion_2",
+    "negative": true,
+    "in_fov": true
+  },
+  {
+    "name": "one_bar_occlusion_2",
+    "negative": true,
+    "in_fov": true
+  }
+]

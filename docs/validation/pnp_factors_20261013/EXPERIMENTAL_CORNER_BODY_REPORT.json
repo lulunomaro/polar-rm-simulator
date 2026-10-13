@@ -1,0 +1,235 @@
+{
+  "schema": "rmcs-experimental-corner-body-v1",
+  "status": "executed",
+  "scope": "New isolated corner-refinement candidate, not recovered T2 completion or production fix",
+  "only_algorithmic_change": "Two unconditional early returns removed in an independent rmcs::experimental namespace copy",
+  "roi_or_constants_changed": false,
+  "original_pnp_thresholds_changed": false,
+  "ground_truth_sent_to_algorithm": false,
+  "raw_model_matches_baseline": true,
+  "model_inferences": 1,
+  "source_original_sha256": "d99ca680eef70fdb8ead1511f53c432536a314ecb152b7721c46fbde8de26423",
+  "source_copy_sha256": "e9c9daec44185f8839afe67c9f40dd0ad980bfeb6cd328f07540021cf7e37608",
+  "diagnostic_source_sha256": "bff7a8982f27a30be31e79ceb2c4c447779e273f05502edbca55e5110ece54c8",
+  "diagnostic_binary_sha256": "deb67172248a91b48e987e133dd8356d56b67edfd006ace6b8c761d2ac489cfc",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "production_binary_sha256": "797e6ba7240aef29cacd8ac624afbba5cae1c751a62a7fa8eb41570451e17250",
+  "build_manifest_sha256": "a0782b5485a8602c84fd81f7303ad6030c2be8a5ad41006c8eb5f1e7b677762c",
+  "baseline_binding_sha256": "ce52c5c533a557591d379c9a82e204ed6e1158e22e9a528f2223bcd2d0d25e73",
+  "raw_model": {
+    "armors": [
+      {
+        "genre": "INFANTRY_3",
+        "corners_px": {
+          "tl": [
+            642.5145263671875,
+            853.9246826171875
+          ],
+          "bl": [
+            639.8820190429688,
+            891.8926391601562
+          ],
+          "br": [
+            769.34130859375,
+            892.950439453125
+          ],
+          "tr": [
+            771.7093505859375,
+            856.347412109375
+          ]
+        },
+        "armor_color": "BLUE",
+        "confidence": 0.863656759262085,
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7911699022724867,
+            "back_dot": 0.6846252736523185,
+            "pitch_degrees": -35.22377816219986,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 50.22377816219986,
+            "reprojection_error": 0.5273818245405537,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.791136641792411,
+            "back_dot": 0.6845616829411529,
+            "pitch_degrees": 58.27195035177369,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 43.27195035177369,
+            "reprojection_error": 0.6048053676011347,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "original_robust_pnp_result": 0.0,
+        "lightbar_lengths_px": [
+          38.05910953846436,
+          36.67954789258005
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate": 0.0,
+        "z": 1.7911699022724867,
+        "back_dot": 0.6846252736523185,
+        "pitch_degrees": -35.22377816219986,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 50.22377816219986,
+        "reprojection_error": 0.5273818245405537,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      },
+      {
+        "candidate": 1.0,
+        "z": 1.791136641792411,
+        "back_dot": 0.6845616829411529,
+        "pitch_degrees": 58.27195035177369,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 43.27195035177369,
+        "reprojection_error": 0.6048053676011347,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      }
+    ],
+    "inference_calls": 1.0,
+    "armor_count": 1,
+    "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+    "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+    "original_estimator_output_count": 0.0,
+    "pnp_success": 2.0,
+    "pnp_candidates": 2.0
+  },
+  "refined": {
+    "armors": [
+      {
+        "genre": "INFANTRY_3",
+        "corners_px": {
+          "tl": [
+            642.5145263671875,
+            853.9246826171875
+          ],
+          "bl": [
+            635.7608642578125,
+            884.3538818359375
+          ],
+          "br": [
+            767.7009887695312,
+            896.9761962890625
+          ],
+          "tr": [
+            767.748779296875,
+            859.968505859375
+          ]
+        },
+        "armor_color": "BLUE",
+        "confidence": 0.863656759262085,
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7973231397034148,
+            "back_dot": 0.6244673450292559,
+            "pitch_degrees": 62.80694301512184,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 47.806943015121846,
+            "reprojection_error": 1.254261951077076,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.7945013874306899,
+            "back_dot": 0.6238883167961782,
+            "pitch_degrees": -39.82538562421869,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 54.82538562421868,
+            "reprojection_error": 2.0779866992337985,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "original_robust_pnp_result": 0.0,
+        "lightbar_lengths_px": [
+          31.169666616471584,
+          37.007721287240685
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate": 0.0,
+        "z": 1.7973231397034148,
+        "back_dot": 0.6244673450292559,
+        "pitch_degrees": 62.80694301512184,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 47.806943015121846,
+        "reprojection_error": 1.254261951077076,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      },
+      {
+        "candidate": 1.0,
+        "z": 1.7945013874306899,
+        "back_dot": 0.6238883167961782,
+        "pitch_degrees": -39.82538562421869,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 54.82538562421868,
+        "reprojection_error": 2.0779866992337985,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      }
+    ],
+    "experimental_refinement": "original_body_without_early_returns",
+    "inference_calls": 1.0,
+    "armor_count": 1,
+    "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+    "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+    "original_estimator_output_count": 0.0,
+    "pnp_success": 2.0,
+    "pnp_candidates": 2.0
+  },
+  "limitations": [
+    "One saved synthetic camera frame; no physical camera calibration or dataset generalization.",
+    "Gamma/blur are single-factor diagnostic transforms, not deployment or baseline changes.",
+    "Native object correspondence to production ELF is not independently proven; exact object hashes are in baseline binding.",
+    "No full tracker, controller, physics rollout, training or hardware qualification.",
+    "Original implementation is explicitly FIXME-disabled; enabling the copy is an unqualified experiment.",
+    "No multi-frame or negative-case qualification. Do not adopt this candidate from one frame."
+  ]
+}

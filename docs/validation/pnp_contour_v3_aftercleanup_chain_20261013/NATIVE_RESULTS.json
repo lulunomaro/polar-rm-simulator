@@ -1,0 +1,1250 @@
+[
+  {
+    "event": "native_result",
+    "wall_time": 44.489812353,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.46,
+      "clock_time_ns": 460000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907928447280293,
+        2.715770735808113e-05,
+        -0.13538662451733546
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.9844307247434059,
+        5.4393397350138984e-05,
+        -0.29928863923626203
+      ],
+      "detector_executed": true,
+      "inference_calls": 1,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.44,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 12,
+    "frame_id": 12,
+    "capture_sim_time": 0.44,
+    "observation_sim_time": 0.46,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 440000000,
+      "camera_capture_mj_time_ns": 440000000,
+      "sensor_ready_ns": 450000000,
+      "controller_sample_ns": 450000000,
+      "own_sample_ns": 450000000,
+      "result_available_ns": 460000000,
+      "actuation_ns": 460000000,
+      "sim_expiry_ns": 520000000
+    },
+    "raw_bgr_sha256": "84ce2055d4ad672d26cdba86bd5cbe2ac20d9b311efc69328d70544fb467ca5b",
+    "raw_rgb_sha256": "0c3615b47e24fb002d2d0007ad4affbd10c6f35cebaab7f981c52d6e261e8697",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500000317374795,
+        -0.6500000000000004,
+        1.5434377730737359e-15,
+        1.6124881842886306e-16,
+        -0.022908844394740505
+      ],
+      "own_qvel_at_capture": [
+        1.602027387876634e-08,
+        -7.064527976963042e-15,
+        -1.451805307481141e-14,
+        5.562955303053867e-15,
+        -0.005279815367390984
+      ],
+      "own_odom_at_capture": [
+        -3.4999999682625207,
+        3.0,
+        1.5434377730737359e-15
+      ],
+      "own_odom_velocity_at_capture": [
+        1.602027387876634e-08,
+        -7.064527976963042e-15,
+        -1.451805307481141e-14
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 44.69913517,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.5,
+      "clock_time_ns": 500000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907758862117405,
+        2.3546370550711413e-05,
+        -0.13551067392242108
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.9825313887505776,
+        4.711602225850017e-05,
+        -0.2992196903203829
+      ],
+      "detector_executed": true,
+      "inference_calls": 2,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.48,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 13,
+    "frame_id": 13,
+    "capture_sim_time": 0.48,
+    "observation_sim_time": 0.5,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 480000000,
+      "camera_capture_mj_time_ns": 480000000,
+      "sensor_ready_ns": 490000000,
+      "controller_sample_ns": 490000000,
+      "own_sample_ns": 490000000,
+      "result_available_ns": 500000000,
+      "actuation_ns": 500000000,
+      "sim_expiry_ns": 560000000
+    },
+    "raw_bgr_sha256": "b81127448977b4eaaf86493266247b4918a02a15d3f2221c968180341beceb5a",
+    "raw_rgb_sha256": "28a929806bb37f11e980ce48965eca65cb5fd5b506a6937a270cb1e8f5e97cc2",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.74999973980262,
+        -0.6499999981372079,
+        1.3856713486892727e-08,
+        3.0061777900799584e-06,
+        -0.03920159986993777
+      ],
+      "own_qvel_at_capture": [
+        -7.426897577566342e-06,
+        5.461388474034099e-08,
+        4.060597153221279e-07,
+        0.00019012224115969617,
+        -0.971928794621869
+      ],
+      "own_odom_at_capture": [
+        -3.50000026019738,
+        3.0000000018627926,
+        1.3856713486892727e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        -7.426897577566342e-06,
+        5.461388474034099e-08,
+        4.060597153221279e-07
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 44.927578547,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.54,
+      "clock_time_ns": 540000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907721394582917,
+        -0.0001045064448817702,
+        -0.13553802695790695
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.9839433773997062,
+        -0.0002092659461863113,
+        -0.29951712463355845
+      ],
+      "detector_executed": true,
+      "inference_calls": 3,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.52,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 14,
+    "frame_id": 14,
+    "capture_sim_time": 0.52,
+    "observation_sim_time": 0.54,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 520000000,
+      "camera_capture_mj_time_ns": 520000000,
+      "sensor_ready_ns": 530000000,
+      "controller_sample_ns": 530000000,
+      "own_sample_ns": 530000000,
+      "result_available_ns": 540000000,
+      "actuation_ns": 540000000,
+      "sim_expiry_ns": 600000000
+    },
+    "raw_bgr_sha256": "f91947ab2a4bcdf545bc3f4ef50d15a5ff8e1264e017e3a24cbb68afc34628a5",
+    "raw_rgb_sha256": "6dd5db5b044a59964efddc916ef776cd151bd5aa6a433e1b87b2b5b8bc6cea4e",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7499998579099783,
+        -0.649999998380539,
+        1.2037596778609282e-08,
+        9.424740688786262e-06,
+        -0.07310088706777847
+      ],
+      "own_qvel_at_capture": [
+        6.348355833754474e-06,
+        -2.15843935335465e-08,
+        -1.6079805699018504e-07,
+        0.0001213642465881787,
+        -0.7244786101347942
+      ],
+      "own_odom_at_capture": [
+        -3.5000001420900215,
+        3.0000000016194615,
+        1.2037596778609282e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        6.348355833754474e-06,
+        -2.15843935335465e-08,
+        -1.6079805699018504e-07
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 45.161547788,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.58,
+      "clock_time_ns": 580000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907550898131974,
+        -0.00015803577828895127,
+        -0.13566254838361202
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.9817232768115969,
+        -0.00031610554780324256,
+        -0.29939397570511683
+      ],
+      "detector_executed": true,
+      "inference_calls": 4,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.56,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 15,
+    "frame_id": 15,
+    "capture_sim_time": 0.56,
+    "observation_sim_time": 0.58,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 560000000,
+      "camera_capture_mj_time_ns": 560000000,
+      "sensor_ready_ns": 570000000,
+      "controller_sample_ns": 570000000,
+      "own_sample_ns": 570000000,
+      "result_available_ns": 580000000,
+      "actuation_ns": 580000000,
+      "sim_expiry_ns": 640000000
+    },
+    "raw_bgr_sha256": "a51c3aa2a942c51659f07786232a0f76e5ad7018eef2b012a6c0b5a748572ccd",
+    "raw_rgb_sha256": "6f135aa745fc8252a30b6c7e1f3214db9ea7bfa517102c0dc8d658f7f816f290",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500001215542476,
+        -0.6500000077114706,
+        -5.72567201590406e-08,
+        -7.296215219695893e-07,
+        -0.09754221053617892
+      ],
+      "own_qvel_at_capture": [
+        6.4770512738014295e-06,
+        -2.667806980996723e-07,
+        -1.9797318114155685e-06,
+        -0.0008112499077808988,
+        -0.519200413936127
+      ],
+      "own_odom_at_capture": [
+        -3.4999998784457524,
+        2.99999999228853,
+        -5.72567201590406e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        6.4770512738014295e-06,
+        -2.667806980996723e-07,
+        -1.9797318114155685e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 45.394845493,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.62,
+      "clock_time_ns": 620000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907569701736305,
+        -0.00015256639223966875,
+        -0.13564882150562085
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.981810529969678,
+        -0.00030517845623339034,
+        -0.29938066226566723
+      ],
+      "detector_executed": true,
+      "inference_calls": 5,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.6,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 16,
+    "frame_id": 16,
+    "capture_sim_time": 0.6,
+    "observation_sim_time": 0.62,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 600000000,
+      "camera_capture_mj_time_ns": 600000000,
+      "sensor_ready_ns": 610000000,
+      "controller_sample_ns": 610000000,
+      "own_sample_ns": 610000000,
+      "result_available_ns": 620000000,
+      "actuation_ns": 620000000,
+      "sim_expiry_ns": 680000000
+    },
+    "raw_bgr_sha256": "ec78a84146b95f65070d76ee6109b76283ac3b1e518900882d69748ea09c6a97",
+    "raw_rgb_sha256": "aa003e15de898337ca1ffe3277d22b2ef70af79a69e1e03b4a29e0a9a13dbce5",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500003616022992,
+        -0.6500000117164952,
+        -8.693308178803414e-08,
+        -3.591510015551673e-05,
+        -0.11506777224290567
+      ],
+      "own_qvel_at_capture": [
+        5.52784378182548e-06,
+        -4.634838162159903e-08,
+        -3.4216287528942744e-07,
+        -0.0010045513115905717,
+        -0.37274206665683407
+      ],
+      "own_odom_at_capture": [
+        -3.499999638397701,
+        2.999999988283505,
+        -8.693308178803414e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        5.52784378182548e-06,
+        -4.634838162159903e-08,
+        -3.4216287528942744e-07
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 45.635729487,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.66,
+      "clock_time_ns": 660000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.9907749054712278,
+        -7.62341529723965e-05,
+        -0.13551782494134723
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.984045099155213,
+        -0.0001526603033220692,
+        -0.299492910719475
+      ],
+      "detector_executed": true,
+      "inference_calls": 6,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.64,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 17,
+    "frame_id": 17,
+    "capture_sim_time": 0.64,
+    "observation_sim_time": 0.66,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 640000000,
+      "camera_capture_mj_time_ns": 640000000,
+      "sensor_ready_ns": 650000000,
+      "controller_sample_ns": 650000000,
+      "own_sample_ns": 650000000,
+      "result_available_ns": 660000000,
+      "actuation_ns": 660000000,
+      "sim_expiry_ns": 720000000
+    },
+    "raw_bgr_sha256": "9908ca191b5c1add06629bc8f476e2fdf3e4a6f2b9eaa73146a780af76e6d51e",
+    "raw_rgb_sha256": "96f409ba996ee4ca41d172c2b7e358593c54ceea61b9f89cd2822b37adaf55b4",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500005608724762,
+        -0.6500000091133787,
+        -6.756701718292898e-08,
+        -7.000067343474338e-05,
+        -0.12763729380110894
+      ],
+      "own_qvel_at_capture": [
+        4.462384019770662e-06,
+        8.754881201496626e-08,
+        6.506924800371956e-07,
+        -0.0007025929166588418,
+        -0.2668419519663066
+      ],
+      "own_odom_at_capture": [
+        -3.4999994391275235,
+        2.9999999908866215,
+        -6.756701718292898e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        4.462384019770662e-06,
+        8.754881201496626e-08,
+        6.506924800371956e-07
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 45.890161761,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.7,
+      "clock_time_ns": 700000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.9907788185038796,
+        8.761542495448136e-05,
+        -0.13548920668301853
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.986063653464517,
+        0.00017562932082834198,
+        -0.29977866592946945
+      ],
+      "detector_executed": true,
+      "inference_calls": 7,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.68,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 18,
+    "frame_id": 18,
+    "capture_sim_time": 0.68,
+    "observation_sim_time": 0.7,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 680000000,
+      "camera_capture_mj_time_ns": 680000000,
+      "sensor_ready_ns": 690000000,
+      "controller_sample_ns": 690000000,
+      "own_sample_ns": 690000000,
+      "result_available_ns": 700000000,
+      "actuation_ns": 700000000,
+      "sim_expiry_ns": 760000000
+    },
+    "raw_bgr_sha256": "cb46ce02c89ee72afb8b61d91eb2255d4a07ab94a8ec13a482b05ac21adabe3b",
+    "raw_rgb_sha256": "976eaa6d89c475f74708c4bf3c9d265e814955b29b478b375d80361ab6eb87b2",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500007187303042,
+        -0.6500000011874748,
+        -8.786122436423207e-09,
+        -8.516909106530652e-05,
+        -0.13661988793650784
+      ],
+      "own_qvel_at_capture": [
+        3.4705101026192388e-06,
+        2.0712107614491818e-07,
+        1.5351332542765608e-06,
+        3.2294128170957205e-05,
+        -0.1901189999843165
+      ],
+      "own_odom_at_capture": [
+        -3.499999281269696,
+        2.9999999988125254,
+        -8.786122436423207e-09
+      ],
+      "own_odom_velocity_at_capture": [
+        3.4705101026192388e-06,
+        2.0712107614491818e-07,
+        1.5351332542765608e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 46.134882724,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.74,
+      "clock_time_ns": 740000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.9907719482764514,
+        -1.6121692154446947e-05,
+        -0.13553946380510654
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.985614148449624,
+        -3.230961483569084e-05,
+        -0.29980545112217905
+      ],
+      "detector_executed": true,
+      "inference_calls": 8,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.72,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 19,
+    "frame_id": 19,
+    "capture_sim_time": 0.72,
+    "observation_sim_time": 0.74,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 720000000,
+      "camera_capture_mj_time_ns": 720000000,
+      "sensor_ready_ns": 730000000,
+      "controller_sample_ns": 730000000,
+      "own_sample_ns": 730000000,
+      "result_available_ns": 740000000,
+      "actuation_ns": 740000000,
+      "sim_expiry_ns": 800000000
+    },
+    "raw_bgr_sha256": "515fec0865b74e160daaa6ede3385f8c6315ad8311319a542ea81c423d1ba36f",
+    "raw_rgb_sha256": "0d50296e2573a82585c35f8e878e942de06e0f260f10f1e569d4437787ed006a",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500008377331542,
+        -0.6499999880521613,
+        8.849268021725007e-08,
+        -6.478119539728775e-05,
+        -0.14302632471863913
+      ],
+      "own_qvel_at_capture": [
+        2.5760271131482833e-06,
+        3.2688063539797377e-07,
+        2.4192562102113263e-06,
+        0.0011990152047238137,
+        -0.13588761758200624
+      ],
+      "own_odom_at_capture": [
+        -3.499999162266846,
+        3.000000011947839,
+        8.849268021725007e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        2.5760271131482833e-06,
+        3.2688063539797377e-07,
+        2.4192562102113263e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 46.369157262,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.78,
+      "clock_time_ns": 780000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.9907624616004375,
+        -0.00011874125901876079,
+        -0.13560874080956262
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.98322728473627,
+        -0.00023768654328055653,
+        -0.2995403281313566
+      ],
+      "detector_executed": true,
+      "inference_calls": 9,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.76,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 20,
+    "frame_id": 20,
+    "capture_sim_time": 0.76,
+    "observation_sim_time": 0.78,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 760000000,
+      "camera_capture_mj_time_ns": 760000000,
+      "sensor_ready_ns": 770000000,
+      "controller_sample_ns": 770000000,
+      "own_sample_ns": 770000000,
+      "result_available_ns": 780000000,
+      "actuation_ns": 780000000,
+      "sim_expiry_ns": 840000000
+    },
+    "raw_bgr_sha256": "3a008e508b3275d58a6a2ef5329661460659defa0a0035c7b2a877351a1a8603",
+    "raw_rgb_sha256": "3285dc4c69f3cec486134ccffa47406ce379e0078fe540f16084928b994eeb4c",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500009251413544,
+        -0.6499999954218603,
+        3.3986637602300186e-08,
+        -3.351310633294574e-05,
+        -0.14761421134165498
+      ],
+      "own_qvel_at_capture": [
+        1.8806981966120201e-06,
+        -2.993696157109612e-07,
+        -2.2134019398165806e-06,
+        0.00019256128480632856,
+        -0.09764294040373368
+      ],
+      "own_odom_at_capture": [
+        -3.4999990748586454,
+        3.00000000457814,
+        3.3986637602300186e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        1.8806981966120201e-06,
+        -2.993696157109612e-07,
+        -2.2134019398165806e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 46.600671328,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.82,
+      "clock_time_ns": 820000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.9907671486774621,
+        -7.43674243792548e-05,
+        -0.13557452404865056
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.9836877573967664,
+        -0.0001488964884303833,
+        -0.2995485827261953
+      ],
+      "detector_executed": true,
+      "inference_calls": 10,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.8,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 21,
+    "frame_id": 21,
+    "capture_sim_time": 0.8,
+    "observation_sim_time": 0.82,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 800000000,
+      "camera_capture_mj_time_ns": 800000000,
+      "sensor_ready_ns": 810000000,
+      "controller_sample_ns": 810000000,
+      "own_sample_ns": 810000000,
+      "result_available_ns": 820000000,
+      "actuation_ns": 820000000,
+      "sim_expiry_ns": 880000000
+    },
+    "raw_bgr_sha256": "984bcfd03f5955b8f1985484ddd5f346837226476ffa9d082dae0c719294631d",
+    "raw_rgb_sha256": "2f7b199fb327ee2a0c49e40aa398eb6650a267310e25d929e51dd98247d541ff",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500009890102002,
+        -0.6500000057854887,
+        -4.2633245133764625e-08,
+        -3.98807950432873e-05,
+        -0.15091535895003155
+      ],
+      "own_qvel_at_capture": [
+        1.3720808901088714e-06,
+        -2.2160709327559278e-07,
+        -1.6377316630838825e-06,
+        -0.0006179028171945699,
+        -0.0704125216095668
+      ],
+      "own_odom_at_capture": [
+        -3.4999990109898,
+        2.9999999942145115,
+        -4.2633245133764625e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        1.3720808901088714e-06,
+        -2.2160709327559278e-07,
+        -1.6377316630838825e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 46.820789646,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.86,
+      "clock_time_ns": 860000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.990752203894883,
+        5.3351623468157674e-05,
+        -0.1356837043680499
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        2.1927304489681627,
+        -0.00176708539582713,
+        -0.30068384602338016
+      ],
+      "detector_executed": true,
+      "inference_calls": 11,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.84,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 22,
+    "frame_id": 22,
+    "capture_sim_time": 0.84,
+    "observation_sim_time": 0.86,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 840000000,
+      "camera_capture_mj_time_ns": 840000000,
+      "sensor_ready_ns": 850000000,
+      "controller_sample_ns": 850000000,
+      "own_sample_ns": 850000000,
+      "result_available_ns": 860000000,
+      "actuation_ns": 860000000,
+      "sim_expiry_ns": 920000000
+    },
+    "raw_bgr_sha256": "970598d59be3b8e9f7e5206693239091f839b5d619c36a9928f8414f19cf5c8b",
+    "raw_rgb_sha256": "d7d6fccd327096441491615bf81b6194887fbb6a70d575a9d42e88cdd56e2f95",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500010369887111,
+        -0.6500000030953267,
+        -2.2711736190000687e-08,
+        -5.7252477998086316e-05,
+        -0.15328605053073013
+      ],
+      "own_qvel_at_capture": [
+        1.0341027272829804e-06,
+        1.3578185322222125e-07,
+        1.0040837346560064e-06,
+        -0.00016918479870109616,
+        -0.05017598028616288
+      ],
+      "own_odom_at_capture": [
+        -3.499998963011289,
+        2.999999996904674,
+        -2.2711736190000687e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        1.0341027272829804e-06,
+        1.3578185322222125e-07,
+        1.0040837346560064e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 47.039471726,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.9,
+      "clock_time_ns": 900000000,
+      "tracking": true,
+      "should_shoot": true,
+      "direction": [
+        0.9907783374992314,
+        -1.2054756281723897e-05,
+        -0.1354927518243755
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        2.196249238502028,
+        -0.0020383666568140374,
+        -0.30086581251692796
+      ],
+      "detector_executed": true,
+      "inference_calls": 12,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.88,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 23,
+    "frame_id": 23,
+    "capture_sim_time": 0.88,
+    "observation_sim_time": 0.9,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 880000000,
+      "camera_capture_mj_time_ns": 880000000,
+      "sensor_ready_ns": 890000000,
+      "controller_sample_ns": 890000000,
+      "own_sample_ns": 890000000,
+      "result_available_ns": 900000000,
+      "actuation_ns": 900000000,
+      "sim_expiry_ns": 960000000
+    },
+    "raw_bgr_sha256": "7d6e3baba67ae012cd8a40950fb0568a9b266ec901582a819ccc08bfb1b5b8b5",
+    "raw_rgb_sha256": "92593fc363d910bc9d5af1e3cc8b80fc3c9bb943cb8ebf85dafc89186a86b053",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.750001070163451,
+        -0.6499999925523654,
+        5.524119623765514e-08,
+        -4.8133841310185094e-05,
+        -0.1549907032671694
+      ],
+      "own_qvel_at_capture": [
+        7.001398138630075e-07,
+        2.696044695036258e-07,
+        1.992476319405973e-06,
+        0.0007895659796055535,
+        -0.036698741010808215
+      ],
+      "own_odom_at_capture": [
+        -3.499998929836549,
+        3.000000007447635,
+        5.524119623765514e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        7.001398138630075e-07,
+        2.696044695036258e-07,
+        1.992476319405973e-06
+      ]
+    }
+  },
+  {
+    "event": "native_result",
+    "wall_time": 47.268498063,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.94,
+      "clock_time_ns": 940000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907936004902369,
+        -9.193226841565144e-05,
+        -0.13538106505730807
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        2.19543726560258,
+        -0.0023415644865246075,
+        -0.30046649456013985
+      ],
+      "detector_executed": true,
+      "inference_calls": 13,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.02,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.92,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    },
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 24,
+    "frame_id": 24,
+    "capture_sim_time": 0.92,
+    "observation_sim_time": 0.94,
+    "clock_profile": "offline_modeled_latency_v1",
+    "wall_deadline": null,
+    "schedule": {
+      "episode_origin_mj_time_ns": 0,
+      "exposure_ns": 920000000,
+      "camera_capture_mj_time_ns": 920000000,
+      "sensor_ready_ns": 930000000,
+      "controller_sample_ns": 930000000,
+      "own_sample_ns": 930000000,
+      "result_available_ns": 940000000,
+      "actuation_ns": 940000000,
+      "sim_expiry_ns": 1000000000
+    },
+    "raw_bgr_sha256": "91a2c52f2103f3b1aaa86057839b0dc6aff4958183fd0c3cb8893a23d0dbb259",
+    "raw_rgb_sha256": "8f378b5a748dc5ec940f1ea5fa23f07fde06083adea4249cf7d0e1d8c16e8da5",
+    "own_at_capture": {
+      "own_qpos_at_capture": [
+        1.7500010978677298,
+        -0.6499999967169391,
+        2.444622040394854e-08,
+        -2.6958506406775825e-05,
+        -0.15620614369697036
+      ],
+      "own_qvel_at_capture": [
+        6.092375736628679e-07,
+        -1.9110002945295122e-07,
+        -1.4120385905216662e-06,
+        0.00015385465969059475,
+        -0.024920111865168376
+      ],
+      "own_odom_at_capture": [
+        -3.49999890213227,
+        3.0000000032830614,
+        2.444622040394854e-08
+      ],
+      "own_odom_velocity_at_capture": [
+        6.092375736628679e-07,
+        -1.9110002945295122e-07,
+        -1.4120385905216662e-06
+      ]
+    }
+  }
+]

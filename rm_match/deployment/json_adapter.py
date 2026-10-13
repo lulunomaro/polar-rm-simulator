@@ -13,7 +13,7 @@ import subprocess
 import sys
 import threading
 import time
-from .profile import digest, read_json
+from .profile import digest, read_json_snapshot
 from ..platform_v2.adapters import BaseAdapter, descriptor, require_sensors
 from ..platform_v2.contracts import ContractError, exact, validate_action
 
@@ -22,9 +22,9 @@ MAX_REQUEST = 12 * 1024 * 1024
 MAX_RESPONSE = 64 * 1024
 
 
-def load_registrations(path):
+def load_registrations(path, *, with_digest=False):
     path = Path(path).absolute()
-    value = read_json(path)
+    value, manifest_sha = read_json_snapshot(path)
     exact(value, ('schema', 'adapters'), 'local_adapter_manifest')
     if value['schema'] != SCHEMA or type(value['adapters']) is not list or len(value['adapters']) > 16:
         raise ContractError('invalid_local_adapter_manifest')
@@ -54,7 +54,7 @@ def load_registrations(path):
         if not cwd.is_dir():
             raise ContractError('custom_working_directory_missing')
         result.append(dict(row, command=command, cwd=str(cwd)))
-    return result
+    return (result,manifest_sha) if with_digest else result
 
 
 class JsonLineAdapter(BaseAdapter):
@@ -67,6 +67,7 @@ class JsonLineAdapter(BaseAdapter):
         self.requests = queue.Queue(1)
         self.responses = queue.Queue(1)
         self.failed = False
+        self._close_lock = threading.Lock()
         self.descriptor = descriptor(registration['adapter_id'], registration['kind'],
             registration['label'], registration['required_sensors'])
 
@@ -158,30 +159,48 @@ class JsonLineAdapter(BaseAdapter):
         return validate_action(response['action'], o, self.descriptor)
 
     def close(self):
-        child = self.process
-        if child is not None:
-            if child.poll() is None:
-                try:
-                    child.kill()
-                except ProcessLookupError:
-                    pass
+        with self._close_lock:
+            self.failed = True
+            child = self.process
+            self.process = None
             try:
-                child.wait(timeout=1.)
+                if child is not None:
+                    if child.poll() is None:
+                        try:
+                            if sys.platform=='win32':
+                                # Windows venv python is a launcher with a
+                                # separate interpreter child. Stop the owned
+                                # tree, including that pipe-writing descendant.
+                                subprocess.run(['taskkill','/PID',str(child.pid),'/T','/F'],
+                                    stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,
+                                    stderr=subprocess.DEVNULL,timeout=2.,
+                                    creationflags=subprocess.CREATE_NO_WINDOW,check=False)
+                                if child.poll() is None:child.kill()
+                            else:child.kill()
+                        except ProcessLookupError:
+                            pass
+                    try:
+                        child.wait(timeout=1.)
+                    finally:
+                        for stream in (child.stdin, child.stdout):
+                            if stream:
+                                stream.close()
             finally:
-                for stream in (child.stdin, child.stdout):
-                    if stream:
-                        stream.close()
-        try:
-            self.requests.put_nowait(None)
-        except queue.Full:
-            pass
-        self.process = None
+                try:
+                    self.requests.put_nowait(None)
+                except queue.Full:
+                    pass
+                thread=getattr(self,'thread',None)
+                if thread is not None and thread is not threading.current_thread():
+                    thread.join(1.)
+                    if thread.is_alive():
+                        raise RuntimeError('Custom adapter IO thread failed to stop')
 
 
 def register_json_adapters(registry, path):
     path = Path(path).absolute()
-    manifest_sha = digest(path)
-    for row in load_registrations(path):
+    rows,manifest_sha = load_registrations(path,with_digest=True)
+    for row in rows:
         def factory(config, row=row):
             return JsonLineAdapter(config, registration=row, manifest=path, manifest_sha=manifest_sha)
         d = descriptor(row['adapter_id'], row['kind'], row['label'], row['required_sensors'],

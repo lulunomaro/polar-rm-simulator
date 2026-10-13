@@ -9,12 +9,13 @@ from .runtime import PlatformRuntime
 from .server import PlatformHTTPServer,TransportConfig
 from .test_runtime import FakeBackend
 from .test_control import Clock
+from .test_support_admission import fixture_policy,OPERATOR_CREDENTIAL
 
 class StrictClientTests(unittest.TestCase):
     def setUp(self):
-        self.clock=Clock();self.r=PlatformRuntime(FakeBackend(),clock=self.clock);self.server=PlatformHTTPServer(TransportConfig(port=0),self.r)
+        self.clock=Clock();self.r=PlatformRuntime(FakeBackend(),clock=self.clock);self.server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=fixture_policy(self.r.control.robot_ids)),self.r)
         self.thread=threading.Thread(target=self.server.serve_forever,kwargs={'poll_interval':.01},daemon=True);self.thread.start()
-        self.c=PlatformClient('http://127.0.0.1:'+str(self.server.server_address[1]),control_profile='server_window_v1')
+        self.c=PlatformClient('http://127.0.0.1:'+str(self.server.server_address[1]),control_profile='server_window_v1',admission_credential=OPERATOR_CREDENTIAL)
         self.reply=self.c.open('operator');self.c.claim('alpha',list(CHANNELS))
     def tearDown(self):
         self.c.close();self.server.shutdown();self.server.server_close();self.thread.join(1);self.r.close()

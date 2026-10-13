@@ -1,0 +1,269 @@
+{
+  "schema": "rmcs-experimental-corner-roi-factor-v1",
+  "status": "executed",
+  "scope": "New isolated corner-refinement candidate, not recovered T2 completion or production fix",
+  "candidate_basis": "Original disabled corner body with only two unconditional returns removed in rmcs::experimental namespace",
+  "parameters": {
+    "roi_padding": 20,
+    "axis_end": 0.7
+  },
+  "reference_parameters": {
+    "roi_padding": 5,
+    "axis_end": 0.7
+  },
+  "single_changed_factor_from_reference": "roi_padding",
+  "reference_report_sha256": "6a583800729b1af799e6ae683b54c4e2f5a78c2dc0c84663cf18c99e7824be33",
+  "reference_candidate_source_sha256": "e9c9daec44185f8839afe67c9f40dd0ad980bfeb6cd328f07540021cf7e37608",
+  "reference_output_count": 0.0,
+  "roi_or_constants_changed": true,
+  "original_pnp_thresholds_changed": false,
+  "ground_truth_sent_to_algorithm": false,
+  "raw_model_matches_baseline": true,
+  "model_inferences": 1,
+  "source_original_sha256": "d99ca680eef70fdb8ead1511f53c432536a314ecb152b7721c46fbde8de26423",
+  "source_copy_sha256": "966efb44ebc1c6dbde70161abda01f2fd4afd389d1c01292897494c88397d44b",
+  "diagnostic_source_sha256": "d14cea2fa6e74872646a77859c6d97f623ab079c840220bc260ffefc5f603f42",
+  "diagnostic_binary_sha256": "4f2096de1bd1ecb736eb9ca9a186ec09181564f7ae482c32f722142ce3bd8e29",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "production_binary_sha256": "797e6ba7240aef29cacd8ac624afbba5cae1c751a62a7fa8eb41570451e17250",
+  "build_manifest_sha256": "a0782b5485a8602c84fd81f7303ad6030c2be8a5ad41006c8eb5f1e7b677762c",
+  "baseline_binding_sha256": "ce52c5c533a557591d379c9a82e204ed6e1158e22e9a528f2223bcd2d0d25e73",
+  "raw_model": {
+    "armors": [
+      {
+        "genre": "INFANTRY_3",
+        "corners_px": {
+          "tl": [
+            642.5145263671875,
+            853.9246826171875
+          ],
+          "bl": [
+            639.8820190429688,
+            891.8926391601562
+          ],
+          "br": [
+            769.34130859375,
+            892.950439453125
+          ],
+          "tr": [
+            771.7093505859375,
+            856.347412109375
+          ]
+        },
+        "armor_color": "BLUE",
+        "confidence": 0.863656759262085,
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7911699022724867,
+            "back_dot": 0.6846252736523185,
+            "pitch_degrees": -35.22377816219986,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 50.22377816219986,
+            "reprojection_error": 0.5273818245405537,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.791136641792411,
+            "back_dot": 0.6845616829411529,
+            "pitch_degrees": 58.27195035177369,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 43.27195035177369,
+            "reprojection_error": 0.6048053676011347,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "original_robust_pnp_result": 0.0,
+        "lightbar_lengths_px": [
+          38.05910953846436,
+          36.67954789258005
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate": 0.0,
+        "z": 1.7911699022724867,
+        "back_dot": 0.6846252736523185,
+        "pitch_degrees": -35.22377816219986,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 50.22377816219986,
+        "reprojection_error": 0.5273818245405537,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      },
+      {
+        "candidate": 1.0,
+        "z": 1.791136641792411,
+        "back_dot": 0.6845616829411529,
+        "pitch_degrees": 58.27195035177369,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 43.27195035177369,
+        "reprojection_error": 0.6048053676011347,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      }
+    ],
+    "inference_calls": 1.0,
+    "armor_count": 1,
+    "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+    "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+    "original_estimator_output_count": 0.0,
+    "pnp_success": 2.0,
+    "pnp_candidates": 2.0
+  },
+  "refined": {
+    "armors": [
+      {
+        "genre": "INFANTRY_3",
+        "corners_px": {
+          "tl": [
+            634.949951171875,
+            846.6254272460938
+          ],
+          "bl": [
+            635.0099487304688,
+            892.1275024414062
+          ],
+          "br": [
+            769.5172729492188,
+            890.7363891601562
+          ],
+          "tr": [
+            768.82470703125,
+            852.4015502929688
+          ]
+        },
+        "armor_color": "BLUE",
+        "confidence": 0.863656759262085,
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7269541878256716,
+            "back_dot": 0.7425449810375697,
+            "pitch_degrees": 53.405312752419775,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 38.405312752419775,
+            "reprojection_error": 1.3527493126109527,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 1.0,
+            "reject_reasons": []
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.7264582753470121,
+            "back_dot": 0.7423888541182037,
+            "pitch_degrees": -30.573138603692357,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 45.57313860369235,
+            "reprojection_error": 1.3879234571249746,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "original_robust_pnp_result": 1.0,
+        "lightbar_lengths_px": [
+          45.50211475071143,
+          38.341094383493555
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate": 0.0,
+        "z": 1.7269541878256716,
+        "back_dot": 0.7425449810375697,
+        "pitch_degrees": 53.405312752419775,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 38.405312752419775,
+        "reprojection_error": 1.3527493126109527,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 1.0,
+        "reject_reasons": []
+      },
+      {
+        "candidate": 1.0,
+        "z": 1.7264582753470121,
+        "back_dot": 0.7423888541182037,
+        "pitch_degrees": -30.573138603692357,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 45.57313860369235,
+        "reprojection_error": 1.3879234571249746,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      }
+    ],
+    "experimental_refinement": "isolated_body_roi_search_factor",
+    "inference_calls": 1.0,
+    "armor_count": 1,
+    "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+    "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+    "original_estimator_output_count": 1.0,
+    "pnp_success": 2.0,
+    "pnp_candidates": 2.0
+  },
+  "corner_proxies": [
+    {
+      "genre": "INFANTRY_3",
+      "corner_displacement_from_raw_px": {
+        "tl": 10.511989671702409,
+        "bl": 4.877727943502319,
+        "br": 2.2210317769429913,
+        "tr": 4.8878414368484755
+      },
+      "raw_lengths_px": [
+        38.05910953846436,
+        36.67954789258005
+      ],
+      "refined_lengths_px": [
+        45.50211475071143,
+        38.341094383493555
+      ],
+      "length_difference_abs_px": 7.161020367217873,
+      "reprojection_residuals_px": [
+        1.3527493126109527,
+        1.3879234571249746
+      ],
+      "original_gate_accepted_candidate_count": 1
+    }
+  ],
+  "limitations": [
+    "One saved synthetic camera frame; no physical camera calibration or dataset generalization.",
+    "Gamma/blur are single-factor diagnostic transforms, not deployment or baseline changes.",
+    "Native object correspondence to production ELF is not independently proven; exact object hashes are in baseline binding.",
+    "No full tracker, controller, physics rollout, training or hardware qualification.",
+    "Original implementation is explicitly FIXME-disabled; enabling the copy is an unqualified experiment.",
+    "No multi-frame or negative-case qualification. Do not adopt this candidate from one frame.",
+    "Corner displacement, left/right length agreement and reprojection residuals are proxies, not ground-truth corner accuracy."
+  ]
+}

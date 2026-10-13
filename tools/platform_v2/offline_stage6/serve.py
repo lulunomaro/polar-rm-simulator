@@ -5,7 +5,7 @@ import os
 os.environ.setdefault('MUJOCO_GL','egl');os.environ.setdefault('EGL_PLATFORM','surfaceless');os.environ.setdefault('OMP_NUM_THREADS','1');os.environ.setdefault('MESA_SHADER_CACHE_DISABLE','true')
 import argparse,hashlib,json,time,threading,signal,platform
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--scene-json',type=Path,required=True);p.add_argument('--native-spec',type=Path,required=True);p.add_argument('--host-delay',type=float,choices=(0.,.15),required=True);p.add_argument('--port',type=int,default=0);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--scene-json',type=Path,required=True);p.add_argument('--native-spec',type=Path,required=True);p.add_argument('--host-delay',type=float,choices=(0.,.15),required=True);p.add_argument('--port',type=int,default=0);p.add_argument('--admission-manifest',type=Path,required=True);a=p.parse_args()
 a.out.mkdir(parents=True,exist_ok=False);root=Path(__file__).resolve().parents[3]
 def hashes():return {str(x.relative_to(root)):hashlib.sha256(x.read_bytes()).hexdigest() for x in sorted((root/'rm_match').rglob('*.py'))}
 source=hashes()
@@ -41,7 +41,8 @@ camera=CameraProvider(sim,renderer_factory=Render)
 def factory():return OfflineNativeAdapter(dict(fov_degrees=180.,circle_radius_x_norm=1.,circle_radius_y_norm=1.),spec_path=a.native_spec,out=a.out/'native',registered_spec_sha=spec_sha,trace=trace)
 runtime=OfflineRuntime(backend,camera=camera,native_factory=factory,captures=24,host_delay_s=a.host_delay,trace=trace)
 signal.signal(signal.SIGTERM,lambda *_:runtime.request_stop());signal.signal(signal.SIGINT,lambda *_:runtime.request_stop())
-server=PlatformHTTPServer(TransportConfig(port=a.port),runtime);http=threading.Thread(target=server.serve_forever,daemon=True);http.start()
+from rm_match.platform_v2.admission import AdmissionPolicy
+server=PlatformHTTPServer(TransportConfig(port=a.port,admission_policy=AdmissionPolicy.from_manifest(a.admission_manifest)),runtime);http=threading.Thread(target=server.serve_forever,daemon=True);http.start()
 ready=dict(model_identity=model_identity,url=f'http://127.0.0.1:{server.server_address[1]}',clock_profile='offline_modeled_latency_v1',configured_host_delay_s=a.host_delay,captures=24,source_manifest_sha256=hashlib.sha256(json.dumps(source,sort_keys=True).encode()).hexdigest(),spec_sha256=spec_sha,scene_sha256=hashlib.sha256(a.scene_json.read_bytes()).hexdigest(),initial_pose_snapshot_time=snapshot['t'],actual_new_episode_mj_time=float(sim.time),source_binary_sha256=spec['sha256']['binary'],model_sha256=spec['model_sha256'])
 (a.out/'ready.json').write_text(json.dumps(ready,indent=2));print(json.dumps(ready),flush=True)
 started=time.monotonic();cleanup_result=dict(confirmed=False,reason='terminal_not_reached')

@@ -1,0 +1,23 @@
+{
+  "schema": "rmcs-contour-v3-holdout-evidence-v1",
+  "reports": {
+    "INDEPENDENT_CASES.json": "588449007f6ead28b8e56d0fbe71d8def0bc7668702aff18fef00466900a795e",
+    "INDEPENDENT_COMPARISON.json": "e83d6dd47d7dfb69109b685662aa9a62a9fc14c427295decb9bc4889c499831d",
+    "INDEPENDENT_FOV_CHECKS.json": "1e5d007e62a625a0d37a54889037b2690fc5663fcdde1232994dd6612fb4691c",
+    "INDEPENDENT_RENDER_BINDING.json": "24afbc201d3ea2b550dd216269b4dce1a5d7d4fee94b96cd461e6df65c97af26",
+    "README.md": "8386fc53400f16882499b41a3aea80f2f929e7b1c4dfb8fe922abb508074b990",
+    "REGRESSION_COMPARISON.json": "bbd08ff1719fb07dbe9cf6b96ef453963be4715d363b538a471851a72bb0c1e2",
+    "SUMMARY.json": "a010322cc1c4bdedf6ee9a37ab00903206169198c22d21bc63b76872362a96d7",
+    "V1_FAILED_HOLDOUT.json": "425346e85fd98b57c9201209a3712b9489c75316b4dcfd58357fdafb71a133c1",
+    "V2_REGRESSION.json": "0178f7825cc32e45d36075d3485b0957ab7401523bce6e71d6c753adcce9253c"
+  },
+  "source_files": {
+    "operator_native\\runtime\\overlays\\corners_contour_v1.cpp": "a99ffdd80ec1c620b962f5fcb2da9a194a077af466923aec7347b1f9ff4f9247",
+    "operator_native\\runtime\\overlays\\corners_contour_v2.cpp": "5aae445956b959eb238047135c971dcc8d55fda5dc631d5b85ec816084a47fa2",
+    "operator_native\\runtime\\overlays\\corners_contour_v3.cpp": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c",
+    "tools\\diagnose_pnp_render_holdout.py": "a8113f17a37ba22b1ce50e1fd02f8f9793c2acb240a56c9659d14460dbed9b82",
+    "tools\\diagnose_pnp_overlay.py": "25b58b734ec93d446b88390d7a1672ea2b4ff9890aa51e8e10e7d5231a4edabf"
+  },
+  "candidate_source_frozen": true,
+  "full_tracker_control_evidence_pending": true
+}

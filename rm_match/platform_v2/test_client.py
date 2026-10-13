@@ -5,12 +5,13 @@ from .server import PlatformHTTPServer,TransportConfig
 from .runtime import PlatformRuntime
 from .test_runtime import FakeBackend
 from .test_control import Clock
+from .test_support_admission import fixture_policy,OPERATOR_CREDENTIAL,AUDIT_CREDENTIAL
 
 class ClientTests(unittest.TestCase):
     def setUp(self):
         self.clock=Clock();self.backend=FakeBackend();self.runtime=PlatformRuntime(self.backend,clock=self.clock)
-        self.server=PlatformHTTPServer(TransportConfig(port=0),self.runtime);self.thread=threading.Thread(target=self.server.serve_forever,kwargs={'poll_interval':.01},daemon=True);self.thread.start()
-        url='http://127.0.0.1:'+str(self.server.server_address[1]);self.a=PlatformClient(url);self.b=PlatformClient(url);self.w=PlatformClient(url)
+        self.server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=fixture_policy(self.backend.robot_ids)),self.runtime);self.thread=threading.Thread(target=self.server.serve_forever,kwargs={'poll_interval':.01},daemon=True);self.thread.start()
+        url='http://127.0.0.1:'+str(self.server.server_address[1]);self.a=PlatformClient(url,admission_credential=OPERATOR_CREDENTIAL);self.b=PlatformClient(url,admission_credential=OPERATOR_CREDENTIAL);self.w=PlatformClient(url,admission_credential=AUDIT_CREDENTIAL)
         self.a.open('operator');self.b.open('operator');self.w.open('spectator')
     def tearDown(self):
         for c in (self.a,self.b,self.w):

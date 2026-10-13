@@ -51,8 +51,28 @@ python tools/check_standalone_contracts.py
 python -m unittest discover -s tests -p test_deployment.py -v
 ```
 
-190 个初始提取源文件和一个精确函数夹具保留原字节；新部署层单独新增。提取来源为 [7663ae7](https://github.com/lulunomaro/llm-RM-navigation/tree/7663ae744d69b27813abaefeaa9ae3e73be46a9f/simulation/mujoco_match)，详情见 [EXTRACTION_MANIFEST.json](EXTRACTION_MANIFEST.json)、[SOURCE_PROVENANCE.md](SOURCE_PROVENANCE.md)、[部署变更验证](docs/DEPLOYMENT_VALIDATION.md)。这些轻量检查不运行 MuJoCo 物理、渲染或 native 推理，不等于全量测试或完整对局通过。
+初始提取的 190 个源文件和一个精确函数夹具记录在历史清单；后续有明确任务归属的改动记录在 [DEVELOPMENT_CHANGES.json](DEVELOPMENT_CHANGES.json)，验证工具分别核对未改原字节和已登记的新字节，不覆盖历史身份。提取来源为 [7663ae7](https://github.com/lulunomaro/llm-RM-navigation/tree/7663ae744d69b27813abaefeaa9ae3e73be46a9f/simulation/mujoco_match)，详情见 [EXTRACTION_MANIFEST.json](EXTRACTION_MANIFEST.json)、[SOURCE_PROVENANCE.md](SOURCE_PROVENANCE.md)、[部署变更验证](docs/DEPLOYMENT_VALIDATION.md)。这些轻量检查不运行 MuJoCo 物理、渲染或 native 推理，不等于全量测试或完整对局通过。
 
 自有实现按 [MIT](LICENSE) 开源；保留所有第三方许可。外部依赖和第三方资产的授权不会被本仓库许可证覆盖。
 
 新增 [OFFLINE24 复现工具与记录](docs/OFFLINE_DEPLOYMENT_VALIDATION.md)：本次原客户端离屏会话解码了 24 帧，触发 13 次自有 native 推理；PnP 接受位姿和进入物理的有效云台命令均为 0，静态跟踪/控制链仍未通过。这不代表默认实时路径、完整对局或换机部署通过。保留失败结果、原始合成画面、单帧角点/PnP 诊断与独立复现入口，见 [单帧诊断](docs/validation/pnp_saved_frame_20261013/README.md)。
+
+## 按项目计划继续开发
+
+[实施进度](docs/IMPLEMENTATION_PROGRESS.md) 记录 T01–T03 的当前代码、实测、失败和下一步。
+[RobotIO 工作稿](docs/ROBOT_IO_V1.md) 与 [验收追踪表](docs/ACCEPTANCE_TRACEABILITY.md) 映射现有协议与缺口；验收配置仍为 draft，未确认条件不记为通过。
+本地统一质量入口（每次使用新输出目录）：
+
+```sh
+python tools/check_project.py --out artifacts/quality-001
+# 可选额外运行实际相机/HTTP检查；不含 native 闭环或完整比赛：
+python tools/check_project.py --out artifacts/quality-camera-001 --camera
+```
+
+
+## 当前计划实施
+
+新构建默认使用修复后的自有 T2 + contour-v3；独立渲染正/负例与24帧完整静态离线链已通过。
+实际 Qt、服务端 role/robot/audit 准入与故障清理有单独证据；实时 native、完整3v3/7v7和Windows
+native尚未验收。各阶段及失败记录见 [实现进度](docs/IMPLEMENTATION_PROGRESS.md) 与
+[最终静态链](docs/validation/pnp_contour_v3_aftercleanup_chain_20261013/README.md)。

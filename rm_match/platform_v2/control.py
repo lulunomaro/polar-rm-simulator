@@ -49,6 +49,9 @@ class Session:
     control_profile: str = 'legacy_v2'
     windows: dict = field(default_factory=dict)
     next_window_id: int = 0
+    allowed_robots: tuple | None = None
+    audit_authorized: bool = False
+    trusted_admin: bool = True
 
 @dataclass
 class Lease:
@@ -83,7 +86,7 @@ class ControlPlane:
     Endpoints are atomic under lock; expiry/rebind removes previous inputs before
     the next authority tick. Network threads never inspect the backend.
     """
-    def __init__(self, robot_ids, *, clock=time.monotonic, max_sessions=32,
+    def __init__(self, robot_ids, *, clock=time.perf_counter, max_sessions=32,
                  session_ttl=60., lease_ttl=1., command_ttl=.25, spin_capabilities=None):
         ids = tuple(robot_ids)
         if not ids or len(set(ids)) != len(ids) or any(not isinstance(r, str) or not r or len(r)>128 for r in ids):
@@ -162,16 +165,40 @@ class ControlPlane:
         if operator and s.role!='operator':raise Rejected('read_only_session',403)
         return s
 
-    def open_session(self,role,control_profile='legacy_v2'):
+    def open_session(self,role,control_profile='legacy_v2',*,allowed_robots=None,audit_authorized=None,trusted_admin=True):
+        """Direct calls are trusted local admin; HTTP supplies a reviewed grant.
+
+        Neither trusted_admin nor permission fields are network-request keys.
+        """
         with self.lock:
             self._expire()
             if not isinstance(role,str) or role not in ('operator','spectator'):raise Rejected('invalid_role',400)
             if type(control_profile) is not str or control_profile not in ('legacy_v2','server_window_v1'):raise Rejected('invalid_control_profile',400)
             if self.stopped:raise Rejected('runtime_stopped')
             if len(self.sessions)>=self.max_sessions:raise Rejected('session_capacity',429)
+            if type(trusted_admin) is not bool:raise Rejected('invalid_trusted_admin',400)
+            if allowed_robots is not None:
+                if type(allowed_robots) not in (list,tuple) or len(set(allowed_robots))!=len(allowed_robots):raise Rejected('invalid_robot_scope',400)
+                for rid in allowed_robots:self._robot(rid)
+                allowed_robots=tuple(allowed_robots)
+            if not trusted_admin and role=='operator' and not allowed_robots:raise Rejected('operator_scope_required',403)
+            audit=trusted_admin if audit_authorized is None else audit_authorized
+            if type(audit) is not bool or (role=='spectator' and not audit):raise Rejected('audit_authorization_required',403)
             s=Session(secrets.token_hex(12),secrets.token_urlsafe(32),role,self.clock()+self.session_ttl)
+            s.allowed_robots=allowed_robots;s.audit_authorized=audit;s.trusted_admin=trusted_admin
             s.control_profile=control_profile;self.sessions[s.sid]=s
-            return dict(session_id=s.sid,token=s.token,role=role,session_expires=s.expires,server_monotonic_s=self.clock(),control_profile=control_profile,control_window_version=1,control_window_ttl_s=self.control_window_ttl)
+            return dict(session_id=s.sid,token=s.token,role=role,session_expires=s.expires,server_monotonic_s=self.clock(),control_profile=control_profile,control_window_version=1,control_window_ttl_s=self.control_window_ttl,
+                        allowed_robots=list(self.robot_ids if s.allowed_robots is None else s.allowed_robots),audit_authorized=s.audit_authorized)
+
+    def authorize_robot(self,session,rid):
+        self._robot(rid)
+        if session.allowed_robots is not None and rid not in session.allowed_robots:
+            raise Rejected('robot_scope_forbidden',403)
+
+    def visible_robot_ids(self,token):
+        with self.lock:
+            session=self._session(token)
+            return [r for r in self.robot_ids if session.allowed_robots is None or r in session.allowed_robots]
 
     def keepalive(self,token):
         with self.lock:
@@ -191,7 +218,7 @@ class ControlPlane:
         with self.lock:
             s=self._session(token)
             if self.stopped:raise Rejected('runtime_stopped')
-            if rid is not None:self._robot(rid)
+            if rid is not None:self.authorize_robot(s,rid)
             s.watch_epoch+=1;s.watch_robot_id=rid
             return dict(robot_id=rid,watch_epoch=s.watch_epoch)
 
@@ -207,7 +234,7 @@ class ControlPlane:
                     for s in self.sessions.values() if s.watch_robot_id is not None]
 
     def _owned(self,s,rid,epochs):
-        self._robot(rid)
+        self.authorize_robot(s,rid)
         if not isinstance(epochs,dict):raise Rejected('invalid_lease_epochs',400)
         self._channels(list(epochs))
         for c,epoch in epochs.items():
@@ -216,7 +243,7 @@ class ControlPlane:
 
     def claim(self,token,rid,channels):
         with self.lock:
-            s=self._session(token,True);self._robot(rid);self._channels(channels)
+            s=self._session(token,True);self.authorize_robot(s,rid);self._channels(channels)
             if any(self.leases[rid,c].owner is not None for c in channels):raise Rejected('lease_occupied')
             for c in channels:
                 l=self.leases[rid,c];l.epoch+=1;l.owner=s.sid;l.expires=self.clock()+self.lease_ttl;l.seq=-1;l.input=None
@@ -266,6 +293,7 @@ class ControlPlane:
         """Continued operator authorization, never an algorithm action/fire permit."""
         with self.lock:
             s=self._session(token,True)
+            self.authorize_robot(s,rid)
             if s.control_profile!='server_window_v1':raise Rejected('adapter_window_profile_required')
             if type(kind) is not str or kind not in KINDS:raise Rejected('invalid_kind',400)
             if type(epochs) is not dict or set(epochs)!=set(KINDS[kind]):raise Rejected('binding_requires_channels',400)
@@ -365,6 +393,27 @@ class ControlPlane:
                     mode_signature=self.leases[r,c].mode_signature,mode_fault=self.leases[r,c].mode_fault,
                     input_expires=self.leases[r,c].input_expires,input_window_id=self.leases[r,c].input_window_id,input_window_deadline=self.leases[r,c].input_window_deadline) for c in CHANNELS} for r in self.robot_ids},
                 bindings={r:{k:copy.deepcopy(vars(self.bindings[r,k])) for k in KINDS} for r in self.robot_ids})
+
+    def snapshot_robot(self,rid):
+        """Trusted authority snapshot with the same fields, copied for one robot.
+
+        Expiry remains global and runs under the same lock as public snapshot:
+        session/lease revocation, epochs and original command windows retain their
+        semantics. This is an internal allocation optimization, not an endpoint
+        or a fresh command authorization. Returned nested mutable values are
+        detached from the live control state.
+        """
+        with self.lock:
+            self._expire();self._robot(rid)
+            now=self.clock()
+            return dict(robot_ids=[rid],stopped=self.stopped,server_monotonic_s=now,revision=self.revision,
+                leases={rid:{c:dict(epoch=self.leases[rid,c].epoch,owner=self.leases[rid,c].owner,
+                    expires=self.leases[rid,c].expires,seq=self.leases[rid,c].seq,
+                    input=copy.deepcopy(self.leases[rid,c].input) if now<self.leases[rid,c].input_expires else None,
+                    mode_signature=self.leases[rid,c].mode_signature,mode_fault=self.leases[rid,c].mode_fault,
+                    input_expires=self.leases[rid,c].input_expires,input_window_id=self.leases[rid,c].input_window_id,
+                    input_window_deadline=self.leases[rid,c].input_window_deadline) for c in CHANNELS}},
+                bindings={rid:{k:copy.deepcopy(vars(self.bindings[rid,k])) for k in KINDS}})
 
     def reset_episode(self):
         """Trusted authority only: retain sessions, revoke every actuator lease."""

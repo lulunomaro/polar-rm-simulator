@@ -26,3 +26,9 @@ include = ["rm_match*"]
 
 [tool.setuptools.package-data]
 rm_match = ["*.xml", "assets/arenas/*/*.xml", "assets/arenas/*/*.json"]
+
+[tool.pytest.ini_options]
+# Only this project's suites belong to its quality report. Downloaded clients,
+# disposable clone fixtures and generated evidence have their own entry points.
+testpaths = ["tests", "rm_match", "operator_native/runtime", "tools"]
+norecursedirs = [".git", ".venv*", "artifacts", "external", "build", "dist", "__pycache__"]

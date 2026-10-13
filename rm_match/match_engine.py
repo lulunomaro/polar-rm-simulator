@@ -193,6 +193,9 @@ class MatchSimulation:
         if self.spectator_effects:self.spectator_effects.update(self.time,self.projectiles,self.contact_events)
 
     def _advance_projectiles(self,before,rot0,dt):
+        # No projectile means no swept collision query or hit to account for.
+        # Spawning/authority/cooldown checks still happen at the original points.
+        if not self.projectiles:return
         ids=self.colliders;centers=self.data.geom_xpos[ids]
         matrices=self.data.geom_xmat[ids].reshape(-1,3,3)
         extents=np.einsum('nij,nj->ni',np.abs(matrices),self.model.geom_size[ids])

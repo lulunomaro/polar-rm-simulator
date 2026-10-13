@@ -11,6 +11,7 @@ import json
 import math
 import os
 import time
+import threading
 from pathlib import Path
 import uuid
 import numpy as np
@@ -47,11 +48,21 @@ class NativeSourceAdapter(BaseAdapter):
         self.trace=trace
         self.spec_path=Path(spec_path);self.spec,self.spec_sha=validate_native_spec(self.spec_path,registered_spec_sha)
         self.root=Path(out);self.process=None
+        self._cancelled=threading.Event();self._lifecycle_lock=threading.Lock()
         self.stable_since=None;self.anchor=None;self.last_capture=-1;self.last_time=None
     def reset(self,context):
+        if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
         super().reset(context);self.close();self.stable_since=None;self.anchor=None;self.last_capture=-1;self.last_time=None
+    def cancel(self):
+        """Trusted lifecycle hook, no waiting or pipe closure on the authority."""
+        self._cancelled.set()
+        with self._lifecycle_lock:process=self.process
+        if process is not None:
+            stop=getattr(process,'request_stop',None)
+            if callable(stop):stop()
     def close(self):
-        if self.process is not None:self.process.close();self.process=None
+        with self._lifecycle_lock:process=self.process;self.process=None
+        if process is not None:process.close()
     def _hold(self,o):
         q=o['own']['qpos']
         return action_for(o,'aim','gimbal_target',dict(frame='base_link',yaw_rad=math.atan2(math.sin(q[3]),math.cos(q[3])),pitch_rad=max(-math.pi/2,min(math.pi/2,q[4])),active=False,confidence=None,fire_permission=False))
@@ -65,6 +76,7 @@ class NativeSourceAdapter(BaseAdapter):
         from ..operator.source_aim import OperatorFovProcess
         from ..integrations.rmcs_contract import own_state,command_from_direction
         from ..camera_profile import SourceCameraProfile
+        if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
         require_sensors(o,('camera','odometry'));raw=raw_observation(o);cam=o['sensors']['camera'];p=SourceCameraProfile()
         if o['robot_id']!='red_sentry':raise ContractError('native_robot_unsupported')
         intr=cam['intrinsics'];im=cam['image'];ext=cam['extrinsics']
@@ -89,8 +101,15 @@ class NativeSourceAdapter(BaseAdapter):
             (self.directory/'tracking_mode').write_text(self.spec['runtime_mode_contents'])
             env=os.environ.copy();env.update(self.spec.get('environment',{}))
             env.update(AUTOAIM_CONFIG=str(Path(self.spec['autoaim_config']).absolute()),RMCS_HEADLESS_SHARE=str(Path(self.spec['model_share']).absolute()),ORT_DISABLE_TELEMETRY='1')
-            self.process=OperatorFovProcess(self.spec['binary'],self.spec['executor_yaml'],self.directory,env,fov=self.fov,timeout=2.)
-            self.process.reset(dict(episode=o['episode']))
+            process=OperatorFovProcess(self.spec['binary'],self.spec['executor_yaml'],self.directory,env,fov=self.fov,timeout=2.)
+            with self._lifecycle_lock:
+                if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
+                self.process=process
+            process.reset(dict(episode=o['episode']))
+            if self._cancelled.is_set():
+                stop=getattr(process,'request_stop',None)
+                if callable(stop):stop()
+                self.close();raise ContractError('native_adapter_cancelled')
         bgr=np.ascontiguousarray(raw.rgb[:,:,::-1]);path=self.directory/'sensor_input.bgr';path.write_bytes(bgr.tobytes())
         captured=replace(raw,sim_time=cam['capture_sim_time'],own_qpos=tuple(cam['own_qpos_at_capture']),own_qvel=tuple(cam['own_qvel_at_capture']),odom_xyyaw=tuple(cam['own_odom_at_capture']),odom_vxyw=tuple(cam['own_odom_velocity_at_capture']))
         frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=7,own_team='red',image=dict(encoding='bgr8',width=p.width,height=p.height,stride_bytes=p.width*3,bytes=bgr.nbytes,sha256=hashlib.sha256(bgr.tobytes()).hexdigest(),path=str(path.absolute())),camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))

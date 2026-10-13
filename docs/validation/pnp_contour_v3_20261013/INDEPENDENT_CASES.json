@@ -1,0 +1,79 @@
+[
+  {
+    "name": "near_2p25",
+    "distance": 2.25,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": false
+  },
+  {
+    "name": "mid_3p05",
+    "distance": 3.05,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": false
+  },
+  {
+    "name": "far_3p85",
+    "distance": 3.85,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": false
+  },
+  {
+    "name": "far_4p2",
+    "distance": 4.2,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": false
+  },
+  {
+    "name": "yaw_plus12",
+    "distance": 2.65,
+    "yaw": 12.0,
+    "light": 1.0,
+    "negative": false
+  },
+  {
+    "name": "yaw_minus28",
+    "distance": 3.1,
+    "yaw": -28.0,
+    "light": 1.0,
+    "negative": false
+  },
+  {
+    "name": "light_dim_0p75",
+    "distance": 3.05,
+    "yaw": 0.0,
+    "light": 0.75,
+    "negative": false
+  },
+  {
+    "name": "light_bright_1p15",
+    "distance": 3.05,
+    "yaw": 0.0,
+    "light": 1.15,
+    "negative": false
+  },
+  {
+    "name": "blank_2",
+    "distance": -2.5,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": true
+  },
+  {
+    "name": "full_occlusion_2",
+    "distance": 3.05,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": true
+  },
+  {
+    "name": "one_bar_occlusion_2",
+    "distance": 3.05,
+    "yaw": 0.0,
+    "light": 1.0,
+    "negative": true
+  }
+]

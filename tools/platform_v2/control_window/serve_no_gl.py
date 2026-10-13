@@ -14,14 +14,17 @@ import mujoco
 
 def main(argv=None):
     p=argparse.ArgumentParser(allow_abbrev=False);p.add_argument('--out',type=Path,required=True);p.add_argument('--max-wall-seconds',type=float,default=20.)
+    p.add_argument('--admission-manifest',type=Path,required=True)
     a=p.parse_args(argv)
+    from rm_match.platform_v2.admission import AdmissionPolicy
+    admission=AdmissionPolicy.from_manifest(a.admission_manifest)
     if not 1<=a.max_wall_seconds<=30:raise ValueError('Bounded duration required')
     a.out.mkdir(parents=True,exist_ok=False);rid='red_sentry'
     log=(a.out/'consumption.jsonl').open('x')
     def trace(event):
         if event['event']=='actuator_consumed' and event['robot_id']==rid and event['phase'] in ('integration_entry','fire'):log.write(json.dumps(event,allow_nan=False)+'\n')
     b=MuJoCoBackend(camera=False);runtime=PlatformRuntime(b,trace=trace)
-    server=PlatformHTTPServer(TransportConfig(port=0,max_http_workers=8),runtime)
+    server=PlatformHTTPServer(TransportConfig(port=0,max_http_workers=8,admission_policy=admission),runtime)
     thread=threading.Thread(target=server.serve_forever,kwargs={'poll_interval':.02},daemon=True);thread.start()
     def stop(*_):runtime.request_stop()
     signal.signal(signal.SIGTERM,stop);signal.signal(signal.SIGINT,stop)

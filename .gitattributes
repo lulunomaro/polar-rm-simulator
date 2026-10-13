@@ -1,0 +1,13 @@
+# Hash-pinned source artifacts must retain Git's LF bytes on Windows clones.
+* text=auto eol=lf
+*.onnx binary
+*.gz binary
+*.png binary
+*.jpg binary
+# Preserve the literal bytes already bound by development evidence manifests.
+operator_native/runtime/overlays/*.cpp -text diff
+client_patches/*.patch -text diff
+client_patches/*.json -text diff
+docs/validation/**/*.json -text diff
+docs/validation/**/*.md -text diff
+tools/report_pnp_static_chain.py -text diff

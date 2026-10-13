@@ -16,6 +16,14 @@ find_package(OpenVINO 2025.4 REQUIRED COMPONENTS Runtime)
 if(NOT DEFINED OpenVINO_GLIBCXX_USE_CXX11_ABI OR NOT "${OpenVINO_GLIBCXX_USE_CXX11_ABI}" STREQUAL "1")
   message(FATAL_ERROR "RMCS requires OpenVINO's official C++ ABI=1 runtime. Python wheels with ABI=0 are incompatible; set --prefix to the official C++ archive's runtime/cmake directory.")
 endif()
+option(RMCS_USE_CONTOUR_CORNERS "Explicit own image-contour frontend revision" OFF)
+set(RMCS_CORNERS_SOURCE candidate/src/utility/math/corners_optimizor.cpp)
+if(RMCS_USE_CONTOUR_CORNERS)
+  if(NOT EXISTS "${RMCS_GENERATED_DIR}/corners_contour_v1.cpp")
+    message(FATAL_ERROR "Contour frontend requires the separately hash-bound generated source")
+  endif()
+  set(RMCS_CORNERS_SOURCE "${RMCS_GENERATED_DIR}/corners_contour_v1.cpp")
+endif()
 add_executable(rmcs_sim_operator_fov
   "${RMCS_GENERATED_DIR}/main.cpp"
   candidate/src/kernel/detector.cpp
@@ -26,7 +34,7 @@ add_executable(rmcs_sim_operator_fov
   candidate/src/utility/panic.cpp
   candidate/src/utility/image/process.cpp
   candidate/src/utility/math/camera.cpp
-  candidate/src/utility/math/corners_optimizor.cpp
+  ${RMCS_CORNERS_SOURCE}
   candidate/src/utility/math/outpost.cpp
   candidate/src/utility/math/reprojection.cpp
   candidate/src/utility/math/robot.cpp
@@ -47,6 +55,11 @@ add_executable(rmcs_sim_operator_fov
   candidate/src/module/fire_control/shoot_evaluator.cpp
   candidate/src/module/fire_control/trajectory_solution.cpp
 )
+# GCC 15 no longer includes <algorithm> transitively through the original
+# headers. Keep all 94 recovered source bytes sealed; supply the required
+# standard declaration to this one translation unit at the build boundary.
+set_source_files_properties(candidate/src/module/fire_control/shoot_evaluator.cpp
+  PROPERTIES COMPILE_OPTIONS "-include;algorithm")
 target_include_directories(rmcs_sim_operator_fov PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}/shims"
   "${CMAKE_CURRENT_SOURCE_DIR}/candidate/src"

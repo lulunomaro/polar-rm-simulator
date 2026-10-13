@@ -27,11 +27,47 @@ class PortableSetupTests(unittest.TestCase):
 
     def test_plan_commands_do_not_reuse_old_objects(self):
         commands = portable.make_commands(Path('/source with space'), Path('/new output'), prefix='/opt/ov/runtime/cmake', jobs=3)
-        self.assertEqual(commands[0][0:3], ['cmake', '-S', '/source with space'])
+        self.assertEqual(commands[0][0:3], ['cmake', '-S', str(Path('/source with space'))])
         self.assertIn('-DCMAKE_PREFIX_PATH=/opt/ov/runtime/cmake', commands[0])
         self.assertEqual(commands[1][-2:], ['--parallel', '3'])
         self.assertNotIn('079a', ' '.join(commands[0] + commands[1]))
         self.assertNotIn('.o', ' '.join(commands[0] + commands[1]))
+
+    def test_frontend_choice_is_explicit_and_unknown_choice_refused(self):
+        original=portable.make_commands(HERE,Path('/fresh'))[0]
+        contour=portable.make_commands(HERE,Path('/fresh'),corner_refinement='contour-v3')[0]
+        self.assertNotIn('-DRMCS_USE_CONTOUR_CORNERS=ON',original)
+        self.assertIn('-DRMCS_USE_CONTOUR_CORNERS=ON',contour)
+        with self.assertRaises(ValueError):
+            portable.make_commands(HERE,Path('/fresh'),corner_refinement='unreviewed')
+
+    def test_cli_uses_repaired_frontend_and_original_is_an_explicit_reproduction(self):
+        with patch.object(portable,'input_identity',return_value={}) as identity,patch('builtins.print'):
+            portable.main(['plan'])
+            self.assertEqual(identity.call_args.kwargs['corner_refinement'],'contour-v3')
+            portable.main(['plan','--corner-refinement','original'])
+            self.assertEqual(identity.call_args.kwargs['corner_refinement'],'original')
+
+    def test_contour_identity_binds_actual_source_and_keeps_original_tracker(self):
+        model=HERE.parents[1]/'models/shenzhen-0526.onnx'
+        hook=HERE.parent/'prepare_fov_hook.py'
+        original=portable.input_identity(HERE,model,hook)
+        contour=portable.input_identity(HERE,model,hook,corner_refinement='contour-v1')
+        source=contour['algorithm_identity']; frontend=source['vision_frontend']
+        self.assertEqual(source['tracker_patch_sha256'],original['algorithm_identity']['patch_sha256'])
+        self.assertNotEqual(source['patch_sha256'],source['tracker_patch_sha256'])
+        self.assertEqual(frontend['source_sha256'],portable.sha(HERE/frontend['source_path']))
+        self.assertEqual(contour['additional_source_files'],{frontend['source_path']:frontend['source_sha256']})
+        self.assertEqual(contour['source_files'],original['source_files'])
+
+    def test_prepared_contour_copy_is_in_the_frozen_input_manifest(self):
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td)/'fresh'
+            identity=portable.prepare(HERE,out,HERE.parents[1]/'models/shenzhen-0526.onnx',
+                                      HERE.parent/'prepare_fov_hook.py',corner_refinement='contour-v1')
+            actual=portable.sha(out/'generated/corners_contour_v1.cpp')
+            self.assertEqual(actual,identity['additional_source_files']['overlays/corners_contour_v1.cpp'])
+            self.assertEqual(actual,identity['generated_sha256']['generated/corners_contour_v1.cpp'])
 
     def test_syntax_command_preserves_spaces_without_shell(self):
         row = {'command': 'g++ -std=c++23 -I"/inc with space" -o "out file.o" -c "source file.cpp"'}

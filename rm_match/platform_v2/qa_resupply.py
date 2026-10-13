@@ -11,7 +11,7 @@ import time
 from .backend import MuJoCoBackend
 from .runtime import PlatformRuntime
 from .server import PlatformHTTPServer,TransportConfig
-from .qa_multiclient import HTTPClient
+from .qa_multiclient import HTTPClient,local_qa_admission
 
 class ObservedBackend(MuJoCoBackend):
     def display_snapshot(self):
@@ -24,14 +24,15 @@ def run(out):
     if not __debug__:raise RuntimeError('Qualification refuses Python -O')
     out=Path(out);out.mkdir(parents=True,exist_ok=False)
     backend=ObservedBackend(virtual_resupply='v1-baseline')
-    runtime=PlatformRuntime(backend);server=PlatformHTTPServer(TransportConfig(port=0),runtime)
+    runtime=PlatformRuntime(backend);admission,credentials=local_qa_admission(runtime.control.robot_ids)
+    server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=admission),runtime)
     http=threading.Thread(target=server.serve_forever,daemon=True);errors=[]
     def authority():
         try:runtime.run(max_wall_seconds=15.)
         except BaseException as exc:errors.append(type(exc).__name__+': '+str(exc))
     physics=threading.Thread(target=authority,daemon=True)
     http.start();physics.start();base=f'http://127.0.0.1:{server.server_address[1]}'
-    operator,observer,observer2=[HTTPClient(base) for _ in range(3)]
+    operator,observer,observer2=[HTTPClient(base,admission_credential=credentials[role]) for role in ('operator','spectator','spectator')]
     result={'passed':False,'scope':'simulation_baseline_auto_resupply_real_MuJoCo_no_GL_loopback',
         'checks':[],'limits':{'official_full_rules_qualified':False,'real_LAN':False,'Windows':False,
         'native_aim':False,'rendering':False,'direct_judge_or_pose_mutation':False}}

@@ -1,0 +1,610 @@
+{
+  "schema": "rmcs-bounded-pnp-factors-v1",
+  "status": "executed",
+  "baseline": {
+    "armors": [
+      {
+        "genre": "INFANTRY_3",
+        "corners_px": {
+          "tl": [
+            642.5145263671875,
+            853.9246826171875
+          ],
+          "bl": [
+            639.8820190429688,
+            891.8926391601562
+          ],
+          "br": [
+            769.34130859375,
+            892.950439453125
+          ],
+          "tr": [
+            771.7093505859375,
+            856.347412109375
+          ]
+        },
+        "armor_color": "BLUE",
+        "confidence": 0.863656759262085,
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7911699022724867,
+            "back_dot": 0.6846252736523185,
+            "pitch_degrees": -35.22377816219986,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 50.22377816219986,
+            "reprojection_error": 0.5273818245405537,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.791136641792411,
+            "back_dot": 0.6845616829411529,
+            "pitch_degrees": 58.27195035177369,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 43.27195035177369,
+            "reprojection_error": 0.6048053676011347,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "original_robust_pnp_result": 0.0,
+        "lightbar_lengths_px": [
+          38.05910953846436,
+          36.67954789258005
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate": 0.0,
+        "z": 1.7911699022724867,
+        "back_dot": 0.6846252736523185,
+        "pitch_degrees": -35.22377816219986,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 50.22377816219986,
+        "reprojection_error": 0.5273818245405537,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      },
+      {
+        "candidate": 1.0,
+        "z": 1.791136641792411,
+        "back_dot": 0.6845616829411529,
+        "pitch_degrees": 58.27195035177369,
+        "expected_pitch_degrees": 14.999999999999998,
+        "pitch_delta_degrees": 43.27195035177369,
+        "reprojection_error": 0.6048053676011347,
+        "depth_pass": 1.0,
+        "facing_pass": 1.0,
+        "pitch_pass": 0.0,
+        "reject_reasons": [
+          "pitch"
+        ]
+      }
+    ],
+    "inference_calls": 1.0,
+    "armor_count": 1,
+    "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+    "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+    "original_estimator_output_count": 0.0,
+    "pnp_success": 2.0,
+    "pnp_candidates": 2.0
+  },
+  "identity_equals_original_replay": true,
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "saved_frame_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+  "production_binary_sha256": "797e6ba7240aef29cacd8ac624afbba5cae1c751a62a7fa8eb41570451e17250",
+  "diagnostic_binary_sha256": "6e73a8938df3f20d96a1abfa42708817c860dd254f7d39b39bdf7b1b8e7d2c71",
+  "diagnostic_source_sha256": "a7707b5e36bbec5506b556c9a44e5f8dbd2b82dfe6604077914fe7810280b897",
+  "build_manifest_sha256": "a0782b5485a8602c84fd81f7303ad6030c2be8a5ad41006c8eb5f1e7b677762c",
+  "unchanged_input_binding_count": 104,
+  "baseline_binding_sha256": "ce52c5c533a557591d379c9a82e204ed6e1158e22e9a528f2223bcd2d0d25e73",
+  "thresholds_modified": false,
+  "ground_truth_sent_to_algorithm": false,
+  "source_files_modified": false,
+  "model_inferences": 6,
+  "optimizer_no_op_confirmed": true,
+  "cases": [
+    {
+      "case": "identity_1",
+      "operation": "identity",
+      "factor": 1,
+      "image_sha256": "fc961d5a972f25bc7fa691230a36318eede5d4ac7e4330386824910a1dfd106b",
+      "image_file": "identity_1.bgr",
+      "result_sha256": "6712c9bfc69f89390f3a940c8b0fcebe417c8a33ff81181bc89c9b8bed4f63bf",
+      "result": {
+        "armors": [
+          {
+            "genre": "INFANTRY_3",
+            "corners_px": {
+              "tl": [
+                642.5145263671875,
+                853.9246826171875
+              ],
+              "bl": [
+                639.8820190429688,
+                891.8926391601562
+              ],
+              "br": [
+                769.34130859375,
+                892.950439453125
+              ],
+              "tr": [
+                771.7093505859375,
+                856.347412109375
+              ]
+            },
+            "armor_color": "BLUE",
+            "confidence": 0.863656759262085,
+            "candidates": [
+              {
+                "candidate": 0.0,
+                "z": 1.7911699022724867,
+                "back_dot": 0.6846252736523185,
+                "pitch_degrees": -35.22377816219986,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 50.22377816219986,
+                "reprojection_error": 0.5273818245405537,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              },
+              {
+                "candidate": 1.0,
+                "z": 1.791136641792411,
+                "back_dot": 0.6845616829411529,
+                "pitch_degrees": 58.27195035177369,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 43.27195035177369,
+                "reprojection_error": 0.6048053676011347,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              }
+            ],
+            "original_robust_pnp_result": 0.0,
+            "lightbar_lengths_px": [
+              38.05910953846436,
+              36.67954789258005
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7911699022724867,
+            "back_dot": 0.6846252736523185,
+            "pitch_degrees": -35.22377816219986,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 50.22377816219986,
+            "reprojection_error": 0.5273818245405537,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.791136641792411,
+            "back_dot": 0.6845616829411529,
+            "pitch_degrees": 58.27195035177369,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 43.27195035177369,
+            "reprojection_error": 0.6048053676011347,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "image_operation": "identity",
+        "image_factor": 1.0,
+        "optimizer_overloads_unchanged": 1.0,
+        "optimizer_sample_count": 1.0,
+        "inference_calls": 1.0,
+        "armor_count": 1,
+        "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+        "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+        "original_estimator_output_count": 0.0,
+        "pnp_success": 2.0,
+        "pnp_candidates": 2.0
+      }
+    },
+    {
+      "case": "gamma_0.8",
+      "operation": "gamma",
+      "factor": 0.8,
+      "image_sha256": "a6417415614763c70f0bbee7231247e387dc1417cfb62b2e4bc16a41b68f024c",
+      "image_file": "gamma_0.8.bgr",
+      "result_sha256": "8650b55405f5aa71a989b6ff7d4689131316e2ba329da5b3039304937fe2793d",
+      "result": {
+        "armors": [
+          {
+            "genre": "INFANTRY_3",
+            "corners_px": {
+              "tl": [
+                643.05712890625,
+                854.6550903320312
+              ],
+              "bl": [
+                640.71826171875,
+                892.6886596679688
+              ],
+              "br": [
+                770.4095458984375,
+                893.35107421875
+              ],
+              "tr": [
+                772.4765625,
+                856.5770263671875
+              ]
+            },
+            "armor_color": "BLUE",
+            "confidence": 0.8322002291679382,
+            "candidates": [
+              {
+                "candidate": 0.0,
+                "z": 1.7884539662330576,
+                "back_dot": 0.6856927682657545,
+                "pitch_degrees": -35.12318123411846,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 50.12318123411846,
+                "reprojection_error": 0.5234933505397734,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              },
+              {
+                "candidate": 1.0,
+                "z": 1.7884444604139804,
+                "back_dot": 0.6856380490356045,
+                "pitch_degrees": 58.20636602736254,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 43.20636602736254,
+                "reprojection_error": 0.5952785004778918,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              }
+            ],
+            "original_robust_pnp_result": 0.0,
+            "lightbar_lengths_px": [
+              38.105415575116474,
+              36.83209406238184
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7884539662330576,
+            "back_dot": 0.6856927682657545,
+            "pitch_degrees": -35.12318123411846,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 50.12318123411846,
+            "reprojection_error": 0.5234933505397734,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.7884444604139804,
+            "back_dot": 0.6856380490356045,
+            "pitch_degrees": 58.20636602736254,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 43.20636602736254,
+            "reprojection_error": 0.5952785004778918,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "image_operation": "gamma",
+        "image_factor": 0.8,
+        "optimizer_overloads_unchanged": 1.0,
+        "optimizer_sample_count": 1.0,
+        "inference_calls": 1.0,
+        "armor_count": 1,
+        "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+        "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+        "original_estimator_output_count": 0.0,
+        "pnp_success": 2.0,
+        "pnp_candidates": 2.0
+      }
+    },
+    {
+      "case": "gamma_1.2",
+      "operation": "gamma",
+      "factor": 1.2,
+      "image_sha256": "41bada2d49e27769cae1dec20ee7921d8b7bca354cfc407a049c0b8b05817caa",
+      "image_file": "gamma_1.2.bgr",
+      "result_sha256": "7df22bd7b89f89c9c6424b6e62a6a2ed9a193a29b0a91f9097e2268dd2d01b23",
+      "result": {
+        "armors": [
+          {
+            "genre": "INFANTRY_3",
+            "corners_px": {
+              "tl": [
+                642.418701171875,
+                853.2420654296875
+              ],
+              "bl": [
+                639.7723999023438,
+                891.5888061523438
+              ],
+              "br": [
+                769.0941772460938,
+                892.9683837890625
+              ],
+              "tr": [
+                771.483154296875,
+                856.1344604492188
+              ]
+            },
+            "armor_color": "BLUE",
+            "confidence": 0.8707134127616882,
+            "candidates": [
+              {
+                "candidate": 0.0,
+                "z": 1.7931386967719494,
+                "back_dot": 0.6911826455613955,
+                "pitch_degrees": -34.72309311632996,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 49.723093116329956,
+                "reprojection_error": 0.532140572996786,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              },
+              {
+                "candidate": 1.0,
+                "z": 1.793093384397388,
+                "back_dot": 0.6911147527396011,
+                "pitch_degrees": 57.756997952038105,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 42.75699795203811,
+                "reprojection_error": 0.614692332937634,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              }
+            ],
+            "original_robust_pnp_result": 0.0,
+            "lightbar_lengths_px": [
+              38.437942640830116,
+              36.91131425396075
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.7931386967719494,
+            "back_dot": 0.6911826455613955,
+            "pitch_degrees": -34.72309311632996,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 49.723093116329956,
+            "reprojection_error": 0.532140572996786,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.793093384397388,
+            "back_dot": 0.6911147527396011,
+            "pitch_degrees": 57.756997952038105,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 42.75699795203811,
+            "reprojection_error": 0.614692332937634,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "image_operation": "gamma",
+        "image_factor": 1.2,
+        "optimizer_overloads_unchanged": 1.0,
+        "optimizer_sample_count": 1.0,
+        "inference_calls": 1.0,
+        "armor_count": 1,
+        "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+        "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+        "original_estimator_output_count": 0.0,
+        "pnp_success": 2.0,
+        "pnp_candidates": 2.0
+      }
+    },
+    {
+      "case": "gaussian_0.5",
+      "operation": "gaussian",
+      "factor": 0.5,
+      "image_sha256": "01c285d52273cc74752e94f8c26f2b4e2590d9fd56094639c437514fca365fd7",
+      "image_file": "gaussian_0.5.bgr",
+      "result_sha256": "b14391c99f9fe6c3b7c670a00b4af511a5c19aa151fd1c5bb46db92af73910d6",
+      "result": {
+        "armors": [
+          {
+            "genre": "INFANTRY_3",
+            "corners_px": {
+              "tl": [
+                643.5593872070312,
+                853.4713745117188
+              ],
+              "bl": [
+                640.7938842773438,
+                891.0905151367188
+              ],
+              "br": [
+                768.3427124023438,
+                893.28564453125
+              ],
+              "tr": [
+                770.7696533203125,
+                857.107421875
+              ]
+            },
+            "armor_color": "BLUE",
+            "confidence": 0.8305672407150269,
+            "candidates": [
+              {
+                "candidate": 0.0,
+                "z": 1.818711784114904,
+                "back_dot": 0.6885001847570253,
+                "pitch_degrees": -34.93966572169562,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 49.93966572169561,
+                "reprojection_error": 0.530752558451231,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              },
+              {
+                "candidate": 1.0,
+                "z": 1.8187015206808723,
+                "back_dot": 0.6884432913813734,
+                "pitch_degrees": 57.99697227690112,
+                "expected_pitch_degrees": 14.999999999999998,
+                "pitch_delta_degrees": 42.99697227690112,
+                "reprojection_error": 0.583965444927251,
+                "depth_pass": 1.0,
+                "facing_pass": 1.0,
+                "pitch_pass": 0.0,
+                "reject_reasons": [
+                  "pitch"
+                ]
+              }
+            ],
+            "original_robust_pnp_result": 0.0,
+            "lightbar_lengths_px": [
+              37.72065412764783,
+              36.25953442592047
+            ]
+          }
+        ],
+        "candidates": [
+          {
+            "candidate": 0.0,
+            "z": 1.818711784114904,
+            "back_dot": 0.6885001847570253,
+            "pitch_degrees": -34.93966572169562,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 49.93966572169561,
+            "reprojection_error": 0.530752558451231,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          },
+          {
+            "candidate": 1.0,
+            "z": 1.8187015206808723,
+            "back_dot": 0.6884432913813734,
+            "pitch_degrees": 57.99697227690112,
+            "expected_pitch_degrees": 14.999999999999998,
+            "pitch_delta_degrees": 42.99697227690112,
+            "reprojection_error": 0.583965444927251,
+            "depth_pass": 1.0,
+            "facing_pass": 1.0,
+            "pitch_pass": 0.0,
+            "reject_reasons": [
+              "pitch"
+            ]
+          }
+        ],
+        "image_operation": "gaussian",
+        "image_factor": 0.5,
+        "optimizer_overloads_unchanged": 1.0,
+        "optimizer_sample_count": 1.0,
+        "inference_calls": 1.0,
+        "armor_count": 1,
+        "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+        "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+        "original_estimator_output_count": 0.0,
+        "pnp_success": 2.0,
+        "pnp_candidates": 2.0
+      }
+    },
+    {
+      "case": "gaussian_1.0",
+      "operation": "gaussian",
+      "factor": 1.0,
+      "image_sha256": "56bdb706037f1062908b90b9efda7001711bafec75f4e84ab73cca84d94da6fd",
+      "image_file": "gaussian_1.0.bgr",
+      "result_sha256": "e4784196e7ac236779e55d01126aaf82e57aa59f63ad0c046b5283f6a90c9fc3",
+      "result": {
+        "armors": [],
+        "candidates": [],
+        "image_operation": "gaussian",
+        "image_factor": 1.0,
+        "optimizer_overloads_unchanged": 1.0,
+        "optimizer_sample_count": 0.0,
+        "inference_calls": 1.0,
+        "armor_count": 0,
+        "q_odom_camera_wxyz": "0.99993081705704911,1.3398901281296064e-17,0.011762699504031089,-1.1390220672798464e-15",
+        "t_odom_camera": "    0.24134501295928484 -5.4983263021662063e-16    0.054337691519631415",
+        "original_estimator_output_count": 0.0
+      }
+    }
+  ],
+  "limitations": [
+    "One saved synthetic camera frame; no physical camera calibration or dataset generalization.",
+    "Gamma/blur are single-factor diagnostic transforms, not deployment or baseline changes.",
+    "Native object correspondence to production ELF is not independently proven; exact object hashes are in baseline binding.",
+    "No full tracker, controller, physics rollout, training or hardware qualification."
+  ]
+}

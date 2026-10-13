@@ -7,6 +7,7 @@ import json
 import threading
 from urllib.parse import urlsplit
 from .control import Rejected, exact
+from .admission import AdmissionPolicy
 
 SCHEMA='rm.sim.platform.v2'
 MAX_BODY_BYTES=16384
@@ -18,12 +19,14 @@ class TransportConfig:
     max_http_workers: int=16
     # This records a deployment proposal only, never enables a network binding.
     proposed_lan_host: str | None=None
+    admission_policy: AdmissionPolicy | None=None
 
     def validate(self):
         if self.host!='127.0.0.1':
             raise ValueError('Only loopback is enabled; LAN security and host access need explicit deployment approval')
         if type(self.port) is not int or not 0<=self.port<=65535:raise ValueError('Invalid port')
         if type(self.max_http_workers) is not int or not 1<=self.max_http_workers<=64:raise ValueError('Invalid HTTP worker limit')
+        if self.admission_policy is not None and not isinstance(self.admission_policy,AdmissionPolicy):raise ValueError('Invalid admission policy')
         if self.proposed_lan_host is not None:
             address=ipaddress.ip_address(self.proposed_lan_host)
             if not address.is_private or address.is_loopback or address.is_unspecified:
@@ -37,6 +40,7 @@ class PlatformHTTPServer(ThreadingHTTPServer):
 
     def __init__(self,config,runtime):
         config.validate()
+        if config.admission_policy is not None:config.admission_policy.validate_robots(runtime.control.robot_ids)
         self.runtime=runtime;self.config=config
         self._slots=threading.BoundedSemaphore(config.max_http_workers)
         super().__init__((config.host,config.port),PlatformHandler)
@@ -68,7 +72,7 @@ class PlatformHandler(BaseHTTPRequestHandler):
         self.send_header('X-Content-Type-Options','nosniff')
         self.end_headers()
         try:self.wfile.write(body)
-        except (BrokenPipeError,ConnectionResetError):pass
+        except (BrokenPipeError,ConnectionResetError,ConnectionAbortedError):pass
 
     def _safe(self):
         if not ipaddress.ip_address(self.client_address[0]).is_loopback:raise Rejected('loopback_only',403)
@@ -115,7 +119,7 @@ class PlatformHandler(BaseHTTPRequestHandler):
                 runtime.control.snapshot(token)
                 if path=='/v2/state':result=runtime.snapshot(token)
                 elif path=='/v2/frame':result=runtime.frame(token)
-                elif path=='/v2/robots':result={'robot_ids':list(runtime.control.robot_ids)}
+                elif path=='/v2/robots':result={'robot_ids':runtime.control.visible_robot_ids(token)}
                 elif path=='/v2/adapters':result=runtime.adapter_catalog(token)
                 elif path=='/v2/capabilities':result=runtime.capabilities(token)
                 else:raise Rejected('not_found',404)
@@ -127,7 +131,14 @@ class PlatformHandler(BaseHTTPRequestHandler):
         try:
             path=self._safe();v=self._body();runtime=self.server.runtime;p=runtime.control
             if path=='/v2/sessions':
-                exact(v,('role','control_profile') if 'control_profile' in v else ('role',));result=p.open_session(v['role'],v.get('control_profile','legacy_v2'))
+                keys=('role',)+tuple(k for k in ('control_profile','credential') if k in v)
+                exact(v,keys)
+                policy=self.server.config.admission_policy
+                if policy is None:raise Rejected('admission_policy_required',401)
+                grant=policy.authenticate(v['role'],v.get('credential'))
+                result=p.open_session(grant.role,v.get('control_profile','legacy_v2'),
+                    allowed_robots=grant.allowed_robots if grant.role=='operator' else None,
+                    audit_authorized=grant.audit_authorized,trusted_admin=False)
             else:
                 token=self._token()
                 if path=='/v2/keepalive':exact(v,());result=p.keepalive(token)

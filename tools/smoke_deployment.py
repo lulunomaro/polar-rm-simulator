@@ -49,7 +49,11 @@ def run(a):
     from rm_match.platform_v2.runtime import PlatformRuntime
     from rm_match.platform_v2.server import PlatformHTTPServer, TransportConfig
     from rm_match.platform_v2.client import PlatformClient
+    from rm_match.deployment.enrollment import provision_operator
+    from rm_match.platform_v2.admission import AdmissionPolicy
     out = a.out.absolute(); out.mkdir(parents=True, exist_ok=False)
+    credential=provision_operator(out/'admission.json')
+    admission=AdmissionPolicy.from_manifest(out/'admission.json')
     (out / 'ACCEPTANCE_CRITERIA.json').write_text(json.dumps(CRITERIA, indent=2) + '\n')
     spec, spec_sha = validate_t2_spec(a.native_spec)
     counts = Counter(); events = []; errors = []; driver_data = {}
@@ -93,16 +97,16 @@ def run(a):
     camera = TimedCamera(backend._sim, total_fps=15, renderer_factory=TimedRenderer)
     runtime = PlatformRuntime(backend, camera=camera, registry=registry, trace=trace)
     runtime.step_once()  # Initial episode exists before an HTTP binding can be admitted.
-    server = PlatformHTTPServer(TransportConfig(port=0), runtime)
+    server = PlatformHTTPServer(TransportConfig(port=0,admission_policy=admission), runtime)
     http = threading.Thread(target=server.serve_forever, daemon=True); http.start()
     url = 'http://127.0.0.1:' + str(server.server_address[1])
     stop_path = out / 'driver.stop'
     driver_result = out / 'driver_result.json'
-    driver_code = r'''import json,sys,time
+    driver_code = r'''import json,os,sys,time
 from pathlib import Path
 from rm_match.platform_v2.client import PlatformClient
 url,stop_path,result_path=sys.argv[1:]
-c=PlatformClient(url,control_profile='server_window_v1'); r={'activation_pulses':0,'max_activation_gap_s':0.0}; previous=None
+c=PlatformClient(url,control_profile='server_window_v1',admission_credential=os.environ.get('POLAR_SIM_ADMISSION_CREDENTIAL')); r={'activation_pulses':0,'max_activation_gap_s':0.0}; previous=None
 try:
  c.open('operator'); c.watch('red_sentry'); c.claim('red_sentry',['gimbal'])
  b=c.bind('red_sentry','aim','aim_native_rmcs_v1',{}); r['native_binding']=b['adapter_id']
@@ -121,7 +125,8 @@ finally:
  Path(result_path).write_text(json.dumps(r))
 '''
     driver = subprocess.Popen([sys.executable, '-c', driver_code, url, str(stop_path), str(driver_result)],
-                              cwd=ROOT, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+                              cwd=ROOT, env=dict(os.environ,POLAR_SIM_ADMISSION_CREDENTIAL=credential),
+                              stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
     qt = None
     if a.client_python and a.client_root:
         # Original client's transport + Qt event loop, without constructing a
@@ -129,17 +134,17 @@ finally:
         code = '''import json,sys,time
 from PySide6.QtWidgets import QApplication
 from rm_client.sim_platform_transport import PlatformTransport
-app=QApplication(['sim-smoke-offscreen']); t=PlatformTransport(sys.argv[1],role='spectator')
+app=QApplication(['sim-smoke-offscreen']); t=PlatformTransport(sys.argv[1],role='operator')
 t.start(); end=time.monotonic()+6.0; watched=False; seen=False; catalog=False
 while time.monotonic()<end:
  app.processEvents()
  if t.robot_ids and not watched: t.watch('red_sentry'); watched=True
  seen=seen or t.video is not None; catalog=catalog or t.catalog.get('ready',False)
  time.sleep(.02)
-r=dict(qt_event_loop=True,pinned_client_transport=True,watched=watched,frame_decoded=seen,catalog=catalog,visible_window=False,role='spectator')
+r=dict(qt_event_loop=True,pinned_client_transport=True,watched=watched,frame_decoded=seen,catalog=catalog,visible_window=False,role='operator')
 t.stop(); print(json.dumps(r),flush=True)
 '''
-        env = dict(os.environ, QT_QPA_PLATFORM='offscreen'); env.pop('PYTHONPATH', None)
+        env = dict(os.environ, QT_QPA_PLATFORM='offscreen',POLAR_SIM_ADMISSION_CREDENTIAL=credential); env.pop('PYTHONPATH', None)
         qt = subprocess.Popen([str(a.client_python.absolute()), '-c', code, url],
             cwd=a.client_root.absolute(), env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     try:
