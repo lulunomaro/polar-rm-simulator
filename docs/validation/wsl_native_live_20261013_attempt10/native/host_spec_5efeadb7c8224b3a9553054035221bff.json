@@ -1,0 +1,57 @@
+{
+  "algorithm_description": "Recovered 079a7fe plus T2 tracker changes; explicit frontend contour-v3; operator FOV adapter; simulation-only stationary red sentry; no automatic fire authority",
+  "autoaim_config": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-contour-v3-final-default-build\\configs\\simulation_autoaim.yaml",
+  "binary": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-contour-v3-final-default-build\\bin\\rmcs_sim_operator_fov",
+  "environment": {
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "executor_yaml": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-contour-v3-final-default-build\\configs\\simulation_executor.yaml",
+  "frozen_build": {
+    "binary_sha256": "4d3570674a7a150da0e86f64bbbd25adcfa8bb9e2731672ac6aeaa296cf92b42",
+    "elf": {
+      "class": "ELF64",
+      "elf_type": 3,
+      "endianness": "little",
+      "machine": "EM_X86_64",
+      "program_headers": 14
+    },
+    "manifest_sha256": "5e55e02959262d502754110e133c11dfd27ff80fde978c50e654faabf47d1a7c",
+    "scope": "New local clean build; no historical binary equivalence"
+  },
+  "id": "t2_sim_operator_portable_local",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "model_share": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\models",
+  "operator_identity": "rmcs-sim-operator-fov-v1",
+  "qualification": "Built only; no inference, MuJoCo closed-loop, live, or hardware qualification",
+  "runner_identity": "rmcs-sim-operator-fov-v1",
+  "runtime_mode_contents": "multi_ekf\n",
+  "runtime_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+  "sha256": {
+    "autoaim_config": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3",
+    "binary": "4d3570674a7a150da0e86f64bbbd25adcfa8bb9e2731672ac6aeaa296cf92b42",
+    "executor_yaml": "c3a08938bce9b0347ae255f90964897cbf144dc872ad86bc5bcb6794e82d17dd",
+    "runtime_mode": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+  },
+  "source_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "is_baseline_40f7": false,
+    "is_original_upstream": false,
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "patch_identity_format": "rmcs-own-source-composition.v1",
+    "patch_sha256": "3ced3a3e41b4e6b6567f2b3b94f218817a043588fb0691b175ab55d5e3edbdf7",
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "tracker_patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "vision_frontend": {
+      "id": "image_contour_corners_v3",
+      "source_path": "overlays/corners_contour_v3.cpp",
+      "source_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c"
+    }
+  }
+}

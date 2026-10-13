@@ -1,0 +1,43 @@
+"""Process-local environment for real ROS DDS bridge fixture validation."""
+from pathlib import Path
+import argparse,hashlib,json,os,re,subprocess,time
+
+artifact=Path(__file__).resolve().parent;root=artifact.parents[1];prefix=artifact/'prefix'
+python=root/'.venv-linux/bin/python'
+ros=prefix/'opt/ros/lyrical'
+parser=argparse.ArgumentParser();parser.add_argument('--attempt',default='actual_attempt1');args=parser.parse_args()
+if not re.fullmatch('actual_attempt[1-9][0-9]*',args.attempt):raise ValueError('Explicit numbered artifact directory required')
+output=artifact/args.attempt;output.mkdir()
+if not (artifact/'EXTRACTION.json').is_file():raise RuntimeError('Verified scoped extraction is incomplete')
+environment={k:os.environ[k] for k in ('PATH','HOME','LANG','LC_ALL','TMPDIR') if k in os.environ}
+environment.update(PYTHONPATH=':'.join(map(str,(ros/'lib/python3.14/site-packages',prefix/'usr/lib/python3/dist-packages',root))),
+    LD_LIBRARY_PATH=':'.join(map(str,(ros/'lib',ros/'lib/x86_64-linux-gnu',prefix/'usr/lib/x86_64-linux-gnu'))),
+    AMENT_PREFIX_PATH=str(ros),ROS_DISTRO='lyrical',ROS_DOMAIN_ID='79',
+    ROS_HOME=str(output/'ros_home'),ROS_LOG_DIR=str(output/'ros_logs'),
+    ROS_AUTOMATIC_DISCOVERY_RANGE='LOCALHOST',ROS_STATIC_PEERS='',ROS_LOCALHOST_ONLY='1',
+    RMW_IMPLEMENTATION='rmw_fastrtps_cpp',RCUTILS_LOGGING_USE_STDOUT='0',POLAR_RUN_ACTUAL_ROS2_BRIDGE='1')
+probe='import json,sys,rclpy; from std_msgs.msg import String; print(json.dumps(dict(python=sys.version, rclpy_file=rclpy.__file__, string_module=String.__module__, rmw=rclpy.get_rmw_implementation_identifier())))'
+records=[]
+for label,command,timeout in [('probe',[str(python),'-c',probe],10.),
+        ('actual_dds',[str(python),'-m','unittest','discover','-s','tests','-p','test_ros2_bridge_actual.py','-v'],20.)]:
+    started=time.monotonic()
+    result=subprocess.run(command,cwd=root,env=environment,capture_output=True,timeout=timeout)
+    (output/(label+'.stdout.log')).write_bytes(result.stdout)
+    (output/(label+'.stderr.log')).write_bytes(result.stderr)
+    records.append(dict(label=label,command=command,returncode=result.returncode,elapsed_s=time.monotonic()-started))
+    print(json.dumps(records[-1]),flush=True)
+    if result.returncode:break
+manifest=json.loads((artifact/'PACKAGES_MANIFEST.json').read_text())
+report=dict(scope='Actual rclpy/DDS + owned JSONL bridge subprocess, explicit test-fixture observation/zero motion; no physics/Nav2/native algorithm',
+    runs=records,actual_dds_passed=len(records)==2 and records[-1]['returncode']==0,
+    environment={k:environment[k] for k in ('PYTHONPATH','LD_LIBRARY_PATH','AMENT_PREFIX_PATH','ROS_DISTRO','ROS_DOMAIN_ID','ROS_HOME','ROS_LOG_DIR','ROS_AUTOMATIC_DISCOVERY_RANGE','ROS_STATIC_PEERS','ROS_LOCALHOST_ONLY','RMW_IMPLEMENTATION','POLAR_RUN_ACTUAL_ROS2_BRIDGE')},
+    rclpy_package=next(r for r in manifest['files'] if r['package']=='ros-lyrical-rclpy'),
+    sources={rel:hashlib.sha256((root/rel).read_bytes()).hexdigest() for rel in ('rm_match/integrations/ros2_bridge.py','rm_match/integrations/ros2_bridge_transport.py','tests/test_ros2_bridge_actual.py')},
+    manifest_sha256=hashlib.sha256((artifact/'PACKAGES_MANIFEST.json').read_bytes()).hexdigest(),
+    ubuntu_additions_manifest_sha256=(hashlib.sha256((artifact/'UBUNTU_PACKAGES_MANIFEST.json').read_bytes()).hexdigest()
+        if (artifact/'UBUNTU_PACKAGES_MANIFEST.json').exists() else None),
+    ubuntu_python_manifest_sha256=(hashlib.sha256((artifact/'UBUNTU_PYTHON_PACKAGES_MANIFEST.json').read_bytes()).hexdigest()
+        if (artifact/'UBUNTU_PYTHON_PACKAGES_MANIFEST.json').exists() else None))
+target=output/'ACTUAL_ROS_RESULT.json'
+with target.open('x') as stream:json.dump(report,stream,indent=2);stream.write('\n')
+print(json.dumps({'actual_dds_passed':report['actual_dds_passed']}),flush=True)

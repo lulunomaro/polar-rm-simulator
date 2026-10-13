@@ -60,7 +60,8 @@ class VerifiedCameraPixels:
                 and len(self.raw_bytes)<=MAX_PIXELS_BYTES)
 
 
-def encode_camera_pixels(raw_bytes,*,robot_id,episode,frame_id,capture_sim_time,encoding,width,height,stride_bytes):
+def encode_camera_pixels(raw_bytes,*,robot_id,episode,frame_id,capture_sim_time,encoding,width,height,stride_bytes,
+                         raw_base64_codec='stdlib_chunked'):
     """Return (encoded payload, sealed token), from one immutable raw snapshot."""
     if type(raw_bytes) is not bytes:raise ValueError('Camera raw snapshot must be immutable bytes')
     if type(robot_id) is not str or not robot_id or len(robot_id)>256:raise ValueError('Invalid camera robot identity')
@@ -70,10 +71,16 @@ def encode_camera_pixels(raw_bytes,*,robot_id,episode,frame_id,capture_sim_time,
     if type(capture_sim_time) not in (int,float) or not math.isfinite(capture_sim_time) or capture_sim_time<0:raise ValueError('Invalid camera exposure time')
     if type(encoding) is not str or encoding not in ('rgb8','bgr8'):raise ValueError('Invalid camera encoding')
     if stride_bytes!=width*3 or len(raw_bytes)!=width*height*3 or len(raw_bytes)>MAX_PIXELS_BYTES:raise ValueError('Invalid packed camera byte size')
+    if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
+        raise ValueError('Unknown local raw base64 codec')
     # Import only after CameraProvider module initialization. The encoder is the
     # existing canonical bounded/yielding implementation, invoked exactly once.
-    from .camera import encode_raw_base64
-    data=encode_raw_base64(raw_bytes)
+    if raw_base64_codec=='stdlib_chunked':
+        from .camera import encode_raw_base64
+        data=encode_raw_base64(raw_bytes)
+    else:
+        from .base64_codec import load_raw_encoder
+        data=load_raw_encoder(raw_base64_codec)(raw_bytes)
     token=object.__new__(VerifiedCameraPixels)
     values=dict(robot_id=robot_id,episode=episode,frame_id=frame_id,capture_sim_time=capture_sim_time,
         encoding=encoding,width=width,height=height,stride_bytes=stride_bytes,data_base64=data,raw_bytes=raw_bytes)

@@ -1,0 +1,11 @@
+{
+  "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+  "tracked_source_clean": false,
+  "patched_source_verified": true,
+  "client_patch": {
+    "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+    "manifest_sha256": "ab7a3f21d0f44b5c2f14752bd140d40f71d6240fa9e14be262ec69b547799d83",
+    "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+  }
+}

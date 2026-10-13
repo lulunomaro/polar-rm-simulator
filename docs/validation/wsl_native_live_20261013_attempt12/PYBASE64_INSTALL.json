@@ -1,0 +1,75 @@
+{
+  "version": "1",
+  "pip_version": "25.0.1",
+  "install": [
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/d0/11/8d9159975a6ffa9e7eff1ca08c03fa46b33f8b200314964ac3eea9426799/pybase64-1.5.1-cp312-cp312-win_amd64.whl",
+        "archive_info": {
+          "hash": "sha256=0cfa495858ee229bac9d6dadaaef3d666ccb40de0ad8e04487079f960b33ee90",
+          "hashes": {
+            "sha256": "0cfa495858ee229bac9d6dadaaef3d666ccb40de0ad8e04487079f960b33ee90"
+          }
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "pybase64",
+        "version": "1.5.1",
+        "dynamic": [
+          "license-file"
+        ],
+        "summary": "Fast Base64 encoding/decoding",
+        "description": ".. SETUP VARIABLES\r\n.. |license-status| image:: https://img.shields.io/badge/license-BSD%202--Clause-blue.svg\r\n  :target: https://github.com/mayeut/pybase64/blob/master/LICENSE\r\n.. |pypi-status| image:: https://img.shields.io/pypi/v/pybase64.svg\r\n  :target: https://pypi.python.org/pypi/pybase64\r\n.. |python-versions| image:: https://img.shields.io/pypi/pyversions/pybase64.svg\r\n.. |rtd-status| image:: https://readthedocs.org/projects/pybase64/badge/?version=stable\r\n  :target: http://pybase64.readthedocs.io/en/stable/?badge=stable\r\n  :alt: Documentation Status\r\n.. |gha-status| image:: https://github.com/mayeut/pybase64/workflows/Build%20and%20upload%20to%20PyPI/badge.svg\r\n  :target: https://github.com/mayeut/pybase64/actions?query=workflow%3A%22Build+and+upload+to+PyPI%22\r\n.. |codecov-status| image:: https://codecov.io/gh/mayeut/pybase64/branch/master/graph/badge.svg\r\n  :target: https://codecov.io/gh/mayeut/pybase64/branch/master\r\n.. END OF SETUP\r\n\r\nFast Base64 implementation\r\n==========================\r\n\r\n|license-status| |pypi-status| |python-versions| |rtd-status| |gha-status| |codecov-status|\r\n\r\nThis project is a wrapper on `libbase64 <https://github.com/aklomp/base64>`_.\r\n\r\nIt aims to provide a fast base64 implementation for base64 encoding/decoding.\r\n\r\nInstallation\r\n============\r\n\r\n.. code::\r\n\r\n    pip install pybase64\r\n\r\nUsage\r\n=====\r\n\r\n``pybase64`` uses the same API as Python base64 \"modern interface\" (introduced in Python 2.4) for an easy integration.\r\n\r\nTo get the fastest decoding, it is recommended to use the ``pybase64.b64decode`` with ``validate=True`` (or ``ignorechars=b\"\"``) and ``padded=True`` when possible.\r\n\r\n.. code:: python\r\n\r\n    import pybase64\r\n\r\n    print(pybase64.b64encode(b'>>>foo???', altchars='_:'))\r\n    # b'Pj4_Zm9vPz8:'\r\n    print(pybase64.b64decode(b'Pj4_Zm9vPz8:', altchars='_:', validate=True))\r\n    # b'>>>foo???'\r\n\r\n    # Standard encoding helpers\r\n    print(pybase64.standard_b64encode(b'>>>foo???'))\r\n    # b'Pj4+Zm9vPz8/'\r\n    print(pybase64.standard_b64decode(b'Pj4+Zm9vPz8/'))\r\n    # b'>>>foo???'\r\n\r\n    # URL safe encoding helpers\r\n    print(pybase64.urlsafe_b64encode(b'>>>foo???'))\r\n    # b'Pj4-Zm9vPz8_'\r\n    print(pybase64.urlsafe_b64decode(b'Pj4-Zm9vPz8_'))\r\n    # b'>>>foo???'\r\n\r\n.. begin cli\r\n\r\nA command-line tool is also provided. It has encode, decode and benchmark subcommands.\r\n\r\n.. code::\r\n\r\n    usage: pybase64 [-h] [-V] {benchmark,encode,decode} ...\r\n\r\n    pybase64 command-line tool.\r\n\r\n    positional arguments:\r\n      {benchmark,encode,decode}\r\n                            tool help\r\n        benchmark           -h for usage\r\n        encode              -h for usage\r\n        decode              -h for usage\r\n\r\n    optional arguments:\r\n      -h, --help            show this help message and exit\r\n      -V, --version         show program's version number and exit\r\n\r\n.. end cli\r\n\r\nFull documentation on `Read the Docs <http://pybase64.readthedocs.io/en/stable/?badge=stable>`_.\r\n\r\nBenchmark\r\n=========\r\n\r\n.. begin benchmark\r\n\r\nRunning Python 3.15.0rc3, Apple clang version 21.0.0 (clang-2100.3.34.2), macOS 26.6.2, Apple M1 Max\r\n\r\n.. code::\r\n\r\n    pybase64 1.5.1 (C extension active - NEON)\r\n    bench: altchars=None, validate=True, padded=True\r\n    pybase64.encodebytes:     6577 MB/s (135,696 bytes -> 183,309 bytes)\r\n    pybase64.b64encode:      17614 MB/s (135,696 bytes -> 180,928 bytes)\r\n    pybase64.b64decode:       8975 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.encodebytes:       2342 MB/s (135,696 bytes -> 183,309 bytes)\r\n    base64.b64encode:         2640 MB/s (135,696 bytes -> 180,928 bytes)\r\n    base64.b64decode:         2594 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=None, validate=True, padded=False\r\n    pybase64.b64encode:      17525 MB/s (135,696 bytes -> 180,928 bytes)\r\n    pybase64.b64decode:       2475 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.b64encode:         2665 MB/s (135,696 bytes -> 180,928 bytes)\r\n    base64.b64decode:         2604 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=None, ignorechars=b'', padded=False\r\n    pybase64.b64decode:       2491 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.b64decode:         2642 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=None, ignorechars=b'\\n', padded=True\r\n    pybase64.b64decode:       2364 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         2083 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=None, ignorechars=b'\\n', padded=False\r\n    pybase64.b64decode:       2358 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         1945 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=None, validate=False, padded=True\r\n    pybase64.b64decode:       2365 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         2033 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=None, validate=False, padded=False\r\n    pybase64.b64decode:       2362 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         1965 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', validate=True, padded=True\r\n    pybase64.b64encode:      10779 MB/s (135,696 bytes -> 180,928 bytes)\r\n    pybase64.b64decode:       6007 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.b64encode:         2659 MB/s (135,696 bytes -> 180,928 bytes)\r\n    base64.b64decode:         1195 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', validate=True, padded=False\r\n    pybase64.b64encode:      10692 MB/s (135,696 bytes -> 180,928 bytes)\r\n    pybase64.b64decode:       2194 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.b64encode:         2658 MB/s (135,696 bytes -> 180,928 bytes)\r\n    base64.b64decode:         1196 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', ignorechars=b'', padded=True\r\n    pybase64.b64decode:       5952 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.b64decode:         2631 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', ignorechars=b'', padded=False\r\n    pybase64.b64decode:       2183 MB/s (180,928 bytes -> 135,696 bytes)\r\n    base64.b64decode:         2595 MB/s (180,928 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', ignorechars=b'\\n', padded=True\r\n    pybase64.b64decode:       2054 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         2060 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', ignorechars=b'\\n', padded=False\r\n    pybase64.b64decode:       2069 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         1937 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', validate=False, padded=True\r\n    pybase64.b64decode:       2073 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         1055 MB/s (183,308 bytes -> 135,696 bytes)\r\n    bench: altchars=b'-_', validate=False, padded=False\r\n    pybase64.b64decode:       2084 MB/s (183,308 bytes -> 135,696 bytes)\r\n    base64.b64decode:         1038 MB/s (183,308 bytes -> 135,696 bytes)\r\n\r\n.. end benchmark\r\n\r\n.. begin changelog\r\n\r\nChangelog\r\n=========\r\n1.5.1\r\n-----\r\n- Fix a Py_buffer Use-After-Release in error paths\r\n\r\n1.5.0\r\n-----\r\n- Speed-up translation on aarch64\r\n- Fix invalid data successfully decoded when using altchars (slice ends with padding)\r\n- Fix thread safety selecting codec\r\n- Add ``padded`` and ``wrapcol`` parameters to ``b64encode``\r\n- Add ``padded`` parameter to ``urlsafe_b64encode``\r\n- Add ``padded`` parameter to ``b64decode`` & ``urlsafe_b64decode``\r\n- ``urlsafe_b64decode`` now defaults to ``padded=False`` to align with Python 3.15 behavior\r\n- Add ``ignorechars`` and ``canonical`` parameters to ``b64decode``\r\n- Handle excess padding with the same behavior as CPython 3.15\r\n- Reject non-ASCII strings in ``b64decode`` when ``validate=False``\r\n- Deprecate accepting the ``+`` and ``/`` characters with an alternative alphabet when decoding\r\n- Use ``ValueError`` instead of ``AssertionError`` on altchars length validation\r\n- Add SBOM to PyPI wheels\r\n- Publish python 3.15 wheels\r\n- Drop python 3.8 support\r\n- Stop publishing python 3.13t wheels\r\n\r\n1.4.3\r\n-----\r\n- Publish Android Python 3.14 wheels\r\n- Publish GraalPy v25 wheels\r\n\r\n1.4.2\r\n-----\r\n- Update base64 library (Windows ARM64 Neon support)\r\n- Publish Python 3.14 wheels\r\n- Publish Linux riscv64 wheels\r\n- Publish Android wheels\r\n- Publish iOS wheels\r\n- Publish GraalPy wheels\r\n\r\n1.4.1\r\n-----\r\n- Publish PyPy 3.11 wheels\r\n- Publish armv7l wheels\r\n\r\n1.4.0\r\n-----\r\n- Publish python 3.13 wheels\r\n- Add support for free-threaded builds\r\n- Add MSYS2 support for C-extension\r\n- Better logging on base64 build failure when C-extension build is optional\r\n- Drop python 3.6 & 3.7 support\r\n\r\n1.3.2\r\n-----\r\n- Update base64 library\r\n- PyPy: fix wrong outcome with non C-contiguous buffer\r\n\r\n1.3.1\r\n-----\r\n- Add missing py.typed marker\r\n\r\n1.3.0\r\n-----\r\n- Update base64 library\r\n- Add AVX512-VBMI implementation\r\n- Rework extension build to remove adherence on distutils\r\n- Publish python 3.12 wheels\r\n- Documentation now uses furo theme\r\n\r\n1.2.3\r\n-----\r\n- Update base64 library\r\n- Publish python 3.11 wheels\r\n\r\n1.2.2\r\n-----\r\n- Update base64 library\r\n- Fix C extension build on musl distros\r\n- Publish musllinux wheels\r\n\r\n1.2.1\r\n-----\r\n- Publish PyPy 3.8 (pypy38_pp73) wheels\r\n\r\n1.2.0\r\n-----\r\n- Release the GIL\r\n- Publish CPython 3.10 wheels\r\n- Drop python 3.5 support\r\n\r\n1.1.4\r\n-----\r\n- Add macOS arm64 wheel\r\n\r\n1.1.3\r\n-----\r\n- GitHub Actions: fix build on tag\r\n\r\n1.1.2\r\n-----\r\n- Add PyPy wheels\r\n- Add aarch64, ppc64le & s390x manylinux wheels\r\n\r\n1.1.1\r\n-----\r\n- Move CI from TravisCI/AppVeyor to GitHub Actions\r\n- Fix publication of Linux/macOS wheels\r\n\r\n1.1.0\r\n-----\r\n- Add b64encode_as_string, same as b64encode but returns a str object instead of a bytes object\r\n- Add b64decode_as_bytearray, same as b64decode but returns a bytarray object instead of a bytes object\r\n- Speed-Up decoding from UCS1 strings\r\n\r\n1.0.2\r\n-----\r\n- Update base64 library\r\n- Publish python 3.9 wheels\r\n\r\n1.0.1\r\n-----\r\n- Publish python 3.8 wheels\r\n\r\n1.0.0\r\n-----\r\n- Drop python 3.4 support\r\n- Drop python 2.7 support\r\n\r\n0.5.0\r\n-----\r\n- Publish python 3.7 wheels\r\n- Drop python 3.3 support\r\n\r\n0.4.0\r\n-----\r\n- Speed-up decoding when validate==False\r\n\r\n0.3.1\r\n-----\r\n- Fix deployment issues\r\n\r\n0.3.0\r\n-----\r\n- Add encodebytes function\r\n\r\n0.2.1\r\n-----\r\n- Fixed invalid results on Windows\r\n\r\n0.2.0\r\n-----\r\n- Added documentation\r\n- Added subcommands to the main script:\r\n\r\n    * help\r\n    * version\r\n    * encode\r\n    * decode\r\n    * benchmark\r\n\r\n0.1.2\r\n-----\r\n- Updated base64 native library\r\n\r\n0.1.1\r\n-----\r\n- Fixed deployment issues\r\n\r\n0.1.0\r\n-----\r\n- First public release\r\n\r\n.. end changelog\r\n",
+        "description_content_type": "text/x-rst",
+        "keywords": [
+          "base64"
+        ],
+        "author": "Matthieu Darbois",
+        "license_expression": "BSD-2-Clause",
+        "license_file": [
+          "LICENSE",
+          "base64/LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Topic :: Utilities",
+          "Programming Language :: C",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3.15"
+        ],
+        "requires_python": ">=3.9",
+        "project_url": [
+          "Homepage, https://github.com/mayeut/pybase64",
+          "Documentation, https://pybase64.readthedocs.io/en/stable",
+          "Source, https://github.com/mayeut/pybase64",
+          "Issues, https://github.com/mayeut/pybase64/issues"
+        ]
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.12.14",
+    "os_name": "nt",
+    "platform_machine": "AMD64",
+    "platform_release": "11",
+    "platform_system": "Windows",
+    "platform_version": "10.0.26200",
+    "python_full_version": "3.12.14",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.12",
+    "sys_platform": "win32"
+  }
+}

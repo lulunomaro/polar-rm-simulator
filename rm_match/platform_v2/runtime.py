@@ -1,7 +1,8 @@
 """Single physics authority with isolated, bounded per-robot algorithm slots.
 
-Trusted adapters get copied, validated JSON observations only. This is a data
-boundary for reviewed adapters, not a Python sandbox for malicious code.
+Adapters get copied, validated JSON observations. An explicitly enabled local
+experiment also permits sealed actual pixels to two reviewed exact native
+classes. This is a data boundary, not a Python sandbox for malicious code.
 """
 from __future__ import annotations
 import copy
@@ -16,6 +17,17 @@ from .control import ControlPlane, Rejected, KINDS
 
 def json_copy(value):
     return json.loads(json.dumps(value,allow_nan=False))
+
+
+def _exception_location(exc,phase):
+    """Bounded code locations only: never exception arguments, locals or inputs."""
+    frames=[];tb=exc.__traceback__
+    while tb is not None:
+        frames.append(dict(file=tb.tb_frame.f_code.co_filename[-256:],
+            function=tb.tb_frame.f_code.co_name[:64],line=tb.tb_lineno))
+        if len(frames)>6:frames.pop(0)
+        tb=tb.tb_next
+    return dict(phase=phase,frames=frames)
 
 
 class AdapterSlot:
@@ -66,7 +78,8 @@ class AdapterSlot:
                     with self._lifecycle_lock:self._instance=None
                     continue
                 if self.clock()>=job['observation']['wall_deadline']:continue
-                started_wall=self.clock();self.running=True;error=None;value=None
+                started_wall=self.clock();self.running=True;error=None;value=None;private_rejected=False
+                phase='admission';admission_timings={};discarded_reason=None;exception_diagnostic=None
                 try:
                     b=job['binding'];o=job['observation']
                     current=(o['robot_id'],job['kind'],o['episode'],b['epoch'])
@@ -75,32 +88,69 @@ class AdapterSlot:
                     if current!=identity:
                         if instance is not None:instance.close()
                         instance=None;identity=None
-                        instance=self.registry.create(b['adapter_id'],json_copy(b['config']))
+                        phase='create';phase_started=self.clock()
+                        try:instance=self.registry.create(b['adapter_id'],json_copy(b['config']))
+                        finally:admission_timings['create_s']=self.clock()-phase_started
                         with self._lifecycle_lock:self._instance=instance
                         if self.stop.is_set():
                             self._cancel_native(instance)
                             break
-                        instance.reset(dict(episode=o['episode'],robot_id=o['robot_id'],binding_epoch=b['epoch']))
+                        phase='reset';phase_started=self.clock()
+                        try:instance.reset(dict(episode=o['episode'],robot_id=o['robot_id'],binding_epoch=b['epoch']))
+                        finally:admission_timings['reset_s']=self.clock()-phase_started
                         identity=current
                     if self.stop.is_set():break
                     # Raw-image validation/JSON copying is CPU work on this worker,
                     # never on physics or HTTP threads.
                     from .contracts import validate_observation
                     from .native_adapter import NativeSourceAdapter
-                    if isinstance(instance,NativeSourceAdapter) and getattr(instance.act,'__func__',None) is NativeSourceAdapter.act:
-                        decoded={};o=validate_observation(o,image_bytes=decoded,image_token=job.get('pixel_token'))
-                        value=json_copy(NativeSourceAdapter._act_validated(instance,o,decoded['raw']))
+                    from .native_observation import reviewed_native_instance
+                    phase='admission_deadline_recheck'
+                    if self.clock()>=o['wall_deadline']:
+                        # Setup is not algorithm execution. Discard this old
+                        # exposure, retaining the reviewed instance for a NEW
+                        # original-budget job of the same generation.
+                        discarded_reason='original_deadline_expired_after_admission'
+                    elif job.get('native_pixels') is not None:
+                        if b['adapter_id']!='aim_native_rmcs_v1' or not reviewed_native_instance(instance):
+                            # Never hand a private object to a custom class/hook.
+                            # Retry this generation through the complete public DTO.
+                            private_rejected=True
+                        else:
+                            phase='private_authority_recheck';phase_started=self.clock()
+                            allowed=job['native_camera_check']()
+                            admission_timings['authority_recheck_s']=self.clock()-phase_started
+                            if not allowed:
+                                discarded_reason=('original_deadline_expired_before_act' if self.clock()>=o['wall_deadline']
+                                    else 'authority_revoked_before_act')
+                            else:
+                                phase='private_native_act';phase_started=self.clock()
+                                try:
+                                    value=json_copy(NativeSourceAdapter._act_native_pixels(instance,o,job['native_pixels'],
+                                        consumer=job['native_consumer'],budget=job['sensor_budget'],now=self.clock()))
+                                finally:admission_timings['act_s']=self.clock()-phase_started
+                    elif (isinstance(instance,NativeSourceAdapter)
+                        and getattr(instance.act,'__func__',None) is NativeSourceAdapter.act):
+                        phase='public_native_validation';decoded={};o=validate_observation(o,image_bytes=decoded,image_token=job.get('pixel_token'))
+                        phase='public_native_act';phase_started=self.clock()
+                        try:value=json_copy(NativeSourceAdapter._act_validated(instance,o,decoded['raw']))
+                        finally:admission_timings['act_s']=self.clock()-phase_started
                     else:
-                        o=validate_observation(o)
-                        value=json_copy(instance.act(copy.deepcopy(o)))
+                        phase='public_validation';o=validate_observation(o)
+                        phase='public_act';phase_started=self.clock()
+                        try:value=json_copy(instance.act(copy.deepcopy(o)))
+                        finally:admission_timings['act_s']=self.clock()-phase_started
                     # Validate before publishing into the latest-result slot: an
                     # invalid result must not be overwritten by a later good one.
                     from .contracts import validate_action
-                    value=validate_action(value,o,self.registry.get(b['adapter_id']).descriptor)
+                    if not private_rejected and not discarded_reason:
+                        phase='action_validation';value=validate_action(value,o,self.registry.get(b['adapter_id']).descriptor)
                 except BaseException as exc:
-                    error=type(exc).__name__;failed_identity=current
+                    error=type(exc).__name__;failed_identity=current;exception_diagnostic=_exception_location(exc,phase)
                 finally:self.running=False
-                self._latest(self.results,dict(job=job,value=value,error=error,started_wall=started_wall,completed=self.clock()))
+                self._latest(self.results,dict(job=job,value=value,error=error,private_rejected=private_rejected,
+                    discarded_reason=discarded_reason,admission_timings=admission_timings,exception_diagnostic=exception_diagnostic,
+                    started_wall=started_wall,completed=self.clock()))
                 if error and instance is not None:
                     try:instance.close()
                     except BaseException as exc:self.lifecycle_error=type(exc).__name__
@@ -128,10 +178,16 @@ class AdapterSlot:
 
 class PlatformRuntime:
     def __init__(self,backend,*,registry=None,clock=time.perf_counter,observation_period=.05,
-                 action_ttl=.2,control=None,camera=None,trace=None):
+                 action_ttl=.2,control=None,camera=None,trace=None,enable_native_pixels=False):
         from .adapters import default_registry
         self.camera=camera;self.trace=trace;self.output_budgets={};self.output_authorizations={};self.real_time_factor=1.
         self.backend=backend;self.registry=registry or default_registry();self.clock=clock
+        if type(enable_native_pixels) is not bool:raise ValueError('Invalid local native pixel experiment')
+        if enable_native_pixels:
+            # Definition-only imports during local setup, never an algorithm
+            # warm-up, exposure or native process request.
+            from . import native_observation
+        self.enable_native_pixels=enable_native_pixels;self._native_pixels_denied={};self._private_outputs=set()
         self.control=control or ControlPlane(backend.robot_ids,clock=clock,spin_capabilities=backend.declared_spin_capabilities() if hasattr(backend,'declared_spin_capabilities') else {})
         if tuple(self.control.robot_ids)!=tuple(backend.robot_ids):raise ValueError('Registry/backend mismatch')
         if not 0<observation_period<=.2 or not 0<action_ttl<=.25:raise ValueError('Invalid scheduling bounds')
@@ -273,15 +329,23 @@ class PlatformRuntime:
             if output is not None and (output['binding_epoch']!=b['epoch'] or now>=output['wall_deadline']
                                       or not 0<=sim_time-output['sim_time']<=self.action_ttl
                                       or output['episode']!=self._episode or output['robot_id']!=rid
-                                      or not self._budget_valid(self.output_budgets.get(key),now,sim_time)):
+                                      or not self._budget_valid(self.output_budgets.get(key),now,sim_time)
+                                      or not self._private_output_valid(key,b,sim_time)):
                 self.outputs.pop(key,None)
                 self.status[key]='expired_or_rebound'
             result=slot.poll()
             if result is None:continue
             job=result['job'];o=job['observation'];old=job['binding'];budget=job.get('sensor_budget')
-            self._trace('adapter_result',robot_id=rid,kind=kind,binding_epoch=old['epoch'],observed_seq=o['observed_seq'],episode=o['episode'],observation_sim_time=o['sim_time'],wall_deadline=o['wall_deadline'],sensor_budget=budget,sample_identity=job.get('sample_identity'),operator_authorization=job.get('operator_authorization'),started_wall=result.get('started_wall'),completed_wall=result['completed'],error=result['error'],command=result['value'].get('command') if result['value'] else None)
+            self._trace('adapter_result',robot_id=rid,kind=kind,binding_epoch=old['epoch'],observed_seq=o['observed_seq'],episode=o['episode'],observation_sim_time=o['sim_time'],wall_deadline=o['wall_deadline'],sensor_budget=budget,sample_identity=job.get('sample_identity'),operator_authorization=job.get('operator_authorization'),started_wall=result.get('started_wall'),completed_wall=result['completed'],error=result['error'],command=result['value'].get('command') if result['value'] else None,
+                discarded_reason=result.get('discarded_reason'),admission_timings=result.get('admission_timings'),exception_diagnostic=result.get('exception_diagnostic'))
             if b['owner'] is None or (b['epoch'],b['owner'],b['lease_epochs'])!=(old['epoch'],old['owner'],old['lease_epochs']):
                 continue
+            if result.get('discarded_reason'):
+                self.status[key]='sample_discarded:'+result['discarded_reason'];continue
+            if result.get('private_rejected'):
+                self._native_pixels_denied[key]=(b['epoch'],b['owner'])
+                self._camera_samples.pop(key,None);self.next_observation.pop(key,None)
+                self.status[key]='waiting_for_public_camera';continue
             if self._fault_epochs.get(key)==b['epoch']:
                 self.outputs.pop(key,None)
                 continue  # No queued or late same-generation result can recover a fault.
@@ -289,7 +353,8 @@ class PlatformRuntime:
                 self.outputs.pop(key,None);self.status[key]='adapter_error:'+result['error'];self._fault_epochs[key]=b['epoch'];continue
             if (o['robot_id']!=rid or o['episode']!=self._episode
                 or now>=o['wall_deadline'] or not 0<=sim_time-o['sim_time']<=self.action_ttl
-                or not self._budget_valid(budget,now,sim_time)):
+                or not self._budget_valid(budget,now,sim_time)
+                or not self._camera_budget_current(rid,kind,b,budget,sim_time,private=job.get('native_pixels') is not None)):
                 self.outputs.pop(key,None);self.status[key]='late_result';continue
             try:
                 action=validate_action(result['value'],o,self.registry.get(b['adapter_id']).descriptor)
@@ -297,8 +362,37 @@ class PlatformRuntime:
                 current=self.outputs.get(key)
                 if current and action['observed_seq']<=current['observed_seq']:raise ValueError('replayed result')
                 self.outputs[key]=action;self.output_budgets[key]=budget;self.output_authorizations[key]=job.get('operator_authorization');self.status[key]='active'
+                if job.get('native_pixels') is not None:self._private_outputs.add(key)
+                else:self._private_outputs.discard(key)
             except (ValueError,TypeError,KeyError):
                 self.outputs.pop(key,None);self.status[key]='invalid_result';self._fault_epochs[key]=b['epoch']
+
+    def _private_camera_valid(self,rid,kind,b,budget,sim_time):
+        check=getattr(self.camera,'native_capture_valid',None)
+        return bool(callable(check) and check(rid,self._episode,self._camera_binding(rid,kind,b),budget,sim_time))
+
+    def _private_job_valid(self,rid,kind,b,budget,sim_time):
+        # This detached single-car authority recheck runs ONCE on the worker,
+        # not on the 500Hz consumption path. No backend API is used here.
+        with self.control.lock:
+            state=self.control.snapshot_robot(rid);current=state['bindings'][rid][kind];now=self.clock()
+            if (state['stopped'] or current['owner'] is None
+                or (current['epoch'],current['owner'],current['lease_epochs'])!=(b['epoch'],b['owner'],b['lease_epochs'])
+                or not self._binding_active(current,now)):return False
+            for channel,epoch in b['lease_epochs'].items():
+                lease=state['leases'][rid][channel]
+                if lease['owner']!=b['owner'] or lease['epoch']!=epoch or now>=lease['expires']:return False
+            return self._private_camera_valid(rid,kind,current,budget,sim_time)
+
+    def _private_output_valid(self,key,b,sim_time):
+        return self._camera_budget_current(*key,b,self.output_budgets.get(key),sim_time,private=key in self._private_outputs)
+
+    def _camera_budget_current(self,rid,kind,b,budget,sim_time,*,private=False):
+        if budget is None:return True
+        if private:return self._private_camera_valid(rid,kind,b,budget,sim_time)
+        check=getattr(self.camera,'sensor_capture_valid',None)
+        # Preserve legacy duck-typed camera providers' existing budget API.
+        return not callable(check) or bool(check(rid,self._episode,self._camera_binding(rid,kind,b),budget,sim_time))
 
     @staticmethod
     def _own_refresh_profile(kind,b,spec):
@@ -336,7 +430,10 @@ class PlatformRuntime:
                 previous=self.next_observation.get(key)
                 spec=self.registry.get(b['adapter_id']).descriptor
                 own_refresh=self._own_refresh_profile(kind,b,spec)
-                camera_identity=getattr(self.camera,'sensor_identity',None)
+                private_pixels=(self.enable_native_pixels and getattr(self.camera,'enable_native_pixels',False)
+                    and kind=='aim' and b['adapter_id']=='aim_native_rmcs_v1'
+                    and self._native_pixels_denied.get(key)!=schedule_identity)
+                camera_identity=getattr(self.camera,'native_sensor_identity' if private_pixels else 'sensor_identity',None)
                 camera_paced=(spec.get('schedule_on_camera_frame') is True
                     and 'camera' in spec['required_sensors'] and callable(camera_identity))
                 next_camera=None
@@ -356,14 +453,17 @@ class PlatformRuntime:
                     if raw is None:
                         capture_start=self.clock();raw=self.backend.sensor_sample(rid);capture_end=self.clock()
                     seq=self.observed.get(key,0)+1;self.observed[key]=seq
-                    camera=None;budget=None;pixel_token=None
+                    camera=None;budget=None;pixel_token=None;native_pixels=None
                     spec=self.registry.get(b['adapter_id']).descriptor
                     if self.camera is not None and 'camera' in spec['required_sensors']:
-                        packet=self.camera.sensor_packet(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,self.action_ttl)
-                        camera=packet['camera'];budget=packet['budget']
-                        pixel_token=packet.get('pixel_token')
+                        if private_pixels:
+                            packet=self.camera.native_sensor_packet(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,self.action_ttl)
+                            native_pixels=packet['pixels'];budget=packet['budget']
+                        else:
+                            packet=self.camera.sensor_packet(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,self.action_ttl)
+                            camera=packet['camera'];budget=packet['budget'];pixel_token=packet.get('pixel_token')
                         if budget is not None:
-                            budget['sim_deadline']=budget['capture_sim_time']+min(self.action_ttl,spec.get('max_camera_age_sim_s',self.action_ttl))
+                            budget['sim_deadline']=min(budget['sim_deadline'],budget['capture_sim_time']+min(self.action_ttl,spec.get('max_camera_age_sim_s',self.action_ttl)))
                             budget['wall_deadline']=min(budget['wall_deadline'],budget['capture_wall']+min(self.action_ttl,spec.get('max_camera_age_wall_s',self.action_ttl)))
                     observation=validate_observation(build_observation(raw,binding_epoch=b['epoch'],observed_seq=seq,
                         wall_deadline=self.clock()+self.action_ttl))
@@ -387,7 +487,8 @@ class PlatformRuntime:
                 spec=self.registry.get(b['adapter_id']).descriptor
                 missing=[name for name in spec['required_sensors']
                          if not (all(observation['own'][k] is not None for k in ('odom_xyyaw','odom_vxyw'))
-                                 if name=='odometry' else observation['sensors'].get(name,{}).get('available',False))]
+                                 if name=='odometry' else ((name=='camera' and native_pixels is not None)
+                                     or observation['sensors'].get(name,{}).get('available',False)))]
                 self.next_observation[key]=(schedule_identity,sim_time+self.observation_period)
                 sample_identity=None
                 if own_refresh:
@@ -415,10 +516,15 @@ class PlatformRuntime:
                     # and this atomic sensor packet. Bind the ACTUAL job frame.
                     next_camera=(self._episode,*schedule_identity,budget['frame_id'])
                     if self._camera_samples.get(key)==next_camera:continue
-                if key not in self.slots:self.slots[key]=AdapterSlot(self.registry,self.clock)
+                if key not in self.slots:
+                    self.slots[key]=AdapterSlot(self.registry,self.clock)
                 if next_camera is not None:self._camera_samples[key]=next_camera
                 self._trace('adapter_enqueue',robot_id=rid,kind=kind,binding_epoch=b['epoch'],episode=self._episode,observed_seq=seq,observation_sim_time=observation['sim_time'],wall_deadline=observation['wall_deadline'],sensor_budget=budget,schedule_reason=reason,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')})
-                self.slots[key].submit(dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,pixel_token=pixel_token,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')}))
+                job=dict(kind=kind,binding=b,observation=observation,sensor_budget=budget,pixel_token=pixel_token,sample_identity=sample_identity,operator_authorization={f:b.get(f) for f in ('epoch','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')})
+                if native_pixels is not None:
+                    job.update(native_pixels=native_pixels,native_consumer=self._camera_binding(rid,kind,b),
+                        native_camera_check=lambda rid=rid,kind=kind,b=b,budget=budget,sim_time=sim_time:self._private_job_valid(rid,kind,b,budget,sim_time))
+                self.slots[key].submit(job)
                 if key not in self.outputs:self.status[key]='waiting_for_adapter'
 
     def _targets(self,snapshot,sim_time,*,sampled_wall=None):
@@ -440,7 +546,8 @@ class PlatformRuntime:
                 if (output is not None and output['binding_epoch']==b['epoch']
                     and output['robot_id']==rid and output['episode']==self._episode
                     and now<output['wall_deadline'] and 0<=sim_time-output['sim_time']<=self.action_ttl
-                    and self._budget_valid(self.output_budgets.get((rid,kind)),now,sim_time)):
+                    and self._budget_valid(self.output_budgets.get((rid,kind)),now,sim_time)
+                    and self._private_output_valid((rid,kind),b,sim_time)):
                     command=output['command']
                     if kind=='navigation' or command['active']:
                         if self.backend.validate_target(rid,channel,command):t[channel]=command
@@ -462,7 +569,7 @@ class PlatformRuntime:
         if self.stop_event.is_set() or self.control.stopped:return False
         episode=self.backend.episode
         if self._episode is not None and self._episode!=episode:
-            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear()
+            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear()
         self._episode=episode
         sim_time=self.backend.sim_time
         snapshot=self.control.snapshot()

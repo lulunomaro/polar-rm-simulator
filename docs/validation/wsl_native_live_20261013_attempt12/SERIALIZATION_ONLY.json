@@ -1,0 +1,232 @@
+{
+  "schema": "polar.base64.serialization-only.v1",
+  "qualification": "Repeated exact saved sensor RGB serialization only; no GPU, physics, native, NN or live acceptance",
+  "input": {
+    "format": "v2_actual_frame_manifest",
+    "frame_id": 9,
+    "source": "native/binding_12a799e010b94c8fa06a697766dfec65/actual_frames/sensor_9.bgr",
+    "manifest": "native/binding_12a799e010b94c8fa06a697766dfec65/actual_frames/sensor_9.json",
+    "manifest_sha256": "a65362e1032861c733ae100a71918e1c9410281ee5201059dc19aef810df76e2",
+    "image_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422"
+  },
+  "rgb_sha256": "fdbd9b0a2a0c116dad80e39e3a909b13db50f0d72a27c3ec54136c8464ed7261",
+  "rgb_bytes": 4665600,
+  "clock": "Windows perf_counter; process_time separately",
+  "python": "3.12.14",
+  "identity": {
+    "stdlib_chunked": {
+      "codec": "stdlib_chunked",
+      "version": null,
+      "module": "rm_match.platform_v2.camera",
+      "function": "encode_raw_base64",
+      "extension_path": null,
+      "extension_sha256": null
+    },
+    "pybase64_1_5_1": {
+      "codec": "pybase64_1_5_1",
+      "version": "1.5.1",
+      "module": "pybase64._pybase64",
+      "function": "b64encode_as_string",
+      "extension_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Lib\\site-packages\\pybase64\\_pybase64.cp312-win_amd64.pyd",
+      "extension_sha256": "2b9cfb88f2a2318a6e6d021dc78d86fa6e472e7d988e4ab9525796c4c65b712d"
+    }
+  },
+  "source_sha256": {
+    "rm_match/platform_v2/base64_codec.py": "575d17d4d8b6663bea06fc443e28233de3209e6fec28f9bb634554c3c4aa3d1f",
+    "tests/test_base64_codec.py": "1ebb45450e57bbe0a06b410512bcfb8bdf8e68c14d7e11a3658a33e351007d0e"
+  },
+  "output_identical": true,
+  "results": {
+    "stdlib_chunked": {
+      "samples": [
+        {
+          "sample": 0,
+          "encode_s": 0.015453799998795148,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008849699996062554,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 1,
+          "encode_s": 0.015721199997642543,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008848400000715628,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 2,
+          "encode_s": 0.01531510000495473,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.009017300006235018,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 3,
+          "encode_s": 0.015494799998123199,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.009033299997099675,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 4,
+          "encode_s": 0.01527209999767365,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.009170600002107676,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 5,
+          "encode_s": 0.01529819999996107,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008832200001052115,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 6,
+          "encode_s": 0.015364999999292195,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008968100002675783,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 7,
+          "encode_s": 0.015290399998775683,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.009028399996168446,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 8,
+          "encode_s": 0.015587300003971905,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008976499993877951,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 9,
+          "encode_s": 0.01511430000391556,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008809899998595938,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        }
+      ],
+      "encode": {
+        "samples": 10,
+        "p50_ms": 15.340050002123462,
+        "p95_ms": 15.660945000490756,
+        "p99_ms": 15.709148998212186,
+        "max_ms": 15.721199997642543
+      },
+      "encode_cpu": {
+        "samples": 10,
+        "p50_ms": 15.625,
+        "p95_ms": 15.625,
+        "p99_ms": 15.625,
+        "max_ms": 15.625
+      },
+      "json": {
+        "samples": 10,
+        "p50_ms": 8.972299998276867,
+        "p95_ms": 9.108814999854076,
+        "p99_ms": 9.158243001656956,
+        "max_ms": 9.170600002107676
+      }
+    },
+    "pybase64_1_5_1": {
+      "samples": [
+        {
+          "sample": 0,
+          "encode_s": 0.0012715000048046932,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.008759199998166878,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 1,
+          "encode_s": 0.0012662000008276664,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.008907399998861365,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 2,
+          "encode_s": 0.00126270000328077,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.00876550000248244,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 3,
+          "encode_s": 0.0013459999972837977,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.008934299999964423,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 4,
+          "encode_s": 0.0013149000005796552,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.00860370000009425,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 5,
+          "encode_s": 0.0012779999960912392,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.00863960000424413,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 6,
+          "encode_s": 0.0013585999986389652,
+          "encode_cpu_s": 0.015625,
+          "json_s": 0.008975700002338272,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 7,
+          "encode_s": 0.0012452000009943731,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.009122000003117137,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 8,
+          "encode_s": 0.0012796999944839627,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.008549899997888133,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        },
+        {
+          "sample": 9,
+          "encode_s": 0.0013102000011713244,
+          "encode_cpu_s": 0.0,
+          "json_s": 0.02169829999911599,
+          "output_sha256": "4d11867ab7b5f42cb3228a0f6024dbb64618554edfda703e64d9cfa488248e2f"
+        }
+      ],
+      "encode": {
+        "samples": 10,
+        "p50_ms": 1.278849995287601,
+        "p95_ms": 1.3529299980291398,
+        "p99_ms": 1.3574659985170001,
+        "max_ms": 1.3585999986389652
+      },
+      "encode_cpu": {
+        "samples": 10,
+        "p50_ms": 0.0,
+        "p95_ms": 8.593749999999984,
+        "p99_ms": 14.218750000000002,
+        "max_ms": 15.625
+      },
+      "json": {
+        "samples": 10,
+        "p50_ms": 8.836450000671903,
+        "p95_ms": 16.03896500091649,
+        "p99_ms": 20.566432999476095,
+        "max_ms": 21.69829999911599
+      }
+    }
+  },
+  "timing_limitations": "Serialization-only isolated samples; process_time has observed 15.625ms quantization and zero samples do not mean zero CPU cost; not a live deadline/RTF measurement."
+}

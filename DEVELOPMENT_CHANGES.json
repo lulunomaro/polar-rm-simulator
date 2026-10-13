@@ -5,9 +5,9 @@
     {
       "path": "pyproject.toml",
       "original_sha256": "8c9d9e751a197d91313dc690c355ae021bf69156d76877e0523ee504493f0837",
-      "current_sha256": "92a996a3743b84760dae6287efef4f37d73f6f7d479acc91016739bad6c19ca5",
-      "task": "T17",
-      "reason": "Restrict pytest discovery to owned source and exclude downloaded client, venvs and disposable artifacts"
+      "current_sha256": "7740a17e2ae52f173942faa5ada361118a5e341fa1240b88d36afcc15b562159",
+      "task": "T03",
+      "reason": "Pin public runtime dependencies and isolate project test discovery; explicit optional camera-fast codec preserves canonical sensor bytes and defaults without bundling external C libraries"
     },
     {
       "path": "rm_match/match_engine.py",
@@ -33,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/camera.py",
       "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
-      "current_sha256": "cc6f5b862116f94d1d772cfe87b5e4ade8c0836a668d6ecfa5403787366d6c96",
+      "current_sha256": "a98c549a80fa8bd53c790f0e0ab4834f0b16250b3362b3ad1b70c8dbf325a3f4",
       "task": "T03",
-      "reason": "Separate raw/display encoding and provide bounded identity-only wakeup through the same ownership and capture-age guard"
+      "reason": "Separate raw/display; explicit bounded sealed actual RGB before public encoding with capture ownership and expiry guards, fixed publish timestamps and canonical optional C codec"
     },
     {
       "path": "rm_match/platform_v2/client.py",
@@ -75,9 +75,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "8daaf180e50c4daa112f08154bef51766c97cb69379692c58cb0178b02c4764b",
+      "current_sha256": "2c112a3c2c1519c2292a3d2eb0674bc8daba38e1751d1a88ea403b98c3a07f73",
       "task": "T03",
-      "reason": "Retain capture wall/simulation deadlines and fresh authority at every phase; wake on actual new frames, reuse sealed native pixels and static descriptor flags without bypassing custom adapters or caching leases"
+      "reason": "Retain capture wall/simulation deadlines and current authority; explicit exact-class sealed RGB only, original-deadline recheck after admission with expired jobs discarded; no custom bypass or cached leases"
     },
     {
       "path": "rm_match/platform_v2/server.py",
@@ -173,9 +173,9 @@
     {
       "path": "rm_match/platform_v2/native_adapter.py",
       "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
-      "current_sha256": "ad2330ed5e8bd1f2b26cd98e8f53a03d7fd1668b92ce265c7f2a4344d2705979",
+      "current_sha256": "508f87b97b4e549e25bc8cb2344216d8cebafc3a627cf952fe9201ff7c6682bc",
       "task": "T03",
-      "reason": "Keep own-sensor native path and durable cleanup; reuse one strict decode and exact BGR memory buffer, expose reviewed WSL hooks without changing model or gates"
+      "reason": "Keep original own-sensor model/80ms gates; permit reviewed typed private RGB, immutable BGR/SHA archives and postclose RGB diagnostic only on per-frame WSL v2, retaining synchronous checks elsewhere"
     },
     {
       "path": "rm_match/platform_v2/offline_runtime.py",

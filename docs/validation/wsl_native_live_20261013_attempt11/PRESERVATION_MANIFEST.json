@@ -1,0 +1,122 @@
+{
+  "schema": "polar.preserved.progress.v1",
+  "scope": "live",
+  "original_run": "artifacts/wsl-native-live-20261013-attempt11-fast-raw-codec",
+  "files": [
+    {
+      "path": "EXECUTED_SOURCE_BYTES.json.gz",
+      "bytes": 498611,
+      "sha256": "7da9bdd5065a962eef62d5981fee5d9289b5f668a8b25267bd2c25bb9bdb8f59"
+    },
+    {
+      "path": "CLIENT_IDENTITY.json",
+      "bytes": 489,
+      "sha256": "b2befb54231b0001e1324f80c0d609161dc47df9069b5c5b3ca60f903485f1ab"
+    },
+    {
+      "path": "EXECUTED_SOURCE.json",
+      "bytes": 18042,
+      "sha256": "ac6df50b0b3a3612649dd4de76347d5b2d6db77bc598d3c6ddfcbdc33c684fa1"
+    },
+    {
+      "path": "EXECUTED_SOURCE_CAPTURE.json",
+      "bytes": 41967,
+      "sha256": "08feefcbd6033917a04d36e413f75e042308f35a1f7d6dfd8527a3123a404505"
+    },
+    {
+      "path": "FRAME_BINDINGS.json",
+      "bytes": 44929,
+      "sha256": "b42e231c5b19ec3e13784bcf724b7633d8b3477364dbeca76d862178fc076a7b"
+    },
+    {
+      "path": "PLAN.json",
+      "bytes": 2556,
+      "sha256": "9832afd47d0df310f8491d956e0af1e11ea890b73e0aed57f96d3916d5e73311"
+    },
+    {
+      "path": "PUBLIC_INITIAL_SCENE.json",
+      "bytes": 451,
+      "sha256": "3b8551535aee9f84e2b52de4bda18cc4459f75ceda136cb346db3f7b7f7eced0"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 41563,
+      "sha256": "c848716a7ddcb3407d46a2367cb12d663eb55b16897aa110a42c545898f52165"
+    },
+    {
+      "path": "RUNTIME_OBSERVATION.json",
+      "bytes": 140515,
+      "sha256": "73dcf61845e1c34ba2594a52dbdc777b650aeb1c45aea2c960af852b4997d7de"
+    },
+    {
+      "path": "SDK_EVENTS.json",
+      "bytes": 27605,
+      "sha256": "ffaa33edb6a844cec2149451b134918bebe2629976150f329b0aa992d7051a2f"
+    },
+    {
+      "path": "STARTUP_ADMISSION.json",
+      "bytes": 271,
+      "sha256": "a968d471d955c602d30a444fe7c73168fe3e7c5d81525300279708906276453a"
+    },
+    {
+      "path": "ledger.jsonl",
+      "bytes": 97989,
+      "sha256": "a4f247d41d5909bd9756baf9e04f6f22bdbd6758024509bc7e5458643fead61b"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/actual_frames/sensor_8.bgr.gz",
+      "bytes": 77521,
+      "sha256": "194b38dedcf721ccc533738fc28e8efefb03f2337af94fc0319d96a5692152a5"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/actual_frames/sensor_8.json",
+      "bytes": 264,
+      "sha256": "0f517111949f27e0c009474dd5b5750e6c66f9896e2ba91fef757f6c817d0b82"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/tracking_mode",
+      "bytes": 10,
+      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/CLEANUP.json",
+      "bytes": 543,
+      "sha256": "8928fc064bc2d293a5e10ad76dea35405eca253eca95d624d7962ef2ff528bd1"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/HOST_TRACE.json",
+      "bytes": 2401,
+      "sha256": "a039b2e191c8718e3f0719a80d97e8e6c2ecd7ffa5a2d3e0e4bb60ec39f849a8"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/OWNED_CHILD.json",
+      "bytes": 198,
+      "sha256": "3a3723b75c8b246f23d9ba09784f4cb55cddfa317f0808b63696a80ec573686e"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/STARTUP.json",
+      "bytes": 700,
+      "sha256": "b9d2f5253bfb6b673bb9798c246c6a8d3f9d23bfaa8d6c9ca1a467a4234b0bdc"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/SUPERVISOR_ERROR.json",
+      "bytes": 568,
+      "sha256": "00f91b445a0305379a659fc5a1b2ef1278e265a23cb029c0b1cb809e710f9864"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/native_stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/supervisor_stderr.log",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "native/host_spec_05c3277e3c124537bc2e31918a6ee009.json",
+      "bytes": 3138,
+      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36"
+    }
+  ]
+}

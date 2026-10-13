@@ -1,0 +1,70 @@
+{
+  "counts": {
+    "actuator_consumed": 60624,
+    "integration_boundary": 3368,
+    "physics_apply": 3368,
+    "fire_true": 0,
+    "private_pixels_published": 148,
+    "public_base64_complete": 148,
+    "adapter_enqueue": 2,
+    "adapter_result": 1,
+    "native_evidence_closed": 1
+  },
+  "camera": {
+    "available": false,
+    "reason": "runtime_stopped",
+    "total_fps_limit": 15,
+    "max_frame_age_wall_s": 2.5,
+    "max_views": 1,
+    "max_renderer_threads": 1,
+    "max_display_encoder_threads": 1,
+    "max_pending": 1,
+    "max_data_buffers": 2,
+    "max_display_pending": 1,
+    "max_display_rgb_bytes": 13996800,
+    "max_cached_raw_bytes": 4665600,
+    "native_pixels_enabled": true,
+    "native_cached": 0,
+    "max_native_cached_rgb_bytes": 4665600,
+    "max_cached_raw_base64_bytes": 6220800,
+    "max_cached_jpeg_bytes": 2097152,
+    "pending": 0,
+    "cached": 0,
+    "display_cached": 0,
+    "display_pending": 0,
+    "display_running": false,
+    "max_display_pending_seen": 1,
+    "raw_published": 148,
+    "running": false,
+    "rendered": 145,
+    "display_dropped": 3,
+    "display_error": null,
+    "renderer_identity": {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    "timing_report_available": true,
+    "dropped": 0,
+    "error": null,
+    "calibration_resolution_association": "ASSUMED; absent from source YAML"
+  },
+  "camera_closed": true,
+  "physics_thread_alive": false,
+  "shutdown_status": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.03279309999925317
+  },
+  "runtime_error": null,
+  "sim_time": 6.73599999999948,
+  "timing": {
+    "start": 33999.5013875,
+    "cpu_start": 2.71875,
+    "end": 34009.5359952,
+    "cpu_end": 18.953125
+  },
+  "errors": []
+}

@@ -10,6 +10,7 @@ from collections import Counter
 import copy
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import sys
@@ -45,10 +46,24 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
     scope='Bounded public-static-scene live diagnostic only; not full-match, aim accuracy, GUI or hardware qualification')
 
 
-def build_plan(transport):
+def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked'):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2'):raise ValueError('Explicit reviewed transport required')
+    if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
+    if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
+        raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
     plan['configuration']['native_transport']=transport
+    if raw_base64_codec!='stdlib_chunked':
+        plan['configuration']['raw_base64_codec']=raw_base64_codec
+        plan['criteria']['exact_raw_codec_identity']=True
+    if private_native_pixels:
+        plan['configuration'].update(private_native_pixels=True,
+            input_publication='sealed_actual_rgb_before_public_base64')
+        if transport=='wsl_stdio_bgr_v2':
+            plan['configuration']['rgb_trace_strategy']='archived_bgr_postclose_exact_channel_swap'
+            plan['criteria']['postclose_actual_pixel_audit']=True
+        plan['measurement']['stages']+=['exposure_to_private_pixels','private_pixels_to_adapter_enqueue']
+        plan['measurement']['logging']+='; actual private cache publish timestamp, public encoding measured separately'
     return plan
 
 
@@ -106,15 +121,53 @@ def classify(measurements,*,plan=None):
     for key in ('raw_ages_s','native_result_ages_s','actuator_wall_ages_s','actuator_sim_ages_s'):
         values=m.get(key,[])
         checks[key]=bool(values) and all(type(v) in (int,float) and 0<=v<=.08 for v in values)
+    if c.get('exact_raw_codec_identity'):
+        checks['raw_codec_identity_unchanged']=m.get('raw_codec_identity_unchanged') is True
+    if c.get('postclose_actual_pixel_audit'):
+        checks['postclose_actual_pixel_audit']=m.get('postclose_actual_pixel_audit') is True
     return dict(checks=checks,live_static_chain_qualified=all(checks.values()),
         full_match_qualified=False,hardware_qualified=False,visible_qt_qualified=False,
         rejected_or_failed_criteria=[k for k,v in checks.items() if not v])
 
 
-def stage_measurements(events, raw_frames, consumed_frames):
+def stage_measurements(events, raw_frames, consumed_frames,*,private_native_pixels=False,pixel_audit=None):
     """Join only host-clock source frame identities; never use Linux clock values."""
     enqueues={};requests={};results={};stages={k:[] for k in PLAN['measurement']['stages']}
-    matched=True
+    publications={};unpublished={};matched=True;inapplicable={}
+    if private_native_pixels:
+        stages.update(exposure_to_private_pixels=[],private_pixels_to_adapter_enqueue=[])
+        inapplicable['raw_encode_end_to_adapter_enqueue']='private native input is published before public base64 completion'
+    def finite_number(v):return type(v) in (int,float) and math.isfinite(v)
+    def actual_sha(v):return type(v) is str and bool(v)
+    audit_proofs={}
+    if (type(pixel_audit) is dict and pixel_audit.get('schema')=='polar.live.native-pixel-audit.v1'
+        and pixel_audit.get('clean') is True and pixel_audit.get('errors')==[]
+        and type(pixel_audit.get('proofs')) is list):
+        for proof in pixel_audit['proofs']:
+            fid=proof.get('frame_id')
+            if fid in audit_proofs:matched=False
+            audit_proofs[fid]=proof
+    def rgb_sha(event,frame_id):
+        sha=event.get('raw_rgb_sha256')
+        if actual_sha(sha):return sha
+        if (not private_native_pixels or sha is not None
+            or event.get('rgb_trace_strategy')!='archived_bgr_postclose_exact_channel_swap'):return None
+        proof=audit_proofs.get(frame_id);raw=raw_frames.get(frame_id)
+        if proof is None or raw is None:return None
+        if (proof.get('original_capture_wall')!=raw.get('capture_wall')
+            or proof.get('original_capture_sim_time')!=raw.get('capture_sim_time')
+            or proof.get('original_capture_sim_time')!=event.get('capture_sim_time')
+            or proof.get('observation_sim_time')!=event.get('observation_sim_time')
+            or proof.get('raw_bgr_sha256')!=event.get('raw_bgr_sha256')
+            or proof.get('derived_rgb_sha256')!=raw.get('raw_rgb_sha256')
+            or proof.get('raw_rgb_sha256')!=raw.get('raw_rgb_sha256')
+            or proof.get('shape')!=raw.get('shape') or proof.get('image_bytes')!=4665600
+            or not finite_number(event.get('observation_sim_time'))
+            or proof.get('original_control_time_ns')!=round(event['observation_sim_time']*1e9)
+            or proof.get('strategy')!='archived_bgr_postclose_exact_channel_swap'
+            or not any(all(identity.get(k)==event.get(k) and type(identity.get(k)) is type(event.get(k))
+                for k in ('observed_seq','episode','binding_epoch')) for identity in proof.get('request_identities',[]))):return None
+        return proof.get('derived_rgb_sha256')
     for event in events:
         kind=event['event']
         if kind=='adapter_enqueue':
@@ -122,15 +175,58 @@ def stage_measurements(events, raw_frames, consumed_frames):
             if budget:enqueues[event['observed_seq']]=event
         elif kind=='native_request':requests[event['frame_id']]=event
         elif kind=='native_result':results[event['frame_id']]=event
+        elif kind=='private_pixels_published' and private_native_pixels:
+            fid=event.get('frame_id')
+            if fid in publications:matched=False
+            publications[fid]=event
+        elif kind=='private_publish_rejected' and private_native_pixels:
+            fid=event.get('frame_id')
+            if fid in unpublished:matched=False
+            unpublished[fid]=event
+    if private_native_pixels:
+        if set(publications).intersection(unpublished) or set(publications).union(unpublished)!=set(raw_frames):matched=False
+        for fid,rejection in unpublished.items():
+            raw=raw_frames.get(fid)
+            if (fid in requests or raw is None or raw.get('frame_id')!=fid
+                or rejection.get('reason') not in ('no_native_consumer','runtime_stopped','camera_fault','episode_changed','capture_revoked','native_80ms_expired')
+                or rejection.get('capture_wall')!=raw.get('capture_wall')
+                or rejection.get('capture_sim_time')!=raw.get('capture_sim_time')
+                or rejection.get('wall_clock')!='provider_monotonic'
+                or not all(finite_number(v) for v in (rejection.get('wall_time'),raw.get('capture_wall'),raw.get('capture_sim_time'),raw.get('encoded_wall')))
+                or not raw['capture_wall']<=rejection['wall_time']<=raw['encoded_wall']):matched=False
+        for fid,publication in publications.items():
+            raw=raw_frames.get(fid);published=publication.get('wall_time')
+            valid=(raw is not None and raw.get('frame_id')==fid
+                and publication.get('capture_wall')==raw.get('capture_wall')
+                and publication.get('capture_sim_time')==raw.get('capture_sim_time')
+                and publication.get('wall_clock')=='provider_monotonic' and actual_sha(raw.get('raw_rgb_sha256'))
+                and all(finite_number(v) for v in (published,raw.get('capture_wall'),raw.get('capture_sim_time'),raw.get('encoded_wall')))
+                and 0<=published-raw['capture_wall']<=.08 and published<=raw['encoded_wall'])
+            if not valid:matched=False
+            else:stages['exposure_to_private_pixels'].append(published-raw['capture_wall'])
     for frame_id,request in requests.items():
         raw=raw_frames.get(frame_id)
-        if raw is None or raw['raw_rgb_sha256']!=request['raw_rgb_sha256']:
+        if (raw is None or not actual_sha(raw.get('raw_rgb_sha256'))
+            or raw.get('raw_rgb_sha256')!=rgb_sha(request,frame_id)):
             matched=False
         enqueue=enqueues.get(request['observed_seq'])
         if enqueue and enqueue['sensor_budget']['frame_id']!=frame_id:matched=False
         result=results.get(frame_id)
-        if raw and enqueue:
+        if raw and enqueue and not private_native_pixels:
             stages['raw_encode_end_to_adapter_enqueue'].append(enqueue['host_received_wall']-raw['encoded_wall'])
+        if private_native_pixels:
+            publication=publications.get(frame_id)
+            budget=None if enqueue is None else enqueue.get('sensor_budget')
+            published=None if publication is None else publication.get('wall_time')
+            valid=(publication is not None and raw is not None and budget is not None
+                and raw.get('frame_id')==frame_id
+                and budget.get('capture_wall')==raw.get('capture_wall')
+                and budget.get('capture_sim_time')==raw.get('capture_sim_time')
+                and request.get('capture_sim_time')==raw.get('capture_sim_time')
+                and finite_number(published) and finite_number(enqueue.get('host_received_wall'))
+                and published<=enqueue['host_received_wall']<=request['host_received_wall'])
+            if not valid:matched=False
+            else:stages['private_pixels_to_adapter_enqueue'].append(enqueue['host_received_wall']-published)
         if enqueue:
             stages['adapter_enqueue_to_native_request'].append(request['host_received_wall']-enqueue['host_received_wall'])
         if result:
@@ -139,17 +235,23 @@ def stage_measurements(events, raw_frames, consumed_frames):
         if result and consume:
             stages['native_result_to_actuator_consume'].append(consume['consume_wall']-result['host_received_wall'])
     for raw in raw_frames.values():
-        stages['exposure_to_raw_encode_end'].append(raw['encoded_wall']-raw['capture_wall'])
+        if all(finite_number(raw.get(k)) for k in ('encoded_wall','capture_wall')):
+            stages['exposure_to_raw_encode_end'].append(raw['encoded_wall']-raw['capture_wall'])
+        else:matched=False
     for consume in consumed_frames.values():
         stages['exposure_to_actuator_consume'].append(consume['consume_wall']-consume['budget']['capture_wall'])
     native_ages=[]
     for frame_id,result in results.items():
         request=requests.get(frame_id);raw=raw_frames.get(frame_id)
-        if request is None or raw is None or result['raw_rgb_sha256']!=request['raw_rgb_sha256']:
+        if (request is None or raw is None or not actual_sha(rgb_sha(result,frame_id))
+            or rgb_sha(result,frame_id)!=rgb_sha(request,frame_id)):
             matched=False
-        if raw:native_ages.append(result['host_received_wall']-raw['capture_wall'])
+        if raw and finite_number(raw.get('capture_wall')):native_ages.append(result['host_received_wall']-raw['capture_wall'])
+        elif raw:matched=False
     return dict(stages={k:distribution(v) for k,v in stages.items()},
-        stage_samples_s=stages, exact_sensor_pixel_binding=matched and bool(requests),
+        stage_samples_s=stages,stage_inapplicable=inapplicable,
+        unpublished_private_frames={fid:row.get('reason') for fid,row in unpublished.items()},
+        exact_sensor_pixel_binding=matched and bool(requests),
         raw_ages_s=stages['exposure_to_raw_encode_end'],native_result_ages_s=native_ages,
         actuator_wall_ages_s=[x['consume_wall']-x['budget']['capture_wall'] for x in consumed_frames.values()],
         actuator_sim_ages_s=[x['consume_sim_time']-x['budget']['capture_sim_time'] for x in consumed_frames.values()])
@@ -181,12 +283,15 @@ def run(a):
     from rm_match.match_model import SPAWNS
     import mujoco
     out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
-    plan=build_plan(a.native_transport)
+    plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec)
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
     sources={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (ROOT/'rm_match').rglob('*.py')}
     sources[Path(__file__).relative_to(ROOT).as_posix()]=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    if plan['criteria'].get('postclose_actual_pixel_audit'):
+        for rel in ('tools/audit_live_native_pixels.py','tools/diagnose_native_saved_compute.py'):
+            sources[rel]=hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
     write('EXECUTED_SOURCE.json',sources);write('PLAN.json',plan)
     identity=check_client(a.client_root)
     write('CLIENT_IDENTITY.json',identity)
@@ -200,7 +305,7 @@ def run(a):
         sim.data.qpos[sim.qindices[rid][1]]=y-SPAWNS[rid][1]
     sim.data.qvel[:]=0;mujoco.mj_forward(sim.model,sim.data)
     write('PUBLIC_INITIAL_SCENE.json',dict(origin='Explicit public static test only; never native DTO',qpos=sim.data.qpos.tolist()))
-    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[]
+    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[]
     def trace(row):
         event=row['event'];counts[event]+=1
         now=time.perf_counter()
@@ -233,16 +338,26 @@ def run(a):
                 renderer_errors.append(type(exc).__name__+':'+str(exc));raise
             finally:ready.set()
     class Camera(CameraProvider):
-        def _encode(self,cap,rgb):
-            value=super()._encode(cap,rgb)
+        def _encode(self,cap,rgb,*,raw_bytes=None):
+            value=super()._encode(cap,rgb,raw_bytes=raw_bytes)
             raw[cap.frame_seq]=dict(frame_id=cap.frame_seq,capture_wall=cap.wall_time,
                 capture_sim_time=cap.sim_time,encoded_wall=value['encoded_wall'],
-                raw_rgb_sha256=hashlib.sha256(rgb.tobytes()).hexdigest(),shape=list(rgb.shape))
+                raw_rgb_sha256=hashlib.sha256(rgb.tobytes() if raw_bytes is None else raw_bytes).hexdigest(),shape=list(rgb.shape))
             return value
-    camera=Camera(sim,clock=time.perf_counter,total_fps=15,max_views=1,renderer_factory=Render)
+    camera=Camera(sim,clock=time.perf_counter,total_fps=15,max_views=1,renderer_factory=Render,
+        enable_native_pixels=a.private_native_pixels,native_pixels_hook=trace if a.private_native_pixels else None,
+        raw_base64_codec=a.raw_base64_codec)
+    codec_identity=camera._raw_encoder_metadata
+    write('RAW_CODEC_IDENTITY.json',codec_identity)
     registry=own_wsl_registry(a.linux_native_spec,out/'native',repo_root=ROOT,
         distribution=a.distribution,native_trace=trace,transport=a.native_transport)
-    runtime=PlatformRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace)
+    class TimedRuntime(PlatformRuntime):
+        def step_once(self):
+            started=time.perf_counter()
+            try:return super().step_once()
+            finally:step_durations.append(time.perf_counter()-started)
+    runtime=TimedRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace,
+        enable_native_pixels=a.private_native_pixels)
     server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=AdmissionPolicy.from_manifest(out/'admission.json')),runtime)
     http=threading.Thread(target=server.serve_forever,daemon=True)
     client=None;physics=None;native=None;native_process=None;sdk_events=[];timing={};sdk_admitted=False;window_acked=False
@@ -324,11 +439,14 @@ def run(a):
     write('RUNTIME_OBSERVATION.json',dict(counts=dict(counts),camera=camera.status(),
         camera_closed=camera_closed,physics_thread_alive=physics is not None and physics.is_alive(),
         shutdown_status=getattr(runtime,'shutdown_status',None),runtime_error=runtime.error,
-        sim_time=sim.time,timing=timing,errors=errors))
+        sim_time=sim.time,timing=timing,errors=errors,step_duration_samples_s=step_durations))
     elapsed=timing.get('end',time.perf_counter())-timing.get('start',time.perf_counter())
     clean=(camera_closed and not http.is_alive() and (physics is None or not physics.is_alive())
         and getattr(runtime,'shutdown_status',{}).get('clean') is True)
     source_unchanged=all((ROOT/p).is_file() and hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
+    extension=codec_identity.get('extension_path')
+    codec_unchanged=(camera.raw_base64_codec==a.raw_base64_codec and (extension is None
+        or (Path(extension).is_file() and hashlib.sha256(Path(extension).read_bytes()).hexdigest()==codec_identity.get('extension_sha256'))))
     if counts['stale_actuator_receipts']:errors.append('Stale actuator consumption')
     budgets=[x['sensor_budget'] for x in events if x['event']=='adapter_enqueue' and x.get('sensor_budget')]
     native_budget_ok=bool(budgets) and all(0< b['wall_deadline']-b['capture_wall']<=.08+1e-9
@@ -340,16 +458,23 @@ def run(a):
             path=Path(evidence_out)/name
             if path.is_file():transport_evidence[name]=json.loads(path.read_text(encoding='utf-8'))
     actual_transport=(transport_evidence.get('STARTUP.json') or {}).get('transport')
+    pixel_audit=None
+    if plan['criteria'].get('postclose_actual_pixel_audit'):
+        from tools.audit_live_native_pixels import audit_saved_native_pixels
+        pixel_audit=audit_saved_native_pixels(out)
+        write('POST_CLOSE_PIXEL_AUDIT.json',pixel_audit)
     measured=dict(configuration=plan['configuration'],duration_s=elapsed,
         physics_rtf=sim.time/elapsed if elapsed>0 else 0,raw_frames=len(raw),
         native_results=counts['native_result'],distinct_native_actuated_frames=len(consumed),
         source_unchanged=source_unchanged,sdk_admission=sdk_admitted,window_acknowledged=window_acked,
         native_sensor_budget_80ms=native_budget_ok,
         actual_transport_matches_plan=actual_transport==a.native_transport,
+        raw_codec_identity_unchanged=codec_unchanged,
+        postclose_actual_pixel_audit=pixel_audit is not None and pixel_audit.get('clean') is True,
         fire_true=counts['fire_true'],clean_shutdown=clean,errors=errors,
         **fault_and_evidence_measurements(events,counts,
             writer_required=getattr(native,'_evidence_required',False)),
-        **stage_measurements(events,raw,consumed))
+        **stage_measurements(events,raw,consumed,private_native_pixels=a.private_native_pixels,pixel_audit=pixel_audit))
     rejects=Counter()
     for event in events:
         if event['event']=='adapter_result':
@@ -371,6 +496,9 @@ def run(a):
         native_process_diagnostic=getattr(native_process,'diagnostics',None),
         native_transport_evidence=transport_evidence,
         image_preparation=image_stage_summary(events),
+        raw_codec_identity=codec_identity,
+        pixel_audit=pixel_audit,
+        runtime_step_wall=distribution(step_durations),
         native_identity=None if native_process is None else native_process.checked.metadata,
         native_spec=None if native_process is None else native_process.checked.linux_spec,
         scope=PLAN['scope'])
@@ -384,6 +512,8 @@ def main(argv=None):
     p.add_argument('--linux-native-spec','--native-spec',dest='linux_native_spec',type=Path)
     p.add_argument('--distribution',default='Ubuntu')
     p.add_argument('--native-transport',choices=('wsl_stdio_v1','wsl_stdio_bgr_v2'),default='wsl_stdio_v1')
+    p.add_argument('--private-native-pixels',action='store_true',help='Explicit experimental own-native input before public base64 completion')
+    p.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked')
     p.add_argument('--client-root',type=Path)
     p.add_argument('--out',type=Path)
     p.add_argument('--seconds',type=float,default=10.)
@@ -391,7 +521,7 @@ def main(argv=None):
     a=p.parse_args(argv)
     if not 10<=a.seconds<=20:p.error('Actual run must be bounded to 10..20 wall seconds')
     if not a.run:
-        print(json.dumps(build_plan(a.native_transport),indent=2));return 0
+        print(json.dumps(build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec),indent=2));return 0
     for key in ('linux_native_spec','client_root','out'):
         if getattr(a,key) is None:p.error('--'+key.replace('_','-')+' is required with --run')
         setattr(a,key,getattr(a,key).resolve())
@@ -407,7 +537,7 @@ def main(argv=None):
             state='AFTER_STARTUP_FAILURE' if admitted else 'SETUP_FAILED',
             startup_admitted=admitted,runtime_evidence_available=(a.out/'RUNTIME_OBSERVATION.json').exists(),
             errors=[type(exc).__name__+':'+str(exc)],live_static_chain_qualified=False,
-            cleanup_qualified=False,plan=build_plan(a.native_transport))
+            cleanup_qualified=False,plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec))
         (a.out/'RESULT.json').write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(value,indent=2));return 2
 

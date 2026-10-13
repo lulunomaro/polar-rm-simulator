@@ -1,0 +1,47 @@
+[
+  {
+    "event": "startup_begin",
+    "host_perf_counter": 33992.8764227,
+    "transport": "wsl_stdio_bgr_v2",
+    "windows_native": false,
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu",
+      "--cd",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "--",
+      "/usr/bin/python3",
+      "-m",
+      "rm_match.integrations.wsl_operator_pipe_worker",
+      "--spec",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-contour-v3-final-default-build/operator_source.local.json",
+      "--spec-sha256",
+      "a808f11e8f8088ba89c2cf2a8e94d4bf18c386dc69d3d4114b9b2b40e57a3cdd",
+      "--out",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/wsl-native-live-20261013-attempt9-private-publish/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8",
+      "--fov-degrees",
+      "180.0",
+      "--radius-x",
+      "1.0",
+      "--radius-y",
+      "1.0",
+      "--startup-timeout",
+      "15.0",
+      "--control-timeout",
+      "0.08"
+    ]
+  },
+  {
+    "event": "startup_ready",
+    "host_perf_counter": 33999.4558964,
+    "transport": "wsl_stdio_bgr_v2",
+    "native_pid": 699,
+    "tmpfs_directory": "/dev/shm/polar-wsl-bgr-sigfb0ju"
+  },
+  {
+    "event": "closed",
+    "host_perf_counter": 33999.7127899,
+    "linux_child_reaped": true
+  }
+]

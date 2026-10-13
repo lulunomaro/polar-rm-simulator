@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from tools.diagnose_native_saved_compute import select_saved_native_input
+from tools.diagnose_native_saved_compute import select_saved_native_input,saved_storage_workspace
 
 
 class SavedNativeInputTests(unittest.TestCase):
@@ -127,6 +127,34 @@ class SavedNativeInputTests(unittest.TestCase):
         try:os.symlink(target,image)
         except OSError as exc:self.skipTest('Host does not permit symlink fixture: '+str(exc))
         with self.assertRaisesRegex(ValueError,'symlink'):select_saved_native_input(self.root)
+
+    def test_storage_variants_preserve_same_pixels_and_remove_only_owned_tempdir(self):
+        for mode in ('drvfs','tmpfs'):
+            with self.subTest(mode=mode):
+                out=self.root/mode;out.mkdir()
+                with saved_storage_workspace(out,self.raw,mode,tmpfs_parent=self.root) as state:
+                    self.assertEqual(state['image'].read_bytes(),self.raw)
+                    self.assertEqual((out/'saved_input.bgr').read_bytes(),self.raw)
+                    self.assertEqual(state['image_sha256'],self.sha)
+                    if mode=='tmpfs':
+                        self.assertNotEqual(state['workspace'],out)
+                        if os.name!='nt':self.assertEqual(state['workspace_mode'],'0o700')
+                    else:self.assertEqual(state['workspace'],out)
+                    (state['workspace']/'tracking_mode').write_bytes(b'multi_ekf\n')
+                    self.assertEqual((state['workspace']/'tracking_mode').read_bytes(),b'multi_ekf\n')
+                self.assertTrue(state['cleanup']['tmpfs_removed'])
+                self.assertEqual(state['cleanup']['tmpfs_created'],mode=='tmpfs')
+                self.assertTrue(out.exists());self.assertEqual((out/'saved_input.bgr').read_bytes(),self.raw)
+
+    def test_temp_workspace_removed_and_cleanup_retained_on_exception(self):
+        out=self.root/'out';out.mkdir()
+        with self.assertRaisesRegex(RuntimeError,'fixture failure'):
+            with saved_storage_workspace(out,self.raw,'tmpfs',tmpfs_parent=self.root) as state:
+                owned=state['workspace'];self.assertTrue(owned.exists())
+                raise RuntimeError('fixture failure')
+        self.assertFalse(owned.exists());self.assertTrue(state['cleanup']['tmpfs_removed'])
+        self.assertTrue(json.loads((out/'STORAGE_CLEANUP.json').read_text())['tmpfs_removed'])
+        self.assertEqual((out/'saved_input.bgr').read_bytes(),self.raw)
 
 
 if __name__=='__main__':unittest.main()

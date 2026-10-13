@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys,rclpy; from std_msgs.msg import String; print(json.dumps(dict(python=sys.version, rclpy_file=rclpy.__file__, string_module=String.__module__, rmw=rclpy.get_rmw_implementation_identifier())))
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib/python3.14/site-packages/rclpy/__init__.py", line 52, in <module>
+    from rclpy.parameter import Parameter
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib/python3.14/site-packages/rclpy/parameter.py", line 31, in <module>
+    from rcl_interfaces.msg import Parameter as ParameterMsg
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib/python3.14/site-packages/rcl_interfaces/msg/__init__.py", line 1, in <module>
+    from rcl_interfaces.msg._floating_point_range import FloatingPointRange as FloatingPointRange  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib/python3.14/site-packages/rcl_interfaces/msg/_floating_point_range.py", line 11, in <module>
+    import rosidl_pycommon.interface_base_classes
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib/python3.14/site-packages/rosidl_pycommon/__init__.py", line 23, in <module>
+    import em
+ModuleNotFoundError: No module named 'em'

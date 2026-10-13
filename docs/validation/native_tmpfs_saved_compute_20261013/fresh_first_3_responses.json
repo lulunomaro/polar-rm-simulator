@@ -1,0 +1,52 @@
+[
+  {
+    "sample": 0,
+    "linux_local_request_perf": 10.31864342,
+    "linux_local_response_perf": 10.353355793,
+    "response_s": 0.03471237299999963,
+    "response": {
+      "status": "ok",
+      "runner_identity": "rmcs-sim-operator-fov-v1",
+      "time_s": 0.428,
+      "clock_time_ns": 428000000,
+      "tracking": true,
+      "should_shoot": false,
+      "direction": [
+        0.9907805231199054,
+        2.4077292635271047e-05,
+        -0.13547676710982817
+      ],
+      "direction_frame": "world",
+      "robot_center": [
+        1.9843744910244903,
+        4.822295574393472e-05,
+        -0.29946463004475443
+      ],
+      "detector_executed": true,
+      "inference_calls": 1,
+      "frame_accepted": true,
+      "frame_stats": {
+        "raw2d": 1,
+        "accepted2d": 1,
+        "accepted3d": 1,
+        "rejected_color": 0,
+        "rejected_genre": 0,
+        "rejected_margin": 0,
+        "rejected_clipped": 0
+      },
+      "fov_raw2d": 1,
+      "fov_admitted2d": 1,
+      "fov_rejected2d": 0,
+      "pose_estimated3d": 1,
+      "target_age_s": 0.018,
+      "completed_result_event": true,
+      "result_exposure_time_s": 0.41,
+      "completed_result_observed_now": true,
+      "observation_shoot_allowed": true,
+      "runtime_mode_observed_config": "multi_ekf",
+      "runtime_mode_state_api": null,
+      "episode": 0,
+      "should_control": true
+    }
+  }
+]

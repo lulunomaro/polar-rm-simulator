@@ -1,0 +1,42 @@
+{
+  "scope": "Actual rclpy/DDS + owned JSONL bridge subprocess, explicit test-fixture observation/zero motion; no physics/Nav2/native algorithm",
+  "runs": [
+    {
+      "label": "probe",
+      "command": [
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+        "-c",
+        "import json,sys,rclpy; from std_msgs.msg import String; print(json.dumps(dict(python=sys.version, rclpy_file=rclpy.__file__, string_module=String.__module__, rmw=rclpy.get_rmw_implementation_identifier())))"
+      ],
+      "returncode": 1,
+      "elapsed_s": 1.3901093549999999
+    }
+  ],
+  "actual_dds_passed": false,
+  "environment": {
+    "PYTHONPATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib/python3.14/site-packages:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/usr/lib/python3/dist-packages:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "LD_LIBRARY_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical/lib:/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/usr/lib/x86_64-linux-gnu",
+    "AMENT_PREFIX_PATH": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix/opt/ros/lyrical",
+    "ROS_DISTRO": "lyrical",
+    "ROS_DOMAIN_ID": "79",
+    "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+    "ROS_STATIC_PEERS": "",
+    "ROS_LOCALHOST_ONLY": "1",
+    "RMW_IMPLEMENTATION": "rmw_fastrtps_cpp",
+    "POLAR_RUN_ACTUAL_ROS2_BRIDGE": "1"
+  },
+  "rclpy_package": {
+    "package": "ros-lyrical-rclpy",
+    "version": "10.0.11-1resolute.20260915.061807",
+    "file": "ros-lyrical-rclpy_10.0.11-1resolute.20260915.061807_amd64.deb",
+    "bytes": 533296,
+    "sha256": "bc5647883ec57eacabfeba382c4a36fc14c25b518b4cf466f42b09951999bada",
+    "source": "http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-lyrical-rclpy/ros-lyrical-rclpy_10.0.11-1resolute.20260915.061807_amd64.deb"
+  },
+  "sources": {
+    "rm_match/integrations/ros2_bridge.py": "5372c8a3afe5bb530560a2287b71f1898dd347f9eed08d1aacce8c4355a18241",
+    "rm_match/integrations/ros2_bridge_transport.py": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+    "tests/test_ros2_bridge_actual.py": "03b5e613fd6f9702aac492ccc8c0e5d56bccf1db784a233de106127901bcfea9"
+  },
+  "manifest_sha256": "46f562eba1cbe4dc03a91524de7158942908e3b79d29c8520b82aa0d9c0b76f6"
+}

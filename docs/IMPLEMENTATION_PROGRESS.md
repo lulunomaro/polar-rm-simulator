@@ -8,11 +8,11 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设及可执行校验 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败复现；独立图像 contour-v3 修复，完整 T2 新构建成功 | 静态 OFFLINE24 跟踪/执行与实际清理已过；模型漏检、移动目标与 live 门禁仍未关闭 |
-| T03 | 局部修复验证：raw/JPEG 分离、高精度时钟、实际补步、曝光起算的双 80ms 期限、帧发布唤醒；显式 Windows GPU/WSL native v1/v2、有界图像证据及静态描述符查询 | 第8轮RTF0.962、原ELF stdin完整但仍超时0返回/0执行；旧0.840根因未充分解释；native+GUI 全链、更多视角、完整比赛和长期负载 |
+| T03 | 局部修复验证：raw/JPEG 分离、高精度时钟、原期限复查、显式sealed像素早发布、C编码及退出后独立像素审计；第12轮5000实际步/RTF0.9977、148raw全部80ms内 | 首native等41.232ms仍超时、0返回/0执行；完整默认部署/live+GUI、更多视角/完整比赛/长期负载仍缺，旧回退根因未完整关闭 |
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 草案/已有入口：RobotIO 文档与 JSON adapter registry | 完整可替换插件、两套独立算法/客户端契约通过 |
+| T07 | 部分基础：RobotIO与JSON registry；可选ROS2信封桥，Lyrical/Fast DDS真实1项通过、身份echo与清理已测；JSONL同源QPC及排队后期限已修 | host2s startup/80ms物理ROS联调、标准ROS传感器消息、Nav2/自家节点适配、Windows↔WSL桥、两套完整独立实现 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 未完整实现：当前 ideal own odometry 与 64 rays 显式保留限制 | MID360/IMU/编码器包、自主定位建图、关闭理想定位审计 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
@@ -33,6 +33,48 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 最新代码与证据：ROS2及实时入口修复
+
+[ROS2基础桥](ROS2_BRIDGE.md) 已新增本地预注册的 navigation/aim ID和严格JSON信封；
+官方Lyrical rclpy10.0.11/FastDDS在Ubuntu26.04 WSL实际通过，bridge退出0、peer/thread/context清理完成。
+[永久证据](validation/ros2_dds_bridge_20261013/README.md)保留两个依赖失败和第三次实际成功，
+97ROS deb+11Ubuntu依赖只解压到owned prefix并核验官方签名/SHA。它使用明确DTO/零速度fixture；
+不证明host启动时窗、真实导航、自瞄、物理SIL、Nav2、TF、点云、LAN或硬件。
+Windows服务到WSL ROS的专用监督器尚未提供，不能把Linux注册路径直接视为Windows部署完成。
+
+JSONL修复了Windows Python3.12的monotonic/QPC origin差异；注册接口可注入与runtime相同clock，
+默认统一perf_counter；实际child测试证明不误过期，排队恢复后超过原deadline会关闭child/IO并拒绝。
+私有native路径默认关闭，仅两种经过review的精确native类可读sealed实际RGB，不向custom/JSON/ROS发送内部对象。
+公开observation.v2仍完整base64；lease/epoch/当前activation、stationary与wall/sim80ms、150ms窗口不变。
+初始化耗尽帧预算时丢弃旧帧，下一新帧可继续；算法真实异常仍持续故障直到新绑定。
+
+[第9轮](validation/wsl_native_live_20261013_attempt9/README.md)入口ValueError/零请求/RTF0.671失败保留；
+[第10轮](validation/wsl_native_live_20261013_attempt10/README.md)交接修复后有真实请求，但RTF0.735与native超时保留。
+显式camera-fast/pybase641.5.1只编码原字节；缺版本/C扩展明确失败，默认stdlib不变。
+[第11轮](validation/wsl_native_live_20261013_attempt11/README.md)RTF0.99464/raw148全80ms，
+仍因native超时而失败，记录诊断RGB SHA耗13.597ms。
+[第12轮](validation/wsl_native_live_20261013_attempt12/README.md)将诊断RGB审计移到退出后，
+原BGR/传输SHA同步保留；RTF0.997734、5000步/raw148全80ms、精确存档像素审计clean。
+bridge预算剩54.128ms，Linux收图7.892/hash2.024/tmpfs写2.447ms，原ELF stdin1733/1733完整，
+native等待41.232ms后仍超时。零native返回、零物理云台消费、fire0，不能称实时闭环通过。
+PID698已reap、tmpfs移除、所有writer/thread清理、源/扩展hash不变；168项运行源字节和实际BGR均冻结。
+
+[原保存图tmpfs离线诊断](validation/native_tmpfs_saved_compute_20261013/README.md)四个新原ELF进程首次真实检测/PnP/跟踪/control
+为34.712–57.612ms（P50 36.569）；重复同packet的.604ms不是真实新推理。
+不能用离线结果填补live空响应。下一项继续原native首推理/调度与部署性能；禁止相同配置盲重跑、提高门限或预热首推理。
+
+本轮统一质量入口 `artifacts/quality-20261013-ros2-private-native-checkpoint/manifest.json`：
+1060passed、7skipped、436subtests，实际camera35checks、preset/source/interface全部通过，
+723项source在检查期间不变；status仍为checks_passed_not_milestone_acceptance。
+真实WSL DDS另有1项通过，未把默认ROS专项skip、单位fixture和实时native失败相加称完整接入。
+测试完成后的仅文档/报告归档变更单独记录；已测业务代码不变。
+
+下一轮可执行诊断：在独立overlay构建中测first native read/create_request/resize/infer/post/PnP/tracker，
+原41.232ms是被期限截断的整包等待，不是纯NN耗时；原common_model.hpp已LATENCY。
+优先验证将Tensor/create_infer_request的纯分配移到模型setup（不set假图、不infer、不热首帧）；
+必要时独立比较实际生效的inference_num_threads=1/2/4与CPU pinning，保留原ELF/spec和原模型/算法/门限。
+ROS下一小验收应直接验证host原2s reset限制，不能从8s的DDS测试推出已满足。
 
 ## 实测与证据范围
 

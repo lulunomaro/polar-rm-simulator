@@ -1,0 +1,130 @@
+{
+  "scope": "Real DDS fixture only, no physics/custom navigation/aim/LAN",
+  "files": [
+    {
+      "path": "PACKAGES_MANIFEST.json",
+      "sha256": "46f562eba1cbe4dc03a91524de7158942908e3b79d29c8520b82aa0d9c0b76f6",
+      "bytes": 48520
+    },
+    {
+      "path": "UBUNTU_PACKAGES_MANIFEST.json",
+      "sha256": "56e235a2ce8fb1e61636cccb7c4b4a706fdcb8bf583d03290f655c996abd8b67",
+      "bytes": 4218
+    },
+    {
+      "path": "UBUNTU_PYTHON_PACKAGES_MANIFEST.json",
+      "sha256": "ba6ac2c481d2d57b9a352dc55e1c7c715d310321c87b23b2966486f5776aae70",
+      "bytes": 2412
+    },
+    {
+      "path": "EXTRACTION.json",
+      "sha256": "af0ff13d54bc75d1d6a0fce4d7ac71b26ce17f4615ec6abc149053ee0c579af1",
+      "bytes": 33624
+    },
+    {
+      "path": "EXTRACTION.log",
+      "sha256": "b4d4ea1a376f0f32ba491e2d58029430b502280879c1689248d642f2de1e2ff7",
+      "bytes": 339
+    },
+    {
+      "path": "EXTRACTION_UBUNTU.log",
+      "sha256": "3f15e8bf599c47bc2238a1672d3011ae675edfc819e07a3b0374a2fa2a08277b",
+      "bytes": 546
+    },
+    {
+      "path": "EXTRACTION_UBUNTU_PYTHON.log",
+      "sha256": "ec2af118a75bb0160b38939c4bf195e113e83aa3dfc7781dd02eaa99f725b66f",
+      "bytes": 278
+    },
+    {
+      "path": "InRelease",
+      "sha256": "99c8fd1eea5190fa65338c5567f76a258a124fd8b6dd903565bb86ce98844f51",
+      "bytes": 4679
+    },
+    {
+      "path": "Packages.gz",
+      "sha256": "bacbdb55b5314d3a9a3f01bc32a8c7d23eca562d1b0b7da20c6264c038ddd1a4",
+      "bytes": 665914
+    },
+    {
+      "path": "ros.key",
+      "sha256": "4a91c49af0d6f0016108b93698782b596c27ccd836937e18e0e36c3347dc602f",
+      "bytes": 1167
+    },
+    {
+      "path": "actual_attempt1/ACTUAL_ROS_RESULT.json",
+      "sha256": "8e423ef030a91edd23806236a6d3781ea20eb4cb53dab8ccea29ab2979394035",
+      "bytes": 2659
+    },
+    {
+      "path": "actual_attempt1/probe.stderr.log",
+      "sha256": "9900f928bb93d2e0fabf96e762b3c38716a3502e938a2144ec9fee661dceff03",
+      "bytes": 596
+    },
+    {
+      "path": "actual_attempt1/probe.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "actual_attempt2/ACTUAL_ROS_RESULT.json",
+      "sha256": "6d3f551784041a7b40e3527a64b007866822b921b980b51c4407bb1461f1e840",
+      "bytes": 3211
+    },
+    {
+      "path": "actual_attempt2/probe.stderr.log",
+      "sha256": "6c1cd385590223cc1587b1cfd927f152bbdf880956c2765a6affff8c9b88d6bb",
+      "bytes": 1814
+    },
+    {
+      "path": "actual_attempt2/probe.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "actual_attempt3/actual_dds.stderr.log",
+      "sha256": "11a18d34e8e795b7e4095de7b45714b13dff5e65c0eef38a2120c39b47508948",
+      "bytes": 277
+    },
+    {
+      "path": "actual_attempt3/actual_dds.stdout.log",
+      "sha256": "98b7e8c4b74e0a42aec2a5d84541a3321d78e3a3eed40758f3022e0415775605",
+      "bytes": 316
+    },
+    {
+      "path": "actual_attempt3/ACTUAL_ROS_RESULT.json",
+      "sha256": "cc7c2284b4632275cce81d7050a4f15b00336e80221cf5eb2a2647af6ad2dad7",
+      "bytes": 3702
+    },
+    {
+      "path": "actual_attempt3/probe.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "actual_attempt3/probe.stdout.log",
+      "sha256": "c3a241bbbb15cd02ee6e93d0bea96331b545ee1eeae61ddbf1b0d0656cfdf71d",
+      "bytes": 325
+    },
+    {
+      "path": "SIGNATURE_VALIDATION.txt",
+      "sha256": "58119e36674096084ced522e15c5e6596e1de0ed05e0d0a9b54bc2b80e21ec2e",
+      "bytes": 682
+    },
+    {
+      "path": "UBUNTU_SIGNATURE_VALIDATION.txt",
+      "sha256": "ad0a34f5b6c3c14800ead085b2ed341e65a7e216d8b0b988c396dc2ee05a896f",
+      "bytes": 221
+    },
+    {
+      "path": "UBUNTU_PYTHON_SIGNATURE_VALIDATION.txt",
+      "sha256": "ad0a34f5b6c3c14800ead085b2ed341e65a7e216d8b0b988c396dc2ee05a896f",
+      "bytes": 221
+    },
+    {
+      "path": "run_actual_ros.py.txt",
+      "sha256": "afe453747a42edbb3da94a0b29465391d256555b3dbf56c28269b2fec06e1f00",
+      "bytes": 3840
+    }
+  ]
+}

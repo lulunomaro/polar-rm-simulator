@@ -58,7 +58,11 @@ def load_registrations(path, *, with_digest=False):
 
 
 class JsonLineAdapter(BaseAdapter):
-    def __init__(self, config, *, registration, manifest, manifest_sha):
+    def __init__(self, config, *, registration, manifest, manifest_sha, clock=time.perf_counter):
+        if not callable(clock):raise ContractError('invalid_custom_clock')
+        # This host clock must match PlatformRuntime's deadline domain. On
+        # Windows Python3.12, monotonic() is not the QPC perf_counter clock.
+        self.clock = clock
         self.config = config
         self.registration = registration
         self.manifest = Path(manifest)
@@ -125,21 +129,23 @@ class JsonLineAdapter(BaseAdapter):
     def _exchange(self, packet, *, timeout):
         if self.failed or self.process is None or timeout <= 0:
             raise ContractError('custom_adapter_unavailable_or_expired')
-        deadline = time.monotonic() + timeout
+        deadline = self.clock() + timeout
         if packet['op'] == 'act':
             deadline = min(deadline, packet['observation']['wall_deadline'])
         raw = (json.dumps(dict(schema=SCHEMA, **packet), allow_nan=False, separators=(',', ':')) + '\n').encode()
         if len(raw) > MAX_REQUEST:
             raise ContractError('custom_request_oversized')
         try:
-            remaining = deadline - time.monotonic()
+            remaining = deadline - self.clock()
             if remaining <= 0:
                 raise TimeoutError('custom_deadline_expired_during_serialization')
             self.requests.put_nowait(raw)
-            remaining = deadline - time.monotonic()
+            remaining = deadline - self.clock()
             if remaining <= 0:
                 raise TimeoutError('custom_deadline_expired_before_response_wait')
             result = self.responses.get(timeout=remaining)
+            if self.clock() >= deadline:
+                raise TimeoutError('custom_response_after_original_deadline')
             if isinstance(result, Exception):
                 raise result
             exact(result, ('schema', 'op', 'ok', 'action') if packet['op'] == 'act' else ('schema', 'op', 'ok'), 'custom_response')
@@ -155,7 +161,7 @@ class JsonLineAdapter(BaseAdapter):
         o = self.checked(observation)
         require_sensors(o, self.registration['required_sensors'])
         response = self._exchange(dict(op='act', observation=o),
-                                  timeout=min(.25, o['wall_deadline'] - time.monotonic()))
+                                  timeout=min(.25, o['wall_deadline'] - self.clock()))
         return validate_action(response['action'], o, self.descriptor)
 
     def close(self):
@@ -197,12 +203,12 @@ class JsonLineAdapter(BaseAdapter):
                         raise RuntimeError('Custom adapter IO thread failed to stop')
 
 
-def register_json_adapters(registry, path):
+def register_json_adapters(registry, path, *, clock=time.perf_counter):
     path = Path(path).absolute()
     rows,manifest_sha = load_registrations(path,with_digest=True)
     for row in rows:
         def factory(config, row=row):
-            return JsonLineAdapter(config, registration=row, manifest=path, manifest_sha=manifest_sha)
+            return JsonLineAdapter(config, registration=row, manifest=path, manifest_sha=manifest_sha,clock=clock)
         d = descriptor(row['adapter_id'], row['kind'], row['label'], row['required_sensors'],
                        local_registration=True, process_isolation='not_a_security_sandbox')
         registry.register(d, factory)

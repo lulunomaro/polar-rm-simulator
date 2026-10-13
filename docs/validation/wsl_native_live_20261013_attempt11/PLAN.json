@@ -1,0 +1,77 @@
+{
+  "schema": "polar.wsl.native.live-plan.v1",
+  "configuration": {
+    "robot_count": 6,
+    "timestep_s": 0.002,
+    "resolution": [
+      1440,
+      1080
+    ],
+    "total_fps": 15,
+    "active_views": 1,
+    "real_time_factor_limit": 1.0,
+    "camera_native_budget_s": 0.08,
+    "server_input_window_s": 0.15,
+    "manual_fire": false,
+    "native_transport": "wsl_stdio_bgr_v2",
+    "clock": "Windows time.perf_counter, wall_deadline_live",
+    "raw_base64_codec": "pybase64_1_5_1",
+    "private_native_pixels": true,
+    "input_publication": "sealed_actual_rgb_before_public_base64"
+  },
+  "scene": {
+    "red_sentry_xy_m": [
+      -3.5,
+      3.0
+    ],
+    "blue_infantry_xy_m": [
+      -1.2,
+      3.0
+    ],
+    "initial_velocity": "zero, remaining public analytic 3v3 scene unchanged",
+    "truth_boundary": "Initial scene is audit-only; native input is actual BGR/calibration/own capture-state"
+  },
+  "setup": {
+    "renderer_ready_bound_s": 15.0,
+    "native_ready_bound_s": 20.0,
+    "before_timed_run": "No capture, inference, physics or clock substitution during startup"
+  },
+  "measurement": {
+    "seconds_min": 10.0,
+    "seconds_max": 20.0,
+    "include_first_capture": true,
+    "stages": [
+      "exposure_to_raw_encode_end",
+      "raw_encode_end_to_adapter_enqueue",
+      "adapter_enqueue_to_native_request",
+      "native_request_to_native_result",
+      "native_result_to_actuator_consume",
+      "exposure_to_actuator_consume",
+      "exposure_to_private_pixels",
+      "private_pixels_to_adapter_enqueue"
+    ],
+    "distributions": [
+      "sample_count",
+      "p50_ms",
+      "p95_ms",
+      "p99_ms",
+      "max_ms"
+    ],
+    "logging": "In-memory small event records; first actuator receipt per source frame, all phase counters; actual private cache publish timestamp, public encoding measured separately"
+  },
+  "criteria": {
+    "minimum_physics_rtf": 0.98,
+    "minimum_raw_frames": 30,
+    "minimum_native_results": 10,
+    "minimum_distinct_native_actuated_frames": 10,
+    "all_raw_encode_ages_at_most_s": 0.08,
+    "all_native_result_ages_at_most_s": 0.08,
+    "all_actuator_wall_and_sim_ages_at_most_s": 0.08,
+    "exact_render_native_pixel_binding": true,
+    "source_unchanged": true,
+    "reviewed_sdk_admission_and_window_ack": true,
+    "clean_shutdown": true,
+    "exact_raw_codec_identity": true
+  },
+  "scope": "Bounded public-static-scene live diagnostic only; not full-match, aim accuracy, GUI or hardware qualification"
+}

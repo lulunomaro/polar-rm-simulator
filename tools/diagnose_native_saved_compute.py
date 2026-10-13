@@ -7,10 +7,13 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import stat
 import sys
 import time
 import traceback
+import tempfile
+from contextlib import contextmanager
 from types import SimpleNamespace
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -104,18 +107,40 @@ def distribution(values):
     return dict(samples=len(values),p50_ms=p(.5),p95_ms=p(.95),p99_ms=p(.99),max_ms=max(values)*1000 if values else None)
 
 
+@contextmanager
+def saved_storage_workspace(out,content,storage,*,tmpfs_parent=Path('/dev/shm')):
+    """Preserve pixels in out; optionally use one owned, always removed workspace."""
+    if storage not in ('drvfs','tmpfs'):raise ValueError('Unknown saved-input storage')
+    retained=out/'saved_input.bgr';retained.write_bytes(content)
+    temporary=None
+    state=dict(storage=storage,retained_image=str(retained),image_sha256=hashlib.sha256(content).hexdigest(),
+        cleanup=None)
+    try:
+        if storage=='tmpfs':
+            temporary=tempfile.TemporaryDirectory(prefix='polar-saved-native-',dir=tmpfs_parent)
+            workspace=Path(temporary.name);workspace.chmod(0o700)
+            image=workspace/'saved_input.bgr';image.write_bytes(content)
+        else:workspace=out;image=retained
+        if image.read_bytes()!=content or retained.read_bytes()!=content:raise ValueError('Storage changed saved pixels')
+        state.update(workspace=workspace,image=image,workspace_mode=oct(workspace.stat().st_mode&0o777))
+        yield state
+    finally:
+        path=None if temporary is None else Path(temporary.name)
+        if temporary is not None:temporary.cleanup()
+        state['cleanup']=dict(tmpfs_created=path is not None,tmpfs_path=None if path is None else str(path),
+            tmpfs_removed=path is None or not path.exists())
+        (out/'STORAGE_CLEANUP.json').write_text(json.dumps(state['cleanup'],indent=2)+'\n',encoding='utf-8')
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--run-root',required=True,type=Path)
     p.add_argument('--native-spec',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
+    p.add_argument('--storage',choices=('drvfs','tmpfs'),default='drvfs')
     a=p.parse_args()
     if sys.platform!='linux':raise RuntimeError('Run only in Linux, no Windows/host clock inference')
     from rm_match.deployment.profile import validate_t2_spec
-    from rm_match.camera_profile import SourceCameraProfile
-    from rm_match.integrations.rmcs_contract import own_state
-    from rm_match.integrations.wsl_operator_worker import _stdin_wait,validate_sensor_frame
-    from rm_match.operator.source_aim import OperatorFovProcess
     spec,spec_sha=validate_t2_spec(a.native_spec)
     root=Path(os.path.abspath(a.run_root));out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
     def write(name,value):
@@ -123,7 +148,32 @@ def main():
     saved=select_saved_native_input(root)
     request=saved['request'];content=saved['content'];image_sha=saved['sha256']
     write('SAVED_INPUT_PROVENANCE.json',saved['provenance'])
-    image=out/'saved_input.bgr';image.write_bytes(content)
+    write('NATIVE_SPEC.json',spec)
+    write('DIAGNOSTIC_SOURCE.json',{rel:hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
+        for rel in ('tools/diagnose_native_saved_compute.py','rm_match/operator/source_aim.py',
+            'rm_match/integrations/rmcs_process.py')})
+    with saved_storage_workspace(out,content,a.storage) as workspace:
+        try:report=run_saved_compute(spec,spec_sha,out,saved,workspace)
+        except BaseException:
+            (out/'exception.txt').write_text(traceback.format_exc(),encoding='utf-8')
+            raise
+    report['storage_cleanup']=workspace['cleanup']
+    write('RESULT.json',report)
+    write('EVIDENCE_MANIFEST.json',{str(x.relative_to(out)):hashlib.sha256(x.read_bytes()).hexdigest()
+        for x in out.rglob('*') if x.is_file() and x.name!='EVIDENCE_MANIFEST.json'})
+    print(json.dumps({k:report[k] for k in ('fresh_valid_first_inference','duplicate_noninference_responses','filesystem_stages','errors')},indent=2))
+    return 0 if not report['errors'] and report['storage_cleanup']['tmpfs_removed'] and all(c['cleanup']['proc_absent'] for c in report['cases']) else 2
+
+
+def run_saved_compute(spec,spec_sha,out,saved,workspace):
+    import resource
+    from rm_match.camera_profile import SourceCameraProfile
+    from rm_match.integrations.rmcs_contract import own_state
+    from rm_match.integrations.wsl_operator_worker import _stdin_wait,validate_sensor_frame
+    from rm_match.operator.source_aim import OperatorFovProcess
+    def write(name,value):
+        (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    request=saved['request'];image_sha=saved['sha256'];image=workspace['image']
     captured=request['own_at_capture'];profile=SourceCameraProfile()
     own=own_state(SimpleNamespace(own_qpos=captured['own_qpos_at_capture'],own_qvel=captured['own_qvel_at_capture'],
         odom_xyyaw=captured['own_odom_at_capture'],odom_vxyw=captured['own_odom_velocity_at_capture'],
@@ -151,12 +201,14 @@ def main():
     # Same packet fifteen times in one process, plus three independent fresh
     # first-inference cases. Duplicate exposure is rejected by original gates.
     for name,count in [('same_packet_15',15),('fresh_first_1',1),('fresh_first_2',1),('fresh_first_3',1)]:
-        process=OperatorFovProcess(spec['binary'],spec['executor_yaml'],out/name,env,
+        case_out=out/name;case_cwd=workspace['workspace']/name
+        process=OperatorFovProcess(spec['binary'],spec['executor_yaml'],case_cwd,env,
             fov=dict(fov_degrees=180.,circle_radius_x_norm=1.,circle_radius_y_norm=1.),timeout=2.)
         rows=[];child=None;readiness=None;start=time.perf_counter();error=None;cleanup=None
+        usage_before=resource.getrusage(resource.RUSAGE_CHILDREN);cpu=None;peak_rss_kib=None
         try:
-            (out/name).mkdir(parents=True,exist_ok=False)
-            (out/name/'tracking_mode').write_text(spec['runtime_mode_contents'])
+            case_cwd.mkdir(parents=True,exist_ok=False)
+            (case_cwd/'tracking_mode').write_bytes(spec['runtime_mode_contents'].encode('utf-8'))
             process.reset(dict(episode=request['episode']));child=process.process
             deadline=time.perf_counter()+15
             while time.perf_counter()<deadline:
@@ -178,6 +230,14 @@ def main():
             (out/(name+'_exception.txt')).write_text(traceback.format_exc(),encoding='utf-8')
             startup=time.perf_counter()-start
         finally:
+            try:
+                if child is not None:
+                    for line in Path('/proc/'+str(child.pid)+'/status').read_text().splitlines():
+                        if line.startswith('VmHWM:'):peak_rss_kib=int(line.split()[1])
+            except OSError:
+                # An exited process can vanish here; resource audit must never
+                # prevent the lifecycle owner from closing/reaping its child.
+                pass
             close_start=time.perf_counter()
             try:process.close()
             except BaseException as exc:
@@ -186,14 +246,25 @@ def main():
                 returncode=None if child is None else child.poll(),
                 proc_absent=child is not None and not Path('/proc/'+str(child.pid)).exists(),
                 stdin_closed=child is not None and child.stdin.closed,stdout_closed=child is not None and child.stdout.closed)
+            usage_after=resource.getrusage(resource.RUSAGE_CHILDREN)
+            cpu=dict(user_s=usage_after.ru_utime-usage_before.ru_utime,system_s=usage_after.ru_stime-usage_before.ru_stime,
+                peak_rss_kib_preclose=peak_rss_kib,qualification='Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing')
+            if case_cwd!=case_out and case_cwd.exists():
+                try:shutil.copytree(case_cwd,case_out)
+                except OSError as exc:errors.append(dict(case=name,error='retain_case:'+type(exc).__name__+':'+str(exc)))
         cases.append(dict(case=name,startup_s=startup,zero_tick_readiness=readiness,error=error,cleanup=cleanup,
+            child_cwd=str(case_cwd),cpu=cpu,tracking_mode_sha256=hashlib.sha256(spec['runtime_mode_contents'].encode('utf-8')).hexdigest(),
             responses=rows,actual_detector_samples=sum(x['response']['detector_executed'] is True for x in rows)))
+        write('CASES_PARTIAL.json',cases)
     first=[x['responses'][0]['response_s'] for x in cases if x['responses'] and x['responses'][0]['response']['detector_executed']]
     duplicates=[x['response_s'] for x in cases[0]['responses'][1:] if not x['response']['detector_executed']]
     report=dict(schema='polar.linux.saved-native-compute.v1',scope='Offline Linux-local compute/FS diagnostic only; cannot supplement failed live control',
         clock_domain='Linux time.perf_counter only, never subtract Windows/QPC time',
         spec_sha256=spec_sha,binary_sha256=spec['sha256']['binary'],model_sha256=spec['model_sha256'],
         source_identity=spec['source_identity'],actual_image_sha256=image_sha,saved_input=saved['provenance'],
+        storage=dict(mode=workspace['storage'],native_image=str(image),retained_image=workspace['retained_image'],
+            workspace=str(workspace['workspace']),workspace_mode=workspace['workspace_mode'],
+            identical_retained_and_native_pixels=True),
         preserved_capture_ns=packet['frame']['exposure_timestamp_ns'],preserved_control_ns=packet['control_time_ns'],
         timestamp_or_pixel_changes=False,own_fields_omitted_not_archived=['hp','ammo','heat'],
         ready_before_capture_or_inference=True,live_80ms_budget_changed=False,
@@ -201,11 +272,7 @@ def main():
         fresh_valid_first_inference=distribution(first),duplicate_noninference_responses=distribution(duplicates),
         filesystem_stages={k:distribution([x[k] for x in fs]) for k in ('read_s','sha256_s','json_encode_s')},
         filesystem_samples=fs)
-    write('RESULT.json',report)
-    write('EVIDENCE_MANIFEST.json',{str(x.relative_to(out)):hashlib.sha256(x.read_bytes()).hexdigest()
-        for x in out.rglob('*') if x.is_file() and x.name!='EVIDENCE_MANIFEST.json'})
-    print(json.dumps({k:report[k] for k in ('fresh_valid_first_inference','duplicate_noninference_responses','filesystem_stages','errors')},indent=2))
-    return 0 if not errors and all(c['cleanup']['proc_absent'] for c in cases) else 2
+    return report
 
 
 if __name__=='__main__':

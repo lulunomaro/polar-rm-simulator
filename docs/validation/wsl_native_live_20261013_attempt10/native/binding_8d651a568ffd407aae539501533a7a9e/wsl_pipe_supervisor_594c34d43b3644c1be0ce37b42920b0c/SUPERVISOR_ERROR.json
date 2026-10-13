@@ -1,0 +1,18 @@
+{
+  "reason": "control_timeout",
+  "error_type": "TimeoutError",
+  "error": "control_timeout",
+  "linux_stages_s": {
+    "pipe_receive_s": 0.012509125000000232,
+    "payload_sha256_s": 0.0019245660000004605,
+    "tmpfs_write_s": 0.0021051999999999182,
+    "native_stdin_write_s": 1.91810000007564e-05,
+    "native_result_wait_s": 0.01704149099999963
+  },
+  "received_bgr_bytes": 4665600,
+  "native_stdin_bytes_written": 1729,
+  "native_stdin_complete": true,
+  "native_stdin_expected_bytes": 1729,
+  "request_id": 1,
+  "clock_domain": "linux_local_diagnostic_only"
+}

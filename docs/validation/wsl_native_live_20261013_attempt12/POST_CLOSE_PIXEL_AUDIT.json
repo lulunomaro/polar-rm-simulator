@@ -1,0 +1,40 @@
+{
+  "schema": "polar.live.native-pixel-audit.v1",
+  "clean": true,
+  "proofs": [
+    {
+      "frame_id": 7,
+      "original_capture_wall": 36825.9059907,
+      "original_capture_sim_time": 0.4100000000000003,
+      "original_control_time_ns": 422000000,
+      "observation_sim_time": 0.4220000000000003,
+      "request_identities": [
+        {
+          "observed_seq": 8,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422",
+      "derived_rgb_sha256": "fdbd9b0a2a0c116dad80e39e3a909b13db50f0d72a27c3ec54136c8464ed7261",
+      "raw_rgb_sha256": "fdbd9b0a2a0c116dad80e39e3a909b13db50f0d72a27c3ec54136c8464ed7261",
+      "image": "native/binding_80592e12f3dd4acf94faa3e76ad61839/actual_frames/sensor_7.bgr",
+      "manifest": "native/binding_80592e12f3dd4acf94faa3e76ad61839/actual_frames/sensor_7.json",
+      "manifest_sha256": "606b79676eda1b6afbcc4c59d43488f4db5e4c72f4f1ba1be9181cd0888bd504",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    }
+  ],
+  "errors": [],
+  "sources": {
+    "ledger_sha256": "c7d07cc8dade929e52a79645a73512a4efb13d4b977f1338ae5c8f69f6620cd2",
+    "frame_bindings_sha256": "eea00e6d80d3b692bc49ff28cfbf87ed8cb9824bbb4bd387bfa73ed3a36d719c"
+  },
+  "strategy": "archived_bgr_postclose_exact_channel_swap"
+}

@@ -1,0 +1,1118 @@
+[
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.5010705,
+    "window_id": 1,
+    "activation_expires": 33999.649282800005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.552249,
+    "window_id": 2,
+    "activation_expires": 33999.680756300004
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.6246882,
+    "window_id": 3,
+    "activation_expires": 33999.7682493
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.6913786,
+    "window_id": 4,
+    "activation_expires": 33999.8273606
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.7595701,
+    "window_id": 5,
+    "activation_expires": 33999.896292900004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 33999.7595717,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.8936611,
+    "window_id": 6,
+    "activation_expires": 34000.0252296
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 33999.9660694,
+    "window_id": 7,
+    "activation_expires": 34000.1009816
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 33999.9660712,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.0361233,
+    "window_id": 8,
+    "activation_expires": 34000.1795118
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.1018633,
+    "window_id": 9,
+    "activation_expires": 34000.243896600005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.1690537,
+    "window_id": 10,
+    "activation_expires": 34000.3049724
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34000.1690553,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.2465125,
+    "window_id": 11,
+    "activation_expires": 34000.383538400005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.308488,
+    "window_id": 12,
+    "activation_expires": 34000.448602000004
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.3820928,
+    "window_id": 13,
+    "activation_expires": 34000.5192724
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34000.3820946,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.4486003,
+    "window_id": 14,
+    "activation_expires": 34000.5858108
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.5120151,
+    "window_id": 15,
+    "activation_expires": 34000.6517249
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.5713154,
+    "window_id": 16,
+    "activation_expires": 34000.712728800005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.6401371,
+    "window_id": 17,
+    "activation_expires": 34000.781606900004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34000.6401389,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.7138127,
+    "window_id": 18,
+    "activation_expires": 34000.8529661
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.800685,
+    "window_id": 19,
+    "activation_expires": 34000.9397147
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.8569405,
+    "window_id": 20,
+    "activation_expires": 34000.9972508
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34000.8569416,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34000.979497,
+    "window_id": 21,
+    "activation_expires": 34001.1153011
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.0510169,
+    "window_id": 22,
+    "activation_expires": 34001.1823267
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.114216,
+    "window_id": 23,
+    "activation_expires": 34001.2470675
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34001.1142175,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.1943371,
+    "window_id": 24,
+    "activation_expires": 34001.332645
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.2552986,
+    "window_id": 25,
+    "activation_expires": 34001.3972625
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.3215662,
+    "window_id": 26,
+    "activation_expires": 34001.4516338
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34001.3215685,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.3889876,
+    "window_id": 27,
+    "activation_expires": 34001.5290478
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.4571327,
+    "window_id": 28,
+    "activation_expires": 34001.596172000005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.5241497,
+    "window_id": 29,
+    "activation_expires": 34001.6562211
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34001.5241514,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.5937083,
+    "window_id": 30,
+    "activation_expires": 34001.7341824
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.660798,
+    "window_id": 31,
+    "activation_expires": 34001.7990912
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.7316028,
+    "window_id": 32,
+    "activation_expires": 34001.8702517
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34001.7316048,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.7967067,
+    "window_id": 33,
+    "activation_expires": 34001.9395931
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.8683882,
+    "window_id": 34,
+    "activation_expires": 34001.999203600004
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34001.9428829,
+    "window_id": 35,
+    "activation_expires": 34002.0734295
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34001.9428854,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.0633689,
+    "window_id": 36,
+    "activation_expires": 34002.1972316
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.1305037,
+    "window_id": 37,
+    "activation_expires": 34002.262706
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.1974779,
+    "window_id": 38,
+    "activation_expires": 34002.331943000005
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34002.1974794,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.267334,
+    "window_id": 39,
+    "activation_expires": 34002.409439200004
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.3329185,
+    "window_id": 40,
+    "activation_expires": 34002.4677765
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.3930065,
+    "window_id": 41,
+    "activation_expires": 34002.5311793
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.4677427,
+    "window_id": 42,
+    "activation_expires": 34002.6108506
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34002.4677442,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.5443997,
+    "window_id": 43,
+    "activation_expires": 34002.6838344
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.6092049,
+    "window_id": 44,
+    "activation_expires": 34002.7478236
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.6724637,
+    "window_id": 45,
+    "activation_expires": 34002.8116581
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34002.6724653,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.8056634,
+    "window_id": 46,
+    "activation_expires": 34002.9126046
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.8752523,
+    "window_id": 47,
+    "activation_expires": 34003.0157722
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34002.8752536,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34002.9487937,
+    "window_id": 48,
+    "activation_expires": 34003.0889456
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.0137282,
+    "window_id": 49,
+    "activation_expires": 34003.1544679
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.0739244,
+    "window_id": 50,
+    "activation_expires": 34003.2143592
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.1480886,
+    "window_id": 51,
+    "activation_expires": 34003.2860382
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34003.1480904,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.2231015,
+    "window_id": 52,
+    "activation_expires": 34003.361599
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.283524,
+    "window_id": 53,
+    "activation_expires": 34003.4252638
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.34906,
+    "window_id": 54,
+    "activation_expires": 34003.478552
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34003.3490872,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.4296015,
+    "window_id": 55,
+    "activation_expires": 34003.5724243
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.4912066,
+    "window_id": 56,
+    "activation_expires": 34003.6264944
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.5524824,
+    "window_id": 57,
+    "activation_expires": 34003.693116300004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34003.5524839,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.626121,
+    "window_id": 58,
+    "activation_expires": 34003.7672502
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.696614,
+    "window_id": 59,
+    "activation_expires": 34003.832551
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.7612466,
+    "window_id": 60,
+    "activation_expires": 34003.8998996
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34003.7612484,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.8293595,
+    "window_id": 61,
+    "activation_expires": 34003.9693049
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.893652,
+    "window_id": 62,
+    "activation_expires": 34004.032390600005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34003.9608285,
+    "window_id": 63,
+    "activation_expires": 34004.1003951
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.0281617,
+    "window_id": 64,
+    "activation_expires": 34004.1667026
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34004.0281633,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.1357846,
+    "window_id": 65,
+    "activation_expires": 34004.2382555
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.2192145,
+    "window_id": 66,
+    "activation_expires": 34004.3304176
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.2912569,
+    "window_id": 67,
+    "activation_expires": 34004.427570500004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34004.2912586,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.3661424,
+    "window_id": 68,
+    "activation_expires": 34004.5036748
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.4307333,
+    "window_id": 69,
+    "activation_expires": 34004.5692393
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.4977984,
+    "window_id": 70,
+    "activation_expires": 34004.6301673
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34004.4977994,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.5696025,
+    "window_id": 71,
+    "activation_expires": 34004.7069328
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.6380215,
+    "window_id": 72,
+    "activation_expires": 34004.7740739
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.6987335,
+    "window_id": 73,
+    "activation_expires": 34004.8408453
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34004.6987344,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.7701154,
+    "window_id": 74,
+    "activation_expires": 34004.907125800004
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.8385578,
+    "window_id": 75,
+    "activation_expires": 34004.9761333
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.9049227,
+    "window_id": 76,
+    "activation_expires": 34005.040559400004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34004.9049244,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34004.9774133,
+    "window_id": 77,
+    "activation_expires": 34005.1140126
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.0421171,
+    "window_id": 78,
+    "activation_expires": 34005.1825894
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.1107668,
+    "window_id": 79,
+    "activation_expires": 34005.248831000004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34005.1107684,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.1760345,
+    "window_id": 80,
+    "activation_expires": 34005.3143807
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.2399555,
+    "window_id": 81,
+    "activation_expires": 34005.3791358
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.304726,
+    "window_id": 82,
+    "activation_expires": 34005.4429177
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.3772573,
+    "window_id": 83,
+    "activation_expires": 34005.5166762
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34005.3772588,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.4443792,
+    "window_id": 84,
+    "activation_expires": 34005.5843591
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.5120724,
+    "window_id": 85,
+    "activation_expires": 34005.6521471
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.5868268,
+    "window_id": 86,
+    "activation_expires": 34005.7236823
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34005.5868286,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.704313,
+    "window_id": 87,
+    "activation_expires": 34005.8349639
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.7895649,
+    "window_id": 88,
+    "activation_expires": 34005.927982
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34005.7895666,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.8587902,
+    "window_id": 89,
+    "activation_expires": 34005.9959402
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34005.972105,
+    "window_id": 90,
+    "activation_expires": 34006.0818377
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.0459127,
+    "window_id": 91,
+    "activation_expires": 34006.1759829
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34006.0459144,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.116721,
+    "window_id": 92,
+    "activation_expires": 34006.253915500005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.193282,
+    "window_id": 93,
+    "activation_expires": 34006.328045400005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.2584018,
+    "window_id": 94,
+    "activation_expires": 34006.3953906
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34006.2584037,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.3265286,
+    "window_id": 95,
+    "activation_expires": 34006.463267
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.3835135,
+    "window_id": 96,
+    "activation_expires": 34006.5258672
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.4530634,
+    "window_id": 97,
+    "activation_expires": 34006.5946807
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.5214615,
+    "window_id": 98,
+    "activation_expires": 34006.6534507
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34006.5214628,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.5906815,
+    "window_id": 99,
+    "activation_expires": 34006.7312393
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.660996,
+    "window_id": 100,
+    "activation_expires": 34006.7887232
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.7303253,
+    "window_id": 101,
+    "activation_expires": 34006.870321200004
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34006.7303273,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.8035482,
+    "window_id": 102,
+    "activation_expires": 34006.9400091
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.8640102,
+    "window_id": 103,
+    "activation_expires": 34007.0049834
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.9261431,
+    "window_id": 104,
+    "activation_expires": 34007.0615213
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34006.9978642,
+    "window_id": 105,
+    "activation_expires": 34007.135212
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34006.9978659,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.0667288,
+    "window_id": 106,
+    "activation_expires": 34007.2076551
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.131668,
+    "window_id": 107,
+    "activation_expires": 34007.2687363
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.1991943,
+    "window_id": 108,
+    "activation_expires": 34007.3331525
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34007.1991963,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.2758886,
+    "window_id": 109,
+    "activation_expires": 34007.414274200004
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.335986,
+    "window_id": 110,
+    "activation_expires": 34007.4765052
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.4049974,
+    "window_id": 111,
+    "activation_expires": 34007.5384538
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34007.405003,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.4758846,
+    "window_id": 112,
+    "activation_expires": 34007.6141452
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.5497339,
+    "window_id": 113,
+    "activation_expires": 34007.686039
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.6117518,
+    "window_id": 114,
+    "activation_expires": 34007.7505065
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34007.6117553,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.678708,
+    "window_id": 115,
+    "activation_expires": 34007.816723
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.7420069,
+    "window_id": 116,
+    "activation_expires": 34007.8806532
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.8152632,
+    "window_id": 117,
+    "activation_expires": 34007.9532031
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34007.8152642,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.8804624,
+    "window_id": 118,
+    "activation_expires": 34008.0204238
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34007.9415216,
+    "window_id": 119,
+    "activation_expires": 34008.0824377
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.0087964,
+    "window_id": 120,
+    "activation_expires": 34008.1405976
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.084617,
+    "window_id": 121,
+    "activation_expires": 34008.2221491
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34008.0846188,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.1505928,
+    "window_id": 122,
+    "activation_expires": 34008.2920536
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.2135274,
+    "window_id": 123,
+    "activation_expires": 34008.3523498
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.276823,
+    "window_id": 124,
+    "activation_expires": 34008.416995700005
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.353901,
+    "window_id": 125,
+    "activation_expires": 34008.489516
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34008.3539023,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.4226061,
+    "window_id": 126,
+    "activation_expires": 34008.561573
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.4798083,
+    "window_id": 127,
+    "activation_expires": 34008.6213553
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.5445644,
+    "window_id": 128,
+    "activation_expires": 34008.6814859
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.6179333,
+    "window_id": 129,
+    "activation_expires": 34008.7577642
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34008.6179351,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.7000285,
+    "window_id": 130,
+    "activation_expires": 34008.8248256
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.7568504,
+    "window_id": 131,
+    "activation_expires": 34008.8992679
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.8207106,
+    "window_id": 132,
+    "activation_expires": 34008.9601181
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34008.8207123,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.8950282,
+    "window_id": 133,
+    "activation_expires": 34009.0343325
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34008.9579966,
+    "window_id": 134,
+    "activation_expires": 34009.0982136
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.0203819,
+    "window_id": 135,
+    "activation_expires": 34009.1604924
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.0914131,
+    "window_id": 136,
+    "activation_expires": 34009.2220732
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34009.0914147,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.1675564,
+    "window_id": 137,
+    "activation_expires": 34009.3077201
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.2297885,
+    "window_id": 138,
+    "activation_expires": 34009.3698246
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.2967771,
+    "window_id": 139,
+    "activation_expires": 34009.4332682
+  },
+  {
+    "event": "operator_status",
+    "host_wall": 34009.2967787,
+    "algorithm_status": null,
+    "runtime_state": "running"
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.367125,
+    "window_id": 140,
+    "activation_expires": 34009.5062998
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.436618,
+    "window_id": 141,
+    "activation_expires": 34009.5771078
+  },
+  {
+    "event": "activation_ack",
+    "host_wall": 34009.4926794,
+    "window_id": 142,
+    "activation_expires": 34009.6334856
+  },
+  {
+    "event": "expected_runtime_stopped",
+    "phase": "terminal_sdk_request",
+    "host_wall": 34009.535202,
+    "remote_session_close_ack": false
+  }
+]

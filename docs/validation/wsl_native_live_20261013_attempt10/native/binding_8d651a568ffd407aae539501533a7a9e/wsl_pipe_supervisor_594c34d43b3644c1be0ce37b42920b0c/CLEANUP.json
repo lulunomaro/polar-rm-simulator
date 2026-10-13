@@ -1,0 +1,18 @@
+{
+  "transport": "wsl_stdio_bgr_v2",
+  "pid": 699,
+  "reason": "control_timeout",
+  "killed": false,
+  "returncode": -15,
+  "reaped": true,
+  "tmpfs_directory": "/dev/shm/polar-wsl-bgr-8vc4f11g",
+  "tmpfs_removed": true,
+  "native_lifetime_cpu": {
+    "user_s": 0.367175,
+    "system_s": 0.501508,
+    "max_rss_kib": 142392,
+    "scope": "Owned child process lifetime including model startup; Linux getrusage, not timed-run NN latency"
+  },
+  "cleanup_linux_monotonic": 6.969550097,
+  "clock_domain": "linux_local_diagnostic_only"
+}

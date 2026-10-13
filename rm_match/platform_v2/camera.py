@@ -100,12 +100,28 @@ class MuJoCoCameraRenderer:
 
 class CameraProvider:
     def __init__(self,sim,*,clock=time.perf_counter,total_fps=2.,max_frame_age_wall_s=2.5,
-                 renderer_factory=MuJoCoCameraRenderer,max_views=MAX_VIEWS):
+                 renderer_factory=MuJoCoCameraRenderer,max_views=MAX_VIEWS,
+                 enable_native_pixels=False,native_pixels_hook=None,raw_base64_codec='stdlib_chunked'):
         import mujoco
         import numpy as np
         from ..camera_profile import SourceCameraProfile
         if not 0<total_fps<=15 or not .1<=max_frame_age_wall_s<=5:raise ValueError('Invalid camera timing bounds')
         if type(max_views) is not int or not 1<=max_views<=MAX_VIEWS:raise ValueError('Invalid camera view limit')
+        if type(enable_native_pixels) is not bool or (native_pixels_hook is not None and not callable(native_pixels_hook)):
+            raise ValueError('Invalid local native pixel experiment')
+        self.enable_native_pixels=enable_native_pixels;self.native_pixels_hook=native_pixels_hook
+        if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
+            raise ValueError('Unknown local raw base64 codec')
+        self.raw_base64_codec=raw_base64_codec;self._raw_encoder=None
+        self._raw_encoder_metadata=dict(codec='stdlib_chunked',version=None,module=__name__,
+            function='encode_raw_base64',extension_path=None,extension_sha256=None)
+        if raw_base64_codec!='stdlib_chunked':
+            # One verified native-code binding at local setup. The raw-only
+            # factory selects this same cached binding by known enum, never a
+            # freely supplied callable or a per-frame import/hash scan.
+            from .base64_codec import load_raw_encoder,raw_encoder_metadata
+            self._raw_encoder=load_raw_encoder(raw_base64_codec)
+            self._raw_encoder_metadata=raw_encoder_metadata(raw_base64_codec)
         if sim.renderer is not None:raise ValueError('Camera provider requires render=False live simulation')
         self.model=sim.model;self.clock=clock;self.total_fps=total_fps;self.ttl=max_frame_age_wall_s
         self.profile=SourceCameraProfile(overscan_pixels=64)
@@ -127,7 +143,7 @@ class CameraProvider:
         self.lock=threading.Lock();self.wake=threading.Event();self.stopped=threading.Event()
         # At most max_views pending snapshots plus one worker-owned snapshot.
         self.free=[mujoco.MjData(self.model) for _ in range(self.max_views+1)]
-        self.pending=OrderedDict();self.cache={};self.display_cache={};self.display_pending=OrderedDict()
+        self.pending=OrderedDict();self.cache={};self.native_cache={};self.display_cache={};self.display_pending=OrderedDict()
         self.display_wake=threading.Event();self.display_thread=None;self.display_error=None;self.display_running=False
         self.desired={};self.episode=None;self.sequence=0
         self.next_capture=0.;self.cursor=0;self.authority=None;self.error=None;self.thread=None
@@ -135,7 +151,7 @@ class CameraProvider:
         self.raw_published=0;self.display_dropped=0;self.max_display_pending_seen=0;self.renderer_identity=None
         self.timings=TimingLedger(('snapshot_copy','renderer_init','render_queue_wait','render_total',
                                   'scene_update','render_readback','lens_warp','raw_encode','jpeg_encode',
-                                  'capture_to_raw','capture_to_display'))
+                                  'capture_to_raw','capture_to_display','capture_to_private_pixels'))
 
     def start(self):
         with self.lock:
@@ -145,7 +161,7 @@ class CameraProvider:
             self.thread=threading.Thread(target=self._loop,name='sim-v2-camera',daemon=True);self.thread.start()
 
     def _reset_locked(self,episode):
-        self.episode=episode;self.cache.clear();self.display_cache.clear();self.display_pending.clear()
+        self.episode=episode;self.cache.clear();self.native_cache.clear();self.display_cache.clear();self.display_pending.clear()
         for cap in self.pending.values():self.free.append(cap.buffer)
         self.pending.clear()
 
@@ -167,6 +183,9 @@ class CameraProvider:
                 if rid not in self.desired:self.free.append(self.pending.pop(rid).buffer);self.dropped+=1
             for rid in list(self.cache):
                 if rid not in self.desired:self.cache.pop(rid)
+            for rid in list(self.native_cache):
+                if not self.native_cache[rid]['capture'].consumers.intersection(self.desired.get(rid,())):
+                    self.native_cache.pop(rid)
             for values in (self.display_cache,self.display_pending):
                 for rid in list(values):
                     if rid not in self.desired:values.pop(rid)
@@ -188,20 +207,66 @@ class CameraProvider:
             self.next_capture=now+1/self.total_fps
         self.wake.set();self.start()
 
-    def _encode(self,cap,rgb):
+    def _encode(self,cap,rgb,*,raw_bytes=None):
         """Raw sensor serialization only. Display compression has its own worker."""
         import numpy as np
         p=self.profile
         if rgb.dtype!=np.uint8 or rgb.shape!=(p.height,p.width,3):raise ValueError('Renderer image contract mismatch')
-        raw_bytes=rgb.tobytes()
+        if raw_bytes is None:raw_bytes=rgb.tobytes()
         payload,pixel_token=encode_camera_pixels(raw_bytes,robot_id=cap.robot_id,episode=cap.episode,
-            frame_id=cap.frame_seq,capture_sim_time=cap.sim_time,encoding='rgb8',width=p.width,height=p.height,stride_bytes=p.width*3)
+            frame_id=cap.frame_seq,capture_sim_time=cap.sim_time,encoding='rgb8',width=p.width,height=p.height,stride_bytes=p.width*3,
+            raw_base64_codec=getattr(self,'raw_base64_codec','stdlib_chunked'))
         camera=dict(available=True,reason='available',frame_id=cap.frame_seq,capture_sim_time=cap.sim_time,
             **cap.own,image=dict(encoding='rgb8',width=p.width,height=p.height,stride_bytes=p.width*3,
                 data_base64=payload),
             intrinsics=self.calibrations[cap.robot_id]['intrinsics'],extrinsics=self.calibrations[cap.robot_id]['extrinsics'],
             provenance='simulated_raw_camera')
         return dict(camera=camera,capture=replace(cap,buffer=None,projectiles=()),encoded_wall=self.clock(),pixel_token=pixel_token)
+
+    def _pixel_event(self,event,cap,*,wall_time=None,reason=None):
+        if self.native_pixels_hook is not None:
+            row=dict(event=event,robot_id=cap.robot_id,episode=cap.episode,
+                frame_id=cap.frame_seq,capture_wall=cap.wall_time,capture_sim_time=cap.sim_time,
+                wall_time=self.clock() if wall_time is None else wall_time,wall_clock='provider_monotonic')
+            if reason is not None:row['reason']=reason
+            self.native_pixels_hook(row)
+
+    def _publish_native_pixels(self,cap,rgb):
+        """One actual immutable copy, before any public base64 encoding."""
+        import numpy as np
+        from .native_camera_snapshot import mint_native_snapshot
+        p=self.profile
+        if rgb.dtype!=np.uint8 or rgb.shape!=(p.height,p.width,3):raise ValueError('Renderer image contract mismatch')
+        raw=rgb.tobytes()
+        consumers=frozenset(c for c in cap.consumers if len(c)==5 and c[:3]==('adapter',cap.robot_id,'aim'))
+        if consumers:
+            calibration=self.calibrations[cap.robot_id]
+            pixels=mint_native_snapshot(raw,robot_id=cap.robot_id,episode=cap.episode,frame_id=cap.frame_seq,
+                capture_wall=cap.wall_time,capture_sim_time=cap.sim_time,consumers=consumers,
+                width=p.width,height=p.height,stride_bytes=p.width*3,own=cap.own,
+                intrinsics=calibration['intrinsics'],extrinsics=calibration['extrinsics'])
+            detached=replace(cap,buffer=None,projectiles=(),consumers=consumers)
+            with self.lock:
+                observed_wall=self.clock()
+                revoked=(self.stopped.is_set() or self.error is not None or cap.episode!=self.episode
+                    or not consumers.intersection(self.desired.get(cap.robot_id,())))
+                expired=not 0<=observed_wall-cap.wall_time<=min(self.ttl,.08)
+                published=not revoked and not expired
+                if published:
+                    self.native_cache[cap.robot_id]=dict(capture=detached,pixels=pixels)
+                    # Stamp the actual publication linearization point. The
+                    # physics thread may enqueue before this hook is delivered.
+                    published_wall=self.clock()
+                elif self.stopped.is_set():reason='runtime_stopped'
+                elif self.error is not None:reason='camera_fault'
+                elif cap.episode!=self.episode:reason='episode_changed'
+                else:reason='capture_revoked' if revoked else 'native_80ms_expired'
+            if published:
+                self.timings.record('capture_to_private_pixels',published_wall-cap.wall_time)
+                self._pixel_event('private_pixels_published',cap,wall_time=published_wall)
+            else:self._pixel_event('private_publish_rejected',cap,wall_time=observed_wall,reason=reason)
+        else:self._pixel_event('private_publish_rejected',cap,reason='no_native_consumer')
+        return raw
 
     def _encode_display(self,cap,rgb):
         from PIL import Image
@@ -263,8 +328,13 @@ class CameraProvider:
                         self.timings.record('render_total',self.clock()-started)
                         for stage,duration in getattr(renderer,'last_timings',{}).items():
                             self.timings.record(stage,duration)
-                        started=self.clock();result=self._encode(cap,rgb)
+                        started=self.clock()
+                        if self.enable_native_pixels:
+                            raw_bytes=self._publish_native_pixels(cap,rgb)
+                            result=self._encode(cap,rgb,raw_bytes=raw_bytes)
+                        else:result=self._encode(cap,rgb)
                         self.timings.record('raw_encode',self.clock()-started)
+                        if self.enable_native_pixels:self._pixel_event('public_base64_complete',cap,wall_time=result['encoded_wall'])
                     with self.lock:
                         queue_display=False
                         if result is not None and self._current_locked(cap):
@@ -286,25 +356,26 @@ class CameraProvider:
                 finally:
                     with self.lock:self.free.append(cap.buffer);self.running=False
         except BaseException as exc:
-            with self.lock:self.error=type(exc).__name__;self.cache.clear();self.display_cache.clear()
+            with self.lock:self.error=type(exc).__name__;self.cache.clear();self.native_cache.clear();self.display_cache.clear()
         finally:
             if renderer is not None:
                 try:renderer.close()
                 except BaseException as exc:
-                    with self.lock:self.error=type(exc).__name__;self.cache.clear();self.display_cache.clear()
+                    with self.lock:self.error=type(exc).__name__;self.cache.clear();self.native_cache.clear();self.display_cache.clear()
             with self.lock:
                 for cap in self.pending.values():self.free.append(cap.buffer)
                 self.pending.clear();self.running=False
 
-    def _get_locked(self,rid,episode,consumer,*,max_wall_age=None,sim_time=None,max_sim_age=None,display=False):
+    def _get_locked(self,rid,episode,consumer,*,max_wall_age=None,sim_time=None,max_sim_age=None,display=False,native=False):
         if self.error:return None,'camera_error:'+self.error
         if self.stopped.is_set():return None,'runtime_stopped'
         if episode!=self.episode:return None,'episode_changed'
         if display and self.display_error:return None,'display_error:'+self.display_error
-        result=(self.display_cache if display else self.cache).get(rid)
+        result=(self.native_cache if native else (self.display_cache if display else self.cache)).get(rid)
         if result is None:return None,'waiting_for_display_encode' if display and rid in self.cache else 'waiting_for_camera'
         cap=result['capture']
-        if cap.robot_id!=rid or cap.episode!=episode or consumer not in cap.consumers:return None,'capture_generation_mismatch'
+        if (cap.robot_id!=rid or cap.episode!=episode or consumer not in cap.consumers
+            or (getattr(self,'enable_native_pixels',False) and consumer not in self.desired.get(rid,()))):return None,'capture_generation_mismatch'
         age=self.clock()-cap.wall_time
         if not 0<=age<=min(self.ttl,max_wall_age if max_wall_age is not None else self.ttl):return None,'camera_expired'
         if sim_time is not None and not 0<=sim_time-cap.sim_time<=max_sim_age:return None,'camera_sim_expired'
@@ -339,6 +410,40 @@ class CameraProvider:
     def sensor_camera(self,rid,episode,consumer,sim_time,ttl):
         return self.sensor_packet(rid,episode,consumer,sim_time,ttl)['camera']
 
+    def native_sensor_identity(self,rid,episode,consumer,sim_time,ttl):
+        if not self.enable_native_pixels:return None
+        with self.lock:
+            value,_=self._get_locked(rid,episode,consumer,max_wall_age=min(ttl,.08),sim_time=sim_time,max_sim_age=min(ttl,.08),native=True)
+            if value is None:return None
+            cap=value['capture'];return cap.frame_seq,cap.wall_time,cap.sim_time
+
+    def native_sensor_packet(self,rid,episode,consumer,sim_time,ttl):
+        if not self.enable_native_pixels:return dict(pixels=None,budget=None)
+        with self.lock:
+            ttl=min(ttl,.08,self.ttl)
+            value,_=self._get_locked(rid,episode,consumer,max_wall_age=ttl,sim_time=sim_time,max_sim_age=ttl,native=True)
+            if value is None:return dict(pixels=None,budget=None)
+            cap=value['capture']
+            return dict(pixels=value['pixels'],budget=dict(robot_id=rid,episode=episode,frame_id=cap.frame_seq,
+                capture_wall=cap.wall_time,capture_sim_time=cap.sim_time,wall_deadline=cap.wall_time+ttl,sim_deadline=cap.sim_time+ttl))
+
+    def native_capture_valid(self,rid,episode,consumer,budget,sim_time):
+        """Revoke pending/private outputs on fault, release and generation change."""
+        with self.lock:
+            return bool(self.enable_native_pixels and not self.error and not self.stopped.is_set()
+                and episode==self.episode and consumer in self.desired.get(rid,())
+                and budget is not None and budget['robot_id']==rid and budget['episode']==episode
+                and budget['capture_wall']<=self.clock()<min(budget['wall_deadline'],budget['capture_wall']+.08)
+                and budget['capture_sim_time']<=sim_time<=min(budget['sim_deadline'],budget['capture_sim_time']+.08))
+
+    def sensor_capture_valid(self,rid,episode,consumer,budget,sim_time):
+        """Cheap public result guard, including faults after packet delivery."""
+        with self.lock:
+            return bool(not self.error and not self.stopped.is_set() and episode==self.episode
+                and consumer in self.desired.get(rid,()) and budget is not None
+                and budget['capture_wall']<=self.clock()<min(budget['wall_deadline'],budget['capture_wall']+self.ttl)
+                and budget['capture_sim_time']<=sim_time<=budget['sim_deadline'])
+
     def display_frame(self,rid,episode,consumer,watch_epoch):
         with self.lock:
             value,reason=self._get_locked(rid,episode,consumer,display=True)
@@ -359,6 +464,9 @@ class CameraProvider:
             max_renderer_threads=1,max_display_encoder_threads=1,max_pending=self.max_views,max_data_buffers=self.max_views+1,
             max_display_pending=self.max_views,max_display_rgb_bytes=(self.max_views+2)*self.profile.width*self.profile.height*3,
             max_cached_raw_bytes=self.max_views*self.profile.width*self.profile.height*3,
+            native_pixels_enabled=self.enable_native_pixels,native_cached=len(self.native_cache),
+            raw_base64_codec=self.raw_base64_codec,
+            max_native_cached_rgb_bytes=self.max_views*self.profile.width*self.profile.height*3 if self.enable_native_pixels else 0,
             max_cached_raw_base64_bytes=self.max_views*((self.profile.width*self.profile.height*3+2)//3*4),
             max_cached_jpeg_bytes=self.max_views*MAX_JPEG_BYTES,
             pending=len(self.pending),cached=len(self.cache),display_cached=len(self.display_cache),
@@ -373,7 +481,7 @@ class CameraProvider:
         return self.timings.snapshot()
 
     def fault(self,reason):
-        with self.lock:self.error=reason;self.cache.clear();self.display_cache.clear();self.display_pending.clear()
+        with self.lock:self.error=reason;self.cache.clear();self.native_cache.clear();self.display_cache.clear();self.display_pending.clear()
         self.stopped.set();self.wake.set();self.display_wake.set()
 
     def stop(self):

@@ -1,0 +1,69 @@
+{
+  "scope": "Official Ubuntu authenticated apt-get download + SHA verification + dpkg-deb -x only",
+  "inrelease_sha256": "45f95ce276cdba3e41870516a130e03c58b8b7a79e9546b0efe9e526d255740c",
+  "packages": [
+    {
+      "package": "libconsole-bridge1.0",
+      "version": "1.0.1+dfsg2-4",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/universe/c/console-bridge/libconsole-bridge1.0_1.0.1%2bdfsg2-4_amd64.deb",
+      "file": "libconsole-bridge1.0_1.0.1+dfsg2-4_amd64.deb",
+      "bytes": 11650,
+      "sha256": "f496ca1d5aa1e7a83a2f0a87b0aef16dfa6f2400012244b21e9d6de5dd5f611e",
+      "policy": "libconsole-bridge1.0:\n  Installed: (none)\n  Candidate: 1.0.1+dfsg2-4\n  Version table:\n     1.0.1+dfsg2-4 500\n        500 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages\n"
+    },
+    {
+      "package": "libtinyxml2-11",
+      "version": "11.0.0+dfsg-1build1",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/universe/t/tinyxml2/libtinyxml2-11_11.0.0%2bdfsg-1build1_amd64.deb",
+      "file": "libtinyxml2-11_11.0.0+dfsg-1build1_amd64.deb",
+      "bytes": 33502,
+      "sha256": "e593c7383c43778e9d049575ab0dbd44852a17026d9b8f28d8863db07d7addb5",
+      "policy": "libtinyxml2-11:\n  Installed: (none)\n  Candidate: 11.0.0+dfsg-1build1\n  Version table:\n     11.0.0+dfsg-1build1 500\n        500 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages\n"
+    },
+    {
+      "package": "liblttng-ust1t64",
+      "version": "2.14.0-1.1",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/main/u/ust/liblttng-ust1t64_2.14.0-1.1_amd64.deb",
+      "file": "liblttng-ust1t64_2.14.0-1.1_amd64.deb",
+      "bytes": 212994,
+      "sha256": "b9f7b2c93f0db3c0428878eff494ab749f9606d83db01df840976faf29a3272b",
+      "policy": "liblttng-ust1t64:\n  Installed: (none)\n  Candidate: 2.14.0-1.1\n  Version table:\n     2.14.0-1.1 500\n        500 http://archive.ubuntu.com/ubuntu resolute/main amd64 Packages\n"
+    },
+    {
+      "package": "liblttng-ust-common1t64",
+      "version": "2.14.0-1.1",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/main/u/ust/liblttng-ust-common1t64_2.14.0-1.1_amd64.deb",
+      "file": "liblttng-ust-common1t64_2.14.0-1.1_amd64.deb",
+      "bytes": 35352,
+      "sha256": "413cbba2b458cb291224adf766efd517b68a7d619de01f3146d37ff0a5697bf2",
+      "policy": "liblttng-ust-common1t64:\n  Installed: (none)\n  Candidate: 2.14.0-1.1\n  Version table:\n     2.14.0-1.1 500\n        500 http://archive.ubuntu.com/ubuntu resolute/main amd64 Packages\n"
+    },
+    {
+      "package": "liblttng-ust-ctl6",
+      "version": "2.14.0-1.1",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/main/u/ust/liblttng-ust-ctl6_2.14.0-1.1_amd64.deb",
+      "file": "liblttng-ust-ctl6_2.14.0-1.1_amd64.deb",
+      "bytes": 97394,
+      "sha256": "56623ea800840f230fe7b79b5af918fdb5ad28ba0a9ba23e66f0ac68afdfb11c",
+      "policy": "liblttng-ust-ctl6:\n  Installed: (none)\n  Candidate: 2.14.0-1.1\n  Version table:\n     2.14.0-1.1 500\n        500 http://archive.ubuntu.com/ubuntu resolute/main amd64 Packages\n"
+    },
+    {
+      "package": "libspdlog1.15",
+      "version": "1:1.15.3+ds-1build1",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/universe/s/spdlog/libspdlog1.15_1.15.3%2bds-1build1_amd64.deb",
+      "file": "libspdlog1.15_1%3a1.15.3+ds-1build1_amd64.deb",
+      "bytes": 118576,
+      "sha256": "b810cfb3354596859296c36c5d807c75c27ec1d53fe014fb029574b058b8cfb3",
+      "policy": "libspdlog1.15:\n  Installed: (none)\n  Candidate: 1:1.15.3+ds-1build1\n  Version table:\n     1:1.15.3+ds-1build1 500\n        500 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages\n"
+    },
+    {
+      "package": "libfmt10",
+      "version": "10.1.1+ds1-4build1",
+      "uri": "http://archive.ubuntu.com/ubuntu/pool/universe/f/fmtlib/libfmt10_10.1.1%2bds1-4build1_amd64.deb",
+      "file": "libfmt10_10.1.1+ds1-4build1_amd64.deb",
+      "bytes": 75642,
+      "sha256": "656ab858fbd4424d4a09097ffc6f8102828298d430a1e3c9f13eaa857b93bc95",
+      "policy": "libfmt10:\n  Installed: (none)\n  Candidate: 10.1.1+ds1-4build1\n  Version table:\n     10.1.1+ds1-4build1 500\n        500 http://archive.ubuntu.com/ubuntu resolute/universe amd64 Packages\n"
+    }
+  ]
+}

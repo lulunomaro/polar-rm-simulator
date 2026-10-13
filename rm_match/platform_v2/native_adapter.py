@@ -44,6 +44,10 @@ def validate_native_spec(spec_path,expected_spec_sha=None):
 class NativeSourceAdapter(BaseAdapter):
     def __init__(self,config,*,spec_path,out,registered_spec_sha=None,trace=None):
         from ..operator.source_aim import IDENTITY
+        # Definition-only Python imports belong to local setup, before the
+        # physics/camera clock starts. No exposure, native tick or inference.
+        from . import native_observation
+        from ..integrations import rmcs_contract
         if set(config)-{'fov_degrees','circle_radius_x_norm','circle_radius_y_norm'}:raise ContractError('invalid_native_config')
         self.fov=dict(fov_degrees=finite(config.get('fov_degrees',85.),'fov',10,180),circle_radius_x_norm=finite(config.get('circle_radius_x_norm',.25),'circle_x',1e-6,2),circle_radius_y_norm=finite(config.get('circle_radius_y_norm',.25),'circle_y',1e-6,2))
         self.trace=trace
@@ -93,6 +97,15 @@ class NativeSourceAdapter(BaseAdapter):
         if any(o[k]!=self.context[k] for k in self.context):raise ContractError('adapter_context_mismatch')
         return self._act_sensor(o,lambda:self._hold(o),lambda c:action_for(o,'aim','gimbal_target',c),decoded_image=decoded_image)
 
+    def _act_native_pixels(self,base,pixels,*,consumer,budget,now):
+        """Explicit private schema. Never create an incomplete observation.v2."""
+        from .native_observation import validate_native_observation,reviewed_native_instance
+        if not reviewed_native_instance(self):raise ContractError('private_native_type_not_reviewed')
+        envelope=validate_native_observation(base,pixels,consumer=consumer,budget=budget,now=now)
+        o=envelope.base
+        if any(o[k]!=self.context[k] for k in self.context):raise ContractError('adapter_context_mismatch')
+        return self._act_sensor(o,lambda:self._hold(o),lambda c:action_for(o,'aim','gimbal_target',c),native_envelope=envelope)
+
     def _start_process(self,episode):
         from ..operator.source_aim import OperatorFovProcess
         validate_native_spec(self.spec_path,self.spec_sha)
@@ -113,13 +126,15 @@ class NativeSourceAdapter(BaseAdapter):
     def _native_control(self,packet,observation,*,image_bytes=None):
         return self.process.control(packet)
 
-    def _act_sensor(self,o,hold,emit,*,decoded_image=None):
+    def _act_sensor(self,o,hold,emit,*,decoded_image=None,native_envelope=None):
         # Shared sensor computation only. Callers validate a distinct live or
         # offline envelope before entry; runtime acceptance policies stay separate.
         from ..integrations.rmcs_contract import own_state,command_from_direction
         from ..camera_profile import SourceCameraProfile
         if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
-        require_sensors(o,('camera','odometry'));cam=o['sensors']['camera'];p=SourceCameraProfile()
+        require_sensors(o,('camera','odometry') if native_envelope is None else ('odometry',))
+        cam=o['sensors']['camera'] if native_envelope is None else native_envelope.pixels.metadata()
+        p=SourceCameraProfile()
         if o['robot_id']!='red_sentry':raise ContractError('native_robot_unsupported')
         intr=cam['intrinsics'];im=cam['image'];ext=cam['extrinsics']
         if (im['width'],im['height'])!=(p.width,p.height):raise ContractError('native_camera_resolution_mismatch')
@@ -137,11 +152,19 @@ class NativeSourceAdapter(BaseAdapter):
         if self.stable_since is None:self.stable_since=t;self.anchor=list(xy)
         if t-self.stable_since<.4 or t-cam['capture_sim_time']>.08:return hold()
         if cam['frame_id']<=self.last_capture:return hold()
-        raw=raw_observation(o,decoded_image=decoded_image)
+        if native_envelope is None:raw=raw_observation(o,decoded_image=decoded_image)
+        else:
+            from .native_observation import raw_native_observation
+            raw=raw_native_observation(native_envelope)
         if self.process is None:
             self._start_process(o['episode'])
         inline=getattr(self,'transport',None)=='wsl_stdio_bgr_v2'
-        prepared=prepare_native_image(raw.rgb,self.directory/'sensor_input.bgr',trace_rgb=self.trace is not None,return_bytes=inline,write_artifact=not inline)
+        # Only this private v2 route preserves every immutable BGR frame. The
+        # post-close auditor must verify/reconstruct RGB; a missing digest here
+        # is an explicit deferred obligation, never fabricated audit success.
+        deferred_rgb=native_envelope is not None and inline
+        prepared=prepare_native_image(raw.rgb,self.directory/'sensor_input.bgr',
+            trace_rgb=self.trace is not None and not deferred_rgb,return_bytes=inline,write_artifact=not inline)
         image,rgb_sha,image_stages=prepared[:3];image_bytes=prepared[3] if inline else None
         if inline:
             writer=self._evidence_writer
@@ -152,7 +175,9 @@ class NativeSourceAdapter(BaseAdapter):
         frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=7,own_team='red',image=image,camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))
         self.last_capture=cam['frame_id']
         if self.trace:
-            trace_identity=dict(robot_id=o['robot_id'],episode=o['episode'],binding_epoch=o['binding_epoch'],observed_seq=o['observed_seq'],frame_id=cam['frame_id'],capture_sim_time=cam['capture_sim_time'],observation_sim_time=t,clock_profile=o.get('clock_profile','wall_deadline_live'),wall_deadline=o.get('wall_deadline'),schedule=o.get('schedule'),raw_bgr_sha256=frame['image']['sha256'],raw_rgb_sha256=rgb_sha,own_at_capture={k:cam[k] for k in ('own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture')})
+            trace_identity=dict(robot_id=o['robot_id'],episode=o['episode'],binding_epoch=o['binding_epoch'],observed_seq=o['observed_seq'],frame_id=cam['frame_id'],capture_sim_time=cam['capture_sim_time'],observation_sim_time=t,clock_profile=o.get('clock_profile','wall_deadline_live'),wall_deadline=o.get('wall_deadline'),schedule=o.get('schedule'),raw_bgr_sha256=frame['image']['sha256'],raw_rgb_sha256=rgb_sha,
+                rgb_trace_strategy='archived_bgr_postclose_exact_channel_swap' if deferred_rgb else 'synchronous_rgb_sha256',
+                own_at_capture={k:cam[k] for k in ('own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture')})
             self.trace(dict(event='native_frame_prepare',wall_time=time.perf_counter(),image_stages=image_stages,**trace_identity))
             self.trace(dict(event='native_request',wall_time=time.perf_counter(),wall_clock='host_perf_counter',**trace_identity))
         response=self._native_control(dict(episode=o['episode'],control_time_ns=round(t*1e9),frame=frame),o,image_bytes=image_bytes)

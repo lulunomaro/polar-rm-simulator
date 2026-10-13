@@ -1,0 +1,75 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Origin: ROS
+Label: ROS resolute
+Suite: resolute
+Codename: resolute
+Date: Mon, 05 Oct 2026 22:48:49 UTC
+Architectures: i386 amd64 arm64 armhf
+Components: main
+Description: ROS resolute Debian Repository
+MD5Sum:
+ 96365876eb76c31dae9505820272e1da 80083 main/binary-i386/Packages
+ 76b9b7f86475472dc3831394339650d4 25135 main/binary-i386/Packages.gz
+ 4847a7bcac70017dec3cf908fc89e6f8 129 main/binary-i386/Release
+ a449d882b2279ee5f730bc4e58ffdf28 2647585 main/binary-amd64/Packages
+ d91fc9d1bcdcb10cb7fae1efbf6ce6d4 665914 main/binary-amd64/Packages.gz
+ 3df1923e3bc3e046b8d1f728c6efcb60 130 main/binary-amd64/Release
+ 9ab800005dae1ee546363307044651f9 2644224 main/binary-arm64/Packages
+ 189d95b55240016578c6809fae03cecc 665097 main/binary-arm64/Packages.gz
+ 274fdecc756277d249dcc1718ad4fc5c 130 main/binary-arm64/Release
+ 96365876eb76c31dae9505820272e1da 80083 main/binary-armhf/Packages
+ 76b9b7f86475472dc3831394339650d4 25135 main/binary-armhf/Packages.gz
+ 5cad17606872d227f7f75999cc5a2d61 130 main/binary-armhf/Release
+ 46bb03948ec83b872b95b7ab8c87689d 3301457 main/source/Sources
+ 29528071ba5ab987992def3924d059ea 719192 main/source/Sources.gz
+ c35f4a772c699ffecd45b6da024ed36c 131 main/source/Release
+SHA1:
+ 1591039c7b33d7346372f980c5fb3657191363a3 80083 main/binary-i386/Packages
+ ac3805ff4c8dcf5c5735164c2b8e2db77080b596 25135 main/binary-i386/Packages.gz
+ ba08a79b1f11297384ddae996dc3370114893c14 129 main/binary-i386/Release
+ 27983d42a6784b5f6fcd13e0e249adff8f6f2bfc 2647585 main/binary-amd64/Packages
+ fe366fa2c97353016209b24a63bd93eddb52a5e7 665914 main/binary-amd64/Packages.gz
+ 607d4682fe8f60f28bcbf779498884f0f75f00c4 130 main/binary-amd64/Release
+ c56bf4042bb5d088aa57f2ae6c335a25052b21e7 2644224 main/binary-arm64/Packages
+ f61d8c1bac8cb60f30be6e3db864cd0e22db8ccd 665097 main/binary-arm64/Packages.gz
+ aaaf99046d306504d8797c9c8a4b3033a1c09d9e 130 main/binary-arm64/Release
+ 1591039c7b33d7346372f980c5fb3657191363a3 80083 main/binary-armhf/Packages
+ ac3805ff4c8dcf5c5735164c2b8e2db77080b596 25135 main/binary-armhf/Packages.gz
+ 5f82f683a2b4e7ced8837f6f42a61f054c30e4e9 130 main/binary-armhf/Release
+ f5c0504283b9966a39b41db77e5faf5d24916b96 3301457 main/source/Sources
+ fe80d7a7b4584e7e9eed31a282a36f67a1993d2b 719192 main/source/Sources.gz
+ 3b1397c9cb9bb662039276e09311aee1a5caa3ed 131 main/source/Release
+SHA256:
+ a5f4ae684f011ce4706448adc4e43da5493d2cd0b902d2f3f5f39a8ea8b529a6 80083 main/binary-i386/Packages
+ f785b697ac35fb3babbed205687f22aec38b7e16ee78ba17522fd26c3cacf3f2 25135 main/binary-i386/Packages.gz
+ 242a22f05a53c4cbd410c94aef49c3a8930f6dcb7209406bdd1ef1a672e689ee 129 main/binary-i386/Release
+ 6f82114e39339016e81431b5ce0d633ae6e0a7c80ce08b6dac2047393823391f 2647585 main/binary-amd64/Packages
+ bacbdb55b5314d3a9a3f01bc32a8c7d23eca562d1b0b7da20c6264c038ddd1a4 665914 main/binary-amd64/Packages.gz
+ 50b236e904ac28c04c76a9516fc38c55d9e3ce257c1d81e679d5f3d463b16cf7 130 main/binary-amd64/Release
+ 9bad2c3c737bddca01dd24ccbe24ab7f1a9d3633c1199c92025225d02b1f64ac 2644224 main/binary-arm64/Packages
+ 8350475e19eca9db8b79ce93f13fcaf27ee22e2b0dcad1d93c7571342d8eaa98 665097 main/binary-arm64/Packages.gz
+ b22ff870b6af83ad7fbb4186cab9385ba91914a935744b696ffdfddcddf4e9bf 130 main/binary-arm64/Release
+ a5f4ae684f011ce4706448adc4e43da5493d2cd0b902d2f3f5f39a8ea8b529a6 80083 main/binary-armhf/Packages
+ f785b697ac35fb3babbed205687f22aec38b7e16ee78ba17522fd26c3cacf3f2 25135 main/binary-armhf/Packages.gz
+ 5033228885c2d65db39f932dea6bc14e6b8ae28af5ceddbbb3e39d9ff5910344 130 main/binary-armhf/Release
+ 1110846e9a22a1c069bee3cf6e6cdc675b60697bea84f7698f7397720e687807 3301457 main/source/Sources
+ 670d78d464a8de3110cd6cfbcc94bda1b3f61e9b0fb98a60d77fe436f449a271 719192 main/source/Sources.gz
+ 7f70b090e0316267b6c9cfb2457d53f8bc471e6132c1ba51e989aa4d75b02e8b 131 main/source/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEwc9uMea63ohosXK09C7W+6sXxlQFAmrEKVEACgkQ9C7W+6sX
+xlS1sRAAhVJq/fiSRmRbUsFgsIqhc+XXpllSiiI/Aic1nBdS9/aFLs0XNdKafisW
+uYTihsUkZAH/7YwjYkwHkAKdnidN88Kfn518hvgNFNF1ILqxfxs3NJrLf1T+pJdj
+J+w0n8LlqOcW0lVvTP+6YXQ4i0gXncEzDelHwpmcU9+9gOgYQxr5onZAE4yCF4ha
+fGMG2cpcl9lN2TufmCVYW/c1e2hir7Z0lpX5EO24mC1sK4gSUaksyjQKDKbdSMIl
+q4nXo++ehUQinFwqtEIwX13EeW5kiy1F1tX14OIKmrl35GbHwCpNXzIdGnWe5Qit
+IMIdnSIy3VOS6V13tYxYzgBVbD6LXGWYqSKXSFcTLlvfL2UqANs+BBsJkMGuSOmP
+U3KecQ1U7uFSzATKWC6RcXTp0aXIzIDOK8wp09RZNiGuy626OXMvjPE3LZbAQmeE
+9tkkGs27BFQatCkEiWBeTrioQtCnj35iHhDtJ3zKhtdpBUkpUw+jZ1Yf4175CofO
+r3BofYDqk9tJludgY2z8jtFQxXH9oOmWfs25TJk6TmPhhbvVDoCCsxdXiJ33XelI
+aVgl/MFIRVuH2dSG/Y2KM1snK1A0J5dtgh6bMvgWAIW8Qnq/KnR1xAURPMQzK/WN
+5JLfc/l/o2FOG+nf2YdQS4Hlvdkn0fQ51BKxfDbm641mTCVsNRA=
+=zOUU
+-----END PGP SIGNATURE-----

@@ -220,7 +220,7 @@ class JsonAdapterTests(unittest.TestCase):
         return registry.create('custom_' + kind + '_example', {})
 
     def observation(self):
-        o = sample(); o['wall_deadline'] = time.monotonic() + 2.
+        o = sample(); o['wall_deadline'] = time.perf_counter() + 2.
         return o
 
     def test_json_navigation_and_aim_example(self):
@@ -241,11 +241,40 @@ class JsonAdapterTests(unittest.TestCase):
         a = self.adapter()
         try:
             o = self.observation(); a.reset({k: o[k] for k in ('episode', 'robot_id', 'binding_epoch')})
-            o['wall_deadline'] = time.monotonic() - .01
+            o['wall_deadline'] = time.perf_counter() - .01
             with self.assertRaisesRegex(ContractError, 'expired'):
                 a.act(o)
         finally:
             a.close()
+
+    def test_custom_action_uses_qpc_even_with_different_monotonic_origin(self):
+        a = self.adapter()
+        try:
+            o = self.observation(); a.reset({k:o[k] for k in ('episode','robot_id','binding_epoch')})
+            o['wall_deadline'] = time.perf_counter() + .15
+            # A different coarse clock origin must not declare a valid host
+            # observation expired or move its deadline. Actual child roundtrip.
+            with patch('rm_match.deployment.json_adapter.time.monotonic',return_value=o['wall_deadline']+500.):
+                result = a.act(o)
+            self.assertEqual(result['wall_deadline'],o['wall_deadline'])
+            self.assertEqual(result['observed_seq'],o['observed_seq'])
+        finally:a.close()
+
+    def test_actual_child_reply_resumed_after_original_deadline_is_rejected(self):
+        registry = Registry(); tick = [10.]
+        register_json_adapters(registry,ROOT/'examples/adapters.json',clock=lambda:tick[0])
+        a = registry.create('custom_navigation_example',{})
+        try:
+            o = self.observation(); a.reset({k:o[k] for k in ('episode','robot_id','binding_epoch')})
+            o['wall_deadline'] = 10.08; child = a.process; get = a.responses.get
+            def late_reply(*args,**kwargs):
+                result = get(*args,**kwargs)
+                tick[0] = 10.081  # Simulate resuming after a queued, valid reply.
+                return result
+            with patch.object(a.responses,'get',side_effect=late_reply):
+                with self.assertRaisesRegex(TimeoutError,'after_original_deadline'):a.act(o)
+            self.assertTrue(a.failed);self.assertIsNotNone(child.poll());self.assertFalse(a.thread.is_alive())
+        finally:a.close()
 
     def process_fixture(self, code):
         td = tempfile.TemporaryDirectory(); path = Path(td.name) / 'manifest.json'
@@ -260,7 +289,7 @@ class JsonAdapterTests(unittest.TestCase):
         td, a = self.process_fixture(code)
         try:
             o = self.observation(); a.reset({k: o[k] for k in ('episode', 'robot_id', 'binding_epoch')})
-            child = a.process; o['wall_deadline'] = time.monotonic() + .025
+            child = a.process; o['wall_deadline'] = time.perf_counter() + .025
             with self.assertRaises(Exception):
                 a.act(o)
             self.assertTrue(a.failed); self.assertIsNotNone(child.poll())
@@ -303,7 +332,7 @@ class JsonAdapterTests(unittest.TestCase):
         try:
             o = self.observation(); a.reset({k: o[k] for k in ('episode', 'robot_id', 'binding_epoch')})
             with patch.object(a.requests, 'put_nowait', wraps=a.requests.put_nowait) as sent, \
-                 patch('rm_match.deployment.json_adapter.time.monotonic', side_effect=[10., 11.]):
+                 patch.object(a, 'clock', side_effect=[10., 11.]):
                 with self.assertRaisesRegex(TimeoutError, 'during_serialization'):
                     a._exchange(dict(op='act', observation=o), timeout=.1)
                 self.assertTrue(all(call.args == (None,) for call in sent.call_args_list))
@@ -317,7 +346,7 @@ class JsonAdapterTests(unittest.TestCase):
             o = self.observation(); a.reset({k: o[k] for k in ('episode', 'robot_id', 'binding_epoch')})
             o['wall_deadline'] = 10.1
             with patch.object(a.requests, 'put_nowait', wraps=a.requests.put_nowait) as sent, \
-                 patch('rm_match.deployment.json_adapter.time.monotonic', side_effect=[10., 10.2, 10.21]):
+                 patch.object(a, 'clock', side_effect=[10., 10.2, 10.21]):
                 with self.assertRaisesRegex(TimeoutError, 'during_serialization'):
                     a.act(o)
                 self.assertTrue(all(call.args == (None,) for call in sent.call_args_list))

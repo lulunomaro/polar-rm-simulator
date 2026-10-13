@@ -15,6 +15,7 @@ def measured():
         native_sensor_budget_80ms=True,
         actual_transport_matches_plan=True,
         adapter_error_count=0,incomplete_native_requests=0,native_evidence_closed=True,
+        postclose_actual_pixel_audit=True,
         window_acknowledged=True,fire_true=0,clean_shutdown=True,errors=[],
         raw_ages_s=[.045,.06],native_result_ages_s=[.06,.075],
         actuator_wall_ages_s=[.067,.079],actuator_sim_ages_s=[.066,.078])
@@ -138,3 +139,203 @@ def test_writer_requires_actual_closed_balanced_counts_and_no_worker_error():
         assert not smoke.fault_and_evidence_measurements(bad,{},writer_required=True)['native_evidence_closed']
     assert not smoke.fault_and_evidence_measurements([],{},writer_required=True)['native_evidence_closed']
     assert smoke.fault_and_evidence_measurements([],{},writer_required=False)['native_evidence_closed']
+
+
+def private_sequence():
+    """Synthetic report rows for join validation, never inference evidence."""
+    raw={1:dict(frame_id=1,raw_rgb_sha256='a'*64,capture_wall=100.,
+        capture_sim_time=5.,encoded_wall=100.04)}
+    events=[dict(event='private_pixels_published',frame_id=1,capture_wall=100.,capture_sim_time=5.,
+        wall_time=100.01,wall_clock='provider_monotonic',host_received_wall=999999.,robot_id='red_sentry',episode=0),
+        dict(event='adapter_enqueue',observed_seq=7,
+            sensor_budget=dict(frame_id=1,capture_wall=100.,capture_sim_time=5.),host_received_wall=100.015),
+        dict(event='native_request',frame_id=1,observed_seq=7,capture_sim_time=5.,
+            raw_rgb_sha256='a'*64,host_received_wall=100.02),
+        dict(event='native_result',frame_id=1,raw_rgb_sha256='a'*64,host_received_wall=100.035)]
+    consumed={1:dict(consume_wall=100.037,consume_sim_time=5.037,
+        budget=dict(capture_wall=100.,capture_sim_time=5.))}
+    return events,raw,consumed
+
+
+def test_private_plan_is_explicit_keeps_historical_default_and_all_gates():
+    original=copy.deepcopy(smoke.PLAN)
+    historical=smoke.build_plan('wsl_stdio_bgr_v2')
+    private=smoke.build_plan('wsl_stdio_bgr_v2',private_native_pixels=True)
+    assert smoke.PLAN==original
+    assert not historical['configuration'].get('private_native_pixels',False)
+    assert private['configuration']['private_native_pixels'] is True
+    assert private['configuration']['input_publication']=='sealed_actual_rgb_before_public_base64'
+    assert {k:private['criteria'][k] for k in historical['criteria']}==historical['criteria']
+    assert private['criteria']['postclose_actual_pixel_audit'] is True
+    for key in ('robot_count','timestep_s','resolution','total_fps','active_views',
+        'real_time_factor_limit','camera_native_budget_s','server_input_window_s','manual_fire'):
+        assert private['configuration'][key]==historical['configuration'][key]
+    m=measured();m['configuration']=copy.deepcopy(private['configuration'])
+    assert smoke.classify(m,plan=private)['live_static_chain_qualified']
+    assert not smoke.classify(m,plan=historical)['live_static_chain_qualified']
+
+
+def test_private_early_enqueue_uses_actual_publish_clock_not_delayed_callback():
+    events,raw,consumed=private_sequence()
+    r=smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)
+    assert r['exact_sensor_pixel_binding']
+    assert r['stage_samples_s']['raw_encode_end_to_adapter_enqueue']==[]
+    assert r['stages']['raw_encode_end_to_adapter_enqueue']['sample_count']==0
+    assert r['stage_inapplicable']=={'raw_encode_end_to_adapter_enqueue':
+        'private native input is published before public base64 completion'}
+    assert abs(r['stages']['exposure_to_private_pixels']['max_ms']-10)<1e-6
+    assert abs(r['stages']['private_pixels_to_adapter_enqueue']['max_ms']-5)<1e-6
+    # Public completion remains independently audited, even after native result.
+    assert abs(r['raw_ages_s'][0]-.04)<1e-8
+    assert abs(r['native_result_ages_s'][0]-.035)<1e-8
+
+
+def test_default_public_sequence_retains_applicable_original_stage():
+    events,raw,consumed=private_sequence();raw[1]['encoded_wall']=100.012
+    default=smoke.stage_measurements(events,raw,consumed)
+    explicit=smoke.stage_measurements(events,raw,consumed,private_native_pixels=False)
+    assert default==explicit
+    assert default['stage_inapplicable']=={}
+    assert default['exact_sensor_pixel_binding']
+    assert abs(default['stages']['raw_encode_end_to_adapter_enqueue']['max_ms']-3)<1e-6
+
+
+def test_private_path_keeps_public_raw_80ms_gate_even_with_fast_native_result():
+    events,raw,consumed=private_sequence();raw[1]['encoded_wall']=100.081
+    r=smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)
+    assert r['exact_sensor_pixel_binding']
+    plan=smoke.build_plan('wsl_stdio_bgr_v2',private_native_pixels=True)
+    m=measured();m.update(r);m['configuration']=copy.deepcopy(plan['configuration'])
+    classified=smoke.classify(m,plan=plan)
+    assert not classified['live_static_chain_qualified']
+    assert not classified['checks']['raw_ages_s']
+
+
+def test_private_publish_missing_duplicate_or_wrong_frame_fails_binding():
+    for mode in ('missing','duplicate','wrong_frame'):
+        events,raw,consumed=private_sequence()
+        if mode=='missing':events.pop(0)
+        elif mode=='duplicate':events.insert(0,copy.deepcopy(events[0]))
+        else:events[0]['frame_id']=2
+        assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_private_publish_capture_identity_clock_and_order_must_match_exactly():
+    for key,value in [('capture_wall',100.000001),('capture_sim_time',5.000001),
+        ('wall_clock','linux_local_diagnostic_only'),('wall_clock','host_perf_counter'),
+        ('wall_time',99.999),('wall_time',100.041),('wall_time',float('nan')),
+        ('wall_time',float('inf')),('wall_time',True)]:
+        events,raw,consumed=private_sequence();events[0][key]=value
+        assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+    events,raw,consumed=private_sequence();events[1]['host_received_wall']=100.009
+    r=smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)
+    assert not r['exact_sensor_pixel_binding']
+    # An inverted publication/queue ordering is rejected, never clamped to zero.
+    assert all(v!=0 for v in r['stage_samples_s']['private_pixels_to_adapter_enqueue'])
+
+
+def test_private_enqueue_request_and_raw_identities_cannot_be_swapped():
+    for where,key,value in [('budget','frame_id',2),('budget','capture_wall',100.000001),
+        ('budget','capture_sim_time',5.000001),('request','capture_sim_time',5.000001),
+        ('raw','frame_id',2),('raw','capture_wall',100.000001),('raw','capture_sim_time',5.000001)]:
+        events,raw,consumed=private_sequence()
+        row=events[1]['sensor_budget'] if where=='budget' else events[2] if where=='request' else raw[1]
+        row[key]=value
+        assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_private_hash_binding_requires_raw_request_result_same_immutable_pixels():
+    for where in ('raw','request','result'):
+        for mode in ('missing','substituted'):
+            events,raw,consumed=private_sequence()
+            row=raw[1] if where=='raw' else events[2] if where=='request' else events[3]
+            if mode=='missing':row.pop('raw_rgb_sha256')
+            else:row['raw_rgb_sha256']='b'*64
+            assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_private_required_capture_fields_cannot_be_inferred_from_other_events():
+    for where,key in [('raw','frame_id'),('raw','capture_wall'),('raw','capture_sim_time'),
+        ('raw','encoded_wall'),('publish','capture_wall'),('publish','capture_sim_time'),
+        ('publish','wall_clock'),('budget','capture_wall'),('budget','capture_sim_time'),
+        ('request','capture_sim_time')]:
+        events,raw,consumed=private_sequence()
+        row=raw[1] if where=='raw' else events[0] if where=='publish' else events[1]['sensor_budget'] if where=='budget' else events[2]
+        row.pop(key)
+        assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_private_publication_is_required_for_every_raw_frame_not_only_native():
+    events,raw,consumed=private_sequence()
+    raw[2]=dict(raw[1],frame_id=2,capture_wall=101.,capture_sim_time=6.,encoded_wall=101.04)
+    assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+    events.append(dict(events[0],frame_id=2,capture_wall=101.,capture_sim_time=6.,wall_time=101.01))
+    assert smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_explicitly_unpublished_tail_does_not_claim_native_input_or_hash_mismatch():
+    events,raw,consumed=private_sequence()
+    raw[2]=dict(raw[1],frame_id=2,capture_wall=101.,capture_sim_time=6.,encoded_wall=101.04)
+    reject=dict(event='private_publish_rejected',frame_id=2,capture_wall=101.,capture_sim_time=6.,
+        wall_time=101.01,wall_clock='provider_monotonic',reason='runtime_stopped')
+    events.append(reject)
+    result=smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)
+    assert result['exact_sensor_pixel_binding']
+    assert result['unpublished_private_frames']=={2:'runtime_stopped'}
+    assert result['stages']['exposure_to_private_pixels']['sample_count']==1
+    for key,value in [('reason','guessed_release_ack'),('capture_wall',101.0001),
+        ('capture_sim_time',6.0001),('wall_clock','linux_local'),('wall_time',101.041)]:
+        bad=copy.deepcopy(events);bad[-1][key]=value
+        assert not smoke.stage_measurements(bad,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+    events.append(dict(events[2],frame_id=2,capture_sim_time=6.))
+    assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_rejected_and_published_duplicate_frame_is_not_a_valid_explanation():
+    events,raw,consumed=private_sequence()
+    events.append(dict(events[0],event='private_publish_rejected',reason='capture_revoked'))
+    assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+
+
+def test_explicit_fast_codec_requires_recorded_unchanged_extension_identity():
+    plan=smoke.build_plan('wsl_stdio_bgr_v2',private_native_pixels=True,raw_base64_codec='pybase64_1_5_1')
+    m=measured();m['configuration']=copy.deepcopy(plan['configuration'])
+    assert not smoke.classify(m,plan=plan)['live_static_chain_qualified']
+    m['raw_codec_identity_unchanged']=True
+    assert smoke.classify(m,plan=plan)['live_static_chain_qualified']
+    m['raw_codec_identity_unchanged']=False
+    assert not smoke.classify(m,plan=plan)['live_static_chain_qualified']
+    for codec in ('automatic','pybase64',None,True):
+        try:smoke.build_plan('wsl_stdio_bgr_v2',raw_base64_codec=codec)
+        except ValueError:pass
+        else:raise AssertionError('unreviewed codec accepted')
+
+
+def test_deferred_rgb_diagnostic_requires_exact_postclose_actual_pixel_proof():
+    events,raw,consumed=private_sequence()
+    raw[1]['shape']=[1080,1440,3]
+    for event in (events[2],events[3]):
+        event.update(raw_rgb_sha256=None,raw_bgr_sha256='b'*64,episode=2,binding_epoch=3,
+            observed_seq=7,capture_sim_time=5.,observation_sim_time=5.01,
+            rgb_trace_strategy='archived_bgr_postclose_exact_channel_swap')
+    proof=dict(frame_id=1,original_capture_wall=100.,original_capture_sim_time=5.,
+        original_control_time_ns=5010000000,observation_sim_time=5.01,
+        request_identities=[dict(observed_seq=7,episode=2,binding_epoch=3)],
+        raw_bgr_sha256='b'*64,derived_rgb_sha256='a'*64,raw_rgb_sha256='a'*64,
+        strategy='archived_bgr_postclose_exact_channel_swap',image_bytes=4665600,shape=[1080,1440,3])
+    audit=dict(schema='polar.live.native-pixel-audit.v1',clean=True,errors=[],proofs=[proof])
+    assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True)['exact_sensor_pixel_binding']
+    assert smoke.stage_measurements(events,raw,consumed,private_native_pixels=True,pixel_audit=audit)['exact_sensor_pixel_binding']
+    for key,value in [('original_capture_wall',100.00001),('original_capture_sim_time',5.00001),
+        ('original_control_time_ns',5010000001),('raw_bgr_sha256','c'*64),
+        ('derived_rgb_sha256','c'*64),('raw_rgb_sha256','c'*64),('strategy','guessed'),
+        ('image_bytes',3),('shape',[1,1,3])]:
+        bad=copy.deepcopy(audit);bad['proofs'][0][key]=value
+        assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True,pixel_audit=bad)['exact_sensor_pixel_binding']
+    bad=copy.deepcopy(audit);bad['proofs'][0]['request_identities'][0]['observed_seq']=8
+    assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True,pixel_audit=bad)['exact_sensor_pixel_binding']
+    for value in (None,dict(audit,clean=False),dict(audit,errors=['missing_BRG']),dict(audit,proofs=[])):
+        assert not smoke.stage_measurements(events,raw,consumed,private_native_pixels=True,pixel_audit=value)['exact_sensor_pixel_binding']
+    plan=smoke.build_plan('wsl_stdio_bgr_v2',private_native_pixels=True)
+    m=measured();m['configuration']=copy.deepcopy(plan['configuration']);m['postclose_actual_pixel_audit']=False
+    assert not smoke.classify(m,plan=plan)['live_static_chain_qualified']

@@ -1,0 +1,1097 @@
+{
+  "schema": "polar.linux.saved-native-compute.v1",
+  "scope": "Offline Linux-local compute/FS diagnostic only; cannot supplement failed live control",
+  "clock_domain": "Linux time.perf_counter only, never subtract Windows/QPC time",
+  "spec_sha256": "a808f11e8f8088ba89c2cf2a8e94d4bf18c386dc69d3d4114b9b2b40e57a3cdd",
+  "binary_sha256": "4d3570674a7a150da0e86f64bbbd25adcfa8bb9e2731672ac6aeaa296cf92b42",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "source_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "patch_sha256": "3ced3a3e41b4e6b6567f2b3b94f218817a043588fb0691b175ab55d5e3edbdf7",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "is_original_upstream": false,
+    "is_baseline_40f7": false,
+    "tracker_patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "vision_frontend": {
+      "id": "image_contour_corners_v3",
+      "source_path": "overlays/corners_contour_v3.cpp",
+      "source_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c"
+    },
+    "patch_identity_format": "rmcs-own-source-composition.v1"
+  },
+  "actual_image_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422",
+  "saved_input": {
+    "format": "v2_actual_frame_manifest",
+    "frame_id": 9,
+    "source": "native/binding_12a799e010b94c8fa06a697766dfec65/actual_frames/sensor_9.bgr",
+    "manifest": "native/binding_12a799e010b94c8fa06a697766dfec65/actual_frames/sensor_9.json",
+    "manifest_sha256": "a65362e1032861c733ae100a71918e1c9410281ee5201059dc19aef810df76e2",
+    "image_sha256": "3bb32201aa3bf37b603c03962a84cb53b70ceb6dcde0e3b394324553939e9422"
+  },
+  "storage": {
+    "mode": "tmpfs",
+    "native_image": "/dev/shm/polar-saved-native-dh4uhp8m/saved_input.bgr",
+    "retained_image": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/linux-native-attempt8-tmpfs-compute-20261013/saved_input.bgr",
+    "workspace": "/dev/shm/polar-saved-native-dh4uhp8m",
+    "workspace_mode": "0o700",
+    "identical_retained_and_native_pixels": true
+  },
+  "preserved_capture_ns": 410000000,
+  "preserved_control_ns": 428000000,
+  "timestamp_or_pixel_changes": false,
+  "own_fields_omitted_not_archived": [
+    "hp",
+    "ammo",
+    "heat"
+  ],
+  "ready_before_capture_or_inference": true,
+  "live_80ms_budget_changed": false,
+  "diagnostic_response_timeout_s": 2.0,
+  "cases": [
+    {
+      "case": "same_packet_15",
+      "startup_s": 1.171522253,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x643c21e0e200 0x1000 0x0 0x0 0x0 0x7ffcac5e0038 0x79e38feaca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.007776466999999343,
+        "pid": 761,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-dh4uhp8m/same_packet_15",
+      "cpu": {
+        "user_s": 0.5828139999999999,
+        "system_s": 0.5913229999999999,
+        "peak_rss_kib_preclose": 147660,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 7.923991408,
+          "linux_local_response_perf": 7.981603213,
+          "response_s": 0.05761180499999963,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.018,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 1,
+          "linux_local_request_perf": 7.987939853,
+          "linux_local_response_perf": 7.988830483,
+          "response_s": 0.0008906299999997813,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 2,
+          "linux_local_request_perf": 7.993106643,
+          "linux_local_response_perf": 7.993806259,
+          "response_s": 0.0006996160000003471,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 3,
+          "linux_local_request_perf": 7.996931346,
+          "linux_local_response_perf": 7.997538446,
+          "response_s": 0.0006070999999998605,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 4,
+          "linux_local_request_perf": 8.000054211,
+          "linux_local_response_perf": 8.000676349,
+          "response_s": 0.0006221380000006604,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 5,
+          "linux_local_request_perf": 8.002937098,
+          "linux_local_response_perf": 8.003537446,
+          "response_s": 0.0006003479999989736,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 6,
+          "linux_local_request_perf": 8.007284654,
+          "linux_local_response_perf": 8.007989964,
+          "response_s": 0.0007053100000007362,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 7,
+          "linux_local_request_perf": 8.010837747,
+          "linux_local_response_perf": 8.011615029,
+          "response_s": 0.0007772819999996017,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 8,
+          "linux_local_request_perf": 8.013572733,
+          "linux_local_response_perf": 8.014127341,
+          "response_s": 0.0005546079999998454,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 9,
+          "linux_local_request_perf": 8.016501685,
+          "linux_local_response_perf": 8.016978569,
+          "response_s": 0.00047688400000112097,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 10,
+          "linux_local_request_perf": 8.020254701,
+          "linux_local_response_perf": 8.020766336,
+          "response_s": 0.0005116349999987335,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 11,
+          "linux_local_request_perf": 8.024163341,
+          "linux_local_response_perf": 8.024848681,
+          "response_s": 0.0006853400000004228,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 12,
+          "linux_local_request_perf": 8.029185466,
+          "linux_local_response_perf": 8.029755879,
+          "response_s": 0.0005704130000001584,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 13,
+          "linux_local_request_perf": 8.033383522,
+          "linux_local_response_perf": 8.033961767,
+          "response_s": 0.0005782449999998107,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        },
+        {
+          "sample": 14,
+          "linux_local_request_perf": 8.036634144,
+          "linux_local_response_perf": 8.037226718,
+          "response_s": 0.0005925739999987911,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": false,
+            "inference_calls": 1,
+            "frame_accepted": false,
+            "frame_stats": null,
+            "fov_raw2d": 0,
+            "fov_admitted2d": 0,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 0,
+            "target_age_s": 0.018,
+            "completed_result_event": false,
+            "result_exposure_time_s": null,
+            "completed_result_observed_now": false,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "actual_detector_samples": 1
+    },
+    {
+      "case": "fresh_first_1",
+      "startup_s": 0.8131966930000001,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x626d1ff26200 0x1000 0x0 0x0 0x0 0x7ffdefbb5218 0x7166050aca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.016141592000000315,
+        "pid": 798,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-dh4uhp8m/fresh_first_1",
+      "cpu": {
+        "user_s": 0.6088420000000001,
+        "system_s": 0.5742970000000001,
+        "peak_rss_kib_preclose": 149076,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 8.916978693,
+          "linux_local_response_perf": 8.952250769,
+          "response_s": 0.03527207600000004,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.018,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "actual_detector_samples": 1
+    },
+    {
+      "case": "fresh_first_2",
+      "startup_s": 0.5689359210000013,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x55d9f7e1b200 0x1000 0x0 0x0 0x0 0x7ffd01009578 0x76c59acaca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.015958294000000706,
+        "pid": 835,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-dh4uhp8m/fresh_first_2",
+      "cpu": {
+        "user_s": 0.644584,
+        "system_s": 0.3876219999999999,
+        "peak_rss_kib_preclose": 148540,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 9.589460592,
+          "linux_local_response_perf": 9.627327148,
+          "response_s": 0.03786655599999911,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.018,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "actual_detector_samples": 1
+    },
+    {
+      "case": "fresh_first_3",
+      "startup_s": 0.6212726479999997,
+      "zero_tick_readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x6500bef02200 0x1000 0x0 0x0 0x0 0x7ffde9754318 0x7a6a3e6aca82",
+        "wchan": "pipe_read"
+      },
+      "error": null,
+      "cleanup": {
+        "close_s": 0.016476287999999784,
+        "pid": 872,
+        "returncode": -15,
+        "proc_absent": true,
+        "stdin_closed": true,
+        "stdout_closed": true
+      },
+      "child_cwd": "/dev/shm/polar-saved-native-dh4uhp8m/fresh_first_3",
+      "cpu": {
+        "user_s": 0.5382539999999998,
+        "system_s": 0.49129200000000006,
+        "peak_rss_kib_preclose": 147660,
+        "qualification": "Owned-child lifetime CPU including model startup and reap; preclose Linux VmHWM, not per-inference timing"
+      },
+      "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "responses": [
+        {
+          "sample": 0,
+          "linux_local_request_perf": 10.31864342,
+          "linux_local_response_perf": 10.353355793,
+          "response_s": 0.03471237299999963,
+          "response": {
+            "status": "ok",
+            "runner_identity": "rmcs-sim-operator-fov-v1",
+            "time_s": 0.428,
+            "clock_time_ns": 428000000,
+            "tracking": true,
+            "should_shoot": false,
+            "direction": [
+              0.9907805231199054,
+              2.4077292635271047e-05,
+              -0.13547676710982817
+            ],
+            "direction_frame": "world",
+            "robot_center": [
+              1.9843744910244903,
+              4.822295574393472e-05,
+              -0.29946463004475443
+            ],
+            "detector_executed": true,
+            "inference_calls": 1,
+            "frame_accepted": true,
+            "frame_stats": {
+              "raw2d": 1,
+              "accepted2d": 1,
+              "accepted3d": 1,
+              "rejected_color": 0,
+              "rejected_genre": 0,
+              "rejected_margin": 0,
+              "rejected_clipped": 0
+            },
+            "fov_raw2d": 1,
+            "fov_admitted2d": 1,
+            "fov_rejected2d": 0,
+            "pose_estimated3d": 1,
+            "target_age_s": 0.018,
+            "completed_result_event": true,
+            "result_exposure_time_s": 0.41,
+            "completed_result_observed_now": true,
+            "observation_shoot_allowed": true,
+            "runtime_mode_observed_config": "multi_ekf",
+            "runtime_mode_state_api": null,
+            "episode": 0,
+            "should_control": true
+          }
+        }
+      ],
+      "actual_detector_samples": 1
+    }
+  ],
+  "errors": [],
+  "fresh_valid_first_inference": {
+    "samples": 4,
+    "p50_ms": 36.569315999999574,
+    "p95_ms": 54.65001764999954,
+    "p99_ms": 57.01944752999961,
+    "max_ms": 57.61180499999963
+  },
+  "duplicate_noninference_responses": {
+    "samples": 14,
+    "p50_ms": 0.6037239999994171,
+    "p95_ms": 0.8169537999996646,
+    "p99_ms": 0.8758947599997579,
+    "max_ms": 0.8906299999997813
+  },
+  "filesystem_stages": {
+    "read_s": {
+      "samples": 15,
+      "p50_ms": 0.5086759999999302,
+      "p95_ms": 1.673564499999802,
+      "p99_ms": 1.7811432999993035,
+      "max_ms": 1.8080379999991791
+    },
+    "sha256_s": {
+      "samples": 15,
+      "p50_ms": 2.0385099999993272,
+      "p95_ms": 2.1684833000006343,
+      "p99_ms": 2.2782214600007396,
+      "max_ms": 2.3056560000007664
+    },
+    "json_encode_s": {
+      "samples": 15,
+      "p50_ms": 0.04244799999941762,
+      "p95_ms": 0.059844000000097694,
+      "p99_ms": 0.07027679999985992,
+      "max_ms": 0.07288499999980047
+    }
+  },
+  "filesystem_samples": [
+    {
+      "sample": 0,
+      "read_s": 0.0018080379999991791,
+      "sha256_s": 0.0023056560000007664,
+      "json_encode_s": 7.288499999980047e-05
+    },
+    {
+      "sample": 1,
+      "read_s": 0.0016159330000000693,
+      "sha256_s": 0.002022655999999401,
+      "json_encode_s": 5.4255000000225095e-05
+    },
+    {
+      "sample": 2,
+      "read_s": 0.0005163920000006428,
+      "sha256_s": 0.0019629039999999875,
+      "json_encode_s": 3.80519999998441e-05
+    },
+    {
+      "sample": 3,
+      "read_s": 0.00043015500000009865,
+      "sha256_s": 0.002000986999999732,
+      "json_encode_s": 4.5199999999745444e-05
+    },
+    {
+      "sample": 4,
+      "read_s": 0.0005177050000000349,
+      "sha256_s": 0.0020982659999999598,
+      "json_encode_s": 4.867100000005564e-05
+    },
+    {
+      "sample": 5,
+      "read_s": 0.0005086759999999302,
+      "sha256_s": 0.0020826430000004947,
+      "json_encode_s": 4.910799999979787e-05
+    },
+    {
+      "sample": 6,
+      "read_s": 0.0005356460000003338,
+      "sha256_s": 0.0020974169999998793,
+      "json_encode_s": 4.244799999941762e-05
+    },
+    {
+      "sample": 7,
+      "read_s": 0.00045117400000016517,
+      "sha256_s": 0.0020567539999998274,
+      "json_encode_s": 3.3549000000299145e-05
+    },
+    {
+      "sample": 8,
+      "read_s": 0.0003906899999996938,
+      "sha256_s": 0.0019300140000000354,
+      "json_encode_s": 3.074400000002697e-05
+    },
+    {
+      "sample": 9,
+      "read_s": 0.00037554800000005883,
+      "sha256_s": 0.0020426569999996147,
+      "json_encode_s": 4.063500000039966e-05
+    },
+    {
+      "sample": 10,
+      "read_s": 0.00047410799999969555,
+      "sha256_s": 0.0021096950000005776,
+      "json_encode_s": 5.037999999935039e-05
+    },
+    {
+      "sample": 11,
+      "read_s": 0.0005244250000000505,
+      "sha256_s": 0.002015862000000368,
+      "json_encode_s": 4.693500000030326e-05
+    },
+    {
+      "sample": 12,
+      "read_s": 0.0005316190000002052,
+      "sha256_s": 0.0020385099999993272,
+      "json_encode_s": 3.5463000000568456e-05
+    },
+    {
+      "sample": 13,
+      "read_s": 0.0003976320000003142,
+      "sha256_s": 0.001972533999999193,
+      "json_encode_s": 3.3994000000703295e-05
+    },
+    {
+      "sample": 14,
+      "read_s": 0.0003679899999999847,
+      "sha256_s": 0.0019981040000001116,
+      "json_encode_s": 2.9885000000007267e-05
+    }
+  ],
+  "storage_cleanup": {
+    "tmpfs_created": true,
+    "tmpfs_path": "/dev/shm/polar-saved-native-dh4uhp8m",
+    "tmpfs_removed": true
+  }
+}

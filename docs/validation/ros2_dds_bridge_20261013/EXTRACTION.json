@@ -1,0 +1,802 @@
+{
+  "scope": "Official signed-index/SHA verified dpkg-deb -x package-data only; no /etc/dpkg install/hooks/global env",
+  "prefix": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/ros2-local-lyrical-20261013/prefix",
+  "packages": [
+    {
+      "package": "python3-catkin-pkg-modules",
+      "version": "1.1.1-1",
+      "file": "python3-catkin-pkg-modules_1.1.1-1_all.deb",
+      "package_sha256": "0bffe122ad0a894254468b1fba88a175c961f755dc9895a3a6f33c1683d0e020",
+      "members": 49,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-action-msgs",
+      "version": "2.4.5-1resolute.20260915.041037",
+      "file": "ros-lyrical-action-msgs_2.4.5-1resolute.20260915.041037_amd64.deb",
+      "package_sha256": "6e2ac769111079b126f1ac39978e9bdfd592a7fdc8653dedbc4246b59fa8e471",
+      "members": 210,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake",
+      "version": "2.8.8-1resolute.20260728.175713",
+      "file": "ros-lyrical-ament-cmake_2.8.8-1resolute.20260728.175713_amd64.deb",
+      "package_sha256": "02015126bc9d89675ae825fc481263944f77ed7c3b6e094a12cf98e84b913dc3",
+      "members": 36,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-core",
+      "version": "2.8.8-1resolute.20260728.162608",
+      "file": "ros-lyrical-ament-cmake-core_2.8.8-1resolute.20260728.162608_amd64.deb",
+      "package_sha256": "2d24966a9370252e90d1ca1ebf82a67bd1672290de49d32ad2bec9921d21a57e",
+      "members": 94,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-cppcheck",
+      "version": "0.20.6-1resolute.20260728.204151",
+      "file": "ros-lyrical-ament-cmake-cppcheck_0.20.6-1resolute.20260728.204151_amd64.deb",
+      "package_sha256": "6f8ef93b52548c88c7ceca651ffc535cd269c86836a04b300e963735d605bd53",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-cpplint",
+      "version": "0.20.6-1resolute.20260728.204159",
+      "file": "ros-lyrical-ament-cmake-cpplint_0.20.6-1resolute.20260728.204159_amd64.deb",
+      "package_sha256": "8f7ce3a01ccb3981e6496cfa31ba2a9e72ba4ac996f78190ad992551ed55a08f",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-export-definitions",
+      "version": "2.8.8-1resolute.20260728.173325",
+      "file": "ros-lyrical-ament-cmake-export-definitions_2.8.8-1resolute.20260728.173325_amd64.deb",
+      "package_sha256": "10dda6f41c5a9f5040fcd86f8759b0c35279ce2af0ca5562aaccde5038a7fb19",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-export-dependencies",
+      "version": "2.8.8-1resolute.20260728.173500",
+      "file": "ros-lyrical-ament-cmake-export-dependencies_2.8.8-1resolute.20260728.173500_amd64.deb",
+      "package_sha256": "41b094155ee5a8bed1e8abc8def464532fa588e5443f0765d9b0f06e145ddb17",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-export-include-directories",
+      "version": "2.8.8-1resolute.20260728.172444",
+      "file": "ros-lyrical-ament-cmake-export-include-directories_2.8.8-1resolute.20260728.172444_amd64.deb",
+      "package_sha256": "1fa776d66e2894dc26fe0e11d497f5e997f9e6aac5890da8eeb72ba29603b7a7",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-export-libraries",
+      "version": "2.8.8-1resolute.20260728.173328",
+      "file": "ros-lyrical-ament-cmake-export-libraries_2.8.8-1resolute.20260728.173328_amd64.deb",
+      "package_sha256": "4f056b3aedbff7a7d5eff95040029f98306d607d32387cec364a23a933d8e546",
+      "members": 40,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-export-link-flags",
+      "version": "2.8.8-1resolute.20260728.173334",
+      "file": "ros-lyrical-ament-cmake-export-link-flags_2.8.8-1resolute.20260728.173334_amd64.deb",
+      "package_sha256": "84cbe117cfe0149ba3302116e1fb619be9c0f9e12d9b8f91cc9c991f2dc9c558",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-export-targets",
+      "version": "2.8.8-1resolute.20260728.173432",
+      "file": "ros-lyrical-ament-cmake-export-targets_2.8.8-1resolute.20260728.173432_amd64.deb",
+      "package_sha256": "671ebf1a5c18dbd3e53bf28c4b47456678a38d23257d67055eacf420f4b47ccb",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-flake8",
+      "version": "0.20.6-1resolute.20260728.204007",
+      "file": "ros-lyrical-ament-cmake-flake8_0.20.6-1resolute.20260728.204007_amd64.deb",
+      "package_sha256": "7ab3bddf23ac2b1209ad9a4debe27a8c00d9d55a00f24ea88acbdcc1a647cf3d",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-gen-version-h",
+      "version": "2.8.8-1resolute.20260728.173325",
+      "file": "ros-lyrical-ament-cmake-gen-version-h_2.8.8-1resolute.20260728.173325_amd64.deb",
+      "package_sha256": "98e4a094747bb33e0bf1a79f22276787dd24456c27b52f762e9b73588fb504b0",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-include-directories",
+      "version": "2.8.8-1resolute.20260728.173227",
+      "file": "ros-lyrical-ament-cmake-include-directories_2.8.8-1resolute.20260728.173227_amd64.deb",
+      "package_sha256": "25d5eaa7a3e24e8b3ce92c2c3cf896ecd378d931630b29bc7c914ff192a5449f",
+      "members": 37,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-libraries",
+      "version": "2.8.8-1resolute.20260728.173352",
+      "file": "ros-lyrical-ament-cmake-libraries_2.8.8-1resolute.20260728.173352_amd64.deb",
+      "package_sha256": "149022d093decd6178bd084dc85f127fee802f145f256c0634c37b8155aa2391",
+      "members": 37,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-mypy",
+      "version": "0.20.6-1resolute.20260728.204152",
+      "file": "ros-lyrical-ament-cmake-mypy_0.20.6-1resolute.20260728.204152_amd64.deb",
+      "package_sha256": "bd216fd0acc96df66e0a1a04566bc99cdc927fd4576b099e0d6496d85da6c672",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-pep257",
+      "version": "0.20.6-1resolute.20260728.204012",
+      "file": "ros-lyrical-ament-cmake-pep257_0.20.6-1resolute.20260728.204012_amd64.deb",
+      "package_sha256": "345e511bb07f8df313091042ed2750e989c77378df631b48940c3f424a6bdeb0",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-python",
+      "version": "2.8.8-1resolute.20260728.173021",
+      "file": "ros-lyrical-ament-cmake-python_2.8.8-1resolute.20260728.173021_amd64.deb",
+      "package_sha256": "ae0824ee367c078299fa33d08ed7f20e41ebcdff6e4ff81ce57c28f5a7560a24",
+      "members": 40,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-ros-core",
+      "version": "0.15.8-1resolute.20260728.173607",
+      "file": "ros-lyrical-ament-cmake-ros-core_0.15.8-1resolute.20260728.173607_amd64.deb",
+      "package_sha256": "71cfb4183416e3ca6210ab484a57f2b560f046d255777b5ec50055cb0a536e9e",
+      "members": 41,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-target-dependencies",
+      "version": "2.8.8-1resolute.20260728.173503",
+      "file": "ros-lyrical-ament-cmake-target-dependencies_2.8.8-1resolute.20260728.173503_amd64.deb",
+      "package_sha256": "0825c6d7217a0995b7f9c1e769c8e7f70af04dd8851146f9a9e0b032b09e7663",
+      "members": 37,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-test",
+      "version": "2.8.8-1resolute.20260728.175319",
+      "file": "ros-lyrical-ament-cmake-test_2.8.8-1resolute.20260728.175319_amd64.deb",
+      "package_sha256": "22a8107e2a828a3ded3fb6cf33be2d530de1add1624d3f4d587576f40cf72715",
+      "members": 51,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-uncrustify",
+      "version": "0.20.6-1resolute.20260728.210813",
+      "file": "ros-lyrical-ament-cmake-uncrustify_0.20.6-1resolute.20260728.210813_amd64.deb",
+      "package_sha256": "4df3ee9d12f02255c10950a282ba34b2be132dc33a68eb22e9866d64421c27e2",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cmake-version",
+      "version": "2.8.8-1resolute.20260728.173013",
+      "file": "ros-lyrical-ament-cmake-version_2.8.8-1resolute.20260728.173013_amd64.deb",
+      "package_sha256": "f6d1fe9d7e311fe7b75b77c94fd6287ae6ee81b6cf24bd125eaf689bf333d460",
+      "members": 37,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cppcheck",
+      "version": "0.20.6-1resolute.20260728.173125",
+      "file": "ros-lyrical-ament-cppcheck_0.20.6-1resolute.20260728.173125_amd64.deb",
+      "package_sha256": "c69697b2344290c28183af2b7680f5499706ed1e75cb845254c9342991804b7a",
+      "members": 36,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-cpplint",
+      "version": "0.20.6-1resolute.20260728.173508",
+      "file": "ros-lyrical-ament-cpplint_0.20.6-1resolute.20260728.173508_amd64.deb",
+      "package_sha256": "ac728221d3cf9c8f9e8310333f22335701912bb47badc4243be5b2fe710a91e5",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-flake8",
+      "version": "0.20.6-1resolute.20260728.172702",
+      "file": "ros-lyrical-ament-flake8_0.20.6-1resolute.20260728.172702_amd64.deb",
+      "package_sha256": "8fa5118f6d3834c906db96427337b281ab57e74d7e77fa1c9b8aa5d92a3bf8e9",
+      "members": 40,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-index-cpp",
+      "version": "1.13.3-3resolute.20260728.204744",
+      "file": "ros-lyrical-ament-index-cpp_1.13.3-3resolute.20260728.204744_amd64.deb",
+      "package_sha256": "85030549bd49b7005debdfafbe53d410ccbefff9929772f5fc2f1fd5eb564a59",
+      "members": 55,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-index-python",
+      "version": "1.13.3-3resolute.20260728.172618",
+      "file": "ros-lyrical-ament-index-python_1.13.3-3resolute.20260728.172618_amd64.deb",
+      "package_sha256": "f662463603bc9b5c41925ef835eec9ab8dc7ae2baa888b55ccdec5f1d9552702",
+      "members": 47,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-lint",
+      "version": "0.20.6-1resolute.20260728.172451",
+      "file": "ros-lyrical-ament-lint_0.20.6-1resolute.20260728.172451_amd64.deb",
+      "package_sha256": "9dfc1dcfaf198d71f9c6d543f4b6045d3bda559883142e97a9b2729c14b2b223",
+      "members": 34,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-mypy",
+      "version": "0.20.6-1resolute.20260728.173532",
+      "file": "ros-lyrical-ament-mypy_0.20.6-1resolute.20260728.173532_amd64.deb",
+      "package_sha256": "734bfbf2fb89b5a421743737f5c9215c7250d12db834ad40cde7cd372f839c63",
+      "members": 41,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-package",
+      "version": "0.18.3-3resolute.20260430.010336",
+      "file": "ros-lyrical-ament-package_0.18.3-3resolute.20260430.010336_amd64.deb",
+      "package_sha256": "0eab5091ce6ae6cab503179756b3510f1d8d7d4286b0fa86668a358d552d0289",
+      "members": 74,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-pep257",
+      "version": "0.20.6-1resolute.20260728.172706",
+      "file": "ros-lyrical-ament-pep257_0.20.6-1resolute.20260728.172706_amd64.deb",
+      "package_sha256": "765df9423d230d2e76a81c9d6f56c220081a7135fb8d14a4f1824ee911da373d",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ament-uncrustify",
+      "version": "0.20.6-1resolute.20260728.210701",
+      "file": "ros-lyrical-ament-uncrustify_0.20.6-1resolute.20260728.210701_amd64.deb",
+      "package_sha256": "809a171fc0dd73e756dc1573bdae33c84c2b1045264379414f823365ec702066",
+      "members": 39,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-builtin-interfaces",
+      "version": "2.4.5-1resolute.20260915.031157",
+      "file": "ros-lyrical-builtin-interfaces_2.4.5-1resolute.20260915.031157_amd64.deb",
+      "package_sha256": "dee6396621880ecfe451ff37c762c85307c9efa78b116c80cf3f41ea5ce11bc6",
+      "members": 157,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-class-loader",
+      "version": "2.9.4-3resolute.20260831.171005",
+      "file": "ros-lyrical-class-loader_2.9.4-3resolute.20260831.171005_amd64.deb",
+      "package_sha256": "941141ae00918ba3d54997cd4b59964f92f8e7c1007e756034190f7206df3ad3",
+      "members": 55,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-console-bridge-vendor",
+      "version": "1.9.1-3resolute.20260728.205113",
+      "file": "ros-lyrical-console-bridge-vendor_1.9.1-3resolute.20260728.205113_amd64.deb",
+      "package_sha256": "bf1795705b64c696b355f1ff762cb6c5626ad1bc5adc6cf462afa30c5f599d26",
+      "members": 35,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-fastcdr",
+      "version": "2.3.6-1resolute.20260728.172850",
+      "file": "ros-lyrical-fastcdr_2.3.6-1resolute.20260728.172850_amd64.deb",
+      "package_sha256": "5d874cc3ee21a066c401695e6b77dbb9201d830a551e0c29462716e7d799dfbc",
+      "members": 52,
+      "links": 2
+    },
+    {
+      "package": "ros-lyrical-fastdds",
+      "version": "3.6.2-1resolute.20260728.174239",
+      "file": "ros-lyrical-fastdds_3.6.2-1resolute.20260728.174239_amd64.deb",
+      "package_sha256": "1ba3f77a2a6d5f83585e679551599a055c080604c64f90b921ecfc1b3644bc45",
+      "members": 344,
+      "links": 2
+    },
+    {
+      "package": "ros-lyrical-foonathan-memory-vendor",
+      "version": "1.4.1-1resolute.20260728.173726",
+      "file": "ros-lyrical-foonathan-memory-vendor_1.4.1-1resolute.20260728.173726_amd64.deb",
+      "package_sha256": "323cb36c2e52f8288b1decec8222064eacca97a4dcede853ee506350c015ba29",
+      "members": 77,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-libyaml-vendor",
+      "version": "1.8.1-3resolute.20260728.205613",
+      "file": "ros-lyrical-libyaml-vendor_1.8.1-3resolute.20260728.205613_amd64.deb",
+      "package_sha256": "566b4ce65450fbb07c9683f0c987fdbc68ddfb15ade03b4b7bb2d8fba8427617",
+      "members": 38,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-lifecycle-msgs",
+      "version": "2.4.5-1resolute.20260915.045218",
+      "file": "ros-lyrical-lifecycle-msgs_2.4.5-1resolute.20260915.045218_amd64.deb",
+      "package_sha256": "421bfda503a7450d53c17b62e9eb8052f5cff96443ed66b6796064aabfe8d5bb",
+      "members": 298,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-pluginlib",
+      "version": "5.8.5-1resolute.20260831.172534",
+      "file": "ros-lyrical-pluginlib_5.8.5-1resolute.20260831.172534_amd64.deb",
+      "package_sha256": "b9f4c41f423f490a3f67bd86be968bb30c9903ea7037efdec2da7b95d246b402",
+      "members": 56,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl",
+      "version": "10.4.5-1resolute.20260915.060844",
+      "file": "ros-lyrical-rcl_10.4.5-1resolute.20260915.060844_amd64.deb",
+      "package_sha256": "b627272622b5ff8feb5fc6e3421ba3c5d79d2d1b09520d70dc9e715a36c577e6",
+      "members": 94,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-action",
+      "version": "10.4.5-1resolute.20260915.061100",
+      "file": "ros-lyrical-rcl-action_10.4.5-1resolute.20260915.061100_amd64.deb",
+      "package_sha256": "3334c78859391f90c2c90de8bdd6e85760a7e5bff6959e524e93670363698b2e",
+      "members": 60,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-interfaces",
+      "version": "2.4.5-1resolute.20260915.045418",
+      "file": "ros-lyrical-rcl-interfaces_2.4.5-1resolute.20260915.045418_amd64.deb",
+      "package_sha256": "d70ecdaa39a61d7430b5b4a664027eaaca1f9572dff4b74357c8e59dd5def591",
+      "members": 585,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-lifecycle",
+      "version": "10.4.5-1resolute.20260915.061109",
+      "file": "ros-lyrical-rcl-lifecycle_10.4.5-1resolute.20260915.061109_amd64.deb",
+      "package_sha256": "2b8f52b31146ae18740eb86c6c9025278e23adebcd071fa754d57ffb8860c5a3",
+      "members": 54,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-logging-implementation",
+      "version": "3.4.1-3resolute.20260915.055807",
+      "file": "ros-lyrical-rcl-logging-implementation_3.4.1-3resolute.20260915.055807_amd64.deb",
+      "package_sha256": "3ec7f3483e97577a34d8951942cb93c276f15d9a13c5229ae3d01fefe4bb5f5a",
+      "members": 41,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-logging-interface",
+      "version": "3.4.1-3resolute.20260915.055121",
+      "file": "ros-lyrical-rcl-logging-interface_3.4.1-3resolute.20260915.055121_amd64.deb",
+      "package_sha256": "17d27846fb15e01cc1620e6fae83955b06478ca86c3597ba292082df78107029",
+      "members": 47,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-logging-spdlog",
+      "version": "3.4.1-3resolute.20260915.055418",
+      "file": "ros-lyrical-rcl-logging-spdlog_3.4.1-3resolute.20260915.055418_amd64.deb",
+      "package_sha256": "3aed7fff9f37396ed3423093680ae1cf57c5349881390b1ac23f597808dd98de",
+      "members": 44,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcl-yaml-param-parser",
+      "version": "10.4.5-1resolute.20260915.055121",
+      "file": "ros-lyrical-rcl-yaml-param-parser_10.4.5-1resolute.20260915.055121_amd64.deb",
+      "package_sha256": "28309d5ff254a5ddfcd8f6c1ebbdd1fcd82c4ad475003d1a4e7fbfad1f968720",
+      "members": 52,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rclpy",
+      "version": "10.0.11-1resolute.20260915.061807",
+      "file": "ros-lyrical-rclpy_10.0.11-1resolute.20260915.061807_amd64.deb",
+      "package_sha256": "bc5647883ec57eacabfeba382c4a36fc14c25b518b4cf466f42b09951999bada",
+      "members": 124,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcpputils",
+      "version": "2.14.5-1resolute.20260831.170316",
+      "file": "ros-lyrical-rcpputils_2.14.5-1resolute.20260831.170316_amd64.deb",
+      "package_sha256": "ef4df7cf98ca6bbea3c126f1bf90e8e36beaf6794b5869d9c784fca58d0db58f",
+      "members": 70,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rcutils",
+      "version": "7.1.3-1resolute.20260831.165446",
+      "file": "ros-lyrical-rcutils_7.1.3-1resolute.20260831.165446_amd64.deb",
+      "package_sha256": "bc17967aa8fb59c5db1023744cff4d8399ce081b6b029b206907fa4075608e9e",
+      "members": 92,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw",
+      "version": "7.10.2-3resolute.20260901.091148",
+      "file": "ros-lyrical-rmw_7.10.2-3resolute.20260901.091148_amd64.deb",
+      "package_sha256": "ca1290679d89a7aac394a7edd4a5c574957c68a1af5f14629539c3d78012abfc",
+      "members": 114,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw-dds-common",
+      "version": "6.0.0-3resolute.20260915.045630",
+      "file": "ros-lyrical-rmw-dds-common_6.0.0-3resolute.20260915.045630_amd64.deb",
+      "package_sha256": "158a410b3741a1afa14a3fc63e07b25cefdeb866e8113f71dcbabb644b7ef79e",
+      "members": 188,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw-fastrtps-cpp",
+      "version": "9.4.10-1resolute.20260915.053043",
+      "file": "ros-lyrical-rmw-fastrtps-cpp_9.4.10-1resolute.20260915.053043_amd64.deb",
+      "package_sha256": "ea8de7489d183af97c6e0ed87a940e73a3c0923565e0f1339a6f9f07a55243fb",
+      "members": 69,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw-fastrtps-shared-cpp",
+      "version": "9.4.10-1resolute.20260915.051845",
+      "file": "ros-lyrical-rmw-fastrtps-shared-cpp_9.4.10-1resolute.20260915.051845_amd64.deb",
+      "package_sha256": "bc1d24d39413e20fd480df3e7989ff45939ec6b0dafb947d2ddb88db75252a0b",
+      "members": 73,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw-implementation",
+      "version": "3.1.6-1resolute.20260915.053750",
+      "file": "ros-lyrical-rmw-implementation_3.1.6-1resolute.20260915.053750_amd64.deb",
+      "package_sha256": "b37a1e6f8ff783923805bff8b999804c01f0b055a30aa4b04680aed2b8e19cf1",
+      "members": 48,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw-implementation-cmake",
+      "version": "7.10.2-3resolute.20260901.091219",
+      "file": "ros-lyrical-rmw-implementation-cmake_7.10.2-3resolute.20260901.091219_amd64.deb",
+      "package_sha256": "c748e2d91faa0bf5d967e5e65b4bebccc809e991a81e292275c06c1ea8f6787b",
+      "members": 40,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rmw-security-common",
+      "version": "7.10.2-3resolute.20260901.091646",
+      "file": "ros-lyrical-rmw-security-common_7.10.2-3resolute.20260901.091646_amd64.deb",
+      "package_sha256": "5e32a5d168eda51f508fcc46389ce6f84c4e8b995872d12b5ff95a28511452fa",
+      "members": 50,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-ros-workspace",
+      "version": "1.0.3-9resolute.20260728.162902",
+      "file": "ros-lyrical-ros-workspace_1.0.3-9resolute.20260728.162902_amd64.deb",
+      "package_sha256": "2a739a61d1d58fd00ced9c866defa4eb2f6dd043ee31fb961e88787acb4038ec",
+      "members": 50,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosgraph-msgs",
+      "version": "2.4.5-1resolute.20260915.050401",
+      "file": "ros-lyrical-rosgraph-msgs_2.4.5-1resolute.20260915.050401_amd64.deb",
+      "package_sha256": "98a0c57395477e16f4453e9ab2b201f52ec4b097f217d8223b331d854b86b80a",
+      "members": 311,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-adapter",
+      "version": "5.2.1-1resolute.20260728.204010",
+      "file": "ros-lyrical-rosidl-adapter_5.2.1-1resolute.20260728.204010_amd64.deb",
+      "package_sha256": "7f147146c0c5c973a6269dfe1a3ae4ecce403eb6ab002128ba94e820a27900e2",
+      "members": 71,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-buffer",
+      "version": "5.2.1-1resolute.20260728.210115",
+      "file": "ros-lyrical-rosidl-buffer_5.2.1-1resolute.20260728.210115_amd64.deb",
+      "package_sha256": "344a73fcd6d12aefdedf5a98cd59a0b3594ec3e99a4318b69d43bb2993681d23",
+      "members": 48,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-buffer-backend",
+      "version": "5.2.1-1resolute.20260901.091711",
+      "file": "ros-lyrical-rosidl-buffer-backend_5.2.1-1resolute.20260901.091711_amd64.deb",
+      "package_sha256": "983f98e1c820676ab37a10a98587fd0a8ebcc6bb9b91043da888f16438e65e29",
+      "members": 46,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-buffer-backend-registry",
+      "version": "5.2.1-1resolute.20260901.091931",
+      "file": "ros-lyrical-rosidl-buffer-backend-registry_5.2.1-1resolute.20260901.091931_amd64.deb",
+      "package_sha256": "f92e84534210d775130bd545d3f5451577e7ac80277b37c57e6d8955928ec760",
+      "members": 49,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-buffer-py",
+      "version": "5.2.1-1resolute.20260728.210209",
+      "file": "ros-lyrical-rosidl-buffer-py_5.2.1-1resolute.20260728.210209_amd64.deb",
+      "package_sha256": "6cc1ec6036de4c7835bf80b7a35d0f210cda6564db936c65ae21112f7e4f5d8e",
+      "members": 50,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-cli",
+      "version": "5.2.1-1resolute.20260728.173046",
+      "file": "ros-lyrical-rosidl-cli_5.2.1-1resolute.20260728.173046_amd64.deb",
+      "package_sha256": "231b034534c15ed512f53515413b5cc08b91d1c12d85e9f4ab65f3276eef12c4",
+      "members": 76,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-cmake",
+      "version": "5.2.1-1resolute.20260728.210427",
+      "file": "ros-lyrical-rosidl-cmake_5.2.1-1resolute.20260728.210427_amd64.deb",
+      "package_sha256": "2959349c4edf4c57d7f5e128835b9445294bfdf36fb2c186b585733bf4b8d518",
+      "members": 65,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-core-runtime",
+      "version": "0.4.3-3resolute.20260915.030238",
+      "file": "ros-lyrical-rosidl-core-runtime_0.4.3-3resolute.20260915.030238_amd64.deb",
+      "package_sha256": "2d945b5c53affec1bb60a63ffb72c3de30cc678e739d9e54403fe47c9ee5f205",
+      "members": 36,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-default-runtime",
+      "version": "1.8.1-3resolute.20260915.042259",
+      "file": "ros-lyrical-rosidl-default-runtime_1.8.1-3resolute.20260915.042259_amd64.deb",
+      "package_sha256": "97196d8c70a47a7fc60da9b0a82a20159fd8e2e10bc49bbdbd425e32c6640181",
+      "members": 36,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-dynamic-typesupport",
+      "version": "0.4.1-3resolute.20260831.170948",
+      "file": "ros-lyrical-rosidl-dynamic-typesupport_0.4.1-3resolute.20260831.170948_amd64.deb",
+      "package_sha256": "dfc38cbf4cda6f9aa718b342e58218b6befb4fa1036b5dd7d2743d82b7526ad0",
+      "members": 57,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-dynamic-typesupport-fastrtps",
+      "version": "0.5.1-3resolute.20260831.171643",
+      "file": "ros-lyrical-rosidl-dynamic-typesupport-fastrtps_0.5.1-3resolute.20260831.171643_amd64.deb",
+      "package_sha256": "1e507d42596db2a4fe91a94318b49f1e7a79e2bf8883f25c344d381bf96da730",
+      "members": 49,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-generator-c",
+      "version": "5.2.1-1resolute.20260831.170131",
+      "file": "ros-lyrical-rosidl-generator-c_5.2.1-1resolute.20260831.170131_amd64.deb",
+      "package_sha256": "d93fc6cf4fea93ef7132e205b4038fa9612fa630256efeb21ba3f01d5fa54523",
+      "members": 77,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-generator-cpp",
+      "version": "5.2.1-1resolute.20260831.171349",
+      "file": "ros-lyrical-rosidl-generator-cpp_5.2.1-1resolute.20260831.171349_amd64.deb",
+      "package_sha256": "58a8b5678deb9d14904ea52681eb4f7dfa4982432c403a94f76be003266a59e9",
+      "members": 76,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-generator-py",
+      "version": "0.27.2-3resolute.20260901.091938",
+      "file": "ros-lyrical-rosidl-generator-py_0.27.2-3resolute.20260901.091938_amd64.deb",
+      "package_sha256": "cd4e101379c8391e973ec02a015380e5265d5a83506cf3b3822a5a466ef7f643",
+      "members": 74,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-generator-type-description",
+      "version": "5.2.1-1resolute.20260728.210206",
+      "file": "ros-lyrical-rosidl-generator-type-description_5.2.1-1resolute.20260728.210206_amd64.deb",
+      "package_sha256": "3bb6cadb89b1df6ca489aec078bac016d123e0f66a39a6bc4df82c78d7ab9c62",
+      "members": 58,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-parser",
+      "version": "5.2.1-1resolute.20260728.210114",
+      "file": "ros-lyrical-rosidl-parser_5.2.1-1resolute.20260728.210114_amd64.deb",
+      "package_sha256": "8374b988fdf19d8dc096c6d7a9c25c17081add8149fcbcac080a9101e02d6673",
+      "members": 53,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-pycommon",
+      "version": "5.2.1-1resolute.20260728.210228",
+      "file": "ros-lyrical-rosidl-pycommon_5.2.1-1resolute.20260728.210228_amd64.deb",
+      "package_sha256": "eb11dc835b270490c121c2773feb10425bc1ff84efd3864db99c5197f770aebb",
+      "members": 33,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-runtime-c",
+      "version": "5.2.1-1resolute.20260831.170154",
+      "file": "ros-lyrical-rosidl-runtime-c_5.2.1-1resolute.20260831.170154_amd64.deb",
+      "package_sha256": "d962e27028c9d4a471134fea37fa078606fb70d59cb4f99a3a8efc63926e3f9c",
+      "members": 78,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-runtime-cpp",
+      "version": "5.2.1-1resolute.20260831.170544",
+      "file": "ros-lyrical-rosidl-runtime-cpp_5.2.1-1resolute.20260831.170544_amd64.deb",
+      "package_sha256": "08000023949cacd0b825cb92851b554714e5d73b97e45c91afea18c57a439ed9",
+      "members": 62,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-c",
+      "version": "3.4.2-3resolute.20260831.171238",
+      "file": "ros-lyrical-rosidl-typesupport-c_3.4.2-3resolute.20260831.171238_amd64.deb",
+      "package_sha256": "9afecec7296e1a24e7ffa0fd2f6605be943b99d10f28d439a06d481208da5636",
+      "members": 78,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-cpp",
+      "version": "3.4.2-3resolute.20260831.173017",
+      "file": "ros-lyrical-rosidl-typesupport-cpp_3.4.2-3resolute.20260831.173017_amd64.deb",
+      "package_sha256": "b7ad0a69a3bb73afc771ac249eb7449e9f9f04fe7b96092a8ee70f9c3836add0",
+      "members": 76,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-fastrtps-c",
+      "version": "3.9.7-1resolute.20260915.025611",
+      "file": "ros-lyrical-rosidl-typesupport-fastrtps-c_3.9.7-1resolute.20260915.025611_amd64.deb",
+      "package_sha256": "c2985a6714e9d522ac33f03e0e850bca586866da4a55d50deb9bb7c3143afd78",
+      "members": 78,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-fastrtps-cpp",
+      "version": "3.9.7-1resolute.20260915.025317",
+      "file": "ros-lyrical-rosidl-typesupport-fastrtps-cpp_3.9.7-1resolute.20260915.025317_amd64.deb",
+      "package_sha256": "b4d3c4c4e0af255ffb884ebb87cbf27f06eac4bf39983b02866d3496c3742b63",
+      "members": 83,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-interface",
+      "version": "5.2.1-1resolute.20260728.210128",
+      "file": "ros-lyrical-rosidl-typesupport-interface_5.2.1-1resolute.20260728.210128_amd64.deb",
+      "package_sha256": "c14b136fbc03572bce1e6b928f5cd6599ecebb22658c96c65b2618c4335d709a",
+      "members": 42,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-introspection-c",
+      "version": "5.2.1-1resolute.20260831.170823",
+      "file": "ros-lyrical-rosidl-typesupport-introspection-c_5.2.1-1resolute.20260831.170823_amd64.deb",
+      "package_sha256": "fa2fae6512aa3ba5c739206d049c47b1940112f733f3976a790e4eed35a53be9",
+      "members": 83,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rosidl-typesupport-introspection-cpp",
+      "version": "5.2.1-1resolute.20260831.172258",
+      "file": "ros-lyrical-rosidl-typesupport-introspection-cpp_5.2.1-1resolute.20260831.172258_amd64.deb",
+      "package_sha256": "dd1b37e88ac726810c89fc2774bfb05d1b9f0541dc70a99090f415762bd06793",
+      "members": 84,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-rpyutils",
+      "version": "0.7.2-3resolute.20260728.174949",
+      "file": "ros-lyrical-rpyutils_0.7.2-3resolute.20260728.174949_amd64.deb",
+      "package_sha256": "ab0f1b067d12bcd24bacadb896ee6d0345a7ee8b6d909ce9553b17963d3746ec",
+      "members": 34,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-service-msgs",
+      "version": "2.4.5-1resolute.20260915.032658",
+      "file": "ros-lyrical-service-msgs_2.4.5-1resolute.20260915.032658_amd64.deb",
+      "package_sha256": "f960bc5b9350293f0e20a30160c41719dcc79590d28985c0a54b22383875a962",
+      "members": 135,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-spdlog-vendor",
+      "version": "1.8.0-3resolute.20260728.210243",
+      "file": "ros-lyrical-spdlog-vendor_1.8.0-3resolute.20260728.210243_amd64.deb",
+      "package_sha256": "b5b4bd2e1bd8447cf59a13c20ecb27c1d2016d9ab519664b337a2f58ee9b978e",
+      "members": 35,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-std-msgs",
+      "version": "5.9.3-1resolute.20260915.043001",
+      "file": "ros-lyrical-std-msgs_5.9.3-1resolute.20260915.043001_amd64.deb",
+      "package_sha256": "4a96b08da7529506056272abdffc63e0a42ba78925757fe62559c21424d79a72",
+      "members": 773,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-tracetools",
+      "version": "8.10.2-1resolute.20260728.204752",
+      "file": "ros-lyrical-tracetools_8.10.2-1resolute.20260728.204752_amd64.deb",
+      "package_sha256": "d87bead985d1084007e831e4777f7eb1ff477654b740b4e6ac6b9c0414bec230",
+      "members": 58,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-type-description-interfaces",
+      "version": "2.4.5-1resolute.20260915.033102",
+      "file": "ros-lyrical-type-description-interfaces_2.4.5-1resolute.20260915.033102_amd64.deb",
+      "package_sha256": "96011fae6736fecdc5687cb5de07cb3f289e59e2c339cfc7317351a802fd540c",
+      "members": 276,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-uncrustify-vendor",
+      "version": "3.2.0-3resolute.20260728.210418",
+      "file": "ros-lyrical-uncrustify-vendor_3.2.0-3resolute.20260728.210418_amd64.deb",
+      "package_sha256": "5abbbd833798bc298ea22d4f88b1720280387a8261dfbc4cc0121d9cb0e5c427",
+      "members": 35,
+      "links": 0
+    },
+    {
+      "package": "ros-lyrical-unique-identifier-msgs",
+      "version": "2.8.1-3resolute.20260915.030702",
+      "file": "ros-lyrical-unique-identifier-msgs_2.8.1-3resolute.20260915.030702_amd64.deb",
+      "package_sha256": "a158137d36473de0dfdb1eef92a2fb36b8d4999f848a2e475733037286c549d4",
+      "members": 136,
+      "links": 0
+    }
+  ],
+  "symlinks": [
+    {
+      "path": "opt/ros/lyrical/lib/libfastdds.so",
+      "target": "opt/ros/lyrical/lib/libfastdds.so.3.6.2.0"
+    },
+    {
+      "path": "opt/ros/lyrical/lib/libfastdds.so.3.6",
+      "target": "opt/ros/lyrical/lib/libfastdds.so.3.6.2.0"
+    },
+    {
+      "path": "opt/ros/lyrical/lib/x86_64-linux-gnu/libfastcdr.so",
+      "target": "opt/ros/lyrical/lib/x86_64-linux-gnu/libfastcdr.so.2.3.6"
+    },
+    {
+      "path": "opt/ros/lyrical/lib/x86_64-linux-gnu/libfastcdr.so.2",
+      "target": "opt/ros/lyrical/lib/x86_64-linux-gnu/libfastcdr.so.2.3.6"
+    }
+  ],
+  "elapsed_s": 301.38458298,
+  "manifest_sha256": "46f562eba1cbe4dc03a91524de7158942908e3b79d29c8520b82aa0d9c0b76f6"
+}

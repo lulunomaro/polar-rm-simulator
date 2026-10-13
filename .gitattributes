@@ -12,5 +12,7 @@ docs/validation/**/*.json -text diff
 docs/validation/**/*.jsonl -text diff
 docs/validation/**/*.md -text diff
 docs/validation/**/*.txt -text diff
+docs/validation/**/*.log -text diff -whitespace
+docs/validation/**/*.xml -text diff
 tools/report_pnp_static_chain.py -text diff
 tools/diagnose_pnp_corner_roi.py -text diff

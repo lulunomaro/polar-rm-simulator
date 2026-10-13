@@ -1,0 +1,21 @@
+{
+  "schema": "polar.sim.adapter.jsonl.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_ros2_navigation",
+      "kind": "navigation",
+      "label": "Optional ROS 2 JSON envelope navigation bridge; external policy required",
+      "command": ["{python}", "-u", "-m", "rm_match.integrations.ros2_bridge", "--adapter-id", "custom_ros2_navigation", "--kind", "navigation", "--node-name", "polar_navigation_bridge", "--observation-topic", "/polar/custom_navigation/observation", "--action-topic", "/polar/custom_navigation/action", "--domain-id", "78", "--response-timeout", "0.08"],
+      "cwd": "..",
+      "required_sensors": ["odometry", "ranges"]
+    },
+    {
+      "adapter_id": "custom_ros2_aim",
+      "kind": "aim",
+      "label": "Optional ROS 2 JSON envelope aim bridge; external detector required; no automatic fire",
+      "command": ["{python}", "-u", "-m", "rm_match.integrations.ros2_bridge", "--adapter-id", "custom_ros2_aim", "--kind", "aim", "--node-name", "polar_aim_bridge", "--observation-topic", "/polar/custom_aim/observation", "--action-topic", "/polar/custom_aim/action", "--domain-id", "78", "--response-timeout", "0.08"],
+      "cwd": "..",
+      "required_sensors": ["camera", "odometry"]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "scope": "Post-check progress-document update and exact result archive only; no changed tested business source",
+  "original_source_unchanged_during_checks": true,
+  "postcheck_existing_file_changes": [
+    {
+      "path": ".gitattributes",
+      "before_sha256": "080a0d2380c51ebd362981b6dff7779b5b326c0a14898fda2fa55dad3e0136db",
+      "after_sha256": "dbe9f69ddfe2c8a8d080af14e8b06661d56e8c69afbf241cbda3ffdf2c0ad3ca"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "before_sha256": "c64c601fac3e1b3d6be3500e86582e05b29e56dde29da5acb57df331d9e5954d",
+      "after_sha256": "1ebb7f3417f1b4a1fa2bcb5eb9119f7c2fb0a9c22568ab44f767aa12a2b6e005"
+    }
+  ],
+  "archived_actual_outputs": [
+    {
+      "path": "manifest.json",
+      "sha256": "466510d0a0c097ea29f69af6eba9f6933ba93b41ab51cef1be69ec218240722b",
+      "bytes": 99859
+    },
+    {
+      "path": "pytest.xml",
+      "sha256": "0ab17a024f2bbcc8d4cbefe575a808d0b4c3f7e6cd2a38db1f3d0d480995154a",
+      "bytes": 157814
+    },
+    {
+      "path": "preset.json",
+      "sha256": "e9642d18b2cd97a7632364a9eaf26c39d0f99dc5b287da28710a3bd2afb2f593",
+      "bytes": 1166
+    },
+    {
+      "path": "acceptance_preset.log",
+      "sha256": "e9642d18b2cd97a7632364a9eaf26c39d0f99dc5b287da28710a3bd2afb2f593",
+      "bytes": 1166
+    },
+    {
+      "path": "source_provenance.log",
+      "sha256": "3977a2dba554c44c5fc7de3739b22e643638d22c86f44eadde5108a91a9518f9",
+      "bytes": 1537
+    },
+    {
+      "path": "interface_static.log",
+      "sha256": "ac531c14ec2acda3c239a66318e85b381c1e98f3e67c7c9b3a304cf3914fe7ae",
+      "bytes": 23958
+    },
+    {
+      "path": "pytest.log",
+      "sha256": "b6cb2a4ed4cfe9aa057788d191d93c21e093c3bfb83abb1e421e473d66d81807",
+      "bytes": 3418
+    },
+    {
+      "path": "camera.log",
+      "sha256": "1d1453a10ac2fbf3a88a44f786ffd74a522a456fc4aac4f492f3b64d8f57579b",
+      "bytes": 203
+    },
+    {
+      "path": "camera/qualification.json",
+      "sha256": "e0b0f8393b50e86bc09a4306f5eedc69ac0b095ae12b0b5db6776f48381a9529",
+      "bytes": 13472
+    },
+    {
+      "path": "camera/a-real-camera.jpg",
+      "sha256": "eb973722f6062d1d27d08c0b79fc57d054fb862ac15903a4d7cbe022633c4182",
+      "bytes": 38070
+    },
+    {
+      "path": "camera/b-real-camera.jpg",
+      "sha256": "00a19cfe640ace6467db010a7cb6299c67fe8db4398d802a57ef0b869d7ccf20",
+      "bytes": 37883
+    },
+    {
+      "path": "camera/spectator-real-camera.jpg",
+      "sha256": "9703b492c2693132819457bc762b6d5e6296b3788a58744b39b51e1306fbfde5",
+      "bytes": 38030
+    }
+  ],
+  "tests": 1060,
+  "skipped": 7,
+  "subtests": 436,
+  "camera_checks": 35,
+  "milestone_accepted": false,
+  "byte_attributes": "Protect actual archived .log/.xml bytes; literal CRLF is preserved, not normalized into a different evidence SHA",
+  "all_other_quality_source_files_unchanged": 721
+}
