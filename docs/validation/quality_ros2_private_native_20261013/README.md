@@ -1,0 +1,10 @@
+# 本轮冻结质量与Windows归档检出
+
+统一质量入口全部通过：1060tests、7skips、436subtests；实际camera35checks，preset/source/interface均exit0。
+723项源在检查期间不变，业务代码未在检查后更改。真实DDS另有1项通过；native live仍失败，不是里程碑验收。
+
+POST_CHECK_DOCUMENTATION记录测试后的进度文档更新及原字节属性；WINDOWS_ARCHIVE_PATHS记录Windows普通clone发现的长路径问题和修复。
+四轮归档的随机UUID目录缩短为binding_1/supervisor_1，host_spec文件亦缩短；41个实际记录的内容/SHA完全不变。
+PRESERVATION_MANIFEST各row的path是现归档路径，original_path（存在时）是原运行相对路径。
+实际ledger、报告、spec及像素审计内部的原路径文字没有改写。需要重建原运行目录时，以original_path映射复制，`.bgr.gz`解压后核验原BGR SHA。
+旧失败clone `artifacts/checkpoint-3ecd226-clone`留作复现，新普通检出另测；本机clone不等于第二物理电脑验收。

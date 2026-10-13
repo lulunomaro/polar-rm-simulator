@@ -69,6 +69,8 @@ PID698已reap、tmpfs移除、所有writer/thread清理、源/扩展hash不变�
 723项source在检查期间不变；status仍为checks_passed_not_milestone_acceptance。
 真实WSL DDS另有1项通过，未把默认ROS专项skip、单位fixture和实时native失败相加称完整接入。
 测试完成后的仅文档/报告归档变更单独记录；已测业务代码不变。
+本地3ecd226普通Windows clone发现随机UUID归档长路径检出失败；修复仅缩短归档目录/索引，
+41项实际记录字节/SHA完全不变，原路径保存在original_path。冻结质量目录记录此失败与后续换目录复核；未启用系统长路径绕过或删去证据。
 
 下一轮可执行诊断：在独立overlay构建中测first native read/create_request/resize/infer/post/PnP/tracker，
 原41.232ms是被期限截断的整包等待，不是纯NN耗时；原common_model.hpp已LATENCY。

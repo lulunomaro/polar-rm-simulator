@@ -64,44 +64,53 @@
       "sha256": "2ce20fd6cc3c2150e1be4d23f1aa87ffc6e2c8013954cb361346df2793428fb7"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/tracking_mode",
+      "path": "native/binding_1/tracking_mode",
       "bytes": 10,
-      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/tracking_mode"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/CLEANUP.json",
+      "path": "native/binding_1/supervisor_1/CLEANUP.json",
       "bytes": 529,
-      "sha256": "226cd9ca023bf73c0cc965457bf88ac1ae9174ff7f0f91ecbc73af00706dc72f"
+      "sha256": "226cd9ca023bf73c0cc965457bf88ac1ae9174ff7f0f91ecbc73af00706dc72f",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/CLEANUP.json"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/HOST_TRACE.json",
+      "path": "native/binding_1/supervisor_1/HOST_TRACE.json",
       "bytes": 1462,
-      "sha256": "1e687fbaac355f3b473393b2daa78970c60e2fa4c68058c9f6a71831e1c5c9b6"
+      "sha256": "1e687fbaac355f3b473393b2daa78970c60e2fa4c68058c9f6a71831e1c5c9b6",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/HOST_TRACE.json"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/OWNED_CHILD.json",
+      "path": "native/binding_1/supervisor_1/OWNED_CHILD.json",
       "bytes": 198,
-      "sha256": "29abe2d427ef595a8595da64d36b0194cff5a73305f81e1273c70c15224c3b22"
+      "sha256": "29abe2d427ef595a8595da64d36b0194cff5a73305f81e1273c70c15224c3b22",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/OWNED_CHILD.json"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/STARTUP.json",
+      "path": "native/binding_1/supervisor_1/STARTUP.json",
       "bytes": 700,
-      "sha256": "b4d0a2bc11e9f5d2bda0dc0a4ee849a241b19402d9369ec6ac58d25dba956d54"
+      "sha256": "b4d0a2bc11e9f5d2bda0dc0a4ee849a241b19402d9369ec6ac58d25dba956d54",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/STARTUP.json"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/native_stderr.log",
+      "path": "native/binding_1/supervisor_1/native_stderr.log",
       "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/native_stderr.log"
     },
     {
-      "path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/supervisor_stderr.log",
+      "path": "native/binding_1/supervisor_1/supervisor_stderr.log",
       "bytes": 132,
-      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "original_path": "native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/supervisor_stderr.log"
     },
     {
-      "path": "native/host_spec_5e894e4c152d41a5a9ffe651364fae83.json",
+      "path": "native/host_spec_1.json",
       "bytes": 3138,
-      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36"
+      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36",
+      "original_path": "native/host_spec_5e894e4c152d41a5a9ffe651364fae83.json"
     }
-  ]
+  ],
+  "path_storage": "Short Windows-safe archive paths; actual record bytes unchanged; original_path reconstructs original run layout"
 }

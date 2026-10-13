@@ -1,0 +1,235 @@
+{
+  "reason": "Windows default clone exceeded MAX_PATH with nested UUID archive names",
+  "actual_bytes_unchanged": true,
+  "relocated_actual_records": [
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/actual_frames/sensor_12.bgr.gz",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/actual_frames/sensor_12.bgr.gz",
+      "sha256": "082f3356acd30d69826bf9ac77aee2fbba367b0d4c161ed68d6696f9b3e1e983"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/actual_frames/sensor_12.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/actual_frames/sensor_12.json",
+      "sha256": "1beaa0bb52acf7b4cb275f97f0dad2c82c3e484491d903774185852d3ccd860d"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/tracking_mode",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/tracking_mode",
+      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/CLEANUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/CLEANUP.json",
+      "sha256": "ed63619629c02c0d78e1de02f26f6598269688dfdcb3b7ca9a9d957ce1c25a96"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/HOST_TRACE.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/HOST_TRACE.json",
+      "sha256": "a0d0e0eb3d572757ce02cfead91dc8649d2562f614958b2a281a69dff445a1c2"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/OWNED_CHILD.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/OWNED_CHILD.json",
+      "sha256": "da5c6b4c23309dfd84f4162cf7be7e7c3c0dd170439b79c1f9b8c9fda2016c6a"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/STARTUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/STARTUP.json",
+      "sha256": "50817775526d10f5785ad89f1f0a0a0a890372baf69e12f36436f4c3db45d468"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/SUPERVISOR_ERROR.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/SUPERVISOR_ERROR.json",
+      "sha256": "4a7a9c1616362dbe1b7b22775b8141c1ce7f7f5cb2a950c706b5434f9a030a59"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/native_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/native_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_8d651a568ffd407aae539501533a7a9e/wsl_pipe_supervisor_594c34d43b3644c1be0ce37b42920b0c/supervisor_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/binding_1/supervisor_1/supervisor_stderr.log",
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt10/native/host_spec_5efeadb7c8224b3a9553054035221bff.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt10/native/host_spec_1.json",
+      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/actual_frames/sensor_8.bgr.gz",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/actual_frames/sensor_8.bgr.gz",
+      "sha256": "194b38dedcf721ccc533738fc28e8efefb03f2337af94fc0319d96a5692152a5"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/actual_frames/sensor_8.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/actual_frames/sensor_8.json",
+      "sha256": "0f517111949f27e0c009474dd5b5750e6c66f9896e2ba91fef757f6c817d0b82"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/tracking_mode",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/tracking_mode",
+      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/CLEANUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/CLEANUP.json",
+      "sha256": "8928fc064bc2d293a5e10ad76dea35405eca253eca95d624d7962ef2ff528bd1"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/HOST_TRACE.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/HOST_TRACE.json",
+      "sha256": "a039b2e191c8718e3f0719a80d97e8e6c2ecd7ffa5a2d3e0e4bb60ec39f849a8"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/OWNED_CHILD.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/OWNED_CHILD.json",
+      "sha256": "3a3723b75c8b246f23d9ba09784f4cb55cddfa317f0808b63696a80ec573686e"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/STARTUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/STARTUP.json",
+      "sha256": "b9d2f5253bfb6b673bb9798c246c6a8d3f9d23bfaa8d6c9ca1a467a4234b0bdc"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/SUPERVISOR_ERROR.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/SUPERVISOR_ERROR.json",
+      "sha256": "00f91b445a0305379a659fc5a1b2ef1278e265a23cb029c0b1cb809e710f9864"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/native_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/native_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_f9969468a4a049ecb320ace38429c65e/wsl_pipe_supervisor_54c708a8a4d345199bb282390a65e259/supervisor_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/binding_1/supervisor_1/supervisor_stderr.log",
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt11/native/host_spec_05c3277e3c124537bc2e31918a6ee009.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt11/native/host_spec_1.json",
+      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/actual_frames/sensor_7.bgr.gz",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/actual_frames/sensor_7.bgr.gz",
+      "sha256": "bbc940a022dc00bfa219ee90e5c3df282e339b9fe5f1101266fc7f68b4dcb0eb"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/actual_frames/sensor_7.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/actual_frames/sensor_7.json",
+      "sha256": "606b79676eda1b6afbcc4c59d43488f4db5e4c72f4f1ba1be9181cd0888bd504"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/tracking_mode",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/tracking_mode",
+      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/CLEANUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/CLEANUP.json",
+      "sha256": "5a8306a4e8c85c1767d3e6cc5e3b2ad1fa64478083f1848065a09870583311c7"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/HOST_TRACE.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/HOST_TRACE.json",
+      "sha256": "172365e38ae5fb05b0fd249386130d5efe08e37ed9fa9bec6e7c3d787d70320b"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/OWNED_CHILD.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/OWNED_CHILD.json",
+      "sha256": "c4b21539c654b062a5a08f475981d82fedb329b1554941372be14b50957d5be3"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/STARTUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/STARTUP.json",
+      "sha256": "58eb7d706226f8df5cf4e2a8d618299ce2c4102a375db85b450e447ca7ae9d70"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/SUPERVISOR_ERROR.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/SUPERVISOR_ERROR.json",
+      "sha256": "5a0884028844a9b98aedc7e89821a986ce17d3ba4da0c04c05a26cac8050557b"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/native_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/native_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_80592e12f3dd4acf94faa3e76ad61839/wsl_pipe_supervisor_9552112621e544418212c1d57681f1de/supervisor_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/binding_1/supervisor_1/supervisor_stderr.log",
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt12/native/host_spec_a22723ccf2044a72a006f6a82c2e2aca.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt12/native/host_spec_1.json",
+      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/tracking_mode",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/tracking_mode",
+      "sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/CLEANUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/supervisor_1/CLEANUP.json",
+      "sha256": "226cd9ca023bf73c0cc965457bf88ac1ae9174ff7f0f91ecbc73af00706dc72f"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/HOST_TRACE.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/supervisor_1/HOST_TRACE.json",
+      "sha256": "1e687fbaac355f3b473393b2daa78970c60e2fa4c68058c9f6a71831e1c5c9b6"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/OWNED_CHILD.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/supervisor_1/OWNED_CHILD.json",
+      "sha256": "29abe2d427ef595a8595da64d36b0194cff5a73305f81e1273c70c15224c3b22"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/STARTUP.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/supervisor_1/STARTUP.json",
+      "sha256": "b4d0a2bc11e9f5d2bda0dc0a4ee849a241b19402d9369ec6ac58d25dba956d54"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/native_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/supervisor_1/native_stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_a195e06025bc447a94544315608c0bde/wsl_pipe_supervisor_141179f913c5480ba2d950db2a403da8/supervisor_stderr.log",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/binding_1/supervisor_1/supervisor_stderr.log",
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "original": "docs/validation/wsl_native_live_20261013_attempt9/native/host_spec_5e894e4c152d41a5a9ffe651364fae83.json",
+      "archived": "docs/validation/wsl_native_live_20261013_attempt9/native/host_spec_1.json",
+      "sha256": "66e4a7f84376a8807b7930d3b439f4381ad231084621bb8245d2a155f0244c36"
+    }
+  ],
+  "rewritten_archive_indexes": [
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt10/PRESERVATION_MANIFEST.json",
+      "before_sha256": "2ebfaa0dd3d477bf191507a647b1b35b05f8561df68956bc7384487c908e5052",
+      "after_sha256": "00d6f6ced38bc82d1726573d71ba30724591b2e303476ee1d9afb6c27e6764e0"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt11/PRESERVATION_MANIFEST.json",
+      "before_sha256": "dfdf5459872c74e42481738c73abefee8c8d745126084992aefd1908cd873bc7",
+      "after_sha256": "7221388a0f665eccaa2929992b00e65e4701917712594ca3ead274df0213b9a7"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt12/PRESERVATION_MANIFEST.json",
+      "before_sha256": "074fe65299b09e09ae98b0995ae11a927c0c1352ccb820846f80b0322980fa24",
+      "after_sha256": "3241cb39c42f96eb3786214f2c1073d750b9fe1dce3a4dff28198227167213ea"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt9/PRESERVATION_MANIFEST.json",
+      "before_sha256": "2a2aab363060dd1ba3bde1564c95ffcaba9d8bbd09da93e8b80e45f023c9a382",
+      "after_sha256": "3b43aedecde24730f3b28b6f19bd7f5688c515606ff2001ae5cec7b8982235d2"
+    }
+  ],
+  "previous_local_checkpoint": "3ecd226",
+  "failed_clone": "artifacts/checkpoint-3ecd226-clone"
+}

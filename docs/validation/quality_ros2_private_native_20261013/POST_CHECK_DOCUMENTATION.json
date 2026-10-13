@@ -10,7 +10,27 @@
     {
       "path": "docs/IMPLEMENTATION_PROGRESS.md",
       "before_sha256": "c64c601fac3e1b3d6be3500e86582e05b29e56dde29da5acb57df331d9e5954d",
-      "after_sha256": "1ebb7f3417f1b4a1fa2bcb5eb9119f7c2fb0a9c22568ab44f767aa12a2b6e005"
+      "after_sha256": "0120971f17d25ae2a4e41a14374700a90996578f30f2e688f43f73926eecfa90"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt10/PRESERVATION_MANIFEST.json",
+      "before_sha256": "2ebfaa0dd3d477bf191507a647b1b35b05f8561df68956bc7384487c908e5052",
+      "after_sha256": "00d6f6ced38bc82d1726573d71ba30724591b2e303476ee1d9afb6c27e6764e0"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt11/PRESERVATION_MANIFEST.json",
+      "before_sha256": "dfdf5459872c74e42481738c73abefee8c8d745126084992aefd1908cd873bc7",
+      "after_sha256": "7221388a0f665eccaa2929992b00e65e4701917712594ca3ead274df0213b9a7"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt12/PRESERVATION_MANIFEST.json",
+      "before_sha256": "074fe65299b09e09ae98b0995ae11a927c0c1352ccb820846f80b0322980fa24",
+      "after_sha256": "3241cb39c42f96eb3786214f2c1073d750b9fe1dce3a4dff28198227167213ea"
+    },
+    {
+      "path": "docs/validation/wsl_native_live_20261013_attempt9/PRESERVATION_MANIFEST.json",
+      "before_sha256": "2a2aab363060dd1ba3bde1564c95ffcaba9d8bbd09da93e8b80e45f023c9a382",
+      "after_sha256": "3b43aedecde24730f3b28b6f19bd7f5688c515606ff2001ae5cec7b8982235d2"
     }
   ],
   "archived_actual_outputs": [
@@ -81,5 +101,7 @@
   "camera_checks": 35,
   "milestone_accepted": false,
   "byte_attributes": "Protect actual archived .log/.xml bytes; literal CRLF is preserved, not normalized into a different evidence SHA",
-  "all_other_quality_source_files_unchanged": 721
+  "all_other_quality_source_files_unchanged": 717,
+  "relocated_byte_identical_files": 41,
+  "archive_path_mapping": "WINDOWS_ARCHIVE_PATHS.json"
 }
