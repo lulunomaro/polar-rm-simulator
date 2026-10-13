@@ -1,0 +1,111 @@
+{
+  "schema": "rmcs-model-provenance-v1",
+  "filename": "shenzhen-0526.onnx",
+  "size_bytes": 4359932,
+  "sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "git_blob_sha1": "c6fc0dcdf37f876f6b1fc2079672139a07c733ab",
+  "upstream": {
+    "repository": "Alliance-Algorithm/rmcs_auto_aim_v2",
+    "commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "path": "models/shenzhen-0526.onnx",
+    "source_url": "https://github.com/Alliance-Algorithm/rmcs_auto_aim_v2/blob/4f4340956a989b0d3ecd4fbd94b1e72a301293cd/models/shenzhen-0526.onnx",
+    "download_url": "https://raw.githubusercontent.com/Alliance-Algorithm/rmcs_auto_aim_v2/4f4340956a989b0d3ecd4fbd94b1e72a301293cd/models/shenzhen-0526.onnx"
+  },
+  "matching_copy": {
+    "repository": "lulunomaro/polar-upper-computer-control",
+    "commit": "e04bd32fbd036f8a7526d5d51f65dc621f1cb53c",
+    "path": "sentry-rmcs/rmcs_ws/src/rmcs_auto_aim_v2/models/shenzhen-0526.onnx",
+    "git_blob_sha1": "c6fc0dcdf37f876f6b1fc2079672139a07c733ab"
+  },
+  "license": {
+    "upstream_license": "MIT",
+    "copyright": "Copyright (c) 2025 Alliance Algorithm Team",
+    "notice_file": "LICENSE.upstream.MIT",
+    "notice_sha256": "d415250801c46571ba8bb11b1587b46ecb00ac60c826050a2ee6bd19f1bc3ca5",
+    "license_url": "https://github.com/Alliance-Algorithm/rmcs_auto_aim_v2/blob/4f4340956a989b0d3ecd4fbd94b1e72a301293cd/LICENSE",
+    "scope_observation": "The repository distributes this model under its root MIT license. No separate model-specific license, model card, or exception was found in the pinned repository tree. The root license does not explicitly discuss weights; training-data provenance and upstream authorship of the weights were not independently established."
+  },
+  "compatibility": {
+    "historical_model_sha256_match": true,
+    "input_width": 640,
+    "input_height": 640,
+    "preprocessing_from_upstream_wrapper": "OpenVINO preprocessing declaration: NHWC uint8 BGR -> float32 RGB / 255, with model layout NCHW. This preprocessing declaration is distinct from the raw ONNX graph input, which is FLOAT16.",
+    "wrapper_path": "src/module/detector/models/shenzhen.hpp",
+    "postprocessing_from_wrapper": "Four ordered 2D corners, confidence, four color scores, nine armor genre scores (22 floats per detection).",
+    "native_binary_still_required": true,
+    "executor_and_autoaim_configs_still_required": true,
+    "model_is_not_a_native_executable": true,
+    "inference_test_performed": false,
+    "simulation_run_performed": false,
+    "raw_graph_input_requirement": "images: FLOAT16 [1, 3, 640, 640]. Direct ONNX consumers must feed this graph dtype/shape or explicitly transform the model; FLOAT32 preprocessing tensors are not valid raw graph inputs without conversion.",
+    "raw_graph_output": "output: FLOAT32 [1, 25200, 22]"
+  },
+  "verification": {
+    "recovered_at_utc": "2026-10-13",
+    "downloaded_bytes_sha256_match": true,
+    "git_blob_sha1_match": true,
+    "historical_evidence": "Archived results/2026-10-12-full-match-v5/source_identity.json model_sha256",
+    "notes": "Only byte hashing, source/interface inspection, and static protobuf field inspection were performed. No ONNX checker, inference, or simulation was run; this does not assert runtime readiness or reproduce any benchmark.",
+    "onnx_checker_performed": false,
+    "static_protobuf_inspection_performed": true
+  },
+  "onnx_graph_static_metadata": {
+    "sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+    "bytes": 4359932,
+    "ir_version": 6,
+    "producer": "pytorch",
+    "producer_version": "2.0.1",
+    "opsets": [
+      {
+        "domain": "",
+        "version": 11
+      }
+    ],
+    "graph_name": "torch_jit",
+    "inputs": [
+      {
+        "name": "images",
+        "element_type": 10,
+        "dimensions": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "element_type_name": "FLOAT16"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "output",
+        "element_type": 1,
+        "dimensions": [
+          1,
+          25200,
+          22
+        ],
+        "element_type_name": "FLOAT32"
+      }
+    ],
+    "nodes": 218,
+    "operator_counts": {
+      "Conv": 60,
+      "Sigmoid": 57,
+      "Mul": 60,
+      "Add": 10,
+      "Concat": 14,
+      "MaxPool": 3,
+      "Resize": 2,
+      "Reshape": 6,
+      "Transpose": 3,
+      "Cast": 3
+    },
+    "custom_node_domains": [],
+    "initializer_count": 132,
+    "initializers_with_external_data": 0,
+    "metadata": [],
+    "training_info_count": 0,
+    "function_count": 0,
+    "inspection": "Static protobuf field inspection, not ONNX checker or inference"
+  }
+}

@@ -8,13 +8,13 @@
 
 - 这是精选公开源码快照，不是整个子目录或完整 Git 历史迁移。原仓库、分支与历史提交不变。
 - 精选 190 个源文件按远端 Git blob SHA-1 校验并保留原字节；仿真与算法实现不变。另有 1 个仅保留原始 rule_decide 函数的文本测试夹具，函数正文逐字不变。
-- 公开版本不复制历史运行日志、内部审阅记录、私人场景初值或模型/二进制。路径和校验值见 [EXTRACTION_MANIFEST.json](EXTRACTION_MANIFEST.json)，排除边界见 [PUBLICATION_SCOPE.md](PUBLICATION_SCOPE.md)。原完整历史继续留在来源仓库。
+- 首次源码拆分不复制历史运行日志、内部审阅记录、私人场景初值或模型/二进制；随后补入的原版检测模型单独记录于 [models/](models/)。首次拆分的路径和校验值见 [EXTRACTION_MANIFEST.json](EXTRACTION_MANIFEST.json)，排除边界见 [PUBLICATION_SCOPE.md](PUBLICATION_SCOPE.md)。原完整历史继续留在来源仓库。
 - 自有实现按 [MIT License](LICENSE) 开源；第三方归属与适用范围见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。依赖和外部资产不因本仓库许可证自动改变授权。
 
 ## 三个入口
 
 1. **手动 SIM v2**：`python -m rm_match.platform_v2 --camera --port 8766 --camera-total-fps 2`。客户端显式连接 `http://127.0.0.1:8766`，选车后 F2 claim、再 F2 arm，F12 release。仅限本机回环，不需要 native 自瞄资产。
-2. **OFFLINE/native SIL**：已有客户端监督启动器的 `--mode offline`。需要独立提供且哈希匹配的 Linux native 二进制、模型、配置和场景初始化 JSON。范围仍为固定单车、静止、不开火的 24 次曝光场景；Qt 为观察入口。
+2. **OFFLINE/native SIL**：已有客户端监督启动器的 `--mode offline`。原版检测模型已补入 [models/shenzhen-0526.onnx](models/shenzhen-0526.onnx)；仍需独立提供且哈希匹配的 Linux native 二进制、配置和场景初始化 JSON。范围仍为固定单车、静止、不开火的 24 次曝光场景；Qt 为观察入口。
 3. **历史 timing-v5 全场记录**：`rm_match.opening_runner --mode match --aim rmcs-stop`，使用另外冻结的 timing-v4 actor 身份。准确入口与限制见 [MATCH_TIMING_V5.md](docs/MATCH_TIMING_V5.md)。
 
 三者不能互换验收结论。历史 `launch_match_windows.bat` 是旧自动对局 viewer，不是当前手动 SIM v2。
@@ -25,7 +25,9 @@
 
 在自己的仿真 Python 环境安装 `requirements-camera.txt`；Qt 客户端使用独立环境和 `requirements-core.txt`。现有客户端启动器的参数名仍是 `--nav-root`，将它设为本仓库根目录即可。保留虚拟环境 Python 的原调用路径。完整命令见 [独立仓库指南](docs/STANDALONE_REPOSITORY.md)。
 
-本仓库不包含 native 二进制、检测器/策略权重、完整 native 构建树、私有场景初值、真实轮腿 CAD/RL 资产或 Python 解释器。不要把示例配置当成可运行 native 配置。native 路径仅有 Linux ELF64/x86-64 源码约束；Windows 桌面、跨设备 LAN、完整官方规则与真实硬件动力学均未完成验证。实时 camera/native 路径也未达到原定壁钟验收标准。
+本仓库已包含历史 RMCS 检测模型 `models/shenzhen-0526.onnx`（4,359,932 字节），SHA-256 为 `b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255`。模型字节与固定上游及历史身份记录一致；原始 MIT 声明、输入输出接口和权利范围说明见 [模型来源与限制](models/README.md)。本次只做字节与来源核验，没有运行模型推理或物理仿真，不能据此认定 native 流程已就绪。
+
+本仓库仍不包含 native 二进制、策略权重、完整 native 构建树、私有场景初值、真实轮腿 CAD/RL 资产或 Python 解释器。不要把示例配置当成可运行 native 配置。native 路径仅有 Linux ELF64/x86-64 源码约束；Windows 桌面、跨设备 LAN、完整官方规则与真实硬件动力学均未完成验证。实时 camera/native 路径也未达到原定壁钟验收标准。
 
 ## 不启动物理的拆分检查
 

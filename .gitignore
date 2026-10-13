@@ -12,6 +12,7 @@ dist/
 *.local.json
 config/*runtime*spec.json
 *.onnx
+!/models/shenzhen-0526.onnx
 *.pt
 *.pth
 *.so

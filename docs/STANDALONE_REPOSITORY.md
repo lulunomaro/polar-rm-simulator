@@ -48,7 +48,7 @@ Only red sentry uses this actor; five robots retain the baseline. Rules and dyna
 ## Boundaries
 
 - No workflow or CI dispatch is added. Extraction verification starts no physics, renderer, native actor, paid API, or hardware operation.
-- Native source/build dependencies, weights, binaries, private scene initialization and local specs are separate inputs subject to existing usage rights.
+- The historical detector weight is included at `models/shenzhen-0526.onnx`; point `model_share` to that directory only when preparing an otherwise valid matching runtime spec. See `../models/README.md` for its pinned source, original license notice and interface. This does not supply or validate a runtime spec. Native source/build dependencies, other weights, binaries, private scene initialization and local specs remain separate inputs subject to existing usage rights. No inference or native runtime qualification was performed for this model supplement.
 - Keep runtime specs, native outputs, recordings, .env files and secrets local. Review staged changes; ignore patterns are only an additional guard.
 - Original owned code is released under MIT. Retain LICENSE, THIRD_PARTY_NOTICES.md, licenses/RMCS_MIT.txt and SOURCE_PROVENANCE.md; third-party dependency and asset terms remain separate.
 - Syntax and synthetic checks do not qualify Windows visible UI, LAN, hardware, real-time native execution, a complete match or full official rules.
