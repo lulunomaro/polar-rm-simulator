@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "tools/check_project.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\quality-20261014-prepared-bgr-frozen-01"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "environment_override": {
+    "POLAR_TEST_WSL": "1"
+  },
+  "driver_sha256": "130c0c22822fa0997ef13ba154664e27823a1ba77c4d36edc642334137f34543"
+}

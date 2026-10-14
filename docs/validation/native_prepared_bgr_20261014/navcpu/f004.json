@@ -1,0 +1,21 @@
+{
+  "schema": "polar.pb.hotpath-readonly-manifest.v1",
+  "files_sha256": {
+    "COMMAND_PROCESS.json": "82d75323ce6ed57b652ef4d53b76245d0386690f91afaddb7684913e6fa64a68",
+    "console.log": "49c271cd3fc6d0649fb1abe2406e373180e92224904867d5414d3fa239e5a7af",
+    "CPU_DIAGNOSTIC.json": "989cea13742c7ec894f6f48287c3b4259dc4f6a7166848538435c1aa8289c438",
+    "diagnose.py": "fe12422f21446903bfe51efdb86e00908e5e57d145505805e7cdbe9697bcfca1",
+    "original_observation.json.gz": "44d3e80dff6785b74b9a475935e9d611b256b0fb93c89345c26edc816a95f9ba",
+    "PROCESS_RESULT.json": "474bf9247ffa2edc1c958578fe8e7a4f4aa9a45f00f1f27d78c84993ee5f2590",
+    "production_actual2_HOST_RPC_PHASES.json": "03d4af4347c2cfc1a53eff4a3a056432816569e10191a76d4f152b191bce7eb9",
+    "production_actual3_HOST_RPC_PHASES.json": "75df8365a8e171a050575b107172e430b92e35c8d67966920460261986475d3c",
+    "REVIEW.md": "6b8cad3c13bfd5a30ffecf3fe653f1d55468e3611c258bbe1466ea62dddf1298",
+    "source\\rm_match\\integrations\\pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "source\\rm_match\\integrations\\pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "source\\rm_match\\platform_v2\\contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "source\\rm_match\\platform_v2\\navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "source\\rm_match\\platform_v2\\runtime.py": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481"
+  },
+  "business_source_modified": false,
+  "frozen": true
+}

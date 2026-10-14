@@ -1,0 +1,14 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\native_prepared_bgr_20261014\\verify_archives.py",
+    "--archive",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\native_prepared_bgr_20261014"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 0.15170779999971273,
+  "owned_process_reaped": true,
+  "stdout_sha256": "01c4935276fd8d36288d3d5e24396f3c13ca9371a577be2ebf17c0e4b41a78ee",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Only archive/metadata verification; no business tests or algorithm execution"
+}

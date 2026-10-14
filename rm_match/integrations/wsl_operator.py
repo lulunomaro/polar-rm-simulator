@@ -182,6 +182,40 @@ class WslOperatorProcess:
             try: (self.evidence_out/'STOP').write_bytes(b'cancel\n')
             except OSError: self._broken.set()
 
+    def _load_cleanup_proof(self):
+        out=self.evidence_out;pre=out/'PRE_NATIVE_EXIT.json'
+        if pre.is_file():
+            if self.ready is not None or (out/'OWNED_CHILD.json').exists() or (out/'CLEANUP.json').exists():
+                raise RuntimeError('ambiguous pre-native cleanup proof')
+            start=json.loads((out/'WORKER_STARTUP.json').read_text())
+            proof=json.loads(pre.read_text())
+            for key in ('run_id','supervisor_pid','supervisor_start_ticks','boot_id','spec_sha256','transport'):
+                if key not in start or type(proof.get(key)) is not type(start[key]) or proof[key]!=start[key]:
+                    raise RuntimeError('pre-native cleanup ownership mismatch: '+key)
+            if (proof['spec_sha256']!=self.checked.linux_spec_sha256 or proof['transport']!='wsl_stdio_bgr_v2'
+                or type(proof['supervisor_pid']) is not int or proof['supervisor_pid']<=1
+                or type(proof['supervisor_start_ticks']) is not int or proof['supervisor_start_ticks']<0
+                or start.get('native_spawn_attempted') is not False or proof.get('native_spawn_attempted') is not False
+                or proof.get('native_child_reaped') is not False or proof.get('clean') is not True
+                or proof.get('tmpfs_removed') is not True
+                or proof.get('errors')!=[] or proof.get('reason') not in ('host_cancel','validation_failed','startup_timeout')):
+                raise RuntimeError('pre-native cleanup not proved')
+            self.cleanup=proof
+            return
+        if not (out/'CLEANUP.json').exists():raise RuntimeError('missing Linux child cleanup proof')
+        self.cleanup=json.loads((out/'CLEANUP.json').read_text())
+        owned=json.loads((out/'OWNED_CHILD.json').read_text())
+        for key in ('run_id','supervisor_pid','pid','pgid','boot_id','leader_start_ticks','spec_sha256','transport'):
+            if key not in owned or type(self.cleanup.get(key)) is not type(owned[key]) or self.cleanup[key]!=owned[key]:
+                raise RuntimeError('Linux cleanup ownership mismatch: '+key)
+        if owned['spec_sha256']!=self.checked.linux_spec_sha256:raise RuntimeError('Linux cleanup spec mismatch')
+        ready=self.ready
+        if ready is not None and any(type(ready.get(k)) is not type(owned[v]) or ready[k]!=owned[v]
+            for k,v in (('run_id','run_id'),('supervisor_pid','supervisor_pid'),('native_pid','pid'),('transport','transport'))):
+            raise RuntimeError('Linux cleanup belongs to another startup')
+        if self.cleanup.get('clean') is not True or self.cleanup.get('reaped') is not True or self.cleanup.get('group_empty') is not True or self.cleanup.get('remaining_members')!=[] or self.cleanup.get('errors')!=[]:
+            raise RuntimeError('Linux owned process group cleanup not proved')
+
     def close(self):
         self.request_stop(); child=self.process
         if child is None:
@@ -191,24 +225,11 @@ class WslOperatorProcess:
         # STOP is independent of a potentially blocked pipe writer. Linux owns
         # native cleanup; do not terminate a distro or rely on killing wsl.exe.
         deadline=time.perf_counter()+1.3
-        errors=[];cleanup_path=self.evidence_out/'CLEANUP.json'
+        errors=[];cleanup_path=self.evidence_out/'CLEANUP.json';pre_exit_path=self.evidence_out/'PRE_NATIVE_EXIT.json'
         try:
-            while not cleanup_path.exists() and time.perf_counter()<deadline-.1 and child.poll() is None:
+            while not cleanup_path.exists() and not pre_exit_path.exists() and time.perf_counter()<deadline-.1 and child.poll() is None:
                 time.sleep(.01)
-            if not cleanup_path.exists():raise RuntimeError('missing Linux child cleanup proof')
-            self.cleanup=json.loads(cleanup_path.read_text())
-            owned=json.loads((self.evidence_out/'OWNED_CHILD.json').read_text())
-            ready=self.ready
-            for key in ('run_id','supervisor_pid','pid','pgid','boot_id','leader_start_ticks','spec_sha256','transport'):
-                if key not in owned or type(self.cleanup.get(key)) is not type(owned[key]) or self.cleanup[key]!=owned[key]:
-                    raise RuntimeError('Linux cleanup ownership mismatch: '+key)
-            if owned['spec_sha256']!=self.checked.linux_spec_sha256:
-                raise RuntimeError('Linux cleanup spec mismatch')
-            if ready is not None and any(type(ready.get(k)) is not type(owned[v]) or ready[k]!=owned[v]
-                for k,v in (('run_id','run_id'),('supervisor_pid','supervisor_pid'),('native_pid','pid'),('transport','transport'))):
-                raise RuntimeError('Linux cleanup belongs to another startup')
-            if self.cleanup.get('clean') is not True or self.cleanup.get('reaped') is not True or self.cleanup.get('group_empty') is not True or self.cleanup.get('remaining_members')!=[] or self.cleanup.get('errors')!=[]:
-                raise RuntimeError('Linux owned process group cleanup not proved')
+            self._load_cleanup_proof()
             child.wait(timeout=max(0.,deadline-.1-time.perf_counter()))
         except Exception as exc:errors.append(type(exc).__name__+':'+str(exc))
         finally:
@@ -227,7 +248,9 @@ class WslOperatorProcess:
                 thread.join(timeout=max(0.,deadline-time.perf_counter()))
                 if thread.is_alive():errors.append('owned_IO_thread_did_not_stop')
             self.process=None
-            self._record('closed',clean=not errors,linux_child_reaped=not errors,errors=errors)
+            not_spawned=self.cleanup is not None and self.cleanup.get('native_spawn_attempted') is False
+            self._record('closed',clean=not errors,linux_child_reaped=not errors and not not_spawned,
+                native_not_spawned=not_spawned,errors=errors)
             try:(self.evidence_out/'HOST_TRACE.json').write_text(json.dumps(self.diagnostics,indent=2)+'\n',encoding='utf8')
             except Exception as exc:errors.append('trace_write:'+type(exc).__name__)
             self._close_error='; '.join(errors) if errors else None

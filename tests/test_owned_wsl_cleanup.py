@@ -43,6 +43,32 @@ class HostCleanupTests(unittest.TestCase):
             self.assertFalse(a.diagnostics[-1]['clean']);self.assertIsNone(a.process)
             with self.assertRaises(RuntimeError):a.close()
 
+    def pre_native_proof(self,out,**changes):
+        start=dict(run_id='fixture-run',supervisor_pid=991,supervisor_start_ticks=5,boot_id='fixture-boot',
+            spec_sha256='spec',transport='wsl_stdio_bgr_v2',native_spawn_attempted=False)
+        (out/'WORKER_STARTUP.json').write_text(json.dumps(start))
+        proof=dict(start,reason='host_cancel',native_child_reaped=False,clean=True,errors=[],tmpfs_removed=True)
+        proof.update(changes);(out/'PRE_NATIVE_EXIT.json').write_text(json.dumps(proof))
+
+    def test_pre_native_exit_is_clean_but_never_claims_a_reaped_native_child(self):
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td);self.pre_native_proof(out)
+            child=subprocess.Popen([sys.executable,'-c','pass'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,bufsize=0)
+            child.wait(timeout=2);a=self.actor(out,child,None);a.close()
+            self.assertTrue(a.diagnostics[-1]['clean']);self.assertTrue(a.diagnostics[-1]['native_not_spawned'])
+            self.assertFalse(a.diagnostics[-1]['linux_child_reaped']);self.assertTrue(child.stdout.closed)
+
+    def test_pre_native_proof_rejects_mismatched_birth_spawn_or_existing_child(self):
+        variants=(dict(run_id='other'),dict(supervisor_start_ticks=True),dict(native_spawn_attempted=True),
+            dict(native_child_reaped=True),dict(reason='control_timeout'),dict(tmpfs_removed=False))
+        for wrong in variants:
+            with self.subTest(wrong=wrong),tempfile.TemporaryDirectory() as td:
+                out=Path(td);self.pre_native_proof(out,**wrong);a=self.actor(out,None,None)
+                with self.assertRaises(RuntimeError):a._load_cleanup_proof()
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td);self.pre_native_proof(out);(out/'OWNED_CHILD.json').write_text('{}')
+            with self.assertRaisesRegex(RuntimeError,'ambiguous'):self.actor(out,None,None)._load_cleanup_proof()
+
     def test_ready_wrong_run_rejected_even_consistent_disk_proof(self):
         with tempfile.TemporaryDirectory() as td:
             out=Path(td);ready=self.proof(out);ready['run_id']='wrong-startup'
@@ -96,6 +122,58 @@ class HostCleanupTests(unittest.TestCase):
 
 @unittest.skipUnless(sys.platform=='linux','Actual POSIX process groups; run explicitly through WSL')
 class ActualLinuxGroupTests(unittest.TestCase):
+    def test_cancel_or_deadline_during_file_setup_never_spawns_native_and_removes_tmpfs(self):
+        from rm_match.integrations import wsl_operator_pipe_worker as worker
+        import signal
+        original_open=Path.open
+        for mode in ('stop','signal','deadline'):
+            with self.subTest(mode=mode),tempfile.TemporaryDirectory() as td:
+                out=Path(td)
+                def delayed_file_setup(path,*args,**kwargs):
+                    stream=original_open(path,*args,**kwargs)
+                    if path.name=='native_stderr.log':
+                        if mode=='stop':(out/'STOP').write_bytes(b'cancel')
+                        elif mode=='signal':os.kill(os.getpid(),signal.SIGTERM)
+                        else:time.sleep(.07)
+                    return stream
+                valid=(dict(environment={},autoaim_config='unused',model_share='unused',binary='unused',executor_yaml='unused'),'spec')
+                with patch.object(worker,'validate_linux_spec',return_value=valid),patch.object(Path,'open',delayed_file_setup),patch.object(worker.subprocess,'Popen',side_effect=AssertionError('late cancellation must not spawn')):
+                    self.assertEqual(worker.prepare_and_supervise('unused','spec',out,{},startup_timeout=.05 if mode=='deadline' else 15.),2)
+                proof=json.loads((out/'PRE_NATIVE_EXIT.json').read_text())
+                self.assertEqual(proof['failed_phase'],'before_native_spawn');self.assertFalse(proof['native_spawn_attempted'])
+                self.assertEqual(proof['reason'],'startup_timeout' if mode=='deadline' else 'host_cancel')
+                self.assertTrue(proof['tmpfs_removed']);self.assertFalse(Path(proof['tmpfs_directory']).exists())
+                self.assertFalse((out/'OWNED_CHILD.json').exists())
+                print(json.dumps(dict(fixture='cancel_during_file_setup',mode=mode,proof=proof)),flush=True)
+
+    def test_cancel_before_or_during_validation_never_spawns_native(self):
+        from rm_match.integrations import wsl_operator_pipe_worker as worker
+        for before in (True,False):
+            with self.subTest(before=before),tempfile.TemporaryDirectory() as td:
+                out=Path(td)
+                if before:(out/'STOP').write_bytes(b'cancel')
+                def validate(*args):
+                    (out/'STOP').write_bytes(b'cancel')
+                    return dict(environment={},autoaim_config='unused',model_share='unused',binary='unused',executor_yaml='unused'),'spec'
+                with patch.object(worker,'validate_linux_spec',side_effect=validate) as validator,patch.object(worker,'supervise',side_effect=AssertionError('canceled startup must not spawn')):
+                    self.assertEqual(worker.prepare_and_supervise('unused','spec',out,{}),0)
+                self.assertEqual(validator.call_count,0 if before else 1)
+                proof=json.loads((out/'PRE_NATIVE_EXIT.json').read_text())
+                self.assertFalse(proof['native_spawn_attempted']);self.assertEqual(proof['reason'],'host_cancel')
+                self.assertFalse((out/'OWNED_CHILD.json').exists());self.assertFalse((out/'STARTUP.json').exists())
+                print(json.dumps(dict(fixture='pre_native_cancel',before_validation=before,proof=proof)),flush=True)
+
+    def test_invalid_spec_records_owned_pre_native_exit_without_spawning(self):
+        from rm_match.integrations import wsl_operator_pipe_worker as worker
+        with tempfile.TemporaryDirectory() as td:
+            out=Path(td)
+            with patch.object(worker,'validate_linux_spec',side_effect=ValueError('identity mismatch')),patch.object(worker,'supervise',side_effect=AssertionError('invalid identity must not spawn')):
+                self.assertEqual(worker.prepare_and_supervise('unused','spec',out,{}),2)
+            proof=json.loads((out/'PRE_NATIVE_EXIT.json').read_text())
+            self.assertEqual(proof['reason'],'validation_failed');self.assertFalse(proof['native_child_reaped'])
+            self.assertEqual(proof['failed_phase'],'validate_linux_spec');self.assertFalse((out/'OWNED_CHILD.json').exists())
+            print(json.dumps(dict(fixture='pre_native_validation_failure',proof=proof)),flush=True)
+
     def test_both_workers_reap_term_ignoring_grandchild_after_leader_exits(self):
         for worker in ('wsl_operator_worker','wsl_operator_pipe_worker'):
             with self.subTest(worker=worker),tempfile.TemporaryDirectory() as td:

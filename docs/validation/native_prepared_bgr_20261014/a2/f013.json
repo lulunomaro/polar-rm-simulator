@@ -1,0 +1,444 @@
+{
+  "schema": "polar.wsl.native.live-result.v1",
+  "measurements": {
+    "configuration": {
+      "robot_count": 6,
+      "timestep_s": 0.002,
+      "resolution": [
+        1440,
+        1080
+      ],
+      "total_fps": 15,
+      "active_views": 1,
+      "real_time_factor_limit": 1.0,
+      "camera_native_budget_s": 0.08,
+      "server_input_window_s": 0.15,
+      "manual_fire": false,
+      "native_transport": "wsl_stdio_bgr_v2",
+      "clock": "Windows time.perf_counter, wall_deadline_live",
+      "raw_base64_codec": "pybase64_1_5_1",
+      "private_native_pixels": true,
+      "input_publication": "sealed_actual_rgb_before_public_base64",
+      "rgb_trace_strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    "duration_s": -1.499999598308932e-06,
+    "physics_rtf": 0,
+    "raw_frames": 0,
+    "native_results": 0,
+    "distinct_native_actuated_frames": 0,
+    "source_unchanged": true,
+    "sdk_admission": false,
+    "window_acknowledged": false,
+    "native_sensor_budget_80ms": false,
+    "actual_transport_matches_plan": false,
+    "raw_codec_identity_unchanged": true,
+    "postclose_actual_pixel_audit": false,
+    "fire_true": 0,
+    "clean_shutdown": true,
+    "errors": [
+      "RuntimeError:RuntimeError:missing Linux child cleanup proof; Linux supervisor did not exit within original cleanup budget"
+    ],
+    "adapter_error_count": 0,
+    "incomplete_native_requests": 0,
+    "native_evidence_closed": true,
+    "native_evidence_shutdown_statuses": [
+      {
+        "clean": true,
+        "worker_alive": false,
+        "submitted": 0,
+        "written": 0,
+        "failed": 0,
+        "pending": 0,
+        "running": false,
+        "elapsed_s": 0.00013440000020636944,
+        "error_type": null
+      }
+    ],
+    "native_evidence_writer_required": false,
+    "stages": {
+      "exposure_to_raw_encode_end": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "raw_encode_end_to_adapter_enqueue": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "adapter_enqueue_to_native_request": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "native_request_to_native_result": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "native_result_to_actuator_consume": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "exposure_to_actuator_consume": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "exposure_to_private_pixels": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      },
+      "private_pixels_to_adapter_enqueue": {
+        "sample_count": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": null,
+        "within_80ms_count": 0
+      }
+    },
+    "stage_samples_s": {
+      "exposure_to_raw_encode_end": [],
+      "raw_encode_end_to_adapter_enqueue": [],
+      "adapter_enqueue_to_native_request": [],
+      "native_request_to_native_result": [],
+      "native_result_to_actuator_consume": [],
+      "exposure_to_actuator_consume": [],
+      "exposure_to_private_pixels": [],
+      "private_pixels_to_adapter_enqueue": []
+    },
+    "stage_inapplicable": {
+      "raw_encode_end_to_adapter_enqueue": "private native input is published before public base64 completion"
+    },
+    "unpublished_private_frames": {},
+    "exact_sensor_pixel_binding": false,
+    "raw_ages_s": [],
+    "native_result_ages_s": [],
+    "actuator_wall_ages_s": [],
+    "actuator_sim_ages_s": []
+  },
+  "host_process_cpu": {
+    "seconds": null,
+    "clock": "process_time",
+    "scope": "All Windows process threads during runtime.run including cleanup; excludes setup and WSL native child"
+  },
+  "classification": {
+    "checks": {
+      "configuration_unchanged": true,
+      "bounded_real_wall_run": false,
+      "physics_rtf": false,
+      "raw_sample_count": false,
+      "native_sample_count": false,
+      "no_sticky_adapter_fault": true,
+      "all_native_requests_completed": true,
+      "actual_evidence_preserved": true,
+      "actual_native_actuation": false,
+      "native_sensor_budget_80ms": false,
+      "actual_transport_matches_plan": false,
+      "exact_sensor_pixel_binding": false,
+      "source_unchanged": true,
+      "sdk_admission": false,
+      "window_acknowledged": false,
+      "zero_fire": true,
+      "clean_shutdown": true,
+      "runtime_error_free": false,
+      "raw_ages_s": false,
+      "native_result_ages_s": false,
+      "actuator_wall_ages_s": false,
+      "actuator_sim_ages_s": false,
+      "raw_codec_identity_unchanged": true,
+      "postclose_actual_pixel_audit": false
+    },
+    "live_static_chain_qualified": false,
+    "full_match_qualified": false,
+    "hardware_qualified": false,
+    "visible_qt_qualified": false,
+    "rejected_or_failed_criteria": [
+      "bounded_real_wall_run",
+      "physics_rtf",
+      "raw_sample_count",
+      "native_sample_count",
+      "actual_native_actuation",
+      "native_sensor_budget_80ms",
+      "actual_transport_matches_plan",
+      "exact_sensor_pixel_binding",
+      "sdk_admission",
+      "window_acknowledged",
+      "runtime_error_free",
+      "raw_ages_s",
+      "native_result_ages_s",
+      "actuator_wall_ages_s",
+      "actuator_sim_ages_s",
+      "postclose_actual_pixel_audit"
+    ]
+  },
+  "counts": {
+    "native_evidence_closed": 1
+  },
+  "rejects": {
+    "raw_encode_over_80ms": 0,
+    "native_result_over_80ms": 0,
+    "stale_actuator_receipts": 0,
+    "camera_dropped": 0
+  },
+  "camera": {
+    "available": false,
+    "reason": "runtime_stopped",
+    "total_fps_limit": 15,
+    "max_frame_age_wall_s": 2.5,
+    "max_views": 1,
+    "max_renderer_threads": 1,
+    "max_display_encoder_threads": 1,
+    "max_pending": 1,
+    "max_data_buffers": 2,
+    "max_display_pending": 1,
+    "max_display_rgb_bytes": 13996800,
+    "max_cached_raw_bytes": 4665600,
+    "native_pixels_enabled": true,
+    "native_cached": 0,
+    "raw_base64_codec": "pybase64_1_5_1",
+    "max_native_cached_rgb_bytes": 4665600,
+    "max_cached_raw_base64_bytes": 6220800,
+    "max_cached_jpeg_bytes": 2097152,
+    "pending": 0,
+    "cached": 0,
+    "display_cached": 0,
+    "display_pending": 0,
+    "display_running": false,
+    "max_display_pending_seen": 0,
+    "raw_published": 0,
+    "running": false,
+    "rendered": 0,
+    "display_dropped": 0,
+    "display_error": null,
+    "renderer_identity": {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    "timing_report_available": true,
+    "dropped": 0,
+    "error": null,
+    "calibration_resolution_association": "ASSUMED; absent from source YAML"
+  },
+  "camera_timings": {
+    "snapshot_copy": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "renderer_init": {
+      "sample_count": 1,
+      "retained_count": 1,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": 1.443449000000328,
+      "max_s": 1.443449000000328,
+      "p50_s": 1.443449000000328,
+      "p95_s": 1.443449000000328,
+      "p99_s": 1.443449000000328
+    },
+    "render_queue_wait": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "render_total": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "scene_update": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "render_readback": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "lens_warp": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "raw_encode": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "jpeg_encode": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "capture_to_raw": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "capture_to_display": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    },
+    "capture_to_private_pixels": {
+      "sample_count": 0,
+      "retained_count": 0,
+      "percentile_scope": "latest_retained_samples",
+      "capacity": 4096,
+      "mean_s": null,
+      "max_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null
+    }
+  },
+  "shutdown_status": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 3.1999998100218363e-06
+  },
+  "client_identity": {
+    "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "tracked_source_clean": false,
+    "patched_source_verified": true,
+    "client_patch": {
+      "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+      "manifest_sha256": "ab7a3f21d0f44b5c2f14752bd140d40f71d6240fa9e14be262ec69b547799d83",
+      "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+    }
+  },
+  "linux_spec_sha256": "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+  "environment": {
+    "MUJOCO_GL": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "MKL_NUM_THREADS": null
+  },
+  "native_process_diagnostic": null,
+  "native_transport_evidence": {},
+  "image_preparation": {},
+  "raw_codec_identity": {
+    "codec": "pybase64_1_5_1",
+    "version": "1.5.1",
+    "module": "pybase64._pybase64",
+    "function": "b64encode_as_string",
+    "extension_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Lib\\site-packages\\pybase64\\_pybase64.cp312-win_amd64.pyd",
+    "extension_sha256": "2b9cfb88f2a2318a6e6d021dc78d86fa6e472e7d988e4ab9525796c4c65b712d"
+  },
+  "pixel_audit": {
+    "schema": "polar.live.native-pixel-audit.v1",
+    "clean": false,
+    "proofs": [],
+    "errors": [
+      {
+        "error": "ValueError: No preserved native requests"
+      }
+    ],
+    "sources": {
+      "ledger_sha256": "be8dc6b5f5c98fdec3eda729d517c481e4f59841dfcfe1e6374f91914e576745",
+      "frame_bindings_sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+    },
+    "strategy": "archived_bgr_postclose_exact_channel_swap"
+  },
+  "runtime_step_wall": {
+    "sample_count": 0,
+    "p50_ms": null,
+    "p95_ms": null,
+    "p99_ms": null,
+    "max_ms": null,
+    "within_80ms_count": 0
+  },
+  "native_identity": null,
+  "native_spec": null,
+  "scope": "Bounded public-static-scene live diagnostic only; not full-match, aim accuracy, GUI or hardware qualification"
+}

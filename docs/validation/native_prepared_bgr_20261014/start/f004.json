@@ -1,0 +1,12 @@
+{
+  "run_id": "f20616017c3947f1aa0af749e54379b0",
+  "supervisor_pid": 350,
+  "boot_id": "86b42d84-7e01-430a-b396-cbe20471a34f",
+  "pid": 694,
+  "pgid": 694,
+  "leader_start_ticks": 416,
+  "spec_sha256": "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+  "transport": "wsl_stdio_bgr_v2",
+  "tmpfs_directory": "/dev/shm/polar-wsl-bgr-ugba6xcs",
+  "tmpfs_mode": "0o700"
+}

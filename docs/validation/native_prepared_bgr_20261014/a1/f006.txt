@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\smoke_wsl_native_live.py", line 529, in main
+    try:return run(a)
+               ^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\smoke_wsl_native_live.py", line 352, in run
+    registry=own_wsl_registry(a.linux_native_spec,out/'native',repo_root=ROOT,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_profile.py", line 218, in own_wsl_registry
+    return make_registry(linux_spec_path,native_out,repo_root=repo_root,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_registry.py", line 102, in own_wsl_registry
+    checked=validate_wsl_spec(linux_spec_path,repo_root=repo_root,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_profile.py", line 198, in validate_wsl_spec
+    _check_hash(_relative_file(runtime,rel),inputs.get(key),'build_input',identities)
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_profile.py", line 89, in _check_hash
+    if not path.is_file() or profile.digest(path)!=expected:raise ValueError('wsl_'+label+'_hash_mismatch')
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: wsl_build_input_hash_mismatch

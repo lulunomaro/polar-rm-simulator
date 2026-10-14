@@ -1,0 +1,15 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\native_prepared_bgr_20261014\\verify_archives.py",
+    "--archive",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\docs\\validation\\native_prepared_bgr_20261014"
+  ],
+  "pid": 43312,
+  "driver_pid": 49616,
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 0.1870429000009608,
+  "verifier_sha256_before": "60a635a1734ebb4c302738dd560aeeb4bcbed8fbb86327bfad650132dcd10794",
+  "verifier_sha256_after": "60a635a1734ebb4c302738dd560aeeb4bcbed8fbb86327bfad650132dcd10794"
+}

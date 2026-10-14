@@ -1,0 +1,13 @@
+{
+  "schema": "polar.sim.admission.v1",
+  "grants": [
+    {
+      "credential_sha256": "0bd3b863e28777470be23c04ce4ba4aca63b9c63cca840b721f52eb0b152ee30",
+      "role": "operator",
+      "allowed_robots": [
+        "red_sentry"
+      ],
+      "audit_authorized": false
+    }
+  ]
+}

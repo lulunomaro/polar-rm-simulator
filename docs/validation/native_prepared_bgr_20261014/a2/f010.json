@@ -1,0 +1,15 @@
+{
+  "schema": "polar.live.native-pixel-audit.v1",
+  "clean": false,
+  "proofs": [],
+  "errors": [
+    {
+      "error": "ValueError: No preserved native requests"
+    }
+  ],
+  "sources": {
+    "ledger_sha256": "be8dc6b5f5c98fdec3eda729d517c481e4f59841dfcfe1e6374f91914e576745",
+    "frame_bindings_sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+  },
+  "strategy": "archived_bgr_postclose_exact_channel_swap"
+}

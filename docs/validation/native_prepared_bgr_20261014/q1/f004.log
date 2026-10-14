@@ -1,0 +1,85 @@
+..............................................ss........................ [  5%]
+.......................................s.............................. [ 10%]
+..s................................s.................................... [ 16%]
+.......s............... [ 17%]
+............................................................... [ 22%]
+...........................................ssssssss..........s....................s..s....s [ 29%]
+...............s............ [ 31%]
+.......s.......... [ 33%]
+.ss....s...........................................................sssssss.................................... [ 41%]
+............................... [ 43%]
+s....................................................................... [ 49%]
+..........................................................s.............F................................ [ 57%]
+......................... [ 59%]
+........................................................................... [ 64%]
+.............................. [ 67%]
+.................................................................... [ 72%]
+............................................................................................... [ 79%]
+................................................................................. [ 85%]
+.............................................................................................. [ 92%]
+.............................................................. [ 97%]
+.................................                                        [100%]
+================================== FAILURES ===================================
+_ ActualWslSupervisorTests.test_actual_frozen_elf_model_initialization_zero_tick_and_reap _
+
+self = <rm_match.integrations.test_wsl_operator.ActualWslSupervisorTests testMethod=test_actual_frozen_elf_model_initialization_zero_tick_and_reap>
+
+    def test_actual_frozen_elf_model_initialization_zero_tick_and_reap(self):
+        # A new builder identity invalidates old local specs even when the ELF
+        # bytes are unchanged. Select one actual build explicitly, never repair
+        # or silently replace the frozen historical spec.
+        spec=Path(os.environ.get('POLAR_WSL_TEST_SPEC',
+            str(ROOT/'artifacts/native-contour-v3-final-default-build/operator_source.local.json'))).absolute()
+>       actor=WslOperatorProcess(spec,
+            self.out,dict(fov_degrees=85.,circle_radius_x_norm=.25,circle_radius_y_norm=.25))
+
+rm_match\integrations\test_wsl_operator.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\integrations\wsl_operator.py:38: in __init__
+    self.checked=validate_wsl_spec(self.spec_path,repo_root=self.repo_root,shared_out=self.out,
+rm_match\deployment\wsl_profile.py:198: in validate_wsl_spec
+    _check_hash(_relative_file(runtime,rel),inputs.get(key),'build_input',identities)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+path = WindowsPath('C:/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/operator_native/runtime/build_portable.py')
+expected = '081251c497203df0cd5cc544e3d59a27d2876074ec52218343dbb9826571b85e'
+label = 'build_input'
+identities = {'C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-contour-v3-final-default-bu...ault-build\\configs\\simulation_autoaim.yaml': 'e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3', ...}
+
+    def _check_hash(path,expected,label,identities):
+        if type(expected) is not str or len(expected)!=64 or any(c not in '0123456789abcdef' for c in expected):
+            raise ValueError('wsl_invalid_'+label+'_sha256')
+>       if not path.is_file() or profile.digest(path)!=expected:raise ValueError('wsl_'+label+'_hash_mismatch')
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: wsl_build_input_hash_mismatch
+
+rm_match\deployment\wsl_profile.py:89: ValueError
+============================== warnings summary ===============================
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_camera.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_native_timing.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:28
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:28: PytestCollectionWarning: cannot collect test class 'TestAdapter' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestAdapter:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_server.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_spin_feedback.py)
+    class TestRegistry:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED rm_match/integrations/test_wsl_operator.py::ActualWslSupervisorTests::test_actual_frozen_elf_model_initialization_zero_tick_and_reap
+1 failed, 1285 passed, 32 skipped, 6 warnings, 875 subtests passed in 118.24s (0:01:58)

@@ -128,11 +128,13 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
             finally:self.close()
             raise
 
-    def _native_control(self,packet,observation,*,image_bytes=None):
+    def _native_control(self,packet,observation,*,image_bytes=None,prepared_image=None):
         # This is the original host deadline, already capped by the camera's
         # capture_wall + 80ms. Never restart the budget at pipe submission.
         if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')
         if self.transport=='wsl_stdio_bgr_v2':
             if type(image_bytes) is not bytes:raise ContractError('inline_native_image_required')
             packet=dict(packet,image_bytes=image_bytes)
+            if prepared_image is not None:packet['prepared_image']=prepared_image
+        elif prepared_image is not None:raise ContractError('prepared_native_requires_v2')
         return self.process.control(dict(packet,host_deadline=observation['wall_deadline']))

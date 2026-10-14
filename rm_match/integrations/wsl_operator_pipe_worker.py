@@ -14,14 +14,16 @@ import signal
 import subprocess
 import tempfile
 import time
+import uuid
 from .wsl_operator_worker import MAX_IMAGE,MAX_LINE,_record,_emit,_stdin_wait,validate_linux_spec,validate_sensor_frame
-from .owned_linux_group import LinuxOwnedProcessGroup
+from .owned_linux_group import LinuxOwnedProcessGroup,_stat
 
 TRANSPORT='wsl_stdio_bgr_v2'
 CHUNK=65536
 
 
-def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,control_timeout=.08):
+def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,control_timeout=.08,startup_deadline=None,
+              startup_guard=None,pre_native_exit=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     stopped=False
     def stop_signal(*_):
@@ -32,7 +34,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
     startup=time.monotonic();header=bytearray();header_start=None;native_buffer=bytearray();pending=None
     payload=None;received=0;image_start=None;writebuf=b'';stages={}
     native_stdin_bytes=0;native_stdin_complete=False;native_stdin_started=None
-    native_stdin_expected=0;native_stdin_finished=None
+    native_stdin_expected=0;native_stdin_finished=None;startup_error=None
     try:
         owner=LinuxOwnedProcessGroup()
         tmp=tempfile.TemporaryDirectory(prefix='polar-wsl-bgr-',dir='/dev/shm')
@@ -41,12 +43,18 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         # its guard unchanged while removing the per-tick DrvFs working-dir IO.
         (Path(tmp.name)/'tracking_mode').write_bytes(b'multi_ekf\n')
         errorlog=(out/'native_stderr.log').open('wb')
+        # File setup can block after the caller's last admission check. Preserve
+        # its cancellation flag and recheck the original deadline at spawn.
+        if stopped or (out/'STOP').exists():raise InterruptedError('host_cancel_before_native_spawn')
+        if startup_guard is not None:startup_guard()
+        limit=startup+startup_timeout if startup_deadline is None else startup_deadline
+        if time.monotonic()>=limit:raise TimeoutError('startup_timeout_before_native_spawn')
         child=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=errorlog,
             cwd=tmp.name,env=env,bufsize=0,start_new_session=True)
         owned=owner.attach(child)
         _record(out,'OWNED_CHILD.json',dict(owned,spec_sha256=spec_sha,transport=TRANSPORT,tmpfs_directory=tmp.name,tmpfs_mode=oct(os.stat(tmp.name).st_mode&0o777)))
         os.set_blocking(0,False);os.set_blocking(child.stdin.fileno(),False);os.set_blocking(child.stdout.fileno(),False)
-        ready=False;active_deadline=startup+startup_timeout;next_stop_poll=startup
+        ready=False;active_deadline=startup+startup_timeout if startup_deadline is None else startup_deadline;next_stop_poll=startup
         while True:
             now=time.monotonic()
             if stopped:reason='host_cancel';break
@@ -145,6 +153,9 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                 native_stdin_expected=len(writebuf)
                 payload=None
     except Exception as exc:
+        if child is None:
+            startup_error=exc
+            reason='host_cancel' if isinstance(exc,InterruptedError) else 'startup_timeout' if isinstance(exc,TimeoutError) else 'startup_failure'
         if native_stdin_complete and native_stdin_finished is not None:
             stages['native_result_wait_s']=time.monotonic()-native_stdin_finished
         _record(out,'SUPERVISOR_ERROR.json',dict(reason=reason,error_type=type(exc).__name__,error=str(exc),linux_stages_s=stages,
@@ -169,6 +180,55 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                     scope='Owned child process lifetime including model startup; Linux getrusage, not timed-run NN latency'),
                 cleanup_linux_monotonic=time.monotonic(),clock_domain='linux_local_diagnostic_only'))
         if errorlog is not None:errorlog.close()
+        if child is None and startup_error is not None and pre_native_exit is not None:
+            pre_native_exit(startup_error,'before_native_spawn',tmp_path,
+                tmp_path is None or not Path(tmp_path).exists())
+
+
+def prepare_and_supervise(spec_path,spec_sha,out,fov,*,startup_timeout=15.,control_timeout=.08):
+    """Record validation before spawning; a delayed canceled launcher cannot spawn."""
+    out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    started=time.monotonic();stopped=False;stage='worker_entry';phases=[]
+    def stop_signal(*_):
+        nonlocal stopped
+        stopped=True
+    signal.signal(signal.SIGTERM,stop_signal);signal.signal(signal.SIGINT,stop_signal)
+    identity=dict(run_id=uuid.uuid4().hex,supervisor_pid=os.getpid(),
+        supervisor_start_ticks=_stat(os.getpid())['start_ticks'],
+        boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
+        spec_sha256=spec_sha,transport=TRANSPORT)
+    _record(out,'WORKER_STARTUP.json',dict(identity,clock_domain='linux_local_diagnostic_only',
+        native_spawn_attempted=False,entry_linux_monotonic=started))
+    def phase(name):
+        nonlocal stage
+        stage=name;phases.append(dict(phase=name,elapsed_linux_s=time.monotonic()-started))
+        _record(out,'STARTUP_PHASES.json',dict(identity,phases=phases,clock_domain='linux_local_diagnostic_only'))
+    def check_cancel():
+        if stopped or (out/'STOP').exists():raise InterruptedError('host_cancel_before_native_spawn')
+        if time.monotonic()>=started+startup_timeout:raise TimeoutError('startup_timeout_before_native_spawn')
+    def record_pre_exit(exc,failed_phase,tmpfs_path=None,tmpfs_removed=True):
+        reason='host_cancel' if isinstance(exc,InterruptedError) else 'startup_timeout' if isinstance(exc,TimeoutError) else 'validation_failed'
+        data=dict(identity,reason=reason,failed_phase=failed_phase,error_type=type(exc).__name__,error=str(exc),
+            native_spawn_attempted=False,clean=True,errors=[],native_child_reaped=False,
+            tmpfs_directory=tmpfs_path,tmpfs_removed=tmpfs_removed,
+            elapsed_linux_s=time.monotonic()-started,clock_domain='linux_local_diagnostic_only')
+        _record(out,'PRE_NATIVE_EXIT.json',data)
+        return reason
+    try:
+        phase('worker_entry');check_cancel();phase('validate_linux_spec')
+        spec,sha=validate_linux_spec(spec_path,spec_sha)
+        phase('validated');check_cancel()
+        env=os.environ.copy();env.update(spec.get('environment',{}))
+        env.update(AUTOAIM_CONFIG=spec['autoaim_config'],RMCS_HEADLESS_SHARE=spec['model_share'],ORT_DISABLE_TELEMETRY='1')
+        phase('native_spawn_admitted');check_cancel()
+    except Exception as exc:
+        reason=record_pre_exit(exc,stage)
+        try:_emit(dict(event='error',reason=reason,error_type=type(exc).__name__))
+        except (OSError,BrokenPipeError):pass
+        return 0 if reason=='host_cancel' else 2
+    return supervise([spec['binary'],spec['executor_yaml']],out,fov,env=env,spec_sha=sha,
+        startup_timeout=startup_timeout,control_timeout=control_timeout,startup_deadline=started+startup_timeout,
+        startup_guard=check_cancel,pre_native_exit=record_pre_exit)
 
 
 def main():
@@ -177,11 +237,9 @@ def main():
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--fov-degrees',type=float,required=True);parser.add_argument('--radius-x',type=float,required=True);parser.add_argument('--radius-y',type=float,required=True)
     parser.add_argument('--startup-timeout',type=float,default=15.);parser.add_argument('--control-timeout',type=float,default=.08)
-    args=parser.parse_args();spec,sha=validate_linux_spec(args.spec,args.spec_sha256)
+    args=parser.parse_args()
     fov=dict(fov_degrees=args.fov_degrees,circle_radius_x_norm=args.radius_x,circle_radius_y_norm=args.radius_y)
-    env=os.environ.copy();env.update(spec.get('environment',{}))
-    env.update(AUTOAIM_CONFIG=spec['autoaim_config'],RMCS_HEADLESS_SHARE=spec['model_share'],ORT_DISABLE_TELEMETRY='1')
-    return supervise([spec['binary'],spec['executor_yaml']],args.out,fov,env=env,spec_sha=sha,
+    return prepare_and_supervise(args.spec,args.spec_sha256,args.out,fov,
         startup_timeout=args.startup_timeout,control_timeout=args.control_timeout)
 
 

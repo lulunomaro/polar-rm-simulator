@@ -8,7 +8,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设及可执行校验 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败复现；独立图像 contour-v3 修复，完整 T2 新构建成功 | 静态 OFFLINE24 跟踪/执行与实际清理已过；模型漏检、移动目标与 live 门禁仍未关闭 |
-| T03 | 局部修复验证：raw/JPEG 分离、高精度时钟、原期限复查、显式sealed像素早发布、C编码及退出后独立像素审计；第12轮5000实际步/RTF0.9977、148raw全部80ms内 | 首native等41.232ms仍超时、0返回/0执行；完整默认部署/live+GUI、更多视角/完整比赛/长期负载仍缺，旧回退根因未完整关闭 |
+| T03 | 局部修复验证：sealed私有像素、BGR/SHA配对复用、启动/退出证明和分母分离；最新prepared第3轮5000实际步/物理RTF.999953、148raw | 原ELF完整输入1732/1732，等待47.379ms仍超时，0返回/0消费；后继最终Popen guard只有专测/资源probe，默认live、GUI/完整比赛仍未验收 |
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 进行中：统一质量入口、明确测试范围、源提取/后续修改哈希分离；WSL 传输/私有像素/原始证据安全回归 | 本轮冻结质量记录见下文；许可/发布门禁尚未完成 |
+| T17 | 进行中：最新冻结质量1286passed/33明确skip/876subtests；原QA01旧spec门禁失败保留，显式42spec选择与源/修改归属分开 | 质量不替live/许可/发布门禁；QA后仅文档与永久证据增补，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -441,3 +441,19 @@ $env:POLAR_TEST_WSL='1'
 唯一计数与当前代码 SHA 见该目录 manifest、pytest.xml/log 和 camera 记录。只允许
 各检查退出0且 source_unchanged_during_checks=true 时声明本地质量通过，不能据此关闭
 M1或发布。按计划优先继续修复实际跨平台期限；下一次实验使用新目录，保持全部旧失败。
+
+## prepared-BGR 本轮修复检查点（2026-10-14）
+
+[独立永久记录](validation/native_prepared_bgr_20261014/README.md)保存三轮新失败、源码/构建/配置身份、专测与清理证明。原42ea570c…spec复用已有当前匹配的29TU clean checkpoint和同4d357…ELF/原模型，没有重新赋SHA或改旧manifest；旧a808…spec因portable/CMake输入漂移在第1轮startup前严格拒绝。
+
+第2轮native启动失败，raw0/physics0/NNrequest0，没有Linux STARTUP/OWNED_CHILD/CLEANUP证明；本地Runtime clean不能当Linux整栈clean。另一6.352s资源-only startup probe与后续成功清理均不回填此旧缺口，启动失败根因仍开放。
+
+第3轮actual3源/codec不变，5000steps/10sim：物理10.0004716s、RTF.999952842；run+cleanup10.0587424s、比率.994160065，分母独立。148raw在原80ms、1真实native请求/0响应/0消费、fire0；原ELF stdin1732/1732字节，等待47.378868ms后期限截断。单首请求factory5.2297ms、hostprep.1399ms（receipt.0184ms）不是纯NN或每帧统计，也不是同源配对改善。退出后实际像素审计、同run/boot/PID/PGID出生/回收、空组与tmpfs删除通过。
+
+actual3已有validation前/后guard与WORKER phase；其后仅补最终Popen前慢file-open后的共享cancel、STOP和原deadline重检，以及更严格tmpfs proof。此后到达的取消交owned cleanup处理，不声称消除所有原子竞态；新最后guard未重跑live。PRE_NATIVE_EXIT仅证明未尝试spawn且tmpfs_removed；与真正child reaped严格区分，缺证仍失败。原15s native setup/1.3s host资源收尾和80/150ms控制门限不扩大。harness未开始时duration=None，physics与run+cleanup分别记账。
+
+后继focused06原日志95passed/21明确skip/76subtests；Linux14 tests/unit含STOP/SIGTERM/deadline file-setup；最终guard独立startup probe02准备4.315s、0NN/0physics且资源clean。它们不能给guard修补前actual3的179份执行源码重标最终SHA，也不证明最后版本实际live通过；未重复NN/GL。
+
+统一QA01原件为1285passed/1failed/32skip/875subtests，默认旧a808初始化spec被严格builder门禁拒绝。QA02由显式POLAR_WSL_TEST_SPEC选择已有42spec，非自动fallback：1286passed/33明确skip/876subtests、6已有warnings，四阶段exit0、source_unchanged_during_checks=true；pytest118.64s，driver137.428s/reaped。QA后仅本进度说明、WSL传输说明和新永久证据增补，执行源码与DEVELOPMENT保持原已检验SHA；不声称新增文档/归档曾参与该QA。
+
+已有生产导航单目标局部成功保持；旧导航seq67尾超时、原模型3.85m漏检、实时自瞄0响应/0消费、移动与开火、多车/完整比赛、两机LAN/第二实现、Windows native与HIL仍按T01–T18/M0–M5门禁未签收。保存帧2s等待或预加载模型不替实际live证据。

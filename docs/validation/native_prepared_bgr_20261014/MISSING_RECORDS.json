@@ -1,0 +1,24 @@
+{
+  "schema": "polar.evidence.missing-originals.v1",
+  "records": [
+    {
+      "source": "prepared-bgr live actual2 Linux supervisor",
+      "missing": ["STARTUP.json", "OWNED_CHILD.json", "CLEANUP.json"],
+      "qualification": "Linux child creation/whole-group cleanup not proven. Other run resource probes cannot supplement this failure."
+    },
+    {
+      "source": "prepared-native-startup-probe01/02 outer driver",
+      "retained": "Exact driver.py/RESULT/source and Linux supervisor raw records",
+      "missing": ["outer raw stdout", "outer full COMMAND/PROCESS_RESULT"],
+      "qualification": "Do not manufacture missing outer logs; resource assertions use actual saved result and supervisor records."
+    },
+    {
+      "source": "first native archive credential-shape scanner stop",
+      "retained": "Structured tool observation exit1 and parent exact-public-label review",
+      "missing": ["independently saved raw process stdout/stderr"],
+      "qualification": "No fabricated raw trace. Later archive executions have actual raw receipts."
+    }
+  ],
+  "corrected_prior_missing_claim": "PREPARED_REVIEW.json and REVIEW.json actually exist and are now preserved as exact explicit addendum refs/f009.json and refs/f010.json. Prior analyze.py-only missing statement was inaccurate and is withdrawn.",
+  "excluded_large_or_secret_bytes": "ELF/model/dependency prefixes/objects/cache excluded explicitly in preservation manifest. Only exact public semantic label source is whitelisted; no real credential value is published."
+}

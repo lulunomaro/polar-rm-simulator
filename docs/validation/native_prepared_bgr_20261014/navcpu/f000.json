@@ -1,0 +1,18 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts/pb-wsl-hotpath-readonly-20261014-01/diagnose.py"
+  ],
+  "tool_exit_code": 0,
+  "shell_returned_after_diagnostic_process": true,
+  "original_input_unchanged": true,
+  "source_snapshots_match": true,
+  "old_phase_input_sha256": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-production-sil-actual-20261014-attempt2\\HOST_RPC_PHASES.json": "03d4af4347c2cfc1a53eff4a3a056432816569e10191a76d4f152b191bce7eb9",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-wsl-production-sil-actual-20261014-attempt3\\HOST_RPC_PHASES.json": "75df8365a8e171a050575b107172e430b92e35c8d67966920460261986475d3c"
+  },
+  "scope": "Pure saved-input CPU prep. No Session/act/authority, ROS/WSL/GL/simulation/native processes. Outer shell tool exit is not a Linux cleanup proof.",
+  "candidate_optimization_implemented": false,
+  "candidate_mutation_comparison_executed": false,
+  "cpu_counter_single_call_resolution_adequate": false
+}

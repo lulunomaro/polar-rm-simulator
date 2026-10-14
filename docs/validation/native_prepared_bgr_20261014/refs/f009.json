@@ -1,0 +1,57 @@
+{
+  "schema": "polar.prepared-native-bgr-readonly-review.v1",
+  "scope": "Read source and existing evidence only. No tests/ROS/WSL/ELF/GL/build execution.",
+  "blocking_defects_observed": [],
+  "source_sha256": {
+    "rm_match/platform_v2/native_image.py": "0f8dbff6a093f3068701d8fa2e449fb56765c0f2a70af9a66f5c36f3bb35e5ad",
+    "rm_match/platform_v2/native_adapter.py": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
+    "rm_match/platform_v2/wsl_native_adapter.py": "4765c6b879a6b262e2fc2f9b196922aaf5ad11caeb79379c3014f90940337158",
+    "rm_match/integrations/wsl_operator_pipe.py": "34b1270aaef7b467454ccaa91362792cd4ffe8ef8e3ead25aeedce7f96b47aa5",
+    "rm_match/platform_v2/native_observation.py": "324cee8d6bcb50818d634eba7f4c75dd0ea15d0076ee4073bde2c7285ccc536f",
+    "rm_match/platform_v2/native_camera_snapshot.py": "9eec54878644d9ffcd420f467e10980b352631706329719ddc60be05bf50c97d",
+    "tests/test_prepared_native_bgr.py": "3a1844815588bfc09c798af445ffc7afbfcd2457952bcbd416dacd5bb6644895",
+    "operator_native/runtime/candidate/src/module/detector/armor_detection.cpp": "7928296d46394354ea500d962e0f749db225c7d55400554ac345ec366748a550",
+    "operator_native/runtime/candidate/src/module/detector/models/shenzhen.hpp": "a4df0e24959f0ef81f862f10d5d3beff619ee875069e035f659edfe246704846",
+    "operator_native/runtime/candidate/src/utility/model/common_model.hpp": "9c9533526afa903cdec1bfb166843c5e4b457b1f2b2e9442f632a392dc79ea0c",
+    "artifacts/native-contour-v3-final-default-build/configs/simulation_autoaim.yaml": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3",
+    "artifacts/native-contour-v3-final-default-build/generated/main.cpp": "4357b6e6b3495730229b0b08e9eeb94d0de7db57a5dc435b916a4ae26772e5ca"
+  },
+  "cpu_scope": {
+    "live_attempt12_config": "artifacts/native-contour-v3-final-default-build/configs/simulation_autoaim.yaml",
+    "config_sha256": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3",
+    "configured_device": "CPU",
+    "compile_chain": [
+      "generated/main.cpp Runner loads AUTOAIM_CONFIG and passes cfg[detector]",
+      "ArmorDetection Config metas deserializes infer_device",
+      "compile_model_with overrides model.infer_device when nonempty",
+      "ShenZhen::compile passes resulting infer_device to Core::compile_model"
+    ],
+    "default_struct_device": "AUTO",
+    "effective_compiled_properties_observed": false,
+    "diagnostic_configs_have_same_sha": true,
+    "qualification": "Static verified config/source chain for old live and diagnostic builds. Runtime thread count/execution property dump was not recorded; AUTO default alone does not establish live AUTO."
+  },
+  "guard_review": [
+    "Exact PreparedNativeBGR type and WeakKeyRegistry membership required; object.__new__ alone creates no registered proof.",
+    "Same immutable bytes OBJECT is required, not only equal content.",
+    "Original image scalar tuple, frame schema/episode/frame/exposure/capture/control/deadline and intrinsics/distortion and original four capture state vectors have exact type/value matching.",
+    "Pipe snapshots top scalars then deepcopies frame before validation and receipt matching.",
+    "Mismatched present token rejects without fallback. Missing token retains synchronous full host hash.",
+    "Sender original 80ms deadline remains checked at prepare/serialize/receive; Linux complete BGR SHA remains unchanged.",
+    "Only header explicit control/time/frame/FOV goes on the wire, no receipt/private bytes serialization."
+  ],
+  "limits": [
+    "Receipt is a trusted-service accidental byte/metadata pairing guard, not an authorization capability.",
+    "Robot/consumer/binding_epoch are validated at native ingress/context and constrained by unique owned binding output path; they are not explicitly retained in this receipt record.",
+    "Derived pitchlink quaternion/angular vectors/camera mount and own_team/referee fields are not matched to receipt. Native pipeline derives/fixes them upstream, and hash-reuse does not introduce trust over those fields. Do not call this receipt a seal of every sensor field.",
+    "Token reuse alone is not prevented; original native duplicate exposure gates and adapter last_capture provide replay rejection."
+  ],
+  "suggested_nonblocking_regressions": [
+    "Deleting proof retains legacy host SHA call and catches changed bytes.",
+    "Different generation/consumer with same image frame ID is rejected by ingress/unique binding path; receipt is not the asserted authority.",
+    "Changed derived optical/quaternion field: explicitly document whether allowed because non-receipt scope or add full frame guard if a future complete source seal is claimed.",
+    "Dropping the only token reference releases its WeakKeyRegistry record; no retained per-frame bytes accumulate."
+  ],
+  "recent_run_scope": "Latest logical13 attempt2 failed before supervisor first marker: zero physics/raw/requests. It cannot localize NN compute and is not an optimization result.",
+  "review_test_execution": false
+}

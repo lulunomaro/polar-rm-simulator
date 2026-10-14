@@ -1,0 +1,50 @@
+[
+  {
+    "event": "startup_begin",
+    "host_perf_counter": 8845.1708578,
+    "transport": "wsl_stdio_bgr_v2",
+    "windows_native": false,
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu",
+      "--cd",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "--",
+      "/usr/bin/python3",
+      "-m",
+      "rm_match.integrations.wsl_operator_pipe_worker",
+      "--spec",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-original-nav-checkpoint-build-20261013/operator_source.local.json",
+      "--spec-sha256",
+      "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+      "--out",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/prepared-native-startup-probe-20261014-02/binding/wsl_pipe_supervisor_40e7a48bc4d04afab81d0a862169a7a0",
+      "--fov-degrees",
+      "180.0",
+      "--radius-x",
+      "1.0",
+      "--radius-y",
+      "1.0",
+      "--startup-timeout",
+      "15.0",
+      "--control-timeout",
+      "0.08"
+    ]
+  },
+  {
+    "event": "startup_ready",
+    "host_perf_counter": 8848.9552515,
+    "transport": "wsl_stdio_bgr_v2",
+    "native_pid": 676,
+    "tmpfs_directory": "/dev/shm/polar-wsl-bgr-fditimxd"
+  },
+  {
+    "event": "closed",
+    "host_perf_counter": 8849.0177463,
+    "clean": true,
+    "linux_child_reaped": true,
+    "native_not_spawned": false,
+    "errors": []
+  }
+]

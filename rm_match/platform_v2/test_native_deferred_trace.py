@@ -48,7 +48,7 @@ class DeferredTraceTests(unittest.TestCase):
         a.stable_since=.5;a.anchor=[0.,0.]
         o=deepcopy(self.o)
         try:
-            with patch('rm_match.platform_v2.native_adapter.prepare_native_image',wraps=prepare_native_image) as prepared:
+            with patch('rm_match.platform_v2.native_adapter.prepare_native_image',wraps=prepare_native_image) as prepared,patch('rm_match.platform_v2.native_image.prepare_native_image',wraps=prepare_native_image) as sealed_conversion:
                 if private:
                     cam=o['sensors']['camera'];consumer=('adapter','red_sentry','aim','CPU_fixture_owner',1)
                     pixels=mint_native_snapshot(self.raw,robot_id='red_sentry',episode=1,frame_id=cam['frame_id'],
@@ -63,8 +63,11 @@ class DeferredTraceTests(unittest.TestCase):
                             action=a._act_native_pixels(o,pixels,consumer=consumer,budget=budget,now=1000.01)
                     else:action=a._act_native_pixels(o,pixels,consumer=consumer,budget=budget,now=1000.01)
                 else:action=a.act(o)
-                self.assertEqual(prepared.call_args.kwargs['trace_rgb'],not (private and inline))
-                actual_rgb=prepared.call_args.args[0]
+                selected=sealed_conversion if private and inline else prepared
+                self.assertEqual(selected.call_count,1)
+                self.assertEqual(selected.call_args.kwargs.get('trace_rgb',False),not (private and inline))
+                if private and inline:self.assertEqual(prepared.call_count,0)
+                actual_rgb=selected.call_args.args[0]
                 self.assertEqual(actual_rgb.tobytes(),self.raw)
                 self.assertFalse(actual_rgb.flags.writeable)
             self.assertFalse(action['command']['active'],'Recording fixture never claims a native command')

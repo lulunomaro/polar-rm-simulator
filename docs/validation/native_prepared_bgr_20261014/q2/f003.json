@@ -1,0 +1,38 @@
+{
+  "schema": "polar.acceptance.preset-report.v1",
+  "configuration_valid": true,
+  "freeze_complete": false,
+  "milestone_accepted": false,
+  "unresolved": [
+    "conditions.target_hardware",
+    "conditions.operating_system_and_driver",
+    "conditions.lidar_configuration",
+    "conditions.rules_version",
+    "quality_thresholds.hit_rate_min",
+    "quality_thresholds.corner_error_px_max",
+    "quality_thresholds.tracking_retention_min",
+    "quality_thresholds.localization_drift_m_max",
+    "U01",
+    "U02",
+    "U03",
+    "U04",
+    "U05"
+  ],
+  "preset_sha256": "aefac951d2eb566b18328e6c903daabc58b661fd19c20be8b265120f9bc94b46",
+  "source_commit": "53fb3a2783a285773efb8251042293ca79e0eed6",
+  "working_tree_dirty": true,
+  "development_host": {
+    "system": "Windows",
+    "release": "11",
+    "machine": "AMD64",
+    "python": "3.12.14",
+    "packages": {
+      "mujoco": "3.15.0",
+      "numpy": "2.5.4",
+      "Pillow": "12.3.0",
+      "opencv-python-headless": "5.0.0.93",
+      "pytest": "9.1.1"
+    }
+  },
+  "scope": "Preset validation only. No inference, physics, rendering, match or hardware acceptance."
+}

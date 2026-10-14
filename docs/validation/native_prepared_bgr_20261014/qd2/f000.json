@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "tools/check_project.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\quality-20261014-prepared-bgr-frozen-02"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "environment_override": {
+    "POLAR_TEST_WSL": "1",
+    "POLAR_WSL_TEST_SPEC": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-original-nav-checkpoint-build-20261013\\operator_source.local.json"
+  },
+  "driver_sha256": "d789f1d4ca81e871853b8c38e5938c3737da30b1e5bc7c2c0d7e67b0d0e540e6"
+}

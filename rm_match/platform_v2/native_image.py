@@ -3,11 +3,85 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 import time
+import math
+import threading
+import weakref
 import numpy as np
 try:
     import cv2 as _opencv
 except ImportError:
     _opencv = None
+
+_prepared=weakref.WeakKeyDictionary()
+_prepared_lock=threading.Lock()
+_IMAGE_FIELDS=('encoding','width','height','stride_bytes','bytes','sha256','path')
+
+
+class PreparedNativeBGR:
+    """Opaque pairing receipt for one actual conversion, never a JSON DTO."""
+    __slots__=('__weakref__',)
+    def __init__(self,*args,**kwargs):raise TypeError('Use actual native snapshot preparation')
+    def __copy__(self):return self
+    def __deepcopy__(self,memo):return self
+
+
+def prepare_native_snapshot(pixels,path,*,control_time_ns,host_deadline):
+    """Hash actual immutable BGR once and retain its exact source pairing.
+
+    This receipt guards accidental pairing in the trusted Python service. It
+    does not replace validation of transport metadata, deadlines or Linux SHA.
+    """
+    from .native_camera_snapshot import is_native_snapshot
+    if not is_native_snapshot(pixels):raise ValueError('Unsealed native preparation source')
+    if type(control_time_ns) is not int or control_time_ns<0:raise ValueError('Invalid prepared control clock')
+    exposure_ns=round(pixels.capture_sim_time*1e9)
+    if not exposure_ns<=control_time_ns<=exposure_ns+80000000:raise ValueError('Prepared exposure/control mismatch')
+    if (type(host_deadline) not in (int,float) or not math.isfinite(host_deadline)
+        or not pixels.capture_wall<host_deadline<=pixels.capture_wall+.08):raise ValueError('Prepared original deadline mismatch')
+    rgb=np.frombuffer(pixels.raw_bytes,dtype=np.uint8).reshape(pixels.height,pixels.width,3)
+    image,rgb_sha,stages,raw=prepare_native_image(rgb,path,return_bytes=True,write_artifact=False)
+    token=object.__new__(PreparedNativeBGR)
+    image_values=tuple(image[k] for k in _IMAGE_FIELDS)
+    source=(pixels.episode,pixels.frame_id,exposure_ns,pixels.capture_sim_time,control_time_ns,host_deadline)
+    calibration=(*pixels.intrinsics[:4],pixels.intrinsics[4])
+    own=(tuple(np.asarray(pixels.own[0]).tolist()),tuple(np.asarray(pixels.own[1]).tolist()),
+        pixels.own[2],pixels.own[3])
+    with _prepared_lock:_prepared[token]=(raw,image_values,source,calibration,own)
+    return image,rgb_sha,stages,raw,token
+
+
+def prepared_native_bgr_matches(token,raw,packet):
+    """Only the same immutable byte object and original typed packet can reuse SHA."""
+    if type(token) is not PreparedNativeBGR or type(raw) is not bytes or type(packet) is not dict:return False
+    with _prepared_lock:
+        record=_prepared.get(token)
+    if record is None:return False
+    saved_raw,image_values,source,calibration,own=record
+    if raw is not saved_raw:return False
+    frame=packet.get('frame')
+    if type(frame) is not dict:return False
+    if (type(frame.get('schema')) is not str or frame['schema']!='rmcs-mujoco-actor-frame-v1'
+        or type(frame.get('episode')) is not int or frame['episode']!=source[0]):return False
+    image=frame.get('image')
+    if type(image) is not dict or set(image)!=set(_IMAGE_FIELDS):return False
+    for k,expected in zip(_IMAGE_FIELDS,image_values):
+        if type(image[k]) is not type(expected) or image[k]!=expected:return False
+    actual=(packet.get('episode'),frame.get('frame_id'),frame.get('exposure_timestamp_ns'),
+        frame.get('capture_time_s'),packet.get('control_time_ns'),packet.get('host_deadline'))
+    if any(type(a) is not type(b) or a!=b for a,b in zip(actual,source)):return False
+    state=frame.get('own')
+    if type(state) is not dict:return False
+    for k,expected in zip(('joint_positions','joint_velocities','base_odom_xyyaw','base_odom_vxyw'),own):
+        value=state.get(k)
+        if type(value) is not list or len(value)!=len(expected):return False
+        if any(type(a) is not type(b) or a!=b for a,b in zip(value,expected)):return False
+    camera=frame.get('camera')
+    if type(camera) is not dict or set(camera)!=set(('fx','fy','cx','cy','distortion')):return False
+    for k,expected in zip(('fx','fy','cx','cy'),calibration[:4]):
+        if type(camera[k]) is not type(expected) or camera[k]!=expected:return False
+    d=camera['distortion'];expected=calibration[4]
+    if type(d) is not list or len(d)!=len(expected):return False
+    return all(type(a) is type(b) and a==b for a,b in zip(d,expected))
 
 
 def prepare_native_image(rgb, path, *, trace_rgb=False, return_bytes=False, write_artifact=True):

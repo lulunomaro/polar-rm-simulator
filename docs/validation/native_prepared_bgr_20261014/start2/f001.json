@@ -1,0 +1,30 @@
+{
+  "run_id": "bc93b7431ae24fc5a419531b75e00e11",
+  "supervisor_pid": 355,
+  "boot_id": "4192baf4-f76c-44a9-8dd0-c0c01e2d0228",
+  "pid": 676,
+  "pgid": 676,
+  "leader_start_ticks": 5228,
+  "clean": true,
+  "reaped": true,
+  "group_empty": true,
+  "remaining_members": [],
+  "errors": [],
+  "killed": false,
+  "returncode": -15,
+  "reaped_descendants": [],
+  "cleanup_elapsed_s": 0.021132139999998856,
+  "transport": "wsl_stdio_bgr_v2",
+  "spec_sha256": "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+  "reason": "host_cancel",
+  "tmpfs_directory": "/dev/shm/polar-wsl-bgr-fditimxd",
+  "tmpfs_removed": true,
+  "native_lifetime_cpu": {
+    "user_s": 0.329298,
+    "system_s": 0.423303,
+    "max_rss_kib": 125716,
+    "scope": "Owned child process lifetime including model startup; Linux getrusage, not timed-run NN latency"
+  },
+  "cleanup_linux_monotonic": 53.310050259,
+  "clock_domain": "linux_local_diagnostic_only"
+}

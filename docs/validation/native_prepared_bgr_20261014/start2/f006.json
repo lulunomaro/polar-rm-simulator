@@ -1,0 +1,27 @@
+{
+  "run_id": "0ce38f4179da404fb7aa37181cf90241",
+  "supervisor_pid": 355,
+  "supervisor_start_ticks": 5099,
+  "boot_id": "4192baf4-f76c-44a9-8dd0-c0c01e2d0228",
+  "spec_sha256": "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+  "transport": "wsl_stdio_bgr_v2",
+  "phases": [
+    {
+      "phase": "worker_entry",
+      "elapsed_linux_s": 0.010663806000003717
+    },
+    {
+      "phase": "validate_linux_spec",
+      "elapsed_linux_s": 0.024790068000001497
+    },
+    {
+      "phase": "validated",
+      "elapsed_linux_s": 0.8607320449999989
+    },
+    {
+      "phase": "native_spawn_admitted",
+      "elapsed_linux_s": 0.8796750249999974
+    }
+  ],
+  "clock_domain": "linux_local_diagnostic_only"
+}

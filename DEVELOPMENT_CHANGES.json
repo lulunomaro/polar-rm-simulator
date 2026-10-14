@@ -180,9 +180,9 @@
     {
       "path": "rm_match/platform_v2/native_adapter.py",
       "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
-      "current_sha256": "508f87b97b4e549e25bc8cb2344216d8cebafc3a627cf952fe9201ff7c6682bc",
+      "current_sha256": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
       "task": "T03",
-      "reason": "Keep original own-sensor model/80ms gates; permit reviewed typed private RGB, immutable BGR/SHA archives and postclose RGB diagnostic only on per-frame WSL v2, retaining synchronous checks elsewhere"
+      "reason": "Keep original own-sensor model/80ms gates; permit reviewed typed private RGB, immutable BGR/SHA archives and postclose RGB diagnostic only on per-frame WSL v2, retaining synchronous checks elsewhere; private WSL v2 converts/hash actual immutable renderer pixels once and passes an opaque original source/calibration/capture-state/deadline receipt; public/v1 and unsealed bytes retain host SHA, Linux still verifies every payload"
     },
     {
       "path": "rm_match/platform_v2/offline_runtime.py",

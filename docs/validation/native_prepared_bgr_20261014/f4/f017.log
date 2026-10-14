@@ -1,0 +1,13 @@
+....................ssssssssssssss..........................................ssssss.............................F...                           [100%]
+================================== FAILURES ===================================
+_ DeferredTraceTests.test_only_private_v2_defers_rgb_trace_with_exact_immutable_bgr_archive _
+rm_match\platform_v2\test_native_deferred_trace.py:98: in test_only_private_v2_defers_rgb_trace_with_exact_immutable_bgr_archive
+    def test_only_private_v2_defers_rgb_trace_with_exact_immutable_bgr_archive(self):self.run_case(private=True,inline=True)
+                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rm_match\platform_v2\test_native_deferred_trace.py:66: in run_case
+    self.assertEqual(prepared.call_args.kwargs['trace_rgb'],not (private and inline))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'kwargs'
+=========================== short test summary info ===========================
+FAILED rm_match/platform_v2/test_native_deferred_trace.py::DeferredTraceTests::test_only_private_v2_defers_rgb_trace_with_exact_immutable_bgr_archive
+1 failed, 94 passed, 20 skipped, 75 subtests passed in 5.35s

@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\smoke_wsl_native_live.py",
+    "--run",
+    "--native-transport",
+    "wsl_stdio_bgr_v2",
+    "--private-native-pixels",
+    "--raw-base64-codec",
+    "pybase64_1_5_1",
+    "--linux-native-spec",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-original-nav-checkpoint-build-20261013\\operator_source.local.json",
+    "--client-root",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-state-review",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\wsl-native-live-20261014-prepared-bgr-attempt2",
+    "--seconds",
+    "10"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "source_before": {
+    "rm_match/platform_v2/native_image.py": "0f8dbff6a093f3068701d8fa2e449fb56765c0f2a70af9a66f5c36f3bb35e5ad",
+    "rm_match/platform_v2/native_adapter.py": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
+    "rm_match/platform_v2/wsl_native_adapter.py": "4765c6b879a6b262e2fc2f9b196922aaf5ad11caeb79379c3014f90940337158",
+    "rm_match/integrations/wsl_operator_pipe.py": "34b1270aaef7b467454ccaa91362792cd4ffe8ef8e3ead25aeedce7f96b47aa5",
+    "rm_match/integrations/test_wsl_operator_pipe.py": "1736394152061511bef46a5c64639e6a500e5de56bd4a1746cebfedecabc6644",
+    "tests/test_prepared_native_bgr.py": "3a1844815588bfc09c798af445ffc7afbfcd2457952bcbd416dacd5bb6644895"
+  },
+  "driver_sha256": "046a9550b25c47b8a49b9609bde047fec3d87982523fe03738b7b20cfe3c635f"
+}

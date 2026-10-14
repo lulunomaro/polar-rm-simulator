@@ -1,0 +1,22 @@
+{
+  "event": "ready",
+  "transport": "wsl_stdio_bgr_v2",
+  "native_pid": 676,
+  "run_id": "bc93b7431ae24fc5a419531b75e00e11",
+  "supervisor_pid": 355,
+  "spec_sha256": "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+  "readiness": {
+    "abi": "Linux x86_64 read(0)",
+    "syscall": "0 0x0 0x57507f963040 0x1000 0x0 0x0 0x0 0x7fff1d8a10b8 0x79decb0aca82",
+    "wchan": "pipe_read"
+  },
+  "startup_elapsed_linux_s": 0.9960166410000042,
+  "tmpfs_directory": "/dev/shm/polar-wsl-bgr-fditimxd",
+  "tmpfs_mode": "0o700",
+  "native_cwd": "/dev/shm/polar-wsl-bgr-fditimxd",
+  "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+  "native_ticks": 0,
+  "inference_calls": 0,
+  "camera_captures": 0,
+  "physics_steps": 0
+}

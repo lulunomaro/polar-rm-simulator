@@ -1,0 +1,61 @@
+{
+  "counts": {
+    "native_evidence_closed": 1
+  },
+  "camera": {
+    "available": false,
+    "reason": "runtime_stopped",
+    "total_fps_limit": 15,
+    "max_frame_age_wall_s": 2.5,
+    "max_views": 1,
+    "max_renderer_threads": 1,
+    "max_display_encoder_threads": 1,
+    "max_pending": 1,
+    "max_data_buffers": 2,
+    "max_display_pending": 1,
+    "max_display_rgb_bytes": 13996800,
+    "max_cached_raw_bytes": 4665600,
+    "native_pixels_enabled": true,
+    "native_cached": 0,
+    "raw_base64_codec": "pybase64_1_5_1",
+    "max_native_cached_rgb_bytes": 4665600,
+    "max_cached_raw_base64_bytes": 6220800,
+    "max_cached_jpeg_bytes": 2097152,
+    "pending": 0,
+    "cached": 0,
+    "display_cached": 0,
+    "display_pending": 0,
+    "display_running": false,
+    "max_display_pending_seen": 0,
+    "raw_published": 0,
+    "running": false,
+    "rendered": 0,
+    "display_dropped": 0,
+    "display_error": null,
+    "renderer_identity": {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    "timing_report_available": true,
+    "dropped": 0,
+    "error": null,
+    "calibration_resolution_association": "ASSUMED; absent from source YAML"
+  },
+  "camera_closed": true,
+  "physics_thread_alive": false,
+  "shutdown_status": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 3.1999998100218363e-06
+  },
+  "runtime_error": null,
+  "sim_time": 0.0,
+  "timing": {},
+  "errors": [
+    "RuntimeError:RuntimeError:missing Linux child cleanup proof; Linux supervisor did not exit within original cleanup budget"
+  ],
+  "step_duration_samples_s": []
+}

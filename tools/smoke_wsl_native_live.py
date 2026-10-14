@@ -78,6 +78,35 @@ def distribution(values):
         within_80ms_count=sum(0<=v<=.08 for v in values))
 
 
+def run_durations(timing,sim_time):
+    """Absent authority timestamps are unmeasured; cleanup has a separate span."""
+    start=timing.get('start')
+    def duration(key):
+        end=timing.get(key)
+        if any(type(x) not in (int,float) or not math.isfinite(x) for x in (start,end)):return None
+        return end-start if end>=start else None
+    physics=duration('physics_end');combined=duration('end')
+    return dict(physics_wall_s=physics,run_and_cleanup_wall_s=combined,
+        physics_rtf=sim_time/physics if physics is not None and physics>0 else None,
+        run_and_cleanup_rtf=sim_time/combined if combined is not None and combined>0 else None,
+        scope='Authority start to entry into runtime.close for physics; runtime.run return includes cleanup')
+
+
+def collect_transport_evidence(native_root,process):
+    """Inspect only this fresh run, including a failed preparation's owned files."""
+    selected=getattr(process,'evidence_out',None)
+    candidates=[Path(selected)] if selected is not None else sorted(Path(native_root).glob('binding_*/wsl*supervisor_*'))
+    collection=dict(candidate_count=len(candidates),selected_directory=None,
+        scope='Fresh run directory only; files alone do not establish readiness or clean shutdown')
+    if len(candidates)!=1:return {},collection
+    collection['selected_directory']=str(candidates[0]);evidence={}
+    for name in ('WORKER_STARTUP.json','STARTUP_PHASES.json','PRE_NATIVE_EXIT.json',
+        'OWNED_CHILD.json','STARTUP.json','CLEANUP.json','HOST_TRACE.json','SUPERVISOR_ERROR.json'):
+        path=candidates[0]/name
+        if path.is_file():evidence[name]=json.loads(path.read_text(encoding='utf-8'))
+    return evidence,collection
+
+
 def expected_shutdown_rejection(error, runtime, client_error_type):
     """Only the server's exact terminal rejection after actual stop is expected."""
     return (isinstance(error,client_error_type) and getattr(error,'code',None)=='runtime_stopped'
@@ -356,6 +385,10 @@ def run(a):
             started=time.perf_counter()
             try:return super().step_once()
             finally:step_durations.append(time.perf_counter()-started)
+        def close(self):
+            if self._authority==threading.get_ident() and 'start' in timing and 'physics_end' not in timing:
+                timing['physics_end']=time.perf_counter()
+            return super().close()
     runtime=TimedRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace,
         enable_native_pixels=a.private_native_pixels)
     server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=AdmissionPolicy.from_manifest(out/'admission.json')),runtime)
@@ -440,7 +473,7 @@ def run(a):
         camera_closed=camera_closed,physics_thread_alive=physics is not None and physics.is_alive(),
         shutdown_status=getattr(runtime,'shutdown_status',None),runtime_error=runtime.error,
         sim_time=sim.time,timing=timing,errors=errors,step_duration_samples_s=step_durations))
-    elapsed=timing.get('end',time.perf_counter())-timing.get('start',time.perf_counter())
+    durations=run_durations(timing,sim.time);elapsed=durations['run_and_cleanup_wall_s']
     clean=(camera_closed and not http.is_alive() and (physics is None or not physics.is_alive())
         and getattr(runtime,'shutdown_status',{}).get('clean') is True)
     source_unchanged=all((ROOT/p).is_file() and hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
@@ -451,12 +484,7 @@ def run(a):
     budgets=[x['sensor_budget'] for x in events if x['event']=='adapter_enqueue' and x.get('sensor_budget')]
     native_budget_ok=bool(budgets) and all(0< b['wall_deadline']-b['capture_wall']<=.08+1e-9
         and 0< b['sim_deadline']-b['capture_sim_time']<=.08+1e-9 for b in budgets)
-    transport_evidence={}
-    evidence_out=getattr(native_process,'evidence_out',None)
-    if evidence_out is not None:
-        for name in ('STARTUP.json','CLEANUP.json','HOST_TRACE.json','SUPERVISOR_ERROR.json'):
-            path=Path(evidence_out)/name
-            if path.is_file():transport_evidence[name]=json.loads(path.read_text(encoding='utf-8'))
+    transport_evidence,evidence_collection=collect_transport_evidence(out/'native',native_process)
     actual_transport=(transport_evidence.get('STARTUP.json') or {}).get('transport')
     pixel_audit=None
     if plan['criteria'].get('postclose_actual_pixel_audit'):
@@ -464,7 +492,7 @@ def run(a):
         pixel_audit=audit_saved_native_pixels(out)
         write('POST_CLOSE_PIXEL_AUDIT.json',pixel_audit)
     measured=dict(configuration=plan['configuration'],duration_s=elapsed,
-        physics_rtf=sim.time/elapsed if elapsed>0 else 0,raw_frames=len(raw),
+        physics_rtf=durations['physics_rtf'],run_durations=durations,raw_frames=len(raw),
         native_results=counts['native_result'],distinct_native_actuated_frames=len(consumed),
         source_unchanged=source_unchanged,sdk_admission=sdk_admitted,window_acknowledged=window_acked,
         native_sensor_budget_80ms=native_budget_ok,
@@ -495,6 +523,7 @@ def run(a):
         environment={k:os.environ.get(k) for k in ('MUJOCO_GL','OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS')},
         native_process_diagnostic=getattr(native_process,'diagnostics',None),
         native_transport_evidence=transport_evidence,
+        native_transport_evidence_collection=evidence_collection,
         image_preparation=image_stage_summary(events),
         raw_codec_identity=codec_identity,
         pixel_audit=pixel_audit,

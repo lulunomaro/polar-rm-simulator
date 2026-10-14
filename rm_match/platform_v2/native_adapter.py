@@ -15,7 +15,7 @@ import threading
 from pathlib import Path
 import uuid
 import numpy as np
-from .native_image import prepare_native_image
+from .native_image import prepare_native_image,prepare_native_snapshot
 from .adapters import BaseAdapter,raw_observation,require_sensors
 from .contracts import ContractError,action_for,finite
 
@@ -123,7 +123,7 @@ class NativeSourceAdapter(BaseAdapter):
             if callable(stop):stop()
             self.close();raise ContractError('native_adapter_cancelled')
 
-    def _native_control(self,packet,observation,*,image_bytes=None):
+    def _native_control(self,packet,observation,*,image_bytes=None,prepared_image=None):
         return self.process.control(packet)
 
     def _act_sensor(self,o,hold,emit,*,decoded_image=None,native_envelope=None):
@@ -163,8 +163,14 @@ class NativeSourceAdapter(BaseAdapter):
         # post-close auditor must verify/reconstruct RGB; a missing digest here
         # is an explicit deferred obligation, never fabricated audit success.
         deferred_rgb=native_envelope is not None and inline
-        prepared=prepare_native_image(raw.rgb,self.directory/'sensor_input.bgr',
-            trace_rgb=self.trace is not None and not deferred_rgb,return_bytes=inline,write_artifact=not inline)
+        proof=None
+        if deferred_rgb:
+            prepared=prepare_native_snapshot(native_envelope.pixels,self.directory/'sensor_input.bgr',
+                control_time_ns=round(t*1e9),host_deadline=o['wall_deadline'])
+            proof=prepared[4]
+        else:
+            prepared=prepare_native_image(raw.rgb,self.directory/'sensor_input.bgr',
+                trace_rgb=self.trace is not None,return_bytes=inline,write_artifact=not inline)
         image,rgb_sha,image_stages=prepared[:3];image_bytes=prepared[3] if inline else None
         if inline:
             writer=self._evidence_writer
@@ -180,7 +186,9 @@ class NativeSourceAdapter(BaseAdapter):
                 own_at_capture={k:cam[k] for k in ('own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture')})
             self.trace(dict(event='native_frame_prepare',wall_time=time.perf_counter(),image_stages=image_stages,**trace_identity))
             self.trace(dict(event='native_request',wall_time=time.perf_counter(),wall_clock='host_perf_counter',**trace_identity))
-        response=self._native_control(dict(episode=o['episode'],control_time_ns=round(t*1e9),frame=frame),o,image_bytes=image_bytes)
+        control_kwargs=dict(image_bytes=image_bytes)
+        if proof is not None:control_kwargs['prepared_image']=proof
+        response=self._native_control(dict(episode=o['episode'],control_time_ns=round(t*1e9),frame=frame),o,**control_kwargs)
         if self.trace:self.trace(dict(event='native_result',wall_time=time.perf_counter(),wall_clock='host_perf_counter',response=response,**trace_identity))
         age=response.get('target_age_s')
         active=(response.get('should_control') is True and response.get('observation_shoot_allowed') is True and type(age) in (int,float) and math.isfinite(age) and 0<=age<=.08)

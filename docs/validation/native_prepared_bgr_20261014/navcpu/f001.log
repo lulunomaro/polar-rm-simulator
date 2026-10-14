@@ -1,0 +1,113 @@
+{
+  "summary": {
+    "packet_deepcopy_only": {
+      "wall_ns": {
+        "n": 100,
+        "p50_ms": 0.14385,
+        "p95_ms": 0.17841,
+        "p99_ms": 0.191004,
+        "max_ms": 0.1914,
+        "min_ms": 0.1378
+      },
+      "thread_cpu_ns": {
+        "n": 100,
+        "p50_ms": 0.0,
+        "p95_ms": 0.0,
+        "p99_ms": 0.15625000000007994,
+        "max_ms": 15.625,
+        "min_ms": 0.0
+      },
+      "process_cpu_ns": {
+        "n": 100,
+        "p50_ms": 0.0,
+        "p95_ms": 0.0,
+        "p99_ms": 0.15625000000007994,
+        "max_ms": 15.625,
+        "min_ms": 0.0
+      }
+    },
+    "validator_only": {
+      "wall_ns": {
+        "n": 100,
+        "p50_ms": 0.59205,
+        "p95_ms": 0.705035,
+        "p99_ms": 0.8977650000000003,
+        "max_ms": 0.9438,
+        "min_ms": 0.5489
+      },
+      "thread_cpu_ns": {
+        "n": 100,
+        "p50_ms": 0.0,
+        "p95_ms": 0.0,
+        "p99_ms": 15.625,
+        "max_ms": 15.625,
+        "min_ms": 0.0
+      },
+      "process_cpu_ns": {
+        "n": 100,
+        "p50_ms": 0.0,
+        "p95_ms": 0.0,
+        "p99_ms": 15.625,
+        "max_ms": 15.625,
+        "min_ms": 0.0
+      }
+    },
+    "current_hot_segment": {
+      "wall_ns": {
+        "n": 100,
+        "p50_ms": 0.7756,
+        "p95_ms": 0.973785,
+        "p99_ms": 1.1651140000000029,
+        "max_ms": 1.7209,
+        "min_ms": 0.7148
+      },
+      "thread_cpu_ns": {
+        "n": 100,
+        "p50_ms": 0.0,
+        "p95_ms": 0.7812499999999556,
+        "p99_ms": 15.625,
+        "max_ms": 15.625,
+        "min_ms": 0.0
+      },
+      "process_cpu_ns": {
+        "n": 100,
+        "p50_ms": 0.0,
+        "p95_ms": 0.7812499999999556,
+        "p99_ms": 15.625,
+        "max_ms": 15.625,
+        "min_ms": 0.0
+      }
+    }
+  },
+  "input_facts": {
+    "schema": "polar.sim.navigation-observation.v1",
+    "point_count": 584,
+    "packed_point_bytes": 11680,
+    "base64_characters": 15576,
+    "imu_count": 51,
+    "detached_string_same_identity": true,
+    "validator_return_string_same_identity": true,
+    "original_identity": {
+      "robot_id": "red_sentry",
+      "episode": 0,
+      "binding_epoch": 1,
+      "observed_seq": 1,
+      "sim_time": 0.1,
+      "wall_deadline": 43088.352029400005
+    }
+  },
+  "gc_events": [
+    {
+      "generation": 0,
+      "operation": {
+        "operation": "validator_only",
+        "index": 45
+      },
+      "wall_ns": 24700,
+      "thread_cpu_ns": 0,
+      "collected": 0,
+      "uncollectable": 0
+    }
+  ],
+  "elapsed_s": 0.38787560000491794
+}

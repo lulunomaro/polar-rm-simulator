@@ -17,6 +17,7 @@ import time
 import uuid
 from dataclasses import replace
 from .wsl_operator import WslOperatorProcess,MAX_LINE,checked_host_path,host_to_linux_path,validate_sensor_frame
+from ..platform_v2.native_image import prepared_native_bgr_matches
 
 TRANSPORT='wsl_stdio_bgr_v2'
 CHUNK=65536
@@ -29,7 +30,8 @@ class WslPipeOperatorProcess(WslOperatorProcess):
         from ..deployment.profile import digest
         metadata=copy.deepcopy(self.checked.metadata);identities=dict(self.checked._identities)
         for rel in ('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py',
-                    'rm_match/integrations/owned_linux_group.py'):
+                    'rm_match/integrations/owned_linux_group.py','rm_match/platform_v2/native_image.py',
+                    'rm_match/platform_v2/native_camera_snapshot.py'):
             selected=checked_host_path(self.repo_root/rel)
             if not selected.is_relative_to(self.repo_root):raise ValueError('pipe source outside repository')
             sha=digest(selected);identities[str(selected)]=sha;metadata['transport_source_sha256'][rel]=sha
@@ -78,7 +80,10 @@ class WslPipeOperatorProcess(WslOperatorProcess):
             if reply.get('event')!='ready' or reply.get('spec_sha256')!=self.checked.linux_spec_sha256 or reply.get('transport')!=TRANSPORT or reply.get('tmpfs_mode')!='0o700':
                 raise RuntimeError('invalid binary WSL startup identity')
             self.ready=reply;self._record('startup_ready',transport=TRANSPORT,native_pid=reply['native_pid'],tmpfs_directory=reply['tmpfs_directory'])
-        except BaseException:self.request_stop();self.close();raise
+        except BaseException as exc:
+            self._record('startup_failed',error_type=type(exc).__name__,error=str(exc),
+                native_admitted=False)
+            self.request_stop();self.close();raise
 
     def _write(self,child):
         try:
@@ -114,6 +119,10 @@ class WslPipeOperatorProcess(WslOperatorProcess):
                 error_type=type(error).__name__ if error else None,original_host_deadline=deadline,
                 remaining_host_budget_s=deadline-now,clock_domain='host_perf_counter');recorded=True
         try:
+            if type(packet) is not dict:raise ValueError('invalid native control packet')
+            # Freeze scalar clock/source fields before validation. Frame gets
+            # its detached copy below; immutable bytes/opaque receipt keep identity.
+            packet=dict(packet)
             if self.ready is None or self.process is None or self._stop.is_set():raise RuntimeError('WSL bridge not ready')
             if 'host_deadline' in packet:
                 authority=packet['host_deadline']
@@ -134,8 +143,13 @@ class WslPipeOperatorProcess(WslOperatorProcess):
                 if not path.is_relative_to(self.out):raise ValueError('image outside binding directory')
                 next_phase('bgr_read')
                 with path.open('rb') as stream:raw=stream.read(IMAGE_BYTES+1)
-            next_phase('bgr_hash')
-            if len(raw)!=IMAGE_BYTES or hashlib.sha256(raw).hexdigest()!=image['sha256']:raise ValueError('image SHA/size mismatch')
+            if 'prepared_image' in packet:
+                next_phase('prepared_bgr_admission')
+                detached=dict(packet,frame=frame)
+                if not prepared_native_bgr_matches(packet['prepared_image'],raw,detached):raise ValueError('prepared BGR source mismatch')
+            else:
+                next_phase('bgr_hash')
+                if len(raw)!=IMAGE_BYTES or hashlib.sha256(raw).hexdigest()!=image['sha256']:raise ValueError('image SHA/size mismatch')
             next_phase('serialize');ns=packet['control_time_ns']
             if type(ns) is not int or ns<0:raise ValueError('invalid control clock')
             self._serial+=1;serial=self._serial

@@ -1,69 +1,32 @@
 # Windows GPU 相机与 WSL 原生传输
 
-这是本地显式实验入口，使用 Windows 的真实 NVIDIA/MuJoCo 原尺寸相机和 Ubuntu
-内的自有 T2/contour-v3 Linux ELF。它没有提供 Windows 原生算法构建，也没有完成
-M1、可见 Qt、LAN 或完整比赛验收。原模型、94 个恢复源码、PnP 门限与历史证据保持原字节。
+本地显式实验入口使用Windows真实NVIDIA/MuJoCo原尺寸相机和Ubuntu中的完整自有T2/contour-v3 Linux ELF。最新[prepared-BGR检查点](validation/native_prepared_bgr_20261014/README.md)仍0实时native返回/0物理消费；Windows-native、可见Qt、LAN、M1及完整比赛均未验收。历史第1–12轮原包保持，原模型/94份恢复源码/PnP门限未改。
 
-## 身份与生命周期
+## 身份与两种传输
 
-`own_wsl_registry()` 校验同一份 spec 原始 SHA、完整 ELF/构建/生成源码/配置/模型、
-原 T2 与新图像 frontend 的复合身份，严格映射 `/mnt/c` 与 `C:`，拒绝越界与 reparse。
-分发固定为 Ubuntu；网络绑定仍仅允许 FOV 配置。预加载在本地 setup 完成，原 ELF
-实际进入 `read(0)` 等待才声明 ready；没有提前拍帧、推理或推进物理。
+own_wsl_registry按同一份spec原SHA核验ELF/build/generated/config/model及原T2+contour复合身份，固定可信Ubuntu，严格/mnt/c↔C:映射/路径/reparse边界。全资产校验在注册/启动，不每control重算已加载模型。预加载只有原ELF实际read(0)等待才能ready，没有提前拍帧、推理或推进物理；首次同配置绑定接管，换代关闭重建，取消持久。
 
-预加载模型只被第一个相同配置的绑定接管。首次 reset 保留该进程，换代会关闭并
-重建；取消是持久状态。关闭或启动失败时回收 owned Linux 子进程，保存 `/proc`、
-wait/reap 和 pipe 关闭证明；v2 同时清理专属 0700 `/dev/shm` 目录。全量资产检查在
-注册和每次启动边界执行，运行中已加载进程不每帧重算模型与 94 个源码的 SHA。
+wsl_stdio_v1保留共享盘图像入口；58ms DrvFs读取中位数是独立离线文件系统诊断，不能与不同样本相减当纯NN。wsl_stdio_bgr_v2传有界头+恰好4,665,600真实BGR bytes，Linux再核验尺寸/SHA并写owned0700 tmpfs，只替原frame image.path，原标定/捕获own/曝光/control时间不变。有界actual_frames writer必须完整落盘并读回核验；队列满、SHA/IO错误、缺帧或存活线程均明确失败。
 
-## 两种显式传输
+Windows私有工厂只对同一份不可变BGR计算一次SHA；审核的私有配对receipt绑定same bytes对象、image字段、episode/frame、曝光/control/deadline、校准与capture-own四vectors（joint_positions/joint_velocities/base_odom_xyyaw/base_odom_vxyw），符合才免重复host SHA。robot/消费者/generation/binding由上游snapshot ingress和owned out path负责，不是receipt自身字段。有receipt却错配直接reject/STOP；无receipt的legacy/普通入口才完整host hash，不fallback接受错误proof。Linux SHA始终保留。receipt只认证该配对，不封印全部sensor或control authority，后续lease/epoch/原80ms wall+sim预算和150ms SDK各消费阶段仍重检。私有对象不进入JSON/HTTP/公共日志或未知adapter。普通JSON/旧frame/自定义行为仍走原严格校验。
 
-`wsl_stdio_v1` 保留共享盘文件入口。独立离线实验中，4,665,600 字节的 DrvFs
-读取中位数约 58 ms；supervisor 和原 ELF 会重复读取。这份结果是文件系统诊断，
-不能视为实时模型耗时或闭环通过。
+取消在validation前/后、慢file-open后及Popen前重检共享flag/STOP/原deadline；之后到达cancel交owned cleanup，不绝对声称spawn竞态消失。WORKER/birth/run/spec身份与phase/启动失败原件保留。PRE_NATIVE_EXIT只能证明没有spawn尝试且tmpfs_removed，不把native_child_reaped=false改true；已spawn必须原PID/PGID/start/boot匹配、TERM/KILL/reap、空组与tmpfs删除，缺证明仍失败。杀wsl.exe不等于Linux回收；原15s setup/1.3s host资源预算与控制门限不扩大。
 
-`wsl_stdio_bgr_v2` 使用有界头部和恰好 4,665,600 字节的真实 BGR 负载。
-同一次严格验证产生的 RGB 私有字节用于确切通道交换；不可变 BGR 快照只传给
-可信本地桥，不进入 JSON observation、HTTP session 或控制配置。Windows 与 Linux
-各核验大小和 SHA，Linux 写专属内存文件，然后只替换原 frame 的 `image.path`。
-相机标定、本车曝光状态、图像内容、曝光时间及控制时间均不变。v2 的原始 BGR
-输入由独立有界写入线程保存为 `actual_frames/sensor_<frame_id>.bgr` 与 SHA manifest；
-提交只接收同一份不可变 bytes，工作线程必须写入并读回核验。队列满、重放帧号、
-SHA 或 IO 失败明确报错，停止后排空已接受帧；关闭时缺帧或线程仍存活不能声明 clean。
-v1 继续同步共享盘文件。v2 的 Linux 本地计时与 Windows QPC 计时分别报告。
+## 显式本地复现
 
-相机发布后通过同一身份/消费者/时效检查唤醒算法调度，不等待下一个 50 ms 周期。
-排队标记绑定实际原子 sensor packet 的帧号，避免发布竞态造成重复输入。
-观测先复制快照再验证并解码，同一份元数据与像素配对；JSON 类型和未知字段严格拒绝。
-本机相机在编码时封装与原始 bytes、编码字符串、机器人、episode、帧号、曝光时间及
-图像形状绑定的私有凭据。只有注册的相机凭据且字符串对象完全相同时可复用该 bytes；
-普通 JSON、同值新字符串、伪造对象或元数据变化仍走完整严格解码。凭据不进入 HTTP、
-公共 observation、日志或第三方 adapter。它不能跳过标定、权限、期限和后续 SHA 检查。
-每次原生观测同时保留曝光起算的 80 ms 壁钟期限及 80 ms 仿真时间期限。
-手动操作仍走真实 SDK 的 150 ms server window，native 没有自动开火授权。
-
-## 测量与复现
-
-真实测试包含首帧，并单独统计 raw、准备、传输、原生结果、物理消费、超时、丢帧
-和清理；空结果不能用零延迟替代。setup 和报告失败保留原文件及异常栈；原始
-ledger、SDK、帧绑定和 runtime 观测在派生统计之前落盘。
-
-固定六车、2 ms 物理步、1440×1080、15 总 FPS、一视角、RTF 1、10 秒壁钟：
+本机匹配的已有clean checkpoint是42ea570c…spec，同4d357…ELF；目录名字original不替代其实际contour-v3身份。旧native-contour-v3-final-default-build/a808…记录仍原样保留，在当前portable/CMake输入下严格拒绝；不改旧hash、不自动fallback。公开读者须按当前构建脚本在自己的机器生成并核验本地spec，再显式选该路径，不能复制私有路径当发布包。
 
 ```powershell
-.venv-sim/Scripts/python.exe tools/smoke_wsl_native_live.py --run --native-transport wsl_stdio_bgr_v2 --linux-native-spec artifacts/native-contour-v3-final-default-build/operator_source.local.json --client-root external/polar-rm-client-state-review --out artifacts/wsl-native-live-fresh --seconds 10
+.venv-sim/Scripts/python.exe tools/smoke_wsl_native_live.py --run --native-transport wsl_stdio_bgr_v2 --private-native-pixels --raw-base64-codec pybase64_1_5_1 --linux-native-spec artifacts/native-original-nav-checkpoint-build-20261013/operator_source.local.json --client-root external/polar-rm-client-state-review --out artifacts/wsl-native-live-fresh --seconds 10
 $env:POLAR_TEST_WSL='1'
+$env:POLAR_WSL_TEST_SPEC='C:/absolute/local/project/artifacts/native-original-nav-checkpoint-build-20261013/operator_source.local.json'
 .venv-sim/Scripts/python.exe -m pytest rm_match/integrations/test_wsl_operator.py rm_match/integrations/test_wsl_operator_pipe.py -q
 ```
 
-输出必须选新目录。固定环境与原始失败在
-[实际测试证据](validation/wsl_native_live_20261013/ATTEMPT3.md) 及同目录的后续尝试中保存。
-单位、无算法子进程传输、保存图像离线计算、实时链与完整比赛的资格分别记录。
+optional pybase64_1_5_1须预先安装并与已声明扩展身份匹配；不能缺失时静默替代。FOV/本地注册命令不由HTTP指定，out必须全新。六车、2ms、1440×1080、15总FPS、1view和原80/150ms保持。
 
-截至第七轮，实时闭环仍失败。第六轮首次收到完整真实图像，但 Linux 接收/核验/写入
-已超过剩余期限，没有交付 ELF；第七轮取消同步图像写入后完整图像接收约 16.75 ms，
-仍为原生超时、0 返回、0 有效执行，RTF 0.840。该旧报告未记录实际 ELF stdin 写入字节，
-不能据此确定是否开始 NN。新 worker 累计实际 `os.write` 返回并单独报告
-`native_stdin_bytes_written` / `native_stdin_complete`，只证明输入交付，不能单独证明推理完成。
-旧报告中 `native_identity` 的 v1 标签有误，原 STARTUP 与请求日志均为 v2；新 v2 对象
-显式登记两个 pipe 模块的 SHA，旧失败报告保持原字节。
+## 原始测量范围
+
+最新actual3源不变，5000steps/10sim；physics10.0004716s/RTF.999952842与run+cleanup10.0587424s/ratio.994160065分开。148raw、1请求、0结果/消费，原ELF完整stdin1732/1732字节和47.378868ms等待只证明交付/整包超时，不证明NN完成或纯NN时延。单首请求factory5.2297ms/hostprep.1399ms含receipt.0184ms不称每帧或配对性能改善；postclose实际BGR/RGB审计与本轮owned cleanup通过。
+
+actual1是旧spec门禁拒绝；actual2启动失败/0physics/0NN且Linuxcleanup未证，后继probe/actual3不能补它。actual3之后的最终启动guard只有focused06/Linux14/资源probe02及QA02，不能重标旧actual3执行SHA或宣称final live已跑。没有开始时duration=None，setup/报告失败保存原异常与有限phase，不刷新旧时刻。历史[第12轮](validation/wsl_native_live_20261013_attempt12/README.md)及更早原件独立保留；离线保存帧、重复帧绕过NN、预加载和资源-only成功均非实时资格。M0–M5仍未完整签收。

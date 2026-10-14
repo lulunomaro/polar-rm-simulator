@@ -1,0 +1,20 @@
+{
+  "schema": "polar.evidence.postcheck-docs-only.v1",
+  "postcheck_changed_files": [
+    {
+      "path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "checked_before_sha256": "5524ec3d1eb739c85f3725e503bdbaa85bd0a9625437ce8837f94438e46f2692",
+      "current_after_sha256": "5927c0e3b47105bd1259cef68a30ce48801de193d8b90392cc3c42fb7f6e2bfd"
+    },
+    {
+      "path": "docs/WSL_NATIVE_TRANSPORT.md",
+      "checked_before_sha256": "922eceb443714303f6647481185e63195772d838eab04cf39e10e849e97854d4",
+      "current_after_sha256": "419399b2a373adab20d29e17e0c8c7f0749bfbba41e02e8c9c07deed1de1baed"
+    }
+  ],
+  "all_other_checked_files_unchanged": true,
+  "checked_map_sha256": "c330cf10f24b555af026a2320bd082d9fb21a91e24b79fc5a84de2b56eac04fc",
+  "scope": "Only two docs after completed QA; new permanent archive untracked evidence is outside historical checked map; no execution source changes",
+  "final_whole_repository_equals_QA_map": false,
+  "low_impact_docs_not_retested": true
+}

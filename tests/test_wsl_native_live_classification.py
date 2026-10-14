@@ -70,6 +70,27 @@ def test_distributions_preserve_max_and_empty_sample_counts():
     assert r['max_ms']==81 and r['within_80ms_count']==2 and r['p50_ms']==30
 
 
+def test_unstarted_runtime_is_unmeasured_and_cleanup_does_not_define_physics_rtf():
+    for timing in ({},{'start':100.},{'start':100.,'end':99.}):
+        result=smoke.run_durations(timing,0.)
+        assert result['physics_wall_s'] is None and result['physics_rtf'] is None
+    result=smoke.run_durations(dict(start=100.,physics_end=110.,end=111.),10.)
+    assert result['physics_wall_s']==10. and result['run_and_cleanup_wall_s']==11.
+    assert result['physics_rtf']==1. and result['run_and_cleanup_rtf']==10/11
+
+
+def test_failed_preparation_evidence_is_only_collected_from_unique_fresh_directory(tmp_path):
+    import json
+    out=tmp_path/'binding_a/wsl_pipe_supervisor_a';out.mkdir(parents=True)
+    (out/'HOST_TRACE.json').write_text(json.dumps([dict(event='startup_failed')]))
+    evidence,collection=smoke.collect_transport_evidence(tmp_path,None)
+    assert collection['candidate_count']==1 and 'HOST_TRACE.json' in evidence
+    assert 'STARTUP.json' not in evidence and 'CLEANUP.json' not in evidence
+    (tmp_path/'binding_b/wsl_pipe_supervisor_b').mkdir(parents=True)
+    evidence,collection=smoke.collect_transport_evidence(tmp_path,None)
+    assert evidence=={} and collection['candidate_count']==2
+
+
 def test_stage_join_requires_real_frame_hash_and_uses_only_host_clock():
     raw={1:dict(raw_rgb_sha256='actualpixels',capture_wall=100.,encoded_wall=100.04)}
     events=[dict(event='adapter_enqueue',observed_seq=7,sensor_budget={'frame_id':1},host_received_wall=100.045),

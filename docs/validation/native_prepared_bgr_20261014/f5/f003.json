@@ -1,0 +1,34 @@
+{
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 5.798401500000182,
+  "source_before": {
+    "rm_match/platform_v2/native_image.py": "0f8dbff6a093f3068701d8fa2e449fb56765c0f2a70af9a66f5c36f3bb35e5ad",
+    "rm_match/platform_v2/native_adapter.py": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
+    "rm_match/platform_v2/wsl_native_adapter.py": "4765c6b879a6b262e2fc2f9b196922aaf5ad11caeb79379c3014f90940337158",
+    "rm_match/integrations/wsl_operator_pipe.py": "62684d40a4ab8dc3567780539b8292ed0d89975428458523c9ed88f19c83844b",
+    "rm_match/integrations/test_wsl_operator_pipe.py": "1736394152061511bef46a5c64639e6a500e5de56bd4a1746cebfedecabc6644",
+    "tests/test_prepared_native_bgr.py": "3a1844815588bfc09c798af445ffc7afbfcd2457952bcbd416dacd5bb6644895",
+    "rm_match/integrations/wsl_operator.py": "159d236e828ab25dfe83c7d099d76056ca18a80572dfddfdb2f968837dd73c8a",
+    "rm_match/integrations/wsl_operator_pipe_worker.py": "fc1fbb922a254c1c13191bd52833f21d2c7a3d3dd8370488b2d00b191be0d326",
+    "tools/smoke_wsl_native_live.py": "415dbe5156615e990d113300272df01fbfeac7c22444c2a6880da3c4663b65c7",
+    "tests/test_wsl_native_live_classification.py": "8229bb0527a1c85af133805f70dbf69fa47b81d0217a7c8e664f9f96f6851fd4",
+    "tests/test_owned_wsl_cleanup.py": "73e6d6a6e616d04946f60be915ebbb0254cba9daefd5402b78036ad78c0fcd1c",
+    "rm_match/platform_v2/test_native_deferred_trace.py": "d9ce75a4109b5281be5d99950cc5ffdaf50bada49d2018827acc0c9634bfcea0"
+  },
+  "source_after": {
+    "rm_match/platform_v2/native_image.py": "0f8dbff6a093f3068701d8fa2e449fb56765c0f2a70af9a66f5c36f3bb35e5ad",
+    "rm_match/platform_v2/native_adapter.py": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
+    "rm_match/platform_v2/wsl_native_adapter.py": "4765c6b879a6b262e2fc2f9b196922aaf5ad11caeb79379c3014f90940337158",
+    "rm_match/integrations/wsl_operator_pipe.py": "62684d40a4ab8dc3567780539b8292ed0d89975428458523c9ed88f19c83844b",
+    "rm_match/integrations/test_wsl_operator_pipe.py": "1736394152061511bef46a5c64639e6a500e5de56bd4a1746cebfedecabc6644",
+    "tests/test_prepared_native_bgr.py": "3a1844815588bfc09c798af445ffc7afbfcd2457952bcbd416dacd5bb6644895",
+    "rm_match/integrations/wsl_operator.py": "159d236e828ab25dfe83c7d099d76056ca18a80572dfddfdb2f968837dd73c8a",
+    "rm_match/integrations/wsl_operator_pipe_worker.py": "fc1fbb922a254c1c13191bd52833f21d2c7a3d3dd8370488b2d00b191be0d326",
+    "tools/smoke_wsl_native_live.py": "415dbe5156615e990d113300272df01fbfeac7c22444c2a6880da3c4663b65c7",
+    "tests/test_wsl_native_live_classification.py": "8229bb0527a1c85af133805f70dbf69fa47b81d0217a7c8e664f9f96f6851fd4",
+    "tests/test_owned_wsl_cleanup.py": "73e6d6a6e616d04946f60be915ebbb0254cba9daefd5402b78036ad78c0fcd1c",
+    "rm_match/platform_v2/test_native_deferred_trace.py": "d9ce75a4109b5281be5d99950cc5ffdaf50bada49d2018827acc0c9634bfcea0"
+  },
+  "source_unchanged": true
+}

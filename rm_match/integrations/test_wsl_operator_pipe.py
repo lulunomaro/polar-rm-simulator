@@ -24,7 +24,8 @@ class PipeHostTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=ROOT/'artifacts',prefix='wsl_pipe_identity_') as directory:
             repo=Path(directory);out=repo/'out';out.mkdir()
             paths=('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py',
-                   'rm_match/integrations/owned_linux_group.py')
+                   'rm_match/integrations/owned_linux_group.py','rm_match/platform_v2/native_image.py',
+                   'rm_match/platform_v2/native_camera_snapshot.py')
             for rel in paths:
                 target=repo/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes((ROOT/rel).read_bytes())
             original=CheckedWslSpec({},'a'*64,{},dict(transport='wsl_stdio_v1',transport_source_sha256={}),repo/'spec.json',repo,out,{})
