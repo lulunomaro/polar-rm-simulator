@@ -1,0 +1,92 @@
+{
+  "runtime": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.04596280000259867
+  },
+  "http_thread_stopped": true,
+  "http_workers_idle": true,
+  "sdk_threads_stopped": true,
+  "pipelines": [
+    {
+      "clean": true,
+      "errors": [],
+      "peers": {
+        "navigation": {
+          "clean": true,
+          "errors": [],
+          "ownership": {
+            "clean": true,
+            "reaped": true,
+            "group_empty": true,
+            "active_processes": 0,
+            "returncode": 1,
+            "errors": [],
+            "pid": 62532,
+            "ownership": "suspended_before_execute_job_kill_on_close"
+          },
+          "io_thread_stopped": true,
+          "resource_budget_s": 1.5
+        },
+        "decision": {
+          "clean": true,
+          "errors": [],
+          "ownership": {
+            "clean": true,
+            "reaped": true,
+            "group_empty": true,
+            "active_processes": 0,
+            "returncode": 1,
+            "errors": [],
+            "pid": 20728,
+            "ownership": "suspended_before_execute_job_kill_on_close"
+          },
+          "io_thread_stopped": true,
+          "resource_budget_s": 1.5
+        }
+      },
+      "resource_budget_s": 1.5
+    },
+    {
+      "clean": true,
+      "errors": [],
+      "peers": {
+        "navigation": {
+          "clean": true,
+          "errors": [],
+          "ownership": {
+            "clean": true,
+            "reaped": true,
+            "group_empty": true,
+            "active_processes": 0,
+            "returncode": 1,
+            "errors": [],
+            "pid": 61400,
+            "ownership": "suspended_before_execute_job_kill_on_close"
+          },
+          "io_thread_stopped": true,
+          "resource_budget_s": 1.5
+        },
+        "decision": {
+          "clean": true,
+          "errors": [],
+          "ownership": {
+            "clean": true,
+            "reaped": true,
+            "group_empty": true,
+            "active_processes": 0,
+            "returncode": 1,
+            "errors": [],
+            "pid": 48124,
+            "ownership": "suspended_before_execute_job_kill_on_close"
+          },
+          "io_thread_stopped": true,
+          "resource_budget_s": 1.5
+        }
+      },
+      "resource_budget_s": 1.5
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "polar.sim.robotio-plugins.v1",
+  "manifests": {
+    "navigation": "robotio_protocol_navigation.json",
+    "decision": "robotio_protocol_decision.json",
+    "aim": null
+  },
+  "pipelines": [
+    {
+      "adapter_id": "custom_protocol_pipeline_supply",
+      "label": "Synthetic decision+navigation protocol pipeline supply",
+      "decision_plugin_id": "custom_protocol_decision_supply",
+      "navigation_plugin_id": "custom_protocol_nav_supply",
+      "supported_robots": [
+        "red_infantry"
+      ]
+    },
+    {
+      "adapter_id": "custom_protocol_pipeline_heat",
+      "label": "Synthetic decision+navigation protocol pipeline heat",
+      "decision_plugin_id": "custom_protocol_decision_heat",
+      "navigation_plugin_id": "custom_protocol_nav_heat",
+      "supported_robots": [
+        "blue_sentry"
+      ]
+    }
+  ]
+}

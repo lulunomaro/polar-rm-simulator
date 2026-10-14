@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio_ros2_actual_ext4_20261014.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio-ros2-actual-20261014-03",
+    "--run"
+  ],
+  "driver_sha256": "90b62f11a209f373ea77b61987f20b7150cd8fbce3eb3c3482181fe6c50c2fc3",
+  "change": "Navigation stop intent validation was added; final source snapshot, same actual ext4 runtime"
+}

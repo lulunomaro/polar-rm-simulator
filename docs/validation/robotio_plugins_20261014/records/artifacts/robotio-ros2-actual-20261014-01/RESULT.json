@@ -1,0 +1,11 @@
+{
+  "exit_code": 2,
+  "checks": {},
+  "errors": [
+    "RuntimeError",
+    "pool_cleanup:RuntimeError"
+  ],
+  "source_unchanged": true,
+  "elapsed_seconds": 6.0040603000015835,
+  "scope": "synthetic protocol DDS; not a team algorithm, NN, physics or navigation qualification"
+}

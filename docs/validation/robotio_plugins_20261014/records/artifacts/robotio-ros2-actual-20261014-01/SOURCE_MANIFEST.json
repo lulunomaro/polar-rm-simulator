@@ -1,0 +1,84 @@
+{
+  "files": [
+    {
+      "path": "tools/robotio_ros2_fixture_node.py",
+      "size": 5686,
+      "sha256": "bd0000e25f16a601e01ac3711d3f27b400c63d6ccaf46a1c5cbc455a49c37af9"
+    },
+    {
+      "path": "tools/robotio_ros2_fixture_peer.py",
+      "size": 2621,
+      "sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025"
+    },
+    {
+      "path": "rm_match/deployment/robotio_wsl.py",
+      "size": 8616,
+      "sha256": "3a6dabe461572c99ca405ed6bc8a3b89a19a413655de13178bfdfdc22d5ab41c"
+    },
+    {
+      "path": "rm_match/deployment/navigation_plugin.py",
+      "size": 11209,
+      "sha256": "2fbb2f4f25d43d34f38acee2056ff857fdcc8f23fc060c0e5545130f3a35b775"
+    },
+    {
+      "path": "rm_match/deployment/decision_plugin.py",
+      "size": 9425,
+      "sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac"
+    },
+    {
+      "path": "rm_match/deployment/wsl_jsonl.py",
+      "size": 23664,
+      "sha256": "115629e72faf83a63bd7307aac7076715cea80ffb2b3d5390aee73ebc93e2cb9"
+    },
+    {
+      "path": "rm_match/deployment/wsl_jsonl_worker.py",
+      "size": 15059,
+      "sha256": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083"
+    },
+    {
+      "path": "rm_match/deployment/wsl_jsonl_owned_tree.py",
+      "size": 6029,
+      "sha256": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48"
+    },
+    {
+      "path": "rm_match/deployment/json_adapter.py",
+      "size": 14778,
+      "sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5"
+    },
+    {
+      "path": "rm_match/deployment/json_owned_process.py",
+      "size": 6384,
+      "sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b"
+    },
+    {
+      "path": "rm_match/deployment/windows_owned_job.py",
+      "size": 14448,
+      "sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920"
+    },
+    {
+      "path": "rm_match/integrations/robotio_ros2_bridge.py",
+      "size": 10763,
+      "sha256": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790"
+    },
+    {
+      "path": "rm_match/integrations/ros2_bridge_transport.py",
+      "size": 4075,
+      "sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9"
+    },
+    {
+      "path": "rm_match/platform_v2/navigation_contracts.py",
+      "size": 8003,
+      "sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+    },
+    {
+      "path": "rm_match/platform_v2/decision_contracts.py",
+      "size": 4861,
+      "sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930"
+    },
+    {
+      "path": "rm_match/platform_v2/contracts.py",
+      "size": 11946,
+      "sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631"
+    }
+  ]
+}

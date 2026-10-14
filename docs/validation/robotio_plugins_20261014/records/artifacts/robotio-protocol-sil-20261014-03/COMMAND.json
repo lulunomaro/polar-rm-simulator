@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_robotio_protocol_sil.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio-protocol-sil-20261014-03",
+    "--duration",
+    "4",
+    "--run"
+  ],
+  "duration_s": 4.0,
+  "scope": "explicit synthetic protocol fixtures over real low-rate physics; no secrets recorded"
+}

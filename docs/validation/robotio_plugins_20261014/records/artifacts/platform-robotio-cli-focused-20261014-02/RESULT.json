@@ -1,0 +1,28 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_platform_wsl_navigation_cli.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\platform-robotio-cli-focused-20261014-02\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 0.7698830999943311,
+  "source_before": {
+    "tests/test_platform_wsl_navigation_cli.py": "48086142a2cb89c74aa2696d07942371a28c25eceeb343d11a7e5f2f4db6a0ca",
+    "rm_match/platform_v2/__main__.py": "8132936aa53b0d23254f88c0d2735650554fda66657abedb5920f677318ba2e4",
+    "rm_match/deployment/robotio_plugin.py": "54dd07f344a920313c3730d73d0eaf0c2832aab9546b9b16e59a4ba5120f026b",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e"
+  },
+  "source_after": {
+    "tests/test_platform_wsl_navigation_cli.py": "48086142a2cb89c74aa2696d07942371a28c25eceeb343d11a7e5f2f4db6a0ca",
+    "rm_match/platform_v2/__main__.py": "8132936aa53b0d23254f88c0d2735650554fda66657abedb5920f677318ba2e4",
+    "rm_match/deployment/robotio_plugin.py": "54dd07f344a920313c3730d73d0eaf0c2832aab9546b9b16e59a4ba5120f026b",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e"
+  },
+  "source_unchanged": true,
+  "scope": "CLI_registration_scope_and_lifecycle_mocks_only_no_physics_DDS_WSL_NN_GUI",
+  "started_physics_dds_wsl_nn_gui": false
+}

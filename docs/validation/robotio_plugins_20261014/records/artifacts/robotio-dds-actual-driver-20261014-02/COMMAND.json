@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio_ros2_actual_ext4_20261014.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio-ros2-actual-20261014-02",
+    "--run"
+  ],
+  "change": "Explicit supervisor Python matches existing verified ext4 venv with NumPy; old failed attempt retained"
+}

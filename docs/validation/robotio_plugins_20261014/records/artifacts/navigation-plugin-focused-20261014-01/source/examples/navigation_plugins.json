@@ -1,0 +1,25 @@
+{
+  "schema": "polar.sim.navigation-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_reviewed_navigation",
+      "label": "Template: supply your reviewed real navigation wrapper; not live qualified",
+      "command": ["{python}", "-u", "reviewed_navigation_wrapper.py"],
+      "cwd": ".",
+      "supported_robots": ["red_sentry", "blue_sentry"],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.navigation-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.navigation-observation.v1",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.navigation-status.v1",
+        "sensor_profile": "pointcloud_imu_v1",
+        "source_association": "exact_capture_context_v1",
+        "output_modes": ["velocity_body"],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "goal_input_modes": []
+      }
+    }
+  ]
+}

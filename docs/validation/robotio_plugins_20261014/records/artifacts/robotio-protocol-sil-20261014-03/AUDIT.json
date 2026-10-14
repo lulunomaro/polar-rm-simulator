@@ -1,0 +1,29 @@
+{
+  "errors": [],
+  "decision_results": 52,
+  "navigation_results": 52,
+  "physical": {
+    "red_infantry": {
+      "receipts": 2799,
+      "distinct_sim_steps": 935,
+      "distinct_source_actions": 26,
+      "phases": [
+        "actuator",
+        "integration",
+        "integration_entry"
+      ],
+      "nonzero_sim_steps": 935
+    },
+    "blue_sentry": {
+      "receipts": 2940,
+      "distinct_sim_steps": 980,
+      "distinct_source_actions": 26,
+      "phases": [
+        "actuator",
+        "integration",
+        "integration_entry"
+      ],
+      "nonzero_sim_steps": 0
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "checks": {
+    "original_2ms_timestep": true,
+    "actual_physics_steps": true,
+    "both_independent_pipelines_created": true,
+    "four_real_resource_prepare_acks": true,
+    "both_prepared_pipelines_handed_over": true,
+    "both_robots_have_physical_motion_receipts": true,
+    "supply_has_nonzero_physical_consumption": true,
+    "heat_hold_has_zero_nonzero_consumption": true,
+    "original_source_sdk150_receipt_join": true,
+    "no_adapter_fault": true,
+    "runtime_clean": true,
+    "all_pipeline_children_clean": true,
+    "sdk_http_threads_stopped": true,
+    "errors_empty": true
+  },
+  "errors": [],
+  "steps": 1771,
+  "sim_time": 3.5419999999998315,
+  "wall_run_plus_cleanup_s": 4.7888711000050534,
+  "sensor_profile": {
+    "schema": "polar.navigation-sensor-profile.v1",
+    "robot_ids": [
+      "red_infantry",
+      "blue_sentry"
+    ],
+    "point_rate_hz": 1000,
+    "scan_period_ns": 100000000,
+    "range_min_m": 0.1,
+    "range_max_m": 40.0,
+    "mount_translation_m": [
+      0.0,
+      0.0,
+      0.5
+    ],
+    "mount_rotation_xyzw": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "range_noise_std_m": 0.01,
+    "gyro_noise_std_rps": 0.001,
+    "acceleration_noise_std_mps2": 0.01,
+    "seed": 20261013,
+    "pattern": "analytic_golden_angle_v1",
+    "fov_degrees": [
+      360,
+      -7,
+      52
+    ],
+    "scan_lines": 4,
+    "reflectivity": "constant_100_uncalibrated",
+    "orientation_feed": false,
+    "imu_rate": "one_actual_sample_per_physics_step",
+    "point_time": "physics_step_quantized",
+    "calibration": "provisional_base_mount_not_measured_hardware"
+  },
+  "physical": {
+    "red_infantry": {
+      "receipts": 2799,
+      "distinct_sim_steps": 935,
+      "distinct_source_actions": 26,
+      "phases": [
+        "actuator",
+        "integration",
+        "integration_entry"
+      ],
+      "nonzero_sim_steps": 935
+    },
+    "blue_sentry": {
+      "receipts": 2940,
+      "distinct_sim_steps": 980,
+      "distinct_source_actions": 26,
+      "phases": [
+        "actuator",
+        "integration",
+        "integration_entry"
+      ],
+      "nonzero_sim_steps": 0
+    }
+  },
+  "qualification": "two_robot_actual_MuJoCo_low_rate_protocol_SIL_only",
+  "limitations": [
+    "synthetic decision and constant velocity fixtures, not team algorithms",
+    "1000 points/s, not MID360 or SLAM qualification",
+    "no camera/NN/ROS/WSL/GUI",
+    "not RTF, match, moving aim, firing, localization accuracy or goal-reaching acceptance"
+  ],
+  "source_unchanged": true,
+  "elapsed_seconds": 5.867638100004115,
+  "exit_code": 0
+}

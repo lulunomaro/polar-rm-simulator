@@ -1,0 +1,30 @@
+{
+  "schema": "polar.sim.decision-observation.v1",
+  "robot_id": "blue_sentry",
+  "episode": 4,
+  "binding_epoch": 8,
+  "observed_seq": 1,
+  "sim_time": 0.1,
+  "wall_deadline": 50133.625812800004,
+  "own": {
+    "team": "blue",
+    "role": "sentry",
+    "hp": 100.0,
+    "ammo": 10.0,
+    "heat": 0.0,
+    "alive": true
+  },
+  "referee": {
+    "phase": "running",
+    "remaining_seconds": 299.0,
+    "emergency_stop": false
+  },
+  "navigation": {
+    "available": false,
+    "reason": "not_provided_in_own_referee_v1"
+  },
+  "perception": {
+    "available": false,
+    "reason": "not_provided_in_own_referee_v1"
+  }
+}

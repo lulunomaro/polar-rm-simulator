@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "after_sha256": "2d53cabf4dcc38f44f80b8244f90f8dbc376e44cfd5f3f4ddaeb2af386b2c46f",
+      "before_sha256": "2fbb2f4f25d43d34f38acee2056ff857fdcc8f23fc060c0e5545130f3a35b775",
+      "path": "rm_match/deployment/navigation_plugin.py"
+    },
+    {
+      "after_sha256": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+      "before_sha256": "714d0f72685aa406080fb2ff06f71014ddfbb9280f2661806da32c8967bfac5b",
+      "path": "rm_match/integrations/navigation_jsonl_peer.py"
+    },
+    {
+      "after_sha256": "f2d72fa15ed700bf44555be0dbf11acfb4258636dd6717e8e8c9c242be5cee19",
+      "before_sha256": "82116b250dbc2c2d78cc684eb6986e92711aa1b0a55ac431100b4b4551bdbc4c",
+      "path": "tests/test_navigation_plugin.py"
+    }
+  ],
+  "passed": 60,
+  "scope": "Protocol/math plus two harmless actual local stdlib children, no ROS/WSL/NN/GL/physics",
+  "command": ".venv-sim/Scripts/python.exe -m pytest tests/test_navigation_plugin.py tests/test_robotio_plugin.py -q",
+  "exit_code": 0,
+  "schema": "polar.sim.robotio-stop-intent-focused.v1"
+}

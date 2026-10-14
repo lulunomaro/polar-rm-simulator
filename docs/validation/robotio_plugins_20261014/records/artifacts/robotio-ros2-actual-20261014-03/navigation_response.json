@@ -1,0 +1,17 @@
+{
+  "schema": "polar.sim.action.v2",
+  "robot_id": "blue_sentry",
+  "episode": 4,
+  "binding_epoch": 8,
+  "observed_seq": 1,
+  "sim_time": 0.1,
+  "wall_deadline": 50133.6008816,
+  "kind": "navigation",
+  "mode": "velocity_body",
+  "command": {
+    "frame": "base_link",
+    "vx_mps": 0.2,
+    "vy_mps": 0.1,
+    "wz_rps": 0.3
+  }
+}

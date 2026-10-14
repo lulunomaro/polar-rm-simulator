@@ -1,0 +1,110 @@
+{
+  "schema": "polar.sim.navigation-observation.v1",
+  "robot_id": "blue_sentry",
+  "episode": 4,
+  "binding_epoch": 8,
+  "observed_seq": 1,
+  "sim_time": 0.1,
+  "wall_deadline": 48400.9765521,
+  "frames": {
+    "base_link": "x_forward_y_left_z_up",
+    "livox_frame": "x_forward_y_left_z_up"
+  },
+  "own": {
+    "team": "blue",
+    "role": "sentry",
+    "hp": 100.0,
+    "ammo": 10.0,
+    "heat": 0.0,
+    "alive": true
+  },
+  "referee": {
+    "phase": "running",
+    "remaining_seconds": 299.0,
+    "emergency_stop": false
+  },
+  "sensors": {
+    "pointcloud": {
+      "available": true,
+      "reason": "available",
+      "frame_id": 1,
+      "acquisition_start_ns": 0,
+      "acquisition_end_ns": 100000000,
+      "capture_sim_time": 0.1,
+      "frame": "livox_frame",
+      "encoding": "livox_xyz_offset_reflectivity_tag_line_le_v1",
+      "point_count": 1,
+      "data_base64": "AACAPwAAAAAAAAAAAAAAABgQAAA=",
+      "range_min_m": 0.1,
+      "range_max_m": 20.0,
+      "time_quantization_ns": 2000000,
+      "provenance": "mujoco_ray_cast_nonrepeating_profile_v1",
+      "profile_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "extrinsics": {
+        "parent_frame": "base_link",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "calibration_id": "synthetic_dds_fixture_mount"
+      }
+    },
+    "imu": {
+      "available": true,
+      "reason": "available",
+      "frame": "livox_frame",
+      "capture_sim_time": 0.1,
+      "extrinsics": {
+        "parent_frame": "base_link",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "calibration_id": "synthetic_dds_fixture_mount"
+      },
+      "provenance": "mujoco_gyro_accelerometer_v1",
+      "samples": [
+        {
+          "sample_sim_ns": 0,
+          "angular_velocity_rps": [
+            0.1,
+            0.2,
+            0.3
+          ],
+          "linear_acceleration_mps2": [
+            0.0,
+            0.0,
+            9.81
+          ]
+        },
+        {
+          "sample_sim_ns": 100000000,
+          "angular_velocity_rps": [
+            0.1,
+            0.2,
+            0.3
+          ],
+          "linear_acceleration_mps2": [
+            0.0,
+            0.0,
+            9.81
+          ]
+        }
+      ]
+    }
+  }
+}

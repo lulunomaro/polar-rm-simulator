@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "path": "tools/robotio_ros2_fixture_node.py",
+      "size": 5686,
+      "sha256": "bd0000e25f16a601e01ac3711d3f27b400c63d6ccaf46a1c5cbc455a49c37af9",
+      "ast_valid": true,
+      "crlf_count": 0
+    },
+    {
+      "path": "tools/robotio_ros2_fixture_peer.py",
+      "size": 2621,
+      "sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "ast_valid": true,
+      "crlf_count": 0
+    },
+    {
+      "path": "artifacts/robotio-ros2-actual-candidate-20261014-01/driver.py",
+      "size": 8637,
+      "sha256": "a93a1ce5f0098446500fd593901cc5f4735a484164a282d5d6114b298fc19c40",
+      "ast_valid": true,
+      "crlf_count": 0
+    }
+  ],
+  "scope": "AST parsing only; no modules imported, no WSL ROS model or fixture launched"
+}

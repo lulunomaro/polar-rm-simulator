@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "checks": {
+    "two_real_prepare_acks": true,
+    "navigation_reset_under_original_2s": true,
+    "navigation_source_echo": true,
+    "decision_reset_under_original_2s": true,
+    "decision_source_echo": true
+  },
+  "errors": [],
+  "source_unchanged": true,
+  "elapsed_seconds": 5.545169500001066,
+  "scope": "synthetic protocol DDS; not a team algorithm, NN, physics or navigation qualification"
+}

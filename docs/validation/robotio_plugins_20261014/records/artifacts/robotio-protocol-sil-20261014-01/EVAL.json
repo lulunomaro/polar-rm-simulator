@@ -1,0 +1,27 @@
+{
+  "source": "isolated_actual_physics_evaluation_not_peer_input",
+  "initial_xy": {
+    "red_infantry": [
+      -5.25,
+      3.0
+    ],
+    "blue_sentry": [
+      5.25,
+      -3.6500000000000004
+    ]
+  },
+  "final_xy": {
+    "red_infantry": [
+      -4.836541470135988,
+      3.0
+    ],
+    "blue_sentry": [
+      5.2499993976153805,
+      -3.6500000000000004
+    ]
+  },
+  "displacement_m": {
+    "red_infantry": 0.41345852986401166,
+    "blue_sentry": 6.02384619519114e-07
+  }
+}

@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 193, in _exchange
+    raise result
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 144, in io_loop
+    row = child.stdout.readline(MAX_RESPONSE + 1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_jsonl.py", line 172, in readline
+    if isinstance(row,BaseException):raise row
+                                     ^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_jsonl.py", line 214, in _read
+    if not part:raise EOFError('WSL JSONL supervisor stdout closed')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError: WSL JSONL supervisor stdout closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 122, in __init__
+    for instance in self.instances.values(): instance.prepare(startup_timeout=startup_timeout)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 51, in prepare
+    self._exchange(dict(op='prepare', config={}), timeout=limit-self.clock())
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 198, in _exchange
+    self.close()
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\navigation_plugin.py", line 118, in close
+    return super().close(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 279, in close
+    if errors:raise RuntimeError(self._close_error)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Custom adapter owned process cleanup unproved
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\robotio-ros2-actual-candidate-20261014-01\driver.py", line 88, in main
+    pool=PreparedWslPlugins(rows,manifest=manifest,manifest_sha=digest(manifest),repo_root=ROOT,shared_root=out)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 128, in __init__
+    raise cleanup_exc from exc
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 124, in __init__
+    try: self.close_unclaimed()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 161, in close_unclaimed
+    if errors: raise RuntimeError('Unclaimed WSL cleanup unproved: '+','.join(errors))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Unclaimed WSL cleanup unproved: custom_fixture_navigation:RuntimeError

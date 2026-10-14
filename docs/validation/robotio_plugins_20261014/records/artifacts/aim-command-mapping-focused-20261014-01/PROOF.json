@@ -1,0 +1,25 @@
+{
+  "passed": 58,
+  "exit_code": 0,
+  "initial_failure": "Initial 8 failed/36 passed: new code incorrectly assumed sensors.odometry; corrected to actual own.odom_xyyaw/odom_vxyw schema. Subsequent 44 passed, final 58 passed including existing codec tests.",
+  "schema": "polar.sim.aim-command-mapping-focused.v1",
+  "qualification": "pure protocol and math tests; no ROS/NN/WSL/GL/GUI; not a live aim claim",
+  "files": [
+    {
+      "path": "rm_match/integrations/aim_command_mapping.py",
+      "cr_characters": 0,
+      "sha256": "b79f62806ae347806655c4afea4c64f33ffd2456ae5d7850a5ce6279f84f54bc"
+    },
+    {
+      "path": "tests/test_aim_command_mapping.py",
+      "cr_characters": 0,
+      "sha256": "f08008cd6ca02e0b29a8111f7eec70da1b9eb07d9c8bca7f4c0bb02c09be6cc9"
+    },
+    {
+      "path": "examples/aim_command_mapping.json",
+      "cr_characters": 0,
+      "sha256": "6f928efbbab9fb290c5c7126548ba5ab21c967faebccf2ba949fab5e401acf4e"
+    }
+  ],
+  "command": ".venv-sim/Scripts/python.exe -m pytest tests/test_aim_command_mapping.py tests/test_aim_camera_codec.py -q"
+}

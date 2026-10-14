@@ -1,0 +1,24 @@
+{
+  "command": ".venv-sim/Scripts/python.exe -m pytest tests/test_ros2_jsonl_startup.py -q -s",
+  "before_sha256": "3c6ece72490e883da7855f81dbd3f32d4f160340991c90a96d21efb3c8674982",
+  "qualification": "Actual local stdlib owned children; no ROS/NN/WSL/GL/physics; original2s aggregate reset and independent1.5s cleanup unchanged",
+  "exit_code": 0,
+  "source": "tests/test_ros2_jsonl_startup.py",
+  "after_sha256": "1e0be7c1825572d5c0e1a5c9c25cb7e1eb25eb93287ae4d56f97898cfe5c2787",
+  "passed": 4,
+  "measured": {
+    "failure_pid": 65836,
+    "failure_startup_s": 0.3109195000060718,
+    "failure_cleanup_s": 0.002094499999657273,
+    "failure_remaining_s": 1.6890638999975636,
+    "both_reaped": true,
+    "both_owned_group_empty": true,
+    "failure_reset_total_s": 2.010362500004703,
+    "success_reset_elapsed_s": 0.06287860000203382,
+    "success_pid": 27776,
+    "failure_control_before_cleanup_s": 2.008268000005046,
+    "success_remaining_s": 1.9898376999990433,
+    "both_io_stopped": true
+  },
+  "schema": "polar.sim.startup-total-reset-test.v1"
+}

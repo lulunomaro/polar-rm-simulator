@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "path": "tools/qa_robotio_protocol_sil.py",
+      "size": 17357,
+      "sha256": "bc5e936325d3e1999b4f2fedcc7d8793ac39d7043cfeb205cba34493f422d287",
+      "crlf_count": 0
+    },
+    {
+      "path": "examples/robotio_protocol_plugins.json",
+      "size": 847,
+      "sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "crlf_count": 0
+    },
+    {
+      "path": "examples/robotio_protocol_navigation.json",
+      "size": 1961,
+      "sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "crlf_count": 0
+    },
+    {
+      "path": "examples/robotio_protocol_decision.json",
+      "size": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "crlf_count": 0
+    }
+  ],
+  "scope": "AST/JSON parsing only; no imports, physics, processes, HTTP or tests run"
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "unclaimed": {
+      "custom_fixture_navigation": {
+        "clean": false,
+        "errors": [
+          "Custom adapter owned process cleanup unproved",
+          "Custom adapter owned process cleanup unproved; Custom adapter owned process cleanup unproved"
+        ],
+        "ownership": {
+          "clean": false,
+          "reaped": true,
+          "group_empty": false,
+          "linux": null,
+          "windows": {
+            "clean": true,
+            "reaped": true,
+            "group_empty": true,
+            "active_processes": 0,
+            "returncode": 1,
+            "errors": [],
+            "pid": 45896,
+            "ownership": "suspended_before_execute_job_kill_on_close"
+          },
+          "errors": [
+            "linux_owned_cleanup_unproved"
+          ],
+          "transport": "wsl_jsonl_v1",
+          "resource_budget_s": 1.5,
+          "run_id": "93b94aaf8c10451e9f6db93315b3b614",
+          "stderr_log": "supervisor.stderr.log",
+          "host_stderr_closed": true
+        },
+        "io_thread_stopped": true,
+        "resource_budget_s": 1.5
+      },
+      "custom_fixture_decision": {
+        "clean": true,
+        "errors": [],
+        "ownership": null,
+        "io_thread_stopped": true,
+        "resource_budget_s": 1.5
+      }
+    }
+  }
+]

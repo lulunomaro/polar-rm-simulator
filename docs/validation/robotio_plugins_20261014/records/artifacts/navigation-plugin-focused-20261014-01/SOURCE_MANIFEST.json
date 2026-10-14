@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "rm_match/deployment/navigation_plugin.py",
+      "size": 10069,
+      "sha256": "cff88823986760996808a73db31d893c84d9d35af0d9c223e3e3e290ad3d4be1"
+    },
+    {
+      "path": "rm_match/integrations/navigation_jsonl_peer.py",
+      "size": 5335,
+      "sha256": "714d0f72685aa406080fb2ff06f71014ddfbb9280f2661806da32c8967bfac5b"
+    },
+    {
+      "path": "tests/test_navigation_plugin.py",
+      "size": 13119,
+      "sha256": "82116b250dbc2c2d78cc684eb6986e92711aa1b0a55ac431100b4b4551bdbc4c"
+    },
+    {
+      "path": "examples/navigation_plugins.json",
+      "size": 938,
+      "sha256": "f97bd17d8dddfa2d60d71e472a038415a11fdd4fa91fec901af6be4b2178b40b"
+    }
+  ]
+}

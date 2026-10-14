@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_robotio_protocol_sil.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio-protocol-sil-20261014-02",
+    "--duration",
+    "4",
+    "--run"
+  ],
+  "source_before": {
+    "tools/qa_robotio_protocol_sil.py": "f59c468ebf7b6a3991e0780732abf9ecf31c1938ccaa5392f73c4bb0c429ca62",
+    "examples/robotio_protocol_plugins.json": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+    "examples/robotio_protocol_navigation.json": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+    "examples/robotio_protocol_decision.json": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+    "tests/fixtures/decision_supply_v1.py": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+    "tests/fixtures/decision_heat_v2.py": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+    "tests/fixtures/navigation_goal_fixture.py": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+    "rm_match/deployment/robotio_plugin.py": "54dd07f344a920313c3730d73d0eaf0c2832aab9546b9b16e59a4ba5120f026b",
+    "rm_match/deployment/navigation_plugin.py": "2d53cabf4dcc38f44f80b8244f90f8dbc376e44cfd5f3f4ddaeb2af386b2c46f",
+    "rm_match/deployment/decision_plugin.py": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+    "rm_match/deployment/json_adapter.py": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+    "rm_match/deployment/json_owned_process.py": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+    "rm_match/deployment/windows_owned_job.py": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+    "rm_match/integrations/navigation_jsonl_peer.py": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+    "rm_match/integrations/decision_jsonl_peer.py": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+    "rm_match/platform_v2/decision_contracts.py": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/adapters.py": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+    "rm_match/platform_v2/control.py": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+    "rm_match/platform_v2/runtime.py": "79a94f185ad0273e220595f15331a1f5ac00c27388c506a51a8fd0fab3e23067",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/server.py": "ed94583efc249557a11ef7fd588e519acc9234bc03d549cbdb39f142acb6e4df",
+    "rm_match/platform_v2/client.py": "37ba09fad0e777da3701d722e1ecb989ac58e63f87c8e4a6cf3c438b096a94bb",
+    "rm_match/platform_v2/admission.py": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+    "rm_match/navigation_sensors.py": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+    "rm_match/match_engine.py": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+    "rm_match/match_model.py": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77"
+  },
+  "scope": "two independent synthetic policies; actual MuJoCo protocol consumption"
+}

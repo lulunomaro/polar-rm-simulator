@@ -1,0 +1,40 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_decision_plugin.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\decision-plugin-focused-20261014-03\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 1.5656987000038498,
+  "source_before": {
+    "rm_match/platform_v2/decision_contracts.py": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+    "rm_match/deployment/decision_plugin.py": "5d85faee2e826a29472e73f17603c64abe90f766b866824565a5d7f64bd57cb1",
+    "rm_match/integrations/decision_jsonl_peer.py": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+    "tests/test_decision_plugin.py": "c8a8fc5faf6482731d3c0fe9c24cabdd30b4e0a2bd69860d3e592ea4240f141a",
+    "tests/fixtures/decision_supply_v1.py": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+    "tests/fixtures/decision_heat_v2.py": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+    "examples/decision_plugins.json": "0ec12edd26d8ea3ca0f1ff8e81cdc5f5befeac4cae1030cdd1b27fdb934e14f2",
+    "rm_match/deployment/json_adapter.py": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+    "rm_match/deployment/json_owned_process.py": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+    "rm_match/deployment/windows_owned_job.py": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920"
+  },
+  "source_after": {
+    "rm_match/platform_v2/decision_contracts.py": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+    "rm_match/deployment/decision_plugin.py": "5d85faee2e826a29472e73f17603c64abe90f766b866824565a5d7f64bd57cb1",
+    "rm_match/integrations/decision_jsonl_peer.py": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+    "tests/test_decision_plugin.py": "c8a8fc5faf6482731d3c0fe9c24cabdd30b4e0a2bd69860d3e592ea4240f141a",
+    "tests/fixtures/decision_supply_v1.py": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+    "tests/fixtures/decision_heat_v2.py": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+    "examples/decision_plugins.json": "0ec12edd26d8ea3ca0f1ff8e81cdc5f5befeac4cae1030cdd1b27fdb934e14f2",
+    "rm_match/deployment/json_adapter.py": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+    "rm_match/deployment/json_owned_process.py": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+    "rm_match/deployment/windows_owned_job.py": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920"
+  },
+  "source_unchanged": true,
+  "scope": "unit_protocol_and_harmless_jsonl_owned_process_only_no_ros_or_match",
+  "started_nn_ros_gui": false
+}

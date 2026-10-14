@@ -1,0 +1,15 @@
+{
+  "schema": "polar.sim.decision-intent.v1",
+  "robot_id": "blue_sentry",
+  "episode": 4,
+  "binding_epoch": 8,
+  "observed_seq": 1,
+  "sim_time": 0.1,
+  "wall_deadline": 50133.625812800004,
+  "kind": "decision",
+  "mode": "navigation_intent",
+  "command": {
+    "behavior": "hold",
+    "reason": "synthetic_protocol_fixture"
+  }
+}
