@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_platform_robotio.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-platform-robotio-actual-20261015-03",
+    "--duration",
+    "12",
+    "--run",
+    "--host-opencv-threads",
+    "4",
+    "--host-python-switch-interval-ms",
+    "1"
+  ],
+  "plan": {
+    "phase": "DRY_PLAN_NOT_READY",
+    "robot_id": "red_infantry",
+    "adapter_id": "custom_protocol_pipeline_supply",
+    "duration": 12.0,
+    "client_identity": {
+      "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "tracked_source_clean": false,
+      "patched_source_verified": true,
+      "client_patch": {
+        "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+        "patch_sha256": "a5f3fccfeb7afd50807e464ca39e5c00f49c77648213872b909f54c6d085ee93",
+        "manifest_sha256": "be288d2190eed5389fe43d3b45192f4d8fea5d9b7e72525b68fcd0bb902e0842",
+        "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+      }
+    },
+    "physics_timestep_s": 0.002,
+    "point_rate_hz": 1000,
+    "credential_transport": "memory/environment_only",
+    "host_opencv_threads": 4,
+    "host_python_switch_interval_ms": 1.0,
+    "explicit_run_required": true,
+    "scope": "original offscreen PlatformWindow, HTTP camera/F2 and clientSDK protocol; no visible desktop/team algorithms"
+  }
+}

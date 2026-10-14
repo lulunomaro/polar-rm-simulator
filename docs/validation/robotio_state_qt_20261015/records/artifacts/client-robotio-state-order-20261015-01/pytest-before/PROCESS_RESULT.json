@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_platform_claim_state_order.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\client-robotio-state-order-20261015-01\\pytest-before\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-state-review",
+  "source_sha256": {
+    "rm_client/sim_platform_transport.py": "b8cd937fa72f9db95eaea80b2a96b94a0fd3d735f3811afe99b78262ec4bcfa3",
+    "tests/test_platform_claim_state_order.py": "14106b0c9898cde761b6e2870522294791a60eeda9a9c04bbcc42419c9fa914b"
+  },
+  "mode": "before",
+  "scope": "original transport concurrency/negative fixtures plus installed PySide6 offscreen suite; no physics/GL renderer/ROS/NN/visible GUI",
+  "pid": 40868,
+  "exit_code": 1,
+  "cleanup": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 1,
+    "errors": [],
+    "pid": 40868,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "reader_stopped": true,
+  "errors": [],
+  "source_unchanged": true,
+  "elapsed_s": 1.0057235999993281,
+  "driver_sha256": "3cade9671d8ae20ed72bd2453b2baa967a26b9902b67427fbdb962c7082094bf"
+}

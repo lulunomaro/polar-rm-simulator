@@ -1,0 +1,41 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_robotio_registration_races.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\robotio-registration-races-focused-20261015-01\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "pid": 32572,
+  "reaped": true,
+  "timed_out": false,
+  "elapsed_s": 0.8026761000000988,
+  "source_before": {
+    "rm_match/deployment/robotio_plugin.py": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb",
+    "tests/test_robotio_registration_races.py": "9ae2a63cdf46cacda5c235fa631cfb20b8e1761d01fbeb5ca2261afe25acdd68",
+    "rm_match/platform_v2/adapters.py": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/deployment/navigation_plugin.py": "04aabeaca2f84f9c64719786501fec94c81154a61b4399ba8190f47e095e18fb",
+    "rm_match/deployment/aim_plugin.py": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+    "rm_match/deployment/decision_plugin.py": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0"
+  },
+  "source_after": {
+    "rm_match/deployment/robotio_plugin.py": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb",
+    "tests/test_robotio_registration_races.py": "9ae2a63cdf46cacda5c235fa631cfb20b8e1761d01fbeb5ca2261afe25acdd68",
+    "rm_match/platform_v2/adapters.py": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/deployment/navigation_plugin.py": "04aabeaca2f84f9c64719786501fec94c81154a61b4399ba8190f47e095e18fb",
+    "rm_match/deployment/aim_plugin.py": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+    "rm_match/deployment/decision_plugin.py": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0"
+  },
+  "source_unchanged": true,
+  "scope": "startup_registry_metadata_actual_temp_file_and_memory_read_interleavings",
+  "started_adapter_algorithm_ros_wsl_physics_gui": false
+}

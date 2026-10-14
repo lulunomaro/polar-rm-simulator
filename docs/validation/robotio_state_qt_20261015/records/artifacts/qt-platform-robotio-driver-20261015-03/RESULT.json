@@ -1,0 +1,30 @@
+{
+  "returncode": 2,
+  "reaped": true,
+  "elapsed_s": 11.795167399999627,
+  "timed_out": false,
+  "forced_direct_child_termination": false,
+  "source_before": {
+    "tools/qa_qt_platform_robotio.py": "d10db01f4839ce79af7e4be7377bdfa71489ec4f2bbd6e5b3b7ba1055f51dda5",
+    "tools/qa_qt_platform_robotio_peer.py": "0720d611e2d812de1e1a1c8a519bfc85cead5ee42614747c2788cea2eacc580b",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "client_patches/CLIENT_ROBOTIO_PATCH_MANIFEST.json": "3916988423e6f7d3c0394d19df7a02cb241b72d28172c50d1ca6f970c9129bdc",
+    "client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json": "be288d2190eed5389fe43d3b45192f4d8fea5d9b7e72525b68fcd0bb902e0842",
+    "client_patches/robotio_state_order_v1.patch": "a5f3fccfeb7afd50807e464ca39e5c00f49c77648213872b909f54c6d085ee93",
+    "rm_match/deployment/robotio_plugin.py": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb"
+  },
+  "source_after": {
+    "tools/qa_qt_platform_robotio.py": "d10db01f4839ce79af7e4be7377bdfa71489ec4f2bbd6e5b3b7ba1055f51dda5",
+    "tools/qa_qt_platform_robotio_peer.py": "0720d611e2d812de1e1a1c8a519bfc85cead5ee42614747c2788cea2eacc580b",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "client_patches/CLIENT_ROBOTIO_PATCH_MANIFEST.json": "3916988423e6f7d3c0394d19df7a02cb241b72d28172c50d1ca6f970c9129bdc",
+    "client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json": "be288d2190eed5389fe43d3b45192f4d8fea5d9b7e72525b68fcd0bb902e0842",
+    "client_patches/robotio_state_order_v1.patch": "a5f3fccfeb7afd50807e464ca39e5c00f49c77648213872b909f54c6d085ee93",
+    "rm_match/deployment/robotio_plugin.py": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb"
+  },
+  "source_unchanged": true
+}

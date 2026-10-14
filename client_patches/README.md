@@ -1,5 +1,11 @@
 # 自有 Qt 客户端 operator_state_v1 补丁
 
+2026-10-15 后继租约状态顺序版为 [CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json](CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json)
+与 [robotio_state_order_v1.patch](robotio_state_order_v1.patch)，仍从固定原基线完整应用，不能叠加前两版。
+修复 claim ACK 后迟到旧状态误释放新租约，保留真实更高 epoch 撤权与原时间锚；全330/103subtests/0skip离屏回归。
+新 review 目录为 `external/polar-rm-client-robotio-state-review`，旧两份 manifest/patch/checkouts 原字节保持。
+安装与验证范围见[客户端通用接口](../docs/CLIENT_ROBOTIO_INTERFACE.md)。
+
 2026-10-15 新增可选的 [CLIENT_ROBOTIO_PATCH_MANIFEST.json](CLIENT_ROBOTIO_PATCH_MANIFEST.json)
 与 [robotio_navigation_v1.patch](robotio_navigation_v1.patch)。这是从同一固定基线出发、包含原全部修改的组合补丁，
 用于通用导航/决策组合的 Qt 目录选择；安装在全新基线 checkout，不叠加旧补丁。

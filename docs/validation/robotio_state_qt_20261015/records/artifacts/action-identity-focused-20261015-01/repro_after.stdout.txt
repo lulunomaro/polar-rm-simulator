@@ -1,0 +1,31 @@
+{
+  "identity_types": {
+    "robot_id": [
+      "str",
+      "str"
+    ],
+    "episode": [
+      "int",
+      "int"
+    ],
+    "binding_epoch": [
+      "int",
+      "int"
+    ],
+    "observed_seq": [
+      "int",
+      "int"
+    ],
+    "sim_time": [
+      "float",
+      "int"
+    ],
+    "wall_deadline": [
+      "float",
+      "int"
+    ]
+  },
+  "canonical_aim": "REJECT:action_observation_mismatch",
+  "actual_aim_response_validator": "REJECT:action_observation_mismatch",
+  "navigation_result_validator": "REJECT:action_observation_mismatch"
+}

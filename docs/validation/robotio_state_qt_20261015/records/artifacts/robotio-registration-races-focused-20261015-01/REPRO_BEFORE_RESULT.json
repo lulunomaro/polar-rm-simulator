@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-c",
+    "import runpy; runpy.run_path('artifacts/robotio-registration-races-focused-20261015-01/reproduce_registration.py')"
+  ],
+  "exit_code": 0,
+  "reaped": true
+}

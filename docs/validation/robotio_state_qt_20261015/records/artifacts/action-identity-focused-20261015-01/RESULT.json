@@ -1,0 +1,39 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_action_identity_types.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\action-identity-focused-20261015-01\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "pid": 68636,
+  "reaped": true,
+  "timed_out": false,
+  "elapsed_s": 0.7415351000017836,
+  "source_before": {
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "tests/test_action_identity_types.py": "e468ca9f1bb6a5a42c814edf01bd4890b10c42d1994be01268e0639efd248571",
+    "rm_match/deployment/aim_plugin.py": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+    "rm_match/deployment/json_adapter.py": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+    "rm_match/deployment/wsl_jsonl.py": "115629e72faf83a63bd7307aac7076715cea80ffb2b3d5390aee73ebc93e2cb9",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/robotio_ros2_bridge.py": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790"
+  },
+  "source_after": {
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "tests/test_action_identity_types.py": "e468ca9f1bb6a5a42c814edf01bd4890b10c42d1994be01268e0639efd248571",
+    "rm_match/deployment/aim_plugin.py": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+    "rm_match/deployment/json_adapter.py": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+    "rm_match/deployment/wsl_jsonl.py": "115629e72faf83a63bd7307aac7076715cea80ffb2b3d5390aee73ebc93e2cb9",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/robotio_ros2_bridge.py": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790"
+  },
+  "source_unchanged": true,
+  "scope": "canonical_action_and_actual_aim_response_validators_only",
+  "started_algorithm_ros_wsl_physics_gui": false
+}

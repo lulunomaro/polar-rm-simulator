@@ -1,0 +1,40 @@
+[
+  {
+    "event": "qt_watch_ready",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "frame_sequence": 28,
+    "watch_epoch": 1
+  },
+  {
+    "event": "qt_plan_selected",
+    "robot_id": "red_infantry",
+    "selected": "custom_protocol_pipeline_supply",
+    "plan": {
+      "navigation": {
+        "adapter_id": "custom_protocol_pipeline_supply",
+        "config": {}
+      }
+    },
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "selection_route": "original_Jello_dispatch"
+  }
+]

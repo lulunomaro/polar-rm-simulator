@@ -9,20 +9,20 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
-| T04 | 进行中：固定原客户端加可选组合补丁；286 项实际 Qt offscreen 回归与91 subtests；Windows 手动步兵入口此前短时启动/退出通过 | 新原 PlatformWindow 可见按键/相机全链、移动完整自瞄、云台/实体弹丸全链 |
+| T04 | 进行中：第三份独立组合补丁修复claim后旧状态误撤权；330项实际Qt offscreen回归/103subtests；原PlatformWindow第三轮已两F2/真实画面/159非零步，但预算压力整体失败 | 原150ms下持续可见按键/相机全链、移动完整自瞄、云台/实体弹丸全链 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 队伍无关组件 graph、SDK pipeline、JSONL/ROS 2 envelope/显式 WSL 准备；新增 Qt 通用导航/决策组合目录、选定补丁启动配置与 reset 后新采样；实际 Qt 控件→SDK→MuJoCo 合成协议动作通过；既有 DDS、T2 静态 live 范围保持 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
+| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope；修复canonical六身份数值同值异型放行及graph注册复读竞态，21/18专项通过；通用Qt目录与既有合成协议物理/DDS/T2静态证据保持 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式 admission、白名单/撤权/跨 scope；鉴权 /v2/plugins、SDK 组合绑定；新补丁通用 Qt 选择及低点频原 SDK 物理消费通过 | 两物理电脑 LAN、多人冲突/断线、新补丁原 PlatformWindow 全链及完整可见 GUI 验收 |
+| T13 | 本地局部修复：显式admission、scope、/v2/plugins、SDK组合；第三客户端旧状态竞态已修复，真正撤权仍停止；原窗口03完成38激活后真实预算护栏退出/clean | 两物理电脑LAN、多人冲突/断线、原PlatformWindow持续全链及完整可见GUI验收 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup06四步骤0/source unchanged：2037pass/40明确skip/1010subtests；新Qt/初始化/选定补丁与launcher回归、旧DDS/两车SIL独立保存；本轮首次物理及旧QA失败保留 | 质量与协议夹具不替队伍live/许可/发布；PB/Tongji图像链、完整反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup07四步骤0/source unchanged：2076pass/40明确skip/1010subtests；另21/18专项与新客户端330pass/103subtests；旧客户端、三次窗口失败及历史证据不改 | 质量与协议夹具不替队伍live/许可/发布；原窗口预算压力、PB/Tongji图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,36 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 原身份、注册竞态与客户端租约修复（2026-10-15）
+
+canonical action对六项source identity同时比较类型和值，拒绝int/float同值互换及bool；既有错误码与合法原时间戳保持。
+导航canonical、自瞄canonical和实际AimPluginAdapter响应路径21项专项通过；修复前错误放行与修复后拒绝原记录均保留。
+通用graph注册在临时Registry内执行，核对实际注册返回的manifest哈希，并在发布前重检graph与全部组件；
+失败不改变原catalog/spec/factory对象，不执行factory。内存和实际文件交错、迟到修改、容量/组合失败18项通过，
+此前A scope/hash和B descriptor混用的复现保留。没有改变nav/aim算法、ROS桥或任何期限。
+
+[第三客户端组合补丁](CLIENT_ROBOTIO_INTERFACE.md)从同一固定基线独立导出，前两patch/manifest/checkout保持原字节。
+仅丢弃同episode且三个完整typed lease epoch均低于claim ACK的旧快照；不刷新HUD/时间锚、不释放新租约。
+混合/缺失/bool epoch、当前owner不符、更高epoch真正撤权仍fail closed，claim不自动arm。
+16模块完整原Qt offscreen回归330passed/103subtests/0skip，pytest11.94秒、owned driver12.4185秒/source unchanged/reaped；
+纯transport竞态复现及所有中间失败保存，不能据此将第一次真实窗口失败归因于该竞态。
+
+新增原PlatformWindow实际探针，保留原HTTP工业相机画面、watch/Jello、两F2、新own HUD、Qt焦点/输入、原SDK窗口和消费账本。
+它只在offscreen内部show，使用1000points/s实际ray/IMU与两个合成JSONL策略；不含ROS/NN/WSL/队伍算法/可见桌面。
+三次整体均失败：01第一次F2后撤权、无足够原原因码；02已绑定并有2独立动作/27非零步，随后原Handoff预算压力，
+probe晚清理导致Qt Job回收未证明。03修正护栏失效立即收尾，选择第三补丁并显式host/Qt CV4与CPython1ms，实际核验并还原。
+03完成真实画面与全部原guard、38 SDK激活、11独立动作、477receipt/159非零步、原typed6/SDK150ms审计无错误；
+GO后2.424秒原预测157ms超150ms而撤权，cost最大window31ms/pulse32ms/control32ms，未放宽原预测或门限。
+03 driver11.7951674秒/exit2/reaped/source unchanged；所有owned Job/SDK/HTTP/相机在原预算内clean，runtime join .0487345秒。
+03清理成功不覆盖02失败，不把原窗口局部运动记为持续全链通过。下一步减少真实HTTP往返成本并验证持续控制；
+决策定位/感知反馈仍待版本化实际算法估计来源，禁止从真值补齐。T01–T18及M0–M5其余资格保持上表边界。
+
+最终统一QA07四步骤exit0/source unchanged，2076passed/40明确skip/1010subtests/6已有warnings；
+pytest141.08秒、外层driver177.9324741秒/reaped，显式使用同一CPU4 WSL spec，无回退。
+本轮代码、原失败/实际相机画面、各次源码与完整质量结果见[独立永久验证包](validation/robotio_state_qt_20261015/README.md)。
+QA后只增补结果说明、封存和Git交付；程序/测试/DEVELOPMENT_CHANGES/补丁维持最终已测SHA。
+没有将归档、文档或本轮失败写成队伍live、持续可见客户端或比赛通过。
 
 ## Qt 通用目录与初始化时序修复（2026-10-15）
 

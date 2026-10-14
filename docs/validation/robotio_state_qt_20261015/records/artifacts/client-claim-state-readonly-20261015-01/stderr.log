@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\client-claim-state-readonly-20261015-01\reproduce.py", line 74, in <module>
+    assert old['calls']==['claim','release'] and old['errors']==[]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

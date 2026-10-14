@@ -1,0 +1,43 @@
+{
+  "passed": false,
+  "checks": {
+    "two_actual_resource_prepare_acks": true,
+    "actual_platform_window_armed": false,
+    "actual_http_camera": false,
+    "camera_workers_clean": true,
+    "original_qt_stages": false,
+    "original_qt_guards": false,
+    "original_qt_peer_passed": false,
+    "actual_sdk_clean_ack": false,
+    "actual_physical_motion": false,
+    "typed_source_sdk150_receipt_join": true,
+    "no_adapter_fault": true,
+    "original_dt_2ms": true,
+    "runtime_clean": true,
+    "pipeline_clean": true,
+    "qt_job_clean": false,
+    "io_http_threads_stopped": true,
+    "errors_empty": false
+  },
+  "errors": [
+    "RuntimeError"
+  ],
+  "physical": {
+    "receipts": 0,
+    "distinct_sim_steps": 0,
+    "distinct_source_actions": 0,
+    "phases": [],
+    "nonzero_sim_steps": 0
+  },
+  "steps": 3702,
+  "qualification": "actual_offscreen_PlatformWindow_camera_F2_SDK_low_rate_protocol_SIL_only",
+  "limitations": [
+    "Qt offscreen internal show, not visible desktop/Qt GL qualification",
+    "synthetic fixtures, not team decision/navigation/aim",
+    "1000 points/s, not MID360/SLAM/RTF/match qualification",
+    "no NN/ROS/WSL or raw aim80ms qualification"
+  ],
+  "source_unchanged": true,
+  "elapsed_seconds": 13.338415699996403,
+  "exit_code": 2
+}

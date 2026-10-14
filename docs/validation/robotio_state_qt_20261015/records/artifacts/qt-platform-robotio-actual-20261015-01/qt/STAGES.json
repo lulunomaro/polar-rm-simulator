@@ -1,0 +1,52 @@
+[
+  {
+    "event": "original_select_robot",
+    "host_perf_counter": 60925.6018138,
+    "robot_id": "red_infantry"
+  },
+  {
+    "event": "first_actual_F2",
+    "host_perf_counter": 60927.8894007,
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    }
+  },
+  {
+    "event": "actual_release_ack",
+    "host_perf_counter": 60927.9303818,
+    "released": true
+  },
+  {
+    "event": "error",
+    "host_perf_counter": 60933.3788755,
+    "phase": "event_loop",
+    "exception_type": "TimeoutError"
+  },
+  {
+    "event": "actual_F12_release",
+    "host_perf_counter": 60933.3821794,
+    "reason": "actual_failure",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    }
+  },
+  {
+    "event": "actual_close_ack",
+    "host_perf_counter": 60933.4088525,
+    "closed": true
+  }
+]

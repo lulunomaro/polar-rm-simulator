@@ -1,0 +1,6 @@
+event_loop
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_qt_platform_robotio_peer.py", line 195, in poll
+    raise TimeoutError('peer_original_wall_budget')
+TimeoutError: peer_original_wall_budget
+

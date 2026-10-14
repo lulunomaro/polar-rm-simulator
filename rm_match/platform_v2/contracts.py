@@ -139,7 +139,9 @@ def action_for(observation,kind,mode,command):
 def validate_action(value,observation,capabilities):
     value=copy.deepcopy(value)
     exact(value,('schema',*IDENTITY,'kind','mode','command'),'action');identity(value)
-    if type(value['schema']) is not str or value['schema']!=ACTION_SCHEMA or any(value[k]!=observation[k] for k in IDENTITY):raise ContractError('action_observation_mismatch')
+    if (type(value['schema']) is not str or value['schema']!=ACTION_SCHEMA
+        or any(type(value[k]) is not type(observation[k]) or value[k]!=observation[k] for k in IDENTITY)):
+        raise ContractError('action_observation_mismatch')
     if type(value['kind']) is not str or type(value['mode']) is not str:raise ContractError('unsupported_action_mode')
     if value['kind']!=capabilities['kind'] or value['mode'] not in capabilities['output_modes']:raise ContractError('unsupported_action_mode')
     c=value['command']

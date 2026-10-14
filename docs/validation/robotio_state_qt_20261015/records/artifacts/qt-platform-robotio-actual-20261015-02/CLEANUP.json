@@ -1,0 +1,72 @@
+{
+  "qt_job": {
+    "clean": false,
+    "reaped": false,
+    "group_empty": false,
+    "active_processes": null,
+    "returncode": null,
+    "errors": [
+      "TimeoutExpired:Command '['C:\\\\Users\\\\lulu\\\\Desktop\\\\claude\\\\polarsimulation\\\\polar-rm-simulator\\\\.venv-client\\\\Scripts\\\\python.exe', '-u', 'C:\\\\Users\\\\lulu\\\\Desktop\\\\claude\\\\polarsimulation\\\\polar-rm-simulator\\\\tools\\\\qa_qt_platform_robotio_peer.py', '--client-root', 'C:\\\\Users\\\\lulu\\\\Desktop\\\\claude\\\\polarsimulation\\\\polar-rm-simulator\\\\external\\\\polar-rm-client-robotio-review', '--manifest', 'C:\\\\Users\\\\lulu\\\\Desktop\\\\claude\\\\polarsimulation\\\\polar-rm-simulator\\\\client_patches\\\\CLIENT_ROBOTIO_PATCH_MANIFEST.json', '--url', 'http://127.0.0.1:61990', '--robot-id', 'red_infantry', '--adapter-id', 'custom_protocol_pipeline_supply', '--out', 'C:\\\\Users\\\\lulu\\\\Desktop\\\\claude\\\\polarsimulation\\\\polar-rm-simulator\\\\artifacts\\\\qt-platform-robotio-actual-20261015-02\\\\qt', '--max-wall-seconds', '12.0', '--run-seconds', '3']' timed out after 0 seconds"
+    ],
+    "pid": 52608,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "qt_finished": {
+    "event": "qt_finished",
+    "clean": true,
+    "errors": [
+      "event_loop:TimeoutError"
+    ],
+    "exit_code": 2
+  },
+  "reader_stopped": true,
+  "http_stopped": true,
+  "http_workers_idle": true,
+  "runtime": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.00763320000260137
+  },
+  "pipeline": {
+    "clean": true,
+    "errors": [],
+    "peers": {
+      "navigation": {
+        "clean": true,
+        "errors": [],
+        "ownership": {
+          "clean": true,
+          "reaped": true,
+          "group_empty": true,
+          "active_processes": 0,
+          "returncode": 1,
+          "errors": [],
+          "pid": 65300,
+          "ownership": "suspended_before_execute_job_kill_on_close"
+        },
+        "io_thread_stopped": true,
+        "resource_budget_s": 1.5
+      },
+      "decision": {
+        "clean": true,
+        "errors": [],
+        "ownership": {
+          "clean": true,
+          "reaped": true,
+          "group_empty": true,
+          "active_processes": 0,
+          "returncode": 1,
+          "errors": [],
+          "pid": 51124,
+          "ownership": "suspended_before_execute_job_kill_on_close"
+        },
+        "io_thread_stopped": true,
+        "resource_budget_s": 1.5
+      }
+    },
+    "resource_budget_s": 1.5
+  },
+  "camera_clean": true
+}

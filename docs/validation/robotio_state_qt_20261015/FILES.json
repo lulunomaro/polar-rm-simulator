@@ -1,0 +1,1889 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 102,
+      "sha256": "b94eb8da0c9a89c15de83a2949705753bb2dab43351d851b8ca1cdb52ae56107"
+    },
+    {
+      "path": "PRESERVATION_MANIFEST.json",
+      "bytes": 188807,
+      "sha256": "82d4301849a95a131044ee7b8e621f989ade24efa451a76adde5d66fda9fef4a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6008,
+      "sha256": "5ae2aff429cf4c49a862db424ff622b3a51372dc52b9d6c43323b79409917200"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/BEFORE.json",
+      "bytes": 234,
+      "sha256": "8e6eb5ebbfbcd0c0ba3e4605b7c2c26d9b5dda23704a57f7ddcd6e55ffa67e74"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/pytest.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/pytest.stdout.txt",
+      "bytes": 101,
+      "sha256": "ef85a1794689299d67c48ad2f943b646a7593bc81ee03c43096130a5efd66b53"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/pytest.xml",
+      "bytes": 3580,
+      "sha256": "7e99ebf958cc671fbf6d1d9079a812592dfae43e33f758302741016406828d8b"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/repro_after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/repro_after.stdout.txt",
+      "bytes": 578,
+      "sha256": "2f5c37bb724e5611303f4a4ab79d59ecc32ab447b19947e65e6b3c94e69bdcb4"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/REPRO_AFTER_RESULT.json",
+      "bytes": 304,
+      "sha256": "6a872a84b843e68fac1f7b4e6a6120315f203f7daf6486bc29b4019faecd8a34"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/repro_before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/repro_before.stdout.txt",
+      "bytes": 535,
+      "sha256": "50ba407a5ba54d7dd108448a31fe8a1285fa3be67d45c062028b62793ecd9ce2"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/REPRO_BEFORE_RESULT.json",
+      "bytes": 304,
+      "sha256": "6a872a84b843e68fac1f7b4e6a6120315f203f7daf6486bc29b4019faecd8a34"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/reproduce_identity.py",
+      "bytes": 1848,
+      "sha256": "6f319357ce7ab0778bde771e1e22e2de54aaebef23c668461c537b1e3946572f"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/RESULT.json",
+      "bytes": 2312,
+      "sha256": "7aae981a0a1fca5a3bbf368176179b07406130a8e084a21b68ab6d97dbc410fd"
+    },
+    {
+      "path": "records/artifacts/action-identity-focused-20261015-01/run_capture.py",
+      "bytes": 2779,
+      "sha256": "c6b0b37478c32afd684e422a83c4de2eca69835a49dc744c6d5cfff3ae7a82dd"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-07/COMMAND.json.gz",
+      "bytes": 19526,
+      "sha256": "1f0fbfa1ac1f8bfaee3a6cd1bbc9c8191a40ea392e3c3ce5aa951abf7c326489"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-07/driver.py",
+      "bytes": 2009,
+      "sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-07/PID.json",
+      "bytes": 36,
+      "sha256": "6424f3026f5336c07314a17b12c3f61a06c07d446f75b528b6f7d830a2e4bb8e"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-07/RESULT.json.gz",
+      "bytes": 37965,
+      "sha256": "1a48c09b5cd0c827f48370f5c4aa2885ee509cfbd1f4dc2bf09fd9f632205c44"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-07/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-07/stdout.log",
+      "bytes": 96,
+      "sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-01/PROCESS_OBSERVATION.json",
+      "bytes": 223,
+      "sha256": "ef269480d936515adcc72b4152a58600b09f99246ce53a086e5895bbeee4e7ba"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-01/reproduce.py.gz",
+      "bytes": 1902,
+      "sha256": "57c4f4a01f9b4772d5de4d353589a4486d9b53aa24f5f2e028f6589ad23a882b"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-01/stderr.log",
+      "bytes": 347,
+      "sha256": "c66d16af331d179a570eff9fc54aa334d1b21f17b234ad0f20a2c7efaae308df"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-01/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/COMMAND.json",
+      "bytes": 434,
+      "sha256": "af895e5687f2b9f8344dda21c5c604f886502225087cdf091eb24197ec45c828"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/PROCESS_OBSERVATION.json",
+      "bytes": 172,
+      "sha256": "e5b84babbf631a6c9ccde4cd83d5a80471f062217a61cb8705f44340cc95c1df"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/reproduce.py.gz",
+      "bytes": 1906,
+      "sha256": "f0bd6d53a347f07b515a59ef44cc0733a16ceb687a1818cf782337b0cd6193d1"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/RESULT.json",
+      "bytes": 2269,
+      "sha256": "dcaa0de0b4240fb673f326dae62606eaaa26cce3034fab7c8ff030623d4be50d"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/source/control.py.gz",
+      "bytes": 5324,
+      "sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/source/sim_platform_transport.py.gz",
+      "bytes": 13607,
+      "sha256": "c8b8d0d2acbacb041295f05795c11d8e7ebd79f8e5688c195d0ee1aa91b271e4"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/source/state_projection.py.gz",
+      "bytes": 3939,
+      "sha256": "49817b857f95b92edfb4ed2e6ee17f047e0f1e99fc19446c1b82fe6edd5105fa"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-claim-state-readonly-20261015-02/stdout.log",
+      "bytes": 2269,
+      "sha256": "dcaa0de0b4240fb673f326dae62606eaaa26cce3034fab7c8ff030623d4be50d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/after-driver.log",
+      "bytes": 1807,
+      "sha256": "fd5d18ca3d101a6de56b552c31b7ffa8b4144e0f7e3dd402b1693d0b11a13e29"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/after02-driver.log",
+      "bytes": 1161,
+      "sha256": "4c97657a9e1011f7e5e1b5890e70c2352d869e02dbb9479217541259ac3fc365"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/after03-driver.log",
+      "bytes": 1162,
+      "sha256": "9a48e15645151b4a8e56d5fa93188d49effd7acdae8a8c3df9aec46a8238fe2f"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/after04-driver.log",
+      "bytes": 1811,
+      "sha256": "c59baca05c78282104fd442c51e847c9a9e865e02b3f582bcc38a74552b88622"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/after05-driver.log",
+      "bytes": 1811,
+      "sha256": "3a79bdaed3326f50ce5964ee4f16e0637b6f4406b205d8962fabe4582b32e591"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/before-driver.log",
+      "bytes": 1160,
+      "sha256": "ea536066d5638dcb192129b6b5fa74cfaa70d0b5b54523d0f61535d72ad162cc"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/export.log",
+      "bytes": 1127,
+      "sha256": "b08c1100a9e1d07961361164c55fe0cd07d0892678f0eeb379e6bbbfb709d532"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/export_patch.py.gz",
+      "bytes": 2497,
+      "sha256": "002dc42bbb418377f808ded43d662499e3c3c4b4348338aa03b2c4b51e1e461c"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/EXPORT_PROOF.json.gz",
+      "bytes": 3177,
+      "sha256": "de046ee26a63ed401725538e5fdf35bbc9417b13f7e27521c8a2fb98adfaaabc"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/final/rm_client/sim_platform_transport.py.gz",
+      "bytes": 14093,
+      "sha256": "5414525eb97e1ee718b196c185f215ababc96149415d9bc585c599cbe6127d8b"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/final/tests/test_operator_state_projection.py.gz",
+      "bytes": 2945,
+      "sha256": "57dcfaeb71a9002946eec8ccd8f4dd41561bb925bd2e6f6afd0c2af14e4e9ca0"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/final/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1914,
+      "sha256": "97d934b5766e0af9fc8f47647a82081d5e129329317d25dea2fb2707a5bf8fe6"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/final/tests/test_transport_safety_regressions.py.gz",
+      "bytes": 7884,
+      "sha256": "531fbc0c30979545dc823e182bffddf5da8fe776be80b304f142558b46590a16"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/COMMAND.json",
+      "bytes": 3259,
+      "sha256": "77780ac28f2f332b04b3857b7799c189348ef6082ef3094bd24ca61ec8e10f1c"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/PROCESS_RESULT.json",
+      "bytes": 3732,
+      "sha256": "a59da115563cf8b8146e68dc916231dd8090651afab030f6b5d89b47472865cb"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/pytest.xml.gz",
+      "bytes": 8111,
+      "sha256": "b901982210ca10847a7d8405c857b73d638ea4c48dbde3b5cc30b77df3e99461"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13986,
+      "sha256": "98ca420167bac974103a49f7096e1f6b8e844c33bbce9cc6cf6d11bf26ba4002"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_aim_plugin_discovery.py",
+      "bytes": 3413,
+      "sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_aim_status_display.py",
+      "bytes": 3050,
+      "sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_operator_state_projection.py.gz",
+      "bytes": 2880,
+      "sha256": "8dca63e45c4e3eafe86eca5958fb98d307dee163750795dbe2bec848b96ade16"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_adapters.py.gz",
+      "bytes": 5185,
+      "sha256": "c4302d227abdb07897e31c3d013b938ae7a2e172885e0e7b8c3e8f21d7fe20c9"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_admission_client.py",
+      "bytes": 2163,
+      "sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1845,
+      "sha256": "0d348354a8ae48ee4e274692b5ad2283e50e55061bc4c4c8e39dbe9fdbf03bfc"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_control_windows.py.gz",
+      "bytes": 1281,
+      "sha256": "f5dc4709c3c32248f954d3b736528a32567a7f8b88a8454c83b975bc81175918"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_diagnostics.py.gz",
+      "bytes": 3087,
+      "sha256": "df1e039e02f56b7d368c2e4968763e71b95eae53339bdff76b5fd447c44b032b"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_display_generation.py",
+      "bytes": 3494,
+      "sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_handoff.py.gz",
+      "bytes": 3804,
+      "sha256": "9cf211965734a26a08be8720c60401a289f1f955d1af7ce3924e2679a0ede222"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_manual_yaw.py.gz",
+      "bytes": 1746,
+      "sha256": "915b0b46e10be496605cfe9820fa84b66bc807aa953edb31c97a3228fd973460"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_manual_yaw_ui.py",
+      "bytes": 3725,
+      "sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_spin.py.gz",
+      "bytes": 2476,
+      "sha256": "e0698af50c594ba0f178e30ca56f3ff3da4f5a1b4d498da9ae4f7ec28150a43a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_platform_status.py.gz",
+      "bytes": 3737,
+      "sha256": "b56727fb915e731dfd4126702ee4ee27e91630e115b1551f02ab496018f40a5d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_sim_platform_v2.py.gz",
+      "bytes": 2952,
+      "sha256": "5ee51b23441c09acbf227f78f1d2cb66a08d2b24ef9f9784c37b511320ef1986"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/source/tests/test_transport_safety_regressions.py.gz",
+      "bytes": 7876,
+      "sha256": "3cdbc36e5b9f87cef760144cc6b92732e3a33204be11e8bd5979d771e6ee58a5"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after/stdout.log.gz",
+      "bytes": 1673,
+      "sha256": "2844731954a696b265c40856d8dfec001bb62f1e57cf7dba5a9f3b29c5792cc8"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/COMMAND.json",
+      "bytes": 945,
+      "sha256": "61e65f9d717d55c18c1075c6e3274bb7be0080135eda45de99c4c97ee712bd26"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/PROCESS_RESULT.json",
+      "bytes": 1417,
+      "sha256": "6f8a3d6a4cf986061b44a48e92d7c7e7e840e4b3cc8f27a9634f8966631deefb"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/pytest.xml",
+      "bytes": 1969,
+      "sha256": "ef9cb16160b249c91503f329f61268d25fbd76c4c835999b406a8c8ea00d79cc"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13986,
+      "sha256": "98ca420167bac974103a49f7096e1f6b8e844c33bbce9cc6cf6d11bf26ba4002"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/source/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1853,
+      "sha256": "80633cf825406b31ca64c901fa358009d6a3914450bbc03ed809ed359c9e4328"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after02/stdout.log",
+      "bytes": 115,
+      "sha256": "530a7c85661cbdb0034537b84606e82b0d92e1b62c6d33b5b78e60dcaa7f2ac0"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/COMMAND.json",
+      "bytes": 945,
+      "sha256": "ef1e6355a77e775ac25dd77153b14ad9b2903a3a197ac86f3c1060e039708572"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/PROCESS_RESULT.json",
+      "bytes": 1418,
+      "sha256": "1409b79e923c4adec108fa9fffdb89a5ee2dbb8212955c1d66e8812ffabc1d5c"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/pytest.xml",
+      "bytes": 1969,
+      "sha256": "0c03bc2f3f342d31916cea347cddd422bb9f0d4b3f0f3b63bc5f4fb53362f124"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13986,
+      "sha256": "98ca420167bac974103a49f7096e1f6b8e844c33bbce9cc6cf6d11bf26ba4002"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/source/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1853,
+      "sha256": "80633cf825406b31ca64c901fa358009d6a3914450bbc03ed809ed359c9e4328"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after03/stdout.log",
+      "bytes": 115,
+      "sha256": "530a7c85661cbdb0034537b84606e82b0d92e1b62c6d33b5b78e60dcaa7f2ac0"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/COMMAND.json",
+      "bytes": 3263,
+      "sha256": "7787b273a500e6142a03eb06e85494c8fe97649e9395f80ae75ddfc1d4a637e4"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/PROCESS_RESULT.json",
+      "bytes": 3736,
+      "sha256": "8a6ac1c179c81d295513c3815f4402ec6078451e8e6c0b334e2375eb6c297aca"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/pytest.xml.gz",
+      "bytes": 6709,
+      "sha256": "6f22b2712a2eb872aec38ac4d7aedfa11fdaf372189a7e896b473fc64d630afc"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13986,
+      "sha256": "98ca420167bac974103a49f7096e1f6b8e844c33bbce9cc6cf6d11bf26ba4002"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_aim_plugin_discovery.py",
+      "bytes": 3413,
+      "sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_aim_status_display.py",
+      "bytes": 3050,
+      "sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_operator_state_projection.py.gz",
+      "bytes": 2945,
+      "sha256": "57dcfaeb71a9002946eec8ccd8f4dd41561bb925bd2e6f6afd0c2af14e4e9ca0"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_adapters.py.gz",
+      "bytes": 5185,
+      "sha256": "c4302d227abdb07897e31c3d013b938ae7a2e172885e0e7b8c3e8f21d7fe20c9"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_admission_client.py",
+      "bytes": 2163,
+      "sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1853,
+      "sha256": "80633cf825406b31ca64c901fa358009d6a3914450bbc03ed809ed359c9e4328"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_control_windows.py.gz",
+      "bytes": 1281,
+      "sha256": "f5dc4709c3c32248f954d3b736528a32567a7f8b88a8454c83b975bc81175918"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_diagnostics.py.gz",
+      "bytes": 3087,
+      "sha256": "df1e039e02f56b7d368c2e4968763e71b95eae53339bdff76b5fd447c44b032b"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_display_generation.py",
+      "bytes": 3494,
+      "sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_handoff.py.gz",
+      "bytes": 3804,
+      "sha256": "9cf211965734a26a08be8720c60401a289f1f955d1af7ce3924e2679a0ede222"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_manual_yaw.py.gz",
+      "bytes": 1746,
+      "sha256": "915b0b46e10be496605cfe9820fa84b66bc807aa953edb31c97a3228fd973460"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_manual_yaw_ui.py",
+      "bytes": 3725,
+      "sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_spin.py.gz",
+      "bytes": 2476,
+      "sha256": "e0698af50c594ba0f178e30ca56f3ff3da4f5a1b4d498da9ae4f7ec28150a43a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_platform_status.py.gz",
+      "bytes": 3737,
+      "sha256": "b56727fb915e731dfd4126702ee4ee27e91630e115b1551f02ab496018f40a5d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_sim_platform_v2.py.gz",
+      "bytes": 2952,
+      "sha256": "5ee51b23441c09acbf227f78f1d2cb66a08d2b24ef9f9784c37b511320ef1986"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/source/tests/test_transport_safety_regressions.py.gz",
+      "bytes": 7884,
+      "sha256": "531fbc0c30979545dc823e182bffddf5da8fe776be80b304f142558b46590a16"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after04/stdout.log",
+      "bytes": 429,
+      "sha256": "848ad28be6c5ff363b56274b271a9e92f8989ae026a0d559ed6978866e5ba69c"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/COMMAND.json",
+      "bytes": 3263,
+      "sha256": "42e39a6c6c18b99364398ad17dc9181737894bdf7aa8ec94459189fc011a259f"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/PROCESS_RESULT.json",
+      "bytes": 3736,
+      "sha256": "06dbc1d10ae57e6fc4252c0a3ad5cd8804c3267caf58f841eb5e03e3eed8c87a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/pytest.xml.gz",
+      "bytes": 6719,
+      "sha256": "637d76bbf074a5284d23b9a112a9783993682a201df67fe45b246b458a9acb4a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 14093,
+      "sha256": "5414525eb97e1ee718b196c185f215ababc96149415d9bc585c599cbe6127d8b"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_aim_plugin_discovery.py",
+      "bytes": 3413,
+      "sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_aim_status_display.py",
+      "bytes": 3050,
+      "sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_operator_state_projection.py.gz",
+      "bytes": 2945,
+      "sha256": "57dcfaeb71a9002946eec8ccd8f4dd41561bb925bd2e6f6afd0c2af14e4e9ca0"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_adapters.py.gz",
+      "bytes": 5185,
+      "sha256": "c4302d227abdb07897e31c3d013b938ae7a2e172885e0e7b8c3e8f21d7fe20c9"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_admission_client.py",
+      "bytes": 2163,
+      "sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1914,
+      "sha256": "97d934b5766e0af9fc8f47647a82081d5e129329317d25dea2fb2707a5bf8fe6"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_control_windows.py.gz",
+      "bytes": 1281,
+      "sha256": "f5dc4709c3c32248f954d3b736528a32567a7f8b88a8454c83b975bc81175918"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_diagnostics.py.gz",
+      "bytes": 3087,
+      "sha256": "df1e039e02f56b7d368c2e4968763e71b95eae53339bdff76b5fd447c44b032b"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_display_generation.py",
+      "bytes": 3494,
+      "sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_handoff.py.gz",
+      "bytes": 3804,
+      "sha256": "9cf211965734a26a08be8720c60401a289f1f955d1af7ce3924e2679a0ede222"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_manual_yaw.py.gz",
+      "bytes": 1746,
+      "sha256": "915b0b46e10be496605cfe9820fa84b66bc807aa953edb31c97a3228fd973460"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_manual_yaw_ui.py",
+      "bytes": 3725,
+      "sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_spin.py.gz",
+      "bytes": 2476,
+      "sha256": "e0698af50c594ba0f178e30ca56f3ff3da4f5a1b4d498da9ae4f7ec28150a43a"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_platform_status.py.gz",
+      "bytes": 3737,
+      "sha256": "b56727fb915e731dfd4126702ee4ee27e91630e115b1551f02ab496018f40a5d"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_sim_platform_v2.py.gz",
+      "bytes": 2952,
+      "sha256": "5ee51b23441c09acbf227f78f1d2cb66a08d2b24ef9f9784c37b511320ef1986"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/source/tests/test_transport_safety_regressions.py.gz",
+      "bytes": 7884,
+      "sha256": "531fbc0c30979545dc823e182bffddf5da8fe776be80b304f142558b46590a16"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-after05/stdout.log",
+      "bytes": 498,
+      "sha256": "53faa014dc799a8cc61e6f118ff10b465d09619c5d734e217ed2bb05f5f8e0e6"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/COMMAND.json",
+      "bytes": 943,
+      "sha256": "c3b51e585ec646877ffca4d3623b1fc4d3b2b406c95f5364190a39fd41e0affd"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/PROCESS_RESULT.json",
+      "bytes": 1416,
+      "sha256": "105285e2d105c79da255843ecc6af4aac0d9cc603dcec221e2744df032a72055"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/pytest.xml.gz",
+      "bytes": 3595,
+      "sha256": "415c4f192214ed18772d27d8bee6d1c059ee763abea46a01768105fd2cbaf543"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13607,
+      "sha256": "c8b8d0d2acbacb041295f05795c11d8e7ebd79f8e5688c195d0ee1aa91b271e4"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/source/tests/test_platform_claim_state_order.py.gz",
+      "bytes": 1845,
+      "sha256": "0d348354a8ae48ee4e274692b5ad2283e50e55061bc4c4c8e39dbe9fdbf03bfc"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/pytest-before/stdout.log.gz",
+      "bytes": 3334,
+      "sha256": "fa7bb3dfd6bbde9f66b74e5e08c8310c9df6b85ee1a899dc33702a5afc521806"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/run_owned_suite.py",
+      "bytes": 3905,
+      "sha256": "92304cf15347426374139757538dc67c8c7207085604a46bb2468a4e81641fb9"
+    },
+    {
+      "path": "records/artifacts/client-robotio-state-order-20261015-01/run_owned_suite_original.py",
+      "bytes": 3894,
+      "sha256": "3cade9671d8ae20ed72bd2453b2baa967a26b9902b67427fbdb962c7082094bf"
+    },
+    {
+      "path": "records/artifacts/preserve_robotio_state_20261015.py.gz",
+      "bytes": 1986,
+      "sha256": "f9de0e232caf1fc331535fa3264a6fac7f53a1b361a1ee318e2ce35f8ad45bf7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/AUDIT.json",
+      "bytes": 443,
+      "sha256": "5022e77b88a741a6a93f96df74472368e7cc9d7518f2cdfe1092db4308df2dfb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/CAMERA.json.gz",
+      "bytes": 1421,
+      "sha256": "d1e9fe52b0f30ae5406d46dd6a2aa00ab087f16dd353df0f320a1ad9716cb527"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/CHILD_COMMAND.json",
+      "bytes": 1057,
+      "sha256": "44c863cd37093605c5b5a4d5d4f5eea5551c043fe3323610b23a0490ee027e31"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/CLEANUP.json",
+      "bytes": 1695,
+      "sha256": "683bb83e2a03ff5e88f7d8d81e0d558cf893c7482d96d3a7afada4fee7417659"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/CLIENT_PATCH_MANIFEST.json.gz",
+      "bytes": 4056,
+      "sha256": "3cba8dd370f53e7f98fb05ced5b08b71994e49b85d36b71e372e8acb94c54fa9"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/sim_platform_adapters.py.gz",
+      "bytes": 3729,
+      "sha256": "efd8ed85378c24b3f7ea6b2b5816d708cebc961ac7e9e819e0844e2cb11112fb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/sim_platform_client.py.gz",
+      "bytes": 4466,
+      "sha256": "495826b5006f57538f353a9a12e85d95c48c0d2629c72c3f79b1e4ecf24ab754"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "bytes": 2538,
+      "sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py.gz",
+      "bytes": 3442,
+      "sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13607,
+      "sha256": "c8b8d0d2acbacb041295f05795c11d8e7ebd79f8e5688c195d0ee1aa91b271e4"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "bytes": 5251,
+      "sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "bytes": 3367,
+      "sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/COMMAND.json",
+      "bytes": 1319,
+      "sha256": "bd6c47af6b02ecd2c001c6d79ff4461b80d04f6a8f168e0d6393b87278f0c4e7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/EVAL.json",
+      "bytes": 210,
+      "sha256": "aae78097d76ec2b9023c0c18b695fe8ea532707f62c0fc300c04687888141b3a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/failure.log",
+      "bytes": 453,
+      "sha256": "ed6130ab4882d610cb3464fb55c0f29c3ec43689e2846befbc7a7ff5a524480a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/PREPARE.json",
+      "bytes": 501,
+      "sha256": "b8651cb00127dab57030e31395c1d77bcd2ad0bd6588e5adb35f15333ee27bbf"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/PROTOCOL_TRACE.jsonl.gz",
+      "bytes": 300,
+      "sha256": "b4c50bdf7abddae01b58d55fdfa626fb21c0282a409f2bcf1d623d4f555e2060"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/qt/errors.log",
+      "bytes": 274,
+      "sha256": "d79cd63bf5e96293552036e068370d278bcfa69cd3fbad418a4f98e93fa7825b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/qt/RESULT.json.gz",
+      "bytes": 5677,
+      "sha256": "2b46790ae129aabb3684140fc5a4620765f5a637c4e1da060603b5c8d4183b38"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/qt/STAGES.json",
+      "bytes": 1223,
+      "sha256": "9c3e261dba40901e265ab22ceaa06944a5f3745dd4ea5213733257207c58b8f4"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/qt/STATE_SNAPSHOTS.json",
+      "bytes": 2773,
+      "sha256": "b9a516713181c9a737d2d6e67f040300eecf0d047340e6a93f85ecf0209e7d1c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/qt.stderr.log",
+      "bytes": 1380,
+      "sha256": "4e8a1ab83c99318608143f2d13a5380608c157d8669b46e5913721c3c7353178"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/QT_STAGES.json",
+      "bytes": 979,
+      "sha256": "d70a300d02d7bc6247fbf7b4dae541c41820bce345d9b2b184f94c94d769b6ae"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/RESULT.json",
+      "bytes": 1321,
+      "sha256": "9adc006ba2e43ffb6a7e9e03c507b98900dbe8ef5621cda7c698a8cee61adf49"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/examples/robotio_protocol_decision.json",
+      "bytes": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/examples/robotio_protocol_navigation.json",
+      "bytes": 1961,
+      "sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/examples/robotio_protocol_plugins.json",
+      "bytes": 847,
+      "sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/decision_plugin.py.gz",
+      "bytes": 2812,
+      "sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/json_owned_process.py.gz",
+      "bytes": 1820,
+      "sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3502,
+      "sha256": "4e0c70a6b7ae4d2f90e344e0dfa944f8b10b7403e4b404472a815a983d55e4f5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "bytes": 1525,
+      "sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1683,
+      "sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 3973,
+      "sha256": "231589c5faf886b41258b8e1443bbb1930a4c9aae13fedae876d7af2ebe2498b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 5324,
+      "sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1450,
+      "sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3312,
+      "sha256": "e5506254c317d85f158852a3b74992f4a4107348fc29cc1d3407705427b5afcb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/tests/fixtures/decision_heat_v2.py",
+      "bytes": 1140,
+      "sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/tests/fixtures/decision_supply_v1.py",
+      "bytes": 1160,
+      "sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/tests/fixtures/navigation_goal_fixture.py",
+      "bytes": 942,
+      "sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/tools/qa_qt_platform_robotio.py.gz",
+      "bytes": 6471,
+      "sha256": "c3d98344455c93f25f8ddf0a5c4afe471911c7dca7ae5473b38382837b210057"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/tools/qa_qt_platform_robotio_peer.py.gz",
+      "bytes": 5764,
+      "sha256": "8251838b2e163b24eb1e329cb0fd4247eba47ca8b04f6211ea5da947fe239a6a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/source/tools/qa_robotio_protocol_sil.py.gz",
+      "bytes": 7024,
+      "sha256": "f216507e65a1f965cec489ba767fe83ae079cc895554260cda96da6da3f57920"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/SOURCE_MANIFEST.json.gz",
+      "bytes": 2835,
+      "sha256": "0e656a5b062dccdc86c22424b0036499e048482bec55226e73b16daee4044223"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-01/UNCLAIMED_CLEANUP.json",
+      "bytes": 926,
+      "sha256": "16ed15739132fa2ce63baba63edc3ac30ae927281d429b625680f632833c739e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/AUDIT.json",
+      "bytes": 528,
+      "sha256": "d133b4a0b07f3e89d3f3cfec0417f96d5241557fb438a65f4e0e15b46f12327f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/CAMERA.json.gz",
+      "bytes": 1425,
+      "sha256": "5125ae8c8b37c42ed97626fe75ee74b7cd82d9d9c951440a2fc19817bff6e7a9"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/CHILD_COMMAND.json",
+      "bytes": 1057,
+      "sha256": "b8c445976081955ed458d8320e44ed76d8d0b11cf5fef8df3876e9cb53c984cc"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/CLEANUP.json",
+      "bytes": 2653,
+      "sha256": "8ccbc49a1e57cb69ba14e7d56e4f78f7a26754ea706990f5006b3eaf67a4022f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/CLIENT_PATCH_MANIFEST.json.gz",
+      "bytes": 4056,
+      "sha256": "3cba8dd370f53e7f98fb05ced5b08b71994e49b85d36b71e372e8acb94c54fa9"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/sim_platform_adapters.py.gz",
+      "bytes": 3729,
+      "sha256": "efd8ed85378c24b3f7ea6b2b5816d708cebc961ac7e9e819e0844e2cb11112fb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/sim_platform_client.py.gz",
+      "bytes": 4466,
+      "sha256": "495826b5006f57538f353a9a12e85d95c48c0d2629c72c3f79b1e4ecf24ab754"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "bytes": 2538,
+      "sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py.gz",
+      "bytes": 3442,
+      "sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 13607,
+      "sha256": "c8b8d0d2acbacb041295f05795c11d8e7ebd79f8e5688c195d0ee1aa91b271e4"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "bytes": 5251,
+      "sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "bytes": 3367,
+      "sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/COMMAND.json",
+      "bytes": 1319,
+      "sha256": "a2a60099fd3e9a0c8d4d57e7c10028445d7c62abbe11daf389d4d2d2e8071016"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/EVAL.json",
+      "bytes": 209,
+      "sha256": "6456f4a42a2d05cf9dd5a6fbbfd7fbd769fcf93769d4309ed2bdd5e62702fd2c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/PREPARE.json",
+      "bytes": 500,
+      "sha256": "2a838e09bc8e70f2b49f8c7cf4996d32af86a0d10682cd9139c92e8068f2ad49"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/PROTOCOL_TRACE.jsonl.gz",
+      "bytes": 13337,
+      "sha256": "96f1c0f635aa2eb5a34a20e07866989aa006ec2402c00f8c296169980ae156a2"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt/ACTUAL_QT_ARMED_OFFSCREEN.png",
+      "bytes": 176567,
+      "sha256": "72cb059c7b446905195ac2c302d11ccec039832ed57dc13ce613b492caeb6a9e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "bytes": 146057,
+      "sha256": "72e18ce344781fde32b5407d5f82965dad83a959845d2a45e83bed2d09aebc59"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt/errors.log",
+      "bytes": 274,
+      "sha256": "0a873856ab2ce8a9048525c8cc0460d481cd797bddcf62f990518dfec2d48b93"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt/RESULT.json.gz",
+      "bytes": 7079,
+      "sha256": "20f4e2ffe463bd145d7336592133f5eb76359025506fee6a1bf7ff4dd7e09944"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt/STAGES.json.gz",
+      "bytes": 5594,
+      "sha256": "f2930f4a886e6aa1e6e2bcd887423e245b30106c90592ae71dcaf9b3c1d9f2b4"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt/STATE_SNAPSHOTS.json.gz",
+      "bytes": 1215,
+      "sha256": "ace6e2a0889f9d0d10c5013de11915f878edb72ec57f00e8997bc67df21c013b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/qt.stderr.log",
+      "bytes": 1380,
+      "sha256": "2ff9fed750430d16045c951e6200ceb4fcfdb7c6dd4311ea6ab32e9038f85bd3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/QT_STAGES.json",
+      "bytes": 2156,
+      "sha256": "2d321ac59712e796c5c9c8532efdb8bc43c20ba7ccbbefde003e4bed0a814e5a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/RESULT.json",
+      "bytes": 1462,
+      "sha256": "ae4a915fb94a9ba4519d156aba84e315e5b480042c2c432a52dd8c92f7585d42"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/examples/robotio_protocol_decision.json",
+      "bytes": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/examples/robotio_protocol_navigation.json",
+      "bytes": 1961,
+      "sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/examples/robotio_protocol_plugins.json",
+      "bytes": 847,
+      "sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/decision_plugin.py.gz",
+      "bytes": 2812,
+      "sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/json_owned_process.py.gz",
+      "bytes": 1820,
+      "sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3502,
+      "sha256": "4e0c70a6b7ae4d2f90e344e0dfa944f8b10b7403e4b404472a815a983d55e4f5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "bytes": 1525,
+      "sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1683,
+      "sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 3973,
+      "sha256": "231589c5faf886b41258b8e1443bbb1930a4c9aae13fedae876d7af2ebe2498b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 5324,
+      "sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1450,
+      "sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3312,
+      "sha256": "e5506254c317d85f158852a3b74992f4a4107348fc29cc1d3407705427b5afcb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/tests/fixtures/decision_heat_v2.py",
+      "bytes": 1140,
+      "sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/tests/fixtures/decision_supply_v1.py",
+      "bytes": 1160,
+      "sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/tests/fixtures/navigation_goal_fixture.py",
+      "bytes": 942,
+      "sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/tools/qa_qt_platform_robotio.py.gz",
+      "bytes": 6484,
+      "sha256": "2577ccafc590441382cb2292c855381318b5ec1eeea5b5e7cc028cf76f1e16db"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/tools/qa_qt_platform_robotio_peer.py.gz",
+      "bytes": 7010,
+      "sha256": "3dd38329de1b3d2ce41db93b1d430e96757877212e04c98b8cb74c3fe616fe2f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/source/tools/qa_robotio_protocol_sil.py.gz",
+      "bytes": 7024,
+      "sha256": "f216507e65a1f965cec489ba767fe83ae079cc895554260cda96da6da3f57920"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-02/SOURCE_MANIFEST.json.gz",
+      "bytes": 2833,
+      "sha256": "c28a31d000f66eeafe93a70d1e969fc365a6493c8f46bf0036317e12ec34e47e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/AUDIT.json",
+      "bytes": 534,
+      "sha256": "f40e032d82a12ccc61da836c6ab0b77e356d089f31a8c1a51fc6d9d431276f19"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/CAMERA.json.gz",
+      "bytes": 1430,
+      "sha256": "7412b93a451b08a2ddd141515359dc8ef157d23514c2913ef4197727751acc91"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/CHILD_COMMAND.json",
+      "bytes": 1162,
+      "sha256": "7ce61b4f5d09a3563e10dc1f5ac3f95c5cfd3e0efade90fd6159938aad1293d8"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/CLEANUP.json",
+      "bytes": 1692,
+      "sha256": "103bdf85451151236e7cd54c68f82a456de1498485e5f70ba9e4b104a0ea2d99"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/CLIENT_PATCH_MANIFEST.json.gz",
+      "bytes": 4567,
+      "sha256": "1850c9ac4ec5dc498242ddad464edf6afaaf5f9c75a95343aa8e2c979db96c08"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/sim_platform_adapters.py.gz",
+      "bytes": 3729,
+      "sha256": "efd8ed85378c24b3f7ea6b2b5816d708cebc961ac7e9e819e0844e2cb11112fb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/sim_platform_client.py.gz",
+      "bytes": 4466,
+      "sha256": "495826b5006f57538f353a9a12e85d95c48c0d2629c72c3f79b1e4ecf24ab754"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/sim_platform_input.py",
+      "bytes": 2538,
+      "sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/sim_platform_runtime.py.gz",
+      "bytes": 3442,
+      "sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 14093,
+      "sha256": "5414525eb97e1ee718b196c185f215ababc96149415d9bc585c599cbe6127d8b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "bytes": 5251,
+      "sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "bytes": 3367,
+      "sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/COMMAND.json",
+      "bytes": 1485,
+      "sha256": "280d277a15c1fb05381c634be4d33c459690db2907f5cc89dbe2c836589acdcc"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/EVAL.json",
+      "bytes": 210,
+      "sha256": "1e46bf06bb529cb4abb6397b29ea3cd02b4deedc4aca73216d29e988a1f0a3b7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/HOST_SCHEDULING.json",
+      "bytes": 590,
+      "sha256": "db146f7cb0d73d4e8f31d88d0697b9af5800d33f2ff71e01d5e1875db1a79ee3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/PREPARE.json",
+      "bytes": 499,
+      "sha256": "9f8a5ab96ccad23d69ce611e9f0e6d3c54508da396030072772b667a5073983b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/PROTOCOL_TRACE.jsonl.gz",
+      "bytes": 69291,
+      "sha256": "3894937c4206a82141450d975564e786fe4de120a01a8a2e58b31353d350a975"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/qt/ACTUAL_QT_OFFSCREEN.png",
+      "bytes": 145953,
+      "sha256": "78bcdd82731d1c8df2b4063d7d351154b47cdc1b6dd7f9121ee913e4acc5fab1"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/qt/errors.log",
+      "bytes": 318,
+      "sha256": "5fdeb21fdddd85cae2a84b4c9a1749e65e510a278934cfbc5bc3ebd6b931f19b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/qt/RESULT.json.gz",
+      "bytes": 10211,
+      "sha256": "d4d2a78b21eecc70f565226ab6004cb178221d15386b47a5d358dfa1f38175d5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/qt/STAGES.json.gz",
+      "bytes": 6842,
+      "sha256": "f1a56d2836c74faccf2d4ade581db2634bb1b01043bf998e7bcc9cd0d3d90d9a"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/qt/STATE_SNAPSHOTS.json.gz",
+      "bytes": 1153,
+      "sha256": "5a23715944a39245c4dc39271ba3578c1464e85720a944aad9d6b5faf502adc0"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/qt.stderr.log",
+      "bytes": 1392,
+      "sha256": "8c4726143d99ece464aee0890a58f3eda741f8288e65fc17777eeddec315ffeb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/QT_STAGES.json",
+      "bytes": 2156,
+      "sha256": "b45a1071df49bf30c87a06e2aefe110170ff0e4c9b80dd66d43e85d837481783"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/RESULT.json",
+      "bytes": 1398,
+      "sha256": "0202b3f6c92ed4ba6e4c9ecb2558eb2107c93bd2356acd696324567756133c11"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/examples/robotio_protocol_decision.json",
+      "bytes": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/examples/robotio_protocol_navigation.json",
+      "bytes": 1961,
+      "sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/examples/robotio_protocol_plugins.json",
+      "bytes": 847,
+      "sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/decision_plugin.py.gz",
+      "bytes": 2812,
+      "sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/json_owned_process.py.gz",
+      "bytes": 1820,
+      "sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3502,
+      "sha256": "4e0c70a6b7ae4d2f90e344e0dfa944f8b10b7403e4b404472a815a983d55e4f5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "bytes": 1525,
+      "sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1683,
+      "sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 3973,
+      "sha256": "231589c5faf886b41258b8e1443bbb1930a4c9aae13fedae876d7af2ebe2498b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 5324,
+      "sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1450,
+      "sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3312,
+      "sha256": "e5506254c317d85f158852a3b74992f4a4107348fc29cc1d3407705427b5afcb"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/tests/fixtures/decision_heat_v2.py",
+      "bytes": 1140,
+      "sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/tests/fixtures/decision_supply_v1.py",
+      "bytes": 1160,
+      "sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/tests/fixtures/navigation_goal_fixture.py",
+      "bytes": 942,
+      "sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/tools/qa_qt_platform_robotio.py.gz",
+      "bytes": 6989,
+      "sha256": "15b4136cab2b5b28764689a2d9a5b454f5e72025f137bc4a90a76ed169197f44"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/tools/qa_qt_platform_robotio_peer.py.gz",
+      "bytes": 8222,
+      "sha256": "bde37470de8a3f57ecdedec4ef949c946ff8f87ab6004203262c82b7b010d636"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/source/tools/qa_robotio_protocol_sil.py.gz",
+      "bytes": 7024,
+      "sha256": "f216507e65a1f965cec489ba767fe83ae079cc895554260cda96da6da3f57920"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-actual-20261015-03/SOURCE_MANIFEST.json.gz",
+      "bytes": 2913,
+      "sha256": "090e0a731d300f0d74e9426d2fc7b0ea19f4e480617c913fd064c1a8bb923a1f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-01/COMMAND.json",
+      "bytes": 1112,
+      "sha256": "bdc7bfda8c43a1f73350b35755689a218608753a3e10dcf049b40018776277bd"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-01/driver.py",
+      "bytes": 2143,
+      "sha256": "b3d8b6c5c516185dad7aab6a6d936162fabdecaf41a41da1f8719093e6b74fc4"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-01/PID.json",
+      "bytes": 35,
+      "sha256": "99be2ac3fdb4da52b0aaba0ad65b2137d4d6a812592648aba121de94d4f1909c"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-01/RESULT.json",
+      "bytes": 1549,
+      "sha256": "6d1b4fcd0d0ec0480b54d6e54a42646cb9f5e5227dcca7eb13cf634e6b8706c7"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-01/stdout.log",
+      "bytes": 166,
+      "sha256": "f95ae7facdef5cafb6cd1e786a124e5047639805b699f8e0cf4282b7708eae21"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-02/COMMAND.json",
+      "bytes": 1112,
+      "sha256": "4fb6e1cc4331fe0e7efc03448d14bd5dd27ad2e13acf4cfb9921c6c67fcff234"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-02/driver.py",
+      "bytes": 2143,
+      "sha256": "b3d8b6c5c516185dad7aab6a6d936162fabdecaf41a41da1f8719093e6b74fc4"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-02/PID.json",
+      "bytes": 36,
+      "sha256": "7f2461f5aa6528d698e8122652efc520fac8651a5ace029930d349cb486ef722"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-02/RESULT.json",
+      "bytes": 1550,
+      "sha256": "cf913d96eff9ee3cc66647bccdaeba1b1c82ab33386248ba87069ea15fb0aa37"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-02/stdout.log",
+      "bytes": 166,
+      "sha256": "21e931aa00cc942e57048bed914b4efbe9b8f87485e71a52f0d79d2294af97e0"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-03/COMMAND.json",
+      "bytes": 1562,
+      "sha256": "44ba04d21e8356a79f347d8f2227a70032fb834b99fb3afa790e8768b2391773"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-03/driver.py",
+      "bytes": 2387,
+      "sha256": "1f6e76b9be16a6fd5d8cc65d16222a43ae2cfbc355d5972dc1b15bae876ae891"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-03/PID.json",
+      "bytes": 36,
+      "sha256": "738b8eee754f8522d7e872f8f4cb6da2411c4251b8682b8d008862145c0e8f1f"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-03/RESULT.json",
+      "bytes": 2276,
+      "sha256": "945c225c0d2aa2b06d0f0cc01cfc85d276b36f925b6f548d688a2d078a5234db"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-03/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-driver-20261015-03/stdout.log",
+      "bytes": 166,
+      "sha256": "ee1e94d7bc136138b16c16a6fee4851bf2eb3852339f2b8d67901566682edb6e"
+    },
+    {
+      "path": "records/artifacts/qt-platform-robotio-static-20261015-01/RESULT.json",
+      "bytes": 415,
+      "sha256": "d7c087e6c26fa9bc24a5b4969f3f37a80f459e68ff188b4b2d759623d01cb301"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/acceptance_preset.log",
+      "bytes": 1166,
+      "sha256": "dd62fbc5299e0ed34cc4efde12c7db35384fa16515ff09dfa46832a1c274389c"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/interface_static.log.gz",
+      "bytes": 3868,
+      "sha256": "ed9e0d1a707c4e1eb92866eb8627a587deb7ef702c467259376086c7a73af056"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/manifest.json.gz",
+      "bytes": 372938,
+      "sha256": "9872a272c4b0a2827a6203746e1c15f2270cb7a1588a7d0a67a0cd41d550b3a0"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/preset.json",
+      "bytes": 1166,
+      "sha256": "dd62fbc5299e0ed34cc4efde12c7db35384fa16515ff09dfa46832a1c274389c"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/pytest.log.gz",
+      "bytes": 599,
+      "sha256": "7698b19697520be900aa3ef7bd482e42b3b16be5ff1e7b5161b0a1978da54a0e"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/pytest.xml.gz",
+      "bytes": 47383,
+      "sha256": "8563ac6d30b7e8466546ffaf1fa0c8be272cd371ef71cb83c2309967b9b85cb1"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-07/source_provenance.log",
+      "bytes": 1627,
+      "sha256": "9b1d8e1c1c2bc5f3b1181b60467d8c91b0059da33d0e088c1308ae8ac2b0ea79"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/BEFORE.json",
+      "bytes": 225,
+      "sha256": "90b1581ce9f689bd12e8723faa246f4d7a655bcff94ba1703d1faf96c5f5e5cb"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/pytest.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/pytest.stdout.txt",
+      "bytes": 101,
+      "sha256": "5382d543288030f7c35a58bdf341ed156123a98cdf4a143d06234e44a4a82ec9"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/pytest.xml",
+      "bytes": 3149,
+      "sha256": "e792d93427efd9854a690a2a59265218bfa2f84b0e2e311981cf0e08e482438a"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/repro_after.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/repro_after.stdout.txt",
+      "bytes": 169,
+      "sha256": "748654aaa64f5135f62263e7efcd1030439e360bc54488670bc4dbb508a0f277"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/REPRO_AFTER_RESULT.json",
+      "bytes": 319,
+      "sha256": "107ebce8f349806efab16e1d64cf4c4c88cc4cd645201062e2b9969690fd62f9"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/repro_before.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/repro_before.stdout.txt",
+      "bytes": 172,
+      "sha256": "ba98e64942de539bcbfc4324f17a3c8e2d727e891c79dc24dae3cedd990f2dfb"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/REPRO_BEFORE_RESULT.json",
+      "bytes": 319,
+      "sha256": "107ebce8f349806efab16e1d64cf4c4c88cc4cd645201062e2b9969690fd62f9"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/reproduce_registration.py",
+      "bytes": 1499,
+      "sha256": "f2f1e1867015713ec364ed87c3220a86b5ebff724614772083e9263e151cbd9f"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/RESULT.json",
+      "bytes": 2570,
+      "sha256": "b28242460e9e92f0b20ad2c8b1ad46d377e757e710a2e304d159eaa0fc0056df"
+    },
+    {
+      "path": "records/artifacts/robotio-registration-races-focused-20261015-01/run_capture.py",
+      "bytes": 2870,
+      "sha256": "ed5a5fe8f797b97ab8e0479a1c4e3ad11b3b2e08e943b8322cb0d983bdc8537a"
+    },
+    {
+      "path": "records/artifacts/robotio_state_next_steps_20261015.md",
+      "bytes": 2715,
+      "sha256": "24213975c097228da4ed192de5d497b5b21f6982f32e0cca621e128147914518"
+    },
+    {
+      "path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "bytes": 2009,
+      "sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292"
+    },
+    {
+      "path": "records/artifacts/run_qt_platform_robotio_20261015.py",
+      "bytes": 2387,
+      "sha256": "1f6e76b9be16a6fd5d8cc65d16222a43ae2cfbc355d5972dc1b15bae876ae891"
+    },
+    {
+      "path": "records/client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json.gz",
+      "bytes": 4567,
+      "sha256": "1850c9ac4ec5dc498242ddad464edf6afaaf5f9c75a95343aa8e2c979db96c08"
+    },
+    {
+      "path": "records/client_patches/README.md.gz",
+      "bytes": 4751,
+      "sha256": "ebdfe411acf444fea4583c9b0cb326a78214b62ab951c94165b8e17aa7974f3a"
+    },
+    {
+      "path": "records/client_patches/robotio_state_order_v1.patch.gz",
+      "bytes": 29470,
+      "sha256": "4868a06445e2d429eb4dfaf3e42ba0131008fe4b3a4c43bdf4553edb9a56050e"
+    },
+    {
+      "path": "records/DEVELOPMENT_CHANGES.json.gz",
+      "bytes": 5875,
+      "sha256": "7c44fe6a66c35c57f9d22223855841a43b49750cd7c8ce2cc5f64be0b64b6175"
+    },
+    {
+      "path": "records/docs/CLIENT_ROBOTIO_INTERFACE.md.gz",
+      "bytes": 4484,
+      "sha256": "812165f6e8ecead93b71a26fc23243621c6aaf2f4d6cab3d9d8b125c98bfb1e1"
+    },
+    {
+      "path": "records/docs/COOP_PLAYABLE_PATH.md.gz",
+      "bytes": 2906,
+      "sha256": "f28bae17bd27c369d7e3103fe50d5a47abb43c73d18e35ca839f863cd4dcee81"
+    },
+    {
+      "path": "records/docs/IMPLEMENTATION_PROGRESS.md.gz",
+      "bytes": 29883,
+      "sha256": "9f97a9e554e2b871e38d66c2ba10fcf9c5a59925990782cc505fb7ce5034a912"
+    },
+    {
+      "path": "records/docs/UNIVERSAL_PLUGIN_INTERFACES.md.gz",
+      "bytes": 7755,
+      "sha256": "d9a3b33090308567cb841998c98e5faa8a639536577b268931db474e6de356ee"
+    },
+    {
+      "path": "records/examples/coop_robotio_state_protocol.json",
+      "bytes": 507,
+      "sha256": "00ebcb0b3cf01f3b87dc5c50d27a27ee52a9cec8f17f1b756236a1de50b59197"
+    },
+    {
+      "path": "records/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/tests/test_action_identity_types.py",
+      "bytes": 3921,
+      "sha256": "e468ca9f1bb6a5a42c814edf01bd4890b10c42d1994be01268e0639efd248571"
+    },
+    {
+      "path": "records/tests/test_robotio_registration_races.py.gz",
+      "bytes": 2664,
+      "sha256": "4a113bf90a426811a55ac90337cbe5e122bb39eca1b5267da5cc42ed47f7a1f5"
+    },
+    {
+      "path": "records/tools/qa_qt_platform_robotio.py.gz",
+      "bytes": 6989,
+      "sha256": "15b4136cab2b5b28764689a2d9a5b454f5e72025f137bc4a90a76ed169197f44"
+    },
+    {
+      "path": "records/tools/qa_qt_platform_robotio_peer.py.gz",
+      "bytes": 8222,
+      "sha256": "bde37470de8a3f57ecdedec4ef949c946ff8f87ab6004203262c82b7b010d636"
+    },
+    {
+      "path": "verify_archives.py",
+      "bytes": 1321,
+      "sha256": "114af506d9d84a1eacdbeb367f23b0478bd8eaad32d0d0e26b3e2cab296b4323"
+    }
+  ]
+}

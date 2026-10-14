@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_platform_robotio.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-platform-robotio-actual-20261015-02",
+    "--duration",
+    "12",
+    "--run"
+  ],
+  "source_before": {
+    "tools/qa_qt_platform_robotio.py": "3e6867df236cd5d01f7f98b5b1e49df4c92cb0b52241080a9d9257765078c4a2",
+    "tools/qa_qt_platform_robotio_peer.py": "796e8547d31cb0e3dd43d8069a78287ff99e4d07e8c8a0a3b8d37fa8053590ff",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "client_patches/CLIENT_ROBOTIO_PATCH_MANIFEST.json": "3916988423e6f7d3c0394d19df7a02cb241b72d28172c50d1ca6f970c9129bdc"
+  }
+}

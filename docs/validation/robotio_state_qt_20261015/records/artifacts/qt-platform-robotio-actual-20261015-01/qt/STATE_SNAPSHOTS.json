@@ -1,0 +1,110 @@
+{
+  "preclaim": {
+    "state": {
+      "schema": "rm.sim.platform.v2",
+      "display_schema": "polar.sim.display.v2",
+      "episode": 0,
+      "sim_time": 4.459999999999731,
+      "sample_sim_time": 4.459999999999731,
+      "remaining_seconds": 295.54000000000025,
+      "duration_seconds": 300.0,
+      "phase": "running",
+      "winner": null,
+      "runtime_state": "running",
+      "applied_sample_is_historical": true,
+      "source": "operator_limited_display",
+      "data_plane": "operator_limited_display",
+      "algorithm_input": false,
+      "state_projection_version": 1,
+      "robots": [
+        {
+          "robot_id": "red_infantry",
+          "team": "red",
+          "role": "infantry"
+        }
+      ],
+      "control": {
+        "stopped": false,
+        "server_monotonic_s": 60927.8506204,
+        "revision": 0,
+        "robot_ids": [
+          "red_infantry"
+        ],
+        "leases": {
+          "red_infantry": {
+            "motion": {
+              "epoch": 0,
+              "owner": null,
+              "occupied": false
+            },
+            "gimbal": {
+              "epoch": 0,
+              "owner": null,
+              "occupied": false
+            },
+            "fire": {
+              "epoch": 0,
+              "owner": null,
+              "occupied": false
+            }
+          }
+        },
+        "bindings": {
+          "red_infantry": {
+            "navigation": {
+              "owner": null
+            },
+            "aim": {
+              "owner": null
+            }
+          }
+        }
+      },
+      "clock_profile": {
+        "kind": "wall_deadline_live",
+        "simulation_time_unit": "seconds",
+        "wall_clock": "server_monotonic",
+        "real_time_factor_limit": 1.0
+      },
+      "applied_targets": {}
+    },
+    "own_display": {
+      "robot_id": "red_infantry",
+      "episode": 0,
+      "sim_time": 4.459999999999731,
+      "own": null,
+      "robots": [
+        {
+          "robot_id": "red_infantry",
+          "team": "red",
+          "role": "infantry"
+        }
+      ],
+      "phase": "running",
+      "remaining_seconds": 295.54000000000025,
+      "vp": {
+        "red": null,
+        "blue": null
+      },
+      "map_source": "operator_limited_display",
+      "map_available": false
+    },
+    "frame_sequence": 28,
+    "video_source_sequence": null,
+    "video_shape": [
+      1080,
+      1440,
+      3
+    ],
+    "guard": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    }
+  }
+}

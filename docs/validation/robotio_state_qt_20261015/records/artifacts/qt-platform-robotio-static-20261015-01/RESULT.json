@@ -1,0 +1,15 @@
+{
+  "files": [
+    {
+      "path": "tools/qa_qt_platform_robotio.py",
+      "sha256": "38e488c3914dd6bf356529aed54ea6f0691c8f6a810a7c3b43f497a08b2f2409",
+      "bytes": 20789
+    },
+    {
+      "path": "tools/qa_qt_platform_robotio_peer.py",
+      "sha256": "decad7b2a2698ad8b5816e040fd4a141b8cebd1a2a76b511cce72bc70145a576",
+      "bytes": 18874
+    }
+  ],
+  "scope": "AST only; no Qt/GL/HTTP/physics/algorithm"
+}

@@ -88,6 +88,9 @@ HTTP 只能选择已经注册的 ID，绑定 config 为 `{}`；不能提交 exec
 ```
 
 不需要的组件 manifest 可以为 `null`。引用路径相对 graph 文件；组件 cwd 相对组件 manifest。
+graph 注册在独立 Registry 中校验全部组件；二次读取的 navigation/aim SHA 必须匹配首次快照，
+发布前重检 graph 和全部组件原字节，再一次发布完整 spec/capability/catalog。
+失败保留原注册表和目录，成功追加原目录；这是启动期事务，不提供运行中的热替换接口。
 pipeline 的机器人范围必须是两组件范围的子集，ID 不得碰撞。
 要接收决策意图，navigation capabilities 必须显式声明 `goal_input_modes: ["decision_intent_v1"]`；
 生产 navigation 模板默认是 `[]`，需要真实 wrapper 支持后才能修改声明。
@@ -108,6 +111,8 @@ robot_id, episode, binding_epoch, observed_seq, sim_time, wall_deadline
 ```
 
 必须连 JSON 标量类型一起回显。跨机器人、旧 episode/epoch、重放 observed_seq、重贴 sim_time/deadline 均不能授权新控制。
+canonical action 与自瞄 JSONL/ROS/WSL 回执现在统一检查六项类型和值；数值等价的 `1` 和 `1.0` 也不能替换原字段。
+原观测本身可使用合同允许的整数或浮点时间，输出必须保留该原类型，不把所有时间强制转换为某一种类型。
 SDK 控制窗口还关联 session、motion/gimbal lease epoch、window_id 和 activation；算法 DTO 不替代这些权限。
 `wall_deadline` 属于原宿主时钟。Linux/ROS peer 保留它并回显，不能用自己的 monotonic 时钟重写或与跨域时钟直接相减。
 

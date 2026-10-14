@@ -10,7 +10,7 @@ import re
 import time
 from .profile import read_json_snapshot,digest
 from .json_adapter import JsonLineAdapter,SharedCleanupBudget
-from ..platform_v2.adapters import BaseAdapter,descriptor
+from ..platform_v2.adapters import BaseAdapter,Registry,descriptor
 from ..platform_v2.contracts import ContractError,exact,IDENTITY
 from ..platform_v2.navigation_contracts import NAV_PROFILE,validate_navigation_observation
 
@@ -123,11 +123,21 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
     from .navigation_plugin import register_navigation_plugins
     from .decision_plugin import DecisionPluginAdapter
     from .aim_plugin import register_aim_plugins
+    if not isinstance(registry,Registry):raise ContractError('robotio_registration_requires_local_registry')
     graph=load_robotio_plugins(path);wsl_prepared={} if wsl_prepared is None else wsl_prepared
-    catalog=[];decision_factories={}
+    catalog=registry.plugin_catalog();decision_factories={}
     existing={d['adapter_id'] for d in registry.descriptors()}
+    catalog_ids={row['plugin_id'] for row in catalog}
     additions=[r['adapter_id'] for category in ('navigation','aim') for r in graph['rows'][category]]+[r['adapter_id'] for r in graph['pipelines']]
-    if (set(additions)|{r['adapter_id'] for r in graph['rows']['decision']})&existing or len(existing)+len(additions)>32:raise ContractError('robotio_registry_collision_or_capacity')
+    component_ids=set(additions)|{r['adapter_id'] for r in graph['rows']['decision']}
+    if (component_ids&(existing|catalog_ids) or len(existing)+len(additions)>32
+        or len(catalog)+sum(len(rows) for rows in graph['rows'].values())+len(graph['pipelines'])>64):
+        raise ContractError('robotio_registry_collision_or_capacity')
+    # Registration is a startup transaction, never a running runtime mutation.
+    # Keep the target's original frozen specs/factories/capability objects while
+    # validating all new metadata in a separate registry. No factory runs here.
+    staged=Registry()
+    staged._specs=dict(registry._specs);staged._capabilities=dict(registry._capabilities)
     for category,rows in graph['rows'].items():
         for row in rows:
             catalog.append(dict(plugin_id=row['adapter_id'],category=category,label=row['label'],
@@ -135,8 +145,12 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
                 transport=row['transport'],manifest_sha256=graph['hashes'][str(graph['paths'][category])],
                 negotiation='exact_peer_capabilities_on_reset' if category!='aim' else 'declared_aim_contract',
                 qualification='interface_not_algorithm_or_live_acceptance'))
-    if graph['rows']['navigation']:register_navigation_plugins(registry,graph['paths']['navigation'],clock=clock,wsl_prepared=wsl_prepared.get('navigation'))
-    if graph['rows']['aim']:register_aim_plugins(registry,graph['paths']['aim'],clock=clock,wsl_prepared=wsl_prepared.get('aim'))
+    for category,register in (('navigation',register_navigation_plugins),('aim',register_aim_plugins)):
+        if not graph['rows'][category]:continue
+        result=register(staged,graph['paths'][category],clock=clock,wsl_prepared=wsl_prepared.get(category))
+        if (type(result) is not dict or type(result.get('manifest_sha256')) is not str
+            or result['manifest_sha256']!=graph['hashes'][str(graph['paths'][category])]):
+            raise ContractError('robotio_component_changed_during_registration')
     for row in graph['rows']['decision']:
         def make(row=row):
             if row['transport']=='wsl_jsonl_v1':
@@ -147,7 +161,7 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
                 manifest_sha=graph['hashes'][str(graph['paths']['decision'])],clock=clock)
         decision_factories[row['adapter_id']]=make
     for row in graph['pipelines']:
-        nav=registry.get(row['navigation_plugin_id']);make_decision=decision_factories[row['decision_plugin_id']]
+        nav=staged.get(row['navigation_plugin_id']);make_decision=decision_factories[row['decision_plugin_id']]
         def factory(config,nav=nav,make_decision=make_decision):
             return DecisionNavigationAdapter(config,make_decision=make_decision,make_navigation=lambda:nav.factory({}),hashes=graph['hashes'],clock=clock)
         dec_row=next(r for r in graph['rows']['decision'] if r['adapter_id']==row['decision_plugin_id'])
@@ -164,11 +178,19 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
             reset_observation_policy='discard_reset_observation_v1',
             navigation_plugin_capabilities=copy.deepcopy(nav.descriptor['navigation_plugin_capabilities']),
             goal_input_modes=copy.deepcopy(nav.descriptor['goal_input_modes']))
-        registry.register(d,factory)
+        staged.register(d,factory)
         catalog.append(dict(plugin_id=row['adapter_id'],category='pipeline',label=row['label'],version='1.0.0',
             supported_robots=list(row['supported_robots']),components=copy.deepcopy(d['robotio_pipeline']),
             qualification='interface_not_algorithm_or_live_acceptance'))
-    registry.set_plugin_catalog(catalog)
+    staged.set_plugin_catalog(catalog)
+    # The graph, decision snapshots and re-read actuator component manifests
+    # must still have the FIRST reviewed bytes immediately before publication.
+    for selected,expected_sha in graph['hashes'].items():
+        try:actual_sha=digest(Path(selected))
+        except (OSError,ValueError):raise ContractError('robotio_graph_changed_during_registration') from None
+        if actual_sha!=expected_sha:raise ContractError('robotio_graph_changed_during_registration')
+    registry.__dict__.update(_specs=staged._specs,_capabilities=staged._capabilities,
+        _plugin_catalog=staged._plugin_catalog)
     return dict(schema=SCHEMA,manifest_sha256=graph['sha'],registered_adapter_ids=additions,
         navigation_robots=sorted({robot for row in graph['rows']['navigation'] for robot in row['supported_robots']}),
         catalog_schema=CATALOG_SCHEMA,qualification='registration_only')

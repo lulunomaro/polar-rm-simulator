@@ -201,9 +201,9 @@
     {
       "path": "rm_match/platform_v2/contracts.py",
       "original_sha256": "400d417505c93f28884e48d0c4bca6434fc395ab347d4833faa888ac8fc448e1",
-      "current_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "current_sha256": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
       "task": "T09",
-      "reason": "Preserve strict camera/range observation.v2 and pixel proofs; dispatch separate pose-free pointcloud/IMU navigation schema without fabricating missing legacy pose fields"
+      "reason": "Preserve strict camera/range observation.v2 and pixel proofs; dispatch separate pose-free pointcloud/IMU navigation schema without fabricating missing legacy pose fields; preserve all six original action identity scalar types as well as values across canonical, aim, JSONL and ROS validation without converting clocks or changing deadlines"
     },
     {
       "path": "rm_match/platform_v2/adapters.py",

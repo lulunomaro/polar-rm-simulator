@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_qt_platform_robotio.py", line 164, in run
+    if qt_ready is None or qt_finished is None or failures:raise RuntimeError('actual_platform_window_run_incomplete')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: actual_platform_window_run_incomplete

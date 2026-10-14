@@ -1,0 +1,87 @@
+[
+  {
+    "event": "qt_watch_ready",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "frame_sequence": 23,
+    "watch_epoch": 1
+  },
+  {
+    "event": "qt_plan_selected",
+    "robot_id": "red_infantry",
+    "selected": "custom_protocol_pipeline_supply",
+    "plan": {
+      "navigation": {
+        "adapter_id": "custom_protocol_pipeline_supply",
+        "config": {}
+      }
+    },
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "selection_route": "original_Jello_dispatch"
+  },
+  {
+    "event": "qt_claimed_hud",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": true,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "lease_epochs": {
+      "motion": 1,
+      "gimbal": 1,
+      "fire": 1
+    },
+    "f2_count": 1
+  },
+  {
+    "event": "qt_armed_bound",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": true,
+      "runtime_armed": true,
+      "transport_focus": true
+    },
+    "binding": {
+      "schema": "rm.sim.platform.v2",
+      "robot_id": "red_infantry",
+      "kind": "navigation",
+      "binding_epoch": 1,
+      "adapter_id": "custom_protocol_pipeline_supply",
+      "activation_required": true,
+      "activation_version": 1
+    },
+    "f2_count": 2,
+    "frame_sequence": 25,
+    "visible_desktop": false,
+    "qt_internal_shown": true
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "scope": "deterministic pure transport fixture; selectable-camera prerequisite isolated, no Qt/image/network/physics",
+  "stale_preclaim_snapshot": {
+    "postclaim_revoke": false,
+    "after_ack": {
+      "owned_robot": "red_infantry",
+      "epochs": {
+        "motion": 1,
+        "gimbal": 1,
+        "fire": 1
+      },
+      "server_owned": true
+    },
+    "after_state": {
+      "owned_robot": null,
+      "release_queued": true,
+      "server_owned": true,
+      "note": "Control ownership changed; explicit claim required"
+    },
+    "after_release_server_owned": false,
+    "calls": [
+      "claim",
+      "release"
+    ],
+    "install_results": [
+      true
+    ],
+    "errors": [],
+    "original_snapshot_control_revision": 1,
+    "snapshot_epochs": {
+      "motion": 0,
+      "gimbal": 0,
+      "fire": 0
+    }
+  },
+  "genuine_postclaim_revocation": {
+    "postclaim_revoke": true,
+    "after_ack": {
+      "owned_robot": "red_infantry",
+      "epochs": {
+        "motion": 1,
+        "gimbal": 1,
+        "fire": 1
+      },
+      "server_owned": true
+    },
+    "after_state": {
+      "owned_robot": null,
+      "release_queued": true,
+      "server_owned": false,
+      "note": "Control ownership changed; explicit claim required"
+    },
+    "after_release_server_owned": false,
+    "calls": [
+      "claim",
+      "release"
+    ],
+    "install_results": [
+      true
+    ],
+    "errors": [],
+    "original_snapshot_control_revision": 3,
+    "snapshot_epochs": {
+      "motion": 2,
+      "gimbal": 2,
+      "fire": 2
+    }
+  },
+  "source_sha256": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-review\\rm_client\\sim_platform_transport.py": "b8cd937fa72f9db95eaea80b2a96b94a0fd3d735f3811afe99b78262ec4bcfa3",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\control.py": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\state_projection.py": "02b26de426753a950ccb6ebc9661711fc8e53bdc9648e8b99adeb6dc5fff4718"
+  },
+  "source_unchanged": true
+}

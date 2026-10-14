@@ -3,6 +3,37 @@
 新的显式组合补丁支持按能力合同选择通用导航、决策/导航 pipeline，以及已有通用自瞄。
 注册和显示不按队名分派。队伍仍需提供匹配协议的本地 wrapper；目录可选不代表算法或整场比赛已经通过。
 
+## 后继租约状态顺序补丁（2026-10-15）
+
+[CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json](../client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json) 与
+[robotio_state_order_v1.patch](../client_patches/robotio_state_order_v1.patch) 是第三份独立组合补丁，
+SHA `a5f3fccfeb7afd50807e464ca39e5c00f49c77648213872b909f54c6d085ee93`，仍从相同固定基线完整应用。
+前两份补丁、manifest 与 checkout 保持原字节；安装时必须选全新基线 checkout，不能叠加。
+
+该版本修复已确定复现的异步状态竞态：claim ACK 后，之前请求的完整旧 lease epoch 快照不能释放新租约，
+且丢弃时不刷新任何 state/HUD/lease/window 时间锚。同 episode 的三个 channel epoch 必须完整、类型正确且全部低于 ACK；
+混合、缺失、bool、当前 epoch 的 owner 不符及更高 epoch 真正撤权仍停止控制，原 session/watch/episode 护栏保留。
+SDK claim 仍保持 disarmed，实际新 own HUD 和第二次 F2 才可激活。
+
+```powershell
+.venv-sim/Scripts/python.exe tools/apply_client_patch.py --manifest client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json --client-root YOUR_FRESH_CLIENT_PATH --run
+.venv-sim/Scripts/python.exe -m rm_match.deployment.coop_launcher --config examples/coop_robotio_state_protocol.json
+```
+
+第二条只是合成协议演示的启动计划；配置使用本机 `external/polar-rm-client-robotio-state-review`。
+完整16模块实际 Qt offscreen 回归为330passed/103subtests/0skip，pytest11.94秒、owned driver12.4185秒，源不变且进程回收。
+这仍是后端夹具回归；不能据此关闭物理、可见 GUI、队伍算法或完整比赛。
+原窗口实际尝试另使用 `tools/qa_qt_platform_robotio.py`，默认 dry plan，必须指定新输出目录和 `--run`。
+显式 `--host-opencv-threads 4 --host-python-switch-interval-ms 1` 只改变当前进程调度并核验/还原，不扩大80/150ms门限。
+当前三次原窗口尝试均整体失败：第一次F2后撤权，原原因码不足以归因；第二次已过两F2、绑定和27非零物理步，
+随后真实请求预算压力撤权，后续probe等待错误又导致晚清理/Job回收缺证。两次原文件和各自源码均保持，后继实验单独记账。
+该并发补丁的纯 transport 复现不是第一次实际窗口失败的根因证明。
+第三次使用上述新补丁与显式CV4/1ms，真实HTTP画面、原窗口watch/Jello选择、两次F2、绑定和全部原护栏就绪；
+38次SDK激活、11个独立动作、477条receipt和159个非零物理消费步，原typed6/SDK150ms审计无错误。
+GO后约2.424秒，原Handoff预测成本157ms超过150ms预算而撤权：实测最大window31ms、pulse32ms、control32ms，
+仍严格保留预测与取消。这次护栏失效立即收尾，原1.5秒清理预算内所有owned Job、SDK/HTTP/相机线程退出；
+整体exit2/source unchanged，不能报告原窗口全链通过。截图仅为原Qt offscreen内部画面，不是可见桌面验收。
+
 ## 安装固定客户端补丁
 
 客户端固定基线是 `0cedf99b70b1beec99865b9980af6789e6c53d99`。
