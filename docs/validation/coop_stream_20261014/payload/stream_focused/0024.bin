@@ -1,0 +1,35 @@
+"""Focused pure/Windows unit + saved framing micro, no WSL/model/GL."""
+import hashlib,json,subprocess,sys,time
+from pathlib import Path
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
+OUT=HERE/'after';OUT.mkdir(exist_ok=False)
+sources=('rm_match/deployment/wsl_jsonl.py','rm_match/deployment/wsl_jsonl_worker.py',
+    'tests/test_wsl_jsonl_stream.py','tests/test_wsl_jsonl_stop_poll.py','tests/test_wsl_jsonl.py')
+before={}
+for rel in sources:
+    raw=(ROOT/rel).read_bytes();before[rel]={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)}
+    target=OUT/'source'/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+(OUT/'SOURCE_MANIFEST.json').write_text(json.dumps(before,indent=2)+'\n')
+commands=[('focused',[sys.executable,'-m','pytest','tests/test_wsl_jsonl_stream.py','tests/test_wsl_jsonl_stop_poll.py',
+    'tests/test_wsl_jsonl.py','tests/test_wsl_jsonl_owned_tree.py','tests/test_aim_jsonl_peer.py',
+    '-q','--junitxml='+str(OUT/'pytest.xml')]),
+    ('saved_framing',[sys.executable,str(HERE/'measure_saved_framing.py')])]
+results=[]
+for label,command in commands:
+    (OUT/(label+'.COMMAND.json')).write_text(json.dumps(dict(argv=command,cwd=str(ROOT),
+        scope='Pure/mock or saved-DTO framing only; no WSL/ROS/NN/GL/physics'),indent=2)+'\n')
+    start=time.perf_counter()
+    with (OUT/(label+'.stdout.log')).open('wb') as stdout,(OUT/(label+'.stderr.log')).open('wb') as stderr:
+        child=subprocess.Popen(command,cwd=ROOT,stdout=stdout,stderr=stderr)
+        (OUT/(label+'.PID.json')).write_text(json.dumps({'pid':child.pid})+'\n')
+        code=child.wait(timeout=45.)
+    result=dict(label=label,exit_code=code,elapsed_s=time.perf_counter()-start,reaped=child.poll() is not None)
+    (OUT/(label+'.PROCESS_RESULT.json')).write_text(json.dumps(result,indent=2)+'\n')
+    results.append(result)
+    print(json.dumps(result),flush=True);print((OUT/(label+'.stdout.log')).read_text(errors='replace'),flush=True)
+    print((OUT/(label+'.stderr.log')).read_text(errors='replace'),flush=True)
+    if code:break
+unchanged=all(hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()==row['sha256'] for rel,row in before.items())
+(OUT/'RESULT.json').write_text(json.dumps(dict(results=results,source_unchanged=unchanged,
+    qualification='Focused safety and saved-input micro only; requires fresh actual Windows/WSL qualification'),indent=2)+'\n')
+raise SystemExit(0 if unchanged and all(row['exit_code']==0 for row in results) else 2)

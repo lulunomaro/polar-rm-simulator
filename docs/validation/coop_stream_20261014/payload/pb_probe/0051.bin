@@ -1,0 +1,81 @@
+{
+  "archived_after_act_or_failure": true,
+  "budget": {
+    "capture_sim_time": 0.002,
+    "capture_wall": 42284.9858145,
+    "episode": 0,
+    "frame_id": 1,
+    "robot_id": "blue_hero",
+    "sim_deadline": 0.082,
+    "wall_deadline": 42285.065814500005
+  },
+  "bytes": 4665600,
+  "camera": {
+    "available": true,
+    "capture_sim_time": 0.002,
+    "extrinsics": {
+      "calibration_id": "role_v23:blue_hero:ef242a6f2f6b0d09c8202e663e9438245b5a8681e9f6537e04f241c552aa4f6b",
+      "parent_frame": "gimbal_link",
+      "rotation_xyzw": [
+        0.5,
+        -0.5,
+        0.5,
+        -0.5
+      ],
+      "translation_m": [
+        0.24,
+        0.0,
+        0.06
+      ]
+    },
+    "frame_id": 1,
+    "intrinsics": {
+      "cx": 701.3056440882832,
+      "cy": 564.5821718351237,
+      "distortion": [
+        -0.064232403853946,
+        -0.087667493884102,
+        0.0,
+        0.0,
+        0.792381808294582
+      ],
+      "distortion_model": "brown_conrady_5",
+      "fx": 1722.231837421459,
+      "fy": 1724.876404292754
+    },
+    "own_odom_at_capture": [
+      5.25,
+      -2.35,
+      3.141592653589793
+    ],
+    "own_odom_velocity_at_capture": [
+      6.38193898541452e-54,
+      3.932959733324268e-35,
+      9.942941341044294e-35
+    ],
+    "own_qpos_at_capture": [
+      1.2763877970829041e-56,
+      7.865919466648536e-38,
+      3.141592653589793,
+      2.1060099518374504e-35,
+      -0.00011321045039269122
+    ],
+    "own_qvel_at_capture": [
+      6.38193898541452e-54,
+      3.932959733324268e-35,
+      9.942941341044294e-35,
+      1.0530049759187251e-32,
+      -0.05660522519634561
+    ],
+    "provenance": "simulated_raw_camera",
+    "reason": "available"
+  },
+  "image": {
+    "encoding": "rgb8",
+    "height": 1080,
+    "stride_bytes": 4320,
+    "width": 1440
+  },
+  "never_resent": true,
+  "rgb_sha256": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0"
+}

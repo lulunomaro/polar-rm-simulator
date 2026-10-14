@@ -1,0 +1,12 @@
+{
+  "schema": "polar.sim.coop-launch.v1",
+  "client_root": "external/polar-rm-client-state-review",
+  "client_python": ".venv-client/Scripts/python.exe",
+  "manual_robots": ["red_infantry"],
+  "port": 8766,
+  "camera_total_fps": 15,
+  "max_wall_seconds": 600,
+  "raw_base64_codec": "stdlib_chunked",
+  "pb_wsl_navigation_manifest": null,
+  "wsl_native_spec": null
+}

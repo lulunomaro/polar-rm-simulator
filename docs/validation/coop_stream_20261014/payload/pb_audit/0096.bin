@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\pb2025-aim-stream-repair-audit-20261014-01\\audit.py"
+  ],
+  "exit_code": 0,
+  "completed": true,
+  "source_unchanged": true,
+  "script_sha256": "d0bfac667388d4cbbd39c9d406748441334de246fcfadbe692afd105ff0a2ce3",
+  "WSL": false,
+  "ROS": false,
+  "GL": false,
+  "NN": false,
+  "benchmark": false,
+  "scope": "Strict decode and original evidence analysis only"
+}

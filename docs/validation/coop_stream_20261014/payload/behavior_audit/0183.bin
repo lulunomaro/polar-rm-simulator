@@ -1,0 +1,62 @@
+{
+  "command": [
+    "git",
+    "-c",
+    "core.autocrlf=false",
+    "clone",
+    "--depth",
+    "1",
+    "--no-recurse-submodules",
+    "--branch",
+    "protocol-v1.7.0",
+    "https://github.com/SMBU-PolarBear-Robotics-Team/pb_rm_interfaces.git",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-behavior-audit-20261014-01\\pb_rm_interfaces_protocol_v1_7_0"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 4.127260900000692,
+  "reaped": true,
+  "nonrecursive": true,
+  "head": {
+    "exit_code": 0,
+    "output": "8912fa565a7ac57ef070df218957379123d238ee"
+  },
+  "status": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "message_comparison": {
+    "msg/Gimbal.msg": {
+      "same": true
+    },
+    "msg/GimbalCmd.msg": {
+      "same": true
+    },
+    "msg/Models.msg": {
+      "same": true
+    },
+    "msg/RobotStateInfo.msg": {
+      "same": true
+    },
+    "msg/referee/Buff.msg": {
+      "same": true
+    },
+    "msg/referee/EventData.msg": {
+      "same": true
+    },
+    "msg/referee/GameRobotHP.msg": {
+      "same": true
+    },
+    "msg/referee/GameStatus.msg": {
+      "same": true
+    },
+    "msg/referee/GroundRobotPosition.msg": {
+      "same": true
+    },
+    "msg/referee/RfidStatus.msg": {
+      "same": true
+    },
+    "msg/referee/RobotStatus.msg": {
+      "same": true
+    }
+  }
+}

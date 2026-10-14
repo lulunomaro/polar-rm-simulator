@@ -1,0 +1,166 @@
+{
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\CAPTURE.json": {
+    "sha256": "c41e3ba96bb5ea51cae8ab3f808f84f9a1d953f8bd05cf930a78ed8f5f3af59c",
+    "bytes": 1899
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\capture.png": {
+    "sha256": "0ecfa2228e567a08569bb15b236cf0273476244b1cc82af12e6fd3e2581eb5c3",
+    "bytes": 86969
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\capture.rgb": {
+    "sha256": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0",
+    "bytes": 4665600
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\FAILED_TRACEBACK.txt": {
+    "sha256": "ce80a992e482c720a09cd7ac674d2259b9cc83666991a9c2a4550335039bd7e0",
+    "bytes": 1567
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\HOST_ACTUAL_IO_TRACE.json": {
+    "sha256": "e2626e0bb853766ea21acd652d359af207e6a3e73ec3491e7211e3f60500c7ec",
+    "bytes": 4377
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\OBSERVATION.json": {
+    "sha256": "ac822f4c0c7a818775a7fde5919ac5eeb52b4792c0493883456d83a02089b97e",
+    "bytes": 6227382
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\PROBE_RESULT.json": {
+    "sha256": "c8cbc6be7c00301e4a82cc7f79b19dbeaffbc321a4c474be75abe65501316915",
+    "bytes": 18701
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\SCENE.json": {
+    "sha256": "a7f7b5137dbc59c0bddf588041e658ce981c342665a44b65629cede145a4edb7",
+    "bytes": 1415
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_d565c525f9dc4d29a94d65fdcb2bc15e\\CLEANUP.json": {
+    "sha256": "8738e190988d88ea4444aef9586725a4e4c84604de3a6b3718eb4aa490ccfb80",
+    "bytes": 1734
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_d565c525f9dc4d29a94d65fdcb2bc15e\\SPEC.json": {
+    "sha256": "2e7c8a0fd75501183554754a66c6060df1a248f0667aefdab82f4f285674459a",
+    "bytes": 6719
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_d565c525f9dc4d29a94d65fdcb2bc15e\\STOP": {
+    "sha256": "fd880267e177511a01e29cd1516a451b0fc698a1b5ae573f3e78c14b88a44c90",
+    "bytes": 129
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_d565c525f9dc4d29a94d65fdcb2bc15e\\supervisor.stderr.log": {
+    "sha256": "f71fd91f3dbd02d9630f8948c191e8c39acfff27d3231653d6277f1aee183150",
+    "bytes": 895
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\AIM_PLUGINS.json": {
+    "sha256": "b4ec5a2ce33e5116a960ae34578f0770d9d159901751deffffb3590409e52761",
+    "bytes": 6924
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\BOOTSTRAP.json": {
+    "sha256": "9da8860aa586afb822f1d7f6c13359d8a0af9a334fd83a8843c34dcc44b1bc8b",
+    "bytes": 23382
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\CALIBRATION.json": {
+    "sha256": "786959eaced0d917fcd5449faf84a5f823c1afd3a2503b4c29ffc8aee4754989",
+    "bytes": 2357
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\ENVIRONMENT.json": {
+    "sha256": "960509b9018b3bde2929d0a7fca97bf127c7789ffeb10d6bd0d6c421e0516e9b",
+    "bytes": 6808
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\PEER_PHASES.json": {
+    "sha256": "7657ab307089abe7f3acf0bfa1224824a5d433592b3e48c807b327cb14c1debd",
+    "bytes": 3116
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\REGISTER_RESULT.json": {
+    "sha256": "8c3602ec3e8c90dfe3a60345b7acb38116101908cac97b143aeb444353e76bfd",
+    "bytes": 968
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\SOURCE_EVENTS.jsonl": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\stack\\PREPARATION.json": {
+    "sha256": "cf7b9f53fbd75a3d1d925fb2da8f0ae9ad7f1a4dcf6542ad485eeeb45a95a9df",
+    "bytes": 1168
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\stack\\SCOPED_PARAMS.yaml": {
+    "sha256": "2fc69cc930f9d4da5d148a3533798d2f77167116f2f29a287ebcc69aaef107b0",
+    "bytes": 1420
+  },
+  "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\registered_attempt1\\stack\\STACK.json": {
+    "sha256": "77304265ec8ef4a9f05ffa01003b040dfa80642bbe30447e0fc6df105c80581f",
+    "bytes": 2717
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\01-PID.json": {
+    "sha256": "443abc9b673a0d06f19790572a0eeb12beb746b9ab8b819084572cf0a9668342",
+    "bytes": 36
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\01-stderr.log": {
+    "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+    "bytes": 132
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\01-stdout.log": {
+    "sha256": "93e79dc80deefac5690beae5015763d43357d7d1309904ccd9a0441ab510dc3f",
+    "bytes": 922
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\02-PID.json": {
+    "sha256": "b9eb90d36e0c08a683132f803190e83d06f4d2ff6d964770fbebb1a7c63c9d5f",
+    "bytes": 36
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\02-stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\02-stdout.log": {
+    "sha256": "5a4f2919e340081893faa8277586fd49f3ae635e822bdc1a15e902fa4d257c3b",
+    "bytes": 16350
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\COMMANDS.json": {
+    "sha256": "23ddb102ef072b0fca14e9f2bb700818aba2a0b8a15b5acdb273102446fb1ccb",
+    "bytes": 23572
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\driver.py": {
+    "sha256": "c7fa2d322b25f46dd89bb2484fdd2ae7a405a404e5087905e18f79ea69d3c53c",
+    "bytes": 2236
+  },
+  "artifacts\\pb-aim-stream-repair-driver-20261014-01\\RESULT.json": {
+    "sha256": "e579f23b640d1acfa88a01a1952ab30ffcfc7673aaf15afd554ba3ef33b9f8be",
+    "bytes": 45727
+  },
+  "rm_match\\platform_v2\\native_adapter.py": {
+    "sha256": "43640c0154d421e761ce2eb11944d88b87e6a0797027fe52167dc734dd63b4af",
+    "bytes": 18526
+  },
+  "rm_match\\platform_v2\\runtime.py": {
+    "sha256": "a23dcf4bc5248686824954f27419bf84647fad0316481494b35070905b634643",
+    "bytes": 59533
+  },
+  "rm_match\\platform_v2\\adapters.py": {
+    "sha256": "8c3a1ef6cc777205aa3357ef42490cb6e41311394ecf12c89b6d2a2269821539",
+    "bytes": 10499
+  },
+  "rm_match\\platform_v2\\wsl_native_adapter.py": {
+    "sha256": "203f2f6174d5fc477c634e4478ec6af4aeb9d9b4ef64ed40648f4e72c04e7a9d",
+    "bytes": 8469
+  },
+  "rm_match\\integrations\\rmcs_contract.py": {
+    "sha256": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf",
+    "bytes": 2485
+  },
+  "rm_match\\integrations\\pb_aim_ros_peer.py": {
+    "sha256": "436c4d53a9ef103293c1620e37f1aaaa02904bb1abd22f054c593e93b6e6260a",
+    "bytes": 15200
+  },
+  "rm_match\\integrations\\pb_aim_stack.py": {
+    "sha256": "dd3eb61e8dad6d0042ac85e7cd7b728af7f6d0f28ca0fb03dbc7cfa155edc2ac",
+    "bytes": 10659
+  },
+  "rm_match\\integrations\\pb_aim_contract.py": {
+    "sha256": "48aae66a4cc67c3954a91f5f97d5fa24e9067bd724f1123dc5abdbe600b99e4e",
+    "bytes": 2511
+  },
+  "rm_match\\deployment\\profile.py": {
+    "sha256": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+    "bytes": 14335
+  },
+  "artifacts\\native-contour-v3-final-default-build\\generated\\main.cpp": {
+    "sha256": "4357b6e6b3495730229b0b08e9eeb94d0de7db57a5dc435b916a4ae26772e5ca",
+    "bytes": 17718
+  }
+}

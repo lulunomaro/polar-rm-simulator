@@ -1,0 +1,85 @@
+{
+  "schema": "polar.wsl.saved-framing-micro.v1",
+  "input_sha256": "dcba42423b0db706b90a11894465380a9907a53c3f605962e98f031e91d29557",
+  "reconstructed_wire_bytes": 6225301,
+  "reconstructed_wire_sha256": "6c3e7088d1b751cb9b576e9b5ac23deb5acfa8f7c34a95850cf2395b53874278",
+  "chunk_size": 65536,
+  "chunk_count": 95,
+  "paired_trials": 20,
+  "identical_complete_line_bytes": true,
+  "source_before": {
+    "artifacts\\pb2025-aim-controlled-fast-probe-20261014-01\\host_attempt1\\OBSERVATION.json": "dcba42423b0db706b90a11894465380a9907a53c3f605962e98f031e91d29557",
+    "artifacts\\pb2025-aim-controlled-fast-audit-20261014-01\\audit.py": "96f27dc959fa7b529c3c3d382bc8e3018816516fa51522cff6d15b432a459789",
+    "rm_match\\deployment\\wsl_jsonl_worker.py": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083"
+  },
+  "source_after": {
+    "artifacts\\pb2025-aim-controlled-fast-probe-20261014-01\\host_attempt1\\OBSERVATION.json": "dcba42423b0db706b90a11894465380a9907a53c3f605962e98f031e91d29557",
+    "artifacts\\pb2025-aim-controlled-fast-audit-20261014-01\\audit.py": "96f27dc959fa7b529c3c3d382bc8e3018816516fa51522cff6d15b432a459789",
+    "rm_match\\deployment\\wsl_jsonl_worker.py": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083"
+  },
+  "source_unchanged": true,
+  "samples_s": {
+    "old_repeated_prefix_scan": [
+      0.021755200003099162,
+      0.021416600000520702,
+      0.02131710000685416,
+      0.021646000001055654,
+      0.021837100000993814,
+      0.022064099997805897,
+      0.021367100001953077,
+      0.021793899999465793,
+      0.02125279999745544,
+      0.021912099997280166,
+      0.02207060000364436,
+      0.021737600000051316,
+      0.022185499998158775,
+      0.022930599996470846,
+      0.02215089999663178,
+      0.022598700001253746,
+      0.02303760000359034,
+      0.021739499999966938,
+      0.021633500000461936,
+      0.022396100001060404
+    ],
+    "new_incremental_scan": [
+      0.013081699995382223,
+      0.013001799998164643,
+      0.01436680000188062,
+      0.01328769999963697,
+      0.014476900003501214,
+      0.01412180000625085,
+      0.013629400003992487,
+      0.01285910000297008,
+      0.013423500000499189,
+      0.013412200001766905,
+      0.013962799996079411,
+      0.01383720000012545,
+      0.013059500000963453,
+      0.014499400000204332,
+      0.013235400001576636,
+      0.013296900004206691,
+      0.01345479999872623,
+      0.013530399999581277,
+      0.012981699997908436,
+      0.013320300000486895
+    ]
+  },
+  "summary": {
+    "old_repeated_prefix_scan": {
+      "p50_ms": 21.815500000229804,
+      "min_ms": 21.25279999745544,
+      "max_ms": 23.03760000359034
+    },
+    "new_incremental_scan": {
+      "p50_ms": 13.417850001133047,
+      "min_ms": 12.85910000297008,
+      "max_ms": 14.499400000204332
+    }
+  },
+  "scope": "Local saved actual DTO + source-order reconstructed wire; original capture timestamps unchanged; isolated LF/buffer work only",
+  "live_qualified": false,
+  "nn_requests": 0,
+  "physics_steps": 0,
+  "wire_sent_to_peer": false,
+  "limitation": "Not captured original OS wire, not transport/NN latency, no STOP file call included; no 80ms inference or live qualification"
+}

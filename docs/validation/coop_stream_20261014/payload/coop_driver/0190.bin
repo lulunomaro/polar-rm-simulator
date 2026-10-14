@@ -1,0 +1,32 @@
+{"event": "coop_client_started", "manual_robots": ["red_infantry"], "out": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\coop-manual-smoke-20261014-01", "game_ready": false, "note": "Select the granted infantry, claim/arm explicitly; no auto goal or fire"}
+{
+  "phase": "CLIENT_STARTED_NOT_GAME_QUALIFIED",
+  "clean": true,
+  "game_ready": false,
+  "reason": "server_returned",
+  "server_returncode_before_job_cleanup": 0,
+  "client_returncode_before_cleanup": null,
+  "client_ownership": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 1,
+    "errors": [],
+    "pid": 60776,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "server_returncode_before_cleanup": 0,
+  "server_ownership": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 0,
+    "errors": [],
+    "pid": 58076,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "cleanup_errors": [],
+  "server_clean_ack": true
+}

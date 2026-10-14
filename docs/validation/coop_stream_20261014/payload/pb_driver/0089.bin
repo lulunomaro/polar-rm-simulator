@@ -1,0 +1,24 @@
+"""Capture one fresh registration and first exposure, no frame resend."""
+from pathlib import Path
+import hashlib,json,os,subprocess,sys,time
+ROOT=Path(__file__).resolve().parents[1];BASE=ROOT/'artifacts/pb2025-aim-stream-repair-probe-20261014-01'
+OUT=ROOT/'artifacts/pb-aim-stream-repair-driver-20261014-01';OUT.mkdir()
+names=sorted(p for p in BASE.glob('*.py'))+sorted(p for p in (ROOT/'rm_match').rglob('*.py'))
+before={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in names}
+linux='/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator'
+commands=[['wsl.exe','-d','Ubuntu-22.04','-u','root','--','/root/polar-humble-ext4-20261014-01/venv/bin/python',linux+'/'+(BASE/'register_linux.py').relative_to(ROOT).as_posix(),'--label','attempt1','--robot-id','blue_hero'],
+ [sys.executable,str(BASE/'probe_host.py'),'--label','attempt1','--manifest',str(BASE/'registered_attempt1/AIM_PLUGINS.json')]]
+(OUT/'driver.py').write_bytes(Path(__file__).read_bytes());(OUT/'COMMANDS.json').write_bytes((json.dumps(dict(argvs=commands,source_before=before),indent=2)+'\n').encode())
+results=[]
+for number,cmd in enumerate(commands,1):
+    start=time.perf_counter()
+    with (OUT/f'{number:02}-stdout.log').open('xb') as stdout,(OUT/f'{number:02}-stderr.log').open('xb') as stderr:
+        child=subprocess.Popen(cmd,cwd=ROOT,stdin=subprocess.DEVNULL,stdout=stdout,stderr=stderr,shell=False,creationflags=subprocess.CREATE_NO_WINDOW)
+        (OUT/f'{number:02}-PID.json').write_bytes((json.dumps(dict(pid=child.pid,driver_pid=os.getpid()))+'\n').encode());code=child.wait()
+    row=dict(stage=number,returncode=code,reaped=child.poll() is not None,elapsed_s=time.perf_counter()-start);results.append(row)
+    print(json.dumps(row),flush=True)
+    if number==1 and code:break
+after={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in names}
+result=dict(stages=results,source_before=before,source_after=after,source_unchanged=before==after,qualification='One fresh strict original-80ms first-frame resource probe; no SDK lease or response application')
+(OUT/'RESULT.json').write_bytes((json.dumps(result,indent=2)+'\n').encode())
+raise SystemExit(results[-1]['returncode'])

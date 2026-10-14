@@ -1,0 +1,131 @@
+"""Artifact-only exact-call observers; no image/authority/clock substitution."""
+import hashlib,json,threading,time
+
+class JSONDelegate:
+ def __init__(self,original,trace):self.original=original;self.trace=trace
+ def __getattr__(self,name):return getattr(self.original,name)
+ def dumps(self,*args,**kwargs):
+  active=(threading.get_ident()==self.trace.caller_thread and args and type(args[0]) is dict and args[0].get('op')=='act')
+  if not active:return self.original.dumps(*args,**kwargs)
+  self.trace.record('json_dumps_begin')
+  try:value=self.original.dumps(*args,**kwargs)
+  except BaseException as exc:self.trace.record('json_dumps_error',error_type=type(exc).__name__);raise
+  self.trace.record('json_dumps_end',characters=len(value));return value
+
+class StreamDelegate:
+ def __init__(self,original,trace,direction):self.original=original;self.trace=trace;self.direction=direction
+ def __getattr__(self,name):return getattr(self.original,name)
+ def write(self,value):
+  self.trace.record('stdin_write_begin',requested_bytes=len(value))
+  try:size=self.original.write(value)
+  except BaseException as exc:self.trace.record('stdin_write_error',error_type=type(exc).__name__);raise
+  with self.trace.lock:
+   self.trace.write_returns+=1
+   if type(size) is int and size>0:self.trace.write_returned_bytes+=size
+  self.trace.record('stdin_write_return',returned_bytes=size);return size
+ def flush(self):
+  self.trace.record('stdin_flush_begin')
+  try:value=self.original.flush()
+  except BaseException as exc:self.trace.record('stdin_flush_error',error_type=type(exc).__name__);raise
+  self.trace.record('stdin_flush_end');return value
+ def readline(self,*args,**kwargs):
+  self.trace.record('stdout_readline_begin')
+  try:value=self.original.readline(*args,**kwargs)
+  except BaseException as exc:self.trace.record('stdout_readline_error',error_type=type(exc).__name__);raise
+  self.trace.record('stdout_readline_end',returned_bytes=len(value));return value
+
+class HostTrace:
+ def __init__(self,adapter):
+  from rm_match.platform_v2.adapters import BaseAdapter
+  from rm_match.deployment.json_adapter import JsonLineAdapter
+  from rm_match.deployment.wsl_jsonl import WslAimPluginAdapter
+  import rm_match.deployment.json_adapter as module
+  if (type(adapter) is not WslAimPluginAdapter or getattr(adapter.checked,'__func__',None) is not BaseAdapter.checked
+      or getattr(adapter._exchange,'__func__',None) is not JsonLineAdapter._exchange):
+   raise ValueError('diagnostic requires exact reviewed inherited methods')
+  self.adapter=adapter;self.lock=threading.Lock();self.rows=[];self.total=0;self.dropped=0
+  self.raw=None;self.additional_raw=0;self.enqueue_completed=False;self.write_returns=0;self.write_returned_bytes=0;self.expected=None
+  self.caller_thread=threading.get_ident();self.saved=[];self.restored=False;self.persist_started=False
+  checked=adapter.checked;exchange=adapter._exchange;put=adapter.requests.put_nowait;get=adapter.responses.get
+  def observe_checked(value):
+   self.record('checked_begin')
+   try:result=checked(value)
+   except BaseException as exc:self.record('checked_error',error_type=type(exc).__name__);raise
+   self.record('checked_end');return result
+  def observe_exchange(packet,*,timeout):
+   self.record('exchange_enter',timeout_s=timeout)
+   try:value=exchange(packet,timeout=timeout)
+   except BaseException as exc:self.record('exchange_error_after_original_cleanup',error_type=type(exc).__name__);raise
+   self.record('exchange_return');return value
+  def observe_put(value):
+   # Shutdown None passes unchanged. Only one actual bytes reference is held;
+   # no copy/JSON parse/decode/hash occurs on the original enqueue hot path.
+   if type(value) is not bytes:return put(value)
+   with self.lock:
+    if self.raw is None:self.raw=value
+    else:self.additional_raw+=1
+   self.record('requests_put_begin',bytes=len(value))
+   try:result=put(value)
+   except BaseException as exc:self.record('requests_put_error',error_type=type(exc).__name__);raise
+   with self.lock:self.enqueue_completed=True
+   self.record('requests_put_end');return result
+  def observe_get(*args,**kwargs):
+   self.record('response_get_begin',timeout_s=kwargs.get('timeout'))
+   try:value=get(*args,**kwargs)
+   except BaseException as exc:self.record('response_get_error_before_original_cleanup',error_type=type(exc).__name__);raise
+   self.record('response_get_end');return value
+  try:
+   self.replace(adapter,'checked',observe_checked);self.replace(adapter,'_exchange',observe_exchange)
+   self.replace(adapter.requests,'put_nowait',observe_put);self.replace(adapter.responses,'get',observe_get)
+   self.replace(module,'json',JSONDelegate(module.json,self))
+   self.replace(adapter.process,'stdin',StreamDelegate(adapter.process.stdin,self,'stdin'))
+   self.replace(adapter.process,'stdout',StreamDelegate(adapter.process.stdout,self,'stdout'))
+   self.record('hooks_installed')
+  except BaseException:self.restore();raise
+ def replace(self,obj,name,value):
+  had=name in obj.__dict__;original=obj.__dict__.get(name)
+  self.saved.append((obj,name,had,original));setattr(obj,name,value)
+ def record(self,stage,**scalars):
+  wall=time.perf_counter()
+  with self.lock:
+   self.total+=1
+   if len(self.rows)>=64:self.dropped+=1;return
+   self.rows.append(dict(stage=stage,host_perf_counter=wall,clock_domain='Windows_host_QPC',thread_id=threading.get_ident(),**scalars))
+ def expect(self,observation):
+  self.expected={k:observation[k] for k in ['robot_id','episode','binding_epoch','observed_seq','sim_time','wall_deadline']}
+ def restore(self):
+  if self.restored:return
+  for obj,name,had,original in reversed(self.saved):
+   if had:setattr(obj,name,original)
+   else:delattr(obj,name)
+  self.saved=[];self.restored=True
+ def persist(self,out,timeout=.1):
+  if self.persist_started:raise ValueError('host trace final persistence once')
+  self.persist_started=True;self.record('final_trace_begin_after_resource_close')
+  with self.lock:
+   rows=list(self.rows);raw=self.raw;total=self.total;dropped=self.dropped
+   additional=self.additional_raw;enqueued=self.enqueue_completed;writes=self.write_returns;returned=self.write_returned_bytes
+  errors=[];summary={};deadline=time.perf_counter()+min(.1,timeout)
+  def write():
+   try:
+    packet_info=dict(available=raw is not None,enqueue_completed=enqueued,reference_type='exact immutable bytes passed to actual original requests.put_nowait',
+     delivery_proof='Enqueue reference is not full OS write or Linux delivery proof')
+    if raw is not None:
+     decoded=json.loads(raw);actual={k:decoded['observation'][k] for k in self.expected}
+     exact=all(type(actual[k]) is type(v) and actual[k]==v for k,v in self.expected.items())
+     packet_info.update(bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),newline=raw.endswith(b'\n'),
+      original_identity=actual,original_identity_and_types_match=exact)
+     if not exact:raise ValueError('actual queued original identity mismatch')
+    value=dict(schema='polar.pb-aim-host-actual-io-trace.v1',capacity=64,total=total,dropped=dropped,rows=rows,
+     actual_enqueued_packet=packet_info,additional_packets_not_retained=additional,
+     write_return_calls=writes,write_returned_bytes=returned,
+     write_count_scope='Only successful original FileIO.write returns; a blocked/error write may have OS partial bytes. Zero returns never proves zero OS delivery.',
+     hooks_restored=self.restored,actual_io_thread_stopped=bool(self.adapter.shutdown_status and self.adapter.shutdown_status.get('io_thread_stopped')),
+     original_methods_and_arguments_preserved=True,no_hotpath_hash_parse_or_disk=True)
+    with (out/'HOST_ACTUAL_IO_TRACE.json').open('xb') as stream:stream.write((json.dumps(value,allow_nan=False,indent=2)+'\n').encode())
+    summary.update(packet_bytes=packet_info.get('bytes'),packet_sha256=packet_info.get('sha256'))
+   except BaseException as exc:errors.append(type(exc).__name__+':'+str(exc))
+  writer=threading.Thread(target=write,name='pb-host-final-evidence',daemon=True);writer.start()
+  writer.join(max(0.,deadline-time.perf_counter()))
+  return dict(completed=not writer.is_alive() and not errors,errors=errors,writer_reaped=not writer.is_alive(),
+   hooks_restored=self.restored,remaining_evidence_unknown=writer.is_alive() or bool(errors),**summary)

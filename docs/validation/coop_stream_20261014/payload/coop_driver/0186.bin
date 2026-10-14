@@ -1,0 +1,31 @@
+"""Captured real Windows launch/cleanup smoke; no algorithm or match claim."""
+from pathlib import Path
+import hashlib,json,os,subprocess,sys,time
+
+ROOT=Path(__file__).resolve().parents[1]
+OUT=ROOT/'artifacts/coop-manual-smoke-driver-20261014-01'
+RUN=ROOT/'artifacts/coop-manual-smoke-20261014-01'
+OUT.mkdir(exist_ok=False)
+config=json.loads((ROOT/'examples/coop_manual.json').read_bytes())
+config.update(port=18766,max_wall_seconds=8)
+cfg=OUT/'config.json';cfg.write_bytes((json.dumps(config,indent=2)+'\n').encode())
+names=['pyproject.toml','DEVELOPMENT_CHANGES.json','examples/coop_manual.json']
+names+=sorted(x.relative_to(ROOT).as_posix() for folder in ('rm_match','tools','tests','client_patches') for x in (ROOT/folder).rglob('*') if x.is_file() and (x.suffix=='.py' or folder=='client_patches') and '__pycache__' not in x.parts)
+def hashes():return {name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in names}
+before=hashes()
+argv=[sys.executable,'-u','-m','rm_match.deployment.coop_launcher','--config',str(cfg),'--out',str(RUN),'--run']
+env=dict(os.environ)
+for key in ('QT_QPA_PLATFORM','POLAR_SIM_ADMISSION_CREDENTIAL','PYTHONPATH','PYTHONHOME'):env.pop(key,None)
+env['PYTHONDONTWRITEBYTECODE']='1'
+(OUT/'driver.py').write_bytes(Path(__file__).read_bytes())
+(OUT/'COMMAND.json').write_bytes((json.dumps(dict(argv=argv,config_sha256=hashlib.sha256(cfg.read_bytes()).hexdigest(),source_before=before,qualification='Actual bounded local process launch/cleanup only; no observed UI interaction, NN, navigation, control or full match'),indent=2)+'\n').encode())
+started=time.perf_counter()
+with (OUT/'stdout.log').open('xb') as stdout,(OUT/'stderr.log').open('xb') as stderr:
+    child=subprocess.Popen(argv,cwd=ROOT,env=env,stdin=subprocess.DEVNULL,stdout=stdout,stderr=stderr,shell=False,creationflags=subprocess.CREATE_NO_WINDOW)
+    (OUT/'PID.json').write_bytes((json.dumps(dict(pid=child.pid,driver_pid=os.getpid()))+'\n').encode())
+    code=child.wait()
+after=hashes()
+result=dict(returncode=code,reaped=child.poll() is not None,elapsed_s=time.perf_counter()-started,source_before=before,source_after=after,source_unchanged=before==after,run_output=str(RUN),qualification='Launch/cleanup only; not playable 3v3 or visible-client interaction acceptance')
+(OUT/'RESULT.json').write_bytes((json.dumps(result,indent=2)+'\n').encode())
+print(json.dumps({k:v for k,v in result.items() if k not in ('source_before','source_after')}))
+raise SystemExit(code)

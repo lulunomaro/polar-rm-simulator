@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_wsl_jsonl_stream.py",
+    "tests/test_wsl_jsonl_stop_poll.py",
+    "tests/test_wsl_jsonl.py",
+    "tests/test_wsl_jsonl_owned_tree.py",
+    "tests/test_aim_jsonl_peer.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\wsl-jsonl-stream-repair-20261014-01\\after\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "scope": "Pure/mock or saved-DTO framing only; no WSL/ROS/NN/GL/physics"
+}

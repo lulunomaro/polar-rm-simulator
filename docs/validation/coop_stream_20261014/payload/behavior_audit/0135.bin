@@ -1,0 +1,176 @@
+[
+  {
+    "name": "pb_rm_interfaces",
+    "reused_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces",
+    "expected_ref": "refs/heads/protocol-v1.7.0",
+    "commands": [
+      {
+        "command": [
+          "git",
+          "ls-remote",
+          "https://github.com/SMBU-PolarBear-Robotics-Team/pb_rm_interfaces.git",
+          "refs/heads/protocol-v1.7.0"
+        ],
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 0.9823312000007718,
+        "output": "8912fa565a7ac57ef070df218957379123d238ee\trefs/heads/protocol-v1.7.0\n"
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 0.05221270000038203,
+        "output": "66c8bee0d389b0eed9e84157c26d026b95ebae4c\n"
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces",
+          "status",
+          "--porcelain"
+        ],
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 0.0555921000050148,
+        "output": ""
+      }
+    ],
+    "exact_ref_reuse": false,
+    "clean": true,
+    "files": {
+      "msg/Gimbal.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\Gimbal.msg",
+        "sha256": "7bcefebf551657ad89f190818bdea40b18b8aa84b697f48256e219d2107b21d7"
+      },
+      "msg/GimbalCmd.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\GimbalCmd.msg",
+        "sha256": "6332f3f6a58112c27b642e44bdeffa5cab823670c7d309a3c2d8f0f4d4516236"
+      },
+      "msg/Models.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\Models.msg",
+        "sha256": "82469a9669ab007d51ff32b81fd2784c6d7e82c89105e3e1f084c864cdaac9f1"
+      },
+      "msg/RobotStateInfo.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\RobotStateInfo.msg",
+        "sha256": "4191a84985e5c32a5527cda9886d503f7590e5577e6a18994776dc751622cd41"
+      },
+      "msg/referee/Buff.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\Buff.msg",
+        "sha256": "63c63fdea181804bc9cd85052a41a47d800a2c78c7f3a00daf0f0e11da7ee089"
+      },
+      "msg/referee/EventData.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\EventData.msg",
+        "sha256": "85d95af1ae9a0133153e27d34248ee16e43c12de8eb352b42210a71d2ea05ce2"
+      },
+      "msg/referee/GameRobotHP.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\GameRobotHP.msg",
+        "sha256": "f4f0210a28176b5a44649e935b75229097b05e0a1fb87d352a723149b166c655"
+      },
+      "msg/referee/GameStatus.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\GameStatus.msg",
+        "sha256": "4d79fef478d44b8be33f367c77b42e2721914947092770db2bf34d56cf5e287a"
+      },
+      "msg/referee/GroundRobotPosition.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\GroundRobotPosition.msg",
+        "sha256": "22906ef492800cf7a1b2aed9ee2c33825630c8c0f66a90e39cccdeae491a72b3"
+      },
+      "msg/referee/RfidStatus.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\RfidStatus.msg",
+        "sha256": "da5e5b50ac395f296128b9a3aa761a8b383dd1112c318358727fc97e9e941224"
+      },
+      "msg/referee/RobotStatus.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\pb_rm_interfaces\\msg\\referee\\RobotStatus.msg",
+        "sha256": "bffa8921fc0a3feb68404b488beff0a4847e7be38af14d1eaaaced9bb3797d31"
+      }
+    }
+  },
+  {
+    "name": "auto_aim_interfaces",
+    "reused_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces",
+    "expected_ref": "refs/heads/main",
+    "commands": [
+      {
+        "command": [
+          "git",
+          "ls-remote",
+          "https://github.com/SMBU-PolarBear-Robotics-Team/auto_aim_interfaces.git",
+          "refs/heads/main"
+        ],
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 0.8723021000041626,
+        "output": "5eab0e0464b6cfae7cf8ae0599109b3f5b623e3d\trefs/heads/main\n"
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces",
+          "rev-parse",
+          "HEAD"
+        ],
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 0.053193599997030105,
+        "output": "5eab0e0464b6cfae7cf8ae0599109b3f5b623e3d\n"
+      },
+      {
+        "command": [
+          "git",
+          "-C",
+          "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces",
+          "status",
+          "--porcelain"
+        ],
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 0.057584700000006706,
+        "output": ""
+      }
+    ],
+    "exact_ref_reuse": true,
+    "clean": true,
+    "files": {
+      "msg/Armor.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\Armor.msg",
+        "sha256": "0bb71122d45974543b3be054888a6e1b29b64edd9835c3362e2eccdd15ed11c8"
+      },
+      "msg/Armors.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\Armors.msg",
+        "sha256": "940745482c339562eb706025a4f96eb6ed21e4c24aed47486efdc250fbe6c525"
+      },
+      "msg/DebugArmor.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\DebugArmor.msg",
+        "sha256": "eabb29f20f166af2832c672bba4d7806edda0b75d96f31f5a5d1dd74f7252de8"
+      },
+      "msg/DebugArmors.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\DebugArmors.msg",
+        "sha256": "ab5e2bd78f1970a8efc43c658ba5dec2c226486925c11a5bfd5c825336152da5"
+      },
+      "msg/DebugLight.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\DebugLight.msg",
+        "sha256": "914575280aabf4f8d39b43593f1c5a4fa05f79f09b1aa8bbbe6513e437329b05"
+      },
+      "msg/DebugLights.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\DebugLights.msg",
+        "sha256": "33835665f4b33944348bc3eeaad83e958eb987b3a9fde3d9f92bb5b98d0f09a7"
+      },
+      "msg/Target.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\Target.msg",
+        "sha256": "86d06e63ac9c42d255059b1b839e7fbf07bf4d21ff7dda8ad428922d20545543"
+      },
+      "msg/TrackerInfo.msg": {
+        "original": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependencies-20261014-01\\source\\auto_aim_interfaces\\msg\\TrackerInfo.msg",
+        "sha256": "fe57384faf935f269da61485e45e35f2be75d6c86fbda7518733be3a81f6f94b"
+      }
+    }
+  }
+]

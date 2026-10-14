@@ -9,10 +9,10 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设及可执行校验 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
-| T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
-| T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
+| T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；Windows 手动步兵入口实际短时启动/退出通过 | 本轮未验证按键/画面交互；移动完整自瞄、云台/实体弹丸全链 |
+| T05 | 进行中（源码审计/候选）：已定位速度/角色与消费时坐标门；执行源码仍限 stationary red_sentry | opt-in 移动实现与实际验证、角色/队伍硬编码、多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 通用camera_gimbal_v1/原源关联/JSONL/ROS/WSL/Qt发现；T2静态live通过；同济原模型prepare/reset；PB七包build与三节点资源graph/reset/clean | PB首帧host序列化或部分WSL请求未完成，尚无图像计算；同济无图像；第二完整live、C板feedforward/固件、移动/多车/两机等未验收 |
+| T07 | 通用camera_gimbal_v1/原源关联/JSONL/ROS/WSL/Qt发现；T2静态live通过；同济原模型prepare/reset；PB七包build与三节点资源graph/reset/clean；新完整图像JSON抵达Python peer | PB仍超80ms、无ROS图像发布/检测/PnP/控制；同济无图像；第二完整live、C板feedforward/固件、移动/多车/两机等未验收 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup02四步骤0/source unchanged：1745pass/40明确skip/1008subtests；修复前失败、源码归因、三次静态live/资源/构建独立归档 | 质量不替live/许可/发布；PB/Tongji图像链与移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup03四步骤0/source unchanged：1807pass/40明确skip/1008subtests；stream/启动专测与实际进程、PB图像失败独立保存 | 质量不替live/许可/发布；PB/Tongji图像链与移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,32 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 当前交付优先级与本机入口（2026-10-14）
+
+用户要求优先完成自有客户端手控步兵 + 北极熊导航/比赛决策哨兵 + 传统决策树对抗的首场3v3。
+按[可玩路径与当前入口](COOP_PLAYABLE_PATH.md)推进移动真实自瞄、比赛树到导航、自动射击/四车Bot及整局/reset；
+其他家的通用自瞄适配保留，暂不把它们作为首场启动的前置条件。完整3v3尚未通过。
+
+[本轮永久证据](validation/coop_stream_20261014/README.md)分别保存：
+
+- Windows新手动入口21项专测，以及实际原Qt/仿真服务8秒配置的启动/退出；driver10.3184506s、exit0/reaped/source unchanged。
+  默认人工权限仅red_infantry、非audit；服务正常退出0/clean ACK、两owned Job回收且空。客户端在清理前仍运行，随后被Job结束；
+  没有本轮按键、画面、动作/命中或整局证据，game_ready=false。
+- 通用WSL JSONL把慢DrvFs STOP检查移到独立owned线程，仍强制核验初始身份并遵守原1.3/1.5s清理；
+  缓冲区只扫描新字节，严格JSON、大小、单请求/原期限仍拒错。102专测/2平台symlink明确skip；
+  两项实际无害进程树复测exit0/9.8535942s/reaped/source unchanged，没有图像、ROS或NN。
+- PB一张真实新图：capture→public23.3902ms，act入口35.0607ms，host校验12.1049ms、序列化11.9974ms；
+  入队实际6,225,306B、SHA5b71884b…，Linux完整第三请求同长度，bulk接收区间9.707535ms。
+  peer首次严格解码16.735ms、原bridge开始后被取消，仍无ROS publish/SourceArmors/Target或NN；原80ms失败。
+  没有跨时钟相减，没有把全量字节交付写成自瞄闭环。全部节点/相机清理与设置恢复完成；原Source03保持。
+- 官方独立比赛树源码d111b635…、workspace5faf964b…与依赖精确版本只读审计。
+  当前导航缺bt_navigator；默认比赛树是固定目标/状态/小陀螺，没有默认视觉攻击/射击。
+  另有字段、场地图、spin范围、取消重发与失效目标缺口；已逐项保存，尚未构建或运行比赛树。
+
+最终统一QA03四步骤exit0/source unchanged；1807passed/40明确skip/1008subtests/6既有warnings，
+pytest133.07s、driver168.8232764s/reaped。QA完成后仅新增本文、入口说明与永久证据，执行程序维持已测SHA。
+本轮未重跑T2静态live或PB30秒导航；它们原有独立范围保持，移动/自动火/多车/完整比赛与M0–M5未签收。
 
 ## 最新静态实时自瞄与通用层复测
 

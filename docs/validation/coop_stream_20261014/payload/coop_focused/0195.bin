@@ -1,0 +1,21 @@
+import hashlib,json,subprocess,sys,time
+from pathlib import Path
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
+sources=('rm_match/deployment/coop_launcher.py','tests/test_coop_launcher.py','examples/coop_manual.json')
+mapping={}
+for rel in sources:
+    raw=(ROOT/rel).read_bytes();mapping[rel]=dict(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+    target=HERE/'source'/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+(HERE/'SOURCE_MANIFEST.json').write_text(json.dumps(mapping,indent=2)+'\n')
+command=[sys.executable,'-m','pytest','tests/test_coop_launcher.py','-q','--junitxml='+str(HERE/'pytest.xml')]
+(HERE/'COMMAND.json').write_text(json.dumps(dict(argv=command,cwd=str(ROOT),scope='Lifecycle mocks/pipe/JSON units only; no GUI/WSL/model/physics'),indent=2)+'\n')
+start=time.perf_counter()
+with (HERE/'stdout.log').open('xb') as stdout,(HERE/'stderr.log').open('xb') as stderr:
+    child=subprocess.Popen(command,cwd=ROOT,stdout=stdout,stderr=stderr)
+    (HERE/'PID.json').write_text(json.dumps({'pid':child.pid})+'\n');code=child.wait(timeout=30.)
+result=dict(exit_code=code,elapsed_s=time.perf_counter()-start,reaped=child.poll() is not None,
+    source_unchanged=all(hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()==row['sha256'] for rel,row in mapping.items()),
+    qualification='Launch foundation tests, not observed GUI/3v3 interaction or algorithm qualification')
+(HERE/'PROCESS_RESULT.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps(result));print((HERE/'stdout.log').read_text(errors='replace'));print((HERE/'stderr.log').read_text(errors='replace'))
+raise SystemExit(code)

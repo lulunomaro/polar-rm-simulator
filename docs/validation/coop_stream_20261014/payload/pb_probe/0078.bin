@@ -1,0 +1,24 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\static_review.py"
+  ],
+  "exit_code": 0,
+  "completed": true,
+  "wall_seconds": 0.5536789,
+  "WSL": false,
+  "ROS": false,
+  "GL": false,
+  "model": false,
+  "NN": false,
+  "scope": "Python3.10 AST plus sealed Source03 and mount hashes only",
+  "source03_bindings": 11,
+  "source03_generated": 71,
+  "unchanged_copied_scripts": [
+    "register_linux.py",
+    "peer_bootstrap.py",
+    "controlled_scene.py",
+    "diagnose_saved_serialization.py"
+  ],
+  "no_actual_hook_or_IO_execution": true
+}

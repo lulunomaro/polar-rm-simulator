@@ -1,0 +1,60 @@
+"""Existing single frame only; source read/strict decode, never NN/ROS/GL."""
+import json,hashlib,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT));OUT=Path(__file__).parent
+BASE=ROOT/'artifacts/pb2025-aim-stream-repair-probe-20261014-01'
+DRIVER=ROOT/'artifacts/pb-aim-stream-repair-driver-20261014-01'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def read(p):return json.loads(p.read_bytes())
+def main():
+ sources=['rm_match/platform_v2/native_adapter.py','rm_match/platform_v2/runtime.py','rm_match/platform_v2/adapters.py',
+  'rm_match/platform_v2/wsl_native_adapter.py','rm_match/integrations/rmcs_contract.py','rm_match/integrations/pb_aim_ros_peer.py',
+  'rm_match/integrations/pb_aim_stack.py','rm_match/integrations/pb_aim_contract.py','rm_match/deployment/profile.py',
+  'artifacts/native-contour-v3-final-default-build/generated/main.cpp']
+ files=[p for parent in [BASE/'host_attempt1',BASE/'registered_attempt1',DRIVER] for p in parent.rglob('*') if p.is_file()]
+ files.extend(ROOT/p for p in sources);before={str(p.relative_to(ROOT)):dict(sha256=sha(p),bytes=p.stat().st_size) for p in files}
+ h=read(BASE/'host_attempt1/PROBE_RESULT.json');trace=read(BASE/'host_attempt1/HOST_ACTUAL_IO_TRACE.json')
+ peer=read(BASE/'registered_attempt1/PEER_PHASES.json');clean=read(next((BASE/'host_attempt1/owned').glob('*/CLEANUP.json')))
+ driver=read(DRIVER/'RESULT.json');o=read(BASE/'host_attempt1/OBSERVATION.json');cap=read(BASE/'host_attempt1/CAPTURE.json')
+ rgb=(BASE/'host_attempt1/capture.rgb').read_bytes()
+ from rm_match.platform_v2.contracts import validate_observation
+ decoded={};validate_observation(o,image_bytes=decoded)
+ if decoded['raw']!=rgb or hashlib.sha256(rgb).hexdigest()!=cap['rgb_sha256']:raise ValueError('actual pixels mismatch')
+ ht={r['stage']:r['host_perf_counter'] for r in trace['rows']};pt={r['stage']:r['linux_perf_counter'] for r in peer['rows']};io=clean['io_metrics'];lr=io['last_request']
+ ms=lambda a,b:(b-a)*1000
+ report=dict(schema='polar.pb-aim-stream-readonly-audit.v1',result='FAIL under original80ms',
+  host=dict(clock='original Windows QPC',capture_wall=h['budget']['capture_wall'],original_deadline=o['wall_deadline'],
+   capture_to_public_ms=ms(h['budget']['capture_wall'],h['public_camera_received_wall']),
+   capture_to_act_ms=ms(h['budget']['capture_wall'],h['act_enter_wall']),
+   checked_ms=ms(ht['checked_begin'],ht['checked_end']),dumps_ms=ms(ht['json_dumps_begin'],ht['json_dumps_end']),
+   post_dumps_to_put_gap_ms=ms(ht['json_dumps_end'],ht['requests_put_begin']),
+   gap_scope='UTF8 encode + gate/check/scheduling/observer gap, not isolated encode timing',
+   capture_to_enqueue_return_ms=ms(h['budget']['capture_wall'],ht['requests_put_end']),
+   original_remaining_at_receive_ms=(o['wall_deadline']-ht['response_get_begin'])*1000,
+   remaining_ms=(o['wall_deadline']-ht['response_get_begin'])*1000,
+   stdin_write_return_ms=ms(ht['stdin_write_begin'],ht['stdin_write_return']),
+   response_wait_to_original_error_ms=ms(ht['response_get_begin'],ht['response_get_error_before_original_cleanup']),
+   cleanup_after_response_error_ms=ms(ht['response_get_error_before_original_cleanup'],ht['exchange_error_after_original_cleanup'])),
+  actual_packet=trace['actual_enqueued_packet'],successful_actual_write_return_bytes=trace['write_returned_bytes'],
+  linux=dict(clock='Linux-local only, never subtracted from QPC',complete_requests=io['complete_requests'],input_bytes=io['input_bytes'],
+   actual_image_line_bytes=next(r['bytes'] for r in peer['rows'] if r.get('line_index')==3 and r['stage']=='complete_line_received'),
+   bulk_read_span_ms=ms(lr['first_read_wall'],lr['last_read_wall']),
+   full_read_to_queued_ms=ms(lr['last_read_wall'],lr['queued_wall']),
+   queued_to_peer_write_completed_ms=ms(lr['queued_wall'],lr['peer_write_completed_wall']),
+   complete_peer_line_to_decode_begin_ms=ms(next(r['linux_perf_counter'] for r in peer['rows'] if r.get('line_index')==3 and r['stage']=='complete_line_received'),pt['strict_raw_decode_begin']),
+   strict_raw_decode_ms=ms(pt['strict_raw_decode_begin'],pt['strict_raw_decode_end']),
+   bridge_begin_to_cancel_ms=ms(pt['bridge_begin_begin'],pt['shutdown_signal']),
+   stage_limits='Original strict decode completed. Bridge revalidation/encode interrupted; no bridge end, ROS publish, SourceArmors/Target or image-triggered NN.'),
+  pixels=dict(bytes=len(rgb),sha256=cap['rgb_sha256'],strict_decoded_actual_bytes_identical=True,
+   photo=dict(path=str((BASE/'host_attempt1/capture.png').relative_to(ROOT)),sha256=sha(BASE/'host_attempt1/capture.png'))),
+  observer=peer['observer_summary'],host_hook_restored=trace['hooks_restored'],host_settings=dict(cv=h['host_opencv_restoration'],switch=h['host_python_switch_interval']),
+  cleanup=dict(clean=clean['clean'],host_clean=h['cleanup']['ownership']['windows']['clean'],remaining_members=clean['ownership']['remaining_members'],
+   forced_kill=clean['ownership']['killed'],stop_poll_thread_stopped=clean['stop_poll_thread_stopped']),
+  host_source_unchanged=h['source_unchanged'],host_before_equals_after=h['source_before']==h['source_after'],
+  host_ref_unchanged=h['ref_before']==h['ref_after'],driver_source_unchanged=driver['source_before']==driver['source_after'],driver_stages=driver['stages'],
+  qualification='One resource exposure, no SDK/control application; complete delivery is not real-time aim acceptance or NN success.',
+  no_new_execution=dict(WSL=False,ROS=False,GL=False,NN=False,benchmark=False,resend=False))
+ after={str(p.relative_to(ROOT)):dict(sha256=sha(p),bytes=p.stat().st_size) for p in files};report['all_input_files_unchanged']=before==after
+ (OUT/'INPUT_HASHES.json').write_bytes((json.dumps(before,indent=2)+'\n').encode());(OUT/'REPORT.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report,indent=2))
+ if not report['all_input_files_unchanged']:raise ValueError('read-only evidence changed')
+if __name__=='__main__':main()

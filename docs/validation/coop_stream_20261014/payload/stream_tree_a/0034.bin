@@ -1,0 +1,12 @@
+import os,sys,subprocess,json,signal
+sys.path.insert(0,'/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator')
+from rm_match.integrations.aim_jsonl_peer import run_aim_plugin
+def factory():
+ child=subprocess.Popen([sys.executable,"-c","import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(120)"],start_new_session=True)
+ open('/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/wsl-jsonl-harmless-a8816caba1924c9c96b7f30317603d47/grandchild.json',"w").write(json.dumps({"pid":child.pid}))
+ class Engine:
+  def __call__(self,*args):raise RuntimeError("fixture never receives images")
+  def reset(self,context):
+   os._exit(0)
+ return Engine()
+raise SystemExit(run_aim_plugin(factory))

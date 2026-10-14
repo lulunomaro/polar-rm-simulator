@@ -1,0 +1,87 @@
+# 北极熊 2025 比赛行为树：只读接入审计
+
+本审计仅获取和阅读源码；未执行 colcon、ROS、神经网络、GUI 或比赛。它不是决策已跑通的证据。所有目录在 ignored artifacts 下，未修改上游源码或项目跟踪源码/文档。
+
+## 固定来源
+
+| 来源 | 实际固定版本 | 获取证据 |
+| --- | --- | --- |
+| 官方 pb2025_sentry_behavior | d111b635d326775c6c19aa12500a0bbd6a27a588 | FETCH_RESULT.json，非递归浅 clone，exit 0，已回收，干净 |
+| 官方 pb2025_sentry_ws | 5faf964b121642d1c8d22dcabf683a13158c2351 | FETCH_RESULT.json，同上 |
+| 官方 PB fork BehaviorTree.ROS2 humble | 7d177dcfbd7dbb7f5e5cd79c4e5e3e744e389c56 | BT_FETCH_RESULT.json，同上 |
+| BehaviorTree.CPP 4.6.2 | 2a8a226fbbd99f524f0796e0d8a3145773c61c06 | BT_FETCH_RESULT.json，同上；CMake project version 4.6.2 |
+| behavior dependencies.repos 指定 pb_rm_interfaces protocol-v1.7.0 | 8912fa565a7ac57ef070df218957379123d238ee | PROTOCOL_FETCH_RESULT.json，同上 |
+| 已有自瞄 pb_rm_interfaces 源码 | 66c8bee0d389b0eed9e84157c26d026b95ebae4c | INTERFACE_REUSE_RESULT.json，只读复用；与上述 branch 的所有 .msg 字节一致，提交不同 |
+| 官方 auto_aim_interfaces main，复用现有固定源码 | 5eab0e0464b6cfae7cf8ae0599109b3f5b623e3d | INTERFACE_REUSE_RESULT.json，实际 ls-remote main 与 HEAD 相等，干净；消息副本在 reused_interfaces |
+
+各来源 FILES.json 保留全部非 .git 文件的逐文件 SHA256。未递归获取 sentry_ws 中所有 drivers/Gazebo 依赖。behavior 的 dependencies.repos 使用可移动分支，后续构建必须使用本次固定 SHA，不能把 branch 名当固定版本。
+
+## 实际默认树
+
+`params/sentry_behavior.yaml` 与工作区 `node_params.yaml` 均选择 `target_tree=rmul_2025`。服务名为 `pb2025_sentry_behavior`，类型 `btcpp_ros2_interfaces/action/ExecuteTree`；目标含 target_tree/payload，结果含 node_status/return_message，反馈含 message。客户端等待该 server 后发目标，收到任何终态后重新启动 100 ms wall timer、重发树；必须在停止时停止客户端，否则取消会被重发抵消。
+
+默认 XML `behavior_trees/rmul_2025.xml` 的高层行为是：
+
+1. 检查 `GameStatus.game_progress==RUNNING(4)` 且剩余时间 [0,420]；失败时发布 cmd_spin=0 和 cmd_vel=0。
+2. 正常比赛发布 cmd_spin=7 rad/s。
+3. 检查 current_hp>=200、heat<=350、ammo>=0；状态不好时检查 RFID 己方补给区，若未检测到则发布固定 map 目标 (0,0,0)，然后本轮返回失败。
+4. 状态好则发布固定 map 目标 (4.65,-3.5,0)。
+
+执行服务 tick_frequency=5 Hz，outer KeepRunningUntilFailure+ForceSuccess 使其持续轮询。它没有巡逻多点切换，没有默认视觉攻击分支，也没有射击节点。`dev_rm.xml` 包含 rmul_supply、test_attack_pose、test_attacked_feedback、test_gimbal_absolute、test_gimbal_velocity、test_go_to_supply、test_is_detect_enemy；这些是独立测试树，不能把它们当默认完整比赛树已运行。
+
+## 全部 ROS 输入
+
+所有 topic 为相对名，必须落入新 generation 的哨兵 namespace。裁判订阅 QoS 默认 reliable/volatile depth 10；视觉使用 SensorDataQoS；costmap 使用 reliable/transient-local depth 1。
+
+| topic | 类型 | 黑板键 | 当前消费者和必要字段 | 当前仿真合法来源/缺口 |
+| --- | --- | --- | --- | --- |
+| referee/game_status | pb_rm_interfaces/GameStatus | referee_gameStatus | IsGameStatus: game_progress、stage_remain_time | DTO 有 phase、remaining_seconds、emergency_stop。running 映射 4、countdown 映射 3、finished 映射 5；paused/e-stop 不得映射 running。idle 不能虚构已进入准备/自检，按显式场景状态处理。秒整数转换须记录。 |
+| referee/robot_status | pb_rm_interfaces/RobotStatus | referee_robotStatus | IsStatusOK: current_hp、shooter_17mm_1_barrel_heat、projectile_allowance_17mm；IsAttacked: is_hp_deduced、hp_deduction_reason、armor_id | DTO 仅 hp/heat/ammo/alive，可供前者；robot_id/max HP/冷却/热限需合法角色/规则配置；受击事件/装甲编号还未导出。缺失不能从敌真值反推；robot_pos 不能用仿真理想世界定位。仅允许消费已支持字段的树。 |
+| referee/rfid_status | pb_rm_interfaces/RfidStatus | referee_rfidStatus | IsRfidDetected: friendly_fortress_gain_point、friendly_supply_zone_non_exchange、friendly_supply_zone_exchange、center_gain_point | 当前 DTO 无本车区域/RFID contact。需由 trusted judge 输出本车合法接触状态；无数据必须保持不检测/不启用依赖分支，不能拿导航理想位置代替 RFID。 |
+| referee/event_data | pb_rm_interfaces/EventData | referee_eventData | 当前树/插件无读取 | DTO 无，保持未发布；不构造阵营占领状态。 |
+| referee/all_robot_hp | pb_rm_interfaces/GameRobotHP | referee_allRobotHP | 当前树/插件无读取 | 当前授权连接方案仅本车裁判；不发布六车内部 HP 表。 |
+| referee/ground_robot_position | pb_rm_interfaces/GroundRobotPosition | referee_groundRobotPosition | 当前树/插件无读取 | 不发布友军理想坐标。 |
+| referee/buff | pb_rm_interfaces/Buff | referee_buff | 当前树/插件无读取 | DTO 无，对未支持 buff 不构造假的增益值。 |
+| detector/armors | auto_aim_interfaces/Armors | detector_armors | IsDetectEnemy: armors[].number、pose.position.x/y；空/未检测返回失败 | 仅原始工业相机图像经真实自瞄检测/PnP 的结果。没有 detector output 时不得像素代打/敌真值生成 Armors。当前 PB Source03 未送达 detector，尚无合法输出。 |
+| tracker/target | auto_aim_interfaces/Target | tracker_target | CalculateAttackPose: header、tracking、id、position | 仅真实自瞄估计；Target 完整类型还有 armors_num/velocity/yaw/v_yaw/radius_1/radius_2/dz。禁止从真实机器人 pose/velocity 造这些字段。T2 robot_center/direction 没有现成完整 Target bridge。 |
+| global_costmap/costmap | nav_msgs/OccupancyGrid | nav_globalCostmap | CalculateAttackPose: header.frame_id、info、data | 真实 SLAM/costmap 产物；必须有真实 PB map→odom→base_link TF，不能发仿真理想位置/地图坐标代替定位。 |
+
+`GroundRobotPosition` 的消息字段只包含己方 hero/engineer/standard_3/standard_4 的 position；不能误认成视觉敌位接口。对未支持裁判字段要在树配置中拒绝依赖该字段，避免普通 ROS 消息默认值被下游误认成有效真值。
+
+## 全部 ROS 输出与平台差异
+
+| 节点/输出 | ROS 类型 | 当前行为 | 最小接入要求 |
+| --- | --- | --- | --- |
+| PubNav2Goal → goal_pose | geometry_msgs/PoseStamped | setMessage 每次 now()，frame_id 固定 map，pose 取输入；无反馈/结果/取消 | 新 bt_navigator 必须提供 goal_pose subscriber，或显式、有来源的 owned goal manager 调用已有 ComputePath+FollowPath；不能把准备资源当已有目标执行。 |
+| SendNav2Goal → navigate_to_pose | nav2_msgs/action/NavigateToPose | 反馈 distance_remaining，返回 SUCCEEDED/ABORTED/CANCELED；onHalt 只打印，实际 cancel 在 ROS2 wrapper | 需要真正 bt_navigator action server；强制绑定 namespace/episode/epoch；验证暂停/撤退/换目标/退出的实际 cancel。 |
+| PublishTwist → cmd_vel | geometry_msgs/Twist | x/y m/s、z rad/s；halt 发布零；裸 Twist 无 epoch/seq/deadline | 不能直接授权物理运动。默认树仅停止零；非零测试动作必须经来源封装和 SDK 仲裁，保持 150 ms 窗口，不能把旧 Twist 贴新 observed_seq。 |
+| PublishSpinSpeed → cmd_spin | example_interfaces/Float32 | 默认 7 rad/s；halt 发布 0 | 自动 navigation velocity_body 当前 wz 范围 ±2 rad/s；已有 spin_v1 是手动能力。不可静默截断为 2 并声称原行为。首场可显式树 overlay 关闭小陀螺，或实现独立有期限/来源/仲裁的算法 spin capability。 |
+| PublishGimbalAbsolute → cmd_gimbal | pb_rm_interfaces/GimbalCmd | ABSOLUTE_ANGLE，position yaw/pitch，ROS stamp | 仅 dev 测试树；必须转换坐标/正负和模式，与真实自瞄命令按优先级仲裁。没有正确云台 TF 就不能按 world yaw 使用；该类没有自定义 halt 消息。 |
+| PublishGimbalVelocity → cmd_gimbal | pb_rm_interfaces/GimbalCmd | VELOCITY，速度与角度限幅 | 当前 SDK aim 只有 gimbal_target；不能当 angle 直接消费，需单独实现有期限的速度模式或明确禁止该树；没有自定义 halt 消息。 |
+| CalculateAttackPose → debug_attack_pose | visualization_msgs/MarkerArray | 可视化候选点；另通过 BT goal output 提供攻击 PoseStamped | 可视化不得成为敌真值 feed；只读 viewer 证据与实际控制目标分开。 |
+| 射击 | 无行为树输出 | 该仓库没有 cmd_shoot/fire/sentry-command 节点 | 官方 workspace 的 projectile solver 配置 cmd_shoot，属于自瞄链。当前 SDK fire_authority=manual_only、PB action fire_permission=False。哨兵自动开火尚须独立真实 aim sourced fire 协议+裁判/控制仲裁，不能用默认树存在来称可射击。 |
+
+## 与现有导航栈的最小连接
+
+1. `tools/pb_navigation_stack.py` 的 NODES 只有真实 PointLIO/预处理/SLAM/planner_server/controller_server，PLAN 明列 bt_navigator 未启动。`pb_wsl_navigation_worker.NavigationGate` 仅等待真实 map/odom/TF 后激活 planner/controller；生产模式 `relative_test_goal=false` 不生成目标。现有局部 30 s QA 由 AlgorithmObserver 直接调用 ComputePathToPose+FollowPath，不是比赛树。
+2. 在同一 owned generation 内扩展 supervisor 为真实导航 bt_navigator（以及原导航 XML 用到的 behavior_server/BackUpFreeSpace 和必要库/服务），逐文件/ELF固定。configure/activate 在真实 LIO+SLAM ready 后执行。bt_navigator 参数从固定 cb97fb07 原配置显式改 use_sim_time、base_link、namespace；不用 fake_vel_transform/gimbal_yaw_fake/static map→odom。原导航 XML 是 BTCPP_format=3，只用于 Nav2进程。
+3. 比赛树作为独立 BT.CPP v4 服务及 owned client，同域 84、localhost DDS、同哨兵 namespace、同 simulation clock，remap tf/tf_static/clock。保留已有 PB PID computation source context 的结果路径 `polar/pb/result`→NavigationBridge→SDK→MuJoCo；不消费 `cmd_vel_nav2_audit` 为新命令。5 Hz 高层树发布目标不替代每次有源 controller 的 50 ms ROS回复和 150 ms平台控制门限。
+4. 建立本车 referee publisher，从已验证 navigation observation 或独立合法 referee DTO 供 HP/heat/ammo/phase/time；新增 RFID/受击字段需 trusted judge own-only accessor。Tree manifest 明确支持字段；没有敌目标时使用 no detection，禁用依赖 missing fields 的分支。
+5. 默认固定 (4.65,-3.5)/(0,0) 是原场景 map 坐标，当前在线 SLAM map 的零点没有证明与原场地/补给区一致。必须配置经过测量/标定的场地 map waypoint/zone，并使用真实 PB定位/地标校准建立其 map 关系；不从 `Observation.own.odom_xyyaw` 或渲染真值做 map→odom。首场 waypoint overlay 必须独立记录，不宣称未改原场地坐标。
+6. 如将 T2估计接为树视觉输入，direction_frame='world' 代表惯性方向的相对向量，不能当绝对敌世界坐标。必须保留原图像capture stamp/identity，准确确认点还是向量、云台/工业相机外参，结合 PB LIO 的真实曝光时TF；无TF/过期/丢失不送可攻击目标。仅有 robot_center 不应构造未知 Target半径/velocity/ID。
+
+## 取消与时效：源码已发现，尚未修复/实测
+
+- BehaviorTree.ROS2 fork package version 0.2.0，开发要求 Humble + BT.CPP4.6.2；并未给 CMake find_package 版本范围。已有 Nav21.1.20 package 依赖 `behaviortree_cpp_v3`3.8.7。比赛 v4 与导航 v3 应分进程/独立插件路径，不能交换加载。还需固定 generate_parameter_library/btcpp_ros2_interfaces/所有 plugin ELF；本审计不确认当前Linux venv已安装这些。
+- fork `bt_action_node.hpp` 的 halt 调 cancelGoal；cancel 顺序等待 pending goal handle、cancel future、result future，每次 server_timeout（默认/配置1000 ms）。最坏三个等待超出现有 Linux1.3 s cleanup；README也披露 action halt bug。必须实测现版本的取消/超时，并对停止采用 bounded outer supervisor，先撤销物理权限/停止重发client/取消goal，期限到后回收owned进程，记录不干净的协议取消，不扩大原adapter cleanup窗口。
+- `tree_execution_server.cpp` 的 cancel 分支调用 haltTree，但异常路径 abort；客户端任何终态后自动重发。取消绝非只发一次 cancel 就结束。
+- `SentryBehaviorServer::subscribe` 只存最后消息，未检查generation/age。CalculateAttackPose 对 tracking=false 且 id为空仍可追到无TTL的历史位置；若tracking=false但id非空甚至继续变换position。缺失TF默认等待0.5 s。最小 fresh-target gate应阻止无fresh detection时进入该子树，必要时取消旧进攻goal；不能仅发空Target声称停止攻击。新epoch必须建新进程/清空状态。
+- IsDetectEnemy 对 armors[].number 直接 stoi，有空字符串处理但无非数字异常处理；对源字段应做严格输入校验，保留原ID，不伪造标签。
+- 原默认 heat_max350 与当前模拟哨兵规则 heat_max260 不同；阈值使用需记录场景overlay，真正fire仍由judge门控，不能将该条件当已满足规则。
+- server 正常退出会在编译期 ROOT_DIR 下写 behavior_trees/models.xml；后续若运行须隔离可写生成物并重新核对original source，不要让退出时改源代码而仍声称source unchanged。
+
+## 可执行后续清单与验收顺序
+
+先完成 owned bt_navigator+合法本车 referee publisher+显式匹配场地图的 default-tree overlay，实测running→供给/撤退→pause/finish→reset的目标执行/取消；此阶段可以称原比赛树接入导航，不能称视觉战斗。
+
+随后完成移动真实自瞄、时效 Target桥与导航/云台优先级、真实来源的自动射击能力；再引入明确标注的传统决策树对手。最后验证 human Infantry + PB Sentry +其余4机器人同场300 s、实际射击/命中/结束、reset后再开局和所有资源回收。未经这些证据，不称第一场可玩3v3完成。

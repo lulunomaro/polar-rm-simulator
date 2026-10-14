@@ -1,0 +1,73 @@
+{
+  "forbidden_algorithm_inputs": [
+    "scene metadata",
+    "enemy position",
+    "target labels",
+    "ideal target angle"
+  ],
+  "horizontal_forward": [
+    -1.0,
+    1.1102230246251568e-16
+  ],
+  "occlusion_or_detection_not_guaranteed": true,
+  "original_sim_time": 0.0,
+  "own_camera_forward": [
+    -0.9999999999999999,
+    1.1102230246251565e-16,
+    -0.0
+  ],
+  "own_camera_origin": [
+    5.01,
+    -2.35,
+    0.71
+  ],
+  "own_camera_rotation": [
+    [
+      1.1102230246251565e-16,
+      0.0,
+      0.9999999999999999
+    ],
+    [
+      0.9999999999999999,
+      0.0,
+      -1.1102230246251565e-16
+    ],
+    [
+      0.0,
+      0.9999999999999999,
+      0.0
+    ]
+  ],
+  "robot_id": "blue_hero",
+  "scene_scope": "evaluator setup only, never algorithm input",
+  "schema": "polar.pb-aim-public-controlled-scene.v1",
+  "target_actual_body_position": [
+    2.71,
+    -2.3499999999999996,
+    0.25
+  ],
+  "target_body_horizontal_distance_m": 2.3,
+  "target_front_plate_horizontal_distance_m": 1.9899999999999998,
+  "target_front_plate_source_local_position_m": [
+    0.31,
+    0.0,
+    0.1
+  ],
+  "target_original_body_position": [
+    -5.25,
+    3.0,
+    0.25
+  ],
+  "target_robot_id": "red_infantry",
+  "target_role": "infantry",
+  "target_team": "red",
+  "unchanged": [
+    "original model bytes",
+    "own pose",
+    "camera calibration",
+    "K/D",
+    "MLP",
+    "detect_color0",
+    "thresholds"
+  ]
+}

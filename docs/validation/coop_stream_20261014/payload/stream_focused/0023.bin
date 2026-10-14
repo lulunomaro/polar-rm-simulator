@@ -1,0 +1,13 @@
+# WSL JSONL 接收修复（尚未实际 WSL / PB 资格化）
+
+`before/` 是修改前两程序文件和原 STOP 测试的完整字节；`after/source/` 与 SOURCE_MANIFEST 是本轮冻结字节。未改 runtime/control/camera/PB source03、原模型、协议、图像或80/150ms、graph1s/reset2s、Linux1.3s/host1.5s期限。旧已发布包不改。
+
+接收缓冲记录已经扫描的位置，新64KiB只查新增区域的LF，完整line只复制一次。原MAX_REQUEST、两完整行/同pending完整行拒绝、partial tail、strict JSON duplicate/nonfinite拒绝保留。STOP文件调用只在spawn前force校验和独立owned poll线程内发生；主循环只看内存Event，并在转发/入队前复核。5ms是最佳努力轮询计划，文件调用与调度没有硬实时保证。
+
+cleanup使用同一个原Linux1.3s绝对预算回收peer树、IO线程和STOP线程，不因新增线程追加等待。卡住filecall时poll_thread_stopped=False / clean=False；错误类型及有限类别单独记录。新线程proof四字段必须完整，旧无此组CLEANUP兼容，新producer固定输出。last_request新增四个首/末read处的累计已完成STOP check/cost采样：全null只用于没有read，partial保留真实read采样，不拿lifetime或其它clock补字段。不把它们当NN时延。
+
+实际focused driver `run_focused.py` exit0，两子进程全部reaped，source_unchanged=True。102 passed / 2 Windows symlink权限skips，无WSL/ROS/模型/GL/物理。原raw command/stdout/stderr/PID/process结果、JUnit在 `after/`。
+
+保存的实际旧DTO按原source顺序重建wire（不是捕获的OS完整wire），6,225,301B / 95个64KiB分块，原值/类型/时间不改，不发送peer。20对交替顺序的本机framing微测：旧重复前缀扫描P50 21.8155ms，新增量扫描P50 13.41785ms；每次完整line与原wire逐byte相等。此测量包含buffer/line工作和共同一致性检查，不含DrvFs文件调用，不说明实时图像已送达、NN变快或80ms通过。
+
+冻结后由主代理协调actual harmless两项、PB fresh首图和最终QA。下一次实际结果必须用新source identity，不能改旧fast失败标记。

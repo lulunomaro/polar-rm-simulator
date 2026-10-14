@@ -1,0 +1,151 @@
+{
+  "schema": "polar.pb-aim-host-actual-io-trace.v1",
+  "capacity": 64,
+  "total": 18,
+  "dropped": 0,
+  "rows": [
+    {
+      "stage": "hooks_installed",
+      "host_perf_counter": 42283.2524538,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592
+    },
+    {
+      "stage": "checked_begin",
+      "host_perf_counter": 42285.0208805,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592
+    },
+    {
+      "stage": "checked_end",
+      "host_perf_counter": 42285.0329854,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592
+    },
+    {
+      "stage": "exchange_enter",
+      "host_perf_counter": 42285.0330003,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592,
+      "timeout_s": 0.03282010000839364
+    },
+    {
+      "stage": "json_dumps_begin",
+      "host_perf_counter": 42285.0330092,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592
+    },
+    {
+      "stage": "json_dumps_end",
+      "host_perf_counter": 42285.0450066,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592,
+      "characters": 6225305
+    },
+    {
+      "stage": "requests_put_begin",
+      "host_perf_counter": 42285.0492942,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592,
+      "bytes": 6225306
+    },
+    {
+      "stage": "requests_put_end",
+      "host_perf_counter": 42285.0493248,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592
+    },
+    {
+      "stage": "response_get_begin",
+      "host_perf_counter": 42285.0493306,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592,
+      "timeout_s": 0.016487300003063865
+    },
+    {
+      "stage": "stdin_write_begin",
+      "host_perf_counter": 42285.0494637,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 48512,
+      "requested_bytes": 6225306
+    },
+    {
+      "stage": "stdin_write_return",
+      "host_perf_counter": 42285.0602594,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 48512,
+      "returned_bytes": 6225306
+    },
+    {
+      "stage": "stdin_flush_begin",
+      "host_perf_counter": 42285.0602661,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 48512
+    },
+    {
+      "stage": "stdin_flush_end",
+      "host_perf_counter": 42285.0602676,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 48512
+    },
+    {
+      "stage": "stdout_readline_begin",
+      "host_perf_counter": 42285.0602696,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 48512
+    },
+    {
+      "stage": "response_get_error_before_original_cleanup",
+      "host_perf_counter": 42285.0707502,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592,
+      "error_type": "Empty"
+    },
+    {
+      "stage": "stdout_readline_error",
+      "host_perf_counter": 42285.2957887,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 48512,
+      "error_type": "EOFError"
+    },
+    {
+      "stage": "exchange_error_after_original_cleanup",
+      "host_perf_counter": 42285.2962805,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592,
+      "error_type": "Empty"
+    },
+    {
+      "stage": "final_trace_begin_after_resource_close",
+      "host_perf_counter": 42285.3144932,
+      "clock_domain": "Windows_host_QPC",
+      "thread_id": 23592
+    }
+  ],
+  "actual_enqueued_packet": {
+    "available": true,
+    "enqueue_completed": true,
+    "reference_type": "exact immutable bytes passed to actual original requests.put_nowait",
+    "delivery_proof": "Enqueue reference is not full OS write or Linux delivery proof",
+    "bytes": 6225306,
+    "sha256": "5b71884b032f6e59ff09b0f116a8adb2875487db1947084866ffe587750cb210",
+    "newline": true,
+    "original_identity": {
+      "robot_id": "blue_hero",
+      "episode": 0,
+      "binding_epoch": 1,
+      "observed_seq": 1,
+      "sim_time": 0.002,
+      "wall_deadline": 42285.065814500005
+    },
+    "original_identity_and_types_match": true
+  },
+  "additional_packets_not_retained": 0,
+  "write_return_calls": 1,
+  "write_returned_bytes": 6225306,
+  "write_count_scope": "Only successful original FileIO.write returns; a blocked/error write may have OS partial bytes. Zero returns never proves zero OS delivery.",
+  "hooks_restored": true,
+  "actual_io_thread_stopped": true,
+  "original_methods_and_arguments_preserved": true,
+  "no_hotpath_hash_parse_or_disk": true
+}

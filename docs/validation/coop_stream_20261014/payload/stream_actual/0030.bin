@@ -1,0 +1,23 @@
+{
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 9.85359420000168,
+  "source_before": {
+    "rm_match/deployment/wsl_jsonl.py": "a893dcbfeab1880cd19a52d53967d4595b2dd7eb4fc93524a397b8ba74bf29b0",
+    "rm_match/deployment/wsl_jsonl_worker.py": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+    "tests/test_wsl_jsonl_actual.py": "4744f28a78eabdb5b1e7922f0ddbab1fd41abc528f5f954a4a67ab4de1b7d588"
+  },
+  "source_after": {
+    "rm_match/deployment/wsl_jsonl.py": "a893dcbfeab1880cd19a52d53967d4595b2dd7eb4fc93524a397b8ba74bf29b0",
+    "rm_match/deployment/wsl_jsonl_worker.py": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+    "tests/test_wsl_jsonl_actual.py": "4744f28a78eabdb5b1e7922f0ddbab1fd41abc528f5f954a4a67ab4de1b7d588"
+  },
+  "source_unchanged": true,
+  "created_proof_directories": [
+    "wsl-jsonl-harmless-a8816caba1924c9c96b7f30317603d47",
+    "wsl-jsonl-harmless-feb696ae4c42429584c3f7486b94a654"
+  ],
+  "qualification": "Two real harmless ownership fixtures; no images, ROS, NN or physical control"
+}

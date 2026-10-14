@@ -1,0 +1,18 @@
+{
+  "results": [
+    {
+      "label": "focused",
+      "exit_code": 0,
+      "elapsed_s": 1.1564916999996058,
+      "reaped": true
+    },
+    {
+      "label": "saved_framing",
+      "exit_code": 0,
+      "elapsed_s": 0.9396863000001758,
+      "reaped": true
+    }
+  ],
+  "source_unchanged": true,
+  "qualification": "Focused safety and saved-input micro only; requires fresh actual Windows/WSL qualification"
+}

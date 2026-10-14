@@ -1,0 +1,56 @@
+{
+  "url": "http://127.0.0.1:18766",
+  "transport": "loopback_only",
+  "virtual_resupply": "disabled",
+  "camera": "real_opt_in",
+  "cross_machine_LAN_verified": false,
+  "real_time_factor_limit": 1.0,
+  "native_registered": false,
+  "aim_plugins_registered": false,
+  "wsl_native_registered": false,
+  "wsl_native_transport": null,
+  "prepared_aim_plugin_count": 0,
+  "host_opencv": null,
+  "host_scheduling": {
+    "python_switch_interval": {
+      "schema": "polar.host.python-switch-interval.v1",
+      "enabled": false,
+      "requested_ms": null,
+      "original_ms": null,
+      "effective_ms": null,
+      "restored_ms": null,
+      "applied": false,
+      "restored": false,
+      "scope": "Current owned CPython process only"
+    },
+    "authority_affinity": {
+      "schema": "polar.host.authority-affinity.v1",
+      "enabled": false,
+      "requested_mask": null,
+      "process_id": 38056,
+      "thread_id": null,
+      "cpu_group": null,
+      "processor_count": null,
+      "original_mask": null,
+      "effective_mask": null,
+      "restored_mask": null,
+      "restored_group": null,
+      "applied": false,
+      "restored": false,
+      "scope": "Current authority thread during runtime.run only; no priority, power or OS timer changes"
+    }
+  },
+  "raw_codec_identity": {
+    "codec": "stdlib_chunked",
+    "version": null,
+    "module": "rm_match.platform_v2.camera",
+    "function": "encode_raw_base64",
+    "extension_path": null,
+    "extension_sha256": null
+  },
+  "navigation_sensor_profile": null,
+  "pb_navigation_registered": false,
+  "pb_wsl_navigation_registered": false,
+  "pb_wsl_navigation_namespace": null,
+  "pb_wsl_navigation_domain": null
+}

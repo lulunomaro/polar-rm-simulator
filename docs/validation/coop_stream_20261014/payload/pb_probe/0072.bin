@@ -1,0 +1,109 @@
+{
+  "schema": "polar.pb-aim-resource-phases.v1",
+  "total": 15,
+  "dropped": 0,
+  "capacity": 64,
+  "rows": [
+    {
+      "stage": "line_wait_begin",
+      "linux_perf_counter": 83.542334246,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 1
+    },
+    {
+      "stage": "complete_line_received",
+      "linux_perf_counter": 83.542345805,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 1,
+      "bytes": 67,
+      "newline": true
+    },
+    {
+      "stage": "line_wait_begin",
+      "linux_perf_counter": 83.54240316,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 2
+    },
+    {
+      "stage": "complete_line_received",
+      "linux_perf_counter": 83.5619376,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 2,
+      "bytes": 130,
+      "newline": true
+    },
+    {
+      "stage": "reset_original_begin",
+      "linux_perf_counter": 83.562135672,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "reset_original_end",
+      "linux_perf_counter": 83.597787456,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "line_wait_begin",
+      "linux_perf_counter": 83.597823915,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 3
+    },
+    {
+      "stage": "complete_line_received",
+      "linux_perf_counter": 85.440715879,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 3,
+      "bytes": 6225306,
+      "newline": true
+    },
+    {
+      "stage": "strict_raw_decode_begin",
+      "linux_perf_counter": 85.449115254,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "strict_raw_decode_end",
+      "linux_perf_counter": 85.465850324,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "engine_compute_enter",
+      "linux_perf_counter": 85.465954196,
+      "clock_domain": "linux_local_diagnostic_only",
+      "frame_id": 1,
+      "observed_seq": 1
+    },
+    {
+      "stage": "bridge_begin_begin",
+      "linux_perf_counter": 85.465989617,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "shutdown_signal",
+      "linux_perf_counter": 85.474542568,
+      "clock_domain": "linux_local_diagnostic_only",
+      "signal": 15
+    },
+    {
+      "stage": "bridge_begin_error",
+      "linux_perf_counter": 85.474551149,
+      "clock_domain": "linux_local_diagnostic_only",
+      "error_type": "SystemExit"
+    },
+    {
+      "stage": "engine_compute_cancelled",
+      "linux_perf_counter": 85.474554226,
+      "clock_domain": "linux_local_diagnostic_only"
+    }
+  ],
+  "observer_summary": {
+    "total": 0,
+    "dropped": 0,
+    "writer_reaped": true,
+    "error": null,
+    "evidence_scope": "read-only callbacks during original exchange; no postdeadline reads, no approximate source matching"
+  },
+  "shutdown_signal_wall": 85.474538949,
+  "scope": "Original callbacks only; timings do not authorize control and are not HostQPC",
+  "missing_when_killed": "No final artifact means unknown, never proof of no computation"
+}

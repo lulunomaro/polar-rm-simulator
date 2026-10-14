@@ -94,8 +94,22 @@ def validate_hello(value,run_id,sha):
 def validate_cleanup(record,run_id,sha,hello):
     fields=('event','run_id','spec_sha256','hello','ownership','io_thread_stopped','clean','error_type')
     if type(record) is dict and 'io_metrics' in record:fields+=('io_metrics',)
+    stop_fields=('stop_poll_thread_started','stop_poll_thread_stopped','stop_poll_error_type','stop_poll_error_kind')
+    if type(record) is dict and any(key in record for key in stop_fields):fields+=stop_fields
     exact(record,fields,'wsl_cleanup')
     if 'io_metrics' in record:validate_io_metrics(record['io_metrics'])
+    if 'stop_poll_thread_started' in record:
+        if any(type(record[key]) is not bool for key in stop_fields[:2]):raise ContractError('wsl_stop_poll_thread_type')
+        error=record['stop_poll_error_type'];kind=record['stop_poll_error_kind']
+        if error is not None and (type(error) is not str or not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,63}',error)):
+            raise ContractError('wsl_stop_poll_error_type')
+        if kind is not None and (type(kind) is not str or kind not in ('clock_invalid','link_rejected','nonregular_token','identity_mismatch','file_check_error','thread_error')):
+            raise ContractError('wsl_stop_poll_error_kind')
+        if (error is None)!=(kind is None):raise ContractError('wsl_stop_poll_error_pair')
+        if record.get('hello') is not None and record['stop_poll_thread_started'] is not True:
+            raise ContractError('wsl_stop_poll_started_before_hello_unproved')
+        if record['stop_poll_thread_stopped'] is not True or error is not None:
+            raise ContractError('wsl_stop_poll_cleanup_unproved')
     if type(record) is not dict or record.get('event')!='cleanup' or record.get('run_id')!=run_id or record.get('spec_sha256')!=sha:
         raise ContractError('wsl_cleanup_run_identity_mismatch')
     if hello is not None and record.get('hello')!=hello:raise ContractError('wsl_cleanup_birth_identity_mismatch')
@@ -123,7 +137,9 @@ def validate_io_metrics(value):
     cost=value['stop_check_cost_s']
     if type(cost) not in (int,float) or not math.isfinite(cost) or cost<0:raise ContractError('wsl_io_cost')
     names=('first_read_wall','last_read_wall','queued_wall','peer_write_completed_wall','response_received_wall')
-    exact(value['last_request'],names,'wsl_io_last_request')
+    stop_names=('stop_checks_at_first_read','stop_cost_at_first_read_s','stop_checks_at_last_read','stop_cost_at_last_read_s')
+    has_stop=type(value['last_request']) is dict and any(key in value['last_request'] for key in stop_names)
+    exact(value['last_request'],names+(stop_names if has_stop else ()),'wsl_io_last_request')
     previous=None;missing=False
     for key in names:
         current=value['last_request'][key]
@@ -136,6 +152,17 @@ def validate_io_metrics(value):
         raise ContractError('wsl_io_request_count_mismatch')
     if value['input_chunks']==0 and (value['input_bytes']!=0 or value['last_request']['first_read_wall'] is not None):
         raise ContractError('wsl_io_input_count_mismatch')
+    if has_stop:
+        if value['last_request']['first_read_wall'] is None:
+            if any(value['last_request'][key] is not None for key in stop_names):raise ContractError('wsl_io_stop_missing_read')
+        else:
+            first_count,last_count=(value['last_request'][stop_names[i]] for i in (0,2))
+            first_cost,last_cost=(value['last_request'][stop_names[i]] for i in (1,3))
+            if any(type(count) is not int or not 0<=count<=value['stop_file_checks'] for count in (first_count,last_count)):
+                raise ContractError('wsl_io_stop_count')
+            if any(type(cost) not in (int,float) or not math.isfinite(cost) or not 0<=cost<=value['stop_check_cost_s'] for cost in (first_cost,last_cost)):
+                raise ContractError('wsl_io_stop_cost')
+            if first_count>last_count or first_cost>last_cost:raise ContractError('wsl_io_stop_order')
     return copy.deepcopy(value)
 
 class _Lines:

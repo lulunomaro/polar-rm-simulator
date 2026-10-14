@@ -1,0 +1,123 @@
+{
+  "schema": "polar.pb-aim-stream-readonly-audit.v1",
+  "result": "FAIL under original80ms",
+  "host": {
+    "clock": "original Windows QPC",
+    "capture_wall": 42284.9858145,
+    "original_deadline": 42285.065814500005,
+    "capture_to_public_ms": 23.390199996356387,
+    "capture_to_act_ms": 35.06070000003092,
+    "checked_ms": 12.104900000849739,
+    "dumps_ms": 11.997399997198954,
+    "post_dumps_to_put_gap_ms": 4.287600000679959,
+    "gap_scope": "UTF8 encode + gate/check/scheduling/observer gap, not isolated encode timing",
+    "capture_to_enqueue_return_ms": 63.510299994959496,
+    "original_remaining_at_receive_ms": 0.016483900006278418,
+    "remaining_ms": 16.483900006278418,
+    "stdin_write_return_ms": 10.79570000001695,
+    "response_wait_to_original_error_ms": 21.41960000153631,
+    "cleanup_after_response_error_ms": 225.53029999835417
+  },
+  "actual_packet": {
+    "available": true,
+    "enqueue_completed": true,
+    "reference_type": "exact immutable bytes passed to actual original requests.put_nowait",
+    "delivery_proof": "Enqueue reference is not full OS write or Linux delivery proof",
+    "bytes": 6225306,
+    "sha256": "5b71884b032f6e59ff09b0f116a8adb2875487db1947084866ffe587750cb210",
+    "newline": true,
+    "original_identity": {
+      "robot_id": "blue_hero",
+      "episode": 0,
+      "binding_epoch": 1,
+      "observed_seq": 1,
+      "sim_time": 0.002,
+      "wall_deadline": 42285.065814500005
+    },
+    "original_identity_and_types_match": true
+  },
+  "successful_actual_write_return_bytes": 6225306,
+  "linux": {
+    "clock": "Linux-local only, never subtracted from QPC",
+    "complete_requests": 3,
+    "input_bytes": 6225503,
+    "actual_image_line_bytes": 6225306,
+    "bulk_read_span_ms": 9.707535000003986,
+    "full_read_to_queued_ms": 11.34559399999091,
+    "queued_to_peer_write_completed_ms": 8.631927000010364,
+    "complete_peer_line_to_decode_begin_ms": 8.399375000010423,
+    "strict_raw_decode_ms": 16.735069999995744,
+    "bridge_begin_to_cancel_ms": 8.552950999998643,
+    "stage_limits": "Original strict decode completed. Bridge revalidation/encode interrupted; no bridge end, ROS publish, SourceArmors/Target or image-triggered NN."
+  },
+  "pixels": {
+    "bytes": 4665600,
+    "sha256": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0",
+    "strict_decoded_actual_bytes_identical": true,
+    "photo": {
+      "path": "artifacts\\pb2025-aim-stream-repair-probe-20261014-01\\host_attempt1\\capture.png",
+      "sha256": "0ecfa2228e567a08569bb15b236cf0273476244b1cc82af12e6fd3e2581eb5c3"
+    }
+  },
+  "observer": {
+    "total": 0,
+    "dropped": 0,
+    "writer_reaped": true,
+    "error": null,
+    "evidence_scope": "read-only callbacks during original exchange; no postdeadline reads, no approximate source matching"
+  },
+  "host_hook_restored": true,
+  "host_settings": {
+    "cv": {
+      "original_threads": 32,
+      "restored": true,
+      "restored_threads": 32
+    },
+    "switch": {
+      "applied": true,
+      "effective_ms": 1.0,
+      "enabled": true,
+      "original_ms": 5.0,
+      "requested_ms": 1.0,
+      "restored": true,
+      "restored_ms": 5.0,
+      "schema": "polar.host.python-switch-interval.v1",
+      "scope": "Current owned CPython process only"
+    }
+  },
+  "cleanup": {
+    "clean": true,
+    "host_clean": true,
+    "remaining_members": [],
+    "forced_kill": false,
+    "stop_poll_thread_stopped": true
+  },
+  "host_source_unchanged": true,
+  "host_before_equals_after": true,
+  "host_ref_unchanged": true,
+  "driver_source_unchanged": true,
+  "driver_stages": [
+    {
+      "stage": 1,
+      "returncode": 0,
+      "reaped": true,
+      "elapsed_s": 8.49347719999787
+    },
+    {
+      "stage": 2,
+      "returncode": 2,
+      "reaped": true,
+      "elapsed_s": 7.123933599999873
+    }
+  ],
+  "qualification": "One resource exposure, no SDK/control application; complete delivery is not real-time aim acceptance or NN success.",
+  "no_new_execution": {
+    "WSL": false,
+    "ROS": false,
+    "GL": false,
+    "NN": false,
+    "benchmark": false,
+    "resend": false
+  },
+  "all_input_files_unchanged": true
+}

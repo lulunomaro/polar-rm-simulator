@@ -1,0 +1,14 @@
+{
+  "rm_match/deployment/coop_launcher.py": {
+    "sha256": "654ca01a3e020089480024e22a14a248a8482c337599d8bcb4920b7806eb25da",
+    "bytes": 21356
+  },
+  "tests/test_coop_launcher.py": {
+    "sha256": "cbd60f2c3ff01de89fc888c8395dc089ecf5bc02619e1544c587a7f9b4ba81ba",
+    "bytes": 8962
+  },
+  "examples/coop_manual.json": {
+    "sha256": "6f5f688709af2970883f5fedfc2d2c1de80e56800c88c4742caa07f13ed733e6",
+    "bytes": 366
+  }
+}

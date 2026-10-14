@@ -1,0 +1,68 @@
+[
+  {
+    "command": [
+      "git",
+      "-c",
+      "core.autocrlf=false",
+      "clone",
+      "--depth",
+      "1",
+      "--no-recurse-submodules",
+      "https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_behavior.git",
+      "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-behavior-audit-20261014-01\\pb2025_sentry_behavior"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 2.523673100004089,
+    "reaped": true,
+    "nonrecursive": true,
+    "head": {
+      "exit_code": 0,
+      "output": "d111b635d326775c6c19aa12500a0bbd6a27a588"
+    },
+    "status": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "submodules": {
+      "exit_code": 0,
+      "output": "100644 blob aea802ff3a08d7a635838eeb7bd7f021c011ff56\t.clang-format\n100644 blob d805018a77fa1a5fe2de1219d3536c6049fac889\t.clang-tidy\n100644 blob 1bfdfb20d417d32a1dc17476df05abc11d4df694\t.github/workflows/ci.yml\n100755 blob b134856aecc987ade7ab93c74f4a786f5ab7eb8c\t.github/workflows/colcon_test.sh\n100644 blob f7638c497aa70c098ddc3d663583b422ab51437b\t.gitignore\n100644 blob 2badd494625af14e73ef55d3c0f008468c9e8c05\t.pre-commit-config.yaml\n100644 blob 25206d75d5cb2bcda0b1d2bcf97a19d6286299aa\tCMakeLists.txt\n100644 blob dc889e8e8bdd9b1fd128cf18c7c13f4cf26a6031\tCONTRIBUTING.md\n100644 blob d645695673349e3947e8e5ae42332d0ac3164cd7\tLICENSE\n100644 blob 4b3780dfc267862f24558d975d0247298ac745e4\tREADME.md\n100644 blob ca0197d92c3f5373ca77edbb40b32716ace230e5\tbehavior_trees/Project.btproj\n100644 blob d60deb0ae87a0b7a89990cabacd8358202e6dd11\tbehavior_trees/dev_rm.xml\n100644 blob 9952f41912bdbc94834e67cd5ddaca003ceeb889\tbehavior_trees/models.xml\n100644 blob 21771f75cd2d18516790c8a45fb251958d433d25\tbehavior_trees/rmul_2025.xml\n100644 blob d82d2704cca3be4259bf96746ce6f39225a5ec3b\tdependencies.repos\n100644 blob bf377a37eb41d74fa3c98f96b705e97bbc9a2625\tinclude/pb2025_sentry_behavior/custom_types.hpp\n100644 blob 9b7c1b055b397cc560403613be04c7749c9487cd\tinclude/pb2025_sentry_behavior/pb2025_sentry_behavior_client.hpp\n100644 blob 5f7933e7ac68ec5267890a3f1502ca3f30f4c2de\tinclude/pb2025_sentry_behavior/pb2025_sentry_behavior_server.hpp\n100644 blob dfb0f79810edf1e1ebe3b4a578c101ec91200720\tinclude/pb2025_sentry_behavior/plugins/action/calculate_attack_pose.hpp\n100644 blob f02ac8f5b3d67df5a277845441dcdd85a105e12c\tinclude/pb2025_sentry_behavior/plugins/action/pub_gimbal_absolute.hpp\n100644 blob 64dec7e7ae45cb4afcebfbcc00a0c613e5033e9a\tinclude/pb2025_sentry_behavior/plugins/action/pub_gimbal_velocity.hpp\n100644 blob 8c08645c4f401154e1f1c680f6c94dbcea608744\tinclude/pb2025_sentry_behavior/plugins/action/pub_nav2_goal.hpp\n100644 blob fa9d3f536f5066162603be70836f161d5e1ebe1b\tinclude/pb2025_sentry_behavior/plugins/action/pub_spin_speed.hpp\n100644 blob c68c7a3aba43ee0a5fd930533c7650b26e039444\tinclude/pb2025_sentry_behavior/plugins/action/pub_twist.hpp\n100644 blob ec0691e05cc67dcf0cba8980b5b6f89bea1764d2\tinclude/pb2025_sentry_behavior/plugins/action/send_nav2_goal.hpp\n100644 blob 193a211ce36db06657831e910cbe4af88f87efaf\tinclude/pb2025_sentry_behavior/plugins/condition/is_attacked.hpp\n100644 blob 017a49351b5eb136f70d94d2329fcd2304c04ecb\tinclude/pb2025_sentry_behavior/plugins/condition/is_detect_enemy.hpp\n100644 blob de1e0728e5cf13161ae4da0772e2cc909e08bbec\tinclude/pb2025_sentry_behavior/plugins/condition/is_game_status.hpp\n100644 blob 748b33d60db3dd2a641fce58c5f88be6d810f0a6\tinclude/pb2025_sentry_behavior/plugins/condition/is_rfid_detected.hpp\n100644 blob 6130828545faf598ea4283a809b057a2b8afb661\tinclude/pb2025_sentry_behavior/plugins/condition/is_status_ok.hpp\n100644 blob 1221f1fab93ec33330643d92ce99e7ada2f8487c\tinclude/pb2025_sentry_behavior/plugins/control/recovery_node.hpp\n100644 blob 7c529a6ca9c121f316ec473d4eb596ddcf2edd66\tinclude/pb2025_sentry_behavior/plugins/decorator/rate_controller.hpp\n100644 blob 2f3445a861722a0b5ac9d033f021b6197e53808c\tinclude/pb2025_sentry_behavior/plugins/decorator/tick_after_timeout_node.hpp\n100644 blob 0fe3c5adf944ba490870c676a49290c63c36576b\tlaunch/pb2025_sentry_behavior_launch.py\n100644 blob b0d6ba57253124c77a10b02aaf777adee83c68c8\tpackage.xml\n100644 blob b7b5c3b6f7bd4d275c6ddc3725e65ef6ae01b752\tparams/sentry_behavior.yaml\n100644 blob f7c4e6448c32e92eec62e7a06b9dc05617456135\tplugins/action/calculate_attack_pose.cpp\n100644 blob 188d82a7ebe8cb68a613d230b21159f5c0a16a22\tplugins/action/pub_gimbal_absolute.cpp\n100644 blob a9d860f72942433ce482b3a0c7a7c53ccd9bc6ad\tplugins/action/pub_gimbal_velocity.cpp\n100644 blob f51f356583b7612b52d76040c3d22b64edad5b78\tplugins/action/pub_nav2_goal.cpp\n100644 blob a15e2c253ef08c12f709ab547620775fe2f1ddcc\tplugins/action/pub_spin_speed.cpp\n100644 blob ef9f0e596080a743a97180911c4f097a9e335725\tplugins/action/pub_twist.cpp\n100644 blob 5d29d4b1383ae6cd87110250f79781d3aef36083\tplugins/action/send_nav2_goal.cpp\n100644 blob 02e18ecb7ed02ef407b766a73fc29958c2850c81\tplugins/condition/is_attacked.cpp\n100644 blob 02f425f043fdabc708cca5d8c41f1c5c66a75bd9\tplugins/condition/is_detect_enemy.cpp\n100644 blob 39031823eab5f59f2eb33d7e4aa06c5aabf298fc\tplugins/condition/is_game_status.cpp\n100644 blob 1717df1e0b34208093815a8c2b11567bcc62195a\tplugins/condition/is_rfid_detected.cpp\n100644 blob dea88e1fa88c0be7557a9d1be5873c56616cbffb\tplugins/condition/is_status_ok.cpp\n100644 blob d20cba69a5b6ccd0d0532695000deefc7758c48b\tplugins/control/recovery_node.cpp\n100644 blob c2466c7489e1556482fd5a58721b187bbd4c1566\tplugins/decorator/rate_controller.cpp\n100644 blob add2b5ca74832513282e3b5362ae031d86a0be38\tplugins/decorator/tick_after_timeout_node.cpp\n100644 blob d4d157b24ac06e0505270a8f3ee5e622a5a2cc17\tsrc/pb2025_sentry_behavior_client.cpp\n100644 blob 7d95c6b39c243c1b30db5f76df3f7befdae9f1c9\tsrc/pb2025_sentry_behavior_server.cpp"
+    },
+    "origin": {
+      "exit_code": 0,
+      "output": "https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_behavior.git"
+    }
+  },
+  {
+    "command": [
+      "git",
+      "-c",
+      "core.autocrlf=false",
+      "clone",
+      "--depth",
+      "1",
+      "--no-recurse-submodules",
+      "https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_ws.git",
+      "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-behavior-audit-20261014-01\\pb2025_sentry_ws"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 2.1941225999980816,
+    "reaped": true,
+    "nonrecursive": true,
+    "head": {
+      "exit_code": 0,
+      "output": "5faf964b121642d1c8d22dcabf683a13158c2351"
+    },
+    "status": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "submodules": {
+      "exit_code": 0,
+      "output": "100644 blob d51350b35c6c495a5d0f8659864724398d6f3030\t.gitignore\n100644 blob 2bbc84d23dad5e24a56330095f442dfbebe9cb8c\tREADME.md\n100644 blob 187caa7f2784930555961d23b6130d86d2f83cbd\tdependencies.repos\n100755 blob c32ad817e5246d39269049267850245edf8d619a\tscript/.templates/real_nav.sh\n100755 blob 925baf4a882142e4a6ad9f42445d5619fda64a8a\tscript/.templates/real_record_rosbag_nav.sh\n100755 blob 3c1a1091f13c8820a8d634a9ef61b14e35080b4f\tscript/.templates/real_record_rosbag_vision.sh\n100755 blob cf64df7b4f9f203edd57c27a7b6a28775f9eadff\tscript/.templates/real_slam.sh\n100755 blob a9dcd2176fc0c1e1db604c53267e6e2ec28caa69\tscript/.templates/sim.sh\n100755 blob f277af34d19459ca52bf9a7b4e9c13a2f6ff7b8f\tscript/.templates/sim_gui_follow.sh\n100755 blob 5e53931d504aa88e324cccf2b2764c3846e387c9\tscript/.templates/sim_nav.sh\n100755 blob 0f806ae7aa98bd3a03b6a017167557149b34f372\tscript/.templates/sim_record_rosbag_nav.sh\n100755 blob bde67c5042207bc790c2271fb2eb1ddc2120d8ca\tscript/.templates/sim_slam.sh\n100644 blob 61be5f315a628e74a33fae7782bbaac8f555ce79\tsrc/pb2025_sentry_bringup/CMakeLists.txt\n100644 blob 5b2c0ebdddb0fe914aa2021c3b04d54aec7e0cb2\tsrc/pb2025_sentry_bringup/launch/bringup.launch.py\n100644 blob f929989a25aa95654f015def611aaada8644cbed\tsrc/pb2025_sentry_bringup/launch/record_rosbag_launch.py\n100644 blob 65ec0efe3da541a401657205298e7dffcb29b5cf\tsrc/pb2025_sentry_bringup/launch/rviz_launch.py\n100644 blob b1dfca354675b1fae15e85f1200c108aa5d8db9c\tsrc/pb2025_sentry_bringup/map/.gitignore\n100644 blob 687367e7aaa25394ff1dc677061a32bdeb03046c\tsrc/pb2025_sentry_bringup/package.xml\n100644 blob 41587682c03325f6eea85f380a56e99fae25bae3\tsrc/pb2025_sentry_bringup/params/camera_info.yaml\n100644 blob 168e30a17ff69d0792ee4ed6035e1dae9aabc1e5\tsrc/pb2025_sentry_bringup/params/mid360_user_config.json\n100644 blob d7c8d7d8fa4e6c8c7391e43001cbb79806072a26\tsrc/pb2025_sentry_bringup/params/node_params.yaml\n100644 blob b14c2c2bc4cc78e39cd00726994745daeceade0a\tsrc/pb2025_sentry_bringup/pcd/.gitignore\n100644 blob a6bc3d380a8a25154f88bcd76c94e2dab20160e7\tsrc/pb2025_sentry_bringup/rviz/sentry_default_view.rviz"
+    },
+    "origin": {
+      "exit_code": 0,
+      "output": "https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_ws.git"
+    }
+  }
+]
