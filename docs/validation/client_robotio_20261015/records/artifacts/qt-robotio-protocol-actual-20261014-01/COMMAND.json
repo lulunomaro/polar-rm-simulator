@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_robotio_protocol.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-robotio-protocol-actual-20261014-01",
+    "--duration",
+    "3.5",
+    "--run"
+  ],
+  "plan": {
+    "phase": "DRY_PLAN_NOT_READY",
+    "robot_id": "red_infantry",
+    "adapter_id": "custom_protocol_pipeline_supply",
+    "duration": 3.5,
+    "client_identity": {
+      "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "tracked_source_clean": false,
+      "patched_source_verified": true,
+      "client_patch": {
+        "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+        "patch_sha256": "594b8562ba88dadf2facb59a1bdaa3517c4be22bf7397b4512d97b07c942e9e3",
+        "manifest_sha256": "3916988423e6f7d3c0394d19df7a02cb241b72d28172c50d1ca6f970c9129bdc",
+        "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+      }
+    },
+    "physics_timestep_s": 0.002,
+    "point_rate_hz": 1000,
+    "credential_transport": "memory/environment_only",
+    "explicit_run_required": true,
+    "scope": "offscreen selector+client SDK only; no F2/camera/visible GUI/real navigation"
+  }
+}

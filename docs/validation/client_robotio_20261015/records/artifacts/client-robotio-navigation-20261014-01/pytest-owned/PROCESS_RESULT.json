@@ -1,0 +1,45 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_platform_adapters.py",
+    "tests/test_aim_plugin_discovery.py",
+    "tests/test_aim_status_display.py",
+    "tests/test_operator_state_projection.py",
+    "tests/test_platform_control_windows.py",
+    "tests/test_platform_handoff.py",
+    "tests/test_platform_manual_yaw.py",
+    "tests/test_platform_manual_yaw_ui.py",
+    "tests/test_platform_spin.py",
+    "tests/test_platform_status.py",
+    "tests/test_platform_admission_client.py",
+    "tests/test_platform_display_generation.py",
+    "tests/test_platform_diagnostics.py",
+    "tests/test_sim_platform_v2.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\client-robotio-navigation-20261014-01\\pytest-owned\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-review",
+  "environment": {
+    "QT_QPA_PLATFORM": "offscreen",
+    "PYTHONPATH": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator"
+  },
+  "scope": "Qt/protocol fixtures, no physical/ROS/NN/visible window qualification",
+  "pid": 66812,
+  "exit_code": 0,
+  "cleanup": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 0,
+    "errors": [],
+    "pid": 66812,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "reader_stopped": true,
+  "elapsed_s": 15.155438400004641,
+  "errors": [],
+  "driver_sha256": "5298831cc7753db5767afa703b7bd45d03de3667d1c1d184399d558af967e018"
+}

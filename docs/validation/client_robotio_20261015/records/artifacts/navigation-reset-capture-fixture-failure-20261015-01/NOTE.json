@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_navigation_reset_capture.py",
+    "tests/test_robotio_plugin.py",
+    "rm_match/platform_v2/test_runtime.py"
+  ],
+  "reported_failed": 5,
+  "reported_passed": 38,
+  "reported_elapsed_s": 7.32,
+  "scope": "tool-output summary, raw full stdout not captured; fixture wrongly asserted asynchronous close immediately and expected both latest-only results to remain",
+  "source_sha256": "307f7ab00c60d29bac6fc02dcb28a1935a5e9dfc95d39cc90c0c02372982295e"
+}

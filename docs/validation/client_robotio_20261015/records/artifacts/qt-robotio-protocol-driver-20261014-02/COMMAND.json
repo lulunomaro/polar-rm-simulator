@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_robotio_protocol.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-robotio-protocol-actual-20261014-02",
+    "--duration",
+    "3.5",
+    "--run"
+  ],
+  "source_before": {
+    "tools/qa_qt_robotio_protocol.py": "29c204fc1c2a66b2c233de5a8b63747437affd6cd72e41f753f7649a169a3713",
+    "tools/qa_qt_robotio_peer.py": "79d79ffce66fc7f3e41286f1e45b52221c10aac803412fa7b0e29bf59f95e444",
+    "client_patches/CLIENT_ROBOTIO_PATCH_MANIFEST.json": "3916988423e6f7d3c0394d19df7a02cb241b72d28172c50d1ca6f970c9129bdc",
+    "client_patches/robotio_navigation_v1.patch": "594b8562ba88dadf2facb59a1bdaa3517c4be22bf7397b4512d97b07c942e9e3"
+  },
+  "scope": "offscreen widget and Qt SDK to actual low-rate MuJoCo; not F2/camera/visible GUI/team algorithm"
+}

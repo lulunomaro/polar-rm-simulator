@@ -11,6 +11,7 @@ import math
 import os
 from pathlib import Path
 import queue
+import re
 import signal
 import sys
 import threading
@@ -37,7 +38,7 @@ def strict_json(raw):
 
 
 def read_local(path,limit=131072):
-    path=Path(path).absolute()
+    path=Path(local_path(str(path),base=Path.cwd()))
     if path.is_symlink() or path.resolve()!=path or not path.is_file():raise ValueError('Plain absolute local file required')
     raw=path.read_bytes()
     if len(raw)>limit:raise ValueError('Local configuration oversized')
@@ -45,12 +46,89 @@ def read_local(path,limit=131072):
     return value,hashlib.sha256(raw).hexdigest()
 
 
+def local_path(value,*,base=ROOT):
+    """Canonical local argument, never a URI, UNC share or flag injection."""
+    if (type(value) is not str or not value or any(ord(c)<32 for c in value)
+            or value.startswith(('\\\\','//','--'))):
+        raise ValueError('Local path string required')
+    if re.match(r'^[A-Za-z][A-Za-z0-9+.-]*:',value) and not re.match(r'^[A-Za-z]:[\\/]',value):
+        raise ValueError('Network/URI/drive-relative path rejected')
+    return str(Path(os.path.abspath(Path(base)/value)))
+
+
+def verify_local_files(files):
+    if type(files) is not dict or len(files)>8:raise ValueError('Bounded local file snapshots required')
+    for name,expected in files.items():
+        if (type(name) is not str or not Path(name).is_absolute() or local_path(name)!=name
+                or type(expected) is not str or not re.fullmatch(r'[0-9a-f]{64}',expected)):
+            raise ValueError('Invalid local file snapshot identity')
+        _,actual=read_local(name,limit=1024*1024)
+        if actual!=expected:raise ValueError('Local configuration/manifest changed after plan')
+
+
+def server_plan_data(plan):
+    value=dict(schema=SCHEMA,core_argv=plan['core_server_argv'],url=plan['url'])
+    if plan.get('local_file_sha256'):value['local_file_sha256']=dict(plan['local_file_sha256'])
+    return value
+
+
+def freeze_server_plan(plan):
+    raw=(json.dumps(server_plan_data(plan),allow_nan=False)+'\n').encode()
+    plan['server_argv']=plan['server_argv'][:-1]+[hashlib.sha256(raw).hexdigest()]
+    return raw
+
+
+def validate_worker_argv(argv,url):
+    if (type(argv) is not list or argv[:4]!=[str(Path(sys.executable).absolute()),'-u','-m','rm_match.platform_v2']
+            or len(argv)>64 or any(type(arg) is not str or not arg or '\0' in arg for arg in argv)):
+        raise ValueError('Only the local platform v2 entry is admitted')
+    paths={'--admission-manifest','--pb-wsl-navigation-manifest','--wsl-native-spec','--native-out','--robotio-plugins-json'}
+    numbers={'--port','--camera-total-fps','--max-wall-seconds','--host-opencv-threads','--host-python-switch-interval-ms'}
+    choices={'--raw-base64-codec':('stdlib_chunked','pybase64_1_5_1'),
+        '--wsl-native-transport':('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3')}
+    flags={'--camera','--private-native-pixels','--prepare-robotio-plugins'}
+    valued=paths|numbers|set(choices)|{'--wsl-native-distribution','--authority-affinity-mask'}
+    seen={};index=4
+    while index<len(argv):
+        flag=argv[index]
+        if flag in seen or flag not in flags|valued:raise ValueError('Unknown or duplicate server argument')
+        if flag in flags:seen[flag]=True;index+=1;continue
+        if index+1>=len(argv):raise ValueError('Missing local server argument')
+        value=argv[index+1]
+        if value.startswith('--'):raise ValueError('Server argument injection rejected')
+        if flag in paths:
+            if not Path(value).is_absolute() or local_path(value)!=value:raise ValueError('Plain absolute server path required')
+        elif flag in choices:
+            if value not in choices[flag]:raise ValueError('Unsupported server argument value')
+        elif flag in numbers:
+            if flag in ('--port','--host-opencv-threads'):
+                number=int(value)
+                if not (1024<=number<=65535 if flag=='--port' else 1<=number<=32):raise ValueError('Server integer outside range')
+            else:
+                number=float(value)
+                if not math.isfinite(number):raise ValueError('Nonfinite server argument')
+                if flag=='--camera-total-fps' and not 0<number<=15:raise ValueError('Server FPS outside range')
+                if flag=='--max-wall-seconds' and not 0<number<=3600:raise ValueError('Server duration outside range')
+                if flag=='--host-python-switch-interval-ms':
+                    from ..platform_v2.host_scheduling import switch_interval_ms
+                    switch_interval_ms(number)
+        elif flag=='--authority-affinity-mask':
+            from ..platform_v2.host_scheduling import parse_affinity_mask
+            parse_affinity_mask(value)
+        elif not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,127}',value):raise ValueError('Invalid local WSL distribution')
+        seen[flag]=value;index+=2
+    if seen.get('--prepare-robotio-plugins') and '--robotio-plugins-json' not in seen:raise ValueError('RobotIO preparation requires graph')
+    if type(url) is not str or url!='http://127.0.0.1:'+str(int(seen.get('--port','8766'))):raise ValueError('Server plan must use exact loopback URL')
+
+
 def build_plan(config,*,out=None):
     if type(config) is not dict:raise ValueError('Local configuration object required')
     known={'schema','client_root','client_python','manual_robots','port','camera_total_fps','max_wall_seconds',
         'pb_wsl_navigation_manifest','wsl_native_spec','raw_base64_codec','host_opencv_threads',
-        'host_python_switch_interval_ms','authority_affinity_mask'}
-    if set(config)-known or config.get('schema')!=SCHEMA:raise ValueError('Unknown co-op configuration')
+        'host_python_switch_interval_ms','authority_affinity_mask','robotio_plugins_json',
+        'prepare_robotio_plugins','client_patch_manifest'}
+    if set(config)-known or not {'schema','client_root','client_python'}<=set(config) or config.get('schema')!=SCHEMA:
+        raise ValueError('Unknown co-op configuration')
     manual=config.get('manual_robots',['red_infantry'])
     if type(manual) is not list or not manual or any(type(r) is not str or r not in ROBOTS for r in manual) or len(set(manual))!=len(manual):
         raise ValueError('Explicit local manual robot scope required')
@@ -58,9 +136,7 @@ def build_plan(config,*,out=None):
     if type(port) is not int or not 1024<=port<=65535:raise ValueError('Invalid local port')
     for value,low,high in ((fps,0,15),(duration,0,3600)):
         if type(value) not in (int,float) or not math.isfinite(value) or not low<value<=high:raise ValueError('Invalid bounded FPS/duration')
-    def path(value):
-        if type(value) is not str or not value or '\x00' in value:raise ValueError('Local path string required')
-        return str((ROOT/value).absolute())
+    path=local_path
     client_root=path(config['client_root']);client_python=path(config['client_python'])
     target=Path(out).absolute() if out else ROOT/'artifacts'/('coop-manual-'+uuid.uuid4().hex)
     if not target.is_relative_to(ROOT/'artifacts') or target.resolve()!=target:raise ValueError('Fresh owned output must be under repo/artifacts')
@@ -73,6 +149,29 @@ def build_plan(config,*,out=None):
     if nav:core+=['--pb-wsl-navigation-manifest',path(nav)]
     if native:core+=['--wsl-native-spec',path(native),'--native-out',str(target/'native'),
         '--wsl-native-distribution','Ubuntu','--wsl-native-transport','wsl_async_bgr_v3','--private-native-pixels']
+    graph=config.get('robotio_plugins_json');prepare=config.get('prepare_robotio_plugins',False)
+    if type(prepare) is not bool:raise ValueError('RobotIO prepare must be a local boolean')
+    if prepare and graph is None:raise ValueError('RobotIO preparation requires a graph manifest')
+    files={}
+    if graph is not None:
+        graph=path(graph);value,sha=read_local(graph,limit=1024*1024)
+        if (type(value) is not dict or set(value)!={'schema','manifests','pipelines'}
+                or value['schema']!='polar.sim.robotio-plugins.v1' or type(value['manifests']) is not dict
+                or set(value['manifests'])!={'navigation','decision','aim'}):raise ValueError('Local RobotIO graph shape required')
+        files[graph]=sha
+        for name in value['manifests'].values():
+            if name is None:continue
+            component=local_path(name,base=Path(graph).parent)
+            _,component_sha=read_local(component,limit=1024*1024);files[component]=component_sha
+        core+=['--robotio-plugins-json',graph]
+        if prepare:core+=['--prepare-robotio-plugins']
+    patch_manifest=config.get('client_patch_manifest')
+    if patch_manifest is not None:
+        patch_manifest=path(patch_manifest);_,patch_sha=read_local(patch_manifest,limit=1024*1024)
+        files[patch_manifest]=patch_sha
+        patch_identity=client_patch_identity(manifest_path=patch_manifest)
+        if patch_identity.get('manifest_sha256')!=patch_sha:raise ValueError('Client patch manifest snapshot mismatch')
+    else:patch_identity=client_patch_identity()
     from ..platform_v2.host_scheduling import switch_interval_ms,affinity_mask
     threads=config.get('host_opencv_threads')
     if threads is not None:
@@ -83,6 +182,7 @@ def build_plan(config,*,out=None):
     mask=config.get('authority_affinity_mask')
     if mask is not None:core+=['--authority-affinity-mask',hex(affinity_mask(mask))]
     server_data=dict(schema=SCHEMA,core_argv=core,url=f'http://127.0.0.1:{port}')
+    if files:server_data['local_file_sha256']=files
     server_sha=hashlib.sha256((json.dumps(server_data,allow_nan=False)+'\n').encode()).hexdigest()
     return dict(schema=SCHEMA,core_server_argv=core,
         server_argv=[core[0],'-u','-m','rm_match.deployment.coop_launcher','--worker-plan',str(target/'server-plan.json'),
@@ -91,7 +191,9 @@ def build_plan(config,*,out=None):
             '--sim-endpoint',f'http://127.0.0.1:{port}'],client_root=client_root,out=str(target),
         url=f'http://127.0.0.1:{port}',manual_robots=list(manual),robot_count=6,timestep_s=.002,
         max_wall_seconds=duration,startup_timeout_s=60.,cleanup_budget_s=8.,
-        client_patch=client_patch_identity(),pb_navigation_registered=bool(nav),native_registered=bool(native),
+        client_patch=patch_identity,client_patch_manifest=patch_manifest,local_file_sha256=files,
+        pb_navigation_registered=bool(nav),native_registered=bool(native),robotio_plugins_registered=graph is not None,
+        prepare_robotio_plugins=prepare,
         automatic_binding=False,automatic_goal=False,fire_authority='existing_manual_only',
         phase='PLAN_ONLY_NOT_READY',limitations=LIMITATIONS)
 
@@ -193,10 +295,11 @@ def read_stop(done):
 def worker(path,expected_sha):
     if sys.platform!='win32':raise ValueError('Owned co-op worker requires Windows')
     value,actual=read_local(path)
-    if actual!=expected_sha or set(value)!={'schema','core_argv','url'} or value['schema']!=SCHEMA:raise ValueError('Server plan identity mismatch')
+    if (type(value) is not dict or actual!=expected_sha or
+            set(value) not in ({'schema','core_argv','url'},{'schema','core_argv','url','local_file_sha256'})
+            or value['schema']!=SCHEMA):raise ValueError('Server plan identity mismatch')
     argv=value['core_argv']
-    if type(argv) is not list or argv[:4]!=[str(Path(sys.executable).absolute()),'-u','-m','rm_match.platform_v2']:
-        raise ValueError('Only the local platform v2 entry is admitted')
+    validate_worker_argv(argv,value['url']);verify_local_files(value.get('local_file_sha256',{}))
     ready=threading.Event();stopped=threading.Event();errors=[]
     def control():
         request=False
@@ -230,15 +333,16 @@ def launch(plan):
     from .windows_owned_job import WindowsOwnedJobProcess
     from .enrollment import provision_operator
     from ..platform_v2.admission import AdmissionPolicy
+    validate_worker_argv(plan['core_server_argv'],plan['url'])
+    verify_local_files(plan.get('local_file_sha256',{}))
     executable(plan['core_server_argv'][0]);executable(plan['client_argv'][0])
-    identity=check_client(plan['client_root'])
+    patch_kwargs={} if plan.get('client_patch_manifest') is None else {'patch_manifest':plan['client_patch_manifest']}
+    identity=check_client(plan['client_root'],**patch_kwargs)
     if identity['client_patch']!=plan['client_patch']:raise ValueError('Client patch changed after plan')
     out=Path(plan['out']);out.mkdir(parents=True,exist_ok=False)
     credential=provision_operator(out/'admission.json',plan['manual_robots'])
     policy=AdmissionPolicy.from_manifest(out/'admission.json');policy.authenticate('operator',credential)
-    server_data=dict(schema=SCHEMA,core_argv=plan['core_server_argv'],url=plan['url'])
-    encoded=(json.dumps(server_data,allow_nan=False)+'\n').encode();(out/'server-plan.json').write_bytes(encoded)
-    plan=dict(plan);plan['server_argv']=plan['server_argv'][:-1]+[hashlib.sha256(encoded).hexdigest()]
+    plan=dict(plan);encoded=freeze_server_plan(plan);(out/'server-plan.json').write_bytes(encoded)
     (out/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
     server=client=reader=qtreader=None;finished=False;result=dict(phase='STARTING',clean=False,game_ready=False)
     logs=[];server_attempted=False
@@ -264,7 +368,8 @@ def launch(plan):
             if server.poll() is not None:raise RuntimeError('Server exited before actual ready')
         else:raise TimeoutError('Server startup timeout')
         policy.verify_manifest_unchanged(out/'admission.json')
-        if check_client(plan['client_root'])['client_patch']!=plan['client_patch']:raise ValueError('Client identity changed during startup')
+        verify_local_files(plan.get('local_file_sha256',{}))
+        if check_client(plan['client_root'],**patch_kwargs)['client_patch']!=plan['client_patch']:raise ValueError('Client identity changed during startup')
         env['POLAR_SIM_ADMISSION_CREDENTIAL']=credential
         client=WindowsOwnedJobProcess(plan['client_argv'],cwd=plan['client_root'],env=env,stderr=logs[1].writer)
         logs[1].writer.close()
@@ -350,7 +455,8 @@ def main(argv=None):
         if not a.worker_plan_sha256 or a.config or a.run or a.out:p.error('Worker is a separate owned local invocation')
         return worker(a.worker_plan,a.worker_plan_sha256)
     if not a.config:p.error('--config is required')
-    config,_=read_local(a.config);plan=build_plan(config,out=a.out)
+    config,sha=read_local(a.config);plan=build_plan(config,out=a.out)
+    plan['local_file_sha256'][local_path(str(a.config),base=Path.cwd())]=sha;freeze_server_plan(plan)
     if a.run:return launch(plan)
     print(json.dumps(plan,indent=2));return 0
 

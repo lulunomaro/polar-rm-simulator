@@ -1,0 +1,36 @@
+{
+  "passed": false,
+  "checks": {
+    "two_actual_resource_prepare_acks": true,
+    "actual_qt_widgets_selected": true,
+    "actual_sdk_clean_ack": true,
+    "actual_physical_motion": false,
+    "typed_source_sdk150_receipt_join": true,
+    "no_adapter_fault": false,
+    "original_dt_2ms": true,
+    "runtime_clean": true,
+    "pipeline_clean": true,
+    "qt_job_clean": true,
+    "io_http_threads_stopped": true,
+    "errors_empty": true
+  },
+  "errors": [],
+  "physical": {
+    "receipts": 0,
+    "distinct_sim_steps": 0,
+    "distinct_source_actions": 0,
+    "phases": [],
+    "nonzero_sim_steps": 0
+  },
+  "steps": 1415,
+  "qualification": "actual_offscreen_widgets_clientSDK_low_rate_protocol_SIL_only",
+  "limitations": [
+    "not original Jello/F2/camera/visible GUI",
+    "synthetic fixtures, not team decision/navigation",
+    "1000 points/s, not MID360/SLAM/RTF/match qualification",
+    "no NN/ROS/WSL/GL renderer"
+  ],
+  "source_unchanged": true,
+  "elapsed_seconds": 8.471124799994868,
+  "exit_code": 2
+}

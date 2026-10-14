@@ -98,7 +98,7 @@ class AdapterSlot:
                 base.cancel(instance);return
 
     def _run(self):
-        instance=None;identity=None;failed_identity=None
+        instance=None;identity=None;failed_identity=None;reset_capture=None
         try:
             while not self.stop.is_set():
                 try:job=self.pending.get(timeout=.05)
@@ -107,7 +107,7 @@ class AdapterSlot:
                     if instance is not None:
                         try:instance.close()
                         except BaseException as exc:self.lifecycle_error=type(exc).__name__
-                    instance=None;identity=None
+                    instance=None;identity=None;reset_capture=None
                     with self._lifecycle_lock:self._instance=None
                     continue
                 if self.clock()>=job['observation']['wall_deadline']:continue
@@ -132,6 +132,17 @@ class AdapterSlot:
                         try:instance.reset(dict(episode=o['episode'],robot_id=o['robot_id'],binding_epoch=b['epoch']))
                         finally:admission_timings['reset_s']=self.clock()-phase_started
                         identity=current
+                        metadata=self.registry.get(b['adapter_id']).descriptor
+                        if (job['kind']=='navigation' and metadata.get('observation_profile')=='pointcloud_imu_v1'
+                            and metadata.get('reset_observation_policy')=='discard_reset_observation_v1'):
+                            # Reset receives context only. This capture was queued
+                            # before process setup/capability negotiation finished.
+                            # Start this opt-in interface with a NEW actual capture,
+                            # preserving its own original deadline and SDK window.
+                            source=job['sensor_budget']
+                            if source['source']!='navigation_sensor_v1':raise ValueError('Reset capture policy requires original navigation budget')
+                            reset_capture=(o['sensors']['pointcloud']['frame_id'],o['sim_time'],self.clock())
+                        else:reset_capture=None
                     if self.stop.is_set():break
                     # Raw-image validation/JSON copying is CPU work on this worker,
                     # never on physics or HTTP threads.
@@ -143,6 +154,9 @@ class AdapterSlot:
                         # exposure, retaining the reviewed instance for a NEW
                         # original-budget job of the same generation.
                         discarded_reason='original_deadline_expired_after_admission'
+                    elif reset_capture is not None and (o['sensors']['pointcloud']['frame_id']<=reset_capture[0]
+                        or o['sim_time']<=reset_capture[1] or job['sensor_budget']['capture_wall']<=reset_capture[2]):
+                        discarded_reason='reset_observation_discarded_waiting_for_new_capture'
                     elif job.get('native_pixels') is not None:
                         if b['adapter_id']!='aim_native_rmcs_v1' or not _reviewed_native_instance(instance,NativeSourceAdapter):
                             # Never hand a private object to a custom class/hook.

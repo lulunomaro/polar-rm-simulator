@@ -59,6 +59,21 @@ def context(value):
     return {name: value[name] for name in ('episode', 'robot_id', 'binding_epoch')}
 
 
+def test_pipeline_exposes_exact_navigation_contract_without_aliasing(tmp_path):
+    path,_,_,_=graph(tmp_path)
+    registry=Registry();register_robotio_plugins(registry,path)
+    direct=registry.get('custom_goal_nav_fixture').descriptor
+    composed=registry.get('custom_pipeline_fixture').descriptor
+    assert composed['navigation_plugin_contract']=='pointcloud_imu_v1'
+    assert composed['navigation_plugin_capabilities']==dict(NAV_CAPS,goal_input_modes=['decision_intent_v1'])
+    assert composed['goal_input_modes']==['decision_intent_v1']
+    assert composed['fire_authority']=='manual_only' and composed['ui_config_contract']=='empty_v1'
+    composed['navigation_plugin_capabilities']['goal_input_modes'].clear()
+    composed['goal_input_modes'].clear()
+    assert direct['navigation_plugin_capabilities']['goal_input_modes']==['decision_intent_v1']
+    assert direct['goal_input_modes']==['decision_intent_v1']
+
+
 def assert_clean(result):
     assert result.shutdown_status['clean'] and result.shutdown_status['resource_budget_s'] == 1.5
     for proof in result.shutdown_status['peers'].values():

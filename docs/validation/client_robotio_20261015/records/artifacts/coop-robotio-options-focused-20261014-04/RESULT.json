@@ -1,0 +1,30 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_coop_launcher.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\coop-robotio-options-focused-20261014-04\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 1.1878273000038462,
+  "source_before": {
+    "rm_match/deployment/coop_launcher.py": "5a6505cdc4517d37510b65904455fee420e1f61e05c1fa85f7aac211a20b1501",
+    "tests/test_coop_launcher.py": "b5b7353dadd9c0e5a36d932fb93182eff11f63d8eea430fd06da4b11971f155b",
+    "rm_match/deployment/launcher.py": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+    "client_patches/CLIENT_PATCH_MANIFEST.json": "710412a79999c7e82a8762faaf50eeccd93cf6ad2e40c2d8872357ca7e2bd1cc"
+  },
+  "source_after": {
+    "rm_match/deployment/coop_launcher.py": "5a6505cdc4517d37510b65904455fee420e1f61e05c1fa85f7aac211a20b1501",
+    "tests/test_coop_launcher.py": "b5b7353dadd9c0e5a36d932fb93182eff11f63d8eea430fd06da4b11971f155b",
+    "rm_match/deployment/launcher.py": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+    "client_patches/CLIENT_PATCH_MANIFEST.json": "710412a79999c7e82a8762faaf50eeccd93cf6ad2e40c2d8872357ca7e2bd1cc"
+  },
+  "source_unchanged": true,
+  "scope": "local_launcher_config_and_owned_lifecycle_mocks_only_no_physics_client_DDS_NN",
+  "started_physics_client_dds_nn": false
+}

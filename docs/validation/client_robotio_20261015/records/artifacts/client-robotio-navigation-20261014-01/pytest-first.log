@@ -1,0 +1,28 @@
+..........................F............  [100%]
+================================== FAILURES ===================================
+______ WorkerTests.test_spectator_dynamic_id_is_never_control_authority _______
+
+self = <test_platform_adapters.WorkerTests testMethod=test_spectator_dynamic_id_is_never_control_authority>
+
+    def test_spectator_dynamic_id_is_never_control_authority(self):
+        self.t.install_catalog(generic_catalog(),connection_generation=self.t._connection_generation,serial=2)
+        self.t.role='spectator'
+        with self.assertRaises(ValueError):self.t.configure_adapters({'navigation':'custom_independent_navigation'}, {})
+>       self.assertFalse(self.t.request_claim());self.assertFalse(self.ops('bind'))
+                         ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_platform_adapters.py:209: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <rm_client.sim_platform_transport.PlatformTransport object at 0x0000022C422D32F0>
+
+    def request_claim(self):
+        with self._lock:
+>           if self.role!='operator':raise ValueError('Spectator cannot control')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           ValueError: Spectator cannot control
+
+rm_client\sim_platform_transport.py:207: ValueError
+=========================== short test summary info ===========================
+FAILED tests\test_platform_adapters.py::WorkerTests::test_spectator_dynamic_id_is_never_control_authority
+1 failed, 38 passed, 32 subtests passed in 4.86s

@@ -1,0 +1,13 @@
+{
+  "schema": "polar.sim.coop-launch.v1",
+  "client_root": "external/polar-rm-client-robotio-review",
+  "client_python": ".venv-client/Scripts/python.exe",
+  "client_patch_manifest": "client_patches/CLIENT_ROBOTIO_PATCH_MANIFEST.json",
+  "robotio_plugins_json": "examples/robotio_protocol_plugins.json",
+  "prepare_robotio_plugins": false,
+  "manual_robots": ["red_infantry"],
+  "port": 8766,
+  "camera_total_fps": 15,
+  "max_wall_seconds": 600,
+  "raw_base64_codec": "stdlib_chunked"
+}

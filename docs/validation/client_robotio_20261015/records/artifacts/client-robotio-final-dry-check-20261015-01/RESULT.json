@@ -1,0 +1,29 @@
+[
+  {
+    "argv": [
+      ".venv-sim/Scripts/python.exe",
+      "-m",
+      "rm_match.deployment.coop_launcher",
+      "--config",
+      "examples/coop_robotio_protocol.json"
+    ],
+    "exit_code": 0,
+    "reaped": true,
+    "elapsed_s": 0.10287550000066403,
+    "scope": "dry plan/source inspection only; no physics/GUI/algorithm"
+  },
+  {
+    "argv": [
+      ".venv-sim/Scripts/python.exe",
+      "tools/apply_client_patch.py",
+      "--manifest",
+      "client_patches/CLIENT_ROBOTIO_PATCH_MANIFEST.json",
+      "--client-root",
+      "external/polar-rm-client-robotio-review"
+    ],
+    "exit_code": 0,
+    "reaped": true,
+    "elapsed_s": 1.761206700000912,
+    "scope": "dry plan/source inspection only; no physics/GUI/algorithm"
+  }
+]

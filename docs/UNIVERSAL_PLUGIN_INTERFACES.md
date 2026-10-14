@@ -6,7 +6,8 @@
 
 当前开放边界已包含组件 manifest、显式决策/导航组合、SDK 目录、JSONL、ROS 2 envelope 和显式 WSL 资源准备。
 它不自动理解任意 ROS 消息或串口包。队伍应提供保持真实数据来源的 wrapper；算法本身、标定、耗时和输出含义仍需验证。
-自动开火尚未开放；Qt 的通用导航/决策选择器尚未完成，当前通用入口使用 v2 SDK。
+自动开火尚未开放。显式使用新的组合客户端补丁后，Qt 能按完整能力合同发现通用导航和决策/导航组合；
+原默认补丁保持不变。安装、启动配置和实际验证范围见 [客户端通用接口](CLIENT_ROBOTIO_INTERFACE.md)。
 
 ## 组件与数据边界
 
@@ -126,6 +127,11 @@ ROS 路由先发送 `capabilities_request` 并检查实际 peer 的 context/capa
 WSL resource preparation 在物理运行前显式执行，当前最多 15 s 初始化预算。
 它不提供图像、点云或虚假推理预热，也不代替 binding 的实际 reset ACK/2 s 门限。
 资源是一个 prepared instance 对一个 binding，换代/rebind 需要新资源；缺失回收证明仍报告不干净。
+
+通用 navigation 与 decision/navigation pipeline 显式声明 `reset_observation_policy=discard_reset_observation_v1`。
+成功 reset 后，runtime 丢弃初始化前和初始化期间采集、排队的观测，等待真实的新点云/IMU采样；
+以原 frame_id、sim_time 和宿主 capture_wall 判定，不刷新六项身份、SDK 窗口或 deadline。
+同一实例保留，reset 失败仍为故障；旧 adapter 未声明此策略时维持原行为。
 
 ## Wrapper 与传输
 

@@ -1,6 +1,6 @@
 # 按计划实施的进度与证据
 
-更新至 2026-10-14（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
+更新至 2026-10-15（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
 work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 历史 cf6a6e4 证据、原帧、原模型及失败实验均保留。当前无 M0–M5 完整签收。
 
@@ -9,20 +9,20 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
-| T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；Windows 手动步兵入口实际短时启动/退出通过 | 本轮未验证按键/画面交互；移动完整自瞄、云台/实体弹丸全链 |
+| T04 | 进行中：固定原客户端加可选组合补丁；286 项实际 Qt offscreen 回归与91 subtests；Windows 手动步兵入口此前短时启动/退出通过 | 新原 PlatformWindow 可见按键/相机全链、移动完整自瞄、云台/实体弹丸全链 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 新队伍无关导航/决策/自瞄目录与配置组合层、SDK pipeline、JSONL/ROS 2 envelope/显式 WSL 准备；实际双类别 DDS 原身份往返通过；既有 camera_gimbal_v1 与 T2 静态 live 范围保持 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；通用 Qt 导航选择、第二套完整算法/实时自瞄、移动/多车/自动火等未验收；PB图像仍超80ms、同济无图像闭环 |
+| T07 | 队伍无关组件 graph、SDK pipeline、JSONL/ROS 2 envelope/显式 WSL 准备；新增 Qt 通用导航/决策组合目录、选定补丁启动配置与 reset 后新采样；实际 Qt 控件→SDK→MuJoCo 合成协议动作通过；既有 DDS、T2 静态 live 范围保持 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式 role/robot/audit admission、state/frame 白名单、撤权和跨 scope 拒绝；新增鉴权 /v2/plugins 与 SDK 组合绑定，loopback 授权过滤专测通过 | 原 Qt 通用导航/决策选择、两物理电脑 LAN、多人冲突/断线及完整可见 GUI 验收 |
+| T13 | 本地局部修复：显式 admission、白名单/撤权/跨 scope；鉴权 /v2/plugins、SDK 组合绑定；新补丁通用 Qt 选择及低点频原 SDK 物理消费通过 | 两物理电脑 LAN、多人冲突/断线、新补丁原 PlatformWindow 全链及完整可见 GUI 验收 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup05四步骤0/source unchanged：1991pass/40明确skip/1010subtests；通用组件/停止/启动/授权专测、实际DDS与两车协议SIL分别保存；QA04失败保留 | 质量与协议夹具不替队伍live/许可/发布；PB/Tongji图像链、完整反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup06四步骤0/source unchanged：2037pass/40明确skip/1010subtests；新Qt/初始化/选定补丁与launcher回归、旧DDS/两车SIL独立保存；本轮首次物理及旧QA失败保留 | 质量与协议夹具不替队伍live/许可/发布；PB/Tongji图像链、完整反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -34,7 +34,38 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
-## 当前主目标：通用接口（2026-10-14）
+## Qt 通用目录与初始化时序修复（2026-10-15）
+
+[客户端通用接口](CLIENT_ROBOTIO_INTERFACE.md)说明新的显式组合补丁、安装及 launcher 配置。
+原默认客户端 patch/manifest、旧客户端副本与全部已发布证据保持原字节；新补丁从同一固定客户端基线应用于独立 review checkout。
+目录按 typed capability、transport、scope 和空 config 识别通用 navigation / decision-navigation pipeline，
+WSL 自瞄声明也可被选择；没有队伍白名单，没有新增 HTTP executable/cwd/config 权限。
+launcher 可选择 graph、显式 WSL prepare 和补丁 manifest，原字节冻结后分阶段重检，不自动绑定、发目标或开火。
+
+实际 PySide6 offscreen 全客户端回归为286passed/91subtests/0skip，pytest14.58秒、外层15.155秒、owned child clean；
+这是原 Qt 事件与 guard 回归，后端为测试夹具，不证明物理、算法或可见桌面。
+新 Qt 控件→客户端解析/计划→HTTP→SDK→MuJoCo 协议 harness 第二次通过：1750步、26原独立动作、
+3736条receipt/1247非零消费步，typed6/SDK原150ms join errors=[]；1000 points/s实际ray/IMU，两个合成策略进程，
+内部7.0027297秒/外层8.9554348秒、source unchanged、全部owned tree/IO/SDK/HTTP clean。
+实际资源prepare .4174462秒且无观测/推理，runtime join .0232754秒。完整记录见[新永久验证包](validation/client_robotio_20261015/README.md)。
+
+首次 Qt 物理尝试因 create/reset 后首原帧剩余期限不足，在compose响应前过期而严格fault，整体失败、0运动；
+原日志/source/timing/cleanup保持。修复仅对显式通用导航策略：成功reset后，按原frame_id/sim_time/host capture_wall丢弃初始化前及期间排队的采样，
+等待独立新采样继续同实例；原六身份/80ms图像/150ms控制窗口不变，reset失败仍fault，不造零速/hold。
+时序专项最终43passed/2已有warnings；首次测试fixture的5fail/38pass仅有tool摘要与当时源，说明原stdout未保存，不伪造完整失败日志。
+launcher选项专项53passed/1.1878273秒只验证mock；此后修正带`..`的config路径冻结为canonical路径，并由最终统一QA验证。
+协议harness保存自己当时的launcher源码，不将旧SHA改写为该后继CLI路径修正已测。
+
+新控件harness未运行原PlatformWindow、相机/GL、原F2/watch全链、ROS/WSL或队伍算法；
+没有本轮完整可见启动、SLAM/目标到达、NN/RTF、自动火或整场3v3资格。
+T2/PB历史局部通过、PB80ms失败与同济图像缺口保持；T03/T07/T13/T17继续推进，M0–M5状态不变。
+
+最终统一QA06四步骤exit0/source unchanged，2037passed/40明确skip/1010subtests/6已有warnings；
+pytest148.02秒、外层driver191.7993803秒/reaped。显式选用原CPU4 spec，未自动回退算法或放宽任何门限。
+QA后仅本文结果说明和新永久包增补，程序/测试/DEVELOPMENT_CHANGES/补丁维持已测SHA；
+不声称QA后加入的归档或说明文本参与了此前质量检查。
+
+## 通用接口此前交付范围（2026-10-14）
 
 用户最新明确要求各家导航、决策、自瞄通过通用接口接入；北极熊、T2、同济只是验证实例，不构成队伍白名单。
 按[通用插件接口](UNIVERSAL_PLUGIN_INTERFACES.md)推进配置、能力协商、原传感器关联、各队包装和独立算法验证。

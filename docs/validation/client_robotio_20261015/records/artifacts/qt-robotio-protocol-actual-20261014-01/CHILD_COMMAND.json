@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-u",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_robotio_peer.py",
+    "--client-root",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-review",
+    "--url",
+    "http://127.0.0.1:63215",
+    "--adapter-id",
+    "custom_protocol_pipeline_supply",
+    "--duration",
+    "3.5"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "credential_transport": "memory/environment_only"
+}

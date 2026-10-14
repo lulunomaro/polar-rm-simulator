@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "tools/qa_qt_robotio_protocol.py",
+      "size": 18228,
+      "sha256": "43f4439c63686c9000864a3cb8b5c673a7a99cb47e09ebfb4855cb3b6a802c13",
+      "crlf_count": 0
+    },
+    {
+      "path": "tools/qa_qt_robotio_peer.py",
+      "size": 7194,
+      "sha256": "79d79ffce66fc7f3e41286f1e45b52221c10aac803412fa7b0e29bf59f95e444",
+      "crlf_count": 0
+    }
+  ],
+  "scope": "AST parsing only, no imports/Qt/physics/HTTP/child/test execution"
+}

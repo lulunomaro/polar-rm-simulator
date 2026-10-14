@@ -12,20 +12,29 @@ import sys
 import threading
 import time
 from .profile import (PROFILE, CLIENT_REPOSITORY, CLIENT_COMMIT, LIMITATIONS,
-                      digest, read_json)
+                      digest, read_json, read_json_snapshot)
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def client_patch_identity():
-    manifest=read_json(ROOT/'client_patches/CLIENT_PATCH_MANIFEST.json')
+def client_patch_identity(manifest_path=None):
+    selected=ROOT/'client_patches/CLIENT_PATCH_MANIFEST.json' if manifest_path is None else Path(manifest_path).absolute()
+    if selected.is_symlink() or selected.resolve()!=selected or str(selected).startswith('\\\\'):
+        raise ValueError('Plain local client patch manifest required')
+    manifest,manifest_sha=read_json_snapshot(selected)
+    if type(manifest) is not dict or manifest.get('schema')!='polar.sim.own_client_patch.v1':
+        raise ValueError('Unsupported client patch manifest')
     if manifest.get('base_commit')!=CLIENT_COMMIT:
         raise ValueError('Client patch base differs from the fixed own-client commit')
-    path=ROOT/'client_patches'/manifest['patch_file']
-    if path.parent!=ROOT/'client_patches' or digest(path)!=manifest['patch_sha256']:
+    name=manifest.get('patch_file')
+    if type(name) is not str or not name or Path(name).name!=name or '/' in name or '\\' in name:
+        raise ValueError('Client patch must be a file in the manifest directory')
+    path=selected.parent/name
+    if path.is_symlink() or path.resolve().parent!=selected.parent or digest(path)!=manifest['patch_sha256']:
         raise ValueError('Client patch bytes differ from their declared identity')
+    if digest(selected)!=manifest_sha:raise ValueError('Client patch manifest changed during inspection')
     return dict(base_commit=CLIENT_COMMIT,patch_sha256=manifest['patch_sha256'],
-                manifest_sha256=digest(ROOT/'client_patches/CLIENT_PATCH_MANIFEST.json'),
+                manifest_sha256=manifest_sha,
                 qualification='Fixed own client plus explicit reviewed operator-state patch')
 
 
@@ -112,16 +121,22 @@ print(json.dumps(result))'''
     return value
 
 
-def check_client(root):
+def check_client(root, *, patch_manifest=None):
     root = Path(root)
     actual = run_checked(['git', '-C', str(root), 'rev-parse', 'HEAD'])
     if actual != CLIENT_COMMIT:
         raise ValueError('Client must be at pinned commit ' + CLIENT_COMMIT)
     from tools.apply_client_patch import inspect_client
-    identity=client_patch_identity()
-    patched=inspect_client(root)
+    identity=client_patch_identity() if patch_manifest is None else client_patch_identity(manifest_path=patch_manifest)
+    patched=inspect_client(root) if patch_manifest is None else inspect_client(root,manifest_path=patch_manifest)
+    if patched.get('patch_sha256')!=identity['patch_sha256']:
+        raise ValueError('Client patch changed during source verification')
+    selected=ROOT/'client_patches/CLIENT_PATCH_MANIFEST.json' if patch_manifest is None else Path(patch_manifest).absolute()
+    if digest(selected)!=identity['manifest_sha256']:
+        raise ValueError('Client patch manifest changed during source verification')
     if patched['apply_required']:
-        raise ValueError('Pinned client requires the explicit operator-state patch; run tools/apply_client_patch.py --client-root PATH --run')
+        option='' if patch_manifest is None else ' --manifest '+str(patch_manifest)
+        raise ValueError('Pinned client requires the explicit operator-state patch; run tools/apply_client_patch.py --client-root PATH'+option+' --run')
     for rel in ('main.py', 'rm_client/ui/sim_platform_window.py',
                 'rm_client/sim_platform_adapters.py', 'requirements-core.txt'):
         if not (root / rel).is_file():

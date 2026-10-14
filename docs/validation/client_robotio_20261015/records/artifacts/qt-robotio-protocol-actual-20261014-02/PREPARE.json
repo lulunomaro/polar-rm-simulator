@@ -1,0 +1,20 @@
+{
+  "completed": true,
+  "rows": [
+    {
+      "peer": "decision",
+      "started_wall": 56912.062117,
+      "ack_wall": 56912.2820397,
+      "elapsed_s": 0.21992270000191638
+    },
+    {
+      "peer": "navigation",
+      "started_wall": 56912.2820426,
+      "ack_wall": 56912.4714863,
+      "elapsed_s": 0.18944369999371702
+    }
+  ],
+  "budget_s": 15.0,
+  "elapsed_s": 0.4174462000009953,
+  "scope": "two real resource prepare ACKs; zero observations/policy calls/inference"
+}

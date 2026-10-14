@@ -1,0 +1,29 @@
+{
+  "event": "qt_ready",
+  "robot_id": "red_infantry",
+  "selected": [
+    "custom_protocol_pipeline_supply"
+  ],
+  "plan": {
+    "navigation": {
+      "adapter_id": "custom_protocol_pipeline_supply",
+      "config": {}
+    }
+  },
+  "binding": {
+    "robot_id": "red_infantry",
+    "kind": "navigation",
+    "adapter_id": "custom_protocol_pipeline_supply",
+    "binding_epoch": 1,
+    "activation_required": true,
+    "activation_version": 1
+  },
+  "actual_widgets": [
+    "QWidget",
+    "QComboBox",
+    "QPushButton"
+  ],
+  "camera": false,
+  "visible_gui": false,
+  "f2": false
+}

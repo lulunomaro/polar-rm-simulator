@@ -160,7 +160,10 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
             supported_robots=list(row['supported_robots']),observation_profile=NAV_PROFILE,
             robotio_pipeline=dict(decision_plugin_id=row['decision_plugin_id'],navigation_plugin_id=row['navigation_plugin_id']),
             local_registration=True,qualification='interface_not_algorithm_or_live_acceptance')
-        d.update(ui_config_contract='empty_v1')
+        d.update(ui_config_contract='empty_v1',navigation_plugin_contract=NAV_PROFILE,
+            reset_observation_policy='discard_reset_observation_v1',
+            navigation_plugin_capabilities=copy.deepcopy(nav.descriptor['navigation_plugin_capabilities']),
+            goal_input_modes=copy.deepcopy(nav.descriptor['goal_input_modes']))
         registry.register(d,factory)
         catalog.append(dict(plugin_id=row['adapter_id'],category='pipeline',label=row['label'],version='1.0.0',
             supported_robots=list(row['supported_robots']),components=copy.deepcopy(d['robotio_pipeline']),

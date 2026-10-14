@@ -1,0 +1,13 @@
+{
+  "schema": "polar.sim.own_client_patch.check.v1",
+  "client_root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-review",
+  "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+  "patch_sha256": "594b8562ba88dadf2facb59a1bdaa3517c4be22bf7397b4512d97b07c942e9e3",
+  "status": "verified_patched",
+  "apply_required": false,
+  "applied": false,
+  "dry_run": true,
+  "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF",
+  "git_clean_profile": "per-command core.autocrlf=true and core.filemode=false; attributes honored",
+  "qualification": "Own client at fixed base plus reviewed patch; not original byte-exact client"
+}

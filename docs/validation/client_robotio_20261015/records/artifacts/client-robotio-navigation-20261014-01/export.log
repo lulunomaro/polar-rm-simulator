@@ -1,0 +1,36 @@
+{
+  "schema": "polar.sim.client-robotio-export.v1",
+  "old_manifest_sha256": "710412a79999c7e82a8762faaf50eeccd93cf6ad2e40c2d8872357ca7e2bd1cc",
+  "old_patch_sha256": "a889f79c20ff850c2531ed52f0bb3b8b55facf4f201efa5ccf45149bb7b1a331",
+  "new_manifest_sha256": "3916988423e6f7d3c0394d19df7a02cb241b72d28172c50d1ca6f970c9129bdc",
+  "new_patch_sha256": "594b8562ba88dadf2facb59a1bdaa3517c4be22bf7397b4512d97b07c942e9e3",
+  "new_checkout_check": {
+    "schema": "polar.sim.own_client_patch.check.v1",
+    "client_root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-review",
+    "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "patch_sha256": "594b8562ba88dadf2facb59a1bdaa3517c4be22bf7397b4512d97b07c942e9e3",
+    "status": "verified_patched",
+    "apply_required": false,
+    "applied": false,
+    "dry_run": true,
+    "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF",
+    "git_clean_profile": "per-command core.autocrlf=true and core.filemode=false; attributes honored",
+    "qualification": "Own client at fixed base plus reviewed patch; not original byte-exact client"
+  },
+  "old_client_check": {
+    "schema": "polar.sim.own_client_patch.check.v1",
+    "client_root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-state-review",
+    "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "patch_sha256": "a889f79c20ff850c2531ed52f0bb3b8b55facf4f201efa5ccf45149bb7b1a331",
+    "status": "verified_patched",
+    "apply_required": false,
+    "applied": false,
+    "dry_run": true,
+    "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF",
+    "git_clean_profile": "per-command core.autocrlf=true and core.filemode=false; attributes honored",
+    "qualification": "Own client at fixed base plus reviewed patch; not original byte-exact client"
+  },
+  "reverse_apply_check": true,
+  "old_patch_and_checkout_unchanged": true,
+  "export_script_sha256": "8409b7d7e153b965d3de287cab66171399bc92e548f156b65eec759a7690f96d"
+}

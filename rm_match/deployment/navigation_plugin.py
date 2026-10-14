@@ -177,6 +177,7 @@ def register_navigation_plugins(registry, path, *, clock=None,wsl_prepared=None)
     for row in rows:
         d = descriptor(row['adapter_id'], 'navigation', row['label'], ['pointcloud', 'imu'])
         d.update(ui_config_contract='empty_v1', observation_profile=NAV_PROFILE,
+            reset_observation_policy='discard_reset_observation_v1',
             navigation_plugin_contract=NAV_PROFILE, navigation_plugin_capabilities=copy.deepcopy(row['capabilities']),
             goal_input_modes=list(row['capabilities']['goal_input_modes']), supported_robots=list(row['supported_robots']),
             local_registration=True, plugin_transport=row['transport'],

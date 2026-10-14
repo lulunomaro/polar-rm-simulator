@@ -1,5 +1,12 @@
 # 自有 Qt 客户端 operator_state_v1 补丁
 
+2026-10-15 新增可选的 [CLIENT_ROBOTIO_PATCH_MANIFEST.json](CLIENT_ROBOTIO_PATCH_MANIFEST.json)
+与 [robotio_navigation_v1.patch](robotio_navigation_v1.patch)。这是从同一固定基线出发、包含原全部修改的组合补丁，
+用于通用导航/决策组合的 Qt 目录选择；安装在全新基线 checkout，不叠加旧补丁。
+原默认 `CLIENT_PATCH_MANIFEST.json` 和 `operator_state_v1.patch` 保持不变。
+新安装命令、启动器选择字段、真实 Qt 与协议物理证据范围见 [客户端通用接口](../docs/CLIENT_ROBOTIO_INTERFACE.md)。
+以下原版本记录保持各自原资格，不能重标为新组合补丁已验证。
+
 固定基线：`0cedf99b70b1beec99865b9980af6789e6c53d99`。补丁 SHA256 和每个文件的原/新 hash 在 `CLIENT_PATCH_MANIFEST.json`。
 此版本是固定原客户端加审阅补丁，不是原始 byte-exact 客户端。external 副本未提交、未 push。
 
