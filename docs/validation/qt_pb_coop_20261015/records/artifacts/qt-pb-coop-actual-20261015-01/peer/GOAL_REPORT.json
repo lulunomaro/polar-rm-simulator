@@ -1,0 +1,17 @@
+{
+  "source": "actual_algorithm_map_to_base_link_tf",
+  "frame": "map",
+  "source_stamp_ns": 4998000000,
+  "relative_offset_m": [
+    1.0,
+    0.0
+  ],
+  "goal_xy": [
+    1.0016989643200538,
+    -0.002701756338751023
+  ],
+  "path_poses": 15,
+  "planner_status": 4,
+  "follow_path_accepted": true,
+  "follow_path_status": 4
+}

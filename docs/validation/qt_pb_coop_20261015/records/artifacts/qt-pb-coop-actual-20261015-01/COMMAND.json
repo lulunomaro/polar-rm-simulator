@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_pb_coop_sil.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-pb-coop-actual-20261015-01",
+    "--environment",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json",
+    "--stack-config",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-config-20261014-04.json",
+    "--seconds",
+    "5.0",
+    "--max-wall-seconds",
+    "15.0",
+    "--host-opencv-threads",
+    "4",
+    "--host-python-switch-interval-ms",
+    "1",
+    "--run"
+  ],
+  "plan": {
+    "client": {
+      "commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+      "tracked_source_clean": false,
+      "patched_source_verified": true,
+      "client_patch": {
+        "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+        "patch_sha256": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1",
+        "manifest_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+        "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+      }
+    },
+    "run_seconds": 5.0,
+    "max_wall_seconds": 15.0,
+    "qualified": false,
+    "original_camera80ms": true,
+    "original_control150ms": true,
+    "scope": "original Qt manual infantry alongside real PB navigation sentry; no aiming/match tree/full match",
+    "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "stack_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "explicit_run_required": true
+  }
+}

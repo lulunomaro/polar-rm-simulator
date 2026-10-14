@@ -9,20 +9,20 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
-| T04 | 进行中：第五独立相机顺序补丁，496项完整Qt回归/363subtests；原PlatformWindow实际手动5秒/30秒相机、两F2、W/S和鼠标经SDK/MuJoCo通过，86/479批全部消费且clean；旧失败保持 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、队伍算法组合全链 |
+| T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope；六身份/注册竞态修复保持；新原子control_batch保持完整租约/绑定/window/通道/typedACK，36后端和53 SDK回归；两次原窗口低点频合成协议链通过 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
+| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope与原子batch；原Qt手动SDK和真实PB原云/LIO/控制器/SDK消费同场审计通过；PB显式复用已有reset后新采样policy，无runtime/算法/期限改动 | 决策 v1 未提供定位/感知反馈；PB目标wrapper还缺通用goal/hold/cancel；各队需审核包装层；第二套完整自瞄、移动/多车/自动火未验收；PB图像超80ms、同济无图像闭环 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
+| T09 | 局部SIL通过：实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；同场30秒PB有198原传感器请求/196LIO来源/28控制器结果、476非零消费步并完成原估计位置相对目标；默认ideal odom/64rays限制另记 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式admission/scope/SDK组合；原150ms下实际30秒手控479完整批量ACK全部匹配物理消费，1502护栏检查/0诊断丢弃/source unchanged/owned资源clean；前两合成协议通过另记 | 两物理电脑LAN、多人冲突/断线、更长/可见桌面及队伍算法全链 |
+| T13 | 本地局部修复：两独立credential/scope/lease/SDK同场30秒通过，步兵486批全部匹配，1502guard/0诊断丢弃；原host1.5s内Qt/两个WSL所有owned资源退出，原Linux1.3s不变 | 两物理电脑LAN、多人冲突/断线、更长/可见桌面、通用决策/自瞄与比赛全链 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup09四步骤0/source unchanged：2160pass/40明确skip/1010subtests；第五客户端496pass/363subtests；实际手动5秒与30秒通过，旧两次手动失败、原协议三次失败及历史证据不改 | 质量/手动SIL不替队伍live/许可/发布；更长/可见桌面、PB/Tongji图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup10四步骤0/source unchanged：2178pass/40明确skip/1024subtests；原第五客户端字节保持；同场真实PB导航与手控5秒/修复后30秒通过，中间reset期限失败及全部历史证据不改 | 质量/两车单目标SIL不替许可/发布或完整比赛；更长/可见桌面、PB/Tongji自瞄图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,48 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 原手控步兵与真实PB导航同场（2026-10-15）
+
+新[独立联合探针](COOP_PLAYABLE_PATH.md)复用原第五客户端、Qt手动按键/鼠标/两F2和真实HTTP相机，
+另一个独立credential、red_sentry motion lease和原SDK授权真实WSL Point-LIO/SLAM/Nav2/PB PID。
+准备阶段physics/sensor为0，没有预喂算法；只有原Qt手动arm后才授权导航，实际ray/IMU配置200000points/s。
+人工SDK原window/lease/seq/值/expiry与导航原cloud/LIO/controller/SDK150ms分别审计，
+重叠用同一Windows host GO/F12区间、原2ms物理步，不拼接单车记录或转换Linux时钟。
+
+只读实际预检11个ELF、22份配置/来源引用、ext4/Python3.10.12与原HEAD匹配；预检没有启动ROS/GL。
+rclpy XML版本缺失只记null，不能据此称模块缺失；后续实际运行独立证明ROS导航。
+并行清理helper只调用exact可信owner的原close，保持各Linux1.3s和同一host1.5s；
+回收迟到、异常、未退出线程、错出生身份或即使已赋值的部分receipt都不能变clean。
+runtime仍独占导航close，helper仅外部goal owner，避免竞态；11项/14subtests夹具不冒充实际WSL回收。
+
+| 实际运行 | GO秒 | 原手动批/全部消费 | 手动物理消费步 | 原导航非零步 | 同物理步两车非零 | 传感器请求/LIO/控制器 | 相对目标 | 内部/driver秒 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| joint01，旧descriptor | 5 | 82/82 | 1573 | 426 | 314 | 32/30/25 | 完成 | 24.5963907/26.7151630 |
+| joint02，旧descriptor | 请求30、.802秒失败 | 15/15 | 282 | 0 | 0 | 1/0/0 | 未启动 | 16.8635494/18.9804055 |
+| joint03，reset策略 | 30 | 486/486 | 9904 | 476 | 410 | 198/196/28 | 完成 | 48.9283522/51.1370498 |
+
+02原首reset约134.8ms，原采样余期不足50ms；首act响应越过原截止而TimeoutError，0导航消费。
+独立observer未完成退出2；原Linux group证明空/reaped/no kill，host严格零退出检查仍unclean；两者事实分别保存。
+Qt在W不足1秒时失去控制护栏并退出，不能报告30秒成功。所有source/失败/阶段和各清理证明原件保留。
+仅PB导航descriptor启用已有通用discard_reset_observation_v1：context-only reset成功后丢弃旧和期间排队采样，
+等待原frame/sim/hostcapture真正新样本，同实例、原身份和期限不变。runtime、算法、原50/80/150ms均未改。
+实际Registry/WslNavigationAdapter/AdapterSlot配显式stub的专项最终17pass；含旧无policy只剩16ms超时、
+新第一/排队采样不变丢弃与新样本原六身份接受、伪换frame/sim/hostcapture拒绝、reset失败sticky。
+首轮5pass/1fail为旧queue.get已阻塞造成新测试hook未观察到消费，Event同步修正，原失败及后继16/17pass保留。
+
+01及03全部25根检查、两独立审计通过；目标来自真实算法估计map→base TF相对1米，真实planner/path完成，
+禁止世界真值回流。03原GO/F12间隔30.0193222秒、11对按键、1502guard、诊断丢弃0；
+Qt清理.0454841秒、runtime join .5303054秒、外部owner .4157285秒，所有Job/ROS群组/IO/HTTP/SDK/相机在原预算内clean。
+host/Qt CV4与CPython1ms实读还原，source unchanged/exit0/reaped/no forced direct termination。
+目标完成后原无动作状态合法，不能说两车30秒始终运动。这是离屏两车单目标协同SIL，
+无比赛树、自瞄/NN/自动火、可见桌面、RTF性能矩阵、LAN或完整3v3/7v7；其余四车没有替代策略。
+继续通用goal/hold/cancel、有来源的估计/裁判反馈和比赛树连接；T01–T18/M0–M5完整资格仍按上表。
+
+代码、所有三个实际原源/失败/画面/回执/时间/退出及质量记录见[新永久包](validation/qt_pb_coop_20261015/README.md)。
+最终QA10四步骤exit0/source unchanged：2178passed/40明确skip/1024subtests/6已有warnings，
+pytest137.19秒、外层driver167.9643966秒/reaped；使用同一显式CPU4 WSL spec、无回退，409程序/测试/provenance文件不变。
+第五客户端和所有旧档案/补丁原字节保持，QA后仅结果说明、封存和开发分支Git交付。
 
 ## 原相机顺序修复与实际手控30秒（2026-10-15）
 

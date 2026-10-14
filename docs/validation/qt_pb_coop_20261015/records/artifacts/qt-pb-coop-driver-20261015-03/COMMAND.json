@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_pb_coop_sil.py",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-pb-coop-actual-20261015-03",
+    "--environment",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json",
+    "--stack-config",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-config-20261014-04.json",
+    "--seconds",
+    "30.0",
+    "--max-wall-seconds",
+    "45.0",
+    "--host-opencv-threads",
+    "4",
+    "--host-python-switch-interval-ms",
+    "1",
+    "--run"
+  ],
+  "source_before": {
+    "tools/qa_qt_pb_coop_sil.py": "b5abe987066707c1c09d62e1c33edd6cccd3944ae007976f623572dd8f76c48d",
+    "tools/pb_coop_cleanup.py": "ae64f4f9123a72b5b51d1268033602dd42a37cefded48adbc6a11ece1ad0fb93",
+    "tools/qa_qt_manual_peer.py": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+    "tools/audit_qt_manual.py": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "rm_match/integrations/pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match/integrations/pb_wsl_navigation_registry.py": "dae67d7470f12f10e71b2d5cae747ec1c019a3a71a91d70c0a77922ab9754636",
+    "client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+    "client_patches/robotio_camera_order_v1.patch": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1",
+    "artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "artifacts/pb-navigation-sil-config-20261014-04.json": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+  }
+}

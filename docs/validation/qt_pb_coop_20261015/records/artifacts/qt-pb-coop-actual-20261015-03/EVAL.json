@@ -1,0 +1,45 @@
+{
+  "source": "isolated_world_evaluation_never_peer_input",
+  "initial": {
+    "robot_id": "red_infantry",
+    "team": "red",
+    "role": "infantry",
+    "xy": [
+      -5.25,
+      3.0
+    ],
+    "hp": 300.0,
+    "max_hp": 300.0,
+    "ammo": 0,
+    "heat": 0.0,
+    "heat_max": 230.0,
+    "alive": true,
+    "yaw": 0.0,
+    "gimbal_yaw": 0.0,
+    "gimbal_pitch": 0.0,
+    "vx": 0.0,
+    "vy": 0.0,
+    "wz": 0.0
+  },
+  "final": {
+    "robot_id": "red_infantry",
+    "team": "red",
+    "role": "infantry",
+    "xy": [
+      -4.089596124040184,
+      2.9979531489383566
+    ],
+    "hp": 300.0,
+    "max_hp": 300.0,
+    "ammo": 0,
+    "heat": 0.0,
+    "heat_max": 230.0,
+    "alive": true,
+    "yaw": -0.00010578028441890522,
+    "gimbal_yaw": -0.027983946646403624,
+    "gimbal_pitch": -0.07978675888123665,
+    "vx": 0.9015124154234567,
+    "vy": -8.948133968588331e-05,
+    "wz": 0.00013030192684726293
+  }
+}

@@ -1,0 +1,27 @@
+.....F                                                                   [100%]
+================================== FAILURES ===================================
+_ test_reset_failure_remains_sticky_and_does_not_turn_into_pending_localization _
+
+tmp_path = WindowsPath('C:/Users/lulu/AppData/Local/Temp/pytest-of-lulu/pytest-159/test_reset_failure_remains_sti0')
+
+    def test_reset_failure_remains_sticky_and_does_not_turn_into_pending_localization(tmp_path):
+        clock,registry,session,slot,published=fixture(tmp_path,fail=True)
+        try:
+            session.reset_release.set();slot.submit(job(1,0,.1,1.));wait(lambda:len(published)>=1)
+            assert published[0]['error']=='RuntimeError' and published[0]['discarded_reason'] is None
+            assert published[0]['value'] is None and session.stopped and session.closed==1
+            consumed=threading.Event();again=threading.Event();original_get=slot.pending.get
+            def get(*args,**kwargs):
+                if consumed.is_set():again.set()
+                value=original_get(*args,**kwargs);consumed.set();return value
+            slot.pending.get=get
+            clock.now=1.145;slot.submit(job(2,2,.3,1.14))
+>           assert consumed.wait(1.) and again.wait(1.)
+E           assert (False)
+E            +  where False = wait(1.0)
+E            +    where wait = <threading.Event at 0x17969cdd700: unset>.wait
+
+tests\test_pb_reset_capture_policy.py:149: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_pb_reset_capture_policy.py::test_reset_failure_remains_sticky_and_does_not_turn_into_pending_localization
+1 failed, 5 passed in 2.72s

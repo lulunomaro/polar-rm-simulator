@@ -1,0 +1,3508 @@
+{
+  "schema": "polar.evidence.literal-preservation.v1",
+  "parent_commit": "82029a6aec74a303253fb9417d63a6d669e54cc1",
+  "qualification": "real original offscreen Qt manual infantry plus Windows/WSL PB sourced navigation single-goal coexistent five/thirty second SIL; middle reset-deadline failure retained; no match tree/aim/visible desktop/performance/LAN/full match acceptance",
+  "records": [
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-10/COMMAND.json",
+      "original_bytes": 45723,
+      "original_sha256": "33ee964ada83d8cc629323c8767f6d5548abc43286f9f1fd86b10cd589b871e2",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-10/COMMAND.json.gz",
+      "stored_bytes": 19987,
+      "stored_sha256": "9dfa8c59e31e48ebdcccdbf143a81e76a482ff359e87d30879f720fe0ced1ceb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-10/driver.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-10/driver.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-10/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "d0982ee01686ad25a1d3caf0f5046cfc59623960ed3f85b486e60c06fdea479b",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-10/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "d0982ee01686ad25a1d3caf0f5046cfc59623960ed3f85b486e60c06fdea479b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-10/RESULT.json",
+      "original_bytes": 90360,
+      "original_sha256": "f90f22d581291a4ba280900b2079d5c4c52cf17ec975bc94e1b4f04daa9c3516",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-10/RESULT.json.gz",
+      "stored_bytes": 38905,
+      "stored_sha256": "e0177880881fa8cb9f796a27f0bcbbde5677409590a47d79fbe3bd50f58301ed",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-10/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-10/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-10/stdout.log",
+      "original_bytes": 96,
+      "original_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-10/stdout.log",
+      "stored_bytes": 96,
+      "stored_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/create_pb_coop_probe_20261015.py",
+      "original_bytes": 15401,
+      "original_sha256": "d006b1ec34cfde996855b11ec45e509069f04106fb31bd3ae1b998b031a43aa0",
+      "stored_path": "records/artifacts/create_pb_coop_probe_20261015.py.gz",
+      "stored_bytes": 4740,
+      "stored_sha256": "1f628a0341ea980dfc186c346ef8f5702915360434847d17e5daa5aed4d3a171",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/pb-coop-cleanup-focused-20261015-01/pytest.xml",
+      "original_bytes": 1911,
+      "original_sha256": "be3137bc589aff3effa296fa2b5af15bc4bba0a6c3abbc64eb3514267b2a1585",
+      "stored_path": "records/artifacts/pb-coop-cleanup-focused-20261015-01/pytest.xml",
+      "stored_bytes": 1911,
+      "stored_sha256": "be3137bc589aff3effa296fa2b5af15bc4bba0a6c3abbc64eb3514267b2a1585",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-coop-cleanup-focused-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/pb-coop-cleanup-focused-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-coop-cleanup-focused-20261015-01/stdout.log",
+      "original_bytes": 107,
+      "original_sha256": "2cc731c1f13de6f1a82ab13fdb862bb32367613b60274c9a0a7766350db1992f",
+      "stored_path": "records/artifacts/pb-coop-cleanup-focused-20261015-01/stdout.log",
+      "stored_bytes": 107,
+      "stored_sha256": "2cc731c1f13de6f1a82ab13fdb862bb32367613b60274c9a0a7766350db1992f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-coop-preflight-20261015-01/capture_preflight.py",
+      "original_bytes": 3133,
+      "original_sha256": "c9576496877fcd5e0f52293ffd027d79d9cc5a19f2f952653ca882d08f2510ed",
+      "stored_path": "records/artifacts/pb-coop-preflight-20261015-01/capture_preflight.py",
+      "stored_bytes": 3133,
+      "stored_sha256": "c9576496877fcd5e0f52293ffd027d79d9cc5a19f2f952653ca882d08f2510ed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-coop-preflight-20261015-01/COMMAND.json",
+      "original_bytes": 1598,
+      "original_sha256": "274d66d37f0e7be42e019e796b10ee5dc419f9677662bb6280a3b255834cfbba",
+      "stored_path": "records/artifacts/pb-coop-preflight-20261015-01/COMMAND.json",
+      "stored_bytes": 1598,
+      "stored_sha256": "274d66d37f0e7be42e019e796b10ee5dc419f9677662bb6280a3b255834cfbba",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-coop-preflight-20261015-01/linux_readonly_preflight.py",
+      "original_bytes": 5236,
+      "original_sha256": "cbda90760682f8ecc69d5d2b55b0cdd6cccea4d1f6970df2b3277072217ce2f6",
+      "stored_path": "records/artifacts/pb-coop-preflight-20261015-01/linux_readonly_preflight.py.gz",
+      "stored_bytes": 1901,
+      "stored_sha256": "786f93fb5f865c9d139bfa2f924761899224dd50b928be680cb6bfc17afd1cc8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/pb-coop-preflight-20261015-01/RESULT.json",
+      "original_bytes": 22883,
+      "original_sha256": "b6c154b896cecabea9a36f8c10ba78d95a2f65db53f51a639df7a2e22f12e20d",
+      "stored_path": "records/artifacts/pb-coop-preflight-20261015-01/RESULT.json.gz",
+      "stored_bytes": 4275,
+      "stored_sha256": "72b6ef49d5641af5993bcb44aa64547346cc42e1ef1879967005183567d7633a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/pb-coop-preflight-20261015-01/stderr.bin",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/pb-coop-preflight-20261015-01/stderr.bin",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-coop-preflight-20261015-01/stdout.bin",
+      "original_bytes": 19167,
+      "original_sha256": "6ab70fbfbd4e3715210be985ad110385a90009e7932755ea04f517f89f0d4284",
+      "stored_path": "records/artifacts/pb-coop-preflight-20261015-01/stdout.bin.gz",
+      "stored_bytes": 3796,
+      "stored_sha256": "d1fcee50344b69d8f5f13a063a941c21f2f4790cae78b293815259239152babc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/before_registry.py",
+      "original_bytes": 5009,
+      "original_sha256": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/before_registry.py.gz",
+      "stored_bytes": 1701,
+      "stored_sha256": "1ee8497b4ace8f74a71323b4d9eac38dd5a7b6379c357807287465db0b538ee5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/pytest01.xml",
+      "original_bytes": 2580,
+      "original_sha256": "d3da7f6bb85942b62805b6b4ee244e765a9ec66ea7b871e45b5ffe4c1b2c6d3f",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/pytest01.xml",
+      "stored_bytes": 2580,
+      "stored_sha256": "d3da7f6bb85942b62805b6b4ee244e765a9ec66ea7b871e45b5ffe4c1b2c6d3f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/pytest02.xml",
+      "original_bytes": 2775,
+      "original_sha256": "9f4d8ff00eefeac510b91d714bdf3b3d753f8f656993d53a706da73deea56a58",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/pytest02.xml",
+      "stored_bytes": 2775,
+      "stored_sha256": "9f4d8ff00eefeac510b91d714bdf3b3d753f8f656993d53a706da73deea56a58",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/pytest03.xml",
+      "original_bytes": 2931,
+      "original_sha256": "1e20a90976df7ec8107e856947136a65cf9374aa4a75cc4375551ca651cacbe1",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/pytest03.xml",
+      "stored_bytes": 2931,
+      "stored_sha256": "1e20a90976df7ec8107e856947136a65cf9374aa4a75cc4375551ca651cacbe1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/stderr01.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/stderr01.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/stderr02.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/stderr02.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/stderr03.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/stderr03.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/stdout01.log",
+      "original_bytes": 1705,
+      "original_sha256": "1c084824262375d374b0454472966d53564fe54997db4ab52778db5cd66a11ae",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/stdout01.log",
+      "stored_bytes": 1705,
+      "stored_sha256": "1c084824262375d374b0454472966d53564fe54997db4ab52778db5cd66a11ae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/stdout02.log",
+      "original_bytes": 101,
+      "original_sha256": "31d64385b3184cb27fe1147df287582709cf57055e33b505808bbb670c09e901",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/stdout02.log",
+      "stored_bytes": 101,
+      "stored_sha256": "31d64385b3184cb27fe1147df287582709cf57055e33b505808bbb670c09e901",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/pb-reset-capture-policy-focused-20261015-01/stdout03.log",
+      "original_bytes": 101,
+      "original_sha256": "5d738a206a34bb7b20c3e8fa07dd30ae9cf1d1e4d5c34f74676acc77cb325b38",
+      "stored_path": "records/artifacts/pb-reset-capture-policy-focused-20261015-01/stdout03.log",
+      "stored_bytes": 101,
+      "stored_sha256": "5d738a206a34bb7b20c3e8fa07dd30ae9cf1d1e4d5c34f74676acc77cb325b38",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/preserve_qt_pb_coop_20261015.py",
+      "original_bytes": 4118,
+      "original_sha256": "44367bd7cdbb6e6cb4619eb2e5c4027645d85460cf5848ec565bb9bcadd9d7b3",
+      "stored_path": "records/artifacts/preserve_qt_pb_coop_20261015.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "6010cf33f873b18770dbf25a7c5664aac096a61c23becf02673d0bcf84908dba",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/AUDIT.json",
+      "original_bytes": 307,
+      "original_sha256": "0a25cc65d2d337360fa4d0509d58052df420337cbe9f171132acd80bd1b57bcc",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/AUDIT.json",
+      "stored_bytes": 307,
+      "stored_sha256": "0a25cc65d2d337360fa4d0509d58052df420337cbe9f171132acd80bd1b57bcc",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/CAMERA.json",
+      "original_bytes": 5319,
+      "original_sha256": "7b6e58ee079abd6313d8a927a76090ae41889dfcfae5f200145352f65c2fd796",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/CAMERA.json.gz",
+      "stored_bytes": 1416,
+      "stored_sha256": "a4cb4ecd959dba42b5ed88cb13072d22dceebc78046b0f8f9f6f64ba947691a3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/CHILD_COMMAND.json",
+      "original_bytes": 973,
+      "original_sha256": "44c7c059da1f60a99530d12d01385fc2ba7a5a64163b90cca98197167fc7be17",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/CHILD_COMMAND.json",
+      "stored_bytes": 973,
+      "stored_sha256": "44c7c059da1f60a99530d12d01385fc2ba7a5a64163b90cca98197167fc7be17",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/CLEANUP.json",
+      "original_bytes": 4058,
+      "original_sha256": "859ebf269aaa3e194d24e9bcc0895cd7516cf434f573255ccf30d74a7db5f23f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/CLEANUP.json",
+      "stored_bytes": 4058,
+      "stored_sha256": "859ebf269aaa3e194d24e9bcc0895cd7516cf434f573255ccf30d74a7db5f23f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 15926,
+      "original_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5768,
+      "stored_sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/COMMAND.json",
+      "original_bytes": 1774,
+      "original_sha256": "2cdca511ceccd4921e37beeae2721dadd2e9b8b898bb932fa75e171ceb5e5357",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/COMMAND.json",
+      "stored_bytes": 1774,
+      "stored_sha256": "2cdca511ceccd4921e37beeae2721dadd2e9b8b898bb932fa75e171ceb5e5357",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/ENVIRONMENT_COMPAT_FINAL.json",
+      "original_bytes": 1632,
+      "original_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/ENVIRONMENT_COMPAT_FINAL.json",
+      "stored_bytes": 1632,
+      "stored_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/EVAL.json",
+      "original_bytes": 906,
+      "original_sha256": "6a724a9cf2fc26128146ff0aea30591e891f5858095890d05653e5ce4e8046f5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/EVAL.json",
+      "stored_bytes": 906,
+      "stored_sha256": "6a724a9cf2fc26128146ff0aea30591e891f5858095890d05653e5ce4e8046f5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/NAV_AUDIT.json",
+      "original_bytes": 192,
+      "original_sha256": "da68b359bfbf60be22ecee34e4f17a01eeda9464793334479f2eff90ab71b7c4",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/NAV_AUDIT.json",
+      "stored_bytes": 192,
+      "stored_sha256": "da68b359bfbf60be22ecee34e4f17a01eeda9464793334479f2eff90ab71b7c4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/OVERLAP.json",
+      "original_bytes": 275,
+      "original_sha256": "286e4fd0e2b7ebd68c0824d1b72c2220a561c1325cd99761798a0d8ebcfffb59",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/OVERLAP.json",
+      "stored_bytes": 275,
+      "stored_sha256": "286e4fd0e2b7ebd68c0824d1b72c2220a561c1325cd99761798a0d8ebcfffb59",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/pb-navigation-sil-config-20261014-04.json",
+      "original_bytes": 10051,
+      "original_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/pb-navigation-sil-config-20261014-04.json.gz",
+      "stored_bytes": 2698,
+      "stored_sha256": "d21d67ab8eb4fa36c59523a0992e93d67d0648f8107057f2256fae5b0609b51b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/PB_MANIFEST.json",
+      "original_bytes": 726,
+      "original_sha256": "677164d080570a0e09453dfc5cd508eda6e9abf8aa1b1ac07558eea77347a648",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/PB_MANIFEST.json",
+      "stored_bytes": 726,
+      "stored_sha256": "677164d080570a0e09453dfc5cd508eda6e9abf8aa1b1ac07558eea77347a648",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/PB_RESULT.json",
+      "original_bytes": 3242,
+      "original_sha256": "adce5c4209c9b95620e034d2e2e28a3e65d19a6b47c1534ebe74d3ed23a8b019",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/PB_RESULT.json",
+      "stored_bytes": 3242,
+      "stored_sha256": "adce5c4209c9b95620e034d2e2e28a3e65d19a6b47c1534ebe74d3ed23a8b019",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/CLEANUP.json",
+      "original_bytes": 299,
+      "original_sha256": "8edef6b6943a6bc467ee7d7eb2fd8b15028824520fc23c2ec7e30a4e76fbd947",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/CLEANUP.json",
+      "stored_bytes": 299,
+      "stored_sha256": "8edef6b6943a6bc467ee7d7eb2fd8b15028824520fc23c2ec7e30a4e76fbd947",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/client.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/client.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/client.stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/client.stdout.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/EXTERNAL_EVENTS.jsonl",
+      "original_bytes": 5933,
+      "original_sha256": "5740f88e86de3132b01bd52b031b47a96322367e9e9d1e3fdf33e5c950447903",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/EXTERNAL_EVENTS.jsonl.gz",
+      "stored_bytes": 1361,
+      "stored_sha256": "70abf07ca58c036e2ab3ce63c164eb9f56bf87e40ccf2b9f11eddf4b6cbd4097",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/EXTERNAL_SPEC.json",
+      "original_bytes": 1867,
+      "original_sha256": "b6a2dbc831f7d9fb94ff8111b95ba1b94593f243b308b9911bc0b78a55e9675e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/EXTERNAL_SPEC.json",
+      "stored_bytes": 1867,
+      "stored_sha256": "b6a2dbc831f7d9fb94ff8111b95ba1b94593f243b308b9911bc0b78a55e9675e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/GOAL_REPORT.json",
+      "original_bytes": 325,
+      "original_sha256": "f1f3199eba6f791f643a2357bb92ea1594dc125d7088202b8e8217086a9dae59",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/GOAL_REPORT.json",
+      "stored_bytes": 325,
+      "stored_sha256": "f1f3199eba6f791f643a2357bb92ea1594dc125d7088202b8e8217086a9dae59",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/READY.json",
+      "original_bytes": 1451,
+      "original_sha256": "16c52b50461aa5a1e3d570ee668f29cc8b6b55918a6ff3cb37a6f5c63be65ed1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/READY.json",
+      "stored_bytes": 1451,
+      "stored_sha256": "16c52b50461aa5a1e3d570ee668f29cc8b6b55918a6ff3cb37a6f5c63be65ed1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/RESULT.json",
+      "original_bytes": 2307,
+      "original_sha256": "63f2335cbcca94aec944cdbad251b368366758720b6a5e56c471451478c341a0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/RESULT.json",
+      "stored_bytes": 2307,
+      "stored_sha256": "63f2335cbcca94aec944cdbad251b368366758720b6a5e56c471451478c341a0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/ROS_SOURCE.jsonl",
+      "original_bytes": 49079,
+      "original_sha256": "1c6ba0edf9604b3598b4add97db0e6e0147eec53158a0eb18e69836aa98dc029",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/ROS_SOURCE.jsonl.gz",
+      "stored_bytes": 5067,
+      "stored_sha256": "f41f776236b804b182bfa9547be4507145f6d0b44e8a3dfb9cea71cb30ae50f4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/SPAWN.json",
+      "original_bytes": 643,
+      "original_sha256": "dfa1d7f0caf4a3209356462ca20d8be18dd18931a425165504e4235360ae9575",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/SPAWN.json",
+      "stored_bytes": 643,
+      "stored_sha256": "dfa1d7f0caf4a3209356462ca20d8be18dd18931a425165504e4235360ae9575",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/STOP",
+      "original_bytes": 131,
+      "original_sha256": "aa641c7c1e21af839599e88acac99c520ac3d4380ed8a62c4b4f22bef098cff1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/STOP",
+      "stored_bytes": 131,
+      "stored_sha256": "aa641c7c1e21af839599e88acac99c520ac3d4380ed8a62c4b4f22bef098cff1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/SUPERVISOR_CLEANUP.json",
+      "original_bytes": 1124,
+      "original_sha256": "fa9ece5f0673910e01a8ab82cc664c48f07656f3fdb7f7d0ddbad6900f2fd2ef",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/SUPERVISOR_CLEANUP.json",
+      "stored_bytes": 1124,
+      "stored_sha256": "fa9ece5f0673910e01a8ab82cc664c48f07656f3fdb7f7d0ddbad6900f2fd2ef",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/peer/SUPERVISOR_STARTED.json",
+      "original_bytes": 238,
+      "original_sha256": "3794e400dd1772fa1eebbc5ae35da10da1b7c5c85f8a4f73ddc6bb32ac41119e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/peer/SUPERVISOR_STARTED.json",
+      "stored_bytes": 238,
+      "stored_sha256": "3794e400dd1772fa1eebbc5ae35da10da1b7c5c85f8a4f73ddc6bb32ac41119e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/PREPARE.json",
+      "original_bytes": 2786,
+      "original_sha256": "6bba94bf527eb2be8c76414d0313b8924e32390872fae3490f196e30d4823317",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/PREPARE.json",
+      "stored_bytes": 2786,
+      "stored_sha256": "6bba94bf527eb2be8c76414d0313b8924e32390872fae3490f196e30d4823317",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145979,
+      "original_sha256": "b936f08f60a0194eaa3683ec9847347c07f5e880e9a43a5d7781bc18dc500efd",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145979,
+      "stored_sha256": "b936f08f60a0194eaa3683ec9847347c07f5e880e9a43a5d7781bc18dc500efd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/qt/RESULT.json",
+      "original_bytes": 449198,
+      "original_sha256": "62562188a99db41867e7cc3f04dd02ff0fba469f4fa8265b7bd6fe459bffd937",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/qt/RESULT.json.gz",
+      "stored_bytes": 13262,
+      "stored_sha256": "e814c34ae364942ccca8a2f2f02083b4293454e234f86a3c734b8f2f37b91e66",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/qt/STAGES.json",
+      "original_bytes": 701877,
+      "original_sha256": "63ca61895e5d7bb2630bd181b45e089366dac3e2afc4a5c7460d33d1db8fd55e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/qt/STAGES.json.gz",
+      "stored_bytes": 19582,
+      "stored_sha256": "03878dbed3a8b8abb7950655b1a6f894a8d67a01f65fe6ebf490395f4b133463",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 11944,
+      "original_sha256": "cc7433d98d827832313d5cb046a65cb8e28f97b7ba7587b5cbf059ddd4848502",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1419,
+      "stored_sha256": "e71486b3278a081f25f3371fb7f548cb3f0e70ac31d479f038a86d9432c6551a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/qt.stderr.log",
+      "original_bytes": 1390,
+      "original_sha256": "c95effbbf6d956c22fbc767e89ad47fccafe2824f3072cd841468babc86abef7",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/qt.stderr.log",
+      "stored_bytes": 1390,
+      "stored_sha256": "c95effbbf6d956c22fbc767e89ad47fccafe2824f3072cd841468babc86abef7",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "ea5a28a675ce2f99c2836b36050adb505e1cf72c632c099ddafaf85e247f893e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "ea5a28a675ce2f99c2836b36050adb505e1cf72c632c099ddafaf85e247f893e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/RESULT.json",
+      "original_bytes": 2257,
+      "original_sha256": "76222657260381dcdd28c39cd11779e8b92f7744db350407d052dc54930c3ae1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/RESULT.json",
+      "stored_bytes": 2257,
+      "stored_sha256": "76222657260381dcdd28c39cd11779e8b92f7744db350407d052dc54930c3ae1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/CLEANUP.json",
+      "original_bytes": 342,
+      "original_sha256": "f330e06650820a3501ea3ec4ec0eb73079aad41f16802cf626392917c9fc48e7",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/CLEANUP.json",
+      "stored_bytes": 342,
+      "stored_sha256": "f330e06650820a3501ea3ec4ec0eb73079aad41f16802cf626392917c9fc48e7",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/HOST_RPC_PHASES.json",
+      "original_bytes": 36745,
+      "original_sha256": "b02211567e642daf5cf53a2b374566a8a3ba989c276b15b8264abfa2f7ebf400",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/HOST_RPC_PHASES.json.gz",
+      "stored_bytes": 2501,
+      "stored_sha256": "a0570e221b7d3b48b53d20ea1887469da20e1a1a6e4ee6fb93410a5ec38e09f5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/LINUX_RPC_PHASES.json",
+      "original_bytes": 19967,
+      "original_sha256": "996edac509c2549cf30f3a6f5c300f4913ece0ed604b50de84eba8f29eb3d3fd",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/LINUX_RPC_PHASES.json.gz",
+      "stored_bytes": 1659,
+      "stored_sha256": "b666d04ba383036f7cf07c0bb05cb0a15a4f305a87ef3ac833907f9b46813755",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/PRODUCTION_GATE_STATUS.json",
+      "original_bytes": 384,
+      "original_sha256": "288a892e0feafc0505f182de8074503e78138143dd656d039e917369011bace8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/PRODUCTION_GATE_STATUS.json",
+      "stored_bytes": 384,
+      "stored_sha256": "288a892e0feafc0505f182de8074503e78138143dd656d039e917369011bace8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/SESSION_SPEC.json",
+      "original_bytes": 2511,
+      "original_sha256": "1f5186166b3d21853dfe313f5c75427218380a53d1754e757d75a8493fcdf112",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/SESSION_SPEC.json",
+      "stored_bytes": 2511,
+      "stored_sha256": "1f5186166b3d21853dfe313f5c75427218380a53d1754e757d75a8493fcdf112",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/bridge_manifest.json",
+      "original_bytes": 1550,
+      "original_sha256": "6c1c62ff5ba1fea016cc7e5deb0c1327a3e6fbc6397f0830654196753ffd7091",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/bridge_manifest.json",
+      "stored_bytes": 1550,
+      "stored_sha256": "6c1c62ff5ba1fea016cc7e5deb0c1327a3e6fbc6397f0830654196753ffd7091",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/CLEANUP.json",
+      "original_bytes": 5536,
+      "original_sha256": "7dc852700f562ea83d8874791a2a9ed2e1f19749d0332b13fe4bb65996f8396a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/CLEANUP.json.gz",
+      "stored_bytes": 1318,
+      "stored_sha256": "7042776b1997bc731a786e42066e2641216fad1e1dfeb598e884f4a081f45ea9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/controller_server.log",
+      "original_bytes": 90456,
+      "original_sha256": "59ac65e761fa0395eed70a973a4f89fd828858f9780d3ba46f0fefb95cc7a414",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/controller_server.log.gz",
+      "stored_bytes": 5005,
+      "stored_sha256": "b56ae597bc5c9f54af8016dbf67e6b8628ed6db470d6f78b859e008e63ab1c6e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/loam_interface.log",
+      "original_bytes": 71,
+      "original_sha256": "1ee4d30293f66381cec115f83cfc8eb212ac686dc2e7c1c3238ad636bf9c1d4b",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/loam_interface.log",
+      "stored_bytes": 71,
+      "stored_sha256": "1ee4d30293f66381cec115f83cfc8eb212ac686dc2e7c1c3238ad636bf9c1d4b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/owned_parameters.yaml",
+      "original_bytes": 14266,
+      "original_sha256": "dee559d63b0e53ff42364e9c618ececd11520f903bc3be402b742f67b6270425",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/owned_parameters.yaml.gz",
+      "stored_bytes": 3330,
+      "stored_sha256": "ebf184291cf49e29b2644b93d096e62c493eb3d5e6462e23d9b9eb3d1c6c375f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/PLAN.json",
+      "original_bytes": 54868,
+      "original_sha256": "8967dc566d0b74f1d9b025f3aa9525243dcb9eb6ac048fb1dc8a1d3fa0f683c0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/PLAN.json.gz",
+      "stored_bytes": 5977,
+      "stored_sha256": "e4656eca1935c01b687eb7122b66db034cede26360f24fbe68b1339c724a45fd",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/planner_server.log",
+      "original_bytes": 6969,
+      "original_sha256": "27f2b14671106031d9b51e02a20dc30d42820b938e37e4e19b69a9f666fb0c70",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/planner_server.log.gz",
+      "stored_bytes": 1216,
+      "stored_sha256": "efa4dccdaad98692f0ace22d9fa32e628dcfb856075a205db46cea431d6c4503",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/point_lio.log",
+      "original_bytes": 783,
+      "original_sha256": "e64a184a0855a78b861a6beee8c667d09eed4e20b21e9e4ca62be78ee10e0232",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/point_lio.log",
+      "stored_bytes": 783,
+      "stored_sha256": "e64a184a0855a78b861a6beee8c667d09eed4e20b21e9e4ca62be78ee10e0232",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/pointcloud_to_laserscan.log",
+      "original_bytes": 244,
+      "original_sha256": "9f8a27cad04faab638871365d3bbb8423b58b585668c70f743b492b7e5a4f4a0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/pointcloud_to_laserscan.log",
+      "stored_bytes": 244,
+      "stored_sha256": "9f8a27cad04faab638871365d3bbb8423b58b585668c70f743b492b7e5a4f4a0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/sensor_scan_generation.log",
+      "original_bytes": 71,
+      "original_sha256": "4d2e49aa7b7b513aba2d40528fadf93c266e3fb025519ee32165ac2a1a240810",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/sensor_scan_generation.log",
+      "stored_bytes": 71,
+      "stored_sha256": "4d2e49aa7b7b513aba2d40528fadf93c266e3fb025519ee32165ac2a1a240810",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/slam_toolbox.log",
+      "original_bytes": 800,
+      "original_sha256": "4811486d79e625738e4a8f640afd5dfb7e6e3f2a8e30a0e74a989407ed02038b",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/slam_toolbox.log",
+      "stored_bytes": 800,
+      "stored_sha256": "4811486d79e625738e4a8f640afd5dfb7e6e3f2a8e30a0e74a989407ed02038b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/supervisor.jsonl",
+      "original_bytes": 25763,
+      "original_sha256": "39408d012023981e077ee0302aec47a43643109ecfc0c88e8166e89391e68512",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/supervisor.jsonl.gz",
+      "stored_bytes": 1553,
+      "stored_sha256": "8588d5ec3e21f27ba02584b779d6135fcddb4f31d352444750bfb72adad5988d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/terrain_analysis.log",
+      "original_bytes": 324,
+      "original_sha256": "a84bb7bf3417ba20c2bae165233ecb9cbcb8bf49cf0440f6af95f23ff10aac52",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/terrain_analysis.log",
+      "stored_bytes": 324,
+      "stored_sha256": "a84bb7bf3417ba20c2bae165233ecb9cbcb8bf49cf0440f6af95f23ff10aac52",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/stack/terrain_analysis_ext.log",
+      "original_bytes": 324,
+      "original_sha256": "3fb046e004ece981fdf38194f63633f8b0d5fde59df1874db4c98c7cf6ede856",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/stack/terrain_analysis_ext.log",
+      "stored_bytes": 324,
+      "stored_sha256": "3fb046e004ece981fdf38194f63633f8b0d5fde59df1874db4c98c7cf6ede856",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/STOP",
+      "original_bytes": 131,
+      "original_sha256": "6e0e50999f165fbd191b895e578639e275ea739bfbe3b5bebaf3437b91ea73fa",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/STOP",
+      "stored_bytes": 131,
+      "stored_sha256": "6e0e50999f165fbd191b895e578639e275ea739bfbe3b5bebaf3437b91ea73fa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/supervisor_stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/supervisor_stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/session/WORKER_STARTED.json",
+      "original_bytes": 228,
+      "original_sha256": "8de9a08bd032268b206e59d3c5d7034f26f4c735ace0db721aa593f44a694fea",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/session/WORKER_STARTED.json",
+      "stored_bytes": 228,
+      "stored_sha256": "8de9a08bd032268b206e59d3c5d7034f26f4c735ace0db721aa593f44a694fea",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/profile.py",
+      "original_bytes": 14335,
+      "original_sha256": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/profile.py.gz",
+      "stored_bytes": 4412,
+      "stored_sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/wsl_profile.py",
+      "original_bytes": 12741,
+      "original_sha256": "20177898a8751531e3f8110c700f7c1dd4fd95453e3d184473d77b2b8a3f13bc",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/deployment/wsl_profile.py.gz",
+      "stored_bytes": 4135,
+      "stored_sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/owned_linux_group.py",
+      "original_bytes": 5895,
+      "original_sha256": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/owned_linux_group.py.gz",
+      "stored_bytes": 1956,
+      "stored_sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_controller_context.hpp",
+      "original_bytes": 11831,
+      "original_sha256": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_controller_context.hpp.gz",
+      "stored_bytes": 3334,
+      "stored_sha256": "22b5a8362dcc97a22035f2e6f229438ca8f612121c6bda52197f81624e21e45d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_bridge.py",
+      "original_bytes": 12834,
+      "original_sha256": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "stored_bytes": 4020,
+      "stored_sha256": "11d7252b30421a255c1b064ac01316455433b9c377289faa13dc9b35874a635b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_phases.py",
+      "original_bytes": 3964,
+      "original_sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_phases.py",
+      "stored_bytes": 3964,
+      "stored_sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_transport.py",
+      "original_bytes": 9339,
+      "original_sha256": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "stored_bytes": 2798,
+      "stored_sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_request_context.hpp",
+      "original_bytes": 2793,
+      "original_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_request_context.hpp",
+      "stored_bytes": 2793,
+      "stored_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation.py",
+      "original_bytes": 30220,
+      "original_sha256": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "stored_bytes": 7114,
+      "stored_sha256": "78d535dd2ee1b0354785e29ee5cd4c9a87b47c84fc50de29838fe195c35264d5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation_registry.py",
+      "original_bytes": 5009,
+      "original_sha256": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "stored_bytes": 1701,
+      "stored_sha256": "1ee8497b4ace8f74a71323b4d9eac38dd5a7b6379c357807287465db0b538ee5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation_worker.py",
+      "original_bytes": 21497,
+      "original_sha256": "20d39ac402770d125897f1f7a8a88af0e3d0c05376eb620b3c82d55a99dcc58f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "stored_bytes": 6522,
+      "stored_sha256": "a53d0664954a60111b2b4d0e665ee3f7bf50962f6cf116d1f49df0ca5352a5b8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/ros2_bridge.py",
+      "original_bytes": 10541,
+      "original_sha256": "1cb700a4db69d9bf21f77c7174798e4e635672e581e129dc7f4a661cafdf44f1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/integrations/ros2_bridge.py.gz",
+      "stored_bytes": 3341,
+      "stored_sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 12011,
+      "original_sha256": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3573,
+      "stored_sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/pb_coop_cleanup.py",
+      "original_bytes": 10706,
+      "original_sha256": "ae64f4f9123a72b5b51d1268033602dd42a37cefded48adbc6a11ece1ad0fb93",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/pb_coop_cleanup.py.gz",
+      "stored_bytes": 3177,
+      "stored_sha256": "2b37efe24a694f5e4cb312f46b8586fc76cac3163e6b84f1a220095504538b82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/pb_external_goal_session.py",
+      "original_bytes": 9026,
+      "original_sha256": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/pb_external_goal_session.py.gz",
+      "stored_bytes": 2719,
+      "stored_sha256": "b51c65767150eac476a2d7dc7751b85920c1b717450dfea5879281f7becf5dd0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/pb_navigation_stack.py",
+      "original_bytes": 32835,
+      "original_sha256": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/pb_navigation_stack.py.gz",
+      "stored_bytes": 9734,
+      "stored_sha256": "ca2ab53f926c94357c73e51d69d9e8374e83aeaa792055f11c44e95e11751be5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_pb_external_goal_supervisor.py",
+      "original_bytes": 6949,
+      "original_sha256": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_pb_external_goal_supervisor.py.gz",
+      "stored_bytes": 2250,
+      "stored_sha256": "195040923d4d8a45f8d783d78bbc686aa951761451f3055d9f09426441cc689d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_pb_external_navigation_goal.py",
+      "original_bytes": 24806,
+      "original_sha256": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_pb_external_navigation_goal.py.gz",
+      "stored_bytes": 7051,
+      "stored_sha256": "460227712f354b85a1424d1e8000c088e50425f9a7f781f660f63374e6c1d214",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_pb_navigation_sil.py",
+      "original_bytes": 40943,
+      "original_sha256": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_pb_navigation_sil.py.gz",
+      "stored_bytes": 10645,
+      "stored_sha256": "1b1d660a6f52a36b2ff3aad4af1c4328ec2802fa4c0923d1fd98acc10c37824b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_qt_pb_coop_sil.py",
+      "original_bytes": 27747,
+      "original_sha256": "b5abe987066707c1c09d62e1c33edd6cccd3944ae007976f623572dd8f76c48d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/source/tools/qa_qt_pb_coop_sil.py.gz",
+      "stored_bytes": 8169,
+      "stored_sha256": "1d4e14101ad10c6e148e0c5265e4cd856530086c9fdae665fbb3e8253f227cde",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/SOURCE_MANIFEST.json",
+      "original_bytes": 15105,
+      "original_sha256": "da2a7fcfaa491d447d05b093b02fa0bd16ccdeb25605d689d031ca5047d3538f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 3171,
+      "stored_sha256": "23ba29803cda34b521603ad85b6d93a61abb75348464476b5878f3152e1990b9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-01/TRACE.jsonl.gz",
+      "original_bytes": 150023,
+      "original_sha256": "87d1df6aa98592ee79d8a2754df10bf73d0e4855807904cccc7c55653eec1e2d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-01/TRACE.jsonl.gz",
+      "stored_bytes": 150023,
+      "stored_sha256": "87d1df6aa98592ee79d8a2754df10bf73d0e4855807904cccc7c55653eec1e2d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/AUDIT.json",
+      "original_bytes": 303,
+      "original_sha256": "6e9201a9d1e5d86cd8f83e3f74dcf5d483578c5bc624ebc796e173311b9c2c58",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/AUDIT.json",
+      "stored_bytes": 303,
+      "stored_sha256": "6e9201a9d1e5d86cd8f83e3f74dcf5d483578c5bc624ebc796e173311b9c2c58",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/CAMERA.json",
+      "original_bytes": 5312,
+      "original_sha256": "30dbe0b38f8b734a35c3309c753582fc85e7c9090242c70f2cc05819d11889b1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/CAMERA.json.gz",
+      "stored_bytes": 1400,
+      "stored_sha256": "d00f89eda2a7bf9a59b2d32c3e37e2741de1384a8708e1ac833fe2180daac9c5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/CHILD_COMMAND.json",
+      "original_bytes": 974,
+      "original_sha256": "e16a8fca92a4080471aff6bda618ff44869186e06f3f084d77a88a6fc0a7a154",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/CHILD_COMMAND.json",
+      "stored_bytes": 974,
+      "stored_sha256": "e16a8fca92a4080471aff6bda618ff44869186e06f3f084d77a88a6fc0a7a154",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/CLEANUP.json",
+      "original_bytes": 2891,
+      "original_sha256": "b4ee71b2113352e3291c981af123f876589225a1320707dbef4dfd9ec5257e53",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/CLEANUP.json",
+      "stored_bytes": 2891,
+      "stored_sha256": "b4ee71b2113352e3291c981af123f876589225a1320707dbef4dfd9ec5257e53",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 15926,
+      "original_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5768,
+      "stored_sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/COMMAND.json",
+      "original_bytes": 1776,
+      "original_sha256": "64dc5f3b875755e289b89fc10e400509f310ea55c11337fdf0f4c87d25bb6100",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/COMMAND.json",
+      "stored_bytes": 1776,
+      "stored_sha256": "64dc5f3b875755e289b89fc10e400509f310ea55c11337fdf0f4c87d25bb6100",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/ENVIRONMENT_COMPAT_FINAL.json",
+      "original_bytes": 1632,
+      "original_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/ENVIRONMENT_COMPAT_FINAL.json",
+      "stored_bytes": 1632,
+      "stored_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/EVAL.json",
+      "original_bytes": 906,
+      "original_sha256": "0c383088bdeabe3330fe2a9406dd8e7f37730014935f580fb7fb4da580155332",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/EVAL.json",
+      "stored_bytes": 906,
+      "stored_sha256": "0c383088bdeabe3330fe2a9406dd8e7f37730014935f580fb7fb4da580155332",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/FAILURE.log",
+      "original_bytes": 376,
+      "original_sha256": "6392724d5c870a9ab13d60c01993a06533fd82bc695708f0b4f8f168ce69d44c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/FAILURE.log",
+      "stored_bytes": 376,
+      "stored_sha256": "6392724d5c870a9ab13d60c01993a06533fd82bc695708f0b4f8f168ce69d44c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/NAV_AUDIT.json",
+      "original_bytes": 240,
+      "original_sha256": "a8a3f2ce8af84f79ce40c5ec6da549e62b6d63febd52cb7b7edae9382cf9a6bb",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/NAV_AUDIT.json",
+      "stored_bytes": 240,
+      "stored_sha256": "a8a3f2ce8af84f79ce40c5ec6da549e62b6d63febd52cb7b7edae9382cf9a6bb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/NAV_SDK_FAILURE.log",
+      "original_bytes": 468,
+      "original_sha256": "85dab962ed9cc18c0a525a6a34563c5c0480413c74887c83f30185c277d8b046",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/NAV_SDK_FAILURE.log",
+      "stored_bytes": 468,
+      "stored_sha256": "85dab962ed9cc18c0a525a6a34563c5c0480413c74887c83f30185c277d8b046",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/OVERLAP.json",
+      "original_bytes": 270,
+      "original_sha256": "ea35f699335c4a6f0a331d6674fe7eac04b7fcd97a7fc0ccd691b6775195b87f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/OVERLAP.json",
+      "stored_bytes": 270,
+      "stored_sha256": "ea35f699335c4a6f0a331d6674fe7eac04b7fcd97a7fc0ccd691b6775195b87f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/pb-navigation-sil-config-20261014-04.json",
+      "original_bytes": 10051,
+      "original_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/pb-navigation-sil-config-20261014-04.json.gz",
+      "stored_bytes": 2698,
+      "stored_sha256": "d21d67ab8eb4fa36c59523a0992e93d67d0648f8107057f2256fae5b0609b51b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/PB_MANIFEST.json",
+      "original_bytes": 726,
+      "original_sha256": "9f9ff07b37837232211d047f20386d416ce1e89c04f0d4fde1109046bf1cf14b",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/PB_MANIFEST.json",
+      "stored_bytes": 726,
+      "stored_sha256": "9f9ff07b37837232211d047f20386d416ce1e89c04f0d4fde1109046bf1cf14b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/PB_RESULT.json",
+      "original_bytes": 2506,
+      "original_sha256": "085c268e75c859e9a67f2b0a3c3b8ad389c963e0f3a891371df77b913625d9d3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/PB_RESULT.json",
+      "stored_bytes": 2506,
+      "stored_sha256": "085c268e75c859e9a67f2b0a3c3b8ad389c963e0f3a891371df77b913625d9d3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/CLEANUP.json",
+      "original_bytes": 300,
+      "original_sha256": "fd4a0d54c01ca2d8b1e31f3642666a646c8a7f77332d04cbd48ce93daf7b9b9e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/CLEANUP.json",
+      "stored_bytes": 300,
+      "stored_sha256": "fd4a0d54c01ca2d8b1e31f3642666a646c8a7f77332d04cbd48ce93daf7b9b9e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/client.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/client.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/client.stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/client.stdout.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/EXTERNAL_EVENTS.jsonl",
+      "original_bytes": 297,
+      "original_sha256": "a84ed308f3b6f1fb4cd85dd5dd506add0013dd1b9c78dff09b939d9e4fb9b831",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/EXTERNAL_EVENTS.jsonl",
+      "stored_bytes": 297,
+      "stored_sha256": "a84ed308f3b6f1fb4cd85dd5dd506add0013dd1b9c78dff09b939d9e4fb9b831",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/EXTERNAL_SPEC.json",
+      "original_bytes": 1867,
+      "original_sha256": "3ef23fa736480a6b4babb21cbc468b3901a5370a0afe853d7840f661ce1d1729",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/EXTERNAL_SPEC.json",
+      "stored_bytes": 1867,
+      "stored_sha256": "3ef23fa736480a6b4babb21cbc468b3901a5370a0afe853d7840f661ce1d1729",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/GOAL_REPORT.json",
+      "original_bytes": 3,
+      "original_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/GOAL_REPORT.json",
+      "stored_bytes": 3,
+      "stored_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/READY.json",
+      "original_bytes": 1452,
+      "original_sha256": "15e40a4f5790a617c6f2e93bc756174962b9b55ee663bddc28b93f4ba6497368",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/READY.json",
+      "stored_bytes": 1452,
+      "stored_sha256": "15e40a4f5790a617c6f2e93bc756174962b9b55ee663bddc28b93f4ba6497368",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/RESULT.json",
+      "original_bytes": 1961,
+      "original_sha256": "1a9e1aea8e7fb22c372fd4a54b1b1dab8f28e900ba0d70c6b300a2e47e694e44",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/RESULT.json",
+      "stored_bytes": 1961,
+      "stored_sha256": "1a9e1aea8e7fb22c372fd4a54b1b1dab8f28e900ba0d70c6b300a2e47e694e44",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/ROS_SOURCE.jsonl",
+      "original_bytes": 807,
+      "original_sha256": "38e727bc9ad778a52155157426d0c116e11a9a6673e72bd2cecf2d390b3153ac",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/ROS_SOURCE.jsonl",
+      "stored_bytes": 807,
+      "stored_sha256": "38e727bc9ad778a52155157426d0c116e11a9a6673e72bd2cecf2d390b3153ac",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/SPAWN.json",
+      "original_bytes": 644,
+      "original_sha256": "0c2effbc444b476f4ddf72bc6057b76984fc213db87d1c76135f463d6818f79e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/SPAWN.json",
+      "stored_bytes": 644,
+      "stored_sha256": "0c2effbc444b476f4ddf72bc6057b76984fc213db87d1c76135f463d6818f79e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/STOP",
+      "original_bytes": 131,
+      "original_sha256": "f4dc14721660741242873b9a00a1b91957b93a80d0e41dd32d67c202340ae36a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/STOP",
+      "stored_bytes": 131,
+      "stored_sha256": "f4dc14721660741242873b9a00a1b91957b93a80d0e41dd32d67c202340ae36a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/SUPERVISOR_CLEANUP.json",
+      "original_bytes": 1167,
+      "original_sha256": "f381f51ffb6628959335a483f2d0342d4987f392fbe5f6c77acaf81cb341809c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/SUPERVISOR_CLEANUP.json",
+      "stored_bytes": 1167,
+      "stored_sha256": "f381f51ffb6628959335a483f2d0342d4987f392fbe5f6c77acaf81cb341809c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/peer/SUPERVISOR_STARTED.json",
+      "original_bytes": 239,
+      "original_sha256": "609215ccdc7572084cac963fd79e0fd129e10c43cf0cc7e3847025a698abe88b",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/peer/SUPERVISOR_STARTED.json",
+      "stored_bytes": 239,
+      "stored_sha256": "609215ccdc7572084cac963fd79e0fd129e10c43cf0cc7e3847025a698abe88b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/PREPARE.json",
+      "original_bytes": 2789,
+      "original_sha256": "876951ca13073032d5fb470ff67dfd42edf7f048f9979a8ce30a81079c075597",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/PREPARE.json",
+      "stored_bytes": 2789,
+      "stored_sha256": "876951ca13073032d5fb470ff67dfd42edf7f048f9979a8ce30a81079c075597",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145702,
+      "original_sha256": "008b95420627340b1715bfc8c916b58920562fbc81f36fab351fc3cf94f214c6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145702,
+      "stored_sha256": "008b95420627340b1715bfc8c916b58920562fbc81f36fab351fc3cf94f214c6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/qt/errors.log",
+      "original_bytes": 308,
+      "original_sha256": "859a41d466b4aca5b1eecdc3aa5a19cc65287df3424875a4b656a9f681b35204",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/qt/errors.log",
+      "stored_bytes": 308,
+      "stored_sha256": "859a41d466b4aca5b1eecdc3aa5a19cc65287df3424875a4b656a9f681b35204",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/qt/RESULT.json",
+      "original_bytes": 191471,
+      "original_sha256": "d6a4dde1c96044e9e971adee611e18187fea0b658a98466959902bf21e091c7b",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/qt/RESULT.json.gz",
+      "stored_bytes": 7560,
+      "stored_sha256": "f2cf70b14c29873f8d31e6757183a574a258e3e44e74816b15be0f6be692e40d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/qt/STAGES.json",
+      "original_bytes": 214695,
+      "original_sha256": "765dc3174c025066736153ed476ed6a6403f036934673ff8796f8bf833ee318d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/qt/STAGES.json.gz",
+      "stored_bytes": 8607,
+      "stored_sha256": "a0f261d61cdadcaaf89893d22573b750fda3ce5c62723ad59d563bbf10aa0329",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 7325,
+      "original_sha256": "7a790c6e5e83499ee5803249e2c0baf13f18c3863b192c35e65cf4ff466d6874",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1146,
+      "stored_sha256": "f6df1bd8571a0b11da3fa6cb3314b3c80d82450ca4da7f5ad3b1d7df6fdfefba",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/qt.stderr.log",
+      "original_bytes": 1390,
+      "original_sha256": "719dbf454df132dddab75dc58823596e54aa69f92b3cfdfcfa1a22952208d90c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/qt.stderr.log",
+      "stored_bytes": 1390,
+      "stored_sha256": "719dbf454df132dddab75dc58823596e54aa69f92b3cfdfcfa1a22952208d90c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "7f539f2df0b7380020164c5b959497b019e35aa589eb466ba9cfc16081e8b5ad",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "7f539f2df0b7380020164c5b959497b019e35aa589eb466ba9cfc16081e8b5ad",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/RESULT.json",
+      "original_bytes": 2396,
+      "original_sha256": "0b5d403c4269abcb581c660e61ea2a7050d99ce8999779e13da65a9d444cf677",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/RESULT.json",
+      "stored_bytes": 2396,
+      "stored_sha256": "0b5d403c4269abcb581c660e61ea2a7050d99ce8999779e13da65a9d444cf677",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/CLEANUP.json",
+      "original_bytes": 343,
+      "original_sha256": "feca58c45a9c4dda37d72fb7eb80011091f917b9b25ead0cac431755851b7a76",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/CLEANUP.json",
+      "stored_bytes": 343,
+      "stored_sha256": "feca58c45a9c4dda37d72fb7eb80011091f917b9b25ead0cac431755851b7a76",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/HOST_RPC_PHASES.json",
+      "original_bytes": 2108,
+      "original_sha256": "406a74578af373f4580ba5888beaa9fe79bc2bda9934ccf2d659ca4ad89446a8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/HOST_RPC_PHASES.json",
+      "stored_bytes": 2108,
+      "stored_sha256": "406a74578af373f4580ba5888beaa9fe79bc2bda9934ccf2d659ca4ad89446a8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/LINUX_RPC_PHASES.json",
+      "original_bytes": 1518,
+      "original_sha256": "3816416456da9eede6b421db043668e8aa63f1445d976be86b7795422f731ca8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/LINUX_RPC_PHASES.json",
+      "stored_bytes": 1518,
+      "stored_sha256": "3816416456da9eede6b421db043668e8aa63f1445d976be86b7795422f731ca8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/PRODUCTION_GATE_STATUS.json",
+      "original_bytes": 380,
+      "original_sha256": "cec4b5f6e2efc341a202efa4910d7a616348964eeb03bc60481e0f34d219ab0d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/PRODUCTION_GATE_STATUS.json",
+      "stored_bytes": 380,
+      "stored_sha256": "cec4b5f6e2efc341a202efa4910d7a616348964eeb03bc60481e0f34d219ab0d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/SESSION_SPEC.json",
+      "original_bytes": 2511,
+      "original_sha256": "d20a149f6a2220aae30f092ed63a156961384d2f32989a4c230c0ef9e465d2e9",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/SESSION_SPEC.json",
+      "stored_bytes": 2511,
+      "stored_sha256": "d20a149f6a2220aae30f092ed63a156961384d2f32989a4c230c0ef9e465d2e9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/bridge_manifest.json",
+      "original_bytes": 1550,
+      "original_sha256": "e83d7bbb8cdce04f695c42783c2518e5dc8ad207ef3d376070cecd470c11afd5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/bridge_manifest.json",
+      "stored_bytes": 1550,
+      "stored_sha256": "e83d7bbb8cdce04f695c42783c2518e5dc8ad207ef3d376070cecd470c11afd5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/CLEANUP.json",
+      "original_bytes": 5537,
+      "original_sha256": "49f4ddda983b8414751eef39321454e27a15aa14f6ac402553f43b12e2d14ae2",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/CLEANUP.json.gz",
+      "stored_bytes": 1324,
+      "stored_sha256": "0811b67f25a33e3c45277335463fafb4b2fd2cc5b6427db4cd91d3f47a147be1",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/controller_server.log",
+      "original_bytes": 4691,
+      "original_sha256": "cef6410a4c101c91d12e8a323c95efc336d9eb9937b01f6b4801b66ee0bf7e3f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/controller_server.log.gz",
+      "stored_bytes": 944,
+      "stored_sha256": "2d1d0f9bcc8ec9a9c46eb3725c5c46dc884a83ec0bb381cc970ad93c7e20527c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/loam_interface.log",
+      "original_bytes": 71,
+      "original_sha256": "872e83b754e3f815bbab47a01a1d069b78eff88c35ac1b945716ed5d9410f442",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/loam_interface.log",
+      "stored_bytes": 71,
+      "stored_sha256": "872e83b754e3f815bbab47a01a1d069b78eff88c35ac1b945716ed5d9410f442",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/owned_parameters.yaml",
+      "original_bytes": 14266,
+      "original_sha256": "0bc41e2641bac8503316a7ec0ce6ed80144cbdd94ecb5e2a916e5d5661304f26",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/owned_parameters.yaml.gz",
+      "stored_bytes": 3329,
+      "stored_sha256": "7554fed509ba89d042752bebed92c3623d23694174aafafebab64e30bba3d62d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/PLAN.json",
+      "original_bytes": 54868,
+      "original_sha256": "1eb23839c2965af543b0bc6a9d800e34e8dbad06867b70366ef1de24eb5fbb82",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/PLAN.json.gz",
+      "stored_bytes": 5980,
+      "stored_sha256": "4422b34928682014c9f6081e388d8fbb67789bc98a91c699f290709fb6bfd397",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/planner_server.log",
+      "original_bytes": 4530,
+      "original_sha256": "97d8c6f85158d4cbafd539e0e106aab771b057c02a47d824495a4e41ddfd60bf",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/planner_server.log.gz",
+      "stored_bytes": 974,
+      "stored_sha256": "c291ef471dd592989faad2504db11e41982c8e3cc0c4bc0f5db8d49684e48330",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/point_lio.log",
+      "original_bytes": 644,
+      "original_sha256": "7477e9eaa9be106148145d9f3bbdbf39064fcd090048651a4c49adf7d6be1791",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/point_lio.log",
+      "stored_bytes": 644,
+      "stored_sha256": "7477e9eaa9be106148145d9f3bbdbf39064fcd090048651a4c49adf7d6be1791",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/pointcloud_to_laserscan.log",
+      "original_bytes": 244,
+      "original_sha256": "ee1cc09cd90de773a5f95495325012c3bcbc9a57891c13f94c8032504b2056d0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/pointcloud_to_laserscan.log",
+      "stored_bytes": 244,
+      "stored_sha256": "ee1cc09cd90de773a5f95495325012c3bcbc9a57891c13f94c8032504b2056d0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/sensor_scan_generation.log",
+      "original_bytes": 71,
+      "original_sha256": "7bfad61d442acc8689a00017780d93835a8dbfd99034c30384f867113fb46dd3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/sensor_scan_generation.log",
+      "stored_bytes": 71,
+      "stored_sha256": "7bfad61d442acc8689a00017780d93835a8dbfd99034c30384f867113fb46dd3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/slam_toolbox.log",
+      "original_bytes": 498,
+      "original_sha256": "74dd722fd5327be74ab77d1e849c3a0970d0fa9f8eda3b10876ddaf8f374d128",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/slam_toolbox.log",
+      "stored_bytes": 498,
+      "stored_sha256": "74dd722fd5327be74ab77d1e849c3a0970d0fa9f8eda3b10876ddaf8f374d128",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/supervisor.jsonl",
+      "original_bytes": 25077,
+      "original_sha256": "463da61d905cb974c2a322a1cf741ab2761547a1bb2868b8a6fc1aea585dd00f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/supervisor.jsonl.gz",
+      "stored_bytes": 1487,
+      "stored_sha256": "295da88ffdcc1482b1f5675cae57fe478e381718b4dc30ae7ac3c055bdb97e2d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/terrain_analysis.log",
+      "original_bytes": 324,
+      "original_sha256": "127da69074eb9ebb989df6edbf269da61ac5fda6c10802fee2c317d4d6f11d89",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/terrain_analysis.log",
+      "stored_bytes": 324,
+      "stored_sha256": "127da69074eb9ebb989df6edbf269da61ac5fda6c10802fee2c317d4d6f11d89",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/stack/terrain_analysis_ext.log",
+      "original_bytes": 324,
+      "original_sha256": "0617acf3b6aa141ec12c31197703ba8c04229c4f68e3cd94eb2c3416124a411c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/stack/terrain_analysis_ext.log",
+      "stored_bytes": 324,
+      "stored_sha256": "0617acf3b6aa141ec12c31197703ba8c04229c4f68e3cd94eb2c3416124a411c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/STOP",
+      "original_bytes": 131,
+      "original_sha256": "911bc903d9b95dc79f4ad28d774ce2be52eec5c1a9b30f44aecc1e8368e2fd89",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/STOP",
+      "stored_bytes": 131,
+      "stored_sha256": "911bc903d9b95dc79f4ad28d774ce2be52eec5c1a9b30f44aecc1e8368e2fd89",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/supervisor_stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/supervisor_stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/session/WORKER_STARTED.json",
+      "original_bytes": 229,
+      "original_sha256": "e6949db84e1f2d1ed44dd0ee40e7f1a2f01c06045a1d9e75ad5cedd866256137",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/session/WORKER_STARTED.json",
+      "stored_bytes": 229,
+      "stored_sha256": "e6949db84e1f2d1ed44dd0ee40e7f1a2f01c06045a1d9e75ad5cedd866256137",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/profile.py",
+      "original_bytes": 14335,
+      "original_sha256": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/profile.py.gz",
+      "stored_bytes": 4412,
+      "stored_sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/wsl_profile.py",
+      "original_bytes": 12741,
+      "original_sha256": "20177898a8751531e3f8110c700f7c1dd4fd95453e3d184473d77b2b8a3f13bc",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/deployment/wsl_profile.py.gz",
+      "stored_bytes": 4135,
+      "stored_sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/owned_linux_group.py",
+      "original_bytes": 5895,
+      "original_sha256": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/owned_linux_group.py.gz",
+      "stored_bytes": 1956,
+      "stored_sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_controller_context.hpp",
+      "original_bytes": 11831,
+      "original_sha256": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_controller_context.hpp.gz",
+      "stored_bytes": 3334,
+      "stored_sha256": "22b5a8362dcc97a22035f2e6f229438ca8f612121c6bda52197f81624e21e45d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_bridge.py",
+      "original_bytes": 12834,
+      "original_sha256": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "stored_bytes": 4020,
+      "stored_sha256": "11d7252b30421a255c1b064ac01316455433b9c377289faa13dc9b35874a635b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_phases.py",
+      "original_bytes": 3964,
+      "original_sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_phases.py",
+      "stored_bytes": 3964,
+      "stored_sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_transport.py",
+      "original_bytes": 9339,
+      "original_sha256": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "stored_bytes": 2798,
+      "stored_sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_request_context.hpp",
+      "original_bytes": 2793,
+      "original_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_request_context.hpp",
+      "stored_bytes": 2793,
+      "stored_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation.py",
+      "original_bytes": 30220,
+      "original_sha256": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "stored_bytes": 7114,
+      "stored_sha256": "78d535dd2ee1b0354785e29ee5cd4c9a87b47c84fc50de29838fe195c35264d5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation_registry.py",
+      "original_bytes": 5009,
+      "original_sha256": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "stored_bytes": 1701,
+      "stored_sha256": "1ee8497b4ace8f74a71323b4d9eac38dd5a7b6379c357807287465db0b538ee5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation_worker.py",
+      "original_bytes": 21497,
+      "original_sha256": "20d39ac402770d125897f1f7a8a88af0e3d0c05376eb620b3c82d55a99dcc58f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "stored_bytes": 6522,
+      "stored_sha256": "a53d0664954a60111b2b4d0e665ee3f7bf50962f6cf116d1f49df0ca5352a5b8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/ros2_bridge.py",
+      "original_bytes": 10541,
+      "original_sha256": "1cb700a4db69d9bf21f77c7174798e4e635672e581e129dc7f4a661cafdf44f1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/integrations/ros2_bridge.py.gz",
+      "stored_bytes": 3341,
+      "stored_sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 12011,
+      "original_sha256": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3573,
+      "stored_sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/pb_coop_cleanup.py",
+      "original_bytes": 10706,
+      "original_sha256": "ae64f4f9123a72b5b51d1268033602dd42a37cefded48adbc6a11ece1ad0fb93",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/pb_coop_cleanup.py.gz",
+      "stored_bytes": 3177,
+      "stored_sha256": "2b37efe24a694f5e4cb312f46b8586fc76cac3163e6b84f1a220095504538b82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/pb_external_goal_session.py",
+      "original_bytes": 9026,
+      "original_sha256": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/pb_external_goal_session.py.gz",
+      "stored_bytes": 2719,
+      "stored_sha256": "b51c65767150eac476a2d7dc7751b85920c1b717450dfea5879281f7becf5dd0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/pb_navigation_stack.py",
+      "original_bytes": 32835,
+      "original_sha256": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/pb_navigation_stack.py.gz",
+      "stored_bytes": 9734,
+      "stored_sha256": "ca2ab53f926c94357c73e51d69d9e8374e83aeaa792055f11c44e95e11751be5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_pb_external_goal_supervisor.py",
+      "original_bytes": 6949,
+      "original_sha256": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_pb_external_goal_supervisor.py.gz",
+      "stored_bytes": 2250,
+      "stored_sha256": "195040923d4d8a45f8d783d78bbc686aa951761451f3055d9f09426441cc689d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_pb_external_navigation_goal.py",
+      "original_bytes": 24806,
+      "original_sha256": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_pb_external_navigation_goal.py.gz",
+      "stored_bytes": 7051,
+      "stored_sha256": "460227712f354b85a1424d1e8000c088e50425f9a7f781f660f63374e6c1d214",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_pb_navigation_sil.py",
+      "original_bytes": 40943,
+      "original_sha256": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_pb_navigation_sil.py.gz",
+      "stored_bytes": 10645,
+      "stored_sha256": "1b1d660a6f52a36b2ff3aad4af1c4328ec2802fa4c0923d1fd98acc10c37824b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_qt_pb_coop_sil.py",
+      "original_bytes": 27747,
+      "original_sha256": "b5abe987066707c1c09d62e1c33edd6cccd3944ae007976f623572dd8f76c48d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/source/tools/qa_qt_pb_coop_sil.py.gz",
+      "stored_bytes": 8169,
+      "stored_sha256": "1d4e14101ad10c6e148e0c5265e4cd856530086c9fdae665fbb3e8253f227cde",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/SOURCE_MANIFEST.json",
+      "original_bytes": 15105,
+      "original_sha256": "da2a7fcfaa491d447d05b093b02fa0bd16ccdeb25605d689d031ca5047d3538f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 3171,
+      "stored_sha256": "23ba29803cda34b521603ad85b6d93a61abb75348464476b5878f3152e1990b9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-02/TRACE.jsonl.gz",
+      "original_bytes": 65073,
+      "original_sha256": "2c16a0d7485fdd76a848e4df01696c6c6a64cffd2d738139179820027929e0c5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-02/TRACE.jsonl.gz",
+      "stored_bytes": 65073,
+      "stored_sha256": "2c16a0d7485fdd76a848e4df01696c6c6a64cffd2d738139179820027929e0c5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/AUDIT.json",
+      "original_bytes": 311,
+      "original_sha256": "8106d6d1ae05b4faf4fe3f31950306203d32064134a1f5c897524acd51d32bec",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/AUDIT.json",
+      "stored_bytes": 311,
+      "stored_sha256": "8106d6d1ae05b4faf4fe3f31950306203d32064134a1f5c897524acd51d32bec",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/CAMERA.json",
+      "original_bytes": 5332,
+      "original_sha256": "426fa3948a511e2a87ae7207be496790217d4c68554f5251dde4784e316c70f6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/CAMERA.json.gz",
+      "stored_bytes": 1418,
+      "stored_sha256": "7ca004036fdeab7d1e9012b66ed2d4b7e3cfbed5b55537d24ae33c8a3b2484a0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/CHILD_COMMAND.json",
+      "original_bytes": 974,
+      "original_sha256": "0a8310dbb78492e2bae900ee6b6ef2689d1bedc20ef19176853860d16c816d61",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/CHILD_COMMAND.json",
+      "stored_bytes": 974,
+      "stored_sha256": "0a8310dbb78492e2bae900ee6b6ef2689d1bedc20ef19176853860d16c816d61",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/CLEANUP.json",
+      "original_bytes": 4057,
+      "original_sha256": "8c778a8d8f2980bf6368b5d0f90155df5fc526afb072aae77bc60caf4d23c29d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/CLEANUP.json",
+      "stored_bytes": 4057,
+      "stored_sha256": "8c778a8d8f2980bf6368b5d0f90155df5fc526afb072aae77bc60caf4d23c29d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 15926,
+      "original_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5768,
+      "stored_sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/COMMAND.json",
+      "original_bytes": 1776,
+      "original_sha256": "af7607709cf6843707afa2da71fa52da7974d6fc872696fe6b40dee612b445a9",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/COMMAND.json",
+      "stored_bytes": 1776,
+      "stored_sha256": "af7607709cf6843707afa2da71fa52da7974d6fc872696fe6b40dee612b445a9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/ENVIRONMENT_COMPAT_FINAL.json",
+      "original_bytes": 1632,
+      "original_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/ENVIRONMENT_COMPAT_FINAL.json",
+      "stored_bytes": 1632,
+      "stored_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/EVAL.json",
+      "original_bytes": 909,
+      "original_sha256": "e317ea60c3b5414e48361ee3401bcaeaf791d2c27b4bf71dc5064710c3ea2080",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/EVAL.json",
+      "stored_bytes": 909,
+      "stored_sha256": "e317ea60c3b5414e48361ee3401bcaeaf791d2c27b4bf71dc5064710c3ea2080",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/NAV_AUDIT.json",
+      "original_bytes": 194,
+      "original_sha256": "a8280911e33b92a7d4be3297d7ce8a9a4fdcd112527d7be027f9c6b6b3e5ed91",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/NAV_AUDIT.json",
+      "stored_bytes": 194,
+      "stored_sha256": "a8280911e33b92a7d4be3297d7ce8a9a4fdcd112527d7be027f9c6b6b3e5ed91",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/OVERLAP.json",
+      "original_bytes": 276,
+      "original_sha256": "69d758f5f3ae76ed7be55badafb8d9c79a08a2ccdc30bc11bfe7dbd27222b5a9",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/OVERLAP.json",
+      "stored_bytes": 276,
+      "stored_sha256": "69d758f5f3ae76ed7be55badafb8d9c79a08a2ccdc30bc11bfe7dbd27222b5a9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/pb-navigation-sil-config-20261014-04.json",
+      "original_bytes": 10051,
+      "original_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/pb-navigation-sil-config-20261014-04.json.gz",
+      "stored_bytes": 2698,
+      "stored_sha256": "d21d67ab8eb4fa36c59523a0992e93d67d0648f8107057f2256fae5b0609b51b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/PB_MANIFEST.json",
+      "original_bytes": 726,
+      "original_sha256": "89bd6d5470fac112a4c529796adb3f8cb027ac8f244e69881d1f3fa31d6c5eb6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/PB_MANIFEST.json",
+      "stored_bytes": 726,
+      "stored_sha256": "89bd6d5470fac112a4c529796adb3f8cb027ac8f244e69881d1f3fa31d6c5eb6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/PB_RESULT.json",
+      "original_bytes": 3251,
+      "original_sha256": "27166627d79d211e6d898aba3dbffde56fb85177f79b2bfbbef297d4a88d050d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/PB_RESULT.json",
+      "stored_bytes": 3251,
+      "stored_sha256": "27166627d79d211e6d898aba3dbffde56fb85177f79b2bfbbef297d4a88d050d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/CLEANUP.json",
+      "original_bytes": 299,
+      "original_sha256": "2d3ff696735d6e066052b4ecf5303e85895272f29f0ef7c240db3dd5048d2fb2",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/CLEANUP.json",
+      "stored_bytes": 299,
+      "stored_sha256": "2d3ff696735d6e066052b4ecf5303e85895272f29f0ef7c240db3dd5048d2fb2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/client.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/client.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/client.stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/client.stdout.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/EXTERNAL_EVENTS.jsonl",
+      "original_bytes": 30862,
+      "original_sha256": "1dab18193d568377b07a1a8de0a7228ea62ac71350bc17fbc1c4c5d695a0dca7",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/EXTERNAL_EVENTS.jsonl.gz",
+      "stored_bytes": 3410,
+      "stored_sha256": "dc4640cfe012c2e3ed04398db31044600c65a26447f4de2f9b557acae7372ee6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/EXTERNAL_SPEC.json",
+      "original_bytes": 1867,
+      "original_sha256": "6f484a885d1676c05928855610bff5eea26fb214b3b12d36c518a86349df18cb",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/EXTERNAL_SPEC.json",
+      "stored_bytes": 1867,
+      "stored_sha256": "6f484a885d1676c05928855610bff5eea26fb214b3b12d36c518a86349df18cb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/GOAL_REPORT.json",
+      "original_bytes": 325,
+      "original_sha256": "2c365d9683c6a6bcf29e57e9727402e2352cae4a9a469b00c7f62345a3326330",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/GOAL_REPORT.json",
+      "stored_bytes": 325,
+      "stored_sha256": "2c365d9683c6a6bcf29e57e9727402e2352cae4a9a469b00c7f62345a3326330",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/READY.json",
+      "original_bytes": 1451,
+      "original_sha256": "590f487adf9b68699c7303095c349795365bf2bb4a92b7c9a7c9500a9f74f0ce",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/READY.json",
+      "stored_bytes": 1451,
+      "stored_sha256": "590f487adf9b68699c7303095c349795365bf2bb4a92b7c9a7c9500a9f74f0ce",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/RESULT.json",
+      "original_bytes": 2313,
+      "original_sha256": "6e18800da008a0b0c03d7f1b3c224815f2b520d8954263171cf7166aaa75407c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/RESULT.json",
+      "stored_bytes": 2313,
+      "stored_sha256": "6e18800da008a0b0c03d7f1b3c224815f2b520d8954263171cf7166aaa75407c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/ROS_SOURCE.jsonl",
+      "original_bytes": 191686,
+      "original_sha256": "f5e9eef0fee5c83e7c20e0b3f542c567803bcb516a5e4d9afa071b369ed52e06",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/ROS_SOURCE.jsonl.gz",
+      "stored_bytes": 15400,
+      "stored_sha256": "de5cf03394e67b4a8151fb74fbef1160d16afc68dba6a6e73c974efeb75c0297",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/SPAWN.json",
+      "original_bytes": 643,
+      "original_sha256": "554e8d0d28c12b1c44b91100d74feddb479cf3342bbe8a749690023b7e2162c9",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/SPAWN.json",
+      "stored_bytes": 643,
+      "stored_sha256": "554e8d0d28c12b1c44b91100d74feddb479cf3342bbe8a749690023b7e2162c9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/STOP",
+      "original_bytes": 131,
+      "original_sha256": "c9c42409405448ff215ff413142b0dfd14829176c43cedd095e0ed54af8dcf50",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/STOP",
+      "stored_bytes": 131,
+      "stored_sha256": "c9c42409405448ff215ff413142b0dfd14829176c43cedd095e0ed54af8dcf50",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/SUPERVISOR_CLEANUP.json",
+      "original_bytes": 1123,
+      "original_sha256": "29dd8ada37fe825a729781f4f7d16c1ff4b5ac6a8568acb2e9037b50fa71fd7f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/SUPERVISOR_CLEANUP.json",
+      "stored_bytes": 1123,
+      "stored_sha256": "29dd8ada37fe825a729781f4f7d16c1ff4b5ac6a8568acb2e9037b50fa71fd7f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/peer/SUPERVISOR_STARTED.json",
+      "original_bytes": 238,
+      "original_sha256": "b47b7177d3367f7391a6063cc5670d51664010c020ab9fd821257d2ee82b13aa",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/peer/SUPERVISOR_STARTED.json",
+      "stored_bytes": 238,
+      "stored_sha256": "b47b7177d3367f7391a6063cc5670d51664010c020ab9fd821257d2ee82b13aa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/PREPARE.json",
+      "original_bytes": 2786,
+      "original_sha256": "ce976461e598307051dc975501173840923b40424b11776dc8e725ed1f2e2e61",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/PREPARE.json",
+      "stored_bytes": 2786,
+      "stored_sha256": "ce976461e598307051dc975501173840923b40424b11776dc8e725ed1f2e2e61",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145837,
+      "original_sha256": "5b8753eab2ae33ab5545afc4709bd79f02717a63b6fd28ebc67af5640df2e5dc",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145837,
+      "stored_sha256": "5b8753eab2ae33ab5545afc4709bd79f02717a63b6fd28ebc67af5640df2e5dc",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/qt/RESULT.json",
+      "original_bytes": 449984,
+      "original_sha256": "bfb3f8de40b0e4b4c4db50e150da370a76ab366f4563ca7c2a8ab3c59b663771",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/qt/RESULT.json.gz",
+      "stored_bytes": 13161,
+      "stored_sha256": "3ae45bec18a48d56a7ef02ca62dcbb1f8cae235b8a72393377553d8f6f473b16",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/qt/STAGES.json",
+      "original_bytes": 3623616,
+      "original_sha256": "4f67310bad2b96cd2edd5d36509a178e707e35b13b3dc752a41940adacd295bd",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/qt/STAGES.json.gz",
+      "stored_bytes": 84523,
+      "stored_sha256": "ff21dd69d89cfbfeb85ed2627465cdcaed4fdf9b4de9b1de8e5dcfa7fa905798",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 11949,
+      "original_sha256": "27b5279f0735545d5a29df2ff26ba981136b73f556dac26b073bcd5a71e13b79",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1430,
+      "stored_sha256": "a092663305c15286cf0583b609a646250f0f603c366fe80d7401b9ce27c2b42f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/qt.stderr.log",
+      "original_bytes": 1390,
+      "original_sha256": "acd65c0c7b6109ea146cbe3d2701bea8c7f9f2a95d36af829f2327d3b9218a04",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/qt.stderr.log",
+      "stored_bytes": 1390,
+      "stored_sha256": "acd65c0c7b6109ea146cbe3d2701bea8c7f9f2a95d36af829f2327d3b9218a04",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "6e903240aa25a4d5de8fb34200b6f78f8808589c1105723e67e6b26a9f72b8b5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "6e903240aa25a4d5de8fb34200b6f78f8808589c1105723e67e6b26a9f72b8b5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/RESULT.json",
+      "original_bytes": 2265,
+      "original_sha256": "be46895f8210ab5f29130192ed85c1e884fadff905c53199076056dc61394c15",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/RESULT.json",
+      "stored_bytes": 2265,
+      "stored_sha256": "be46895f8210ab5f29130192ed85c1e884fadff905c53199076056dc61394c15",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/CLEANUP.json",
+      "original_bytes": 342,
+      "original_sha256": "a7d94de0eaddf6c91c0dabf498059979dc19f5de314ff9a475b4ac3d1a408c4b",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/CLEANUP.json",
+      "stored_bytes": 342,
+      "stored_sha256": "a7d94de0eaddf6c91c0dabf498059979dc19f5de314ff9a475b4ac3d1a408c4b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/HOST_RPC_PHASES.json",
+      "original_bytes": 221802,
+      "original_sha256": "2592290c6ce32e7df8710ef139b6de0709983e401a2d46291fd3c00c6b8b7764",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/HOST_RPC_PHASES.json.gz",
+      "stored_bytes": 13158,
+      "stored_sha256": "f5bcaa286873a5ece34bb07fca9273cb084171c0c8115b2532789eaded83ddb2",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/LINUX_RPC_PHASES.json",
+      "original_bytes": 119469,
+      "original_sha256": "562304dee0dad110a572afd9c56bb4f8534ba17e775d223532c6ce07b5db1fef",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/LINUX_RPC_PHASES.json.gz",
+      "stored_bytes": 8103,
+      "stored_sha256": "b96a5dd6666ad6f93df6bddcb3b02c53fdc5d646360efa122e40e74dd4d87d09",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/PRODUCTION_GATE_STATUS.json",
+      "original_bytes": 387,
+      "original_sha256": "b84ebee1d5aa2407ae72d2614d06295774d377c9b0ba3307192d78fe754e647d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/PRODUCTION_GATE_STATUS.json",
+      "stored_bytes": 387,
+      "stored_sha256": "b84ebee1d5aa2407ae72d2614d06295774d377c9b0ba3307192d78fe754e647d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/SESSION_SPEC.json",
+      "original_bytes": 2511,
+      "original_sha256": "301656a8e53a8ecf658ec274e72a689963d56e0fb2aac6855e004ccea5ac1257",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/SESSION_SPEC.json",
+      "stored_bytes": 2511,
+      "stored_sha256": "301656a8e53a8ecf658ec274e72a689963d56e0fb2aac6855e004ccea5ac1257",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/bridge_manifest.json",
+      "original_bytes": 1550,
+      "original_sha256": "87c104265d7b552674b9c0fd0caebfd3de3b782d8207f5484360f00e3a9be8ad",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/bridge_manifest.json",
+      "stored_bytes": 1550,
+      "stored_sha256": "87c104265d7b552674b9c0fd0caebfd3de3b782d8207f5484360f00e3a9be8ad",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/CLEANUP.json",
+      "original_bytes": 5536,
+      "original_sha256": "629654e40e9c42ab0facc0250784248dce6ee92bb7f809c3e58d26556a67ca52",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/CLEANUP.json.gz",
+      "stored_bytes": 1319,
+      "stored_sha256": "d01c5cb9ac2781237bc971badc92b8c871b56a0791e8d6d54afeb28cf68a86a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/controller_server.log",
+      "original_bytes": 108489,
+      "original_sha256": "ef01df2636bfbed7062a1be10e6c44d7c44313240920551509312faff17fb826",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/controller_server.log.gz",
+      "stored_bytes": 6010,
+      "stored_sha256": "f03434469e63d214a74052b2623c337c0cccdfc69d537ef2da236f56bbd04cf3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/loam_interface.log",
+      "original_bytes": 71,
+      "original_sha256": "e1e45eeb05d5ef64242460e69492453acb78c448f0e7117af473ad840935a6d2",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/loam_interface.log",
+      "stored_bytes": 71,
+      "stored_sha256": "e1e45eeb05d5ef64242460e69492453acb78c448f0e7117af473ad840935a6d2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/owned_parameters.yaml",
+      "original_bytes": 14266,
+      "original_sha256": "14a8cbcb56d2471c76f46a68f2904778fa1373833ef9fadf10c59d4afa5769f7",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/owned_parameters.yaml.gz",
+      "stored_bytes": 3330,
+      "stored_sha256": "67bc1728600b8fa7c4abe91da792f784234507b162cbf905d5372189bbd91efa",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/PLAN.json",
+      "original_bytes": 54868,
+      "original_sha256": "daf373c068d256bc3a7d57b140f98b4e7b8eedecca7f2a5ebc5b710168d27db9",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/PLAN.json.gz",
+      "stored_bytes": 5979,
+      "stored_sha256": "e9c56ad42d230165106531e8861e15c872f6973b3ec60a85947cbfc935bc03cd",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/planner_server.log",
+      "original_bytes": 6050,
+      "original_sha256": "10fbfad00e9352a060c14b3cd1fd6ddf9d3cb6825515d92b406dde3ab73d86e6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/planner_server.log.gz",
+      "stored_bytes": 1197,
+      "stored_sha256": "ca5e4de33c31fade21bb0b18eef8d01f136d8e60a5b0cb48aeb8ba29db34a1d9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/point_lio.log",
+      "original_bytes": 783,
+      "original_sha256": "c3fddd81cde19be316c46a9d93a29ab5c1a849a0eb4f8103cab8ad6291a85656",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/point_lio.log",
+      "stored_bytes": 783,
+      "stored_sha256": "c3fddd81cde19be316c46a9d93a29ab5c1a849a0eb4f8103cab8ad6291a85656",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/pointcloud_to_laserscan.log",
+      "original_bytes": 244,
+      "original_sha256": "d08058f8628bf092a65846ce03d4a62897c87d3b3e0a4e9194043dc581c96197",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/pointcloud_to_laserscan.log",
+      "stored_bytes": 244,
+      "stored_sha256": "d08058f8628bf092a65846ce03d4a62897c87d3b3e0a4e9194043dc581c96197",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/sensor_scan_generation.log",
+      "original_bytes": 71,
+      "original_sha256": "1d288dddba59f9e1247fa0224f0288ace0127f10c2ddadb42f79834a2e06ab1e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/sensor_scan_generation.log",
+      "stored_bytes": 71,
+      "stored_sha256": "1d288dddba59f9e1247fa0224f0288ace0127f10c2ddadb42f79834a2e06ab1e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/slam_toolbox.log",
+      "original_bytes": 800,
+      "original_sha256": "6044276532b027552f0d3c1bd3fcf1ecd180b8f5e4dada4b2dae6e78bf48c332",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/slam_toolbox.log",
+      "stored_bytes": 800,
+      "stored_sha256": "6044276532b027552f0d3c1bd3fcf1ecd180b8f5e4dada4b2dae6e78bf48c332",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/supervisor.jsonl",
+      "original_bytes": 25770,
+      "original_sha256": "8de71aedde78741f4615e8eb75aa11e10cf2db1b0e7e04764fa7451c372fb2fc",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/supervisor.jsonl.gz",
+      "stored_bytes": 1559,
+      "stored_sha256": "c37d63325d68fca920ca9563ceab8cef723c89f336bf32055068fdd8cc0cabde",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/terrain_analysis.log",
+      "original_bytes": 324,
+      "original_sha256": "b96c5787cf5d7bb4690b75ee997197bb1958954902c296a49b433ab1c12cb128",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/terrain_analysis.log",
+      "stored_bytes": 324,
+      "stored_sha256": "b96c5787cf5d7bb4690b75ee997197bb1958954902c296a49b433ab1c12cb128",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/stack/terrain_analysis_ext.log",
+      "original_bytes": 324,
+      "original_sha256": "34a1e2a87b9213876dd4824c5c8746b8e5df5d10b068466c7745b581bea0b99e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/stack/terrain_analysis_ext.log",
+      "stored_bytes": 324,
+      "stored_sha256": "34a1e2a87b9213876dd4824c5c8746b8e5df5d10b068466c7745b581bea0b99e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/STOP",
+      "original_bytes": 131,
+      "original_sha256": "57d4c811bd7a16112580a78a13aa05aa143f775875b5f54fc6932ebf00871dfd",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/STOP",
+      "stored_bytes": 131,
+      "stored_sha256": "57d4c811bd7a16112580a78a13aa05aa143f775875b5f54fc6932ebf00871dfd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/supervisor_stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/supervisor_stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/session/WORKER_STARTED.json",
+      "original_bytes": 228,
+      "original_sha256": "6eae0c16ee06210e846e24f6bea59af1f3b4d796668758b029527fa1b9297506",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/session/WORKER_STARTED.json",
+      "stored_bytes": 228,
+      "stored_sha256": "6eae0c16ee06210e846e24f6bea59af1f3b4d796668758b029527fa1b9297506",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/profile.py",
+      "original_bytes": 14335,
+      "original_sha256": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/profile.py.gz",
+      "stored_bytes": 4412,
+      "stored_sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/wsl_profile.py",
+      "original_bytes": 12741,
+      "original_sha256": "20177898a8751531e3f8110c700f7c1dd4fd95453e3d184473d77b2b8a3f13bc",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/deployment/wsl_profile.py.gz",
+      "stored_bytes": 4135,
+      "stored_sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/owned_linux_group.py",
+      "original_bytes": 5895,
+      "original_sha256": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/owned_linux_group.py.gz",
+      "stored_bytes": 1956,
+      "stored_sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_controller_context.hpp",
+      "original_bytes": 11831,
+      "original_sha256": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_controller_context.hpp.gz",
+      "stored_bytes": 3334,
+      "stored_sha256": "22b5a8362dcc97a22035f2e6f229438ca8f612121c6bda52197f81624e21e45d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_bridge.py",
+      "original_bytes": 12834,
+      "original_sha256": "4f4a7ed851f99d5888d3435c6fcb200f1b7c2d55ccbeb810261b1a077e64ecf8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "stored_bytes": 4020,
+      "stored_sha256": "11d7252b30421a255c1b064ac01316455433b9c377289faa13dc9b35874a635b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_phases.py",
+      "original_bytes": 3964,
+      "original_sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_phases.py",
+      "stored_bytes": 3964,
+      "stored_sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_transport.py",
+      "original_bytes": 9339,
+      "original_sha256": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "stored_bytes": 2798,
+      "stored_sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_request_context.hpp",
+      "original_bytes": 2793,
+      "original_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_request_context.hpp",
+      "stored_bytes": 2793,
+      "stored_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation.py",
+      "original_bytes": 30220,
+      "original_sha256": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "stored_bytes": 7114,
+      "stored_sha256": "78d535dd2ee1b0354785e29ee5cd4c9a87b47c84fc50de29838fe195c35264d5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation_registry.py",
+      "original_bytes": 5307,
+      "original_sha256": "dae67d7470f12f10e71b2d5cae747ec1c019a3a71a91d70c0a77922ab9754636",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "stored_bytes": 1837,
+      "stored_sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation_worker.py",
+      "original_bytes": 21497,
+      "original_sha256": "20d39ac402770d125897f1f7a8a88af0e3d0c05376eb620b3c82d55a99dcc58f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "stored_bytes": 6522,
+      "stored_sha256": "a53d0664954a60111b2b4d0e665ee3f7bf50962f6cf116d1f49df0ca5352a5b8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/ros2_bridge.py",
+      "original_bytes": 10541,
+      "original_sha256": "1cb700a4db69d9bf21f77c7174798e4e635672e581e129dc7f4a661cafdf44f1",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/integrations/ros2_bridge.py.gz",
+      "stored_bytes": 3341,
+      "stored_sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 12011,
+      "original_sha256": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3573,
+      "stored_sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/pb_coop_cleanup.py",
+      "original_bytes": 10706,
+      "original_sha256": "ae64f4f9123a72b5b51d1268033602dd42a37cefded48adbc6a11ece1ad0fb93",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/pb_coop_cleanup.py.gz",
+      "stored_bytes": 3177,
+      "stored_sha256": "2b37efe24a694f5e4cb312f46b8586fc76cac3163e6b84f1a220095504538b82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/pb_external_goal_session.py",
+      "original_bytes": 9026,
+      "original_sha256": "3abe6e17ecfd89b3254c9cd0fb890713c5d22b98ead32046af6ac617326236ef",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/pb_external_goal_session.py.gz",
+      "stored_bytes": 2719,
+      "stored_sha256": "b51c65767150eac476a2d7dc7751b85920c1b717450dfea5879281f7becf5dd0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/pb_navigation_stack.py",
+      "original_bytes": 32835,
+      "original_sha256": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/pb_navigation_stack.py.gz",
+      "stored_bytes": 9734,
+      "stored_sha256": "ca2ab53f926c94357c73e51d69d9e8374e83aeaa792055f11c44e95e11751be5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_pb_external_goal_supervisor.py",
+      "original_bytes": 6949,
+      "original_sha256": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_pb_external_goal_supervisor.py.gz",
+      "stored_bytes": 2250,
+      "stored_sha256": "195040923d4d8a45f8d783d78bbc686aa951761451f3055d9f09426441cc689d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_pb_external_navigation_goal.py",
+      "original_bytes": 24806,
+      "original_sha256": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_pb_external_navigation_goal.py.gz",
+      "stored_bytes": 7051,
+      "stored_sha256": "460227712f354b85a1424d1e8000c088e50425f9a7f781f660f63374e6c1d214",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_pb_navigation_sil.py",
+      "original_bytes": 40943,
+      "original_sha256": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_pb_navigation_sil.py.gz",
+      "stored_bytes": 10645,
+      "stored_sha256": "1b1d660a6f52a36b2ff3aad4af1c4328ec2802fa4c0923d1fd98acc10c37824b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_qt_pb_coop_sil.py",
+      "original_bytes": 27747,
+      "original_sha256": "b5abe987066707c1c09d62e1c33edd6cccd3944ae007976f623572dd8f76c48d",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/source/tools/qa_qt_pb_coop_sil.py.gz",
+      "stored_bytes": 8169,
+      "stored_sha256": "1d4e14101ad10c6e148e0c5265e4cd856530086c9fdae665fbb3e8253f227cde",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/SOURCE_MANIFEST.json",
+      "original_bytes": 15105,
+      "original_sha256": "c80ea39132f9023f1213eb226cfb9e9dc5899e55c4f29741bb9f82ef5ee4ff4a",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 3177,
+      "stored_sha256": "faadf1d495e40f0acff627a7a48d329ed942a63873095149de84990eb1a125d9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-actual-20261015-03/TRACE.jsonl.gz",
+      "original_bytes": 615336,
+      "original_sha256": "cb008c4e2ded27cfc27a358edb005770fa4bd7d75fc6a765aa0bfea902241920",
+      "stored_path": "records/artifacts/qt-pb-coop-actual-20261015-03/TRACE.jsonl.gz",
+      "stored_bytes": 615336,
+      "stored_sha256": "cb008c4e2ded27cfc27a358edb005770fa4bd7d75fc6a765aa0bfea902241920",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-01/COMMAND.json",
+      "original_bytes": 2163,
+      "original_sha256": "955b8d99e88956f93a8522bb55abd2d745cd2d168a6984272344494427b7e910",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-01/COMMAND.json",
+      "stored_bytes": 2163,
+      "stored_sha256": "955b8d99e88956f93a8522bb55abd2d745cd2d168a6984272344494427b7e910",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-01/driver.py",
+      "original_bytes": 2820,
+      "original_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-01/driver.py",
+      "stored_bytes": 2820,
+      "stored_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-01/PID.json",
+      "original_bytes": 35,
+      "original_sha256": "cf4b493423ec679df23daf4e8dd7fd12780458b6299e1dce04a8f5d236e16b3b",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-01/PID.json",
+      "stored_bytes": 35,
+      "stored_sha256": "cf4b493423ec679df23daf4e8dd7fd12780458b6299e1dce04a8f5d236e16b3b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-01/RESULT.json",
+      "original_bytes": 2778,
+      "original_sha256": "1b0d99dac0e3a795ac45820191887c3aa0109571db610ed4fcbd6d4363a2b0f2",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-01/RESULT.json",
+      "stored_bytes": 2778,
+      "stored_sha256": "1b0d99dac0e3a795ac45820191887c3aa0109571db610ed4fcbd6d4363a2b0f2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-01/stdout.log",
+      "original_bytes": 140,
+      "original_sha256": "c515f6f50b67064c7e870123aa485762a9931198a2c6eb1fdb02ef19773a9354",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-01/stdout.log",
+      "stored_bytes": 140,
+      "stored_sha256": "c515f6f50b67064c7e870123aa485762a9931198a2c6eb1fdb02ef19773a9354",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-02/COMMAND.json",
+      "original_bytes": 2164,
+      "original_sha256": "e9be1521373196cd2d19b7ab45ee4e267bc10a3e21ced4602388f21632bc81f6",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-02/COMMAND.json",
+      "stored_bytes": 2164,
+      "stored_sha256": "e9be1521373196cd2d19b7ab45ee4e267bc10a3e21ced4602388f21632bc81f6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-02/driver.py",
+      "original_bytes": 2820,
+      "original_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-02/driver.py",
+      "stored_bytes": 2820,
+      "stored_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-02/PID.json",
+      "original_bytes": 35,
+      "original_sha256": "64b150aea59757acfd7bc47a11f2f51e25e10cef56f474e200e102de95255096",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-02/PID.json",
+      "stored_bytes": 35,
+      "stored_sha256": "64b150aea59757acfd7bc47a11f2f51e25e10cef56f474e200e102de95255096",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-02/RESULT.json",
+      "original_bytes": 2778,
+      "original_sha256": "8b1060dee378936ee13551c0e228ab323aed94b0e5303d059bc0ab47082633d9",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-02/RESULT.json",
+      "stored_bytes": 2778,
+      "stored_sha256": "8b1060dee378936ee13551c0e228ab323aed94b0e5303d059bc0ab47082633d9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-02/stdout.log",
+      "original_bytes": 140,
+      "original_sha256": "9d71d447b356eb62ee6dacf723995a4237d08d23426b4534604a22bbf6410670",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-02/stdout.log",
+      "stored_bytes": 140,
+      "stored_sha256": "9d71d447b356eb62ee6dacf723995a4237d08d23426b4534604a22bbf6410670",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-03/COMMAND.json",
+      "original_bytes": 2164,
+      "original_sha256": "ec7c683a65c1179d5b8fc44b73447809c6c5cffb64f8ba0e124c226c31c37107",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-03/COMMAND.json",
+      "stored_bytes": 2164,
+      "stored_sha256": "ec7c683a65c1179d5b8fc44b73447809c6c5cffb64f8ba0e124c226c31c37107",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-03/driver.py",
+      "original_bytes": 2820,
+      "original_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-03/driver.py",
+      "stored_bytes": 2820,
+      "stored_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-03/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "ae5e42a958b3220da5149e72fc1ce6cf8a9f2525487b9a6c67fbb505bc280aac",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-03/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "ae5e42a958b3220da5149e72fc1ce6cf8a9f2525487b9a6c67fbb505bc280aac",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-03/RESULT.json",
+      "original_bytes": 2778,
+      "original_sha256": "f0a955ce62671c8f49183f01f2df8ec15e4147a37b49a81b6b30c501b12e4e25",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-03/RESULT.json",
+      "stored_bytes": 2778,
+      "stored_sha256": "f0a955ce62671c8f49183f01f2df8ec15e4147a37b49a81b6b30c501b12e4e25",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-03/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-03/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-pb-coop-driver-20261015-03/stdout.log",
+      "original_bytes": 140,
+      "original_sha256": "cbb640f8043a23d8d1f6d86d098d3d2557c946f7812bc01f6dfab514ca305ad7",
+      "stored_path": "records/artifacts/qt-pb-coop-driver-20261015-03/stdout.log",
+      "stored_bytes": 140,
+      "stored_sha256": "cbb640f8043a23d8d1f6d86d098d3d2557c946f7812bc01f6dfab514ca305ad7",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/acceptance_preset.log",
+      "original_bytes": 1166,
+      "original_sha256": "29a3f642ac6f2c7f27120249e95ad0031b912baeb90875d6647768f20d24f039",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/acceptance_preset.log",
+      "stored_bytes": 1166,
+      "stored_sha256": "29a3f642ac6f2c7f27120249e95ad0031b912baeb90875d6647768f20d24f039",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/interface_static.log",
+      "original_bytes": 23957,
+      "original_sha256": "d0c65d92c2b497d31eae9dc8420804afbf69c74f42a84d9ecb19f37d65ddf000",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/interface_static.log.gz",
+      "stored_bytes": 3866,
+      "stored_sha256": "40b0b63eea5d24b1bf5c60239d7e9512f1c2928fd53a867b6748d902c47e64c0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/manifest.json",
+      "original_bytes": 1562250,
+      "original_sha256": "c80bc29430edc387a4fbfb217aefc298ac2a20a7167129f759dd49be9a7a5f12",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/manifest.json.gz",
+      "stored_bytes": 408123,
+      "stored_sha256": "150f3fa7d9a6e3223611b65bbff91daf99db55607de1dfc48c012da07fa6ed9b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/preset.json",
+      "original_bytes": 1166,
+      "original_sha256": "29a3f642ac6f2c7f27120249e95ad0031b912baeb90875d6647768f20d24f039",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/preset.json",
+      "stored_bytes": 1166,
+      "stored_sha256": "29a3f642ac6f2c7f27120249e95ad0031b912baeb90875d6647768f20d24f039",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/pytest.log",
+      "original_bytes": 4804,
+      "original_sha256": "550df516fb8140ec98570944b4f9e908164ad8fe8fc364a5a4f86e2bd22e67df",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/pytest.log.gz",
+      "stored_bytes": 631,
+      "stored_sha256": "bdf0dadb2001a56b439672bf0ba9429219d8c35a91248cdef76a6c8ce2c582c9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/pytest.xml",
+      "original_bytes": 339820,
+      "original_sha256": "0f2e705c15295b999d63f08974908aff813dcf953108603fccce8051d3fd517c",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/pytest.xml.gz",
+      "stored_bytes": 48988,
+      "stored_sha256": "37b00308c9cb5f310c1ace71c6f9ded799c8420ecc6f4696a5edee64be8bf7d6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-10/source_provenance.log",
+      "original_bytes": 1627,
+      "original_sha256": "83552c5bcf29786b3334c1328288a36d477912dab2a99fafb6128f671f54bc0c",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-10/source_provenance.log",
+      "stored_bytes": 1627,
+      "stored_sha256": "83552c5bcf29786b3334c1328288a36d477912dab2a99fafb6128f671f54bc0c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_aim_followup_quality_20261014.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_qt_pb_coop_20261015.py",
+      "original_bytes": 2820,
+      "original_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "stored_path": "records/artifacts/run_qt_pb_coop_20261015.py",
+      "stored_bytes": 2820,
+      "stored_sha256": "e51f9ac8d91d094636324b190c330758ac715e6cbbb8c9fd88d30da5b511a1f0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "docs/CLIENT_ROBOTIO_INTERFACE.md",
+      "original_bytes": 13233,
+      "original_sha256": "c95677aeec54e1b7d290a903c5db20ba612e06d539cf2fbb14b671c93a6d7c3d",
+      "stored_path": "records/docs/CLIENT_ROBOTIO_INTERFACE.md.gz",
+      "stored_bytes": 6231,
+      "stored_sha256": "52000a0d56f9207701e9a2a7deb870f673dcd4b1510b01244a50de65db6e25b9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/COOP_PLAYABLE_PATH.md",
+      "original_bytes": 9148,
+      "original_sha256": "2238322041ae3f8ace8baf706f8dc915df89c2ee4c525d7e1fc76007daf5064a",
+      "stored_path": "records/docs/COOP_PLAYABLE_PATH.md.gz",
+      "stored_bytes": 5003,
+      "stored_sha256": "bfc71c078d3336d81367761de5b2f1706b8b4a2190efe6d69a2d7b49b82950aa",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "original_bytes": 75134,
+      "original_sha256": "3ee4b09345f4bbccb39b1f430172b7733bef526b3dcb73ceb069dbf42bfae676",
+      "stored_path": "records/docs/IMPLEMENTATION_PROGRESS.md.gz",
+      "stored_bytes": 34383,
+      "stored_sha256": "0afebe610364f677da6d27ebcfeb973a8367bcc8238fabce0e319e09ce063dcc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "rm_match/integrations/pb_wsl_navigation_registry.py",
+      "original_bytes": 5307,
+      "original_sha256": "dae67d7470f12f10e71b2d5cae747ec1c019a3a71a91d70c0a77922ab9754636",
+      "stored_path": "records/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "stored_bytes": 1837,
+      "stored_sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tests/test_pb_coop_cleanup.py",
+      "original_bytes": 9667,
+      "original_sha256": "f4beece607f15a1063436eeee94a95ce666d5ef871a8d3d8e2cf4aa2fa23253b",
+      "stored_path": "records/tests/test_pb_coop_cleanup.py.gz",
+      "stored_bytes": 2628,
+      "stored_sha256": "bbf2cc84da154535b24e8e95f428654c65147173e5a86c3aa770969d7ef5eae7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tests/test_pb_reset_capture_policy.py",
+      "original_bytes": 8994,
+      "original_sha256": "53ca776f004416ed9a51b969bcfd6eba5978025fd0a9aeb2abaa6c5edfc6c33a",
+      "stored_path": "records/tests/test_pb_reset_capture_policy.py.gz",
+      "stored_bytes": 2847,
+      "stored_sha256": "fbf59c6e2389b212f51d19e6a0da50ed255a9dacda1fed62c5f30677293249b9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tools/pb_coop_cleanup.py",
+      "original_bytes": 10706,
+      "original_sha256": "ae64f4f9123a72b5b51d1268033602dd42a37cefded48adbc6a11ece1ad0fb93",
+      "stored_path": "records/tools/pb_coop_cleanup.py.gz",
+      "stored_bytes": 3177,
+      "stored_sha256": "2b37efe24a694f5e4cb312f46b8586fc76cac3163e6b84f1a220095504538b82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tools/qa_qt_pb_coop_sil.py",
+      "original_bytes": 27747,
+      "original_sha256": "b5abe987066707c1c09d62e1c33edd6cccd3944ae007976f623572dd8f76c48d",
+      "stored_path": "records/tools/qa_qt_pb_coop_sil.py.gz",
+      "stored_bytes": 8169,
+      "stored_sha256": "1d4e14101ad10c6e148e0c5265e4cd856530086c9fdae665fbb3e8253f227cde",
+      "compression": "gzip"
+    }
+  ]
+}

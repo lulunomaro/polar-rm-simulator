@@ -1,0 +1,54 @@
+{
+  "schema": "polar.pb.external-goal-result.v1",
+  "run_uuid": "73202f71bcbee4d9c4e4f84698d4031d",
+  "session_run_uuid": "9398d12e0d3544f3a055ffdf4f2d752d",
+  "namespace": "/polar_sil_9398d12e0d3544f3a055ffdf4f2d752d/red_sentry",
+  "goal_completed": true,
+  "elapsed_s": 36.855350693999995,
+  "cleanup": {
+    "schema": "polar.pb.external-goal-cleanup.v1",
+    "run_uuid": "73202f71bcbee4d9c4e4f84698d4031d",
+    "pid": 611,
+    "start_ticks": 932,
+    "boot_id": "4aaec331-a307-4edc-b055-62fa1f673c2b",
+    "clean": true,
+    "errors": [],
+    "observer_thread_alive": false,
+    "session_node_processes_owned": false
+  },
+  "source_sha256": {
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "goal_report": {
+    "source": "actual_algorithm_map_to_base_link_tf",
+    "frame": "map",
+    "source_stamp_ns": 5397999999,
+    "relative_offset_m": [
+      1.0,
+      0.0
+    ],
+    "goal_xy": [
+      0.9990097220861502,
+      -0.014070192237761648
+    ],
+    "path_poses": 15,
+    "planner_status": 4,
+    "follow_path_accepted": true,
+    "follow_path_status": 4
+  },
+  "algorithm_input_has_truth": false,
+  "lifecycle_changed": false,
+  "sensor_published": false,
+  "cmd_vel_published": false,
+  "scope": "independent external action client; production Gate observation only; not full mission/hardware"
+}

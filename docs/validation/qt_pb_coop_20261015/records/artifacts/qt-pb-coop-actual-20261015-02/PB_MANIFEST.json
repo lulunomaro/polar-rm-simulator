@@ -1,0 +1,13 @@
+{
+  "schema": "polar.sim.pb-wsl-navigation-manifest.v1",
+  "config_ref": {
+    "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-navigation-sil-config-20261014-04.json",
+    "sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+  },
+  "environment_ref": {
+    "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "out": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-pb-coop-actual-20261015-02\\session",
+  "diagnostics": true
+}

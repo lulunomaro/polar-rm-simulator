@@ -1,0 +1,29 @@
+{
+  "command": [
+    "C:\\Windows\\System32\\wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--",
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "-S",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-coop-preflight-20261015-01/linux_readonly_preflight.py",
+    "--environment",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "--environment-sha",
+    "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "--config",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-navigation-sil-config-20261014-04.json",
+    "--config-sha",
+    "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+  ],
+  "source_before": {
+    "artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "artifacts\\pb-navigation-sil-config-20261014-04.json": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "rm_match\\integrations\\pb_wsl_navigation.py": "c41aadb017024f6f9b128c05f1db9e556317acdb6934b4f739c2c97b4abd2dd5",
+    "rm_match\\integrations\\pb_wsl_navigation_registry.py": "1c6c08e6c513d024e092f295d22afec981ab078041c1687cb06e0f3680d7ab9d",
+    "artifacts\\pb-coop-preflight-20261015-01\\linux_readonly_preflight.py": "cbda90760682f8ecc69d5d2b55b0cdd6cccea4d1f6970df2b3277072217ce2f6"
+  },
+  "scope": "readonly_wsl_paths_versions_sha_processes_no_ros_gl_algorithm"
+}

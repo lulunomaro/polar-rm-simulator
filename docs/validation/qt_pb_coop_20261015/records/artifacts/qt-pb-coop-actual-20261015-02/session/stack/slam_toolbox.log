@@ -1,0 +1,4 @@
+[INFO] [1792019397.626838001] [polar_sil_416c063516a34ded8e75b7760264500b.red_sentry.slam_toolbox]: Node using stack size 40000000
+[INFO] [1792019397.743644773] [polar_sil_416c063516a34ded8e75b7760264500b.red_sentry.slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[INFO] [1792019397.744290681] [polar_sil_416c063516a34ded8e75b7760264500b.red_sentry.slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.
+[INFO] [1792019407.724786517] [rclcpp]: signal_handler(SIGINT/SIGTERM)

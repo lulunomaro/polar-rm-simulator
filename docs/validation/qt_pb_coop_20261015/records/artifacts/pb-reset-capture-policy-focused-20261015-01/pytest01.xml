@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="1.656" timestamp="2026-10-15T07:13:40.587641+08:00" hostname="LULUnoMARO"><testcase classname="tests.test_pb_reset_capture_policy" name="test_actual_descriptor_and_instance_opt_in_to_existing_capture_policy" time="0.059" /><testcase classname="tests.test_pb_reset_capture_policy" name="test_real_pb_reset_134ms_discards_first_and_queued_capture_then_fresh_unchanged" time="0.073" /><testcase classname="tests.test_pb_reset_capture_policy" name="test_pb_new_seq_cannot_relabel_pre_reset_frame_sim_or_capture_wall[0-0.3-1.14]" time="0.061" /><testcase classname="tests.test_pb_reset_capture_policy" name="test_pb_new_seq_cannot_relabel_pre_reset_frame_sim_or_capture_wall[2-0.1-1.14]" time="0.062" /><testcase classname="tests.test_pb_reset_capture_policy" name="test_pb_new_seq_cannot_relabel_pre_reset_frame_sim_or_capture_wall[2-0.3-1.134]" time="0.062" /><testcase classname="tests.test_pb_reset_capture_policy" name="test_reset_failure_remains_sticky_and_does_not_turn_into_pending_localization" time="1.072"><failure message="assert (False)&#10; +  where False = wait(1.0)&#10; +    where wait = &lt;threading.Event at 0x17969cdd700: unset&gt;.wait">tmp_path = WindowsPath('C:/Users/lulu/AppData/Local/Temp/pytest-of-lulu/pytest-159/test_reset_failure_remains_sti0')
+
+    def test_reset_failure_remains_sticky_and_does_not_turn_into_pending_localization(tmp_path):
+        clock,registry,session,slot,published=fixture(tmp_path,fail=True)
+        try:
+            session.reset_release.set();slot.submit(job(1,0,.1,1.));wait(lambda:len(published)&gt;=1)
+            assert published[0]['error']=='RuntimeError' and published[0]['discarded_reason'] is None
+            assert published[0]['value'] is None and session.stopped and session.closed==1
+            consumed=threading.Event();again=threading.Event();original_get=slot.pending.get
+            def get(*args,**kwargs):
+                if consumed.is_set():again.set()
+                value=original_get(*args,**kwargs);consumed.set();return value
+            slot.pending.get=get
+            clock.now=1.145;slot.submit(job(2,2,.3,1.14))
+&gt;           assert consumed.wait(1.) and again.wait(1.)
+E           assert (False)
+E            +  where False = wait(1.0)
+E            +    where wait = &lt;threading.Event at 0x17969cdd700: unset&gt;.wait
+
+tests\test_pb_reset_capture_policy.py:149: AssertionError</failure></testcase></testsuite></testsuites>

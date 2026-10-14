@@ -9,6 +9,38 @@
 安装与本地 graph 启动配置见[客户端通用接口](CLIENT_ROBOTIO_INTERFACE.md)；旧默认补丁保持原范围。
 下述场景缺口用于安排验证，不能将单个队伍的专用实现或协议 fixture 宣称为通用目标已完成。
 
+## 手控步兵与真实导航哨兵同场验证（2026-10-15）
+
+新独立探针 `tools/qa_qt_pb_coop_sil.py` 已通过 5 秒与修复后的 30 秒联合 SIL。
+原第五版 Qt 窗口经真实 HTTP 相机、两次 F2、W/S 和鼠标控制 `red_infantry`；独立 credential、motion lease 和 SDK
+授权 `red_sentry` 的真实 WSL Point-LIO / SLAM / Nav2 / PB PID。只有原 Qt arm 阶段后才授权导航，
+准备阶段 physics/sensor 为 0，没有预喂图像/点云或伪造目标。相机只用于步兵显示，导航是实际 200000 points/s ray/IMU。
+
+| 运行 | 手动批量全部消费 | 原导航非零消费步 | 同一物理步两车非零 | 真实估计位置相对1米目标 |
+| --- | --- | --- | --- | --- |
+| joint01，5秒，原descriptor | 82/82 | 426 | 314 | Nav2完成 |
+| joint03，30秒，reset策略修复 | 486/486 | 476 | 410 | Nav2完成 |
+
+两条独立消费审计均无错误；03还有198实际传感器请求、196原LIO来源、28控制器结果，全部25根检查通过。
+原参数 CV4 / CPython1ms 实读并还原，Linux仍各1.3秒、同一host1.5秒；所有owned Job/ROS群组/IO/HTTP/相机回收。
+不把Linux时钟与Windows时钟相减；重叠使用同一host GO/F12区间和原2ms物理步。
+30秒包含导航目标完成后的合法无动作状态，不能解释为两车30秒始终运动。
+
+中间 joint02 请求30秒但启动阶段失败：reset消耗134ms，首个原采样余期不足50ms，响应超过原期限而拒绝，0导航消费。
+启用现有通用 `discard_reset_observation_v1` 元数据策略，成功context-only reset后丢弃旧及初始化期间采样，
+等新实际capture；没有改变runtime、自瞄、原50ms导航等待、80ms图像或150ms窗口。旧失败和所有原源保留。
+并行清理 helper 的夹具负例不能代替 Linux 回收；实际回收以原 run/spec/boot/PID出生身份和空群组证明为准。
+
+需同一已准备本机环境、第五 review 客户端及上述本地 ENV/stack 文件；复现要求全新输出目录与显式 `--run`：
+
+```powershell
+.venv-sim/Scripts/python.exe tools/qa_qt_pb_coop_sil.py --environment artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json --stack-config artifacts/pb-navigation-sil-config-20261014-04.json --out artifacts/qt-pb-coop-fresh --seconds 30 --max-wall-seconds 45 --host-opencv-threads 4 --host-python-switch-interval-ms 1 --run
+```
+
+这是实际原窗口的离屏事件验证，尚非可见桌面人工开局入口、比赛树、自瞄/自动火、LAN或六车完整3v3。
+PB目标源仍为独立单目标wrapper，通用goal/hold/cancel与决策估计/裁判反馈待继续实现。
+代码、失败、原采样/回执、画面和退出证明见[永久证据](validation/qt_pb_coop_20261015/README.md)。
+
 ## 启动手动入口
 
 第五份相机顺序补丁已通过原 PlatformWindow 的实际离屏手控 5 秒与 30 秒验证：原 HTTP 相机、Jello 手动选择、
@@ -67,7 +99,7 @@ driver 10.3184506 秒退出 0/reaped/source unchanged，服务正常退出 0，�
 本轮只读核对现有 PB 路径：先前实际 Point-LIO/Nav2/PID 单目标验证使用实际 ray/IMU 200000 points/s，
 与本轮没有导航传感器的手动实验分开记账。现有 PB goal wrapper 仍是单目标路径，
 尚不提供通用 `decision_intent_v1` 的 goal/hold/cancel 与完整估计定位反馈；本轮没有重跑队伍算法或连接比赛树。
-后续先验证人工步兵和真实导航哨兵同时运行，再接有原采样身份的算法估计/裁判反馈、目标取消和传统决策树。
+本轮5秒及30秒人工步兵与真实导航哨兵同场验证见上文，后续继续接有原采样身份的算法估计/裁判反馈、目标取消和传统决策树。
 禁止用世界真值、最新无来源 TF 或伪造 hold 来填反馈。
 
 这个修复与已有 T2 静态实时、PB 单目标导航分别记账，均不能替代以上完整对战验证。

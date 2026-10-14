@@ -53,7 +53,12 @@ def navigation_descriptor():
         ['pointcloud','imu'],observation_profile=NAV_PROFILE,
         local_registration=True,process_isolation='not_a_security_sandbox',supported_robots=['red_sentry'],
         qualification='opt_in_single_generation_windows_wsl_not_full_match_or_hardware')
-    result['ui_config_contract']='empty_v1';return result
+    result['ui_config_contract']='empty_v1'
+    # Context-only reset can consume most of the original capture deadline.
+    # Reuse the generic policy: discard setup-era captures, then act on a
+    # genuinely new packet with its unchanged source identity and expiry.
+    result['reset_observation_policy']='discard_reset_observation_v1'
+    return result
 
 
 def register_pb_wsl_navigation(registry,path,*,repo_root,clock=time.perf_counter,relative_test_goal=False,session_factory=WslNavigationSession):

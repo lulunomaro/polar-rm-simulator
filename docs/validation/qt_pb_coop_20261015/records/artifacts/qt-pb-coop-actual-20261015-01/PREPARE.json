@@ -1,0 +1,60 @@
+{
+  "elapsed_s": 12.136468800003058,
+  "ready": {
+    "schema": "polar.pb.wsl-session.v1",
+    "event": "ready",
+    "run_uuid": "23ccc2642eff4fd9bee5965faf97607d",
+    "namespace": "/polar_sil_23ccc2642eff4fd9bee5965faf97607d/red_sentry",
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "state": "CONFIGURED",
+    "supervisor_pid": 333,
+    "start_ticks": 295,
+    "boot_id": "1413b7bc-e2d6-4b14-9f6a-2d672fe50c16"
+  },
+  "external_ready": {
+    "schema": "polar.pb.external-goal-supervisor.v1",
+    "event": "ready",
+    "run_uuid": "a366ba68e8f7a552d61337df8ebf634e",
+    "spec_sha256": "b6a2dbc831f7d9fb94ff8111b95ba1b94593f243b308b9911bc0b78a55e9675e",
+    "client": {
+      "schema": "polar.pb.external-goal-ready.v1",
+      "run_uuid": "a366ba68e8f7a552d61337df8ebf634e",
+      "session_run_uuid": "23ccc2642eff4fd9bee5965faf97607d",
+      "namespace": "/polar_sil_23ccc2642eff4fd9bee5965faf97607d/red_sentry",
+      "domain_id": 84,
+      "state": "OBSERVING_NO_INPUT_PUBLISHED",
+      "pid": 615,
+      "start_ticks": 921,
+      "boot_id": "1413b7bc-e2d6-4b14-9f6a-2d672fe50c16",
+      "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "source_sha256": {
+        "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+        "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+        "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+        "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+        "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+        "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+        "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+      },
+      "spec_sha256": "b6a2dbc831f7d9fb94ff8111b95ba1b94593f243b308b9911bc0b78a55e9675e",
+      "sensor_published": false,
+      "goal_sent": false,
+      "lifecycle_changed": false
+    },
+    "owned_identity": {
+      "run_id": "d25c0474c91545ce942eccf0ad12ba97",
+      "supervisor_pid": 614,
+      "boot_id": "1413b7bc-e2d6-4b14-9f6a-2d672fe50c16",
+      "pid": 615,
+      "pgid": 615,
+      "leader_start_ticks": 921
+    },
+    "supervisor_pid": 614,
+    "start_ticks": 862,
+    "boot_id": "1413b7bc-e2d6-4b14-9f6a-2d672fe50c16"
+  },
+  "physics_steps": 0,
+  "sensor_frames": 0,
+  "algorithm_data_warmup": false
+}

@@ -1,0 +1,8 @@
+lidar_type: 1
+~~~~/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/src/point_lio/ file opened
+[INFO] [1792019407.643259816] [ImuProcess]: IMU Initializing: 1.0 %
+[WARN] [1792019407.643846552] [ImuProcess]: reset ImuProcess
+first imu time: 3.898000
+[INFO] [1792019407.724882786] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+Failed to delete datawriter, at ./src/publisher.cpp:48 during '__function__'
+[ERROR] [1792019407.853472157] [polar_sil_416c063516a34ded8e75b7760264500b.red_sentry.point_lio.rclcpp]: Error in destruction of rcl publisher handle: cannot publish data, at ./src/rmw_publish.cpp:62, at ./src/rcl/publisher.c:187
