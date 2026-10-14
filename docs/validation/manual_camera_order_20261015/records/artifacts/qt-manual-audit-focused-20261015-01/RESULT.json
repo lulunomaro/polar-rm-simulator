@@ -1,0 +1,25 @@
+{
+  "exit_code": 1,
+  "elapsed_s": 0.7385947000002488,
+  "cleanup": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 1,
+    "errors": [],
+    "pid": 20040,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "errors": [],
+  "reader_stopped": true,
+  "source_before": {
+    "tools/audit_qt_manual.py": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+    "tests/test_qt_manual_audit.py": "08ee06916746cfbead670e37bbb4cd120ef6e73da98184375b89e15542e69211"
+  },
+  "source_after": {
+    "tools/audit_qt_manual.py": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+    "tests/test_qt_manual_audit.py": "08ee06916746cfbead670e37bbb4cd120ef6e73da98184375b89e15542e69211"
+  },
+  "source_unchanged": true
+}

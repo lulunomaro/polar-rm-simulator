@@ -1,0 +1,29 @@
+............F                                                            [100%]
+================================== FAILURES ===================================
+___________ test_mutation_cannot_be_reported_as_a_pass[<lambda>11] ____________
+
+change = <function <lambda> at 0x000001A907D593A0>
+
+    @pytest.mark.parametrize('change',[
+        lambda r:r[0]['request'].update(window_id=1.0),
+        lambda r:r[0]['ack']['controls'][0].update(seq=True),
+        lambda r:r[0]['ack'].update(adapter_inputs=[{}]),
+        lambda r:r[0]['request']['controls'].pop(),
+        lambda r:r[0].update(returned_host_wall=10.15),
+        lambda r:r[1]['manual_inputs']['fire'].update(epoch=1.0),
+        lambda r:r[1]['manual_inputs']['gimbal'].update(input_window_id=2),
+        lambda r:r[1]['manual_inputs']['motion'].update(seq=1),
+        lambda r:r[1]['manual_inputs']['fire'].update(owner='other'),
+        lambda r:r[1].update(consume_wall=10.15),
+        lambda r:r[1]['adapter_authorizations']['navigation'].update(owner='synthetic'),
+        lambda r:r[1]['target']['gimbal'].update(pitch_rad=.2),
+    ])
+    def test_mutation_cannot_be_reported_as_a_pass(change):
+>       value=copy.deepcopy(rows());change(value);assert audit(value)['errors']
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert []
+
+tests\test_qt_manual_audit.py:35: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_qt_manual_audit.py::test_mutation_cannot_be_reported_as_a_pass[<lambda>11]
+1 failed, 12 passed in 0.30s

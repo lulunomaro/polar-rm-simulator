@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "rm_match.deployment.coop_launcher",
+    "--config",
+    "examples/coop_camera_order_manual.json"
+  ],
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 0.11066940000455361,
+  "source_before": {
+    "examples/coop_camera_order_manual.json": "9860c1326054b5f5cb1ebb9db4f5d946d26af187ad468da1cf578d02ff85f8b5",
+    "client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+    "client_patches/robotio_camera_order_v1.patch": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1"
+  },
+  "source_after": {
+    "examples/coop_camera_order_manual.json": "9860c1326054b5f5cb1ebb9db4f5d946d26af187ad468da1cf578d02ff85f8b5",
+    "client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+    "client_patches/robotio_camera_order_v1.patch": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1"
+  },
+  "source_unchanged": true,
+  "qualification": "dry plan only; no GUI/physics/algorithm"
+}

@@ -1,5 +1,12 @@
 # 自有 Qt 客户端 operator_state_v1 补丁
 
+2026-10-15 第五份完整组合补丁为 [CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json](CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json)
+与 [robotio_camera_order_v1.patch](robotio_camera_order_v1.patch)。从下述同一固定基线安装在全新干净 checkout，不能叠加旧四版。
+包含之前通用组件和 batch 修复；合法相机帧暂时超前 HUD 时验证后丢弃，不刷新原时间锚或有效期，
+仍保持原对齐、身份、损坏/倒序/过期护栏。旧四个 checkout/patch/manifest 原字节保持。
+第五 review 为 `external/polar-rm-client-camera-order-review`；完整496项/363subtests Qt 回归和真实5秒/30秒手控 SIL 通过。
+安装、原失败和范围见[客户端接口](../docs/CLIENT_ROBOTIO_INTERFACE.md)。未向客户端仓库提交或推送。
+
 2026-10-15 后继租约状态顺序版为 [CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json](CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json)
 与 [robotio_state_order_v1.patch](robotio_state_order_v1.patch)，仍从固定原基线完整应用，不能叠加前两版。
 修复 claim ACK 后迟到旧状态误释放新租约，保留真实更高 epoch 撤权与原时间锚；全330/103subtests/0skip离屏回归。

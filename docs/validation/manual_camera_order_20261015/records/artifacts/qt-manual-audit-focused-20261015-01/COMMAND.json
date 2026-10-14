@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_qt_manual_audit.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-manual-audit-focused-20261015-01\\pytest.xml"
+  ],
+  "source_before": {
+    "tools/audit_qt_manual.py": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+    "tests/test_qt_manual_audit.py": "08ee06916746cfbead670e37bbb4cd120ef6e73da98184375b89e15542e69211"
+  }
+}

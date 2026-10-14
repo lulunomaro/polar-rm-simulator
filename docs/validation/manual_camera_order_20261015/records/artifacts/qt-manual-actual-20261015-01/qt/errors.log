@@ -1,0 +1,6 @@
+event_loop
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_qt_manual_peer.py", line 488, in poll
+    raise RuntimeError('original_ready_authority_or_focus_guard_revoked')
+RuntimeError: original_ready_authority_or_focus_guard_revoked
+

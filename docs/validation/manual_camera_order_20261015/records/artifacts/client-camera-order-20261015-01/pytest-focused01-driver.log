@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_platform_camera_order.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\client-camera-order-20261015-01\\pytest-focused01\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-camera-order-review",
+  "mode": "focused01",
+  "scope": "camera/state stream ordering, original batch/transport/Qt regressions; tiny synthetic JPEG fixtures; no physics/GL renderer/ROS/NN/visible GUI",
+  "pid": 41024,
+  "exit_code": 1,
+  "cleanup": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 1,
+    "errors": [],
+    "pid": 41024,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "reader_stopped": true,
+  "errors": [],
+  "source_unchanged": true,
+  "elapsed_s": 1.2420720000081928,
+  "driver_sha256": "d92ddc188f22f700b319ec4a7b09fd8e776a8b584dcce2bab939ae3718211b3a"
+}

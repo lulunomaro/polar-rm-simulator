@@ -1,0 +1,47 @@
+{
+  "passed": false,
+  "checks": {
+    "stages": true,
+    "actual_HTTP_image": true,
+    "original_manual_inputs": false,
+    "actual_batches": true,
+    "positive_physical": true,
+    "negative_physical": false,
+    "mouse_gimbal_physical": true,
+    "exact_window_receipt_join": true,
+    "qt_sdk_clean": true,
+    "original_Qt_job_clean": true,
+    "original_Qt_exit_zero": false,
+    "runtime_clean": true,
+    "camera_clean": true,
+    "reader_http_clean": true,
+    "errors_empty": false
+  },
+  "errors": [
+    "qt_wait:TimeoutExpired"
+  ],
+  "qt_errors": [
+    "event_loop:RuntimeError"
+  ],
+  "physical": {
+    "errors": [],
+    "manual_batch_count": 7,
+    "physically_consumed_batches": 7,
+    "physical_steps": 116,
+    "positive_x_steps": 85,
+    "negative_x_steps": 0,
+    "nonzero_gimbal_steps": 116,
+    "qualification": "exact original manual SDK window/lease/seq/value/expiry join; no algorithm or full match"
+  },
+  "steps": 2085,
+  "qualification": "actual_offscreen_original_keyboard_mouse_camera_manual_SDK_MuJoCo_only",
+  "limitations": [
+    "not visible desktop",
+    "no team navigation/decision/aim or NN/ROS",
+    "not full match/long-term/performance qualification"
+  ],
+  "source_unchanged": true,
+  "host_scheduling_restored": true,
+  "elapsed_s": 7.689526100002695,
+  "exit_code": 2
+}

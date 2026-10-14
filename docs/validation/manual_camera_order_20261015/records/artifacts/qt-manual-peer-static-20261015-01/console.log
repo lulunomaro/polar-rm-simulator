@@ -1,0 +1,14 @@
+{
+  "ast_pass": true,
+  "source_sha256": "fabe429714b36fb1400ae458f5ebe5e70c712ac50b37c81a50d49ca4ea9bd03a",
+  "fixture": "AST isolated functions only",
+  "schedule_original_key_holds_pass": true,
+  "first_hold_seconds": [
+    1.0,
+    1.0
+  ],
+  "stdout4096_reserved_terminal_bound_pass": true,
+  "Qt_started": false,
+  "HTTP_started": false,
+  "physics_started": false
+}

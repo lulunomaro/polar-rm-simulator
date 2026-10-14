@@ -1,0 +1,208 @@
+{
+  "schema": "polar.sim.own_client_patch.v1",
+  "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+  "patch_file": "robotio_camera_order_v1.patch",
+  "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF",
+  "prior_patch_sha256": "bda801aeec7e0f1e6f34bc96708285eb90350880d1602df15a1f365d70a9e0f7",
+  "files": {
+    "rm_client/sim_operator_runtime.py": {
+      "before_sha256": "e8cb19fd0074b5eed6d357400a8a3df2660dfccf0b9171ed350412fa73df3f4f",
+      "after_sha256": "93ed9b6201e36d956fd2d585cfebcc0f4513702f68bb20a093865e0122d99b4c",
+      "after_checkout_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/sim_platform_adapters.py": {
+      "before_sha256": "1ed09f294d1e72fd118602919b866faac729eae6332cdd14d5f0e4ae5cf2ba97",
+      "after_sha256": "5e22722285424330b8bd785696ccda33c2f302c9de3282eed997e16f08876b44",
+      "after_checkout_sha256": "68da709418ddb9c3c3ea8929982a3923b25d80146329e18a5677f9fb577b9ed7",
+      "reason": "Generic reviewed aim-plugin discovery and typed own source status; declared interface only; generic typed custom navigation/pipeline discovery, empty local binding config, own robot/sensor scope, original Qt claim/arm/window regression"
+    },
+    "rm_client/sim_platform_client.py": {
+      "before_sha256": "68dda6f599ce04830ca6b5d28bac8f911de67c194d983f86362785b3a5f39d8d",
+      "after_sha256": "190fd70e7a33107d9317899e76283d42e4ccff4719d4537badd141c4c60021d3",
+      "after_checkout_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support; batch exact typed full ACK, whole-lock sequence reservation and per-entry request-start local expiry, no retry; duplicate JSON response keys reject"
+    },
+    "rm_client/sim_platform_diagnostics.py": {
+      "before_sha256": "4f3eadc7ef18cdf88fa1332c0b0db2838e4bb7356e41afa8a0ec65cfe3e57cc7",
+      "after_sha256": "94ba8057e4a373e7bbc22612e2137810cfa35a358c5d7759137b52be6211c5c3",
+      "after_checkout_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "reason": "Transport safety and deterministic claim/state ordering regression; credential-free control_batch endpoint diagnostic allowlist"
+    },
+    "rm_client/sim_platform_handoff.py": {
+      "before_sha256": "1a4f986a28d5746f169cc6907ffb1be1a2c567d07bb2b3925661bd68d65bf613",
+      "after_sha256": "ccf7f2154e5b2dfab8ecc09ae4f8691a609666d18979ab08ee74d604a3837bd1",
+      "after_checkout_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "reason": "Transport safety and deterministic claim/state ordering regression; optional batched cost uses observed batch RTT max and original fixed margins, legacy cost unchanged, neutral reset keeps RTT"
+    },
+    "rm_client/sim_platform_runtime.py": {
+      "before_sha256": "f8d05245fe9d1833d3ca8a637687572790f4f4799f2832a9e1f4275c33ecaa9e",
+      "after_sha256": "0eea8506d27e03a0f34c303d59464207c886a36ceb2e3a5debbc94b7a93cc7b4",
+      "after_checkout_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/sim_platform_transport.py": {
+      "before_sha256": "60e75908172c4dcf431d121ffb9fd215bc59922048020e38cfa46b8746662161",
+      "after_sha256": "42627b03f4ef95cd84a13e778e4c0203df9cb1e6de3d24c5e8eb801b0a6d99d7",
+      "after_checkout_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support; drop only complete provably preclaim lease-epoch snapshots before all time anchors; real revoke/malformed/mixed state fail closed; advertised atomic batch only, all activation ACKs checked before installation, retained post-window fresh sample and focus/own-HUD/session gates; display-camera/state asynchronous alignment: full calibration/JPEG decode/original TTL first, final lock rechecks connection/session/watch/episode/frame/time and original 50ms bound; valid ahead display frames dropped without any anchor refresh/revoke, corruption and original deadlines still reject"
+    },
+    "rm_client/ui/minecraft_hud.py": {
+      "before_sha256": "2749ea427023d712a7df7992b29f3f07e9a4b9e54adcab0140cea823abb58034",
+      "after_sha256": "469c505c30de03adb8fd8a93a39117b1bda06916004ff04de56a42ba4048cd13",
+      "after_checkout_sha256": "636c5847b73f010898f12b3e350915fed742dba4b308df9c71cce5e7262c7714",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/ui/sim_operator_window.py": {
+      "before_sha256": "3b727cddf1fbc787da7bed3e242447e4f39af233692fe37ede013321fa5674ee",
+      "after_sha256": "8ee38cdec14bb08bec74e76ba8181151cbdfec597777718ba7179722affd5dbd",
+      "after_checkout_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
+    },
+    "rm_client/ui/sim_platform_window.py": {
+      "before_sha256": "cdf1db241fef739cccef999f7f2fb8b6abb034246e586fa63be4ddb69903491f",
+      "after_sha256": "56fe61e86d8781aacb22fbcb4ec51dd0f8312749fe475599ed7e1deb49626845",
+      "after_checkout_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support; generic typed custom navigation/pipeline discovery, empty local binding config, own robot/sensor scope, original Qt claim/arm/window regression"
+    },
+    "tests/platform_v2_fixtures.py": {
+      "before_sha256": null,
+      "after_sha256": "fc2edfd3cb3a8140e180a440aa3402c14b1d1d3636d41d2128547a2322168762",
+      "after_checkout_sha256": "1234ea8d6c761b47ada7d0e77787e324d010703c84b5edb092c97886fb07b435",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_aim_plugin_discovery.py": {
+      "before_sha256": null,
+      "after_sha256": "29b913d20cb87ce9d10ea95a1461623751cd17d0b4e747a677bbbf7c950b2325",
+      "after_checkout_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "reason": "Generic reviewed aim-plugin discovery and typed own source status; declared interface only"
+    },
+    "tests/test_aim_status_display.py": {
+      "before_sha256": null,
+      "after_sha256": "9f350aadc1db9da7749abf84396f84b75b5af047ce850a77d49a16bbca41640c",
+      "after_checkout_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "reason": "Generic reviewed aim-plugin discovery and typed own source status; declared interface only"
+    },
+    "tests/test_operator_offline_clock.py": {
+      "before_sha256": null,
+      "after_sha256": "4c2cafc539a26e8d663c421c390b9fc8c44cb589a3324a904d1158e7164877cf",
+      "after_checkout_sha256": "f17882e5a9855f8316073e5c551d791cc5a708232770af248a59a5a65eca77ec",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_operator_state_projection.py": {
+      "before_sha256": null,
+      "after_sha256": "64d0442dff0ac147cee13692fb5330b26c17872c76138aedaffc14635a7f9032",
+      "after_checkout_sha256": "76c2c863689a1d09875a8cec04c286f68f935fc2a0ebcad2c78aa9e7fe5d4cfa",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression; explicit actual release epoch increment in synthetic metadata, unchanged safety assertions"
+    },
+    "tests/test_platform_adapters.py": {
+      "before_sha256": "6a133b71780546cb66a8c52a5a3ad54a96b3e743d2bd9c3db9bd29b98829ecef",
+      "after_sha256": "7f88b9bda0f26ed76364187ad91cbf0b77087534be2802b86102e5252e95a9d9",
+      "after_checkout_sha256": "49cfa6ef6d53eba0794e115f3a42aea80eb48c1df52a1d38782bcd7892575b40",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression; generic typed custom navigation/pipeline discovery, empty local binding config, own robot/sensor scope, original Qt claim/arm/window regression"
+    },
+    "tests/test_platform_admission_client.py": {
+      "before_sha256": null,
+      "after_sha256": "0ec7d848dfa6d64247b9aa423a76d6bf5394f66d3f4df3823530df45533ec8ba",
+      "after_checkout_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_camera_order.py": {
+      "before_sha256": null,
+      "after_sha256": "07bb4f4749ef488d9dcb6e6a36085ed8e475f9a0619d51c1de00c6357ad68160",
+      "after_checkout_sha256": "07bb4f4749ef488d9dcb6e6a36085ed8e475f9a0619d51c1de00c6357ad68160",
+      "reason": "Deterministic valid 54ms ahead old-error/new-drop, unchanged anchors and same-original-frame state catchup, Event-controlled decode catchup, exact 50ms boundary, corrupt JPEG/calibration/scope, expired original TTL, concurrent frame/episode/watch/session/reverse-time safety; synthetic tiny JPEG fixtures only"
+    },
+    "tests/test_platform_claim_state_order.py": {
+      "before_sha256": null,
+      "after_sha256": "c2b07e5fa0b688983a4a65c51caee60e783d823668728c368ee128fe3701fbe7",
+      "after_checkout_sha256": "cf5067ad5814401928b4a38236f2d96b74fef0de145f7881cb129b26b72474ff",
+      "reason": "Transport safety and deterministic claim/state ordering regression"
+    },
+    "tests/test_platform_control_batch.py": {
+      "before_sha256": null,
+      "after_sha256": "c60f29fb0f6a51e4bc73cbe9ded3ca84236e8cfaab8bb937e6d92f8c5e769f9d",
+      "after_checkout_sha256": "75990ec47f62255f52bfffe855ab12a242d4e09f0ceb3d9ac42dc998a2022923",
+      "reason": "Atomic typed batch SDK, exact expiry/short-TTL, concurrent sequences, original fresh input/focus/revoke, real ControlPlane routing and legacy compatibility regressions; no physics/NN"
+    },
+    "tests/test_platform_control_windows.py": {
+      "before_sha256": "37f9a8ebb6bf08a9ac898dc5d62bf2771f58a10579e806f19b3decfac2262264",
+      "after_sha256": "68df5aeab89d869269cf5345103a194a851cd53faecf975dcbf1d46506eabb1c",
+      "after_checkout_sha256": "5b89ad5edf3ecf06bd25a46b583fae8f39ff5da72a910167ac15094e83708be0",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_diagnostics.py": {
+      "before_sha256": "2fe580d6743e8a0481aae5e8a187abd64534453e539ee272e283faa7243c4af8",
+      "after_sha256": "c163fd64c74bc345dd3ef0f0a8f167084bd59562a5e9178b2bbb42d48bb94088",
+      "after_checkout_sha256": "f8c38ee5c6d18266a82e640789fa209c69903f4d62324d7ef1fceda7be17a115",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_display_generation.py": {
+      "before_sha256": "33b66c4ddd2c59dd76d6dcbab452b6812c9488537981cdeb75d363b214315e42",
+      "after_sha256": "dbda4f589e2098acab0fda887b8396da8e2d608f11d4a3bf7178e365217526cb",
+      "after_checkout_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_handoff.py": {
+      "before_sha256": "65fb4cee070338ce47391a303549b960b4d382dd498450ba863a315a79a8dd04",
+      "after_sha256": "cb9d1989ee00f3f96055467dfad5ebd4038f9245e6a512b3aac3b79f6e273818",
+      "after_checkout_sha256": "2ec28739a39073f09405b2ea68f88c9e66ddcb353f385b42b3cc895505e45545",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression; original single-path routing fixture explicitly removes new capability advertisement; original assertions unchanged"
+    },
+    "tests/test_platform_manual_yaw.py": {
+      "before_sha256": "7cdb41c60b9ba77d4ccc93cca7352872ea76ef8eb53558fcd6173bdabff494fd",
+      "after_sha256": "79d75de27159cb34a72b1c099f3d0004f8c100b1693a80d3304442725bbbfeca",
+      "after_checkout_sha256": "aec55b80ac91dd08ff583cc744eab32eaee7b007ace6be99a5c2065ed1c1643f",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_manual_yaw_ui.py": {
+      "before_sha256": "94e021e51a22bed53d3592c978399de4b83e4d581c5076f07beea200965a3a05",
+      "after_sha256": "33ff0c40c6a80be073d461cb2519d383b3fcabfa0329ba2e71bd3b83440a2b2e",
+      "after_checkout_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_spin.py": {
+      "before_sha256": "b3baa618f9a78cd208f7801147d7649dc3b7f74451af94dfe5dc2b5825434db9",
+      "after_sha256": "9874f56964d8e2c425c150094b3babab61b0294f0aa5aa914c0b49419fd3630a",
+      "after_checkout_sha256": "e82166f36ea9c7b75f3ea97c8922ab25733d65013162fd1672f4bdfb73a8e463",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_platform_status.py": {
+      "before_sha256": "609bf47ccd7bd5a35ade33d31744961b811934532b6050318043d7641b97df27",
+      "after_sha256": "f3965c8506917f21e03f55892662c8d3cdaa9ea6e3a89b33a67382f70ea8a8ba",
+      "after_checkout_sha256": "f2cd24b60af1f18aa55a611f4ef71e44bb53bc8d34beb31826cf61cf13d0d51c",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_sim_platform_v2.py": {
+      "before_sha256": "16b068242f1242c1970b203e6495f150c5c83ebc573e5b379012f7808e3dc2bb",
+      "after_sha256": "f7d792cfc90cd4e9ceced203d9461f37be6d9628acea31cded206beecf50e1e3",
+      "after_checkout_sha256": "cac03bde27c5a7bc49209973656b148ca056158015f15229148623a4e8828ffa",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "tests/test_transport_safety_regressions.py": {
+      "before_sha256": "bb946c82034c92d332798f409a62d4974124daf96a4de89c9e6144c54bfe96a3",
+      "after_sha256": "efe60aa3984abcd4912de16d98e1d40a48cc5da0a820f122f10eb9a3953e1f03",
+      "after_checkout_sha256": "7122e1169cfa34dd2f90c2719d452b5604a3aca66f9d36d857d0df344a4e4b47",
+      "reason": "Transport safety and deterministic claim/state ordering regression; explicit UTF-8 JSON fixture reads on Windows, production loaders unchanged"
+    },
+    "tools/verify_offline_platform.py": {
+      "before_sha256": "d1ce592cd6d052c54b7d6a3a902067f2fb21411e311a5d1836c5c28a429ee18b",
+      "after_sha256": "93043f3f2a2ecbe6aad4ccf21597f7ccd736bd4588b488308ce8932a6b253415",
+      "after_checkout_sha256": "eef7040b69e454120334479b8b0a1949ade76e3d7b204c27f828d97bd4692810",
+      "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    }
+  },
+  "qualification": "Fixed-base combined operator/RobotIO/state-order/control-batch/camera-order patch; asynchronous display-frame alignment only, full JPEG/scope/TTL validated before safe ahead drop; offscreen protocol fixtures, not physical/visible GUI/full-match qualification",
+  "validation": {
+    "tests_passed": 496,
+    "subtests_passed": 363,
+    "tests_skipped": 0,
+    "qt_platform": "offscreen",
+    "process_result": "artifacts/client-camera-order-20261015-01/pytest-after-all/PROCESS_RESULT.json",
+    "original_operator_projection_preserved": true,
+    "original_deadlines_preserved": true,
+    "physical_ROS_NN_GUI_visible_run": false,
+    "actual_prior_window_failure_root_cause_proven": false
+  },
+  "patch_sha256": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1"
+}

@@ -11,6 +11,19 @@
 
 ## 启动手动入口
 
+第五份相机顺序补丁已通过原 PlatformWindow 的实际离屏手控 5 秒与 30 秒验证：原 HTTP 相机、Jello 手动选择、
+两 F2、W/S 和鼠标事件经 SDK 进入真实 MuJoCo，86 / 479 批指令全部匹配原窗口/租约/序号/expiry 的消费回执。
+前进、后退、非零云台和原护栏、清理均通过；不是可见桌面或完整比赛。
+本机新示例为 [coop_camera_order_manual.json](../examples/coop_camera_order_manual.json)，
+安装第五补丁及验证细节见[客户端接口](CLIENT_ROBOTIO_INTERFACE.md)。默认 dry plan；显式 `--run` 才启动普通人工窗口：
+
+```powershell
+.venv-sim/Scripts/python.exe -m rm_match.deployment.coop_launcher --config examples/coop_camera_order_manual.json --out artifacts/coop-camera-manual-fresh --run
+```
+
+这份配置只授权步兵手动操控；不会自动启用哨兵、导航目标、自瞄或比赛树。
+此前手控两次失败及第五补丁的后续通过在[独立永久包](validation/manual_camera_order_20261015/README.md)，没有覆盖旧记录。
+
 复用已经准备好的本机环境、固定客户端及其审核补丁：仿真使用 `.venv-sim`，Qt 使用 `.venv-client`。
 示例配置为 [coop_manual.json](../examples/coop_manual.json)，默认仅授权 `red_infantry`，没有观战审计权限。
 
@@ -50,5 +63,12 @@ driver 10.3184506 秒退出 0/reaped/source unchanged，服务正常退出 0，�
    传统决策树机器人明确标注算法来源。随后实际运行整局、结束/reset/第二局及所有资源回收。
 
 通用层 PB 图像请求已从部分传输改为全量抵达 Python peer，但仍超原 80 ms，未向 ROS 发布该图像，也没有检测/PnP/跟踪结果。
+
+本轮只读核对现有 PB 路径：先前实际 Point-LIO/Nav2/PID 单目标验证使用实际 ray/IMU 200000 points/s，
+与本轮没有导航传感器的手动实验分开记账。现有 PB goal wrapper 仍是单目标路径，
+尚不提供通用 `decision_intent_v1` 的 goal/hold/cancel 与完整估计定位反馈；本轮没有重跑队伍算法或连接比赛树。
+后续先验证人工步兵和真实导航哨兵同时运行，再接有原采样身份的算法估计/裁判反馈、目标取消和传统决策树。
+禁止用世界真值、最新无来源 TF 或伪造 hold 来填反馈。
+
 这个修复与已有 T2 静态实时、PB 单目标导航分别记账，均不能替代以上完整对战验证。
 新电脑、移动精度、多车性能、完整官方规则及 M0–M5 签收仍按计划保留。

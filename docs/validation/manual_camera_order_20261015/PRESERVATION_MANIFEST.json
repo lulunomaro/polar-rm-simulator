@@ -1,0 +1,3139 @@
+{
+  "schema": "polar.evidence.literal-preservation.v1",
+  "parent_commit": "83c595bee600ab45daa7e75926af0d2edaa10dd6",
+  "qualification": "fifth full-base camera order client patch; original offscreen camera/manual keyboard/mouse/SDK/MuJoCo five and thirty second SIL passes; two original failures; no team algorithm/visible desktop/ROS/NN/performance/match acceptance",
+  "records": [
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-09/COMMAND.json",
+      "original_bytes": 45303,
+      "original_sha256": "ac162c32c69c96a2225457114a8b5495bff8d9edbeac1f13f16b765cd4b8175c",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-09/COMMAND.json.gz",
+      "stored_bytes": 19790,
+      "stored_sha256": "6d22a528bee141e004c09bfe99844cc2688f93cc9aa677652f3747b831213520",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-09/driver.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-09/driver.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-09/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "3b6b880843f2bee1e5848846a8335a54bab9d9b04dc17dc789ac2f363f2e9459",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-09/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "3b6b880843f2bee1e5848846a8335a54bab9d9b04dc17dc789ac2f363f2e9459",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-09/RESULT.json",
+      "original_bytes": 89520,
+      "original_sha256": "a5c1f26ce0d7503e4f5191c7643d5b994d08b19c8b42439d8a2c1e576c9bde9b",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-09/RESULT.json.gz",
+      "stored_bytes": 38503,
+      "stored_sha256": "b96c07791727014f2a84034a0097f9657f30f6f9a723b60f62142edb8a9bb9b1",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-09/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-09/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-09/stdout.log",
+      "original_bytes": 96,
+      "original_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-09/stdout.log",
+      "stored_bytes": 96,
+      "stored_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/camera-manual-dryplan-20261015-01/RESULT.json",
+      "original_bytes": 1181,
+      "original_sha256": "f96fe4f79690d2b94f05696d8292d55efb11229919ee1c84619d4fe29223cd6c",
+      "stored_path": "records/artifacts/camera-manual-dryplan-20261015-01/RESULT.json",
+      "stored_bytes": 1181,
+      "stored_sha256": "f96fe4f79690d2b94f05696d8292d55efb11229919ee1c84619d4fe29223cd6c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/camera-manual-dryplan-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/camera-manual-dryplan-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/camera-manual-dryplan-20261015-01/stdout.json",
+      "original_bytes": 3472,
+      "original_sha256": "d94377ffa7e9cbf15425204556ec01cedb762499fd0feb417792d1d1f82831e8",
+      "stored_path": "records/artifacts/camera-manual-dryplan-20261015-01/stdout.json",
+      "stored_bytes": 3472,
+      "stored_sha256": "d94377ffa7e9cbf15425204556ec01cedb762499fd0feb417792d1d1f82831e8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/check_camera_manual_plan_20261015.py",
+      "original_bytes": 1339,
+      "original_sha256": "9dfd7bbcdac5d3c700daee65543fb4c80690c912d19db12779f45ca210508e80",
+      "stored_path": "records/artifacts/check_camera_manual_plan_20261015.py",
+      "stored_bytes": 1339,
+      "stored_sha256": "9dfd7bbcdac5d3c700daee65543fb4c80690c912d19db12779f45ca210508e80",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/before/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/before/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/export.log",
+      "original_bytes": 1126,
+      "original_sha256": "f72102c2aac4cebb742a4f6a49879ea4e09ae23470ffd7d1a859d8e5567dfd94",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/export.log",
+      "stored_bytes": 1126,
+      "stored_sha256": "f72102c2aac4cebb742a4f6a49879ea4e09ae23470ffd7d1a859d8e5567dfd94",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/export_patch.py",
+      "original_bytes": 6983,
+      "original_sha256": "f2bf78bf81f196c04581163df389efb5b7994fdabe0dc7ca002746c472859aab",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/export_patch.py.gz",
+      "stored_bytes": 2737,
+      "stored_sha256": "0c982ec4a404a990261b796b9022e453a914cf0e197517804adb4cf953e3cbd9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/EXPORT_PROOF.json",
+      "original_bytes": 24118,
+      "original_sha256": "40a310a9309dce21685ce274ba3211cac3ae6a47a331e996a32fd0e20d29e93a",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/EXPORT_PROOF.json.gz",
+      "stored_bytes": 3990,
+      "stored_sha256": "fce9484dd3bbd6bb221642cdfbe69b97d0e7b58448bfcff505c5256b4abb1c50",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/final/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/final/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/final/tests/test_platform_camera_order.py",
+      "original_bytes": 9160,
+      "original_sha256": "07bb4f4749ef488d9dcb6e6a36085ed8e475f9a0619d51c1de00c6357ad68160",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/final/tests/test_platform_camera_order.py.gz",
+      "stored_bytes": 2498,
+      "stored_sha256": "623e6bfb13688ccbe5886a5ed4a80944004f3f4abbda934c0efa80dc61f8af3c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/OLD_IDENTITIES.json",
+      "original_bytes": 14562,
+      "original_sha256": "a9624f2a1a2f87c0989ad64073ed3a3c6c6dd2dad8b83b6675fc720f2c0ac75c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/OLD_IDENTITIES.json.gz",
+      "stored_bytes": 2856,
+      "stored_sha256": "caf0a23abbb82440b454f07301c6d34dbfb9d1bb1447673ed9ed2b172569f3a6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/preserve_before.py",
+      "original_bytes": 1150,
+      "original_sha256": "9832f9a16ece6097629bd838202c72864de7632444db3bda9f137cdd6d6c1fc1",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/preserve_before.py",
+      "stored_bytes": 1150,
+      "stored_sha256": "9832f9a16ece6097629bd838202c72864de7632444db3bda9f137cdd6d6c1fc1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/COMMAND.json",
+      "original_bytes": 5806,
+      "original_sha256": "ba1517d94177661563f76db1cd0ea64d46d50aec4112f3f5bafad45a91250dc6",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/COMMAND.json.gz",
+      "stored_bytes": 2197,
+      "stored_sha256": "ed4182705c406c58cb658f29f3f4bfbcec10f863e3f0972a3a05288585a81e28",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/PROCESS_RESULT.json",
+      "original_bytes": 6279,
+      "original_sha256": "72f3bbf241e342272d1e0ca15b5d4750ce2a6a0de5437272173b63167e339672",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/PROCESS_RESULT.json.gz",
+      "stored_bytes": 2422,
+      "stored_sha256": "8b21bbd2f2dbf2ef63ff8f3913ab7b8bd7026b1470a1e554f62618d1bd1e6316",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/pytest.xml",
+      "original_bytes": 92514,
+      "original_sha256": "f044bef930a8278317b694afa907d4766eaddb2a098af144d291405863522df8",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/pytest.xml.gz",
+      "stored_bytes": 10485,
+      "stored_sha256": "9a33545aed824318ff1e7c2a8a7285486f96a141de5243856a9247ccb85ca13f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_aim_plugin_discovery.py",
+      "original_bytes": 3413,
+      "original_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_aim_plugin_discovery.py",
+      "stored_bytes": 3413,
+      "stored_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_aim_status_display.py",
+      "original_bytes": 3050,
+      "original_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_aim_status_display.py",
+      "stored_bytes": 3050,
+      "stored_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_api_freeze_platform_regressions.py",
+      "original_bytes": 5085,
+      "original_sha256": "b15a034dc4590b6949084b415b1879b1d836f1264912e6303e5bb127e1ba7a78",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_api_freeze_platform_regressions.py.gz",
+      "stored_bytes": 1449,
+      "stored_sha256": "06ad5564d2ae6eb4a4ef0a8cd3b1fd6ff4f4ac6c9c379db6dd304a6bf1f0b0aa",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_offline_platform_view.py",
+      "original_bytes": 2148,
+      "original_sha256": "91336a6a6fd909ecc871ac33cfe75e28de9abd65e08d6b885fe7c8924c749f1f",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_offline_platform_view.py",
+      "stored_bytes": 2148,
+      "stored_sha256": "91336a6a6fd909ecc871ac33cfe75e28de9abd65e08d6b885fe7c8924c749f1f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_operator_offline_clock.py",
+      "original_bytes": 3987,
+      "original_sha256": "f17882e5a9855f8316073e5c551d791cc5a708232770af248a59a5a65eca77ec",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_operator_offline_clock.py",
+      "stored_bytes": 3987,
+      "stored_sha256": "f17882e5a9855f8316073e5c551d791cc5a708232770af248a59a5a65eca77ec",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_operator_state_projection.py",
+      "original_bytes": 10047,
+      "original_sha256": "76c2c863689a1d09875a8cec04c286f68f935fc2a0ebcad2c78aa9e7fe5d4cfa",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_operator_state_projection.py.gz",
+      "stored_bytes": 2945,
+      "stored_sha256": "57dcfaeb71a9002946eec8ccd8f4dd41561bb925bd2e6f6afd0c2af14e4e9ca0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_adapters.py",
+      "original_bytes": 22294,
+      "original_sha256": "49cfa6ef6d53eba0794e115f3a42aea80eb48c1df52a1d38782bcd7892575b40",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_adapters.py.gz",
+      "stored_bytes": 5185,
+      "stored_sha256": "c4302d227abdb07897e31c3d013b938ae7a2e172885e0e7b8c3e8f21d7fe20c9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_admission_client.py",
+      "original_bytes": 2163,
+      "original_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_admission_client.py",
+      "stored_bytes": 2163,
+      "stored_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_camera_order.py",
+      "original_bytes": 9160,
+      "original_sha256": "07bb4f4749ef488d9dcb6e6a36085ed8e475f9a0619d51c1de00c6357ad68160",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_camera_order.py.gz",
+      "stored_bytes": 2498,
+      "stored_sha256": "623e6bfb13688ccbe5886a5ed4a80944004f3f4abbda934c0efa80dc61f8af3c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_claim_state_order.py",
+      "original_bytes": 6677,
+      "original_sha256": "cf5067ad5814401928b4a38236f2d96b74fef0de145f7881cb129b26b72474ff",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_claim_state_order.py.gz",
+      "stored_bytes": 1924,
+      "stored_sha256": "9ce028792f586a6c272c82b4605cc637c01fc2bd9e6777d4c6dafc7347b40dc7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_control_batch.py",
+      "original_bytes": 18106,
+      "original_sha256": "75990ec47f62255f52bfffe855ab12a242d4e09f0ceb3d9ac42dc998a2022923",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_control_batch.py.gz",
+      "stored_bytes": 4854,
+      "stored_sha256": "2874acb259b8e61ffe9290403c69cf8ce4c42366f7b75ea07d90defb2cfc0bfb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_control_windows.py",
+      "original_bytes": 4386,
+      "original_sha256": "5b89ad5edf3ecf06bd25a46b583fae8f39ff5da72a910167ac15094e83708be0",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_control_windows.py.gz",
+      "stored_bytes": 1281,
+      "stored_sha256": "f5dc4709c3c32248f954d3b736528a32567a7f8b88a8454c83b975bc81175918",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_diagnostics.py",
+      "original_bytes": 10042,
+      "original_sha256": "f8c38ee5c6d18266a82e640789fa209c69903f4d62324d7ef1fceda7be17a115",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_diagnostics.py.gz",
+      "stored_bytes": 3087,
+      "stored_sha256": "df1e039e02f56b7d368c2e4968763e71b95eae53339bdff76b5fd447c44b032b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_display_generation.py",
+      "original_bytes": 3494,
+      "original_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_display_generation.py",
+      "stored_bytes": 3494,
+      "stored_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_handoff.py",
+      "original_bytes": 14043,
+      "original_sha256": "2ec28739a39073f09405b2ea68f88c9e66ddcb353f385b42b3cc895505e45545",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_handoff.py.gz",
+      "stored_bytes": 3862,
+      "stored_sha256": "e92b380cd23eab8b78b4c65b36ba221648dcf6f1744f913b7a847ca387b0abcf",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_handoff_lookahead.py",
+      "original_bytes": 3944,
+      "original_sha256": "1c43bbd20957a013325c774499d9d4d54087b13ec5c7783b9507514a8bd7881e",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_handoff_lookahead.py",
+      "stored_bytes": 3944,
+      "stored_sha256": "1c43bbd20957a013325c774499d9d4d54087b13ec5c7783b9507514a8bd7881e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw.py",
+      "original_bytes": 5853,
+      "original_sha256": "aec55b80ac91dd08ff583cc744eab32eaee7b007ace6be99a5c2065ed1c1643f",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw.py.gz",
+      "stored_bytes": 1746,
+      "stored_sha256": "915b0b46e10be496605cfe9820fa84b66bc807aa953edb31c97a3228fd973460",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw_ui.py",
+      "original_bytes": 3725,
+      "original_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw_ui.py",
+      "stored_bytes": 3725,
+      "stored_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_spin.py",
+      "original_bytes": 9527,
+      "original_sha256": "e82166f36ea9c7b75f3ea97c8922ab25733d65013162fd1672f4bdfb73a8e463",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_spin.py.gz",
+      "stored_bytes": 2476,
+      "stored_sha256": "e0698af50c594ba0f178e30ca56f3ff3da4f5a1b4d498da9ae4f7ec28150a43a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_status.py",
+      "original_bytes": 14159,
+      "original_sha256": "f2cd24b60af1f18aa55a611f4ef71e44bb53bc8d34beb31826cf61cf13d0d51c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_platform_status.py.gz",
+      "stored_bytes": 3737,
+      "stored_sha256": "b56727fb915e731dfd4126702ee4ee27e91630e115b1551f02ab496018f40a5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator.py",
+      "original_bytes": 10616,
+      "original_sha256": "fbf829224e6db12d957b0817518625aef4cb3c72ecc4b75bee3c519ddf35ca07",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator.py.gz",
+      "stored_bytes": 3108,
+      "stored_sha256": "7d9851fdb3274e0e3447c131eb30ae145bc8e465888c8e645f6f8930220270e3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_boundaries.py",
+      "original_bytes": 10262,
+      "original_sha256": "fffbb9d647c54bedef67e09e980ff21fdd67e17a6efcfa6d0acc1577b4f7d758",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_boundaries.py.gz",
+      "stored_bytes": 3296,
+      "stored_sha256": "531bea932cd03fd70001dab6847093147b3ad76d783e6d35c0c0615356b7de82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_modes.py",
+      "original_bytes": 12533,
+      "original_sha256": "ac45cfe765b0f66d2f663c8898978de76c3dafe753f44c2fe711b8464916e392",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_modes.py.gz",
+      "stored_bytes": 3319,
+      "stored_sha256": "f9b32641c651bbb07aa2d61136f13650fc37b84e1a013fd3ce8676f4f98c84f1",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_mouse_angle.py",
+      "original_bytes": 9073,
+      "original_sha256": "8071ad0621a2d485bd199acbf418e89a1ba628680e7431bc0807beb7ee9e66e8",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_mouse_angle.py.gz",
+      "stored_bytes": 2395,
+      "stored_sha256": "62da17698884d4846736ddc2d1f95f610517f68092731df792a4112e51540271",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth.py",
+      "original_bytes": 6179,
+      "original_sha256": "ec64453dd219ca34775d7690001872be1bd0ca7a7f1729957c9d9094e6bdaed3",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth.py.gz",
+      "stored_bytes": 1988,
+      "stored_sha256": "9cc121a0958e4433cff2c796b8dc7c40e5cf56a57c1ddbe878b5053cb213d659",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth_review.py",
+      "original_bytes": 7553,
+      "original_sha256": "fc516cf5ba1e5178de8fc5b567400865d405d0173c05f615680c042c5c9e4537",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth_review.py.gz",
+      "stored_bytes": 2292,
+      "stored_sha256": "0f4539dccb5540d77c77c5b6a1ed1fef06a55397f92e0fdda5f70127edf6f225",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_platform_entry.py",
+      "original_bytes": 1466,
+      "original_sha256": "5c5b59010e53860b36df9e077b31475e912ae6126f5b823f630d31d074fd22fb",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_platform_entry.py",
+      "stored_bytes": 1466,
+      "stored_sha256": "5c5b59010e53860b36df9e077b31475e912ae6126f5b823f630d31d074fd22fb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_platform_lifecycle.py",
+      "original_bytes": 4819,
+      "original_sha256": "098b3e49b05e0b525797ffc230a9ce3d55dd9ccf559d17ea3246d1ab890dde7f",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_platform_lifecycle.py.gz",
+      "stored_bytes": 1616,
+      "stored_sha256": "cea65178573b500fd4a978e211385a1bf641356c1b3a9d0b6135c3323ab00345",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_platform_v2.py",
+      "original_bytes": 11048,
+      "original_sha256": "cac03bde27c5a7bc49209973656b148ca056158015f15229148623a4e8828ffa",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_sim_platform_v2.py.gz",
+      "stored_bytes": 2952,
+      "stored_sha256": "5ee51b23441c09acbf227f78f1d2cb66a08d2b24ef9f9784c37b511320ef1986",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_transport_safety_regressions.py",
+      "original_bytes": 29797,
+      "original_sha256": "7122e1169cfa34dd2f90c2719d452b5604a3aca66f9d36d857d0df344a4e4b47",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/source/tests/test_transport_safety_regressions.py.gz",
+      "stored_bytes": 7884,
+      "stored_sha256": "531fbc0c30979545dc823e182bffddf5da8fe776be80b304f142558b46590a16",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all/stdout.log",
+      "original_bytes": 616,
+      "original_sha256": "44e2ccb56d5b3cc24b7238277c21246d78918453b4517e273d6690f997b023b1",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all/stdout.log",
+      "stored_bytes": 616,
+      "stored_sha256": "44e2ccb56d5b3cc24b7238277c21246d78918453b4517e273d6690f997b023b1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-after-all-driver.log",
+      "original_bytes": 2444,
+      "original_sha256": "f0f2ffd11daaedcf63fb87849b8cd3a222184ae4b4de76f15f09d871d7d9a0d6",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-after-all-driver.log",
+      "stored_bytes": 2444,
+      "stored_sha256": "f0f2ffd11daaedcf63fb87849b8cd3a222184ae4b4de76f15f09d871d7d9a0d6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/COMMAND.json",
+      "original_bytes": 1359,
+      "original_sha256": "b44a90b2c3d2ab5f34d9e53086a3478711e54eccc6acf043ab4571a2cb8694b2",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/COMMAND.json",
+      "stored_bytes": 1359,
+      "stored_sha256": "b44a90b2c3d2ab5f34d9e53086a3478711e54eccc6acf043ab4571a2cb8694b2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/PROCESS_RESULT.json",
+      "original_bytes": 1832,
+      "original_sha256": "20bf601e3b44ba8f229440c8907d3947176eee2b962562a88e14457448b01374",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/PROCESS_RESULT.json",
+      "stored_bytes": 1832,
+      "stored_sha256": "20bf601e3b44ba8f229440c8907d3947176eee2b962562a88e14457448b01374",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/pytest.xml",
+      "original_bytes": 10613,
+      "original_sha256": "6b8a9605aff1adc18f62aaa806bab7cfdfdf374c6dae7d578c710e60f5d63b78",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/pytest.xml.gz",
+      "stored_bytes": 3278,
+      "stored_sha256": "1dd1869afae95f36160b8d52ce47d597d51a4e2f405b6af4bbc708dfc6dcf7ed",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/source/tests/test_platform_camera_order.py",
+      "original_bytes": 9158,
+      "original_sha256": "ee0000f3ec9e8c26adc7114d1effdc3c82f29c688f65324f34eabeeaf6c7bfaf",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/source/tests/test_platform_camera_order.py.gz",
+      "stored_bytes": 2492,
+      "stored_sha256": "c3532a5bfd265e7309a42adbb20240dc790805fa3a07657fb21f2167914047a6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before/stdout.log",
+      "original_bytes": 10526,
+      "original_sha256": "a7321c4918b5314d71a6488975f379f10c8117bebf582f19448e92201fe175ff",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before/stdout.log.gz",
+      "stored_bytes": 3115,
+      "stored_sha256": "714e647c8d138b0226c936426c57838c654347854a345d31f40bb6906f5a53ca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before-driver.log",
+      "original_bytes": 1248,
+      "original_sha256": "f80240517bcc3ceb7a059337eb6a400c3e5e336f25dd59bf0af0611c56468418",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before-driver.log",
+      "stored_bytes": 1248,
+      "stored_sha256": "f80240517bcc3ceb7a059337eb6a400c3e5e336f25dd59bf0af0611c56468418",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/COMMAND.json",
+      "original_bytes": 1363,
+      "original_sha256": "6d0ac873f921d9d6638654f37beca1877846065cf83785a9c5f2a88573a1e2c8",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/COMMAND.json",
+      "stored_bytes": 1363,
+      "stored_sha256": "6d0ac873f921d9d6638654f37beca1877846065cf83785a9c5f2a88573a1e2c8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/PROCESS_RESULT.json",
+      "original_bytes": 1836,
+      "original_sha256": "96f7e5625faa5029d23e6f6a3809598975ac24421c3f3daf5b96e7151904dc18",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/PROCESS_RESULT.json",
+      "stored_bytes": 1836,
+      "stored_sha256": "96f7e5625faa5029d23e6f6a3809598975ac24421c3f3daf5b96e7151904dc18",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/pytest.xml",
+      "original_bytes": 6770,
+      "original_sha256": "557585894a42044c9105787c1b1f181d3205fc4ada6f9079ecec951a9ee399fa",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/pytest.xml.gz",
+      "stored_bytes": 2170,
+      "stored_sha256": "b38484c50e4de9ca33998256b0a5f703f91ddb6ad4a1cd620957a208a959355b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/source/tests/test_platform_camera_order.py",
+      "original_bytes": 9160,
+      "original_sha256": "07bb4f4749ef488d9dcb6e6a36085ed8e475f9a0619d51c1de00c6357ad68160",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/source/tests/test_platform_camera_order.py.gz",
+      "stored_bytes": 2498,
+      "stored_sha256": "623e6bfb13688ccbe5886a5ed4a80944004f3f4abbda934c0efa80dc61f8af3c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02/stdout.log",
+      "original_bytes": 6699,
+      "original_sha256": "3fda3584363a13fe4a85f5b74478912b91224551a5c53a4ce1aefcc68c379cf7",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02/stdout.log.gz",
+      "stored_bytes": 2029,
+      "stored_sha256": "88cacfd4f4e1ccb2596d3ba43173f6887f5646dd980fc7c96e3138d38d4bd650",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-before02-driver.log",
+      "original_bytes": 1252,
+      "original_sha256": "446b99670c97ea8fd5a21d5ba7a274a867062db7d91038c5c6e767c8609af95c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-before02-driver.log",
+      "stored_bytes": 1252,
+      "stored_sha256": "446b99670c97ea8fd5a21d5ba7a274a867062db7d91038c5c6e767c8609af95c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/COMMAND.json",
+      "original_bytes": 1276,
+      "original_sha256": "531de857fe321adfaca0e43cbf9ca9e43aad50e70e90f04dbe6de7e8284b3715",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/COMMAND.json",
+      "stored_bytes": 1276,
+      "stored_sha256": "531de857fe321adfaca0e43cbf9ca9e43aad50e70e90f04dbe6de7e8284b3715",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/PROCESS_RESULT.json",
+      "original_bytes": 1749,
+      "original_sha256": "27347cfb2f041e3d20c120faea954b93dc067f52cf40d02e8cf64af58ebb690b",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/PROCESS_RESULT.json",
+      "stored_bytes": 1749,
+      "stored_sha256": "27347cfb2f041e3d20c120faea954b93dc067f52cf40d02e8cf64af58ebb690b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/pytest.xml",
+      "original_bytes": 124526,
+      "original_sha256": "129420efada80ae604acab48561c4dd777a08b48b2ca7fa5a49bc956aa8a548d",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/pytest.xml.gz",
+      "stored_bytes": 4801,
+      "stored_sha256": "d150538e28a2ad549c79f07075676165b91a2ca260cbb5b8fff5200fa5992134",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/source/tests/test_platform_camera_order.py",
+      "original_bytes": 9158,
+      "original_sha256": "ee0000f3ec9e8c26adc7114d1effdc3c82f29c688f65324f34eabeeaf6c7bfaf",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/source/tests/test_platform_camera_order.py.gz",
+      "stored_bytes": 2492,
+      "stored_sha256": "c3532a5bfd265e7309a42adbb20240dc790805fa3a07657fb21f2167914047a6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01/stdout.log",
+      "original_bytes": 123265,
+      "original_sha256": "a9d0b3c733bdb433c363c91741103cbc59145063fa3933d6d4f85832f6373c15",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01/stdout.log.gz",
+      "stored_bytes": 4919,
+      "stored_sha256": "b11be0571b77f36446ce7e4b1e69a7d4d2001eba45dcc6976c902ce5e49803ce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused01-driver.log",
+      "original_bytes": 1165,
+      "original_sha256": "c1e692ff599efd40385082a0f3ca0abef26863783567586706bf246ecd73b504",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused01-driver.log",
+      "stored_bytes": 1165,
+      "stored_sha256": "c1e692ff599efd40385082a0f3ca0abef26863783567586706bf246ecd73b504",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/COMMAND.json",
+      "original_bytes": 1276,
+      "original_sha256": "66bf054a2838f003b629279f42392d1235414914a0e083dbf1cb935baa3052f5",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/COMMAND.json",
+      "stored_bytes": 1276,
+      "stored_sha256": "66bf054a2838f003b629279f42392d1235414914a0e083dbf1cb935baa3052f5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/PROCESS_RESULT.json",
+      "original_bytes": 1748,
+      "original_sha256": "c7ba20a5e32e5d59d0f1616142311629f0a3450ac2953e044b7b7bbe048c2b83",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/PROCESS_RESULT.json",
+      "stored_bytes": 1748,
+      "stored_sha256": "c7ba20a5e32e5d59d0f1616142311629f0a3450ac2953e044b7b7bbe048c2b83",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/pytest.xml",
+      "original_bytes": 2692,
+      "original_sha256": "6c2a66a7ac2d0d13ab0315996a4d7cbbeec13a0e761b34ef191ecf6300ffe1f1",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/pytest.xml",
+      "stored_bytes": 2692,
+      "stored_sha256": "6c2a66a7ac2d0d13ab0315996a4d7cbbeec13a0e761b34ef191ecf6300ffe1f1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/source/tests/test_platform_camera_order.py",
+      "original_bytes": 9160,
+      "original_sha256": "07bb4f4749ef488d9dcb6e6a36085ed8e475f9a0619d51c1de00c6357ad68160",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/source/tests/test_platform_camera_order.py.gz",
+      "stored_bytes": 2498,
+      "stored_sha256": "623e6bfb13688ccbe5886a5ed4a80944004f3f4abbda934c0efa80dc61f8af3c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02/stdout.log",
+      "original_bytes": 105,
+      "original_sha256": "60eb7a40fe9bb733afc96713df91600e226fb96f2b3cf3df925e6cd2f1359a58",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02/stdout.log",
+      "stored_bytes": 105,
+      "stored_sha256": "60eb7a40fe9bb733afc96713df91600e226fb96f2b3cf3df925e6cd2f1359a58",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/pytest-focused02-driver.log",
+      "original_bytes": 1164,
+      "original_sha256": "91e0a80385893f3eac78990edda6003fabab68e8a83b31da5fee429f3ede9869",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/pytest-focused02-driver.log",
+      "stored_bytes": 1164,
+      "stored_sha256": "91e0a80385893f3eac78990edda6003fabab68e8a83b31da5fee429f3ede9869",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/run_owned_suite.py",
+      "original_bytes": 4739,
+      "original_sha256": "5292fdfd5cf654ef1f45f04b4d953c29ae4551d926d9f712941db72e2b627ae8",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/run_owned_suite.py.gz",
+      "stored_bytes": 1983,
+      "stored_sha256": "136c04a5b64c77200260d5fbc99c0ca2eb54eb87c3664a76ccf2811a050a2417",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-camera-order-20261015-01/transport-candidate.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/client-camera-order-20261015-01/transport-candidate.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/pb-coop-route-readonly-20261015-01/ROUTE_AUDIT.md",
+      "original_bytes": 3916,
+      "original_sha256": "ed2bed51cdaceb61e8862afd210647cbc11ca222f0bdaa5202dfc2a3b95c0b62",
+      "stored_path": "records/artifacts/pb-coop-route-readonly-20261015-01/ROUTE_AUDIT.md",
+      "stored_bytes": 3916,
+      "stored_sha256": "ed2bed51cdaceb61e8862afd210647cbc11ca222f0bdaa5202dfc2a3b95c0b62",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/preserve_manual_camera_20261015.py",
+      "original_bytes": 4032,
+      "original_sha256": "91bb6b2801304382c738989b20eb8a19f268eb2e095f24429bed63d09bb266c4",
+      "stored_path": "records/artifacts/preserve_manual_camera_20261015.py",
+      "stored_bytes": 4032,
+      "stored_sha256": "91bb6b2801304382c738989b20eb8a19f268eb2e095f24429bed63d09bb266c4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/AUDIT.json",
+      "original_bytes": 303,
+      "original_sha256": "f93be3c53f1bfb2ee8d201d57eef26ba2e9ac2e67f28e9c30461542034f5cdcb",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/AUDIT.json",
+      "stored_bytes": 303,
+      "stored_sha256": "f93be3c53f1bfb2ee8d201d57eef26ba2e9ac2e67f28e9c30461542034f5cdcb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/CAMERA.json",
+      "original_bytes": 5307,
+      "original_sha256": "3bba157f2485324686c39189efbe61257863dc0d3a432df8b83d468f35392f2a",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/CAMERA.json.gz",
+      "stored_bytes": 1412,
+      "stored_sha256": "3fbfdd334dc9ceb3daffb97a6a6592c355381d07b270facb35ad2957df7ca684",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/CHILD_COMMAND.json",
+      "original_bytes": 974,
+      "original_sha256": "0d14f43107834c11a7884231b7f28b639677a321d20fa1818997a73b9b63ce85",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/CHILD_COMMAND.json",
+      "stored_bytes": 974,
+      "stored_sha256": "0d14f43107834c11a7884231b7f28b639677a321d20fa1818997a73b9b63ce85",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/CLEANUP.json",
+      "original_bytes": 646,
+      "original_sha256": "51583bc2cf5e6cc17f44edfec14b04274ef60f0587b910fc563f1f75085bfb36",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/CLEANUP.json",
+      "stored_bytes": 646,
+      "stored_sha256": "51583bc2cf5e6cc17f44edfec14b04274ef60f0587b910fc563f1f75085bfb36",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 14998,
+      "original_sha256": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5370,
+      "stored_sha256": "6f26a84af112c28abbe91425dc7726173578c8a66f1141a05abea1e32111d27c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/COMMAND.json",
+      "original_bytes": 1254,
+      "original_sha256": "1245089b60b964a09a5647d05688e6d0cbf2faa357267c58117f7263962194dd",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/COMMAND.json",
+      "stored_bytes": 1254,
+      "stored_sha256": "1245089b60b964a09a5647d05688e6d0cbf2faa357267c58117f7263962194dd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/EVAL.json",
+      "original_bytes": 906,
+      "original_sha256": "923fb6df128771eb28732d50941f3b1812138807a3aaa1f4ed7321fa3b727c0f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/EVAL.json",
+      "stored_bytes": 906,
+      "stored_sha256": "923fb6df128771eb28732d50941f3b1812138807a3aaa1f4ed7321fa3b727c0f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145926,
+      "original_sha256": "ac31312a309469153d2d6a79de0405505fbe3e74c69434e4b3497a0dcb9b40f4",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145926,
+      "stored_sha256": "ac31312a309469153d2d6a79de0405505fbe3e74c69434e4b3497a0dcb9b40f4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/qt/errors.log",
+      "original_bytes": 308,
+      "original_sha256": "282178a0603bc14bf910ed1c417edad69e9494afb3f71c0fe8efd2caa2011907",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/qt/errors.log",
+      "stored_bytes": 308,
+      "stored_sha256": "282178a0603bc14bf910ed1c417edad69e9494afb3f71c0fe8efd2caa2011907",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/qt/RESULT.json",
+      "original_bytes": 179824,
+      "original_sha256": "5175f05245bebc98ffec8ff4c06bcc8361430953375c32e7379ceef9bed78bc1",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/qt/RESULT.json.gz",
+      "stored_bytes": 7398,
+      "stored_sha256": "1993cc7814cfbdc75ae953c1a1b2748bf39b90cb3cedb1af8ce82fd3cdfdbfa3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/qt/STAGES.json",
+      "original_bytes": 206977,
+      "original_sha256": "21c923994fe4cd217d4fe3de5f40e3065ff6cc66da9aa60f7b293337cbf6dcae",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/qt/STAGES.json.gz",
+      "stored_bytes": 8347,
+      "stored_sha256": "274590b5a18f75675e3c54c69b805f2b1f72cfbb01c149d31d56cd8230ba0165",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 7327,
+      "original_sha256": "934ecf2690e267dc82353508dbf01b1771d79551847742ad9c2444236d31d782",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1149,
+      "stored_sha256": "4825455bf9b7244b644f04445023d3bea4ada02c57d72462305ca602d6980f86",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/qt.stderr.log",
+      "original_bytes": 1392,
+      "original_sha256": "f22cfa8ed25dd5282988cac967e726a2d9733b508b3ceb5c857734a35a445e74",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/qt.stderr.log",
+      "stored_bytes": 1392,
+      "stored_sha256": "f22cfa8ed25dd5282988cac967e726a2d9733b508b3ceb5c857734a35a445e74",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "ea5a28a675ce2f99c2836b36050adb505e1cf72c632c099ddafaf85e247f893e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "ea5a28a675ce2f99c2836b36050adb505e1cf72c632c099ddafaf85e247f893e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/RESULT.json",
+      "original_bytes": 1194,
+      "original_sha256": "7476c2bd26dc2aeb70fd1640e1b10c104173f07ad007d61881c3ea88d80a4fe4",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/RESULT.json",
+      "stored_bytes": 1194,
+      "stored_sha256": "7476c2bd26dc2aeb70fd1640e1b10c104173f07ad007d61881c3ea88d80a4fe4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 44761,
+      "original_sha256": "fabe429714b36fb1400ae458f5ebe5e70c712ac50b37c81a50d49ca4ea9bd03a",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11442,
+      "stored_sha256": "c997093065b8ecf577d9f1fd2d411a9c1d0e44e823a713c75936b2250cc47a7d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/source/tools/qa_qt_manual_sil.py",
+      "original_bytes": 15583,
+      "original_sha256": "ca7438d111c260982aad0bae61084b6d3791b9b049a1f4fa5b050de074465eec",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/source/tools/qa_qt_manual_sil.py.gz",
+      "stored_bytes": 5040,
+      "stored_sha256": "7fdcb2d7658cac8cc2d474ff621da759fc08b3d914e7becacc7d0ff3b5eb3e58",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/SOURCE_MANIFEST.json",
+      "original_bytes": 8294,
+      "original_sha256": "6d31377beb8adcc5c16960deb2a46ceac7ac888582105ec3afef2fb11238b57c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1833,
+      "stored_sha256": "56e45786db79c3a5563ff81711160629357d9fd75aa9de4a4064d342091bed72",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-01/TRACE.jsonl.gz",
+      "original_bytes": 55242,
+      "original_sha256": "ef8cbd31a58d6c31aae90374bb3109dbf82c8679922ec8f4f3ec990c3572972d",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-01/TRACE.jsonl.gz",
+      "stored_bytes": 55242,
+      "stored_sha256": "ef8cbd31a58d6c31aae90374bb3109dbf82c8679922ec8f4f3ec990c3572972d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/AUDIT.json",
+      "original_bytes": 300,
+      "original_sha256": "8ec06c2ad384fc58ffa4fb2e51e42ad3e5d98c8b38224013af0066de6d48839d",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/AUDIT.json",
+      "stored_bytes": 300,
+      "stored_sha256": "8ec06c2ad384fc58ffa4fb2e51e42ad3e5d98c8b38224013af0066de6d48839d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/CAMERA.json",
+      "original_bytes": 5291,
+      "original_sha256": "5ad19137e2400ade23fd0658e93b859cc196bb8ca5c462ac5ee3efddddfad415",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/CAMERA.json.gz",
+      "stored_bytes": 1397,
+      "stored_sha256": "1ec6c4787bb660b8ddd5a48b6e2d4bbafb8176ceb45e47f418ed9370f9afc794",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/CHILD_COMMAND.json",
+      "original_bytes": 974,
+      "original_sha256": "a7acb39f7f3613bd1632bc06181b8292af95074c62869d4ba28d57102b869384",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/CHILD_COMMAND.json",
+      "stored_bytes": 974,
+      "stored_sha256": "a7acb39f7f3613bd1632bc06181b8292af95074c62869d4ba28d57102b869384",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/CLEANUP.json",
+      "original_bytes": 646,
+      "original_sha256": "f6f78f3d84959432d0fdae2f800c0dc2ef13db4f3c4d8bd54172f9533525f749",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/CLEANUP.json",
+      "stored_bytes": 646,
+      "stored_sha256": "f6f78f3d84959432d0fdae2f800c0dc2ef13db4f3c4d8bd54172f9533525f749",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 14998,
+      "original_sha256": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5370,
+      "stored_sha256": "6f26a84af112c28abbe91425dc7726173578c8a66f1141a05abea1e32111d27c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/COMMAND.json",
+      "original_bytes": 1254,
+      "original_sha256": "4f1000644967a7ea63cbf0c8a1c2aa90af75c15c446ebcf39262f5b9e48a4aac",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/COMMAND.json",
+      "stored_bytes": 1254,
+      "stored_sha256": "4f1000644967a7ea63cbf0c8a1c2aa90af75c15c446ebcf39262f5b9e48a4aac",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/EVAL.json",
+      "original_bytes": 907,
+      "original_sha256": "a0383c47ba32743509cc72de24c53380eb7010cb28a0f50f6d40b83c80e7bec8",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/EVAL.json",
+      "stored_bytes": 907,
+      "stored_sha256": "a0383c47ba32743509cc72de24c53380eb7010cb28a0f50f6d40b83c80e7bec8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145639,
+      "original_sha256": "d4e3dad2c02ea7ce4b53b87ae660f3d9e9fe88e844d293e241ffa40b808c8510",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145639,
+      "stored_sha256": "d4e3dad2c02ea7ce4b53b87ae660f3d9e9fe88e844d293e241ffa40b808c8510",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/qt/errors.log",
+      "original_bytes": 308,
+      "original_sha256": "859a41d466b4aca5b1eecdc3aa5a19cc65287df3424875a4b656a9f681b35204",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/qt/errors.log",
+      "stored_bytes": 308,
+      "stored_sha256": "859a41d466b4aca5b1eecdc3aa5a19cc65287df3424875a4b656a9f681b35204",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/qt/RESULT.json",
+      "original_bytes": 115477,
+      "original_sha256": "140b7de7430038d95fb51657031cc6501cbd12ece8b1aa2f51b83aa255319d5d",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/qt/RESULT.json.gz",
+      "stored_bytes": 5726,
+      "stored_sha256": "4916cef725acdc8863db9c0feb1d89cad222e14c6d3b8896d04ed4a614fb787a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/qt/STAGES.json",
+      "original_bytes": 140762,
+      "original_sha256": "f19c5f337359eedab2b2912bd024a409bddc25d090c868a04d0ca35cc74628fd",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/qt/STAGES.json.gz",
+      "stored_bytes": 6964,
+      "stored_sha256": "3c2f274bd501f0d5dc3a37ad6ca7b39017af28a285c6502c9af53affae28f9f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 7320,
+      "original_sha256": "cfd02ad34f7bce6553945b7080ec00cf794032ac397e5dee5834b9ede8b21f8c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1146,
+      "stored_sha256": "bd7c453aea7e791a1477684e240ac444c65225f5033067320412b63d836ed880",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/qt.stderr.log",
+      "original_bytes": 1392,
+      "original_sha256": "7e8b976295b915ac978667dc4ec72d730f2872cbe0ea594c7ae487094a68d9b7",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/qt.stderr.log",
+      "stored_bytes": 1392,
+      "stored_sha256": "7e8b976295b915ac978667dc4ec72d730f2872cbe0ea594c7ae487094a68d9b7",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "6eff57527b89c57689e144abd3df39403ee50dcad729fc3b99c70835aa0bab3c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "6eff57527b89c57689e144abd3df39403ee50dcad729fc3b99c70835aa0bab3c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/RESULT.json",
+      "original_bytes": 1317,
+      "original_sha256": "f1eeb800df5345b51f6483069bc3bb9f1f11cdc95dd946f72e320a0b1ff4da96",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/RESULT.json",
+      "stored_bytes": 1317,
+      "stored_sha256": "f1eeb800df5345b51f6483069bc3bb9f1f11cdc95dd946f72e320a0b1ff4da96",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/source/tools/qa_qt_manual_sil.py",
+      "original_bytes": 15665,
+      "original_sha256": "090ca7cde987ed78f75769480d60943d1d9811b35b903075daf611fa8b88f0a4",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/source/tools/qa_qt_manual_sil.py.gz",
+      "stored_bytes": 5059,
+      "stored_sha256": "a0c7134c2446b8506bd7506418b9ddd197953632ae8469d33a1e7ce8bacd20be",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/SOURCE_MANIFEST.json",
+      "original_bytes": 8294,
+      "original_sha256": "e42a8f6e1fffc678afaaf75ba634d96594bcfb77ac0c420b2357a00c192e89b7",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1834,
+      "stored_sha256": "f67e744cd97481fd7a0424f05a27b4a0d0a7ee53862085550e4d0d6cfc8104ac",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-02/TRACE.jsonl.gz",
+      "original_bytes": 43079,
+      "original_sha256": "81eee8c397f8b46d2d99c91b79d15e49de05d4673cbd26b712b2132b7c4f144c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-02/TRACE.jsonl.gz",
+      "stored_bytes": 43079,
+      "stored_sha256": "81eee8c397f8b46d2d99c91b79d15e49de05d4673cbd26b712b2132b7c4f144c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/AUDIT.json",
+      "original_bytes": 308,
+      "original_sha256": "a4e5562db6007b3998e6619504a1b541356b8fd49bfb9d5aca735db591016a2e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/AUDIT.json",
+      "stored_bytes": 308,
+      "stored_sha256": "a4e5562db6007b3998e6619504a1b541356b8fd49bfb9d5aca735db591016a2e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/CAMERA.json",
+      "original_bytes": 5325,
+      "original_sha256": "5a373a0d04907083aae649ee8975eac9b5273ffb4ea6e81778d61a8dfe24f7e1",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/CAMERA.json.gz",
+      "stored_bytes": 1418,
+      "stored_sha256": "719327c7fa203aa274b87800cceb5500ca0dd4adb6578acc072501e4cc9b0ae5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/CHILD_COMMAND.json",
+      "original_bytes": 972,
+      "original_sha256": "849cbea7b286606516c755c9710d590fd883f1242101ddcc6405d6990eb3e181",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/CHILD_COMMAND.json",
+      "stored_bytes": 972,
+      "stored_sha256": "849cbea7b286606516c755c9710d590fd883f1242101ddcc6405d6990eb3e181",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/CLEANUP.json",
+      "original_bytes": 609,
+      "original_sha256": "bcb5be13cac68a3f8ad833bd06b5ce7540f613b81cc78762a57f75f0c0f88308",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/CLEANUP.json",
+      "stored_bytes": 609,
+      "stored_sha256": "bcb5be13cac68a3f8ad833bd06b5ce7540f613b81cc78762a57f75f0c0f88308",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 15926,
+      "original_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5768,
+      "stored_sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/COMMAND.json",
+      "original_bytes": 1557,
+      "original_sha256": "d8bef566b70f0cee0b01c678433c3300e865020974b0873fb7ed076e33a077db",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/COMMAND.json",
+      "stored_bytes": 1557,
+      "stored_sha256": "d8bef566b70f0cee0b01c678433c3300e865020974b0873fb7ed076e33a077db",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/EVAL.json",
+      "original_bytes": 909,
+      "original_sha256": "20a418ab1c80e1c5a32d2644000fd2004f1c916a358dd068b4f9ed215d760c06",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/EVAL.json",
+      "stored_bytes": 909,
+      "stored_sha256": "20a418ab1c80e1c5a32d2644000fd2004f1c916a358dd068b4f9ed215d760c06",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145867,
+      "original_sha256": "4d62bcfa29b2bc1a5ff7faa846f6fc7c83e0321ae4000c775e2cda76854e1c7d",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145867,
+      "stored_sha256": "4d62bcfa29b2bc1a5ff7faa846f6fc7c83e0321ae4000c775e2cda76854e1c7d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/qt/RESULT.json",
+      "original_bytes": 449077,
+      "original_sha256": "dba52f082ddf92006c237524c6f41a9c379fa9c6f05906cc8608b8ecf5c17481",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/qt/RESULT.json.gz",
+      "stored_bytes": 13344,
+      "stored_sha256": "46ba740e9f7183d3d773c4d6da6e6e40b0a53b9baab49a472b1af120f894d8e5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/qt/STAGES.json",
+      "original_bytes": 700069,
+      "original_sha256": "597cb7e32dab8f868289d464b10677aaa9b8080c68b74e962054adb8eaea0697",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/qt/STAGES.json.gz",
+      "stored_bytes": 19580,
+      "stored_sha256": "7f70eb490b94c7cd9f9be632c6778adbd62b6356d011b0b71ba8bc68e074e69a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 11943,
+      "original_sha256": "346cdcb3946b89eb07a72afd227f8f04f7a0b1874f32fb2bae57c275f8fafc24",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1428,
+      "stored_sha256": "70d4ea73b18485914b44e6d05a0afacadd8f7c518a8f4023b3520de0a9c9f6fc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/qt.stderr.log",
+      "original_bytes": 1390,
+      "original_sha256": "df127915b5b8aa5b55c6dc42cabe3088a85378dd80adce83b1e54a795d058a61",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/qt.stderr.log",
+      "stored_bytes": 1390,
+      "stored_sha256": "df127915b5b8aa5b55c6dc42cabe3088a85378dd80adce83b1e54a795d058a61",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "02fae6fdc0daf625e713bc729af40cc8d3091e4b59af03c4639e4e102c81bbfc",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "02fae6fdc0daf625e713bc729af40cc8d3091e4b59af03c4639e4e102c81bbfc",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/RESULT.json",
+      "original_bytes": 1256,
+      "original_sha256": "ef6beae7560632c72218ef90fd2f3c3ed4d3b094ca91165cf512f8eb7a8fe322",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/RESULT.json",
+      "stored_bytes": 1256,
+      "stored_sha256": "ef6beae7560632c72218ef90fd2f3c3ed4d3b094ca91165cf512f8eb7a8fe322",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/source/tools/qa_qt_manual_sil.py",
+      "original_bytes": 15665,
+      "original_sha256": "090ca7cde987ed78f75769480d60943d1d9811b35b903075daf611fa8b88f0a4",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/source/tools/qa_qt_manual_sil.py.gz",
+      "stored_bytes": 5059,
+      "stored_sha256": "a0c7134c2446b8506bd7506418b9ddd197953632ae8469d33a1e7ce8bacd20be",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/SOURCE_MANIFEST.json",
+      "original_bytes": 8285,
+      "original_sha256": "1fab0c45b5bd93ee6a4111fa8804371372c8459b1d77c23fa8109b57a511644b",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1832,
+      "stored_sha256": "dff757f7f02b21a7ae39846a916e2d60b499e1d651be1ed597e71e059ed339a8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-03/TRACE.jsonl.gz",
+      "original_bytes": 119742,
+      "original_sha256": "8ce95ce1651286eb38a048f69ad2357c7bd56b5e1a32485d74faa7d8cf6c5984",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-03/TRACE.jsonl.gz",
+      "stored_bytes": 119742,
+      "stored_sha256": "8ce95ce1651286eb38a048f69ad2357c7bd56b5e1a32485d74faa7d8cf6c5984",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/AUDIT.json",
+      "original_bytes": 313,
+      "original_sha256": "bd21d9c64f68723943d831855528d4507e22d2a428e411450c52ecbe07aaa4a9",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/AUDIT.json",
+      "stored_bytes": 313,
+      "stored_sha256": "bd21d9c64f68723943d831855528d4507e22d2a428e411450c52ecbe07aaa4a9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/CAMERA.json",
+      "original_bytes": 5352,
+      "original_sha256": "25ed7715e9321f5beb9aee2b74f9b6afaa9dd8695d9915961918839968f56c21",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/CAMERA.json.gz",
+      "stored_bytes": 1422,
+      "stored_sha256": "b97518d21df71407a856989af0e56b89805067650e992df1a00660b252a7c58b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/CHILD_COMMAND.json",
+      "original_bytes": 973,
+      "original_sha256": "9ca82f2a2b215ae8647385315765aa6c6ac8c389f040e8268e5aaf37f36bd44d",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/CHILD_COMMAND.json",
+      "stored_bytes": 973,
+      "stored_sha256": "9ca82f2a2b215ae8647385315765aa6c6ac8c389f040e8268e5aaf37f36bd44d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/CLEANUP.json",
+      "original_bytes": 609,
+      "original_sha256": "bcdf7b7c7bd510c017b5c8ef5e9d21b3ae0b72f167a77d63f8611d549f41d0ca",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/CLEANUP.json",
+      "stored_bytes": 609,
+      "stored_sha256": "bcdf7b7c7bd510c017b5c8ef5e9d21b3ae0b72f167a77d63f8611d549f41d0ca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 15926,
+      "original_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5768,
+      "stored_sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_operator_runtime.py",
+      "original_bytes": 19090,
+      "original_sha256": "36751628e9fdc89c8fc4dc3924285eee0bcf6b3b53fe7801c37b1532c5522681",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_operator_runtime.py.gz",
+      "stored_bytes": 5827,
+      "stored_sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65905,
+      "original_sha256": "821ccd31ee113a7816a1796d5965abb1b7691c9e7bdb9bc77ebb2b88b90ca135",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14618,
+      "stored_sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/COMMAND.json",
+      "original_bytes": 1559,
+      "original_sha256": "72e5cff15bbb68948e34e2dd3b0d3e236c2b152718a1858b11199990682f12be",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/COMMAND.json",
+      "stored_bytes": 1559,
+      "stored_sha256": "72e5cff15bbb68948e34e2dd3b0d3e236c2b152718a1858b11199990682f12be",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/EVAL.json",
+      "original_bytes": 910,
+      "original_sha256": "f903d2ea6fc6e8934d4c4cc5d5dd1c29e87255e76abdc1f07499c69f4be3cbc3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/EVAL.json",
+      "stored_bytes": 910,
+      "stored_sha256": "f903d2ea6fc6e8934d4c4cc5d5dd1c29e87255e76abdc1f07499c69f4be3cbc3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/HOST_SCHEDULING.json",
+      "original_bytes": 504,
+      "original_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/HOST_SCHEDULING.json",
+      "stored_bytes": 504,
+      "stored_sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145704,
+      "original_sha256": "0535d99b07b64caaeea87ad2366dc46314fa49ed3851d1818ad20e21ce5abdf1",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145704,
+      "stored_sha256": "0535d99b07b64caaeea87ad2366dc46314fa49ed3851d1818ad20e21ce5abdf1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/qt/RESULT.json",
+      "original_bytes": 450860,
+      "original_sha256": "c8f3cd70e04e358d917fab24572c4478e0df67a947deabea3e3dc7c08c00c9b2",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/qt/RESULT.json.gz",
+      "stored_bytes": 13249,
+      "stored_sha256": "8f738e0059b6864b6913c3b93a980d616e3e4ad6de7bad6a33aa8aa4405738e0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/qt/STAGES.json",
+      "original_bytes": 3614196,
+      "original_sha256": "0282485c3339a7e3eba58cbc611bf20d9171a6de88597a8eed3fab5c111aa2c0",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/qt/STAGES.json.gz",
+      "stored_bytes": 84076,
+      "stored_sha256": "77622931fd9a3ab7e3c82abb37d855661301cfa14d026fc0b1d91252249145fc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 11971,
+      "original_sha256": "422d833f2dc8aef1260164665dbfa2b0c81a2e49bf80fa258fa83c1b7fdda444",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1424,
+      "stored_sha256": "ceaf1c2d2827442dbeccabff78f10ea365f34e185ac58f2897d79a6e2159d6b9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/qt.stderr.log",
+      "original_bytes": 1390,
+      "original_sha256": "6f7f5a4a387c99e9767337b59d384d67be8eef129d439fb15acebd8bfc027cf0",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/qt.stderr.log",
+      "stored_bytes": 1390,
+      "stored_sha256": "6f7f5a4a387c99e9767337b59d384d67be8eef129d439fb15acebd8bfc027cf0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/QT_STAGES.json",
+      "original_bytes": 1755,
+      "original_sha256": "2ae884ba04545e9764af07fc7361d19f3cc31fc6ea52f29bbc70bb40822ace14",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/QT_STAGES.json",
+      "stored_bytes": 1755,
+      "stored_sha256": "2ae884ba04545e9764af07fc7361d19f3cc31fc6ea52f29bbc70bb40822ace14",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/RESULT.json",
+      "original_bytes": 1260,
+      "original_sha256": "782697ac8458c82c17d383e2f84ea9e78670db6b09620d32b02360ec82d8d9e3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/RESULT.json",
+      "stored_bytes": 1260,
+      "stored_sha256": "782697ac8458c82c17d383e2f84ea9e78670db6b09620d32b02360ec82d8d9e3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/harness.xml",
+      "original_bytes": 2412,
+      "original_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/harness.xml",
+      "stored_bytes": 2412,
+      "stored_sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/source/tools/qa_qt_manual_sil.py",
+      "original_bytes": 15665,
+      "original_sha256": "090ca7cde987ed78f75769480d60943d1d9811b35b903075daf611fa8b88f0a4",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/source/tools/qa_qt_manual_sil.py.gz",
+      "stored_bytes": 5059,
+      "stored_sha256": "a0c7134c2446b8506bd7506418b9ddd197953632ae8469d33a1e7ce8bacd20be",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/SOURCE_MANIFEST.json",
+      "original_bytes": 8285,
+      "original_sha256": "1fab0c45b5bd93ee6a4111fa8804371372c8459b1d77c23fa8109b57a511644b",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1832,
+      "stored_sha256": "dff757f7f02b21a7ae39846a916e2d60b499e1d651be1ed597e71e059ed339a8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-actual-20261015-04/TRACE.jsonl.gz",
+      "original_bytes": 527966,
+      "original_sha256": "ce912dab4f622dd1d12813bc6e31b2f8e846ef3e71b799e0755d31502fcfa7a4",
+      "stored_path": "records/artifacts/qt-manual-actual-20261015-04/TRACE.jsonl.gz",
+      "stored_bytes": 527966,
+      "stored_sha256": "ce912dab4f622dd1d12813bc6e31b2f8e846ef3e71b799e0755d31502fcfa7a4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/COMMAND.json",
+      "original_bytes": 577,
+      "original_sha256": "78843866bfc6014c90d3eaa16bd90927f25867f2d732e0c378cd136a49741683",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/COMMAND.json",
+      "stored_bytes": 577,
+      "stored_sha256": "78843866bfc6014c90d3eaa16bd90927f25867f2d732e0c378cd136a49741683",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/driver.py",
+      "original_bytes": 2771,
+      "original_sha256": "2c90e833a90f31fe11452dbba118718552e6325c5f362071747edb5ee3a9cb80",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/driver.py",
+      "stored_bytes": 2771,
+      "stored_sha256": "2c90e833a90f31fe11452dbba118718552e6325c5f362071747edb5ee3a9cb80",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/pytest.xml",
+      "original_bytes": 3169,
+      "original_sha256": "51dc2e4241f0902041563dfa950ca5e6c65fb07a99af5cc2146be3f8c4c0bb8a",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/pytest.xml",
+      "stored_bytes": 3169,
+      "stored_sha256": "51dc2e4241f0902041563dfa950ca5e6c65fb07a99af5cc2146be3f8c4c0bb8a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/RESULT.json",
+      "original_bytes": 815,
+      "original_sha256": "b22b6752d2d48cdfd00cc4295903f6c166ebc3aea8fdfc8b4979d90aadc359ad",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/RESULT.json",
+      "stored_bytes": 815,
+      "stored_sha256": "b22b6752d2d48cdfd00cc4295903f6c166ebc3aea8fdfc8b4979d90aadc359ad",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/source/tests/test_qt_manual_audit.py",
+      "original_bytes": 2659,
+      "original_sha256": "08ee06916746cfbead670e37bbb4cd120ef6e73da98184375b89e15542e69211",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/source/tests/test_qt_manual_audit.py",
+      "stored_bytes": 2659,
+      "stored_sha256": "08ee06916746cfbead670e37bbb4cd120ef6e73da98184375b89e15542e69211",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-01/stdout.log",
+      "original_bytes": 1622,
+      "original_sha256": "2889ee7bd92b0cc679d78888c1ba73ba60c4d4322d0699de2b0a857a04cb139d",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-01/stdout.log",
+      "stored_bytes": 1622,
+      "stored_sha256": "2889ee7bd92b0cc679d78888c1ba73ba60c4d4322d0699de2b0a857a04cb139d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/COMMAND.json",
+      "original_bytes": 577,
+      "original_sha256": "e66c2a9419109d411be7e9eeb4aee86c592bc9bdf4da31fc17991ebb67a4d55f",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/COMMAND.json",
+      "stored_bytes": 577,
+      "stored_sha256": "e66c2a9419109d411be7e9eeb4aee86c592bc9bdf4da31fc17991ebb67a4d55f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/driver.py",
+      "original_bytes": 2771,
+      "original_sha256": "2c90e833a90f31fe11452dbba118718552e6325c5f362071747edb5ee3a9cb80",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/driver.py",
+      "stored_bytes": 2771,
+      "stored_sha256": "2c90e833a90f31fe11452dbba118718552e6325c5f362071747edb5ee3a9cb80",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/pytest.xml",
+      "original_bytes": 1936,
+      "original_sha256": "a227baf09c4d7ccc94edfdaac8b1caaa12a261978c4b2216d733e96641e828e8",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/pytest.xml",
+      "stored_bytes": 1936,
+      "stored_sha256": "a227baf09c4d7ccc94edfdaac8b1caaa12a261978c4b2216d733e96641e828e8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/RESULT.json",
+      "original_bytes": 814,
+      "original_sha256": "4afdeb2274a1c5a73b92bf44905150657b2513567dd9611129c3a1b1172f64ae",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/RESULT.json",
+      "stored_bytes": 814,
+      "stored_sha256": "4afdeb2274a1c5a73b92bf44905150657b2513567dd9611129c3a1b1172f64ae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/source/tests/test_qt_manual_audit.py",
+      "original_bytes": 2674,
+      "original_sha256": "27a8fd42cfd772e73f1e045ee4ee5c7c814f6bc0701350ae89dc8d1da2a5a140",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/source/tests/test_qt_manual_audit.py",
+      "stored_bytes": 2674,
+      "stored_sha256": "27a8fd42cfd772e73f1e045ee4ee5c7c814f6bc0701350ae89dc8d1da2a5a140",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/source/tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/source/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-audit-focused-20261015-02/stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "d1123a4f5df8123685d50a69eb3c6337164afa03e22ae7968d729c49c2d3f960",
+      "stored_path": "records/artifacts/qt-manual-audit-focused-20261015-02/stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "d1123a4f5df8123685d50a69eb3c6337164afa03e22ae7968d729c49c2d3f960",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-01/COMMAND.json",
+      "original_bytes": 1536,
+      "original_sha256": "876d632bd03761e97d3b4a72377dc6f17beb37a6463e1773ab1cfef670a790a4",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-01/COMMAND.json",
+      "stored_bytes": 1536,
+      "stored_sha256": "876d632bd03761e97d3b4a72377dc6f17beb37a6463e1773ab1cfef670a790a4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-01/driver.py",
+      "original_bytes": 2515,
+      "original_sha256": "c0aff802139bd5bdcc584e7c41fd8b448bc5a4d786da0185cfa6521aeab462ca",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-01/driver.py",
+      "stored_bytes": 2515,
+      "stored_sha256": "c0aff802139bd5bdcc584e7c41fd8b448bc5a4d786da0185cfa6521aeab462ca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-01/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "6593888a85c010bfd584653d1cd6501d36dd3f01dc326c1126d6d07f88840532",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-01/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "6593888a85c010bfd584653d1cd6501d36dd3f01dc326c1126d6d07f88840532",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-01/RESULT.json",
+      "original_bytes": 2180,
+      "original_sha256": "6c404f9a4410525ceb12e7cf6d6137b5d10272a57f14f8249ed57c886e6c6b9a",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-01/RESULT.json",
+      "stored_bytes": 2180,
+      "stored_sha256": "6c404f9a4410525ceb12e7cf6d6137b5d10272a57f14f8249ed57c886e6c6b9a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-01/stdout.log",
+      "original_bytes": 139,
+      "original_sha256": "ffecc7db2fe0ba73a57d3f47629456f7cc8c97b4c4769cb9eb3e2af352a7f536",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-01/stdout.log",
+      "stored_bytes": 139,
+      "stored_sha256": "ffecc7db2fe0ba73a57d3f47629456f7cc8c97b4c4769cb9eb3e2af352a7f536",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-02/COMMAND.json",
+      "original_bytes": 1536,
+      "original_sha256": "c7157879791031a25570c4bd7b27e7cf4dc8d471c9e32964c28e3336a6e0a685",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-02/COMMAND.json",
+      "stored_bytes": 1536,
+      "stored_sha256": "c7157879791031a25570c4bd7b27e7cf4dc8d471c9e32964c28e3336a6e0a685",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-02/driver.py",
+      "original_bytes": 2515,
+      "original_sha256": "c0aff802139bd5bdcc584e7c41fd8b448bc5a4d786da0185cfa6521aeab462ca",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-02/driver.py",
+      "stored_bytes": 2515,
+      "stored_sha256": "c0aff802139bd5bdcc584e7c41fd8b448bc5a4d786da0185cfa6521aeab462ca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-02/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "e76db8e8a339e66831a1ecf1ac813b7f443ea9c1bc65853f241fe9720cd38d77",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-02/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "e76db8e8a339e66831a1ecf1ac813b7f443ea9c1bc65853f241fe9720cd38d77",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-02/RESULT.json",
+      "original_bytes": 2179,
+      "original_sha256": "d7a472e0f15fffb3274f5bb0e9380f2245edfaa75d8959bcfe8096f7f7bfafd4",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-02/RESULT.json",
+      "stored_bytes": 2179,
+      "stored_sha256": "d7a472e0f15fffb3274f5bb0e9380f2245edfaa75d8959bcfe8096f7f7bfafd4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-02/stdout.log",
+      "original_bytes": 139,
+      "original_sha256": "ad44f57e73b864a1ad6f8e1d389b10e7dde3347b365a6a4eeaf182a7b77960f2",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-02/stdout.log",
+      "stored_bytes": 139,
+      "stored_sha256": "ad44f57e73b864a1ad6f8e1d389b10e7dde3347b365a6a4eeaf182a7b77960f2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-03/COMMAND.json",
+      "original_bytes": 2089,
+      "original_sha256": "1881880c82221de25e9a8f1e7dd15655878e2887dd1113e6d11dce3b2410565d",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-03/COMMAND.json",
+      "stored_bytes": 2089,
+      "stored_sha256": "1881880c82221de25e9a8f1e7dd15655878e2887dd1113e6d11dce3b2410565d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-03/driver.py",
+      "original_bytes": 3003,
+      "original_sha256": "5ff470bae77598017047dd0397ee5851ed4c324e012e754594540b19f5dbfa75",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-03/driver.py",
+      "stored_bytes": 3003,
+      "stored_sha256": "5ff470bae77598017047dd0397ee5851ed4c324e012e754594540b19f5dbfa75",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-03/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "7a19afc5ec696dc1aae00c41f8a71e55395e335d2d1a4b39fb7d25a8d1b7c3bf",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-03/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "7a19afc5ec696dc1aae00c41f8a71e55395e335d2d1a4b39fb7d25a8d1b7c3bf",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-03/RESULT.json",
+      "original_bytes": 2679,
+      "original_sha256": "0dbbf0f8201668b3df9a88f90b531acafeccba68e518a57a1bce29e7845338e1",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-03/RESULT.json",
+      "stored_bytes": 2679,
+      "stored_sha256": "0dbbf0f8201668b3df9a88f90b531acafeccba68e518a57a1bce29e7845338e1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-03/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-03/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-03/stdout.log",
+      "original_bytes": 139,
+      "original_sha256": "b58b2543548209f1ede435fa9a414d513c78c7b54c2f2b63597f597960d911d2",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-03/stdout.log",
+      "stored_bytes": 139,
+      "stored_sha256": "b58b2543548209f1ede435fa9a414d513c78c7b54c2f2b63597f597960d911d2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-04/COMMAND.json",
+      "original_bytes": 2090,
+      "original_sha256": "7e9c14f3d45bfc256d7dc53d9b99d019db13bb71a79d0b89c18fecb875c15101",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-04/COMMAND.json",
+      "stored_bytes": 2090,
+      "stored_sha256": "7e9c14f3d45bfc256d7dc53d9b99d019db13bb71a79d0b89c18fecb875c15101",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-04/driver.py",
+      "original_bytes": 3003,
+      "original_sha256": "5ff470bae77598017047dd0397ee5851ed4c324e012e754594540b19f5dbfa75",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-04/driver.py",
+      "stored_bytes": 3003,
+      "stored_sha256": "5ff470bae77598017047dd0397ee5851ed4c324e012e754594540b19f5dbfa75",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-04/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "906de575d69265583295f8352d8875897d22e56733828624548d941bce4ff916",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-04/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "906de575d69265583295f8352d8875897d22e56733828624548d941bce4ff916",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-04/RESULT.json",
+      "original_bytes": 2680,
+      "original_sha256": "bceadcf1d767da1d5279f862f8ae6236f6d324d6932ef86ff7d073c2b67ce7f1",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-04/RESULT.json",
+      "stored_bytes": 2680,
+      "stored_sha256": "bceadcf1d767da1d5279f862f8ae6236f6d324d6932ef86ff7d073c2b67ce7f1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-04/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-04/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-driver-20261015-04/stdout.log",
+      "original_bytes": 139,
+      "original_sha256": "530cb73e46faaf503f013498b70bdb72e2586f0f13c217ab62ea4a648fd5258e",
+      "stored_path": "records/artifacts/qt-manual-driver-20261015-04/stdout.log",
+      "stored_bytes": 139,
+      "stored_sha256": "530cb73e46faaf503f013498b70bdb72e2586f0f13c217ab62ea4a648fd5258e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-peer-static-20261015-01/console.log",
+      "original_bytes": 387,
+      "original_sha256": "8196f53804456f7c6056eeefab044ea47a5f8e25192a5f9c6b73793d68492076",
+      "stored_path": "records/artifacts/qt-manual-peer-static-20261015-01/console.log",
+      "stored_bytes": 387,
+      "stored_sha256": "8196f53804456f7c6056eeefab044ea47a5f8e25192a5f9c6b73793d68492076",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-peer-static-20261015-01/RESULT.json",
+      "original_bytes": 387,
+      "original_sha256": "8196f53804456f7c6056eeefab044ea47a5f8e25192a5f9c6b73793d68492076",
+      "stored_path": "records/artifacts/qt-manual-peer-static-20261015-01/RESULT.json",
+      "stored_bytes": 387,
+      "stored_sha256": "8196f53804456f7c6056eeefab044ea47a5f8e25192a5f9c6b73793d68492076",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-manual-peer-static-20261015-01/validate.py",
+      "original_bytes": 3114,
+      "original_sha256": "99b9ec6ed699e10e8d51a9087b98356921e92894a2792a72beaebcc458ffb124",
+      "stored_path": "records/artifacts/qt-manual-peer-static-20261015-01/validate.py",
+      "stored_bytes": 3114,
+      "stored_sha256": "99b9ec6ed699e10e8d51a9087b98356921e92894a2792a72beaebcc458ffb124",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/acceptance_preset.log",
+      "original_bytes": 1166,
+      "original_sha256": "0b0eb9babecb7b237c2e7e068b04b5dbd9a70958f5eb4d888c55b54a79d6c3fd",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/acceptance_preset.log",
+      "stored_bytes": 1166,
+      "stored_sha256": "0b0eb9babecb7b237c2e7e068b04b5dbd9a70958f5eb4d888c55b54a79d6c3fd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/interface_static.log",
+      "original_bytes": 23957,
+      "original_sha256": "6551336c75dd33622d560816c9b009db3060e8c42e5e7a803730398cbf4f738f",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/interface_static.log.gz",
+      "stored_bytes": 3867,
+      "stored_sha256": "1f82550e06d7e9dda3bda28aee0189329ad7d67439e08ad07b0ee2dbd07e5207",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/manifest.json",
+      "original_bytes": 1490887,
+      "original_sha256": "813e39ae35ae182575c213e447e37a4698a77fe290288e3d96c42fc02125bbf6",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/manifest.json.gz",
+      "stored_bytes": 396244,
+      "stored_sha256": "9c0c80d8cd11da967d70246d352dbc077ebc69863d48a1be0d8846a31b073c06",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/preset.json",
+      "original_bytes": 1166,
+      "original_sha256": "0b0eb9babecb7b237c2e7e068b04b5dbd9a70958f5eb4d888c55b54a79d6c3fd",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/preset.json",
+      "stored_bytes": 1166,
+      "stored_sha256": "0b0eb9babecb7b237c2e7e068b04b5dbd9a70958f5eb4d888c55b54a79d6c3fd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/pytest.log",
+      "original_bytes": 4710,
+      "original_sha256": "6162bba942068035faef25bf0b3e3f3d92ed3db172fadf435e95af6266dabdda",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/pytest.log.gz",
+      "stored_bytes": 611,
+      "stored_sha256": "a9a90ce3961dbb413c4a599a96a4435b30d9527d66512f4477de0691c0d33453",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/pytest.xml",
+      "original_bytes": 337060,
+      "original_sha256": "655c20cf7c31931456b790b2fbe1811b9b1032a6512f2e4563b58eda525ab655",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/pytest.xml.gz",
+      "stored_bytes": 48543,
+      "stored_sha256": "631703f7c8ad7ae2676c6e42a4ece466317ce84bbf82c2b5dd9358516848fa16",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-09/source_provenance.log",
+      "original_bytes": 1627,
+      "original_sha256": "9b6c1447e2c1d5f7ff482a8a9c1cb6a42fac709a2f5c782a22f790c75c5ef013",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-09/source_provenance.log",
+      "stored_bytes": 1627,
+      "stored_sha256": "9b6c1447e2c1d5f7ff482a8a9c1cb6a42fac709a2f5c782a22f790c75c5ef013",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_aim_followup_quality_20261014.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_manual_audit_focused_20261015.py",
+      "original_bytes": 2771,
+      "original_sha256": "2c90e833a90f31fe11452dbba118718552e6325c5f362071747edb5ee3a9cb80",
+      "stored_path": "records/artifacts/run_manual_audit_focused_20261015.py",
+      "stored_bytes": 2771,
+      "stored_sha256": "2c90e833a90f31fe11452dbba118718552e6325c5f362071747edb5ee3a9cb80",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_qt_manual_20261015.py",
+      "original_bytes": 3003,
+      "original_sha256": "5ff470bae77598017047dd0397ee5851ed4c324e012e754594540b19f5dbfa75",
+      "stored_path": "records/artifacts/run_qt_manual_20261015.py",
+      "stored_bytes": 3003,
+      "stored_sha256": "5ff470bae77598017047dd0397ee5851ed4c324e012e754594540b19f5dbfa75",
+      "compression": "literal"
+    },
+    {
+      "original_path": "client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json",
+      "original_bytes": 15926,
+      "original_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+      "stored_path": "records/client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5768,
+      "stored_sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "client_patches/README.md",
+      "original_bytes": 9814,
+      "original_sha256": "e7f7fe253b8df6951fb38aa38c5be9ae83f93e3187b44eb75175619930341dc0",
+      "stored_path": "records/client_patches/README.md.gz",
+      "stored_bytes": 5210,
+      "stored_sha256": "9c96018454b708afe07575be4f45f7066beecd1daa7921576e3ba72636594f5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "client_patches/robotio_camera_order_v1.patch",
+      "original_bytes": 171199,
+      "original_sha256": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1",
+      "stored_path": "records/client_patches/robotio_camera_order_v1.patch.gz",
+      "stored_bytes": 40182,
+      "stored_sha256": "df89389a242964f8466e9f6d0e9324ad8c8767754eeb67799b74134315db444e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/CLIENT_ROBOTIO_INTERFACE.md",
+      "original_bytes": 12762,
+      "original_sha256": "305b5b7004ac4d57044ff983a340ba4f477711966e60270772545cdaa288d8b0",
+      "stored_path": "records/docs/CLIENT_ROBOTIO_INTERFACE.md.gz",
+      "stored_bytes": 6012,
+      "stored_sha256": "8e70a25fd3d2bbcd155b34e158870d5789e558ed48b656cba2bed8795704fb88",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/COOP_PLAYABLE_PATH.md",
+      "original_bytes": 6342,
+      "original_sha256": "248c67051b3019834abf74e214cd758cfcb8aa226b7a25fca2717c6bdf04199d",
+      "stored_path": "records/docs/COOP_PLAYABLE_PATH.md.gz",
+      "stored_bytes": 3654,
+      "stored_sha256": "2959bf54aa4a5fd168833c09a10105d23e9fb82c543ed0733efcadb1c90b6ca3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "original_bytes": 70905,
+      "original_sha256": "57fda8e63fae8cc96094fcb8984a894b919fb91244e7680a2e936cf221932657",
+      "stored_path": "records/docs/IMPLEMENTATION_PROGRESS.md.gz",
+      "stored_bytes": 32729,
+      "stored_sha256": "5178130487a26eb424240ca6179b517aa02e157360d08d5aede48b8e8ebb78a9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "examples/coop_camera_order_manual.json",
+      "original_bytes": 458,
+      "original_sha256": "9860c1326054b5f5cb1ebb9db4f5d946d26af187ad468da1cf578d02ff85f8b5",
+      "stored_path": "records/examples/coop_camera_order_manual.json",
+      "stored_bytes": 458,
+      "stored_sha256": "9860c1326054b5f5cb1ebb9db4f5d946d26af187ad468da1cf578d02ff85f8b5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "tests/test_qt_manual_audit.py",
+      "original_bytes": 2674,
+      "original_sha256": "27a8fd42cfd772e73f1e045ee4ee5c7c814f6bc0701350ae89dc8d1da2a5a140",
+      "stored_path": "records/tests/test_qt_manual_audit.py",
+      "stored_bytes": 2674,
+      "stored_sha256": "27a8fd42cfd772e73f1e045ee4ee5c7c814f6bc0701350ae89dc8d1da2a5a140",
+      "compression": "literal"
+    },
+    {
+      "original_path": "tools/audit_qt_manual.py",
+      "original_bytes": 6219,
+      "original_sha256": "22ce3e1a5f5d7fe6c822465228e42db63abe19204c0e655e140eee05fadd7d02",
+      "stored_path": "records/tools/audit_qt_manual.py.gz",
+      "stored_bytes": 1952,
+      "stored_sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tools/qa_qt_manual_peer.py",
+      "original_bytes": 46613,
+      "original_sha256": "b5fcc9ed68cd53f8cfc56723d259a806cfc89da2b2edfa4bcaea830ed8d28ada",
+      "stored_path": "records/tools/qa_qt_manual_peer.py.gz",
+      "stored_bytes": 11869,
+      "stored_sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tools/qa_qt_manual_sil.py",
+      "original_bytes": 15665,
+      "original_sha256": "090ca7cde987ed78f75769480d60943d1d9811b35b903075daf611fa8b88f0a4",
+      "stored_path": "records/tools/qa_qt_manual_sil.py.gz",
+      "stored_bytes": 5059,
+      "stored_sha256": "a0c7134c2446b8506bd7506418b9ddd197953632ae8469d33a1e7ce8bacd20be",
+      "compression": "gzip"
+    }
+  ]
+}

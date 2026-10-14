@@ -3,6 +3,38 @@
 新的显式组合补丁支持按能力合同选择通用导航、决策/导航 pipeline，以及已有通用自瞄。
 注册和显示不按队名分派。队伍仍需提供匹配协议的本地 wrapper；目录可选不代表算法或整场比赛已经通过。
 
+## 第五份相机顺序组合补丁（2026-10-15）
+
+[CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json](../client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json) 与
+[robotio_camera_order_v1.patch](../client_patches/robotio_camera_order_v1.patch) 是从固定 `0cedf99b70b1beec99865b9980af6789e6c53d99`
+完整安装的第五份补丁，SHA `fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1`。
+包含先前通用组件、租约和 batch 修复，必须选全新干净基线 checkout；旧四份补丁、manifest 和副本保持原字节。
+
+真实手控第二次失败记录显示：合法相机帧 4.064 秒，异步 HUD 状态 4.010 秒，相差 54 ms，
+原 50 ms 对齐检查抛错并撤权。新补丁完整验证元数据、JPEG 和原 TTL 后，在最终锁内重检身份与顺序；
+合法超前帧暂不安装，等待后续原状态。丢弃不刷新视频、序号、HUD、时间锚或有效期。
+原 50 ms 对齐界、显示 TTL、算法图像 80 ms 和 SDK 150 ms 均不变；损坏、过期、倒序或身份错误仍拒绝。
+解码期间的 watch/会话/episode 变更不能安装旧帧。
+
+```powershell
+.venv-sim/Scripts/python.exe tools/apply_client_patch.py --manifest client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json --client-root YOUR_FRESH_CLIENT_PATH --run
+.venv-sim/Scripts/python.exe -m rm_match.deployment.coop_launcher --config examples/coop_camera_order_manual.json
+```
+
+第二条默认只生成本机手动启动计划；示例需要本机第五 review 副本，人工选择步兵、claim 和两次 F2。
+30 模块实际 Qt offscreen 回归 496 passed / 363 subtests / 0 skipped，源不变且 owned tree/reader 回收。
+实际原窗口手控 5 秒和 30 秒均通过：真实 HTTP 相机、Jello Manual、两 F2、普通 W/S 与鼠标事件、SDK 和 MuJoCo。
+独立原窗口/租约/序号/值/expiry 回执审计无错误，86 / 479 批原指令全部消费；前进、后退和非零云台均生效。
+显式 host/Qt CV4、CPython 1 ms 实读后还原，原清理预算内资源退出。
+这些是离屏手控 SIL；没有队伍导航/决策/自瞄、ROS/NN、可见桌面、RTF、射击命中或完整比赛验收。
+失败及通过原记录见[永久证据](validation/manual_camera_order_20261015/README.md)。
+
+原窗口实际复现需全新输出目录与显式 `--run`，探针不会替换普通客户端输入或放宽护栏：
+
+```powershell
+.venv-sim/Scripts/python.exe tools/qa_qt_manual_sil.py --client-root external/polar-rm-client-camera-order-review --patch-manifest client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json --out artifacts/qt-manual-fresh --seconds 30 --max-wall-seconds 45 --host-opencv-threads 4 --host-python-switch-interval-ms 1 --run
+```
+
 ## 第四份批量控制组合补丁（2026-10-15）
 
 [CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json](../client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json) 与

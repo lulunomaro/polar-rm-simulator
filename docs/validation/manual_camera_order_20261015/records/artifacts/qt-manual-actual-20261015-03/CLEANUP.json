@@ -1,0 +1,29 @@
+{
+  "qt_job": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 0,
+    "errors": [],
+    "pid": 70188,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "qt_finished": {
+    "event": "qt_finished",
+    "clean": true,
+    "errors": [],
+    "exit_code": 0
+  },
+  "runtime": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 1.2999953469261527e-06
+  },
+  "reader_stopped": true,
+  "http_stopped": true,
+  "http_workers_idle": true,
+  "camera_clean": true
+}

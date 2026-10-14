@@ -1,0 +1,74 @@
+{
+  "schema": "polar.sim.coop-launch.v1",
+  "core_server_argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-u",
+    "-m",
+    "rm_match.platform_v2",
+    "--camera",
+    "--port",
+    "8766",
+    "--camera-total-fps",
+    "15",
+    "--max-wall-seconds",
+    "600",
+    "--admission-manifest",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\coop-manual-f1457e72846f433f9e0b7de65626dbb7\\admission.json",
+    "--raw-base64-codec",
+    "stdlib_chunked"
+  ],
+  "server_argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-u",
+    "-m",
+    "rm_match.deployment.coop_launcher",
+    "--worker-plan",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\coop-manual-f1457e72846f433f9e0b7de65626dbb7\\server-plan.json",
+    "--worker-plan-sha256",
+    "72a9e0de98fb8c1f5401f5b50bddfa8ba4de3cccd99e6b99798c32770250c3cf"
+  ],
+  "client_argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-camera-order-review\\main.py",
+    "--sim-platform-v2",
+    "--sim-role",
+    "operator",
+    "--sim-endpoint",
+    "http://127.0.0.1:8766"
+  ],
+  "client_root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-camera-order-review",
+  "out": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\coop-manual-f1457e72846f433f9e0b7de65626dbb7",
+  "url": "http://127.0.0.1:8766",
+  "manual_robots": [
+    "red_infantry"
+  ],
+  "robot_count": 6,
+  "timestep_s": 0.002,
+  "max_wall_seconds": 600,
+  "startup_timeout_s": 60.0,
+  "cleanup_budget_s": 8.0,
+  "client_patch": {
+    "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "patch_sha256": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1",
+    "manifest_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+    "qualification": "Fixed own client plus explicit reviewed operator-state patch"
+  },
+  "client_patch_manifest": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\client_patches\\CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json",
+  "local_file_sha256": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\client_patches\\CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\examples\\coop_camera_order_manual.json": "9860c1326054b5f5cb1ebb9db4f5d946d26af187ad468da1cf578d02ff85f8b5"
+  },
+  "pb_navigation_registered": false,
+  "native_registered": false,
+  "robotio_plugins_registered": false,
+  "prepare_robotio_plugins": false,
+  "automatic_binding": false,
+  "automatic_goal": false,
+  "fire_authority": "existing_manual_only",
+  "phase": "PLAN_ONLY_NOT_READY",
+  "limitations": [
+    "Launch foundation only; not playable 3v3 qualification",
+    "PB Nav2 recovery/navigation BT is not patrol/resupply/combat match decision logic",
+    "Full PB match BT, four automatic opponents/teammates, moving aim, firing arbitration and full match remain unimplemented"
+  ]
+}

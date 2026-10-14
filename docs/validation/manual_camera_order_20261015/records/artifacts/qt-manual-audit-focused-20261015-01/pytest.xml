@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="13" time="0.121" timestamp="2026-10-15T05:09:32.862300+08:00" hostname="LULUnoMARO"><testcase classname="tests.test_qt_manual_audit" name="test_exact_manual_batch_and_actual_consumer" time="0.001" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;0]" time="0.001" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;1]" time="0.001" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;2]" time="0.000" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;3]" time="0.000" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;4]" time="0.001" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;5]" time="0.001" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;6]" time="0.000" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;7]" time="0.000" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;8]" time="0.000" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;9]" time="0.001" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;10]" time="0.000" /><testcase classname="tests.test_qt_manual_audit" name="test_mutation_cannot_be_reported_as_a_pass[&lt;lambda&gt;11]" time="0.001"><failure message="assert []">change = &lt;function &lt;lambda&gt; at 0x000001A907D593A0&gt;
+
+    @pytest.mark.parametrize('change',[
+        lambda r:r[0]['request'].update(window_id=1.0),
+        lambda r:r[0]['ack']['controls'][0].update(seq=True),
+        lambda r:r[0]['ack'].update(adapter_inputs=[{}]),
+        lambda r:r[0]['request']['controls'].pop(),
+        lambda r:r[0].update(returned_host_wall=10.15),
+        lambda r:r[1]['manual_inputs']['fire'].update(epoch=1.0),
+        lambda r:r[1]['manual_inputs']['gimbal'].update(input_window_id=2),
+        lambda r:r[1]['manual_inputs']['motion'].update(seq=1),
+        lambda r:r[1]['manual_inputs']['fire'].update(owner='other'),
+        lambda r:r[1].update(consume_wall=10.15),
+        lambda r:r[1]['adapter_authorizations']['navigation'].update(owner='synthetic'),
+        lambda r:r[1]['target']['gimbal'].update(pitch_rad=.2),
+    ])
+    def test_mutation_cannot_be_reported_as_a_pass(change):
+&gt;       value=copy.deepcopy(rows());change(value);assert audit(value)['errors']
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert []
+
+tests\test_qt_manual_audit.py:35: AssertionError</failure></testcase></testsuite></testsuites>

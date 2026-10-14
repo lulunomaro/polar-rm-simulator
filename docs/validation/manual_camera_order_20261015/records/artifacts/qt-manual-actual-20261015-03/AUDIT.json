@@ -1,0 +1,10 @@
+{
+  "errors": [],
+  "manual_batch_count": 86,
+  "physically_consumed_batches": 86,
+  "physical_steps": 2511,
+  "positive_x_steps": 1491,
+  "negative_x_steps": 538,
+  "nonzero_gimbal_steps": 2511,
+  "qualification": "exact original manual SDK window/lease/seq/value/expiry join; no algorithm or full match"
+}

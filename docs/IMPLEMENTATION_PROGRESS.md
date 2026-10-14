@@ -9,7 +9,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
-| T04 | 进行中：第四独立batch补丁，484项完整Qt回归/347subtests；原PlatformWindow两次3秒协议链通过，真实画面/两F2/SDK/543与601非零步/clean；此前预算失败原件保持 | 长时及可见桌面、移动完整自瞄、云台/实体弹丸、队伍算法组合全链 |
+| T04 | 进行中：第五独立相机顺序补丁，496项完整Qt回归/363subtests；原PlatformWindow实际手动5秒/30秒相机、两F2、W/S和鼠标经SDK/MuJoCo通过，86/479批全部消费且clean；旧失败保持 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、队伍算法组合全链 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
 | T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope；六身份/注册竞态修复保持；新原子control_batch保持完整租约/绑定/window/通道/typedACK，36后端和53 SDK回归；两次原窗口低点频合成协议链通过 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
@@ -18,11 +18,11 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式admission、scope、SDK组合；原150ms下53/49批量ACK、手动gimbal/fire ACK与独立撤权/close全部通过，两次source unchanged/owned资源clean | 两物理电脑LAN、多人冲突/断线、长时/可见桌面及队伍算法全链 |
+| T13 | 本地局部修复：显式admission/scope/SDK组合；原150ms下实际30秒手控479完整批量ACK全部匹配物理消费，1502护栏检查/0诊断丢弃/source unchanged/owned资源clean；前两合成协议通过另记 | 两物理电脑LAN、多人冲突/断线、更长/可见桌面及队伍算法全链 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup08四步骤0/source unchanged：2147pass/40明确skip/1010subtests；另第四客户端484pass/347subtests；两次3秒原窗口协议物理通过；旧三次失败及历史证据不改 | 质量与协议夹具不替队伍live/许可/发布；长时/可见桌面、PB/Tongji图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup09四步骤0/source unchanged：2160pass/40明确skip/1010subtests；第五客户端496pass/363subtests；实际手动5秒与30秒通过，旧两次手动失败、原协议三次失败及历史证据不改 | 质量/手动SIL不替队伍live/许可/发布；更长/可见桌面、PB/Tongji图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,50 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 原相机顺序修复与实际手控30秒（2026-10-15）
+
+新手动探针使用原 PlatformWindow、真实 HTTP MuJoCo 相机、Jello Manual、watch/own HUD、原两 F2、
+普通 W/S 和实际鼠标事件，由原 timer/input bridge 产生完整 SDK motion/gimbal/fire 指令。
+无导航传感器/算法、ROS/NN或自动激活。独立审计按原 window/lease/seq/值/expiry 与实际 integration-entry 消费回执匹配；
+世界真值仅在隔离 EVAL 中。手动 fire 始终 false，未验收实体射击。
+
+第四客户端两次实际尝试均失败并保留。01 记录 camera-loop ValueError，原详细消息缺失，不能确定同一根因；
+13批/379消费步后撤权，W不足1秒，未完成S。原RESULT混淆非零exit与Job清理，但原CLEANUP单独证明空树/回收，未回写。
+02 新增透明异常观察后确认原消息 Camera time is ahead of state：frame21/episode0/watch1，
+capture4.064、HUD/state4.010，相差54ms，而frame原年龄仅30.5035ms。
+7批/116消费步后撤权；父级qt_wait TimeoutExpired亦保留，即使随后Job空/回收也不能报告通过。
+
+第五完整基线补丁在验证元数据/JPEG/原TTL后、最终锁内重检身份/顺序；合法超前帧暂不安装，等待原HUD追上，
+不刷新帧序号/视频/HUD/时钟锚/期限。原50ms对齐、显示TTL、算法80ms和SDK150ms均保持，
+损坏/倒序/真实过期/身份变更仍拒绝，解码期间切watch/session/episode不能装旧帧。
+旧四个客户端checkout/patch/manifest保持逐字节；新完整patch从固定0ced基线应用，inspect/reverse检查通过。
+
+修复前后源码、复现和全部夹具失败保留。首轮审计测试1fail是request/receipt目标别名，改为deepcopy后13负例/匹配测试通过；
+客户端最初before/focused fixture写4.010在4.011之后属测试顺序错误，后继before02才是旧产品ahead异常复现。
+新12项/16subtests通过；第五客户端完整30模块496passed/363subtests/0skip，pytest21.83秒、driver22.2994786秒，
+源不变、owned Job/reader回收。
+
+| 原窗口实际运行 | GO秒 | 原SDK批量/全部消费 | 物理消费步 | 正向/反向x步 | 非零云台步 | 内部/driver秒 |
+| --- | --- | --- | --- | --- | --- | --- |
+| manual03，第五客户端 | 5 | 86/86 | 2511 | 1491/538 | 2511 | 11.4622931/13.4840867 |
+| manual04，第五客户端 | 30 | 479/479 | 15028 | 7977/6502 | 15028 | 36.7661493/38.8301222 |
+
+两次全部15根检查与原guard/ACK/receipt通过，exit0/source unchanged/无强制直接终止；原F12/release/close和所有Job/SDK/HTTP/相机clean。
+04最初W/S各持有1.006838/1.011714秒，11对原按键、鼠标14/8像素、477变化云台ACK、1502护栏检查，诊断丢弃0，
+Qt清理.0446569秒小于原1.5秒。host与Qt显式CV4/CPython1ms实读并还原；没有放宽任何门限或机器调度系统配置。
+这是实际离屏手动SIL，未验收可见桌面、队伍导航/决策/自瞄、RTF/精度/射击、LAN或完整比赛。
+新[手动配置](../examples/coop_camera_order_manual.json)仅dry plan通过；完整可见启动验收仍待做。
+
+只读复核PB原配置/源码身份，不是新ROS/构建/队伍运行。历史真实Point-LIO/Nav2/PID单目标使用200000points/s ray/IMU，
+现有goal wrapper仍缺通用decision_intent_v1 goal/hold/cancel及完整估计反馈；不得用最新TF/真值补齐。
+下一实际场景为人工步兵与真实导航哨兵并行，再补有原采样身份的估计/裁判反馈和比赛树。
+T2历史显式静态live、PB图像超80ms和同济无live图像的边界保持；T01–T18/M0–M5按上表，未签收完整对战。
+
+最终统一QA09四步骤exit0/source unchanged：2160passed/40明确skip/1010subtests/6已有warnings，
+pytest135.89秒、外层driver166.0306523秒/reaped，显式同一CPU4 WSL spec，无回退。
+本轮完整代码、失败/通过、实际画面、源/时间/清理/质量保存在[独立永久包](validation/manual_camera_order_20261015/README.md)。
+QA后仅结果说明/归档/Git交付，全部程序/测试/provenance与第五patch/MF保持已测SHA。
 
 ## 原窗口批量提交与短时物理协议通过（2026-10-15）
 

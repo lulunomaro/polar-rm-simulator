@@ -1,0 +1,20 @@
+{
+  "new_manifest_sha256": "09d1f7af40e042dfc1ea65bd5fe651082b07262489c9fb5abc8973562b2467c6",
+  "new_patch_sha256": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1",
+  "new_checkout_check": {
+    "schema": "polar.sim.own_client_patch.check.v1",
+    "client_root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-camera-order-review",
+    "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
+    "patch_sha256": "fc0ce37f9ca30f8542da3a315e67db2d855df227c10746a637fba6cc2f20e4f1",
+    "status": "verified_patched",
+    "apply_required": false,
+    "applied": false,
+    "dry_run": true,
+    "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF",
+    "git_clean_profile": "per-command core.autocrlf=true and core.filemode=false; attributes honored",
+    "qualification": "Own client at fixed base plus reviewed patch; not original byte-exact client"
+  },
+  "reverse_apply_check": true,
+  "old_patch_checkout_unchanged": true,
+  "export_script_sha256": "f2bf78bf81f196c04581163df389efb5b7994fdabe0dc7ca002746c472859aab"
+}

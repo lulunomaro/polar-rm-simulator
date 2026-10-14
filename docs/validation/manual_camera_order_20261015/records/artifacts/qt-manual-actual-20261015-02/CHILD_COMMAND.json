@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-u",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_manual_peer.py",
+    "--client-root",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-batch-review",
+    "--manifest",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\client_patches\\CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json",
+    "--url",
+    "http://127.0.0.1:53619",
+    "--robot-id",
+    "red_infantry",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\qt-manual-actual-20261015-02\\qt",
+    "--max-wall-seconds",
+    "15.0",
+    "--run-seconds",
+    "5.0",
+    "--host-opencv-threads",
+    "4",
+    "--host-python-switch-interval-ms",
+    "1.0"
+  ],
+  "credential_transport": "memory/environment_only"
+}

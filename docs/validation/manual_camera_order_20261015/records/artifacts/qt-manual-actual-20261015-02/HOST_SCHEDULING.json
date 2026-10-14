@@ -1,0 +1,21 @@
+{
+  "opencv": {
+    "enabled": true,
+    "applied": true,
+    "original": 32,
+    "effective": 4,
+    "restored": 32
+  },
+  "python_switch": {
+    "schema": "polar.host.python-switch-interval.v1",
+    "enabled": true,
+    "requested_ms": 1.0,
+    "original_ms": 5.0,
+    "effective_ms": 1.0,
+    "restored_ms": 5.0,
+    "applied": true,
+    "restored": true,
+    "scope": "Current owned CPython process only"
+  },
+  "scope": "explicit owned current processes only; original clocks/deadlines unchanged"
+}
