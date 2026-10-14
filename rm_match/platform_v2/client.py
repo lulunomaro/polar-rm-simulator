@@ -103,6 +103,10 @@ class PlatformClient:
     def state(self):return self._request('/v2/state')
     def robots(self):return self._request('/v2/robots')
     def adapters(self):return self._request('/v2/adapters')
+    def plugins(self):return self._request('/v2/plugins')
+    def bind_pipeline(self,robot_id,adapter_id):
+        """Select a locally registered decision/navigation graph; motion lease required."""
+        return self.bind(robot_id,'navigation',adapter_id,{})
     def keepalive(self):
         result=self._request('/v2/keepalive',{})
         if result.get('session_id')!=self.session_id or not self._number(result.get('session_expires')):self._invalid('Invalid keepalive response')

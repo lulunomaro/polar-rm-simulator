@@ -18,6 +18,22 @@ tool=importlib.util.module_from_spec(spec);spec.loader.exec_module(tool)
 
 
 class StartupDiagnosticTests(unittest.TestCase):
+    def assert_actual_owned_cleanup(self,adapter,child,report):
+        # Windows uses birth-bound CreateProcessW rather than Popen; the old
+        # instrumentation's owned_children list can legitimately be empty.
+        # Require the real adapter/child proof instead of vacuous all([]).
+        self.assertIsNotNone(child)
+        report['direct_owned_child']=dict(pid=child.pid,returncode=child.poll(),
+            pipes_closed=all(s is None or s.closed for s in (child.stdin,child.stdout)))
+        report['owned_adapter_cleanup']=adapter.shutdown_status
+        self.assertGreater(child.pid,0);self.assertIsNotNone(child.poll())
+        self.assertTrue(report['direct_owned_child']['pipes_closed'])
+        self.assertTrue(adapter.shutdown_status['clean'])
+        self.assertTrue(adapter.shutdown_status['io_thread_stopped'])
+        ownership=adapter.shutdown_status['ownership']
+        self.assertTrue(ownership['clean']);self.assertTrue(ownership['reaped'])
+        self.assertTrue(ownership['group_empty'])
+
     def test_manifest_commands_fixed_and_bootstrap_separately_hash_bound(self):
         with tempfile.TemporaryDirectory() as td:
             out=Path(td);prefix=out/'owned-prefix'
@@ -64,24 +80,68 @@ for line in sys.stdin:
         with tempfile.TemporaryDirectory() as td:
             out=Path(td);adapter=self.adapter(out);report={}
             with tool.measured_adapter(adapter,report,out/'stderr.log'):
+                report['reset_entry']=time.perf_counter()
                 adapter.reset(dict(robot_id='red_sentry',episode=1,binding_epoch=1))
+                report['reset_return']=time.perf_counter()
+                child=adapter.process
                 self.assertIs(adapter.clock,time.perf_counter)
                 o=tool.fixture_observation(time.perf_counter()+.08);a=adapter.act(o)
                 self.assertEqual(a['wall_deadline'],o['wall_deadline'])
-            self.assertEqual(report['exchanges'][0]['original_timeout_s'],2.)
+            reset=report['exchanges'][0]
+            self.assertGreater(reset['original_timeout_s'],0.)
+            self.assertLessEqual(reset['original_timeout_s'],2.)
+            self.assertLess(report['reset_return']-report['reset_entry'],2.)
+            # Independent entrance clock includes process ownership/startup;
+            # exchange has only what remains of the original total budget.
+            self.assertAlmostEqual(reset['begin']+reset['original_timeout_s'],
+                report['reset_entry']+2.,delta=.02)
             self.assertTrue(report['exchanges'][0]['accepted']);self.assertTrue(report['exchanges'][1]['accepted'])
             self.assertFalse(report['adapter_io_thread_alive']);self.assertTrue(all(c['reaped'] and c['pipes_closed'] for c in report['owned_children']))
+            self.assert_actual_owned_cleanup(adapter,child,report)
+            print('STARTUP_RESET_TIMING '+json.dumps(report,sort_keys=True))
 
     def test_original_two_second_timeout_is_not_extended_and_child_thread_clean(self):
         with tempfile.TemporaryDirectory() as td:
             out=Path(td);adapter=self.adapter(out,delay=2.2);report={}
-            with tool.measured_adapter(adapter,report,out/'stderr.log'):
-                with self.assertRaises(Exception):adapter.reset(dict(robot_id='red_sentry',episode=1,binding_epoch=1))
+            real_open=adapter._open_owned_process;real_close=adapter.close;owned=[]
+            def delayed_owned_start():
+                report['owned_start_entry']=time.perf_counter()
+                # Real resource preparation latency, not an injected clock or
+                # fake process. Then launch the actual 2.2s stdlib child.
+                time.sleep(.3)
+                real_open()
+                owned.append(adapter.process)
+                report['owned_start_return']=time.perf_counter()
+            def measured_close(*args,**kwargs):
+                report.setdefault('first_cleanup_entry',time.perf_counter())
+                return real_close(*args,**kwargs)
+            with patch.object(adapter,'_open_owned_process',delayed_owned_start),patch.object(adapter,'close',measured_close):
+                with tool.measured_adapter(adapter,report,out/'stderr.log'):
+                    report['reset_entry']=time.perf_counter()
+                    try:
+                        with self.assertRaises(Exception):adapter.reset(dict(robot_id='red_sentry',episode=1,binding_epoch=1))
+                    finally:report['reset_failure_return']=time.perf_counter()
             reset=report['exchanges'][0]
-            self.assertEqual(reset['original_timeout_s'],2.);self.assertFalse(reset['accepted'])
+            self.assertGreater(reset['original_timeout_s'],0.)
+            self.assertLessEqual(reset['original_timeout_s'],1.7)
+            self.assertFalse(reset['accepted'])
+            self.assertIn(reset['error_type'],('Empty','TimeoutError'))
+            self.assertGreaterEqual(report['owned_start_return']-report['owned_start_entry'],.3)
+            self.assertAlmostEqual(reset['begin']+reset['original_timeout_s'],
+                report['reset_entry']+2.,delta=.02)
+            # Timeout must happen at the aggregate 2s boundary, rather than
+            # granting another 2s after the deliberately slow owned startup.
+            control_elapsed=report['first_cleanup_entry']-report['reset_entry']
+            self.assertGreaterEqual(control_elapsed,2.-.02)
+            self.assertLess(control_elapsed,2.15)
             # elapsed includes the adapter's owned-process cleanup on rejection.
-            self.assertGreaterEqual(reset['elapsed_s'],2.);self.assertLess(reset['elapsed_s'],4.)
+            self.assertGreaterEqual(reset['elapsed_s'],reset['original_timeout_s'])
+            self.assertLess(report['reset_failure_return']-report['reset_entry'],3.7)
+            self.assertLess(report['reset_failure_return']-report['first_cleanup_entry'],1.7)
             self.assertFalse(report['adapter_io_thread_alive']);self.assertTrue(all(c['reaped'] and c['pipes_closed'] for c in report['owned_children']))
+            self.assertEqual(len(owned),1)
+            self.assert_actual_owned_cleanup(adapter,owned[0],report)
+            print('STARTUP_RESET_TIMING '+json.dumps(report,sort_keys=True))
 
 
 if __name__=='__main__':unittest.main()

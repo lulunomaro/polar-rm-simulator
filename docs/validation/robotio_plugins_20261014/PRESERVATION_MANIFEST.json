@@ -1,0 +1,2959 @@
+{
+  "schema": "polar.evidence.literal-preservation.v1",
+  "parent_commit": "d4a41b010de700e65768650a273c447e67940315",
+  "qualification": "protocol fixtures, actual DDS and low-rate MuJoCo consumption; not team algorithm, aim/match or milestone acceptance",
+  "records": [
+    {
+      "original_path": "artifacts/aim-command-mapping-focused-20261014-01/PROOF.json",
+      "original_bytes": 1105,
+      "original_sha256": "a18cb3c816ce2f18831885e84eb09076710570261b2fbd5d0e8f15a5b127e8a2",
+      "stored_path": "records/artifacts/aim-command-mapping-focused-20261014-01/PROOF.json",
+      "stored_bytes": 1105,
+      "stored_sha256": "a18cb3c816ce2f18831885e84eb09076710570261b2fbd5d0e8f15a5b127e8a2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-command-mapping-focused-20261014-01/pytest.log",
+      "original_bytes": 101,
+      "original_sha256": "3242c3aa25ee15010c63071a72d69c2f1ae366db060bd6886976182ea20f46aa",
+      "stored_path": "records/artifacts/aim-command-mapping-focused-20261014-01/pytest.log",
+      "stored_bytes": 101,
+      "stored_sha256": "3242c3aa25ee15010c63071a72d69c2f1ae366db060bd6886976182ea20f46aa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-command-mapping-focused-20261014-01/pytest.xml",
+      "original_bytes": 8109,
+      "original_sha256": "8da07ce72d20ffeb79241d44939431894a7b30afc8355c12df24a69e95a18af6",
+      "stored_path": "records/artifacts/aim-command-mapping-focused-20261014-01/pytest.xml.gz",
+      "stored_bytes": 1181,
+      "stored_sha256": "a2aff2d0a9e11e7632a97280289c5e15ba1e391999f0e905026fb9a68193a1ac",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-04/COMMAND.json",
+      "original_bytes": 43801,
+      "original_sha256": "dd08d8b12fd364545618950ab0779a05b8ebc73222c342a4ab3bb325e1526122",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-04/COMMAND.json.gz",
+      "stored_bytes": 19147,
+      "stored_sha256": "a09e49d001a2096293df21e0097b22916568225e8ea57338d7fd984bb13d8143",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-04/driver.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-04/driver.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-04/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "5d70acf251148fc3cb6bf9c414335ff39bd047bd965aaf45de10d3dc60471ce6",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-04/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "5d70acf251148fc3cb6bf9c414335ff39bd047bd965aaf45de10d3dc60471ce6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-04/RESULT.json",
+      "original_bytes": 86516,
+      "original_sha256": "6a56f38ed03cfdc5f6731b903946d77cd1bade278031a7c8a3809dfac3966715",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-04/RESULT.json.gz",
+      "stored_bytes": 37172,
+      "stored_sha256": "140e7300863124b88674717023b2bb3a47922fa3bb0a629d8d06e390f162cd61",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-04/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-04/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-04/stdout.log",
+      "original_bytes": 96,
+      "original_sha256": "4c91d5966a76b679138929016f2743e9cb0dae4a0332a311617f69ea0a8d2673",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-04/stdout.log",
+      "stored_bytes": 96,
+      "stored_sha256": "4c91d5966a76b679138929016f2743e9cb0dae4a0332a311617f69ea0a8d2673",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-05/COMMAND.json",
+      "original_bytes": 43801,
+      "original_sha256": "ac36ed577aece131d51f6fe7ad1f99a2645f546a2d58f5937b6f41d2c856c8bf",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-05/COMMAND.json.gz",
+      "stored_bytes": 19143,
+      "stored_sha256": "a4b457455421804816375ebb2ee1735ca4461b49c7b9ce98c63bc5489dc05633",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-05/driver.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-05/driver.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-05/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "efb2106abb9a91d4489d457757f57d8a17f58521f921d0fab7b0b255a220003d",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-05/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "efb2106abb9a91d4489d457757f57d8a17f58521f921d0fab7b0b255a220003d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-05/RESULT.json",
+      "original_bytes": 86516,
+      "original_sha256": "dea97ab4fc77999cb7485a2869e12773a0f5b9a74b46dd1bb935d5a5a66e72c2",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-05/RESULT.json.gz",
+      "stored_bytes": 37168,
+      "stored_sha256": "1fc8986931a83b79ae2da6e75e7e53031be4def18047808eadf7ea60f650f05f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-05/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-05/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-05/stdout.log",
+      "original_bytes": 96,
+      "original_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-05/stdout.log",
+      "stored_bytes": 96,
+      "stored_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/decision-plugin-focused-20261014-01.xml",
+      "original_bytes": 5292,
+      "original_sha256": "8b34af298e9049a32f9a24f73e6e81c645573d1128910a77c4af186c729de195",
+      "stored_path": "records/artifacts/decision-plugin-focused-20261014-01.xml.gz",
+      "stored_bytes": 895,
+      "stored_sha256": "29e1d52a1e97d87392ba7e326095bf7c0a764b6d3c138be6d3313efedc4d4223",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/decision-plugin-focused-20261014-02.xml",
+      "original_bytes": 5424,
+      "original_sha256": "310a8fa2cce8a081f2d1467c9217424d89cf5a311f4f801099c4bc7536df8463",
+      "stored_path": "records/artifacts/decision-plugin-focused-20261014-02.xml.gz",
+      "stored_bytes": 916,
+      "stored_sha256": "3dcc263e53ac45800892bd7992af2ddbbf5cc3c77d138cdfb4b1f9ff8935f553",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/decision-plugin-focused-20261014-03/pytest.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/decision-plugin-focused-20261014-03/pytest.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/decision-plugin-focused-20261014-03/pytest.stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "fa0a837f1e2ccaefb0c3127cba8a4be0c29e0a9aff7b864d2f1cb61a0f05c1ae",
+      "stored_path": "records/artifacts/decision-plugin-focused-20261014-03/pytest.stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "fa0a837f1e2ccaefb0c3127cba8a4be0c29e0a9aff7b864d2f1cb61a0f05c1ae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/decision-plugin-focused-20261014-03/pytest.xml",
+      "original_bytes": 5561,
+      "original_sha256": "0a048b8e62e452aca4214e8570c2d3405bb62e1c41999c7a476e012a47bc085c",
+      "stored_path": "records/artifacts/decision-plugin-focused-20261014-03/pytest.xml.gz",
+      "stored_bytes": 947,
+      "stored_sha256": "1a8d08e492ea44487055de3a5c33cdb072a062a3bac87a7370478bd01b9595bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/decision-plugin-focused-20261014-03/RESULT.json",
+      "original_bytes": 2909,
+      "original_sha256": "5381bf83375eb1f55bb2b9f45e874ccc3b4033b1aee040241841ffeb98d29c70",
+      "stored_path": "records/artifacts/decision-plugin-focused-20261014-03/RESULT.json",
+      "stored_bytes": 2909,
+      "stored_sha256": "5381bf83375eb1f55bb2b9f45e874ccc3b4033b1aee040241841ffeb98d29c70",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/COMMAND.json",
+      "original_bytes": 529,
+      "original_sha256": "60ef1ee4a254759d51db667858295cff1f0af2f5b0b421af99b82991112b1dac",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/COMMAND.json",
+      "stored_bytes": 529,
+      "stored_sha256": "60ef1ee4a254759d51db667858295cff1f0af2f5b0b421af99b82991112b1dac",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/driver.py",
+      "original_bytes": 1610,
+      "original_sha256": "d3266d81ab82e6df76b49d9186e1562789257f2bd88453b4e5eb4dd4782b8c73",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/driver.py",
+      "stored_bytes": 1610,
+      "stored_sha256": "d3266d81ab82e6df76b49d9186e1562789257f2bd88453b4e5eb4dd4782b8c73",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/PROCESS_RESULT.json",
+      "original_bytes": 113,
+      "original_sha256": "8a29bdbe5d6d3976fc1ad072d14d8cba2e997b7d6381a725f839c2a280963c3e",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/PROCESS_RESULT.json",
+      "stored_bytes": 113,
+      "stored_sha256": "8a29bdbe5d6d3976fc1ad072d14d8cba2e997b7d6381a725f839c2a280963c3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/pytest.xml",
+      "original_bytes": 3949,
+      "original_sha256": "b43318f926ff2e32ac9cee2c50b8d31bcb82d306a6066d5a71c3fdf529a471fd",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/pytest.xml",
+      "stored_bytes": 3949,
+      "stored_sha256": "b43318f926ff2e32ac9cee2c50b8d31bcb82d306a6066d5a71c3fdf529a471fd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/source/examples/navigation_plugins.json",
+      "original_bytes": 938,
+      "original_sha256": "f97bd17d8dddfa2d60d71e472a038415a11fdd4fa91fec901af6be4b2178b40b",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/source/examples/navigation_plugins.json",
+      "stored_bytes": 938,
+      "stored_sha256": "f97bd17d8dddfa2d60d71e472a038415a11fdd4fa91fec901af6be4b2178b40b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 10069,
+      "original_sha256": "cff88823986760996808a73db31d893c84d9d35af0d9c223e3e3e290ad3d4be1",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 2870,
+      "stored_sha256": "595d254ef20b9719fad4667fde4d22b55701431f0dcd7e63805634c173fe94db",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/source/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5335,
+      "original_sha256": "714d0f72685aa406080fb2ff06f71014ddfbb9280f2661806da32c8967bfac5b",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1677,
+      "stored_sha256": "55bdbf5307800c9f808bd935d995e56d1a76888455d754a203fad6fb7842a96d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/source/tests/test_navigation_plugin.py",
+      "original_bytes": 13119,
+      "original_sha256": "82116b250dbc2c2d78cc684eb6986e92711aa1b0a55ac431100b4b4551bdbc4c",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/source/tests/test_navigation_plugin.py.gz",
+      "stored_bytes": 4058,
+      "stored_sha256": "0e7758b7a9458d9e58a49eac047aaf7c46017850325498d4797bc2ffd6936d38",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/SOURCE_MANIFEST.json",
+      "original_bytes": 730,
+      "original_sha256": "718583883b349d2ee7be602d9eeff276022c360a859de96c02f5cfd76299431c",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/SOURCE_MANIFEST.json",
+      "stored_bytes": 730,
+      "stored_sha256": "718583883b349d2ee7be602d9eeff276022c360a859de96c02f5cfd76299431c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/navigation-plugin-focused-20261014-01/stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "17cc2abcb603fabc625b14200d90c5cb231acd5f9f9e12e51dc39d4c402841ab",
+      "stored_path": "records/artifacts/navigation-plugin-focused-20261014-01/stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "17cc2abcb603fabc625b14200d90c5cb231acd5f9f9e12e51dc39d4c402841ab",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/platform-robotio-cli-focused-20261014-02/pytest.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/platform-robotio-cli-focused-20261014-02/pytest.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/platform-robotio-cli-focused-20261014-02/pytest.stdout.log",
+      "original_bytes": 111,
+      "original_sha256": "0ffd7c734d920222c88b2cc1fa9822b7fbf25fea3581663f52f4af0fc32eb4eb",
+      "stored_path": "records/artifacts/platform-robotio-cli-focused-20261014-02/pytest.stdout.log",
+      "stored_bytes": 111,
+      "stored_sha256": "0ffd7c734d920222c88b2cc1fa9822b7fbf25fea3581663f52f4af0fc32eb4eb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/platform-robotio-cli-focused-20261014-02/pytest.xml",
+      "original_bytes": 3252,
+      "original_sha256": "bb522f05e60f829d535adc058127396d32539827465c8b83980eee1af4fa908a",
+      "stored_path": "records/artifacts/platform-robotio-cli-focused-20261014-02/pytest.xml",
+      "stored_bytes": 3252,
+      "stored_sha256": "bb522f05e60f829d535adc058127396d32539827465c8b83980eee1af4fa908a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/platform-robotio-cli-focused-20261014-02/RESULT.json",
+      "original_bytes": 1562,
+      "original_sha256": "347dbb628552eaa6857d9a389d39739aa1f99ef1927510592754a018063a6bc3",
+      "stored_path": "records/artifacts/platform-robotio-cli-focused-20261014-02/RESULT.json",
+      "stored_bytes": 1562,
+      "stored_sha256": "347dbb628552eaa6857d9a389d39739aa1f99ef1927510592754a018063a6bc3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/acceptance_preset.log",
+      "original_bytes": 1166,
+      "original_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/acceptance_preset.log",
+      "stored_bytes": 1166,
+      "stored_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/interface_static.log",
+      "original_bytes": 23958,
+      "original_sha256": "eae5ff341d5937812935d41afaccfdd427c1b27c6dece9ef472fef649e911f9d",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/interface_static.log.gz",
+      "stored_bytes": 3866,
+      "stored_sha256": "0d357ad170ac85734517ce30a60b5ff818ce76e1224b99ca66ade7afc8012dbc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/manifest.json",
+      "original_bytes": 1246143,
+      "original_sha256": "7457daefd81cd9da225e3cd7c61e7d60b9b03aab3ae28fb65a3902a5e25118e2",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/manifest.json.gz",
+      "stored_bytes": 354308,
+      "stored_sha256": "13c1b55c53e06d55497075283a6fafb5ea2928f0f131c49ca5511097aaef7e31",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/preset.json",
+      "original_bytes": 1166,
+      "original_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/preset.json",
+      "stored_bytes": 1166,
+      "stored_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/pytest.log",
+      "original_bytes": 126615,
+      "original_sha256": "59772c95ba685eeb809c3d6cdbd9700fc90cb5e449f1471521f49c80db4e6024",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/pytest.log.gz",
+      "stored_bytes": 5902,
+      "stored_sha256": "21a8da4cd6c67ec2341024297f96b9eb0ed53db3d3676c3aca6f0d04da307903",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/pytest.xml",
+      "original_bytes": 431355,
+      "original_sha256": "eaf8d5f722752be672fe4a066f44b4e44ce505170d0cd28dbd13ab92189d248e",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/pytest.xml.gz",
+      "stored_bytes": 51374,
+      "stored_sha256": "65eb41f357e4a8dc3a73671dbf7b8d9d716504c59429290b8722b0a58611bcce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-04/source_provenance.log",
+      "original_bytes": 1627,
+      "original_sha256": "cfe515ae94dd59ffeb0b41a89f0b68c54a2e44e5e7287ddafb9519e233911eed",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-04/source_provenance.log",
+      "stored_bytes": 1627,
+      "stored_sha256": "cfe515ae94dd59ffeb0b41a89f0b68c54a2e44e5e7287ddafb9519e233911eed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/acceptance_preset.log",
+      "original_bytes": 1166,
+      "original_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/acceptance_preset.log",
+      "stored_bytes": 1166,
+      "stored_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/interface_static.log",
+      "original_bytes": 23958,
+      "original_sha256": "35de30a92f04dedbd3f331e74d2b162f1f48e2b9310855c585db6a9df4a78cd4",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/interface_static.log.gz",
+      "stored_bytes": 3867,
+      "stored_sha256": "64d9733fac4e6aec0c95fead7744557abfbb6448ba8e4584fbb1e9c26d2ebe66",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/manifest.json",
+      "original_bytes": 1246217,
+      "original_sha256": "498210f5d78f6894ce569ecfc0e3651658a6ba62b304efd36e1972fa296ba126",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/manifest.json.gz",
+      "stored_bytes": 354339,
+      "stored_sha256": "0a6dc8eafb97e702d9c2cc8bb40a6bcc06cb1d791c48ddc73243b6f0420ecc60",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/preset.json",
+      "original_bytes": 1166,
+      "original_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/preset.json",
+      "stored_bytes": 1166,
+      "stored_sha256": "b1104b3116144b0a0d12229e9628d1004af61a18e4473a306a587df8ce77cced",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/pytest.log",
+      "original_bytes": 4557,
+      "original_sha256": "43c2f3cb704c193d7c1e6df0a340e13960bff5c6cbbd45fc89d2de37df9aa44c",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/pytest.log.gz",
+      "stored_bytes": 619,
+      "stored_sha256": "98b0fee0a6a95cb6fff8a88e916f5fb1a7ad3159d2d7d3862053a713f53c2001",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/pytest.xml",
+      "original_bytes": 311601,
+      "original_sha256": "38f57bfee9126d949dd7f20d29529ce0ec67213d28c0c6aa6209cf6d99d6cc29",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/pytest.xml.gz",
+      "stored_bytes": 46156,
+      "stored_sha256": "34f266e01539bb13637dd278928f9d6c852a70b748efc24196295bf287cbd65e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-05/source_provenance.log",
+      "original_bytes": 1627,
+      "original_sha256": "cfe515ae94dd59ffeb0b41a89f0b68c54a2e44e5e7287ddafb9519e233911eed",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-05/source_provenance.log",
+      "stored_bytes": 1627,
+      "stored_sha256": "cfe515ae94dd59ffeb0b41a89f0b68c54a2e44e5e7287ddafb9519e233911eed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-01.xml",
+      "original_bytes": 18345,
+      "original_sha256": "ff33c3b40e1f5f6bd34e506fc4bfdc258c4380059cd0cacd47f8566cdc51c660",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-01.xml.gz",
+      "stored_bytes": 2028,
+      "stored_sha256": "c937915f808e4015c7c9266e7f38e136cdb7981cf8711252b6e51dd97f6eedbb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-02/pytest.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-02/pytest.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-02/pytest.stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "1c5f56643c648b1de9bbd4389a8db1a73401e87a9af0331479522c2cd1b8132f",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-02/pytest.stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "1c5f56643c648b1de9bbd4389a8db1a73401e87a9af0331479522c2cd1b8132f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-02/pytest.xml",
+      "original_bytes": 5194,
+      "original_sha256": "f896d8db8575618ccb3d8b9ea2492efbd394897c22a8fd899d76e1590d911710",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-02/pytest.xml.gz",
+      "stored_bytes": 1012,
+      "stored_sha256": "2fd24e487af388ab60fae44596356b68088500bc23caafb1b68c6a4673c30d47",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-02/RESULT.json",
+      "original_bytes": 4594,
+      "original_sha256": "40f4ba4fd32aec940e21ccdf2c91a19ea61bc376fdf4c452a42b4bc98d045185",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-02/RESULT.json.gz",
+      "stored_bytes": 1296,
+      "stored_sha256": "4e0f77efe0b21dc49233db46253925154e282817495fca8f0bffd697d266b8ae",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-03/pytest.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-03/pytest.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-03/pytest.stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "4dfbb98e0c36137542f2cfb95541cca855676a9343861aedc66650d83dbe5052",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-03/pytest.stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "4dfbb98e0c36137542f2cfb95541cca855676a9343861aedc66650d83dbe5052",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-03/pytest.xml",
+      "original_bytes": 5332,
+      "original_sha256": "44a966278884e47a306d0c5df3fe4c65e0e4675370c2f0c16d4d78507d886a5d",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-03/pytest.xml.gz",
+      "stored_bytes": 1050,
+      "stored_sha256": "abd63916f79f7c4a4d52c94cf140deba985dcc1eaf3953f763e379d4d2de5591",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-03/RESULT.json",
+      "original_bytes": 4594,
+      "original_sha256": "192138a5c70faef31829728d88b1a9205e24621f35d52059b789dde30500f132",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-03/RESULT.json.gz",
+      "stored_bytes": 1297,
+      "stored_sha256": "1c6bb3cb998d9fbb7e19c3faa5a08fa48cad45837d42b5183f3cedf510d62315",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-04/pytest.stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-04/pytest.stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-04/pytest.stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "ce1359b0583bb62619263ef3225c4e3ccd94fd33b24715244e6a8512ce83d9e3",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-04/pytest.stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "ce1359b0583bb62619263ef3225c4e3ccd94fd33b24715244e6a8512ce83d9e3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-04/pytest.xml",
+      "original_bytes": 5332,
+      "original_sha256": "8142c5ef00a509dbe2a65fef236a49391e1c9fda95d1e60f8f0c674ea96387c4",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-04/pytest.xml.gz",
+      "stored_bytes": 1056,
+      "stored_sha256": "18692ce7fb71dfd133014030e7011664bf01b0fdd6d940c9bd4d9527723985ce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-composition-focused-20261014-04/RESULT.json",
+      "original_bytes": 6386,
+      "original_sha256": "c0d82f40fcb6fa3dc90579e034a55122586ca3e837d48d0990e8ee87dd5de7fb",
+      "stored_path": "records/artifacts/robotio-composition-focused-20261014-04/RESULT.json.gz",
+      "stored_bytes": 1698,
+      "stored_sha256": "5f71bf28141572a913db588c991af62774327b8896c14c55dea5c3ff63d32cb2",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-02/COMMAND.json",
+      "original_bytes": 519,
+      "original_sha256": "7388c90c9612010c72144d6e7d00e53694f6f2406b7626110069db6bbd9cd3dd",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-02/COMMAND.json",
+      "stored_bytes": 519,
+      "stored_sha256": "7388c90c9612010c72144d6e7d00e53694f6f2406b7626110069db6bbd9cd3dd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-02/driver.py",
+      "original_bytes": 1728,
+      "original_sha256": "1892e6cd5acebb952dd9e4c92810cca59a3e938fad45261b7f1c8bfd357807e4",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-02/driver.py",
+      "stored_bytes": 1728,
+      "stored_sha256": "1892e6cd5acebb952dd9e4c92810cca59a3e938fad45261b7f1c8bfd357807e4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-02/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "2348ad81ea066b722a54f5a533fbf48ce4b6bb7c204799be3d1578e53ad83603",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-02/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "2348ad81ea066b722a54f5a533fbf48ce4b6bb7c204799be3d1578e53ad83603",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-02/RESULT.json",
+      "original_bytes": 73,
+      "original_sha256": "47904cae7fa799704639b471b4c171d0a2cb02c3c25c71b22b40f3ff1dc81e85",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-02/RESULT.json",
+      "stored_bytes": 73,
+      "stored_sha256": "47904cae7fa799704639b471b4c171d0a2cb02c3c25c71b22b40f3ff1dc81e85",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-02/stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-02/stdout.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-03/COMMAND.json",
+      "original_bytes": 607,
+      "original_sha256": "3d4d23db30058b6314977e99fa467788a5d73dfa3f9f3542e7ee854f7db1f681",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-03/COMMAND.json",
+      "stored_bytes": 607,
+      "stored_sha256": "3d4d23db30058b6314977e99fa467788a5d73dfa3f9f3542e7ee854f7db1f681",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-03/driver.py",
+      "original_bytes": 1350,
+      "original_sha256": "e73d4e3fd95517868ddca5adf782fbdacf0201ff74b231b194816cce8d0cd935",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-03/driver.py",
+      "stored_bytes": 1350,
+      "stored_sha256": "e73d4e3fd95517868ddca5adf782fbdacf0201ff74b231b194816cce8d0cd935",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-03/PID.json",
+      "original_bytes": 37,
+      "original_sha256": "c0a1dce4d12490616331246f3722863eddf4f69eaa415e6d70e207449e716cf2",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-03/PID.json",
+      "stored_bytes": 37,
+      "stored_sha256": "c0a1dce4d12490616331246f3722863eddf4f69eaa415e6d70e207449e716cf2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-03/RESULT.json",
+      "original_bytes": 79,
+      "original_sha256": "cdfa0ec5a60be9083806d6187dba2185799f4de3b6ec9e78013476319efe86db",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-03/RESULT.json",
+      "stored_bytes": 79,
+      "stored_sha256": "cdfa0ec5a60be9083806d6187dba2185799f4de3b6ec9e78013476319efe86db",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-03/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-03/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-dds-actual-driver-20261014-03/stdout.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-dds-actual-driver-20261014-03/stdout.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/AUDIT.json",
+      "original_bytes": 626,
+      "original_sha256": "9695732becb982fa9331d8cf444180a5b16eea829b65b8e7896a8c9e43cfdfad",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/AUDIT.json",
+      "stored_bytes": 626,
+      "stored_sha256": "9695732becb982fa9331d8cf444180a5b16eea829b65b8e7896a8c9e43cfdfad",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/CLEANUP.json",
+      "original_bytes": 2459,
+      "original_sha256": "6d5d570c23cbc935a2d174a43ce6685b5b2597b82d0d694d06cf309db29eb475",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/CLEANUP.json",
+      "stored_bytes": 2459,
+      "stored_sha256": "6d5d570c23cbc935a2d174a43ce6685b5b2597b82d0d694d06cf309db29eb475",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/COMMAND.json",
+      "original_bytes": 438,
+      "original_sha256": "385bce8f5ef8d96a9f85041d88650561c2441705f7551c4296cf9234dc6cde1c",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/COMMAND.json",
+      "stored_bytes": 438,
+      "stored_sha256": "385bce8f5ef8d96a9f85041d88650561c2441705f7551c4296cf9234dc6cde1c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/EVAL.json",
+      "original_bytes": 508,
+      "original_sha256": "8d97555c729e222985db703f7f9477ba961efa54e5cdb84373dbdf0a57d39dd6",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/EVAL.json",
+      "stored_bytes": 508,
+      "stored_sha256": "8d97555c729e222985db703f7f9477ba961efa54e5cdb84373dbdf0a57d39dd6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/PROTOCOL_TRACE.jsonl.gz",
+      "original_bytes": 418600,
+      "original_sha256": "a08967ac05da6700d3931642f76127572c4081e67f2bab939f8f8bc7c54b49ec",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/PROTOCOL_TRACE.jsonl.gz",
+      "stored_bytes": 418600,
+      "stored_sha256": "a08967ac05da6700d3931642f76127572c4081e67f2bab939f8f8bc7c54b49ec",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/RESULT.json",
+      "original_bytes": 2692,
+      "original_sha256": "3d435f5fa8c2bb76a76b29e8acba5e76c767eb175a37b9e9cc40cdc3c5ff02a9",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/RESULT.json",
+      "stored_bytes": 2692,
+      "stored_sha256": "3d435f5fa8c2bb76a76b29e8acba5e76c767eb175a37b9e9cc40cdc3c5ff02a9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/examples/robotio_protocol_decision.json",
+      "original_bytes": 1703,
+      "original_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/examples/robotio_protocol_decision.json",
+      "stored_bytes": 1703,
+      "stored_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/examples/robotio_protocol_navigation.json",
+      "original_bytes": 1961,
+      "original_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/examples/robotio_protocol_navigation.json",
+      "stored_bytes": 1961,
+      "stored_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/examples/robotio_protocol_plugins.json",
+      "original_bytes": 847,
+      "original_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/examples/robotio_protocol_plugins.json",
+      "stored_bytes": 847,
+      "stored_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 12074,
+      "original_sha256": "2d53cabf4dcc38f44f80b8244f90f8dbc376e44cfd5f3f4ddaeb2af386b2c46f",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3480,
+      "stored_sha256": "a8302b25e988300a1e69696ad20f74ce44536c08a43de374b0ff962de4cd1f1d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/robotio_plugin.py",
+      "original_bytes": 13238,
+      "original_sha256": "54dd07f344a920313c3730d73d0eaf0c2832aab9546b9b16e59a4ba5120f026b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/robotio_plugin.py.gz",
+      "stored_bytes": 3702,
+      "stored_sha256": "b79b2eb7ae91d1d9f76d98db3ac9302f0d94a3751b537342d26a850f1f66fefc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/integrations/decision_jsonl_peer.py",
+      "original_bytes": 5049,
+      "original_sha256": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "stored_bytes": 1525,
+      "stored_sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5365,
+      "original_sha256": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1683,
+      "stored_sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/client.py",
+      "original_bytes": 16241,
+      "original_sha256": "37ba09fad0e777da3701d722e1ecb989ac58e63f87c8e4a6cf3c438b096a94bb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 3973,
+      "stored_sha256": "231589c5faf886b41258b8e1443bbb1930a4c9aae13fedae876d7af2ebe2498b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 11946,
+      "original_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3554,
+      "stored_sha256": "d5ddb96cf1134fe5dab0e55698b8b9d8a021934d0f7c57bea4f8cee013e25359",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/control.py",
+      "original_bytes": 23387,
+      "original_sha256": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 5324,
+      "stored_sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 60773,
+      "original_sha256": "79a94f185ad0273e220595f15331a1f5ac00c27388c506a51a8fd0fab3e23067",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14021,
+      "stored_sha256": "c0888fd65eeddd57d22bd78b90bbf3ea59f86c4361de9b05b0d40e3e55af8f2d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11592,
+      "original_sha256": "ed94583efc249557a11ef7fd588e519acc9234bc03d549cbdb39f142acb6e4df",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3312,
+      "stored_sha256": "e5506254c317d85f158852a3b74992f4a4107348fc29cc1d3407705427b5afcb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/tests/fixtures/decision_heat_v2.py",
+      "original_bytes": 1140,
+      "original_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/tests/fixtures/decision_heat_v2.py",
+      "stored_bytes": 1140,
+      "stored_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/tests/fixtures/decision_supply_v1.py",
+      "original_bytes": 1160,
+      "original_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/tests/fixtures/decision_supply_v1.py",
+      "stored_bytes": 1160,
+      "stored_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/tests/fixtures/navigation_goal_fixture.py",
+      "original_bytes": 942,
+      "original_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/tests/fixtures/navigation_goal_fixture.py",
+      "stored_bytes": 942,
+      "stored_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/source/tools/qa_robotio_protocol_sil.py",
+      "original_bytes": 17357,
+      "original_sha256": "bc5e936325d3e1999b4f2fedcc7d8793ac39d7043cfeb205cba34493f422d287",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/source/tools/qa_robotio_protocol_sil.py.gz",
+      "stored_bytes": 5694,
+      "stored_sha256": "ee9516ab4eeef3730ab2e9cd2b854ed2b0a2331623ad62a3fd29b271ddaaa16c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-01/SOURCE_MANIFEST.json",
+      "original_bytes": 4924,
+      "original_sha256": "54ae64b8ef40b57bc2d406ca6d28ece91d64c5c3e3e52426dc91977a4508f2a3",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-01/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1669,
+      "stored_sha256": "02746936c2f8f4b33cdd5b67bd63b0f9eb195f326c458669c34ededb93f6cbb3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/AUDIT.json",
+      "original_bytes": 534,
+      "original_sha256": "b79baeca78fd717d48e0f5880786de6e30ce0928de76e8da33c07613ed3611c3",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/AUDIT.json",
+      "stored_bytes": 534,
+      "stored_sha256": "b79baeca78fd717d48e0f5880786de6e30ce0928de76e8da33c07613ed3611c3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/CLEANUP.json",
+      "original_bytes": 2458,
+      "original_sha256": "694bc2d1af03d20d74b956097beb0fcef11a758941aca0ecbaed044cece28d73",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/CLEANUP.json",
+      "stored_bytes": 2458,
+      "stored_sha256": "694bc2d1af03d20d74b956097beb0fcef11a758941aca0ecbaed044cece28d73",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/COMMAND.json",
+      "original_bytes": 438,
+      "original_sha256": "bfd0473874203eb26b2ea76ac3556de7cba29c89067318647d5ec45f04073420",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/COMMAND.json",
+      "stored_bytes": 438,
+      "stored_sha256": "bfd0473874203eb26b2ea76ac3556de7cba29c89067318647d5ec45f04073420",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/EVAL.json",
+      "original_bytes": 511,
+      "original_sha256": "9d5b4e52db21eb806a507c8d05b9fbc5d39b1430e74d30e9b25118509f973e9e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/EVAL.json",
+      "stored_bytes": 511,
+      "stored_sha256": "9d5b4e52db21eb806a507c8d05b9fbc5d39b1430e74d30e9b25118509f973e9e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/PROTOCOL_TRACE.jsonl.gz",
+      "original_bytes": 235942,
+      "original_sha256": "69a6062ccd088bfe2a36c9992df7f2e9a28a9fabe2b55897652f56f28a605b33",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/PROTOCOL_TRACE.jsonl.gz",
+      "stored_bytes": 235942,
+      "stored_sha256": "69a6062ccd088bfe2a36c9992df7f2e9a28a9fabe2b55897652f56f28a605b33",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/RESULT.json",
+      "original_bytes": 2506,
+      "original_sha256": "b1f1f9b9b1070bd74038b2bcecaa6b744c6b8fc0084438195917c50496608288",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/RESULT.json",
+      "stored_bytes": 2506,
+      "stored_sha256": "b1f1f9b9b1070bd74038b2bcecaa6b744c6b8fc0084438195917c50496608288",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/examples/robotio_protocol_decision.json",
+      "original_bytes": 1703,
+      "original_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/examples/robotio_protocol_decision.json",
+      "stored_bytes": 1703,
+      "stored_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/examples/robotio_protocol_navigation.json",
+      "original_bytes": 1961,
+      "original_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/examples/robotio_protocol_navigation.json",
+      "stored_bytes": 1961,
+      "stored_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/examples/robotio_protocol_plugins.json",
+      "original_bytes": 847,
+      "original_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/examples/robotio_protocol_plugins.json",
+      "stored_bytes": 847,
+      "stored_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 12074,
+      "original_sha256": "2d53cabf4dcc38f44f80b8244f90f8dbc376e44cfd5f3f4ddaeb2af386b2c46f",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3480,
+      "stored_sha256": "a8302b25e988300a1e69696ad20f74ce44536c08a43de374b0ff962de4cd1f1d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/robotio_plugin.py",
+      "original_bytes": 13238,
+      "original_sha256": "54dd07f344a920313c3730d73d0eaf0c2832aab9546b9b16e59a4ba5120f026b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/robotio_plugin.py.gz",
+      "stored_bytes": 3702,
+      "stored_sha256": "b79b2eb7ae91d1d9f76d98db3ac9302f0d94a3751b537342d26a850f1f66fefc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/integrations/decision_jsonl_peer.py",
+      "original_bytes": 5049,
+      "original_sha256": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "stored_bytes": 1525,
+      "stored_sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5365,
+      "original_sha256": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1683,
+      "stored_sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/client.py",
+      "original_bytes": 16241,
+      "original_sha256": "37ba09fad0e777da3701d722e1ecb989ac58e63f87c8e4a6cf3c438b096a94bb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 3973,
+      "stored_sha256": "231589c5faf886b41258b8e1443bbb1930a4c9aae13fedae876d7af2ebe2498b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 11946,
+      "original_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3554,
+      "stored_sha256": "d5ddb96cf1134fe5dab0e55698b8b9d8a021934d0f7c57bea4f8cee013e25359",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/control.py",
+      "original_bytes": 23387,
+      "original_sha256": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 5324,
+      "stored_sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 60773,
+      "original_sha256": "79a94f185ad0273e220595f15331a1f5ac00c27388c506a51a8fd0fab3e23067",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14021,
+      "stored_sha256": "c0888fd65eeddd57d22bd78b90bbf3ea59f86c4361de9b05b0d40e3e55af8f2d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11592,
+      "original_sha256": "ed94583efc249557a11ef7fd588e519acc9234bc03d549cbdb39f142acb6e4df",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3312,
+      "stored_sha256": "e5506254c317d85f158852a3b74992f4a4107348fc29cc1d3407705427b5afcb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/tests/fixtures/decision_heat_v2.py",
+      "original_bytes": 1140,
+      "original_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/tests/fixtures/decision_heat_v2.py",
+      "stored_bytes": 1140,
+      "stored_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/tests/fixtures/decision_supply_v1.py",
+      "original_bytes": 1160,
+      "original_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/tests/fixtures/decision_supply_v1.py",
+      "stored_bytes": 1160,
+      "stored_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/tests/fixtures/navigation_goal_fixture.py",
+      "original_bytes": 942,
+      "original_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/tests/fixtures/navigation_goal_fixture.py",
+      "stored_bytes": 942,
+      "stored_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/source/tools/qa_robotio_protocol_sil.py",
+      "original_bytes": 17592,
+      "original_sha256": "f59c468ebf7b6a3991e0780732abf9ecf31c1938ccaa5392f73c4bb0c429ca62",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/source/tools/qa_robotio_protocol_sil.py.gz",
+      "stored_bytes": 5813,
+      "stored_sha256": "a733b98e31536bce099dd4febcfc3c0ef5ab3ae7f740edb58066ab53099b46fa",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-02/SOURCE_MANIFEST.json",
+      "original_bytes": 4924,
+      "original_sha256": "344e36ecf6499404ccfd57abacf8e84b01c311e6d1418b27623306816fdaaf4b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-02/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1666,
+      "stored_sha256": "265a37d801b2988eeda736be2d978b8d0c02f72a54c68736ede1ca7909157ca9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/AUDIT.json",
+      "original_bytes": 623,
+      "original_sha256": "1a224411dff6929f6ea8f763653c0110bbeceb366d3960166c23c776209c684b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/AUDIT.json",
+      "stored_bytes": 623,
+      "stored_sha256": "1a224411dff6929f6ea8f763653c0110bbeceb366d3960166c23c776209c684b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/CLEANUP.json",
+      "original_bytes": 2457,
+      "original_sha256": "46cfa2197b552b9f7b1a51f4eb128fd7b4f03c5af52823ea63f6f1104e5f020a",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/CLEANUP.json",
+      "stored_bytes": 2457,
+      "stored_sha256": "46cfa2197b552b9f7b1a51f4eb128fd7b4f03c5af52823ea63f6f1104e5f020a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/COMMAND.json",
+      "original_bytes": 438,
+      "original_sha256": "b63ba0517155ff1bf5c1d064d1b6f6beabc081f83b4354f0ea0eadf8737ae245",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/COMMAND.json",
+      "stored_bytes": 438,
+      "stored_sha256": "b63ba0517155ff1bf5c1d064d1b6f6beabc081f83b4354f0ea0eadf8737ae245",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/EVAL.json",
+      "original_bytes": 510,
+      "original_sha256": "621d6dd111ed13a9f03bd639b239b0b0c379b58aad3be1a00c7a2d0795a0d59a",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/EVAL.json",
+      "stored_bytes": 510,
+      "stored_sha256": "621d6dd111ed13a9f03bd639b239b0b0c379b58aad3be1a00c7a2d0795a0d59a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/PREPARE.json",
+      "original_bytes": 1289,
+      "original_sha256": "befc8056655fbcfee847cadfec43176f9f1a3e9b6d2162d6e81f09015b51146c",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/PREPARE.json",
+      "stored_bytes": 1289,
+      "stored_sha256": "befc8056655fbcfee847cadfec43176f9f1a3e9b6d2162d6e81f09015b51146c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/PROTOCOL_TRACE.jsonl.gz",
+      "original_bytes": 374651,
+      "original_sha256": "ddbc9c8657a969c173b2f0e3b4f3385db2203636daaf434e8a1b9f7300e7b2e1",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/PROTOCOL_TRACE.jsonl.gz",
+      "stored_bytes": 374651,
+      "stored_sha256": "ddbc9c8657a969c173b2f0e3b4f3385db2203636daaf434e8a1b9f7300e7b2e1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/RESULT.json",
+      "original_bytes": 2689,
+      "original_sha256": "f2a1c6d90213d6f5ed15b5468e3a1fd05695a7d7519fb68673109ad2dd9b82ad",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/RESULT.json",
+      "stored_bytes": 2689,
+      "stored_sha256": "f2a1c6d90213d6f5ed15b5468e3a1fd05695a7d7519fb68673109ad2dd9b82ad",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/examples/robotio_protocol_decision.json",
+      "original_bytes": 1703,
+      "original_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/examples/robotio_protocol_decision.json",
+      "stored_bytes": 1703,
+      "stored_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/examples/robotio_protocol_navigation.json",
+      "original_bytes": 1961,
+      "original_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/examples/robotio_protocol_navigation.json",
+      "stored_bytes": 1961,
+      "stored_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/examples/robotio_protocol_plugins.json",
+      "original_bytes": 847,
+      "original_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/examples/robotio_protocol_plugins.json",
+      "stored_bytes": 847,
+      "stored_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 12074,
+      "original_sha256": "2d53cabf4dcc38f44f80b8244f90f8dbc376e44cfd5f3f4ddaeb2af386b2c46f",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3480,
+      "stored_sha256": "a8302b25e988300a1e69696ad20f74ce44536c08a43de374b0ff962de4cd1f1d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/robotio_plugin.py",
+      "original_bytes": 13238,
+      "original_sha256": "54dd07f344a920313c3730d73d0eaf0c2832aab9546b9b16e59a4ba5120f026b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/robotio_plugin.py.gz",
+      "stored_bytes": 3702,
+      "stored_sha256": "b79b2eb7ae91d1d9f76d98db3ac9302f0d94a3751b537342d26a850f1f66fefc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/integrations/decision_jsonl_peer.py",
+      "original_bytes": 5049,
+      "original_sha256": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "stored_bytes": 1525,
+      "stored_sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5365,
+      "original_sha256": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1683,
+      "stored_sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/client.py",
+      "original_bytes": 16241,
+      "original_sha256": "37ba09fad0e777da3701d722e1ecb989ac58e63f87c8e4a6cf3c438b096a94bb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 3973,
+      "stored_sha256": "231589c5faf886b41258b8e1443bbb1930a4c9aae13fedae876d7af2ebe2498b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 11946,
+      "original_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3554,
+      "stored_sha256": "d5ddb96cf1134fe5dab0e55698b8b9d8a021934d0f7c57bea4f8cee013e25359",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/control.py",
+      "original_bytes": 23387,
+      "original_sha256": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 5324,
+      "stored_sha256": "b571737f7c1dcd02d320b3d84a23a55254d43671892d82467e5f6a8067a33f78",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 60773,
+      "original_sha256": "79a94f185ad0273e220595f15331a1f5ac00c27388c506a51a8fd0fab3e23067",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14021,
+      "stored_sha256": "c0888fd65eeddd57d22bd78b90bbf3ea59f86c4361de9b05b0d40e3e55af8f2d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11592,
+      "original_sha256": "ed94583efc249557a11ef7fd588e519acc9234bc03d549cbdb39f142acb6e4df",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3312,
+      "stored_sha256": "e5506254c317d85f158852a3b74992f4a4107348fc29cc1d3407705427b5afcb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/tests/fixtures/decision_heat_v2.py",
+      "original_bytes": 1140,
+      "original_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/tests/fixtures/decision_heat_v2.py",
+      "stored_bytes": 1140,
+      "stored_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/tests/fixtures/decision_supply_v1.py",
+      "original_bytes": 1160,
+      "original_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/tests/fixtures/decision_supply_v1.py",
+      "stored_bytes": 1160,
+      "stored_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/tests/fixtures/navigation_goal_fixture.py",
+      "original_bytes": 942,
+      "original_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/tests/fixtures/navigation_goal_fixture.py",
+      "stored_bytes": 942,
+      "stored_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/source/tools/qa_robotio_protocol_sil.py",
+      "original_bytes": 23159,
+      "original_sha256": "f24282d73207d794c9ad450bc8fc83b7406da9b905c9c6a31544f31dd1331f15",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/source/tools/qa_robotio_protocol_sil.py.gz",
+      "stored_bytes": 7024,
+      "stored_sha256": "f216507e65a1f965cec489ba767fe83ae079cc895554260cda96da6da3f57920",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/SOURCE_MANIFEST.json",
+      "original_bytes": 4924,
+      "original_sha256": "b66d96b89377af1e2bf3c709b98017afeb40656be9e1c845745a2c1470733565",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 1666,
+      "stored_sha256": "abf1a211911530de5be8afc0e1be5791f47e07b0ceaf10f24d3e21eb3b561294",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-20261014-03/UNCLAIMED_CLEANUP.json",
+      "original_bytes": 66,
+      "original_sha256": "f2252b5d524d01005ddfcd73c8be5372efa2e8bdb7473dca1385c66116d09952",
+      "stored_path": "records/artifacts/robotio-protocol-sil-20261014-03/UNCLAIMED_CLEANUP.json",
+      "stored_bytes": 66,
+      "stored_sha256": "f2252b5d524d01005ddfcd73c8be5372efa2e8bdb7473dca1385c66116d09952",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-01/COMMAND.json",
+      "original_bytes": 3691,
+      "original_sha256": "5605686b627feb971c679e0e61a88b8f2c38a6029819b69120c9a8025ebf7e83",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-01/COMMAND.json",
+      "stored_bytes": 3691,
+      "stored_sha256": "5605686b627feb971c679e0e61a88b8f2c38a6029819b69120c9a8025ebf7e83",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-01/driver.py",
+      "original_bytes": 2129,
+      "original_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-01/driver.py",
+      "stored_bytes": 2129,
+      "stored_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-01/PID.json",
+      "original_bytes": 37,
+      "original_sha256": "d91c5681cc80f13ef2e404cf73d157886e144a099fbf59f2ae654f34b77eb18d",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-01/PID.json",
+      "stored_bytes": 37,
+      "stored_sha256": "d91c5681cc80f13ef2e404cf73d157886e144a099fbf59f2ae654f34b77eb18d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-01/RESULT.json",
+      "original_bytes": 6488,
+      "original_sha256": "2d40ebc8ff7e8affa98a280a8105aa5b9f851da958dc5e53fc2a7fbd939906e2",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-01/RESULT.json.gz",
+      "stored_bytes": 1606,
+      "stored_sha256": "7d41980216330dbf974d82dbdee62c6f9b6973af804e23453cec482de1c7b488",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-01/stdout.log",
+      "original_bytes": 160,
+      "original_sha256": "6cc30b3c37e3e98509383db04b821a984b5a2bcb4a73c3fc0a1164ce17d728db",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-01/stdout.log",
+      "stored_bytes": 160,
+      "stored_sha256": "6cc30b3c37e3e98509383db04b821a984b5a2bcb4a73c3fc0a1164ce17d728db",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-02/COMMAND.json",
+      "original_bytes": 3691,
+      "original_sha256": "276021b7d469a2640f44bff1bafb7bccbd0373354e626c2417bc71fd878e744a",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-02/COMMAND.json",
+      "stored_bytes": 3691,
+      "stored_sha256": "276021b7d469a2640f44bff1bafb7bccbd0373354e626c2417bc71fd878e744a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-02/driver.py",
+      "original_bytes": 2129,
+      "original_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-02/driver.py",
+      "stored_bytes": 2129,
+      "stored_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-02/PID.json",
+      "original_bytes": 37,
+      "original_sha256": "5ed3122cae7057a7b6183b45ae96a158e99bd878b6093f13f0199239580daaac",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-02/PID.json",
+      "stored_bytes": 37,
+      "stored_sha256": "5ed3122cae7057a7b6183b45ae96a158e99bd878b6093f13f0199239580daaac",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-02/RESULT.json",
+      "original_bytes": 6488,
+      "original_sha256": "06cbc637adee1539e0f42f3897a494d6baf2425304bab003ada22c4eee821dad",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-02/RESULT.json.gz",
+      "stored_bytes": 1609,
+      "stored_sha256": "13d9737e50de4cfd70242cd3b4450afb67f3c60c47b4819cbaf9b16f0a5060f2",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-02/stdout.log",
+      "original_bytes": 160,
+      "original_sha256": "9a5435d35313e7d5eb0516a56e8d3f9637ee8b194b0ff6c98aa590d6eb3e4737",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-02/stdout.log",
+      "stored_bytes": 160,
+      "stored_sha256": "9a5435d35313e7d5eb0516a56e8d3f9637ee8b194b0ff6c98aa590d6eb3e4737",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-03/COMMAND.json",
+      "original_bytes": 3691,
+      "original_sha256": "2055efc2be8394b29bb29a54ae0b29fdd16f1ff848172c0fae2a10be5ef87c1e",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-03/COMMAND.json",
+      "stored_bytes": 3691,
+      "stored_sha256": "2055efc2be8394b29bb29a54ae0b29fdd16f1ff848172c0fae2a10be5ef87c1e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-03/driver.py",
+      "original_bytes": 2129,
+      "original_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-03/driver.py",
+      "stored_bytes": 2129,
+      "stored_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-03/PID.json",
+      "original_bytes": 37,
+      "original_sha256": "5ea5ad08405b8d49ecd4c0dbeb4879d5612273ec503f7fd245b22730f4372773",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-03/PID.json",
+      "stored_bytes": 37,
+      "stored_sha256": "5ea5ad08405b8d49ecd4c0dbeb4879d5612273ec503f7fd245b22730f4372773",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-03/RESULT.json",
+      "original_bytes": 6488,
+      "original_sha256": "91321b855219fd730e6b070675ebbb408ec44afa6f6ff89108145ccdbd120d33",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-03/RESULT.json.gz",
+      "stored_bytes": 1608,
+      "stored_sha256": "6f147973b5a671123e403e0b48d2ff0669d1d12fdfd929da86994b3be9f72f9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-03/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-03/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-driver-20261014-03/stdout.log",
+      "original_bytes": 159,
+      "original_sha256": "1c67b3aebbb574fd671cbb95b4e156206855dbaf92be65af0e86fa9a3fe6abcb",
+      "stored_path": "records/artifacts/robotio-protocol-sil-driver-20261014-03/stdout.log",
+      "stored_bytes": 159,
+      "stored_sha256": "1c67b3aebbb574fd671cbb95b4e156206855dbaf92be65af0e86fa9a3fe6abcb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-static-20261014-01/STATIC_RESULT.json",
+      "original_bytes": 914,
+      "original_sha256": "e0a924700b845bb3e8cacb154bd2f819ea9135db29b598246e1d8a43ffc75ec3",
+      "stored_path": "records/artifacts/robotio-protocol-sil-static-20261014-01/STATIC_RESULT.json",
+      "stored_bytes": 914,
+      "stored_sha256": "e0a924700b845bb3e8cacb154bd2f819ea9135db29b598246e1d8a43ffc75ec3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-protocol-sil-static-20261014-03/STATIC_RESULT.json",
+      "original_bytes": 210,
+      "original_sha256": "c839fec2747ec7250ffc64e43436df83e3447d9a83ea49df36f0840b4ded2ec7",
+      "stored_path": "records/artifacts/robotio-protocol-sil-static-20261014-03/STATIC_RESULT.json",
+      "stored_bytes": 210,
+      "stored_sha256": "c839fec2747ec7250ffc64e43436df83e3447d9a83ea49df36f0840b4ded2ec7",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/CLEANUP_RESULT.json",
+      "original_bytes": 1347,
+      "original_sha256": "e22bc72192527cf057711a1f004c123347e7d92404fcefb1a70956bef4fe434c",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/CLEANUP_RESULT.json",
+      "stored_bytes": 1347,
+      "stored_sha256": "e22bc72192527cf057711a1f004c123347e7d92404fcefb1a70956bef4fe434c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/COMMAND.json",
+      "original_bytes": 7328,
+      "original_sha256": "0b6f465e5c11477c8441c926dc32b782e52879e7b79c064ef54f7aaa3f9d7e8e",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/COMMAND.json.gz",
+      "stored_bytes": 1266,
+      "stored_sha256": "446c6335feaac45118cc6663c5287d05b044a307e79b6ae686864be3611de129",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/ENVIRONMENT_COMPAT_FINAL.json",
+      "original_bytes": 1632,
+      "original_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/ENVIRONMENT_COMPAT_FINAL.json",
+      "stored_bytes": 1632,
+      "stored_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/local_manifest.json",
+      "original_bytes": 7021,
+      "original_sha256": "437feec937d1a81b40fba36e220f012909f45ca3441dbb1ac6f49285f73f123a",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/local_manifest.json.gz",
+      "stored_bytes": 1106,
+      "stored_sha256": "1fd6006b5125b63dc331a3302ea0d724bfae6bd818f3b78f0425249588cb5037",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/RESULT.json",
+      "original_bytes": 288,
+      "original_sha256": "f646be9bb68096090183970291c92e7400737c4851cc0aed0733e8e78f564905",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/RESULT.json",
+      "stored_bytes": 288,
+      "stored_sha256": "f646be9bb68096090183970291c92e7400737c4851cc0aed0733e8e78f564905",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 11209,
+      "original_sha256": "2fbb2f4f25d43d34f38acee2056ff857fdcc8f23fc060c0e5545130f3a35b775",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3189,
+      "stored_sha256": "1e7a39432bfb6d79c0c004eb087e253b5d7b5556cdc617ca10754e5bbd53b5ef",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/robotio_wsl.py",
+      "original_bytes": 8616,
+      "original_sha256": "3a6dabe461572c99ca405ed6bc8a3b89a19a413655de13178bfdfdc22d5ab41c",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/robotio_wsl.py.gz",
+      "stored_bytes": 2622,
+      "stored_sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/wsl_jsonl.py",
+      "original_bytes": 23664,
+      "original_sha256": "115629e72faf83a63bd7307aac7076715cea80ffb2b3d5390aee73ebc93e2cb9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/wsl_jsonl.py.gz",
+      "stored_bytes": 6346,
+      "stored_sha256": "9974178d902b0fae17a1bca1ad33645099b087f3eaf3b8348067a06d23688688",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/wsl_jsonl_owned_tree.py",
+      "original_bytes": 6029,
+      "original_sha256": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/wsl_jsonl_owned_tree.py.gz",
+      "stored_bytes": 2006,
+      "stored_sha256": "34a08872b917ec2f6e4fd4b2d293ad701ad0e35d7a621c122858971ff1ed48dd",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/wsl_jsonl_worker.py",
+      "original_bytes": 15059,
+      "original_sha256": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/deployment/wsl_jsonl_worker.py.gz",
+      "stored_bytes": 4759,
+      "stored_sha256": "7f70a501b22f6e60f7899644187d803b32000cfeefa87318a24865f5e58a3477",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/integrations/robotio_ros2_bridge.py",
+      "original_bytes": 10763,
+      "original_sha256": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "stored_bytes": 2930,
+      "stored_sha256": "90935bbd9979153dc2c6e2865bbb4f13e0f6c619aa6491d45b36aedd5fdc9cc6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/integrations/ros2_bridge_transport.py",
+      "original_bytes": 4075,
+      "original_sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/integrations/ros2_bridge_transport.py",
+      "stored_bytes": 4075,
+      "stored_sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 11946,
+      "original_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3554,
+      "stored_sha256": "d5ddb96cf1134fe5dab0e55698b8b9d8a021934d0f7c57bea4f8cee013e25359",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/tools/robotio_ros2_fixture_node.py",
+      "original_bytes": 5686,
+      "original_sha256": "bd0000e25f16a601e01ac3711d3f27b400c63d6ccaf46a1c5cbc455a49c37af9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/tools/robotio_ros2_fixture_node.py.gz",
+      "stored_bytes": 1844,
+      "stored_sha256": "b27bb41766dbb44c8ddca7ad48ce8990f68daa54cb8dcca06beb99ab24b84da8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/source/tools/robotio_ros2_fixture_peer.py",
+      "original_bytes": 2621,
+      "original_sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/source/tools/robotio_ros2_fixture_peer.py",
+      "stored_bytes": 2621,
+      "stored_sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/SOURCE_MANIFEST.json",
+      "original_bytes": 2874,
+      "original_sha256": "cb255fc659614f60879b7299f6910943caa365744570f7e624922c2cc17b6db4",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/SOURCE_MANIFEST.json",
+      "stored_bytes": 2874,
+      "stored_sha256": "cb255fc659614f60879b7299f6910943caa365744570f7e624922c2cc17b6db4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/traceback.log",
+      "original_bytes": 3514,
+      "original_sha256": "339b2624f2d9363f48707cc4f469788245a0a657dbb57bd0d1232f06d23d81a0",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/traceback.log",
+      "stored_bytes": 3514,
+      "stored_sha256": "339b2624f2d9363f48707cc4f469788245a0a657dbb57bd0d1232f06d23d81a0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/wsl_jsonl_93b94aaf8c10451e9f6db93315b3b614/SPEC.json",
+      "original_bytes": 2657,
+      "original_sha256": "4ff2f6a1472f316af0ff453c2a3bdf08c5594eb3fe0f3e1031355b6e417357ac",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/wsl_jsonl_93b94aaf8c10451e9f6db93315b3b614/SPEC.json",
+      "stored_bytes": 2657,
+      "stored_sha256": "4ff2f6a1472f316af0ff453c2a3bdf08c5594eb3fe0f3e1031355b6e417357ac",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/wsl_jsonl_93b94aaf8c10451e9f6db93315b3b614/STOP",
+      "original_bytes": 129,
+      "original_sha256": "6cb85e49e71ffdd1431bcb8c0624ba9509e4392615736771692c2abba38653ba",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/wsl_jsonl_93b94aaf8c10451e9f6db93315b3b614/STOP",
+      "stored_bytes": 129,
+      "stored_sha256": "6cb85e49e71ffdd1431bcb8c0624ba9509e4392615736771692c2abba38653ba",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-01/wsl_jsonl_93b94aaf8c10451e9f6db93315b3b614/supervisor.stderr.log",
+      "original_bytes": 993,
+      "original_sha256": "dfb1a1b1fc7937b9fd7dc7ade3dcfd06bc306fbf90c73542ae65d254d267e04c",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-01/wsl_jsonl_93b94aaf8c10451e9f6db93315b3b614/supervisor.stderr.log",
+      "stored_bytes": 993,
+      "stored_sha256": "dfb1a1b1fc7937b9fd7dc7ade3dcfd06bc306fbf90c73542ae65d254d267e04c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/CLEANUP_RESULT.json",
+      "original_bytes": 7479,
+      "original_sha256": "10cea7f19ed1199c31f1e730711c18333763c9cfcebd6f84b0a810a2c756c6b9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/CLEANUP_RESULT.json.gz",
+      "stored_bytes": 1380,
+      "stored_sha256": "b589cfe161103a096526d0d2586ac92e2cf2273cea874b7ba75380abaf152753",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/COMMAND.json",
+      "original_bytes": 7379,
+      "original_sha256": "72944ff31e44d56f1acbe36ea6dd393bd80e2b258aa8942cf8ca932c259a81ff",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/COMMAND.json.gz",
+      "stored_bytes": 1285,
+      "stored_sha256": "c0b4389c91a040b055d265cd1d02723b9b45db52abb5e53a8677672a38f5a80e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/decision_response.json",
+      "original_bytes": 342,
+      "original_sha256": "d1418e2dc30e4106b172e3944a398ede1cc5d5c4109e25e6536abfd7528a8b1c",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/decision_response.json",
+      "stored_bytes": 342,
+      "stored_sha256": "d1418e2dc30e4106b172e3944a398ede1cc5d5c4109e25e6536abfd7528a8b1c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/decision_synthetic_input.json",
+      "original_bytes": 642,
+      "original_sha256": "5119a047afd4959a4d22ceb71cb078dae7e7e0b58ee2aa7233c922801fb2a754",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/decision_synthetic_input.json",
+      "stored_bytes": 642,
+      "stored_sha256": "5119a047afd4959a4d22ceb71cb078dae7e7e0b58ee2aa7233c922801fb2a754",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/ENVIRONMENT_COMPAT_FINAL.json",
+      "original_bytes": 1632,
+      "original_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/ENVIRONMENT_COMPAT_FINAL.json",
+      "stored_bytes": 1632,
+      "stored_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/local_manifest.json",
+      "original_bytes": 6943,
+      "original_sha256": "c2859052aeef44f0b9f2b1c55e4183d5986faf6bf2dd4b5c17ecc47a9912d175",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/local_manifest.json.gz",
+      "stored_bytes": 1097,
+      "stored_sha256": "94807424bebaefcf7c049be2b6662066361e2a80c0d85f6fc293dd6251ec29f5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/navigation_response.json",
+      "original_bytes": 349,
+      "original_sha256": "028105d71b2e4d965ab00187af76a910e79bbf302b56a2e97fe9a8befd51930b",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/navigation_response.json",
+      "stored_bytes": 349,
+      "stored_sha256": "028105d71b2e4d965ab00187af76a910e79bbf302b56a2e97fe9a8befd51930b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/navigation_synthetic_input.json",
+      "original_bytes": 2617,
+      "original_sha256": "8fd13c4a054b86209067813fdcc72ce77784dee1cd5d8be87fb8bfd3633bfd87",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/navigation_synthetic_input.json",
+      "stored_bytes": 2617,
+      "stored_sha256": "8fd13c4a054b86209067813fdcc72ce77784dee1cd5d8be87fb8bfd3633bfd87",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/RESULT.json",
+      "original_bytes": 436,
+      "original_sha256": "9b03124d1a4ffdcfe3c3fe571956dba1c9206ca891ebeae8d0bef014d874fb3e",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/RESULT.json",
+      "stored_bytes": 436,
+      "stored_sha256": "9b03124d1a4ffdcfe3c3fe571956dba1c9206ca891ebeae8d0bef014d874fb3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 11209,
+      "original_sha256": "2fbb2f4f25d43d34f38acee2056ff857fdcc8f23fc060c0e5545130f3a35b775",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3189,
+      "stored_sha256": "1e7a39432bfb6d79c0c004eb087e253b5d7b5556cdc617ca10754e5bbd53b5ef",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/robotio_wsl.py",
+      "original_bytes": 8616,
+      "original_sha256": "3a6dabe461572c99ca405ed6bc8a3b89a19a413655de13178bfdfdc22d5ab41c",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/robotio_wsl.py.gz",
+      "stored_bytes": 2622,
+      "stored_sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/wsl_jsonl.py",
+      "original_bytes": 23664,
+      "original_sha256": "115629e72faf83a63bd7307aac7076715cea80ffb2b3d5390aee73ebc93e2cb9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/wsl_jsonl.py.gz",
+      "stored_bytes": 6346,
+      "stored_sha256": "9974178d902b0fae17a1bca1ad33645099b087f3eaf3b8348067a06d23688688",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/wsl_jsonl_owned_tree.py",
+      "original_bytes": 6029,
+      "original_sha256": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/wsl_jsonl_owned_tree.py.gz",
+      "stored_bytes": 2006,
+      "stored_sha256": "34a08872b917ec2f6e4fd4b2d293ad701ad0e35d7a621c122858971ff1ed48dd",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/wsl_jsonl_worker.py",
+      "original_bytes": 15059,
+      "original_sha256": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/deployment/wsl_jsonl_worker.py.gz",
+      "stored_bytes": 4759,
+      "stored_sha256": "7f70a501b22f6e60f7899644187d803b32000cfeefa87318a24865f5e58a3477",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/integrations/robotio_ros2_bridge.py",
+      "original_bytes": 10763,
+      "original_sha256": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "stored_bytes": 2930,
+      "stored_sha256": "90935bbd9979153dc2c6e2865bbb4f13e0f6c619aa6491d45b36aedd5fdc9cc6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/integrations/ros2_bridge_transport.py",
+      "original_bytes": 4075,
+      "original_sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/integrations/ros2_bridge_transport.py",
+      "stored_bytes": 4075,
+      "stored_sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 11946,
+      "original_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3554,
+      "stored_sha256": "d5ddb96cf1134fe5dab0e55698b8b9d8a021934d0f7c57bea4f8cee013e25359",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/tools/robotio_ros2_fixture_node.py",
+      "original_bytes": 5686,
+      "original_sha256": "bd0000e25f16a601e01ac3711d3f27b400c63d6ccaf46a1c5cbc455a49c37af9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/tools/robotio_ros2_fixture_node.py.gz",
+      "stored_bytes": 1844,
+      "stored_sha256": "b27bb41766dbb44c8ddca7ad48ce8990f68daa54cb8dcca06beb99ab24b84da8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/source/tools/robotio_ros2_fixture_peer.py",
+      "original_bytes": 2621,
+      "original_sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/source/tools/robotio_ros2_fixture_peer.py",
+      "stored_bytes": 2621,
+      "stored_sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/SOURCE_MANIFEST.json",
+      "original_bytes": 2874,
+      "original_sha256": "cb255fc659614f60879b7299f6910943caa365744570f7e624922c2cc17b6db4",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/SOURCE_MANIFEST.json",
+      "stored_bytes": 2874,
+      "stored_sha256": "cb255fc659614f60879b7299f6910943caa365744570f7e624922c2cc17b6db4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/CLEANUP.json",
+      "original_bytes": 1751,
+      "original_sha256": "72cf5c1a172fd53c00d61ff668cfbda311f4513f24d1f24c7bb2b16abb98b6a7",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/CLEANUP.json",
+      "stored_bytes": 1751,
+      "stored_sha256": "72cf5c1a172fd53c00d61ff668cfbda311f4513f24d1f24c7bb2b16abb98b6a7",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/SPEC.json",
+      "original_bytes": 2608,
+      "original_sha256": "9797bc3ab25e08dbb0fd9fbe182a3d29a92c6d8754365829653d4e76f4273e52",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/SPEC.json",
+      "stored_bytes": 2608,
+      "stored_sha256": "9797bc3ab25e08dbb0fd9fbe182a3d29a92c6d8754365829653d4e76f4273e52",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/STOP",
+      "original_bytes": 129,
+      "original_sha256": "3026bcda1ed62b910cbab91689a53708267462e5e2c32d70510e75761e519733",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/STOP",
+      "stored_bytes": 129,
+      "stored_sha256": "3026bcda1ed62b910cbab91689a53708267462e5e2c32d70510e75761e519733",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_8ec3b462cdd84a14b6500c8af73680c6/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/CLEANUP.json",
+      "original_bytes": 1751,
+      "original_sha256": "3c4f745ceeebbbe31fbf7377a15f42b729d7f572ce4df08a4b9ae48b525efed2",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/CLEANUP.json",
+      "stored_bytes": 1751,
+      "stored_sha256": "3c4f745ceeebbbe31fbf7377a15f42b729d7f572ce4df08a4b9ae48b525efed2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/SPEC.json",
+      "original_bytes": 2618,
+      "original_sha256": "f5a5f051b016ec9496bbd7bc9dda9fe152911a82aba49f0c817011184bc62cce",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/SPEC.json",
+      "stored_bytes": 2618,
+      "stored_sha256": "f5a5f051b016ec9496bbd7bc9dda9fe152911a82aba49f0c817011184bc62cce",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/STOP",
+      "original_bytes": 129,
+      "original_sha256": "3fc99d0bff7a8f12f36c0256cfd1662bcbaf2ad1a78b8e232715b4f93653306d",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/STOP",
+      "stored_bytes": 129,
+      "stored_sha256": "3fc99d0bff7a8f12f36c0256cfd1662bcbaf2ad1a78b8e232715b4f93653306d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-02/wsl_jsonl_c1679a9a635743ddbdf852d963b8e517/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/CLEANUP_RESULT.json",
+      "original_bytes": 7456,
+      "original_sha256": "25829c3877df3d187a791264432c3771e6c37e7064f65502a9397dde2427418a",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/CLEANUP_RESULT.json.gz",
+      "stored_bytes": 1377,
+      "stored_sha256": "35ea4487c5cf64e62584bf5b8d84a835860aa1430a63420422bef880da40f5ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/COMMAND.json",
+      "original_bytes": 7379,
+      "original_sha256": "5fe55f999bd0aeafb3375b3776f0c5fb778cfca4347a5d757d7dc8b18816c0eb",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/COMMAND.json.gz",
+      "stored_bytes": 1285,
+      "stored_sha256": "36a9ca806a5fb3082c936e3fdd11fd83cc1227b45de23558ab38683ae9a10635",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/decision_response.json",
+      "original_bytes": 348,
+      "original_sha256": "b4db01334fb608d3f91fe32960ae3c70cc4747df7e362e5a420d5fdf78060faa",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/decision_response.json",
+      "stored_bytes": 348,
+      "stored_sha256": "b4db01334fb608d3f91fe32960ae3c70cc4747df7e362e5a420d5fdf78060faa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/decision_synthetic_input.json",
+      "original_bytes": 648,
+      "original_sha256": "f8935cf7f5218095210eaedb55fdaa57ce46f9d86a31a5f044eaba56885c0e5e",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/decision_synthetic_input.json",
+      "stored_bytes": 648,
+      "stored_sha256": "f8935cf7f5218095210eaedb55fdaa57ce46f9d86a31a5f044eaba56885c0e5e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/ENVIRONMENT_COMPAT_FINAL.json",
+      "original_bytes": 1632,
+      "original_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/ENVIRONMENT_COMPAT_FINAL.json",
+      "stored_bytes": 1632,
+      "stored_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/local_manifest.json",
+      "original_bytes": 6943,
+      "original_sha256": "ba21597daf9f024b9f1374838f9129c007560fc7c2832ac17b1cf14699e46d53",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/local_manifest.json.gz",
+      "stored_bytes": 1096,
+      "stored_sha256": "45f3ab1f7a77d7dbd1be3ddb8e3ad4eefc8e03ab0b8965b16491a2035076b255",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/navigation_response.json",
+      "original_bytes": 349,
+      "original_sha256": "ade9338767da950b5f6217ac567e75a6b22d8c1458bbd9679b694e04a3c09513",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/navigation_response.json",
+      "stored_bytes": 349,
+      "stored_sha256": "ade9338767da950b5f6217ac567e75a6b22d8c1458bbd9679b694e04a3c09513",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/navigation_synthetic_input.json",
+      "original_bytes": 2617,
+      "original_sha256": "0ab58bbaaed1db7fa606c8e01105c813db0481ca481fe7cbac7954dcc4c67449",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/navigation_synthetic_input.json",
+      "stored_bytes": 2617,
+      "stored_sha256": "0ab58bbaaed1db7fa606c8e01105c813db0481ca481fe7cbac7954dcc4c67449",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/RESULT.json",
+      "original_bytes": 436,
+      "original_sha256": "42471f017e490dc6ce232476cb602b345f9447a788b280f3bd8843f547d671d5",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/RESULT.json",
+      "stored_bytes": 436,
+      "stored_sha256": "42471f017e490dc6ce232476cb602b345f9447a788b280f3bd8843f547d671d5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 12074,
+      "original_sha256": "2d53cabf4dcc38f44f80b8244f90f8dbc376e44cfd5f3f4ddaeb2af386b2c46f",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3480,
+      "stored_sha256": "a8302b25e988300a1e69696ad20f74ce44536c08a43de374b0ff962de4cd1f1d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/robotio_wsl.py",
+      "original_bytes": 8616,
+      "original_sha256": "3a6dabe461572c99ca405ed6bc8a3b89a19a413655de13178bfdfdc22d5ab41c",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/robotio_wsl.py.gz",
+      "stored_bytes": 2622,
+      "stored_sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/wsl_jsonl.py",
+      "original_bytes": 23664,
+      "original_sha256": "115629e72faf83a63bd7307aac7076715cea80ffb2b3d5390aee73ebc93e2cb9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/wsl_jsonl.py.gz",
+      "stored_bytes": 6346,
+      "stored_sha256": "9974178d902b0fae17a1bca1ad33645099b087f3eaf3b8348067a06d23688688",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/wsl_jsonl_owned_tree.py",
+      "original_bytes": 6029,
+      "original_sha256": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/wsl_jsonl_owned_tree.py.gz",
+      "stored_bytes": 2006,
+      "stored_sha256": "34a08872b917ec2f6e4fd4b2d293ad701ad0e35d7a621c122858971ff1ed48dd",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/wsl_jsonl_worker.py",
+      "original_bytes": 15059,
+      "original_sha256": "44c6f15ab0b8d0673dbe8506b7c0f0e4e2b06ed486262e91acfee911672ea083",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/deployment/wsl_jsonl_worker.py.gz",
+      "stored_bytes": 4759,
+      "stored_sha256": "7f70a501b22f6e60f7899644187d803b32000cfeefa87318a24865f5e58a3477",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/integrations/robotio_ros2_bridge.py",
+      "original_bytes": 10763,
+      "original_sha256": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "stored_bytes": 2930,
+      "stored_sha256": "90935bbd9979153dc2c6e2865bbb4f13e0f6c619aa6491d45b36aedd5fdc9cc6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/integrations/ros2_bridge_transport.py",
+      "original_bytes": 4075,
+      "original_sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/integrations/ros2_bridge_transport.py",
+      "stored_bytes": 4075,
+      "stored_sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 11946,
+      "original_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3554,
+      "stored_sha256": "d5ddb96cf1134fe5dab0e55698b8b9d8a021934d0f7c57bea4f8cee013e25359",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/tools/robotio_ros2_fixture_node.py",
+      "original_bytes": 5686,
+      "original_sha256": "bd0000e25f16a601e01ac3711d3f27b400c63d6ccaf46a1c5cbc455a49c37af9",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/tools/robotio_ros2_fixture_node.py.gz",
+      "stored_bytes": 1844,
+      "stored_sha256": "b27bb41766dbb44c8ddca7ad48ce8990f68daa54cb8dcca06beb99ab24b84da8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/source/tools/robotio_ros2_fixture_peer.py",
+      "original_bytes": 2621,
+      "original_sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/source/tools/robotio_ros2_fixture_peer.py",
+      "stored_bytes": 2621,
+      "stored_sha256": "e21805c15016886303943cf067fd299a48edff14f9be9b0d6ca0b351dac2f025",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/SOURCE_MANIFEST.json",
+      "original_bytes": 2874,
+      "original_sha256": "511ce627e3c5d2027e88e10555d5b3ff78ac8456d807f87f690c1f912f221b42",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/SOURCE_MANIFEST.json",
+      "stored_bytes": 2874,
+      "stored_sha256": "511ce627e3c5d2027e88e10555d5b3ff78ac8456d807f87f690c1f912f221b42",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/CLEANUP.json",
+      "original_bytes": 1741,
+      "original_sha256": "347dbc1c5fd3fedc0a50d4180af294c2c8991d0f20c47667dad5a9cd9c73adc3",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/CLEANUP.json",
+      "stored_bytes": 1741,
+      "stored_sha256": "347dbc1c5fd3fedc0a50d4180af294c2c8991d0f20c47667dad5a9cd9c73adc3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/SPEC.json",
+      "original_bytes": 2608,
+      "original_sha256": "9e0d947bac304ae465b2f9f3f63fa4b30b88ac9e9ad9c8ad9b3aea546050a7a4",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/SPEC.json",
+      "stored_bytes": 2608,
+      "stored_sha256": "9e0d947bac304ae465b2f9f3f63fa4b30b88ac9e9ad9c8ad9b3aea546050a7a4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/STOP",
+      "original_bytes": 129,
+      "original_sha256": "29971bb8a11e3076fb3f0068838f3ffc97673c93bbeee3fc3bf3af4963716eb4",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/STOP",
+      "stored_bytes": 129,
+      "stored_sha256": "29971bb8a11e3076fb3f0068838f3ffc97673c93bbeee3fc3bf3af4963716eb4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_323ea33468804fe0b9bdb6eb0944b87f/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/CLEANUP.json",
+      "original_bytes": 1738,
+      "original_sha256": "1196bbb0b912a604282eb3247e89876879ff70aa0fbd48a0d6fd647a74500d61",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/CLEANUP.json",
+      "stored_bytes": 1738,
+      "stored_sha256": "1196bbb0b912a604282eb3247e89876879ff70aa0fbd48a0d6fd647a74500d61",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/SPEC.json",
+      "original_bytes": 2618,
+      "original_sha256": "1b090c4bf424046b36b6f27ea9460f26327c19e190f9e7d16628e576a0bd8a2b",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/SPEC.json",
+      "stored_bytes": 2618,
+      "stored_sha256": "1b090c4bf424046b36b6f27ea9460f26327c19e190f9e7d16628e576a0bd8a2b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/STOP",
+      "original_bytes": 129,
+      "original_sha256": "80ab32f872810c6440de802732db05f7e01a9c916de32cfa481cade23e06d117",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/STOP",
+      "stored_bytes": 129,
+      "stored_sha256": "80ab32f872810c6440de802732db05f7e01a9c916de32cfa481cade23e06d117",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/supervisor.stderr.log",
+      "original_bytes": 132,
+      "original_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "stored_path": "records/artifacts/robotio-ros2-actual-20261014-03/wsl_jsonl_b2e0b550bb2d4bbf8cc75f4767462c64/supervisor.stderr.log",
+      "stored_bytes": 132,
+      "stored_sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-candidate-20261014-01/driver.py",
+      "original_bytes": 8637,
+      "original_sha256": "a93a1ce5f0098446500fd593901cc5f4735a484164a282d5d6114b298fc19c40",
+      "stored_path": "records/artifacts/robotio-ros2-actual-candidate-20261014-01/driver.py.gz",
+      "stored_bytes": 3381,
+      "stored_sha256": "36f35ec9d2e80c9f9a30a18cfeb90dbf975394a50728fe99f4e691c690d3975c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-ros2-actual-candidate-20261014-01/STATIC_AST_RESULT.json",
+      "original_bytes": 811,
+      "original_sha256": "1ff597dc228d5ed924a65136a6aecb548c395b1a76cafafa86365008e41e065e",
+      "stored_path": "records/artifacts/robotio-ros2-actual-candidate-20261014-01/STATIC_AST_RESULT.json",
+      "stored_bytes": 811,
+      "stored_sha256": "1ff597dc228d5ed924a65136a6aecb548c395b1a76cafafa86365008e41e065e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/before/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 11209,
+      "original_sha256": "2fbb2f4f25d43d34f38acee2056ff857fdcc8f23fc060c0e5545130f3a35b775",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/before/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3189,
+      "stored_sha256": "1e7a39432bfb6d79c0c004eb087e253b5d7b5556cdc617ca10754e5bbd53b5ef",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/before/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5335,
+      "original_sha256": "714d0f72685aa406080fb2ff06f71014ddfbb9280f2661806da32c8967bfac5b",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/before/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1677,
+      "stored_sha256": "55bdbf5307800c9f808bd935d995e56d1a76888455d754a203fad6fb7842a96d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/before/tests/test_navigation_plugin.py",
+      "original_bytes": 13119,
+      "original_sha256": "82116b250dbc2c2d78cc684eb6986e92711aa1b0a55ac431100b4b4551bdbc4c",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/before/tests/test_navigation_plugin.py.gz",
+      "stored_bytes": 4058,
+      "stored_sha256": "0e7758b7a9458d9e58a49eac047aaf7c46017850325498d4797bc2ffd6936d38",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/PROOF.json",
+      "original_bytes": 1104,
+      "original_sha256": "82a83e75c2b048d4745615b3461e4334c3c38e5289d9235a8a7108607b94c004",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/PROOF.json",
+      "stored_bytes": 1104,
+      "stored_sha256": "82a83e75c2b048d4745615b3461e4334c3c38e5289d9235a8a7108607b94c004",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/pytest-final.log",
+      "original_bytes": 101,
+      "original_sha256": "ebf6243b9dc0061864c265a13b7e9c169ae4eab2a0c3a1032543a9a724633468",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/pytest-final.log",
+      "stored_bytes": 101,
+      "stored_sha256": "ebf6243b9dc0061864c265a13b7e9c169ae4eab2a0c3a1032543a9a724633468",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/pytest-final.xml",
+      "original_bytes": 8876,
+      "original_sha256": "3ea436fdff699601e8577cb44a9f0a4b90ea09d142af4d8689a16577d8064c27",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/pytest-final.xml.gz",
+      "stored_bytes": 1479,
+      "stored_sha256": "2cbc80aa7fe87125c788de1cbb8a3f93efd16ea58ccf9068e8c1be5241fa41cd",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/pytest.log",
+      "original_bytes": 101,
+      "original_sha256": "3b507b5b419b929850dc15a68b51a2943b15292871e48554e79701673d35405e",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/pytest.log",
+      "stored_bytes": 101,
+      "stored_sha256": "3b507b5b419b929850dc15a68b51a2943b15292871e48554e79701673d35405e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-stop-intent-focused-20261014-01/pytest.xml",
+      "original_bytes": 8876,
+      "original_sha256": "7072b332c3eeb56c09984ae535b7e68698d27375b86d9fad8553b454b404875f",
+      "stored_path": "records/artifacts/robotio-stop-intent-focused-20261014-01/pytest.xml.gz",
+      "stored_bytes": 1467,
+      "stored_sha256": "206da35247584904f817003a364ec631aa6e638437e32171b0f7c18cf8eeba6a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/COMMAND.json",
+      "original_bytes": 597,
+      "original_sha256": "50a5f5a78a2126db8612eadcf226da31e78d3f3eb44e270963bcb287b59824da",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/COMMAND.json",
+      "stored_bytes": 597,
+      "stored_sha256": "50a5f5a78a2126db8612eadcf226da31e78d3f3eb44e270963bcb287b59824da",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/driver.py",
+      "original_bytes": 1576,
+      "original_sha256": "91ec61728f897a7a2d80362d0b27766877cde4d1d5818fa51e61a8dfca6227bd",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/driver.py",
+      "stored_bytes": 1576,
+      "stored_sha256": "91ec61728f897a7a2d80362d0b27766877cde4d1d5818fa51e61a8dfca6227bd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/PROCESS_RESULT.json",
+      "original_bytes": 114,
+      "original_sha256": "aa991f784a790fa47eb64d6ce88d8631c88433d88f366f37b6c04f7419f58b96",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/PROCESS_RESULT.json",
+      "stored_bytes": 114,
+      "stored_sha256": "aa991f784a790fa47eb64d6ce88d8631c88433d88f366f37b6c04f7419f58b96",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/pytest.xml",
+      "original_bytes": 5767,
+      "original_sha256": "cad92fc63624061408c51557c4ea790cde332727ea044d0b64761abd6d9fdaa7",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/pytest.xml.gz",
+      "stored_bytes": 1160,
+      "stored_sha256": "c3c41200b1593af85f511717cc265ff350d08d77b827c94a3b546287fceb9b3a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/source/rm_match/deployment/robotio_wsl.py",
+      "original_bytes": 8616,
+      "original_sha256": "3a6dabe461572c99ca405ed6bc8a3b89a19a413655de13178bfdfdc22d5ab41c",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/source/rm_match/deployment/robotio_wsl.py.gz",
+      "stored_bytes": 2622,
+      "stored_sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/source/tests/test_robotio_wsl.py",
+      "original_bytes": 8600,
+      "original_sha256": "1c9988c4f74e4e461fef5f05cc235ea347b7158f45ac7bf10db316de1cfc304b",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/source/tests/test_robotio_wsl.py.gz",
+      "stored_bytes": 2600,
+      "stored_sha256": "d4abdd4d9bd4420c458f878543a37bd1bb125f9d0b79f97b376ea726f1bb5a93",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/SOURCE_MANIFEST.json",
+      "original_bytes": 361,
+      "original_sha256": "99fced1b5d648cf063555d0550f0250625e5a78da7f92b463fa45b487cedf9ab",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/SOURCE_MANIFEST.json",
+      "stored_bytes": 361,
+      "stored_sha256": "99fced1b5d648cf063555d0550f0250625e5a78da7f92b463fa45b487cedf9ab",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio-wsl-focused-20261014-01/stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "12bb5858f23e5de60fcac9a073c7398ce1b3e71a6b8d8ef3132a76c6c7648e7e",
+      "stored_path": "records/artifacts/robotio-wsl-focused-20261014-01/stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "12bb5858f23e5de60fcac9a073c7398ce1b3e71a6b8d8ef3132a76c6c7648e7e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/robotio_ros2_actual_ext4_20261014.py",
+      "original_bytes": 8612,
+      "original_sha256": "90b62f11a209f373ea77b61987f20b7150cd8fbce3eb3c3482181fe6c50c2fc3",
+      "stored_path": "records/artifacts/robotio_ros2_actual_ext4_20261014.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "6b61d45c5877aaae301122cd1f6a384bba791c853af0c430696db2108bf31e96",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/PROOF.json",
+      "original_bytes": 1084,
+      "original_sha256": "ccd7e81ae53e063f193384dd6635769d123518d5e15e7ed93f2326d70ab5b9b8",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/PROOF.json",
+      "stored_bytes": 1084,
+      "stored_sha256": "ccd7e81ae53e063f193384dd6635769d123518d5e15e7ed93f2326d70ab5b9b8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/pytest-final.log",
+      "original_bytes": 1749,
+      "original_sha256": "5bf8a075902cb6849d09ac3844cb89e796b88474fa5815d4f83b371b08d46ca0",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/pytest-final.log",
+      "stored_bytes": 1749,
+      "stored_sha256": "5bf8a075902cb6849d09ac3844cb89e796b88474fa5815d4f83b371b08d46ca0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/pytest-final.xml",
+      "original_bytes": 898,
+      "original_sha256": "12e78e78a764efa826096b076c2251cfb2595f69f03d84cec435262509b131a4",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/pytest-final.xml",
+      "stored_bytes": 898,
+      "stored_sha256": "12e78e78a764efa826096b076c2251cfb2595f69f03d84cec435262509b131a4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/pytest.log",
+      "original_bytes": 987,
+      "original_sha256": "21db3e57f94ecb6daad4cb5c6335b67cf6f3f3ca04a9a47711855b25de72a627",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/pytest.log",
+      "stored_bytes": 987,
+      "stored_sha256": "21db3e57f94ecb6daad4cb5c6335b67cf6f3f3ca04a9a47711855b25de72a627",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/pytest.xml",
+      "original_bytes": 898,
+      "original_sha256": "ef18fa1aae8b3217298f105ff51d7a185018618d4759f963314595ec895cd823",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/pytest.xml",
+      "stored_bytes": 898,
+      "stored_sha256": "ef18fa1aae8b3217298f105ff51d7a185018618d4759f963314595ec895cd823",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/test-after.py",
+      "original_bytes": 9680,
+      "original_sha256": "1e0be7c1825572d5c0e1a5c9c25cb7e1eb25eb93287ae4d56f97898cfe5c2787",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/test-after.py.gz",
+      "stored_bytes": 3156,
+      "stored_sha256": "4165bf53c7764c5b6015bc093b34c86542d425a004c78ad3b5c0bbf6c651c0b3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/ros2-jsonl-startup-focused-20261014-02/test-before.py",
+      "original_bytes": 5841,
+      "original_sha256": "3c6ece72490e883da7855f81dbd3f32d4f160340991c90a96d21efb3c8674982",
+      "stored_path": "records/artifacts/ros2-jsonl-startup-focused-20261014-02/test-before.py.gz",
+      "stored_bytes": 2200,
+      "stored_sha256": "ee71f893af18f2597d96375c7bd8752c74f8189a4a5dca057004c4678ad2441f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/run_aim_followup_quality_20261014.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_robotio_dds_actual_20261014.py",
+      "original_bytes": 1728,
+      "original_sha256": "1892e6cd5acebb952dd9e4c92810cca59a3e938fad45261b7f1c8bfd357807e4",
+      "stored_path": "records/artifacts/run_robotio_dds_actual_20261014.py",
+      "stored_bytes": 1728,
+      "stored_sha256": "1892e6cd5acebb952dd9e4c92810cca59a3e938fad45261b7f1c8bfd357807e4",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_robotio_dds_frozen_20261014.py",
+      "original_bytes": 1350,
+      "original_sha256": "e73d4e3fd95517868ddca5adf782fbdacf0201ff74b231b194816cce8d0cd935",
+      "stored_path": "records/artifacts/run_robotio_dds_frozen_20261014.py",
+      "stored_bytes": 1350,
+      "stored_sha256": "e73d4e3fd95517868ddca5adf782fbdacf0201ff74b231b194816cce8d0cd935",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_robotio_protocol_sil_20261014.py",
+      "original_bytes": 2129,
+      "original_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "stored_path": "records/artifacts/run_robotio_protocol_sil_20261014.py",
+      "stored_bytes": 2129,
+      "stored_sha256": "727408ef0a0bbc10a6ff2b9c6c94cad588f4e22939facdb6c1afd8b0947a2587",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/update_robotio_provenance_20261014.py",
+      "original_bytes": 1285,
+      "original_sha256": "2dc43490c662c25b86bd72bc70e3ce9a3d866c2c27956e861f3258237d7e17f0",
+      "stored_path": "records/artifacts/update_robotio_provenance_20261014.py",
+      "stored_bytes": 1285,
+      "stored_sha256": "2dc43490c662c25b86bd72bc70e3ce9a3d866c2c27956e861f3258237d7e17f0",
+      "compression": "literal"
+    }
+  ]
+}

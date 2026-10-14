@@ -33,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "9340041fb941f4f4b0a515fe9ccd4091d739b0544cc432dda5e45fbd1ae84977",
-      "task": "T09",
-      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged"
+      "current_sha256": "8132936aa53b0d23254f88c0d2735650554fda66657abedb5920f677318ba2e4",
+      "task": "T09,T01,T07",
+      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
@@ -54,9 +54,9 @@
     {
       "path": "rm_match/platform_v2/client.py",
       "original_sha256": "a0597ecec1f9407cf3c3df6a4b1420e101d3ec4607fa59fe7a3b8f309c6232c5",
-      "current_sha256": "9be9c8507a245c3d81e68c29a652dbe6ca54f7b607377d128d4009974af16e10",
-      "task": "T13",
-      "reason": "Accept in-memory admission credential without changing scoped bearer authority"
+      "current_sha256": "37ba09fad0e777da3701d722e1ecb989ac58e63f87c8e4a6cf3c438b096a94bb",
+      "task": "T13,T01,T07",
+      "reason": "Accept in-memory admission credential without changing scoped bearer authority; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
     },
     {
       "path": "rm_match/platform_v2/control.py",
@@ -89,16 +89,16 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "a23dcf4bc5248686824954f27419bf84647fad0316481494b35070905b634643",
-      "task": "T09",
-      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts"
+      "current_sha256": "79a94f185ad0273e220595f15331a1f5ac00c27388c506a51a8fd0fab3e23067",
+      "task": "T09,T01,T07",
+      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
     },
     {
       "path": "rm_match/platform_v2/server.py",
       "original_sha256": "93d51c5610e191075030fb8cdcd89a7f0c5369c662e570943fe72b69ea22bccf",
-      "current_sha256": "f7051d9c4beab13cd4ea2863c3ca8c2ea0c0d06d542be6618615de67bf016fbc",
-      "task": "T13,T16",
-      "reason": "Fail-closed credential admission and scoped public catalogs; handle Windows peer socket abort; preserve rejected HTTP responses with flush/FIN then at most 64KiB/100ms discard, and enforce the original 1s valid-body timeout as a total read deadline; keep 16384-byte acceptance, admission and SDK control windows unchanged"
+      "current_sha256": "ed94583efc249557a11ef7fd588e519acc9234bc03d549cbdb39f142acb6e4df",
+      "task": "T13,T16,T01,T07",
+      "reason": "Fail-closed credential admission and scoped public catalogs; handle Windows peer socket abort; preserve rejected HTTP responses with flush/FIN then at most 64KiB/100ms discard, and enforce the original 1s valid-body timeout as a total read deadline; keep 16384-byte acceptance, admission and SDK control windows unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
     },
     {
       "path": "rm_match/platform_v2/test_adapter_activation.py",
@@ -208,9 +208,9 @@
     {
       "path": "rm_match/platform_v2/adapters.py",
       "original_sha256": "dadb5bd731327270d0314d90648abfcebcf112adc54ea15ab348b81647d372e2",
-      "current_sha256": "8c3a1ef6cc777205aa3357ef42490cb6e41311394ecf12c89b6d2a2269821539",
-      "task": "T03",
-      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data"
+      "current_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "task": "T03,T01,T07",
+      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
     }
   ]
 }

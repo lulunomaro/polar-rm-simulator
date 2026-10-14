@@ -18,7 +18,11 @@ class AdapterSpec:
     factory: object
 
 class Registry:
-    def __init__(self):self._specs={};self._capabilities={}
+    def __init__(self):self._specs={};self._capabilities={};self._plugin_catalog=[]
+    def set_plugin_catalog(self,rows):
+        if type(rows) is not list or len(rows)>64:raise ContractError('invalid_plugin_catalog')
+        self._plugin_catalog=copy.deepcopy(rows)
+    def plugin_catalog(self):return copy.deepcopy(self._plugin_catalog)
     def register(self,descriptor,factory):
         d=copy.deepcopy(descriptor);aid=d['adapter_id']
         if aid in self._specs or len(self._specs)>=32:raise ContractError('duplicate_or_full_registry')

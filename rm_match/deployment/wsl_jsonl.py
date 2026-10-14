@@ -365,11 +365,15 @@ class PreparedWslAimPlugins:
             raise ContractError('prepared_wsl_instance_cancelled_or_not_ready')
         instance._owned_process.verify_unchanged()
         return self.instances.pop(adapter_id)
-    def close_unclaimed(self):
+    def close_unclaimed(self,*,deadline=None):
+        limit=time.perf_counter()+1.5
+        if deadline is not None:
+            if type(deadline) not in (int,float) or not math.isfinite(deadline):raise ContractError('invalid_wsl_pool_close_deadline')
+            limit=min(limit,deadline)
         errors=[]
         for key,instance in tuple(self.instances.items()):
             try:
-                instance.close()
+                instance.close(deadline=limit)
                 self.instances.pop(key)
             except Exception as exc:errors.append(key+':'+type(exc).__name__)
         if errors:raise RuntimeError('Unclaimed WSL cleanup unproved: '+','.join(errors))

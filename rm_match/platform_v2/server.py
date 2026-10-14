@@ -168,6 +168,7 @@ class PlatformHandler(BaseHTTPRequestHandler):
                 elif path=='/v2/frame':result=runtime.frame(token)
                 elif path=='/v2/robots':result={'robot_ids':runtime.control.visible_robot_ids(token)}
                 elif path=='/v2/adapters':result=runtime.adapter_catalog(token)
+                elif path=='/v2/plugins':result=runtime.plugin_catalog(token)
                 elif path=='/v2/capabilities':result=runtime.capabilities(token)
                 else:raise Rejected('not_found',404)
             self._json(200,dict(schema=SCHEMA,**result))

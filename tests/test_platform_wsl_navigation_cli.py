@@ -1,5 +1,6 @@
 """CLI lifecycle mocks only: no physics, WSL, ROS, GL or navigation algorithm."""
 import contextlib
+import copy
 import io
 import json
 from pathlib import Path
@@ -50,9 +51,16 @@ class CliLifecycleTests(unittest.TestCase):
             def stop(self):closing('camera_stop')
             def wait_closed(self,timeout):closing('camera_close');return cleanup_fail!='camera_unfinished'
         class Sensors:
-            def __init__(self):check('sensor_config')
-            def identity(self):return {'profile':'fixture_only'}
-        def registry(**kw):created['registry_kwargs']=kw;check('registry');return object()
+            def __init__(self,*,robot_ids):
+                check('sensor_config');self.robot_ids=tuple(robot_ids)
+                created['sensor_robot_ids']=self.robot_ids
+            def identity(self):return {'profile':'fixture_only','robot_ids':list(self.robot_ids)}
+        class Registry:
+            def __init__(self):self.catalog=[]
+            def plugin_catalog(self):return copy.deepcopy(self.catalog)
+        def registry(**kw):
+            created['registry_kwargs']=kw;check('registry')
+            created['registry']=Registry();return created['registry']
         def register(reg,path,*,repo_root,session_factory,**kw):
             created['manifest']=path;created['repo_root']=repo_root
             session=session_factory();session.prepare();check('registration');return session
@@ -74,6 +82,37 @@ class CliLifecycleTests(unittest.TestCase):
     def args(self,extra=()):
         return ['--admission-manifest','fixture-admission.json','--pb-wsl-navigation-manifest','fixture-wsl.json',
                 '--max-wall-seconds','1','--real-time-factor','0.8',*extra]
+    def generic_args(self,extra=()):
+        return ['--admission-manifest','fixture-admission.json','--robotio-plugins-json','fixture-robotio.json',
+                '--max-wall-seconds','1',*extra]
+    def setup_robotio(self,events,created,*,robots=('red_infantry','blue_sentry'),categories=('navigation','decision'),
+                      fail=None,cleanup_fail=None,prepare=False):
+        """Trusted registered-metadata/lifecycle fixtures, not protocol bypasses."""
+        def checked(name):
+            events.append(name)
+            if fail==name:raise ValueError(name+'_failed')
+        class Pool:
+            def __init__(self,category):self.category=category
+            def close_unclaimed(self,*,deadline):
+                name=self.category+'_pool_close';events.append(name)
+                created.setdefault('pool_close_deadlines',[]).append((self.category,deadline))
+                if cleanup_fail==name:raise RuntimeError(name+'_failed')
+        pools={category:Pool(category) for category in categories} if prepare else {}
+        def prepare_resources(path,*,repo_root,shared_root):
+            created['robotio_prepare_args']=dict(path=path,repo_root=repo_root,shared_root=shared_root)
+            checked('robotio_prepare');return pools
+        def register_resources(reg,path,*,wsl_prepared):
+            created['robotio_registration_args']=dict(path=path,wsl_prepared=wsl_prepared)
+            checked('robotio_registration')
+            reg.catalog=[dict(category=category,plugin_id='custom_fixture_'+category,supported_robots=list(robots))
+                         for category in categories]
+            return dict(schema='polar.sim.robotio-plugins.v1',manifest_sha256='f'*64,
+                        registered_adapter_ids=['custom_fixture_'+category for category in categories],
+                        navigation_robots=list(robots) if 'navigation' in categories else [])
+        stack=contextlib.ExitStack();self.addCleanup(stack.close)
+        stack.enter_context(patch('rm_match.deployment.robotio_plugin.prepare_robotio_resources',side_effect=prepare_resources))
+        stack.enter_context(patch('rm_match.deployment.robotio_plugin.register_robotio_plugins',side_effect=register_resources))
+        created['robotio_pools']=pools
     def test_session_prepared_before_any_backend_and_existing_runtime_limits(self):
         events,created=self.setup();cli.main(self.args())
         self.assertLess(events.index('session_prepare'),events.index('backend'))
@@ -81,6 +120,7 @@ class CliLifecycleTests(unittest.TestCase):
         self.assertEqual(created['manifest'],'fixture-wsl.json')
         self.assertEqual(created['repo_root'],Path(cli.__file__).resolve().parents[2])
         self.assertIsNotNone(created['backend_kwargs']['navigation_sensors'])
+        self.assertEqual(created['sensor_robot_ids'],('red_sentry',))
         self.assertEqual(created['run_kwargs'],dict(max_wall_seconds=1.,real_time_factor=.8))
         self.assertIn('session_stop',events);self.assertIn('session_close',events)
         startup=json.loads(created['stdout'].getvalue())
@@ -139,7 +179,72 @@ class CliLifecycleTests(unittest.TestCase):
         self.assertEqual(local.call_args.args[1],'local.json')
         self.assertEqual(created['registry_kwargs'],dict(native_spec='native-spec.json',native_out='native-output'))
         self.assertIsNotNone(created['backend_kwargs']['navigation_sensors'])
+        self.assertEqual(created['sensor_robot_ids'],('red_sentry',))
         self.assertNotIn('session_create',events)
+
+    def test_generic_navigation_scope_is_exact_manifest_union_without_legacy_sentry(self):
+        events,created=self.setup();self.setup_robotio(events,created)
+        cli.main(self.generic_args())
+        self.assertEqual(created['sensor_robot_ids'],('blue_sentry','red_infantry'))
+        self.assertNotIn('red_sentry',created['sensor_robot_ids'])
+        self.assertNotIn('session_create',events);self.assertNotIn('robotio_prepare',events)
+        startup=json.loads(created['stdout'].getvalue())
+        self.assertEqual(startup['navigation_sensor_profile']['robot_ids'],['blue_sentry','red_infantry'])
+        self.assertEqual(set(startup['robotio_plugins']['navigation_robots']),{'red_infantry','blue_sentry'})
+
+    def test_generic_navigation_and_legacy_pb_scopes_merge_explicitly(self):
+        events,created=self.setup();self.setup_robotio(events,created)
+        cli.main(self.args(['--robotio-plugins-json','fixture-robotio.json']))
+        self.assertEqual(created['sensor_robot_ids'],('blue_sentry','red_infantry','red_sentry'))
+        self.assertLess(events.index('session_prepare'),events.index('backend'))
+        self.assertIn('session_close',events)
+
+    def test_generic_aim_catalog_without_camera_rejected_before_backend(self):
+        events,created=self.setup();self.setup_robotio(events,created,categories=('aim',))
+        with self.assertRaises(SystemExit):cli.main(self.generic_args())
+        self.assertIn('robotio_registration',events)
+        self.assertNotIn('sensor_config',events);self.assertNotIn('backend',events)
+        self.assertNotIn('camera',events);self.assertNotIn('runtime',events)
+
+    def test_generic_prepare_failure_stops_before_registration_or_backend(self):
+        events,created=self.setup()
+        self.setup_robotio(events,created,fail='robotio_prepare',prepare=True)
+        with self.assertRaisesRegex(ValueError,'robotio_prepare_failed'):
+            cli.main(self.generic_args(['--prepare-robotio-plugins']))
+        self.assertNotIn('robotio_registration',events);self.assertNotIn('backend',events)
+        self.assertEqual(created['robotio_prepare_args']['repo_root'],Path(cli.__file__).resolve().parents[2])
+        self.assertEqual(created['robotio_prepare_args']['shared_root'],Path(cli.__file__).resolve().parents[2]/'artifacts/robotio-wsl')
+
+    def test_generic_prepared_resources_share_cleanup_after_registration_or_late_failure(self):
+        for stage in ('robotio_registration','server'):
+            with self.subTest(stage=stage):
+                events,created=self.setup(fail=stage if stage=='server' else None)
+                self.setup_robotio(events,created,fail=stage if stage=='robotio_registration' else None,prepare=True)
+                with patch.object(cli.time,'perf_counter',return_value=100.),self.assertRaisesRegex(ValueError,stage+'_failed'):
+                    cli.main(self.generic_args(['--prepare-robotio-plugins']))
+                self.assertIn('navigation_pool_close',events);self.assertIn('decision_pool_close',events)
+                self.assertEqual(created['pool_close_deadlines'],[('navigation',101.5),('decision',101.5)])
+                self.assertLess(events.index('robotio_prepare'),events.index('robotio_registration'))
+                if stage=='server':self.assertIn('runtime_close',events)
+
+    def test_generic_pool_cleanup_failure_still_closes_other_pool_and_preserves_cause(self):
+        events,created=self.setup(fail='server')
+        self.setup_robotio(events,created,prepare=True,cleanup_fail='navigation_pool_close')
+        with patch.object(cli.time,'perf_counter',return_value=100.),self.assertRaisesRegex(RuntimeError,'navigation_pool_close_failed') as result:
+            cli.main(self.generic_args(['--prepare-robotio-plugins']))
+        self.assertIsInstance(result.exception.__cause__,ValueError)
+        self.assertEqual(str(result.exception.__cause__),'server_failed')
+        self.assertIn('decision_pool_close',events);self.assertIn('runtime_close',events)
+        self.assertEqual(created['pool_close_deadlines'],[('navigation',101.5),('decision',101.5)])
+
+    def test_generic_prepare_flags_require_manifest_and_windows_before_registry(self):
+        events,created=self.setup()
+        with self.assertRaises(SystemExit):
+            cli.main(['--admission-manifest','fixture-admission.json','--prepare-robotio-plugins'])
+        self.assertNotIn('registry',events)
+        with patch.object(cli.sys,'platform','linux'),self.assertRaises(SystemExit):
+            cli.main(self.generic_args(['--prepare-robotio-plugins']))
+        self.assertNotIn('registry',events)
 
 
 if __name__=='__main__':unittest.main()

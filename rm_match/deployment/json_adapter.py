@@ -5,6 +5,7 @@ The existing runtime independently validates every observation/action and deadli
 """
 from __future__ import annotations
 import json
+import math
 import os
 from pathlib import Path
 import queue
@@ -21,6 +22,16 @@ from ..platform_v2.contracts import ContractError, exact, validate_action
 SCHEMA = 'polar.sim.adapter.jsonl.v1'
 MAX_REQUEST = 12 * 1024 * 1024
 MAX_RESPONSE = 64 * 1024
+
+
+class SharedCleanupBudget:
+    """Trusted composed peers share one original 1.5-second resource budget."""
+    def __init__(self):
+        self._deadline=None;self._lock=threading.Lock()
+    def claim(self):
+        with self._lock:
+            if self._deadline is None:self._deadline=time.perf_counter()+1.5
+            return self._deadline
 
 
 def load_registrations(path, *, with_digest=False):
@@ -81,10 +92,15 @@ class JsonLineAdapter(BaseAdapter):
         self.descriptor = descriptor(registration['adapter_id'], registration['kind'],
             registration['label'], registration['required_sensors'])
 
-    def reset(self, context):
+    def reset(self, context, *, deadline=None):
+        limit=self.clock()+2.
+        if deadline is not None:
+            if type(deadline) not in (int,float) or not math.isfinite(deadline):raise ContractError('invalid_reset_deadline')
+            limit=min(limit,deadline)
         super().reset(context)
+        if self.clock()>=limit:raise ContractError('custom_reset_expired_before_start')
         self._open_owned_process()
-        self._exchange(dict(op='reset', context=context, config=self.config), timeout=2.)
+        self._exchange(dict(op='reset', context=context, config=self.config), timeout=limit-self.clock())
 
     def _start_owned_process(self, env):
         """Reviewed transports replace ownership, never deadline enforcement."""
@@ -201,11 +217,19 @@ class JsonLineAdapter(BaseAdapter):
         try:self.responses.put_nowait(RuntimeError('custom_adapter_cancelled'))
         except queue.Full:pass
 
-    def close(self):
+    def close(self, *, deadline=None):
         # One resource deadline covers ownership cleanup, leader and IO join.
         # It cannot replace the original reset or action deadline.
         self._cancelled.set(); self.failed = True
-        deadline = time.perf_counter() + 1.5
+        limit=time.perf_counter()+1.5
+        if deadline is not None:
+            if type(deadline) not in (int,float) or not math.isfinite(deadline):raise ContractError('invalid_cleanup_deadline')
+            limit=min(limit,deadline)
+        group=getattr(self,'_resource_budget',None)
+        if group is not None:
+            if type(group) is not SharedCleanupBudget:raise ContractError('invalid_shared_cleanup_budget')
+            limit=min(limit,group.claim())
+        deadline=limit
         if not self._close_lock.acquire(timeout=max(0,deadline-time.perf_counter())):
             self._close_error = 'Custom adapter launch still owns lifecycle lock'
             self.shutdown_status = dict(clean=False, errors=[self._close_error], io_thread_stopped=False)

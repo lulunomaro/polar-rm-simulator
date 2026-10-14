@@ -4,6 +4,7 @@ import json
 import signal
 import sys
 import threading
+import time
 from pathlib import Path
 from .backend import MuJoCoBackend
 from .runtime import PlatformRuntime
@@ -35,6 +36,8 @@ def main(argv=None):
         help='Local server-owned role/robot grants; no implicit HTTP enrollment')
     parser.add_argument('--native-out',help='Local native process output root; never a network-selected executable')
     parser.add_argument('--aim-plugins-json',help='Trusted local manifest of negotiated camera/gimbal aim plugins')
+    parser.add_argument('--robotio-plugins-json',help='Trusted local graph of independent navigation, decision and aim plugins')
+    parser.add_argument('--prepare-robotio-plugins',action='store_true',help='Explicit WSL resource-only preparation before physics')
     parser.add_argument('--prepare-aim-plugins',action='store_true',
         help='Explicit Windows WSL aim resource initialization before physics; binding reset still uses 2 seconds')
     navigation=parser.add_mutually_exclusive_group()
@@ -54,10 +57,12 @@ def main(argv=None):
     if args.raw_base64_codec!='stdlib_chunked' and not args.camera:parser.error('--raw-base64-codec requires --camera')
     if args.prepare_aim_plugins and not args.aim_plugins_json:parser.error('--prepare-aim-plugins requires --aim-plugins-json')
     if args.prepare_aim_plugins and sys.platform!='win32':parser.error('--prepare-aim-plugins currently requires a Windows host')
+    if args.prepare_robotio_plugins and (not args.robotio_plugins_json or sys.platform!='win32'):
+        parser.error('--prepare-robotio-plugins requires a Windows host and local manifest')
     if args.host_opencv_threads is not None and not 1<=args.host_opencv_threads<=32:parser.error('--host-opencv-threads must be within 1..32')
     if not 0<args.real_time_factor<=1:parser.error('--real-time-factor must be within (0, 1]')
     if not 0<args.max_wall_seconds<=3600:parser.error('--max-wall-seconds must be within (0, 3600]')
-    backend=camera=runtime=server=http=session=aim_resources=wsl_native_registry=None;http_started=False;old_signals={}
+    backend=camera=runtime=server=http=session=aim_resources=wsl_native_registry=None;robotio_resources={};http_started=False;old_signals={}
     switch=PythonSwitchInterval(args.host_python_switch_interval_ms)
     affinity=AuthorityThreadAffinity(args.authority_affinity_mask)
     scheduling=dict(python_switch_interval=switch.record,authority_affinity=affinity.record)
@@ -97,10 +102,21 @@ def main(argv=None):
         elif args.pb_navigation_manifest:
             from ..integrations.pb_navigation_adapter import register_pb_navigation
             register_pb_navigation(registry,args.pb_navigation_manifest)
+        robotio=None
+        if args.robotio_plugins_json:
+            from ..deployment.robotio_plugin import register_robotio_plugins,prepare_robotio_resources
+            if args.prepare_robotio_plugins:
+                repo_root=Path(__file__).resolve().parents[2]
+                robotio_resources=prepare_robotio_resources(args.robotio_plugins_json,repo_root=repo_root,shared_root=repo_root/'artifacts/robotio-wsl')
+            robotio=register_robotio_plugins(registry,args.robotio_plugins_json,wsl_prepared=robotio_resources)
+            if any(d['category']=='aim' for d in registry.plugin_catalog()) and not args.camera:
+                parser.error('RobotIO camera aim requires --camera')
         navigation_config=None
-        if args.pb_navigation_manifest or args.pb_wsl_navigation_manifest:
+        if args.pb_navigation_manifest or args.pb_wsl_navigation_manifest or (robotio and robotio['navigation_robots']):
             from ..navigation_sensors import NavigationSensorConfig
-            navigation_config=NavigationSensorConfig()
+            robots=set(() if robotio is None else robotio['navigation_robots'])
+            if args.pb_navigation_manifest or args.pb_wsl_navigation_manifest:robots.add('red_sentry')
+            navigation_config=NavigationSensorConfig(robot_ids=tuple(sorted(robots)))
         backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply,navigation_sensors=navigation_config)
         if args.camera:
             from .camera import CameraProvider
@@ -117,6 +133,7 @@ def main(argv=None):
         print(json.dumps(dict(url=f'http://127.0.0.1:{server.server_address[1]}',
             transport='loopback_only',virtual_resupply=args.virtual_resupply,camera='real_opt_in' if args.camera else 'unavailable_no_gl',cross_machine_LAN_verified=False,real_time_factor_limit=args.real_time_factor,native_registered=bool(args.native_spec),
             aim_plugins_registered=bool(args.aim_plugins_json),
+            robotio_plugins=None if robotio is None else robotio,
             wsl_native_registered=bool(args.wsl_native_spec),
             wsl_native_transport=None if not args.wsl_native_spec else args.wsl_native_transport,
             prepared_aim_plugin_count=0 if aim_resources is None else len(aim_resources.instances),
@@ -151,6 +168,9 @@ def main(argv=None):
         elif backend is not None:finish('backend_close',backend.close)
         if session is not None:finish('session_close',session.close)
         if aim_resources is not None:finish('aim_unclaimed_close',aim_resources.close_unclaimed)
+        resource_deadline=time.perf_counter()+1.5
+        for category,pool in robotio_resources.items():
+            finish('robotio_'+category+'_unclaimed_close',lambda p=pool:p.close_unclaimed(deadline=resource_deadline))
         if wsl_native_registry is not None:finish('wsl_native_unclaimed_close',wsl_native_registry.close)
         if camera is not None:
             finish('camera_stop',camera.stop)

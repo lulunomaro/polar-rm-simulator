@@ -1,0 +1,9 @@
+{
+  "schema": "polar.sim.aim-command-mapping.v1",
+  "angle_unit": "deg",
+  "yaw_sign": -1,
+  "pitch_sign": 1,
+  "yaw_offset_rad": 0.0,
+  "pitch_offset_rad": 0.0,
+  "input_frame": "base_link"
+}

@@ -77,13 +77,21 @@ class AdapterSlot:
         cls=_loaded_native_class()
         if cls is not None and isinstance(instance,cls):
             cls.cancel(instance);return
+        module=sys.modules.get('rm_match.deployment.robotio_plugin')
+        pipeline=vars(module).get('DecisionNavigationAdapter') if module is not None else None
+        if type(instance) is pipeline:
+            pipeline.cancel(instance);return
         module=sys.modules.get('rm_match.deployment.json_adapter')
         base=vars(module).get('JsonLineAdapter') if module is not None else None
         if not isinstance(base,type):return
         for module_name,class_name in (
             ('rm_match.deployment.json_adapter','JsonLineAdapter'),
             ('rm_match.deployment.aim_plugin','AimPluginAdapter'),
-            ('rm_match.deployment.wsl_jsonl','WslAimPluginAdapter')):
+            ('rm_match.deployment.wsl_jsonl','WslAimPluginAdapter'),
+            ('rm_match.deployment.navigation_plugin','NavigationPluginAdapter'),
+            ('rm_match.deployment.decision_plugin','DecisionPluginAdapter'),
+            ('rm_match.deployment.robotio_wsl','WslNavigationPluginAdapter'),
+            ('rm_match.deployment.robotio_wsl','WslDecisionPluginAdapter')):
             loaded=sys.modules.get(module_name)
             reviewed=vars(loaded).get(class_name) if loaded is not None else None
             if type(instance) is reviewed:
@@ -271,6 +279,19 @@ class PlatformRuntime:
                     readiness='declared_support_only',fire_authority='manual_only')
         if token is not None:result['control_capabilities']=self.capabilities(token)
         return result
+
+    def plugin_catalog(self,token):
+        from ..deployment.robotio_plugin import CATALOG_SCHEMA
+        visible=set(self.control.visible_robot_ids(token))
+        query=getattr(self.registry,'plugin_catalog',None)
+        rows=query() if callable(query) else []
+        selected=[]
+        for row in rows:
+            robots=[r for r in row['supported_robots'] if r in visible]
+            if robots:selected.append(dict(row,supported_robots=robots))
+        return dict(catalog_schema=CATALOG_SCHEMA,plugins=selected,
+            readiness='declared_interfaces_negotiated_at_peer_reset',
+            control_channels=['motion','gimbal','fire'],fire_authority='manual_only')
 
     @staticmethod
     def _binding_active(b,now):
