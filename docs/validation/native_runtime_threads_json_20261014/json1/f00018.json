@@ -1,0 +1,38 @@
+[
+  {
+    "source": "rm_match/deployment/json_adapter.py",
+    "stored": "source_00.py",
+    "size": 13178,
+    "sha256": "23ba8fe4190bdbedb078746465907ae9eb1ea058a9febd5338eee16d74691ca5"
+  },
+  {
+    "source": "rm_match/deployment/json_owned_process.py",
+    "stored": "source_01.py",
+    "size": 5529,
+    "sha256": "2690cdeba8b505aa5491ffe350a3f40a40ac8759e4d02553e39788876007c500"
+  },
+  {
+    "source": "rm_match/deployment/windows_owned_job.py",
+    "stored": "source_02.py",
+    "size": 12063,
+    "sha256": "23fc4ca610c10c878d370d2e8c51454b88131436afa6f86c36d99805ac2aae17"
+  },
+  {
+    "source": "rm_match/integrations/owned_linux_group.py",
+    "stored": "source_03.py",
+    "size": 5895,
+    "sha256": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af"
+  },
+  {
+    "source": "tests/test_json_owned_process.py",
+    "stored": "source_04.py",
+    "size": 15460,
+    "sha256": "e693e1cb3ed36509f3ac44d9afd499990b8bf8fa0f45eb721b90ded73ce80ad3"
+  },
+  {
+    "source": "tests/test_deployment.py",
+    "stored": "source_05.py",
+    "size": 23054,
+    "sha256": "0b99fc32bc809a1b07660bd0bb1e91b5fa301d947509f2d575998ee0ba960ad8"
+  }
+]

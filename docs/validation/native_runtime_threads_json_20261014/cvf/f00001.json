@@ -1,0 +1,17 @@
+{
+  "returncode": 0,
+  "pid": 49176,
+  "reaped": true,
+  "elapsed_s": 0.37868150000031164,
+  "source_before": {
+    "tools/compare_native_opencv_threads.py": "059c939fc771e2cb1b00bcffb1035560d91d50a31177c2b55bac9557be652996",
+    "tests/test_native_opencv_thread_comparison.py": "ede04564a09602321f7235c22c03692c58a0a6ef3b05f389b13c179cd22ab08c"
+  },
+  "source_after": {
+    "tools/compare_native_opencv_threads.py": "059c939fc771e2cb1b00bcffb1035560d91d50a31177c2b55bac9557be652996",
+    "tests/test_native_opencv_thread_comparison.py": "ede04564a09602321f7235c22c03692c58a0a6ef3b05f389b13c179cd22ab08c"
+  },
+  "source_unchanged": true,
+  "stdout_sha256": "e1ca101bbf996c7815802bfe8e854c2452d0d48eacab1be9dbb4bdf5de488c34",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

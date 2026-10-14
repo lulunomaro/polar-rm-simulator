@@ -1,0 +1,11 @@
+{
+  "schema": "polar.evidence.archive-errata.v1",
+  "reason": "Windows write_text produced CRLF INDEX; independent byte verifier requires explicit LF bytes",
+  "original_payloads_modified": false,
+  "original_rows_modified": false,
+  "execution_source_modified": false,
+  "older_packages_modified": false,
+  "initial_metadata_and_failures_retained": "proof/initial",
+  "index_sha256": "b85e89b14f156e5da7feb768b803c632973a88dd91cdac21bdf97b455061eab4",
+  "archive_script_sha256": "f3918daab4c0ffea48771c3f6d9ab2e1dfa0da233fbcf7e58df505b88cca7d79"
+}

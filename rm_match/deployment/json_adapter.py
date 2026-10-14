@@ -14,6 +14,7 @@ import sys
 import threading
 import time
 from .profile import digest, read_json_snapshot
+from .json_owned_process import OwnedJsonProcess
 from ..platform_v2.adapters import BaseAdapter, descriptor, require_sensors
 from ..platform_v2.contracts import ContractError, exact, validate_action
 
@@ -72,6 +73,11 @@ class JsonLineAdapter(BaseAdapter):
         self.responses = queue.Queue(1)
         self.failed = False
         self._close_lock = threading.Lock()
+        self._cancelled = threading.Event()
+        self._owned_process = None
+        self.shutdown_status = None
+        self._close_error = None
+        self._launch_cleanup_status = None
         self.descriptor = descriptor(registration['adapter_id'], registration['kind'],
             registration['label'], registration['required_sensors'])
 
@@ -84,46 +90,58 @@ class JsonLineAdapter(BaseAdapter):
         env = dict(os.environ)
         for key in ('PYTHONPATH', 'PYTHONHOME'):
             env.pop(key, None)
-        self.process = subprocess.Popen(self.registration['command'], cwd=self.registration['cwd'],
-            env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-            stderr=subprocess.DEVNULL, bufsize=0, shell=False)
-        child = self.process
-        def io_loop():
+        thread_start_error = None
+        with self._close_lock:
+            if self.failed or self._cancelled.is_set():raise ContractError('custom_instance_cannot_restart')
             try:
-                while True:
-                    raw = self.requests.get()
-                    if raw is None:
-                        return
-                    # A dedicated thread owns blocking pipe operations; the caller
-                    # enforces a deadline and kills this owned child on timeout.
-                    view = memoryview(raw)
-                    while view:
-                        size = child.stdin.write(view)
-                        if not size:
-                            raise BrokenPipeError('Adapter input closed')
-                        view = view[size:]
-                    child.stdin.flush()
-                    row = child.stdout.readline(MAX_RESPONSE + 1)
-                    if not row.endswith(b'\n') or len(row) > MAX_RESPONSE:
-                        raise ContractError('custom_response_missing_or_oversized')
-                    def reject(_):
-                        raise ContractError('custom_nonfinite_json')
-                    def pairs(rows):
-                        value = {}
-                        for key, item in rows:
-                            if key in value:
-                                raise ContractError('custom_duplicate_json_key')
-                            value[key] = item
-                        return value
-                    value = json.loads(row, parse_constant=reject, object_pairs_hook=pairs)
-                    self.responses.put_nowait(value)
-            except Exception as exc:
+                self._owned_process = OwnedJsonProcess(self.registration['command'], cwd=self.registration['cwd'],
+                    env=env, stop_event=self._cancelled)
+            except BaseException as exc:
+                self._launch_cleanup_status=getattr(exc,'cleanup_status',None)
+                self.failed=True;self._cancelled.set()
+                raise
+            self.process = self._owned_process.child
+            child = self.process
+            def io_loop():
                 try:
-                    self.responses.put_nowait(exc)
-                except queue.Full:
-                    pass
-        self.thread = threading.Thread(target=io_loop, daemon=True, name='json-adapter-io')
-        self.thread.start()
+                    while True:
+                        raw = self.requests.get()
+                        if raw is None:
+                            return
+                        # A dedicated thread owns blocking pipe operations; the caller
+                        # enforces a deadline and kills this owned child on timeout.
+                        view = memoryview(raw)
+                        while view:
+                            size = child.stdin.write(view)
+                            if not size:
+                                raise BrokenPipeError('Adapter input closed')
+                            view = view[size:]
+                        child.stdin.flush()
+                        row = child.stdout.readline(MAX_RESPONSE + 1)
+                        if not row.endswith(b'\n') or len(row) > MAX_RESPONSE:
+                            raise ContractError('custom_response_missing_or_oversized')
+                        def reject(_):
+                            raise ContractError('custom_nonfinite_json')
+                        def pairs(rows):
+                            value = {}
+                            for key, item in rows:
+                                if key in value:
+                                    raise ContractError('custom_duplicate_json_key')
+                                value[key] = item
+                            return value
+                        value = json.loads(row, parse_constant=reject, object_pairs_hook=pairs)
+                        self.responses.put_nowait(value)
+                except Exception as exc:
+                    try:
+                        self.responses.put_nowait(exc)
+                    except queue.Full:
+                        pass
+            self.thread = threading.Thread(target=io_loop, daemon=True, name='json-adapter-io')
+            try:self.thread.start()
+            except Exception as exc:thread_start_error=exc
+        if thread_start_error is not None:
+            self.close()
+            raise thread_start_error
         self._exchange(dict(op='reset', context=context, config=self.config), timeout=2.)
 
     def _exchange(self, packet, *, timeout):
@@ -169,42 +187,57 @@ class JsonLineAdapter(BaseAdapter):
         return validate_action(response['action'], o, self.descriptor)
 
     def close(self):
-        with self._close_lock:
+        # One resource deadline covers ownership cleanup, leader and IO join.
+        # It cannot replace the original reset or action deadline.
+        self._cancelled.set(); self.failed = True
+        deadline = time.perf_counter() + 1.5
+        if not self._close_lock.acquire(timeout=max(0,deadline-time.perf_counter())):
+            self._close_error = 'Custom adapter launch still owns lifecycle lock'
+            self.shutdown_status = dict(clean=False, errors=[self._close_error], io_thread_stopped=False)
+            raise RuntimeError(self._close_error)
+        errors=[];proof=None
+        try:
             self.failed = True
             child = self.process
             self.process = None
             try:
-                if child is not None:
-                    if child.poll() is None:
-                        try:
-                            if sys.platform=='win32':
-                                # Windows venv python is a launcher with a
-                                # separate interpreter child. Stop the owned
-                                # tree, including that pipe-writing descendant.
-                                subprocess.run(['taskkill','/PID',str(child.pid),'/T','/F'],
-                                    stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,
-                                    stderr=subprocess.DEVNULL,timeout=2.,
-                                    creationflags=subprocess.CREATE_NO_WINDOW,check=False)
-                                if child.poll() is None:child.kill()
-                            else:child.kill()
-                        except ProcessLookupError:
-                            pass
-                    try:
-                        child.wait(timeout=1.)
-                    finally:
-                        for stream in (child.stdin, child.stdout):
-                            if stream:
-                                stream.close()
+                if self._owned_process is not None:
+                    proof=self._owned_process.cleanup(deadline)
+                    if not proof.get('clean') or not proof.get('reaped') or not proof.get('group_empty'):
+                        errors.append('Custom adapter owned process cleanup unproved')
+                elif self._launch_cleanup_status is not None:
+                    proof=self._launch_cleanup_status
+                    if not proof.get('clean') or not proof.get('group_empty') or not (proof.get('reaped') or proof.get('not_spawned')):
+                        errors.append('Custom adapter failed launch cleanup unproved')
+            except Exception as exc:
+                errors.append(type(exc).__name__+':'+str(exc))
             finally:
+                if child is not None:
+                    for stream in (child.stdin,child.stdout):
+                        try:
+                            if stream is not None:stream.close()
+                        except Exception as exc:errors.append('pipe_close:'+type(exc).__name__)
+                if self._owned_process is not None:
+                    try:self._owned_process.release_handles()
+                    except Exception as exc:errors.append('owned_handle_close:'+type(exc).__name__)
                 try:
                     self.requests.put_nowait(None)
                 except queue.Full:
                     pass
                 thread=getattr(self,'thread',None)
                 if thread is not None and thread is not threading.current_thread():
-                    thread.join(1.)
+                    try:
+                        if thread.ident is not None:thread.join(max(0,deadline-time.perf_counter()))
+                    except Exception as exc:errors.append('io_thread_join:'+type(exc).__name__)
                     if thread.is_alive():
-                        raise RuntimeError('Custom adapter IO thread failed to stop')
+                        errors.append('Custom adapter IO thread failed to stop')
+                if self._close_error:errors.append(self._close_error)
+                self.shutdown_status=dict(clean=not errors, errors=errors, ownership=proof,
+                    io_thread_stopped=thread is None or not thread.is_alive(),
+                    resource_budget_s=1.5)
+                self._close_error='; '.join(errors) if errors else None
+        finally:self._close_lock.release()
+        if errors:raise RuntimeError(self._close_error)
 
 
 def register_json_adapters(registry, path, *, clock=time.perf_counter):

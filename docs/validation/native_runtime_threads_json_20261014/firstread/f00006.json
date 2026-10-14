@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "elapsed_s": 0.05902530000093975,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "script_sha256": "c3fffbcee17a7fa54e2b2b64af59adbe26b502756cd1358f192ec0f813e2adc5",
+  "input_unchanged": true,
+  "source_unchanged": true,
+  "raw_copies_byteidentical": true,
+  "scope": "Saved first actual control request, no microbenchmark/WSL/ROS/NN/GL",
+  "benchmark_started": false,
+  "NN_started": false,
+  "WSL_started": false,
+  "GL_started": false
+}

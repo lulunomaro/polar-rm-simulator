@@ -20,7 +20,8 @@ def generate_profile(base,generated,profile,*,header_source=None):
     armor='#include "first_frame_trace.hpp"\n'+armor
     armor=once(armor,'        openvino_model   = model.compile(openvino_core, config.model_location);',
         '        {\n            rmcs::first_frame_trace::Scope phase("model_compile",true);\n'
-        '            openvino_model = model.compile(openvino_core, config.model_location);\n        }')
+        '            openvino_model = model.compile(openvino_core, config.model_location);\n        }\n'
+        '        rmcs::first_frame_trace::report_compiled_model(openvino_model);')
     allocation='''        if (!cached_ready) {
             cached_input_tensor = ov::Tensor {
                 ov::element::u8,

@@ -1,0 +1,14 @@
+[
+  {
+    "path": "rm_match/deployment/json_adapter.py",
+    "before": "23ba8fe4190bdbedb078746465907ae9eb1ea058a9febd5338eee16d74691ca5",
+    "after": "d5a28d956ec57b3b882285a5df4cbc8b6951dbce48e461d3965e749cf2bc39ca",
+    "change": "CRLF to LF only"
+  },
+  {
+    "path": "tests/test_json_owned_process.py",
+    "before": "ea248f06b8d393a7aa8eb726601db0f5f0eb9ef20442b86118eeb9f559a4c2ef",
+    "after": "ef43e4d8405afaf094c00c7668ae20cc547937152e170d41f946c05b9b0b9b25",
+    "change": "CRLF to LF only"
+  }
+]

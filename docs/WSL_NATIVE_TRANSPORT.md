@@ -30,3 +30,11 @@ optional pybase64_1_5_1须预先安装并与已声明扩展身份匹配；不能
 最新actual3源不变，5000steps/10sim；physics10.0004716s/RTF.999952842与run+cleanup10.0587424s/ratio.994160065分开。148raw、1请求、0结果/消费，原ELF完整stdin1732/1732字节和47.378868ms等待只证明交付/整包超时，不证明NN完成或纯NN时延。单首请求factory5.2297ms/hostprep.1399ms含receipt.0184ms不称每帧或配对性能改善；postclose实际BGR/RGB审计与本轮owned cleanup通过。
 
 actual1是旧spec门禁拒绝；actual2启动失败/0physics/0NN且Linuxcleanup未证，后继probe/actual3不能补它。actual3之后的最终启动guard只有focused06/Linux14/资源probe02及QA02，不能重标旧actual3执行SHA或宣称final live已跑。没有开始时duration=None，setup/报告失败保存原异常与有限phase，不刷新旧时刻。历史[第12轮](validation/wsl_native_live_20261013_attempt12/README.md)及更早原件独立保留；离线保存帧、重复帧绕过NN、预加载和资源-only成功均非实时资格。M0–M5仍未完整签收。
+
+## 本轮诊断与资源修复补记（2026-10-14）
+
+新[独立证据](validation/native_runtime_threads_json_20261014/README.md)增加 opt-in first-frame-trace 的实际 CompiledModel 属性和零帧 readiness 报告；原生产42spec、模型、94源和80/150ms门限不变。真实诊断属性是 CPU/16线程/1stream/LATENCY/f32/pinning=true/ANY_CORE，OpenCV线程32。只查询属性不暖推理，零帧检查不替live通过。
+
+保存原失败BGR/帧8/476ms曝光/486ms控制的离线八进程计划中，默认四个首次真实响应约38–62ms；cv1四个实际线程仍32，全部在首输入前拒绝。计划整体失败，没有有效线程对照；离线2秒限时和默认组响应不替live80ms闭环。后续显式API setter仅允许独立诊断构建并先核实实际值，不静默改生产或改时间戳。
+
+worker新增每事务实际stdout读取/select/buffer及有界前缀SHA元数据；原deadline在select/读取/解析后保持重检。旧actual3没有这些字段仍未知；0读取不等于证明native从未写stdout。无害实际pipe29项通过，不是NN资格。通用JSONL进程树回收另有Windows/Linux实际证明，不能替导航或自瞄验收。最终冻结统一QA1324passed/35明确skip/930subtests；当前实时自瞄仍0回复/0消费，完整比赛未通过。

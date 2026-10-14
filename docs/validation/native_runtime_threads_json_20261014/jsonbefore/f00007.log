@@ -1,0 +1,13 @@
+{
+  "scope": "Actual Windows harmless local JSON adapter, no simulation/ROS/NN",
+  "source_sha256": "5f5ce98fc7eb2dfdf57cfd7ae0437d6bc9407090be60664c5a2ca303ef44b411",
+  "source_unchanged": true,
+  "leader_returncode": 0,
+  "grandchild_alive_before_close": true,
+  "grandchild_alive_after_close": true,
+  "adapter_IO_thread_stopped": true,
+  "close_elapsed_s": 0.00012109999988751952,
+  "fixture_child_naturally_exited": true,
+  "nonce": "a2384576273c4776b57e17f63f5651d8",
+  "defect_reproduced": true
+}

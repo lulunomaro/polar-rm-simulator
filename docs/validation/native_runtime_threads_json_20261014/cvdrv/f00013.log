@@ -1,0 +1,39 @@
+{
+  "comparison_complete": false,
+  "errors": [
+    {
+      "case": 2,
+      "errors": [
+        "ValueError:opencv_threads_not_effective",
+        "first_frame_phases_incomplete",
+        "stderr_properties_or_phases:opencv_threads_not_effective"
+      ]
+    },
+    {
+      "case": 3,
+      "errors": [
+        "ValueError:opencv_threads_not_effective",
+        "first_frame_phases_incomplete",
+        "stderr_properties_or_phases:opencv_threads_not_effective"
+      ]
+    },
+    {
+      "case": 6,
+      "errors": [
+        "ValueError:opencv_threads_not_effective",
+        "first_frame_phases_incomplete",
+        "stderr_properties_or_phases:opencv_threads_not_effective"
+      ]
+    },
+    {
+      "case": 7,
+      "errors": [
+        "ValueError:opencv_threads_not_effective",
+        "first_frame_phases_incomplete",
+        "stderr_properties_or_phases:opencv_threads_not_effective"
+      ]
+    }
+  ],
+  "source_unchanged": true,
+  "tmpfs_removed": true
+}

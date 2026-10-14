@@ -1,0 +1,46 @@
+{
+  "schema": "polar.native-opencv-thread-plan.v1",
+  "sequence": [
+    "default",
+    "cv1",
+    "cv1",
+    "default",
+    "default",
+    "cv1",
+    "cv1",
+    "default"
+  ],
+  "sole_child_environment_change": {
+    "OPENCV_FOR_THREADS_NUM": {
+      "default": null,
+      "cv1": "1"
+    }
+  },
+  "expected_cv_threads": {
+    "default": 32,
+    "cv1": 1
+  },
+  "expected_compiled_properties": {
+    "execution_devices": [
+      "CPU"
+    ],
+    "inference_num_threads": 16,
+    "num_streams": 1,
+    "performance_mode": "LATENCY",
+    "inference_precision": "f32",
+    "enable_cpu_pinning": true,
+    "scheduling_core_type": "ANY_CORE"
+  },
+  "saved_identity": {
+    "frame_id": 8,
+    "exposure_timestamp_ns": 476000000,
+    "control_time_ns": 486000000
+  },
+  "image_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+  "fresh_processes": 8,
+  "startup_timeout_s": 15.0,
+  "offline_first_response_timeout_s": 2.0,
+  "no_warm_inference": true,
+  "live_budget_or_timestamp_changes": false,
+  "qualification": "Linux offline first-response diagnostic only; never live/RTF qualification. No duplicate-packet throughput."
+}

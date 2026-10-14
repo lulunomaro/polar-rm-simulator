@@ -1,0 +1,28 @@
+{
+  "status": "native_build_succeeded",
+  "commands": [
+    [
+      "/usr/bin/cmake",
+      "-S",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/operator_native/runtime",
+      "-B",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/cmake",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "-DRMCS_GENERATED_DIR=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/generated",
+      "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/bin",
+      "-DCMAKE_PREFIX_PATH=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/deps/openvino/runtime/cmake",
+      "-DRMCS_USE_CONTOUR_CORNERS=ON",
+      "-DRMCS_PERFORMANCE_PROFILE=first-frame-trace"
+    ],
+    [
+      "/usr/bin/cmake",
+      "--build",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/cmake",
+      "--target",
+      "rmcs_sim_operator_fov",
+      "--parallel",
+      "2"
+    ]
+  ]
+}

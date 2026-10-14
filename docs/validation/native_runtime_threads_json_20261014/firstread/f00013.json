@@ -1,0 +1,77 @@
+[
+  {
+    "event": "startup_begin",
+    "host_perf_counter": 8304.7489191,
+    "transport": "wsl_stdio_bgr_v2",
+    "windows_native": false,
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu",
+      "--cd",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "--",
+      "/usr/bin/python3",
+      "-m",
+      "rm_match.integrations.wsl_operator_pipe_worker",
+      "--spec",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-original-nav-checkpoint-build-20261013/operator_source.local.json",
+      "--spec-sha256",
+      "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+      "--out",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/wsl-native-live-20261014-prepared-bgr-attempt3/native/binding_0f85d87defea4b2daee5a9c07962775e/wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a",
+      "--fov-degrees",
+      "180.0",
+      "--radius-x",
+      "1.0",
+      "--radius-y",
+      "1.0",
+      "--startup-timeout",
+      "15.0",
+      "--control-timeout",
+      "0.08"
+    ]
+  },
+  {
+    "event": "startup_ready",
+    "host_perf_counter": 8308.5990403,
+    "transport": "wsl_stdio_bgr_v2",
+    "native_pid": 679,
+    "tmpfs_directory": "/dev/shm/polar-wsl-bgr-v66jsg2n"
+  },
+  {
+    "event": "control_prepare",
+    "host_perf_counter": 8309.1238542,
+    "transport": "wsl_stdio_bgr_v2",
+    "stages_s": {
+      "admission_s": 3.399998604436405e-06,
+      "frame_copy_s": 3.2500000088475645e-05,
+      "sensor_validate_s": 2.080000012938399e-05,
+      "private_image_admission_s": 1.8599999748403206e-05,
+      "prepared_bgr_admission_s": 1.8400000044493936e-05,
+      "serialize_s": 4.620000072463881e-05,
+      "total_s": 0.000139899999339832
+    },
+    "failed_phase": null,
+    "error_type": null,
+    "original_host_deadline": 8309.1848211,
+    "remaining_host_budget_s": 0.060969399999521556,
+    "clock_domain": "host_perf_counter"
+  },
+  {
+    "event": "native_request",
+    "host_perf_counter": 8309.123857,
+    "transport": "wsl_stdio_bgr_v2",
+    "request_id": 1,
+    "control_time_ns": 486000000,
+    "image_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e"
+  },
+  {
+    "event": "closed",
+    "host_perf_counter": 8309.2665493,
+    "clean": true,
+    "linux_child_reaped": true,
+    "native_not_spawned": false,
+    "errors": []
+  }
+]

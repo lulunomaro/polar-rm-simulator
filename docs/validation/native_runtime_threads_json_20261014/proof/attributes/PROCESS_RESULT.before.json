@@ -1,0 +1,15 @@
+{
+  "schema": "polar.evidence.archive-process-observation.v1",
+  "archive_exit_code": 0,
+  "first_package_verify_exit_code": 1,
+  "first_originals_verify_exit_code": 1,
+  "final_package_verify_exit_code": 0,
+  "final_originals_verify_exit_code": 0,
+  "scope": "Observed foreground shell tool completion and exit codes; no native/WSL/ROS processes launched",
+  "payload_count": 401,
+  "initial_failure": "new INDEX CRLF vs expected LF; no payload/original change",
+  "initial_failure_retained": "proof/initial",
+  "preservation_manifest_sha256": "253edaa6dacd0572bfc4afc77f7958c9f8d5b7261696c458e07abc623882f644",
+  "older_files_checked": 2566,
+  "older_packages_unchanged": true
+}

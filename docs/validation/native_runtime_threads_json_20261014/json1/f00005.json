@@ -1,0 +1,19 @@
+{
+  "scope": "Harmless actual Windows Job fixtures plus injected POSIX launch proofs; actual Linux cases explicitly skipped",
+  "steps": [
+    {
+      "step": "repro",
+      "exit_code": 0,
+      "elapsed_s": 0.2701909000006708,
+      "reaped": true
+    },
+    {
+      "step": "focused",
+      "exit_code": 0,
+      "elapsed_s": 3.7241125000000466,
+      "reaped": true
+    }
+  ],
+  "source_unchanged": true,
+  "source_manifest_sha256": "045f67d4a937705d6bc314f7a2dfd805abc719fa2eed06582bce2dbb6a6d0a67"
+}

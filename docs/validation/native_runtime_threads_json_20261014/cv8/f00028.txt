@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/compare_native_opencv_threads.py", line 244, in run
+    check_properties(props, variant)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/compare_native_opencv_threads.py", line 77, in check_properties
+    raise ValueError('opencv_threads_not_effective')
+ValueError: opencv_threads_not_effective

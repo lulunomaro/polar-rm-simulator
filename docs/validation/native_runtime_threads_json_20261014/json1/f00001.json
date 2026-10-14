@@ -1,0 +1,11 @@
+{
+  "scope": "Report label correction only; original RESULT/stdout and all source/test bytes remain unchanged",
+  "field": "RESULT.json.fixture_child_naturally_exited",
+  "recorded_value": true,
+  "accurate_interpretation": "The known grandchild synchronization handle signalled after owned Job termination. The copied baseline label naturally_exited is inaccurate for this repaired reproduction.",
+  "fixture_child_exit_verified": true,
+  "natural_exit_not_qualified": true,
+  "owned_job_active_processes": 0,
+  "owned_job_cleanup_clean": true,
+  "new_test_execution": false
+}

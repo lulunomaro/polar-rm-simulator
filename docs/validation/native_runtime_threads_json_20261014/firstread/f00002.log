@@ -1,0 +1,52 @@
+{
+  "host_timeline": {
+    "capture": 8309.1048211,
+    "private_publication": 8309.1145416,
+    "public_complete": 8309.1158128,
+    "adapter_enqueue": 8309.1165611,
+    "adapter_started": 8309.1172364,
+    "native_frame_prepare": 8309.123698,
+    "adapter_native_request": 8309.1237022,
+    "bridge_prepare": 8309.1238542,
+    "bridge_native_request": 8309.123857,
+    "original_deadline": 8309.1848211,
+    "adapter_completed": 8309.1983704,
+    "runtime_collect": 8309.2011624
+  },
+  "host_durations_ms": {
+    "original_capture_budget": 79.99999999992724,
+    "capture_to_private": 9.720500000184984,
+    "private_to_enqueue": 2.0194999997329433,
+    "enqueue_to_adapter_native_request": 7.141100000808365,
+    "capture_to_bridge_request": 19.035900000744732,
+    "bridge_prepare_remaining_recorded": 60.969399999521556,
+    "bridge_request_remaining": 60.96409999918251,
+    "adapter_completed_after_original_deadline": 13.54929999979504
+  },
+  "linux_stages_s": {
+    "pipe_receive_s": 0.009306717000001186,
+    "payload_sha256_s": 0.001977017999998054,
+    "tmpfs_write_s": 0.0019194440000021018,
+    "native_stdin_write_s": 2.403999999955886e-05,
+    "native_result_wait_s": 0.04737886799999558
+  },
+  "linux_stage_sum_ms": 60.60608699999648,
+  "bgr_sha_bindings_equal": true,
+  "source_unchanged": true,
+  "native_main_matches_build_manifest": true,
+  "same_owned_child_identity": true,
+  "process": {
+    "exit_code": 0,
+    "elapsed_s": 0.05902530000093975,
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "script_sha256": "c3fffbcee17a7fa54e2b2b64af59adbe26b502756cd1358f192ec0f813e2adc5",
+    "input_unchanged": true,
+    "source_unchanged": true,
+    "raw_copies_byteidentical": true,
+    "scope": "Saved first actual control request, no microbenchmark/WSL/ROS/NN/GL",
+    "benchmark_started": false,
+    "NN_started": false,
+    "WSL_started": false,
+    "GL_started": false
+  }
+}

@@ -20,6 +20,40 @@ from .owned_linux_group import LinuxOwnedProcessGroup,_stat
 
 TRANSPORT='wsl_stdio_bgr_v2'
 CHUNK=65536
+STDOUT_PREFIX_LIMIT=4096
+
+
+class _NativeStdoutObservation:
+    """Bounded per-request supervisor observations, never child compute proof."""
+    def __init__(self):self.reset()
+
+    def reset(self):
+        self.read_bytes=0;self.readable_count=0
+        self.first_readable_after_stdin_s=None;self.first_read_after_stdin_s=None
+
+    def observed_readable(self,now,stdin_finished):
+        self.readable_count+=1
+        if (self.first_readable_after_stdin_s is None and stdin_finished is not None
+            and now>=stdin_finished):
+            self.first_readable_after_stdin_s=now-stdin_finished
+
+    def observed_read(self,chunk,now,stdin_finished):
+        self.read_bytes+=len(chunk)
+        if (chunk and self.first_read_after_stdin_s is None and stdin_finished is not None
+            and now>=stdin_finished):
+            self.first_read_after_stdin_s=now-stdin_finished
+
+    def snapshot(self,buffer):
+        # Only a bounded prefix digest is retained, never raw response text.
+        prefix=buffer[:STDOUT_PREFIX_LIMIT]
+        return dict(native_stdout_read_bytes=self.read_bytes,
+            native_stdout_readable_count=self.readable_count,
+            native_stdout_first_readable_after_stdin_s=self.first_readable_after_stdin_s,
+            native_stdout_first_read_after_stdin_s=self.first_read_after_stdin_s,
+            native_stdout_buffer_retained_bytes=len(buffer),
+            native_stdout_prefix_bytes=len(prefix),
+            native_stdout_prefix_sha256=hashlib.sha256(prefix).hexdigest(),
+            native_stdout_prefix_truncated=len(buffer)>len(prefix))
 
 
 def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,control_timeout=.08,startup_deadline=None,
@@ -35,6 +69,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
     payload=None;received=0;image_start=None;writebuf=b'';stages={}
     native_stdin_bytes=0;native_stdin_complete=False;native_stdin_started=None
     native_stdin_expected=0;native_stdin_finished=None;startup_error=None
+    stdout_observation=_NativeStdoutObservation()
     try:
         owner=LinuxOwnedProcessGroup()
         tmp=tempfile.TemporaryDirectory(prefix='polar-wsl-bgr-',dir='/dev/shm')
@@ -75,6 +110,8 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                 reason='startup_timeout' if not ready else 'control_timeout';raise TimeoutError(reason)
             wait_s=.005 if active_deadline is None else min(.005,max(0.,active_deadline-time.monotonic()))
             readable,writable,_=select.select([0,child.stdout.fileno()],[child.stdin.fileno()] if writebuf else [],[],wait_s)
+            if child.stdout.fileno() in readable:
+                stdout_observation.observed_readable(time.monotonic(),native_stdin_finished)
             # Scheduler/OS wakeups can occur after the remaining local budget.
             # Recheck before forwarding stdin or accepting a readable result.
             if active_deadline is not None and time.monotonic()>=active_deadline:
@@ -86,7 +123,13 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                     native_stdin_complete=True;native_stdin_finished=time.monotonic()
                     stages['native_stdin_write_s']=native_stdin_finished-native_stdin_started
             for fd in readable:
+                # A different readable fd or Python work can consume the
+                # remaining budget after select. Never read a late result.
+                if active_deadline is not None and time.monotonic()>=active_deadline:
+                    reason='startup_timeout' if not ready else 'control_timeout';raise TimeoutError(reason)
                 chunk=os.read(fd,CHUNK)
+                if fd!=0:
+                    stdout_observation.observed_read(chunk,time.monotonic(),native_stdin_finished)
                 if not chunk:
                     if fd==0:reason='host_eof';return 0
                     reason='native_eof';raise RuntimeError('owned native stdout closed')
@@ -94,13 +137,17 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                     native_buffer.extend(chunk)
                     if len(native_buffer)>MAX_LINE:raise ValueError('oversize native result')
                     while b'\n' in native_buffer:
-                        line,_,tail=native_buffer.partition(b'\n');native_buffer=bytearray(tail)
+                        line,_,tail=native_buffer.partition(b'\n')
                         if pending is None or payload is not None or writebuf:raise ValueError('unsolicited native result')
                         response=json.loads(line)
+                        if active_deadline is not None and time.monotonic()>=active_deadline:
+                            reason='control_timeout';raise TimeoutError(reason)
+                        native_buffer=bytearray(tail)
                         stages['native_result_wait_s']=time.monotonic()-native_stdin_finished
                         _emit(dict(event='result',id=pending['id'],response=response,linux_stages_s=stages,
                             native_stdin_bytes_written=native_stdin_bytes,native_stdin_complete=native_stdin_complete,
                             native_stdin_expected_bytes=native_stdin_expected,
+                            **stdout_observation.snapshot(native_buffer),
                             clock_domain='linux_local_diagnostic_only'))
                         pending=None;active_deadline=None;stages={}
                         received=0;native_stdin_bytes=0;native_stdin_complete=False
@@ -110,6 +157,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                 if payload is None:
                     if pending is not None or not ready:raise ValueError('unexpected concurrent pipe request')
                     if header_start is None:
+                        stdout_observation.reset()
                         header_start=time.monotonic();active_deadline=header_start+control_timeout
                     reason='protocol_failure'
                     newline=chunk.find(b'\n')
@@ -161,6 +209,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         _record(out,'SUPERVISOR_ERROR.json',dict(reason=reason,error_type=type(exc).__name__,error=str(exc),linux_stages_s=stages,
             received_bgr_bytes=received,native_stdin_bytes_written=native_stdin_bytes,native_stdin_complete=native_stdin_complete,
             native_stdin_expected_bytes=native_stdin_expected,request_id=pending.get('id') if type(pending) is dict else None,
+            **stdout_observation.snapshot(native_buffer),
             clock_domain='linux_local_diagnostic_only'))
         try:_emit(dict(event='error',reason=reason,error_type=type(exc).__name__))
         except (OSError,BrokenPipeError):pass

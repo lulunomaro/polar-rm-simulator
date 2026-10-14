@@ -1,0 +1,295 @@
+"""wsl_stdio_bgr_v2: bounded real BGR bytes to owned Linux tmpfs, unchanged ELF.
+
+Linux timings are local diagnostics, never host-QPC latency measurements.
+"""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import select
+import signal
+import subprocess
+import tempfile
+import time
+import uuid
+from .wsl_operator_worker import MAX_IMAGE,MAX_LINE,_record,_emit,_stdin_wait,validate_linux_spec,validate_sensor_frame
+from .owned_linux_group import LinuxOwnedProcessGroup,_stat
+
+TRANSPORT='wsl_stdio_bgr_v2'
+CHUNK=65536
+STDOUT_PREFIX_LIMIT=4096
+
+
+class _NativeStdoutObservation:
+    """Bounded per-request supervisor observations, never child compute proof."""
+    def __init__(self):self.reset()
+
+    def reset(self):
+        self.read_bytes=0;self.readable_count=0
+        self.first_readable_after_stdin_s=None;self.first_read_after_stdin_s=None
+
+    def observed_readable(self,now,stdin_finished):
+        self.readable_count+=1
+        if (self.first_readable_after_stdin_s is None and stdin_finished is not None
+            and now>=stdin_finished):
+            self.first_readable_after_stdin_s=now-stdin_finished
+
+    def observed_read(self,chunk,now,stdin_finished):
+        self.read_bytes+=len(chunk)
+        if (chunk and self.first_read_after_stdin_s is None and stdin_finished is not None
+            and now>=stdin_finished):
+            self.first_read_after_stdin_s=now-stdin_finished
+
+    def snapshot(self,buffer):
+        # Only a bounded prefix digest is retained, never raw response text.
+        prefix=buffer[:STDOUT_PREFIX_LIMIT]
+        return dict(native_stdout_read_bytes=self.read_bytes,
+            native_stdout_readable_count=self.readable_count,
+            native_stdout_first_readable_after_stdin_s=self.first_readable_after_stdin_s,
+            native_stdout_first_read_after_stdin_s=self.first_read_after_stdin_s,
+            native_stdout_buffer_retained_bytes=len(buffer),
+            native_stdout_prefix_bytes=len(prefix),
+            native_stdout_prefix_sha256=hashlib.sha256(prefix).hexdigest(),
+            native_stdout_prefix_truncated=len(buffer)>len(prefix))
+
+
+def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,control_timeout=.08,startup_deadline=None,
+              startup_guard=None,pre_native_exit=None):
+    out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    stopped=False
+    def stop_signal(*_):
+        nonlocal stopped
+        stopped=True
+    signal.signal(signal.SIGTERM,stop_signal);signal.signal(signal.SIGINT,stop_signal)
+    child=None;errorlog=None;tmp=None;reason='startup_failure';killed=False
+    startup=time.monotonic();header=bytearray();header_start=None;native_buffer=bytearray();pending=None
+    payload=None;received=0;image_start=None;writebuf=b'';stages={}
+    native_stdin_bytes=0;native_stdin_complete=False;native_stdin_started=None
+    native_stdin_expected=0;native_stdin_finished=None;startup_error=None
+    stdout_observation=_NativeStdoutObservation()
+    try:
+        owner=LinuxOwnedProcessGroup()
+        tmp=tempfile.TemporaryDirectory(prefix='polar-wsl-bgr-',dir='/dev/shm')
+        os.chmod(tmp.name,0o700);image_path=Path(tmp.name)/'sensor_input.bgr'
+        # Original ELF checks this exact LF file on every control request. Keep
+        # its guard unchanged while removing the per-tick DrvFs working-dir IO.
+        (Path(tmp.name)/'tracking_mode').write_bytes(b'multi_ekf\n')
+        errorlog=(out/'native_stderr.log').open('wb')
+        # File setup can block after the caller's last admission check. Preserve
+        # its cancellation flag and recheck the original deadline at spawn.
+        if stopped or (out/'STOP').exists():raise InterruptedError('host_cancel_before_native_spawn')
+        if startup_guard is not None:startup_guard()
+        limit=startup+startup_timeout if startup_deadline is None else startup_deadline
+        if time.monotonic()>=limit:raise TimeoutError('startup_timeout_before_native_spawn')
+        child=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=errorlog,
+            cwd=tmp.name,env=env,bufsize=0,start_new_session=True)
+        owned=owner.attach(child)
+        _record(out,'OWNED_CHILD.json',dict(owned,spec_sha256=spec_sha,transport=TRANSPORT,tmpfs_directory=tmp.name,tmpfs_mode=oct(os.stat(tmp.name).st_mode&0o777)))
+        os.set_blocking(0,False);os.set_blocking(child.stdin.fileno(),False);os.set_blocking(child.stdout.fileno(),False)
+        ready=False;active_deadline=startup+startup_timeout if startup_deadline is None else startup_deadline;next_stop_poll=startup
+        while True:
+            now=time.monotonic()
+            if stopped:reason='host_cancel';break
+            if now>=next_stop_poll:
+                next_stop_poll=now+.005
+                if (out/'STOP').exists():reason='host_cancel';break
+            if child.poll() is not None:reason='native_exit';raise RuntimeError('owned native process exited')
+            if not ready:
+                readiness=_stdin_wait(child.pid)
+                if readiness:
+                    ready=True;active_deadline=None
+                    data=dict(event='ready',transport=TRANSPORT,native_pid=child.pid,run_id=owned['run_id'],supervisor_pid=owned['supervisor_pid'],spec_sha256=spec_sha,
+                        readiness=readiness,startup_elapsed_linux_s=now-startup,tmpfs_directory=tmp.name,tmpfs_mode='0o700',
+                        native_cwd=tmp.name,tracking_mode_sha256=hashlib.sha256(b'multi_ekf\n').hexdigest(),
+                        native_ticks=0,inference_calls=0,camera_captures=0,physics_steps=0)
+                    _record(out,'STARTUP.json',data);_emit(data)
+            if active_deadline is not None and now>=active_deadline:
+                reason='startup_timeout' if not ready else 'control_timeout';raise TimeoutError(reason)
+            wait_s=.005 if active_deadline is None else min(.005,max(0.,active_deadline-time.monotonic()))
+            readable,writable,_=select.select([0,child.stdout.fileno()],[child.stdin.fileno()] if writebuf else [],[],wait_s)
+            if child.stdout.fileno() in readable:
+                stdout_observation.observed_readable(time.monotonic(),native_stdin_finished)
+            # Scheduler/OS wakeups can occur after the remaining local budget.
+            # Recheck before forwarding stdin or accepting a readable result.
+            if active_deadline is not None and time.monotonic()>=active_deadline:
+                reason='startup_timeout' if not ready else 'control_timeout';raise TimeoutError(reason)
+            if child.stdin.fileno() in writable:
+                if native_stdin_started is None:native_stdin_started=time.monotonic()
+                count=os.write(child.stdin.fileno(),writebuf);writebuf=writebuf[count:];native_stdin_bytes+=count
+                if not writebuf:
+                    native_stdin_complete=True;native_stdin_finished=time.monotonic()
+                    stages['native_stdin_write_s']=native_stdin_finished-native_stdin_started
+            for fd in readable:
+                # A different readable fd or Python work can consume the
+                # remaining budget after select. Never read a late result.
+                if active_deadline is not None and time.monotonic()>=active_deadline:
+                    reason='startup_timeout' if not ready else 'control_timeout';raise TimeoutError(reason)
+                chunk=os.read(fd,CHUNK)
+                if fd!=0:
+                    stdout_observation.observed_read(chunk,time.monotonic(),native_stdin_finished)
+                if not chunk:
+                    if fd==0:reason='host_eof';return 0
+                    reason='native_eof';raise RuntimeError('owned native stdout closed')
+                if fd!=0:
+                    native_buffer.extend(chunk)
+                    if len(native_buffer)>MAX_LINE:raise ValueError('oversize native result')
+                    while b'\n' in native_buffer:
+                        line,_,tail=native_buffer.partition(b'\n')
+                        if pending is None or payload is not None or writebuf:raise ValueError('unsolicited native result')
+                        response=json.loads(line)
+                        if active_deadline is not None and time.monotonic()>=active_deadline:
+                            reason='control_timeout';raise TimeoutError(reason)
+                        native_buffer=bytearray(tail)
+                        stages['native_result_wait_s']=time.monotonic()-native_stdin_finished
+                        _emit(dict(event='result',id=pending['id'],response=response,linux_stages_s=stages,
+                            native_stdin_bytes_written=native_stdin_bytes,native_stdin_complete=native_stdin_complete,
+                            native_stdin_expected_bytes=native_stdin_expected,
+                            **stdout_observation.snapshot(native_buffer),
+                            clock_domain='linux_local_diagnostic_only'))
+                        pending=None;active_deadline=None;stages={}
+                        received=0;native_stdin_bytes=0;native_stdin_complete=False
+                        native_stdin_started=None;native_stdin_finished=None;native_stdin_expected=0
+                    continue
+                view=memoryview(chunk)
+                if payload is None:
+                    if pending is not None or not ready:raise ValueError('unexpected concurrent pipe request')
+                    if header_start is None:
+                        stdout_observation.reset()
+                        header_start=time.monotonic();active_deadline=header_start+control_timeout
+                    reason='protocol_failure'
+                    newline=chunk.find(b'\n')
+                    if newline<0:
+                        header.extend(chunk)
+                        if len(header)>MAX_LINE:raise ValueError('oversize pipe header')
+                        continue
+                    header.extend(chunk[:newline])
+                    if len(header)+1>MAX_LINE:raise ValueError('oversize pipe header')
+                    pending=json.loads(header);header.clear()
+                    native_stdin_bytes=0;native_stdin_complete=False;native_stdin_started=None
+                    native_stdin_expected=0;native_stdin_finished=None
+                    if pending.get('event')!='control' or pending.get('image_bytes')!=MAX_IMAGE:raise ValueError('invalid binary transaction header')
+                    packet=pending['packet']
+                    if set(packet)!={'control_time_ns','time_s','frame','operator_fov'} or packet['operator_fov']!=fov:
+                        raise ValueError('invalid native packet')
+                    ns=packet['control_time_ns']
+                    if type(ns) is not int or ns<0 or packet['time_s']!=ns/1e9:raise ValueError('native clock mismatch')
+                    validate_sensor_frame(packet['frame'])
+                    image=packet['frame']['image']
+                    if (image['encoding'],image['width'],image['height'],image['stride_bytes'],image['bytes'])!=('bgr8',1440,1080,4320,MAX_IMAGE):
+                        raise ValueError('invalid BGR image envelope')
+                    budget=pending['timeout_s']
+                    if type(budget) not in (int,float) or not math.isfinite(budget) or not 0<budget<=control_timeout:raise ValueError('invalid local control budget')
+                    image_start=header_start;header_start=None;active_deadline=image_start+budget
+                    payload=bytearray(MAX_IMAGE);received=0
+                    view=view[newline+1:]
+                if len(view)>MAX_IMAGE-received:raise ValueError('extra bytes in single pipe transaction')
+                payload[received:received+len(view)]=view;received+=len(view)
+                if received!=MAX_IMAGE:continue
+                completed=time.monotonic();stages['pipe_receive_s']=completed-image_start
+                digest=hashlib.sha256(payload).hexdigest();hashed=time.monotonic();stages['payload_sha256_s']=hashed-completed
+                if digest!=pending['packet']['frame']['image']['sha256']:raise ValueError('inline BGR SHA mismatch')
+                with image_path.open('wb') as stream:count=stream.write(payload)
+                if count!=MAX_IMAGE:raise OSError('incomplete tmpfs BGR write')
+                saved=time.monotonic();stages['tmpfs_write_s']=saved-hashed
+                pending['packet']['frame']['image']['path']=str(image_path)
+                if saved>=active_deadline:reason='control_timeout';raise TimeoutError('Linux receive/hash/write deadline expired')
+                writebuf=json.dumps(pending['packet'],allow_nan=False,separators=(',',':')).encode()+b'\n'
+                if len(writebuf)>MAX_LINE:raise ValueError('oversize native request')
+                native_stdin_expected=len(writebuf)
+                payload=None
+    except Exception as exc:
+        if child is None:
+            startup_error=exc
+            reason='host_cancel' if isinstance(exc,InterruptedError) else 'startup_timeout' if isinstance(exc,TimeoutError) else 'startup_failure'
+        if native_stdin_complete and native_stdin_finished is not None:
+            stages['native_result_wait_s']=time.monotonic()-native_stdin_finished
+        _record(out,'SUPERVISOR_ERROR.json',dict(reason=reason,error_type=type(exc).__name__,error=str(exc),linux_stages_s=stages,
+            received_bgr_bytes=received,native_stdin_bytes_written=native_stdin_bytes,native_stdin_complete=native_stdin_complete,
+            native_stdin_expected_bytes=native_stdin_expected,request_id=pending.get('id') if type(pending) is dict else None,
+            **stdout_observation.snapshot(native_buffer),
+            clock_domain='linux_local_diagnostic_only'))
+        try:_emit(dict(event='error',reason=reason,error_type=type(exc).__name__))
+        except (OSError,BrokenPipeError):pass
+        return 2
+    finally:
+        if child is not None:
+            result=owner.cleanup()
+            for stream in (child.stdin,child.stdout):stream.close()
+        tmp_path=tmp.name if tmp is not None else None
+        if tmp is not None:tmp.cleanup()
+        if child is not None:
+            import resource
+            usage=resource.getrusage(resource.RUSAGE_CHILDREN)
+            _record(out,'CLEANUP.json',dict(result,transport=TRANSPORT,spec_sha256=spec_sha,reason=reason,
+                tmpfs_directory=tmp_path,tmpfs_removed=not Path(tmp_path).exists(),
+                native_lifetime_cpu=dict(user_s=usage.ru_utime,system_s=usage.ru_stime,max_rss_kib=usage.ru_maxrss,
+                    scope='Owned child process lifetime including model startup; Linux getrusage, not timed-run NN latency'),
+                cleanup_linux_monotonic=time.monotonic(),clock_domain='linux_local_diagnostic_only'))
+        if errorlog is not None:errorlog.close()
+        if child is None and startup_error is not None and pre_native_exit is not None:
+            pre_native_exit(startup_error,'before_native_spawn',tmp_path,
+                tmp_path is None or not Path(tmp_path).exists())
+
+
+def prepare_and_supervise(spec_path,spec_sha,out,fov,*,startup_timeout=15.,control_timeout=.08):
+    """Record validation before spawning; a delayed canceled launcher cannot spawn."""
+    out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    started=time.monotonic();stopped=False;stage='worker_entry';phases=[]
+    def stop_signal(*_):
+        nonlocal stopped
+        stopped=True
+    signal.signal(signal.SIGTERM,stop_signal);signal.signal(signal.SIGINT,stop_signal)
+    identity=dict(run_id=uuid.uuid4().hex,supervisor_pid=os.getpid(),
+        supervisor_start_ticks=_stat(os.getpid())['start_ticks'],
+        boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
+        spec_sha256=spec_sha,transport=TRANSPORT)
+    _record(out,'WORKER_STARTUP.json',dict(identity,clock_domain='linux_local_diagnostic_only',
+        native_spawn_attempted=False,entry_linux_monotonic=started))
+    def phase(name):
+        nonlocal stage
+        stage=name;phases.append(dict(phase=name,elapsed_linux_s=time.monotonic()-started))
+        _record(out,'STARTUP_PHASES.json',dict(identity,phases=phases,clock_domain='linux_local_diagnostic_only'))
+    def check_cancel():
+        if stopped or (out/'STOP').exists():raise InterruptedError('host_cancel_before_native_spawn')
+        if time.monotonic()>=started+startup_timeout:raise TimeoutError('startup_timeout_before_native_spawn')
+    def record_pre_exit(exc,failed_phase,tmpfs_path=None,tmpfs_removed=True):
+        reason='host_cancel' if isinstance(exc,InterruptedError) else 'startup_timeout' if isinstance(exc,TimeoutError) else 'validation_failed'
+        data=dict(identity,reason=reason,failed_phase=failed_phase,error_type=type(exc).__name__,error=str(exc),
+            native_spawn_attempted=False,clean=True,errors=[],native_child_reaped=False,
+            tmpfs_directory=tmpfs_path,tmpfs_removed=tmpfs_removed,
+            elapsed_linux_s=time.monotonic()-started,clock_domain='linux_local_diagnostic_only')
+        _record(out,'PRE_NATIVE_EXIT.json',data)
+        return reason
+    try:
+        phase('worker_entry');check_cancel();phase('validate_linux_spec')
+        spec,sha=validate_linux_spec(spec_path,spec_sha)
+        phase('validated');check_cancel()
+        env=os.environ.copy();env.update(spec.get('environment',{}))
+        env.update(AUTOAIM_CONFIG=spec['autoaim_config'],RMCS_HEADLESS_SHARE=spec['model_share'],ORT_DISABLE_TELEMETRY='1')
+        phase('native_spawn_admitted');check_cancel()
+    except Exception as exc:
+        reason=record_pre_exit(exc,stage)
+        try:_emit(dict(event='error',reason=reason,error_type=type(exc).__name__))
+        except (OSError,BrokenPipeError):pass
+        return 0 if reason=='host_cancel' else 2
+    return supervise([spec['binary'],spec['executor_yaml']],out,fov,env=env,spec_sha=sha,
+        startup_timeout=startup_timeout,control_timeout=control_timeout,startup_deadline=started+startup_timeout,
+        startup_guard=check_cancel,pre_native_exit=record_pre_exit)
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--spec',type=Path,required=True);parser.add_argument('--spec-sha256',required=True)
+    parser.add_argument('--out',type=Path,required=True)
+    parser.add_argument('--fov-degrees',type=float,required=True);parser.add_argument('--radius-x',type=float,required=True);parser.add_argument('--radius-y',type=float,required=True)
+    parser.add_argument('--startup-timeout',type=float,default=15.);parser.add_argument('--control-timeout',type=float,default=.08)
+    args=parser.parse_args()
+    fov=dict(fov_degrees=args.fov_degrees,circle_radius_x_norm=args.radius_x,circle_radius_y_norm=args.radius_y)
+    return prepare_and_supervise(args.spec,args.spec_sha256,args.out,fov,
+        startup_timeout=args.startup_timeout,control_timeout=args.control_timeout)
+
+
+if __name__=='__main__':raise SystemExit(main())

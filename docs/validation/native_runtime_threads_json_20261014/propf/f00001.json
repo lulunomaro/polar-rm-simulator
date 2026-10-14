@@ -1,0 +1,20 @@
+{
+  "returncode": 0,
+  "pid": 55856,
+  "reaped": true,
+  "elapsed_s": 1.9346161000012216,
+  "source_before": {
+    "operator_native/runtime/overlays/first_frame_trace.hpp": "e34ec73d1ba7379a3ed8f168ad8b03378b1efcd72a98f6d4c361ceaf7896deff",
+    "tools/native_model_properties.py": "02b99ed76160c823f48dfcc0591cf6df242cc64eed625bf745faada203e3e7be",
+    "tests/test_native_model_properties.py": "f31cdb413d38e8cdd49be7f23b8c959823e91dbc96851a1f34b0c18dca83dd6d"
+  },
+  "source_after": {
+    "operator_native/runtime/overlays/first_frame_trace.hpp": "e34ec73d1ba7379a3ed8f168ad8b03378b1efcd72a98f6d4c361ceaf7896deff",
+    "tools/native_model_properties.py": "02b99ed76160c823f48dfcc0591cf6df242cc64eed625bf745faada203e3e7be",
+    "tests/test_native_model_properties.py": "f31cdb413d38e8cdd49be7f23b8c959823e91dbc96851a1f34b0c18dca83dd6d"
+  },
+  "sources_unchanged": true,
+  "stdout_sha256": "619c9efca4347468916553edee8c15091267dbe9571e41db3d472014b6d66381",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "qualification": "No C++ compilation, WSL, GL, ROS or OpenVINO model execution"
+}

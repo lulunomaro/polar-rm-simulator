@@ -1,0 +1,17 @@
+{
+  "run_id": "905dc4a3fac64bea8ea7a0445c1561f7",
+  "supervisor_pid": 365,
+  "boot_id": "2701423e-80f6-4c09-9882-1ed5366d1b15",
+  "pid": 825,
+  "pgid": 825,
+  "leader_start_ticks": 6984,
+  "clean": true,
+  "reaped": true,
+  "group_empty": true,
+  "remaining_members": [],
+  "errors": [],
+  "killed": false,
+  "returncode": -15,
+  "reaped_descendants": [],
+  "cleanup_elapsed_s": 0.016597774000004506
+}

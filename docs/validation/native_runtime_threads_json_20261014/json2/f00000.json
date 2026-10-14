@@ -1,0 +1,21 @@
+[
+  [
+    "repro",
+    [
+      "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+      "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\json-adapter-owned-tree-20261014-after02\\repro.py"
+    ]
+  ],
+  [
+    "focused",
+    [
+      "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "tests/test_json_owned_process.py",
+      "tests/test_deployment.py::JsonAdapterTests",
+      "-q",
+      "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\json-adapter-owned-tree-20261014-after02\\focused.xml"
+    ]
+  ]
+]

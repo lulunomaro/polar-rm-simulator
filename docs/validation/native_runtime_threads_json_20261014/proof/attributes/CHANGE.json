@@ -1,0 +1,10 @@
+{
+  "schema": "polar.evidence.literal-attributes-correction.v1",
+  "reason": "Literal CRLF evidence must not be style-rewritten or reported as trailing whitespace",
+  "rule": "* -text -whitespace",
+  "payload_rows_unchanged": true,
+  "payload_files_modified": false,
+  "original_files_modified": false,
+  "previous_metadata_preserved": "proof/attributes",
+  "new_attributes_sha256": "8af85f878d19f5b0d23b62f4924fbdfa9f0c5befa3246ca2546589f5a08ada64"
+}

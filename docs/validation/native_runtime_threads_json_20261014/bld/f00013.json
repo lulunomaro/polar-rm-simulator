@@ -1,0 +1,96 @@
+{
+  "id": "t2_sim_operator_performance_diagnostic",
+  "operator_identity": "rmcs-sim-operator-fov-v1",
+  "runner_identity": "rmcs-sim-operator-fov-v1",
+  "binary": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/bin/rmcs_sim_operator_fov",
+  "executor_yaml": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/configs/simulation_executor.yaml",
+  "autoaim_config": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/configs/simulation_autoaim.yaml",
+  "model_share": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/models",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "sha256": {
+    "binary": "0c314a55735cc4658830b4d84f9f8698dabc4333aab11f0ec3cf16aeb3c4abcf",
+    "executor_yaml": "c3a08938bce9b0347ae255f90964897cbf144dc872ad86bc5bcb6794e82d17dd",
+    "autoaim_config": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3",
+    "runtime_mode": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+  },
+  "frozen_build": {
+    "binary_sha256": "0c314a55735cc4658830b4d84f9f8698dabc4333aab11f0ec3cf16aeb3c4abcf",
+    "manifest_sha256": "1fa8bf8bfdfaf864da661cef4cf588a1e13b608e5f0de070de28b78fc9921b71",
+    "elf": {
+      "class": "ELF64",
+      "endianness": "little",
+      "machine": "EM_X86_64",
+      "elf_type": 3,
+      "program_headers": 15
+    },
+    "scope": "New local clean build; no historical binary equivalence",
+    "performance_profile": {
+      "schema": "rmcs.first-frame-performance.v1",
+      "id": "first-frame-trace",
+      "patch_sha256": "fa1365cea403e77641f0d07363a71d5cb42c2c968e41618909cc47a48beb12b7",
+      "generator_source_path": "overlays/prepare_first_frame_profile.py",
+      "generator_sha256": "70e8dd789ee7cb16f4a66dac44d1eedde3ff7e6e070e09fb9348ee2f9f4841f2",
+      "trace_header_source_path": "overlays/first_frame_trace.hpp",
+      "trace_header_sha256": "e34ec73d1ba7379a3ed8f168ad8b03378b1efcd72a98f6d4c361ceaf7896deff",
+      "request_preallocated": false,
+      "inference_during_setup": false,
+      "diagnostic_only": true
+    },
+    "diagnostic_only": true
+  },
+  "runtime_mode_contents": "multi_ekf\n",
+  "runtime_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "patch_sha256": "caa14d21b27e45c156ca27f9076c7587bff63c47d448ae2ca8b6ffa74c5658ad",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "is_original_upstream": false,
+    "is_baseline_40f7": false,
+    "tracker_patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "vision_frontend": {
+      "id": "image_contour_corners_v3",
+      "source_path": "overlays/corners_contour_v3.cpp",
+      "source_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c"
+    },
+    "patch_identity_format": "rmcs-own-source-performance-composition.v1",
+    "runtime_performance_profile": {
+      "schema": "rmcs.first-frame-performance.v1",
+      "id": "first-frame-trace",
+      "patch_sha256": "fa1365cea403e77641f0d07363a71d5cb42c2c968e41618909cc47a48beb12b7",
+      "generator_source_path": "overlays/prepare_first_frame_profile.py",
+      "generator_sha256": "70e8dd789ee7cb16f4a66dac44d1eedde3ff7e6e070e09fb9348ee2f9f4841f2",
+      "trace_header_source_path": "overlays/first_frame_trace.hpp",
+      "trace_header_sha256": "e34ec73d1ba7379a3ed8f168ad8b03378b1efcd72a98f6d4c361ceaf7896deff",
+      "request_preallocated": false,
+      "inference_during_setup": false,
+      "diagnostic_only": true
+    },
+    "performance_base_patch_sha256": "3ced3a3e41b4e6b6567f2b3b94f218817a043588fb0691b175ab55d5e3edbdf7"
+  },
+  "qualification": "Diagnostic profile built only; never ordinary/live/native registry qualification",
+  "algorithm_description": "Recovered 079a7fe plus T2 tracker changes; explicit frontend contour-v3; operator FOV adapter; simulation-only stationary red sentry; no automatic fire authority; explicit diagnostic performance profile first-frame-trace",
+  "performance_profile": {
+    "schema": "rmcs.first-frame-performance.v1",
+    "id": "first-frame-trace",
+    "patch_sha256": "fa1365cea403e77641f0d07363a71d5cb42c2c968e41618909cc47a48beb12b7",
+    "generator_source_path": "overlays/prepare_first_frame_profile.py",
+    "generator_sha256": "70e8dd789ee7cb16f4a66dac44d1eedde3ff7e6e070e09fb9348ee2f9f4841f2",
+    "trace_header_source_path": "overlays/first_frame_trace.hpp",
+    "trace_header_sha256": "e34ec73d1ba7379a3ed8f168ad8b03378b1efcd72a98f6d4c361ceaf7896deff",
+    "request_preallocated": false,
+    "inference_during_setup": false,
+    "diagnostic_only": true
+  },
+  "diagnostic_only": true
+}

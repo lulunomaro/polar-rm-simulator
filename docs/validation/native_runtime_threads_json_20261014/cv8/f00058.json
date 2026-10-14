@@ -1,0 +1,61 @@
+{
+  "schema": "polar.native-model-properties-report.v1",
+  "available": true,
+  "valid": true,
+  "core_properties_known": true,
+  "record": {
+    "schema": "rmcs.compiled-model-properties.v1",
+    "profile": "first-frame-trace",
+    "startup": true,
+    "native_ticks": 0,
+    "inference_calls": 0,
+    "clock_domain": "linux_steady_diagnostic_only",
+    "linux_steady_ns": 71547206490,
+    "properties": {
+      "execution_devices": {
+        "status": "known",
+        "value": [
+          "CPU"
+        ],
+        "reason": null
+      },
+      "inference_num_threads": {
+        "status": "known",
+        "value": 16,
+        "reason": null
+      },
+      "num_streams": {
+        "status": "known",
+        "value": 1,
+        "reason": null
+      },
+      "performance_mode": {
+        "status": "known",
+        "value": "LATENCY",
+        "reason": null
+      },
+      "inference_precision": {
+        "status": "known",
+        "value": "f32",
+        "reason": null
+      },
+      "enable_cpu_pinning": {
+        "status": "known",
+        "value": true,
+        "reason": null
+      },
+      "scheduling_core_type": {
+        "status": "known",
+        "value": "ANY_CORE",
+        "reason": null
+      }
+    },
+    "cv_num_threads": {
+      "status": "known",
+      "value": 32,
+      "reason": null
+    },
+    "report_error": null
+  },
+  "errors": []
+}

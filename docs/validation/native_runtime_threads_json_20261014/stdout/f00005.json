@@ -1,0 +1,12 @@
+{
+  "schema": "polar.wsl.stdout-telemetry-artifact-manifest.v1",
+  "files_sha256": {
+    "focused-final.log": "f5faff797a353f686020c258b819407cdb23367c7bb2f1004d955ff8dc2efcd9",
+    "focused-first.log": "a4877bf263ba8809ed19c019d8c4b68e58a07e1c7f528cfcfcaf5332807c6f7b",
+    "VALIDATION.json": "3f1fcdd6ef1f1b1e64d7f1299ac1e8aeeb574c0903a563ea98be2c47aadee4e0",
+    "after\\test_wsl_pipe_stdout_telemetry.py": "828589151fbd636bf931a2d9026f87f4e16fae81cd1f140b1472c0c7cc723c4c",
+    "after\\wsl_operator_pipe_worker.py": "56866edb9cebcbf4885a5147be64c332b32a52e055def6433181bcf52b1d1d7c",
+    "before\\wsl_operator_pipe_worker.py": "22aa406e56f821798f7f0124241e04c3589f97205df33fb5cdd4e33e18bd6ccb"
+  },
+  "frozen": true
+}

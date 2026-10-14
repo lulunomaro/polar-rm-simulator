@@ -1,0 +1,323 @@
+{
+  "schema": "polar.prepared-bgr.first-request-readonly.v1",
+  "scope": "Saved first actual control request, no microbenchmark/WSL/ROS/NN/GL",
+  "input": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\wsl-native-live-20261014-prepared-bgr-attempt3",
+  "input_sha256": {
+    "RESULT.json": "c23adffdaeacb377e83eb4e9d8bd25afede7246b32398b19d0c11af354a5b238",
+    "EXECUTED_SOURCE.json": "8fc8c29d87d1926d31fd9166c62e8cd40803acb407c08cf9125c01483d2cdd9d",
+    "FRAME_BINDINGS.json": "228f69939ad090b9a528065c1aad7b09772ff114f23dfbe5c01deb60fb06a226",
+    "ledger.jsonl": "2d59090d852a19af0e3fd21c6800b4b81ba387d929462df740d31b7f936806a7",
+    "POST_CLOSE_PIXEL_AUDIT.json": "ff9a8bea795611a5e9d8ab216976c9daaabac3ce7da5b9958444463f9b2837ce",
+    "STARTUP_ADMISSION.json": "b6490cbd84997f3895a9eb5a0599220bec6de2825f3c2339f7587594d2c65f13",
+    "RAW_CODEC_IDENTITY.json": "76a4eda24b9fa2c44c63a5ada6f0b6f86d0f1d04161a7f6753c88eab6fc61549",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\CLEANUP.json": "c19832a96009bec1377bde5c4ae36ec7180956cf51eb735cd7d3770aaaf7a9b6",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\HOST_TRACE.json": "a38b29c3f43d14142a3610fe7be4f310b481a990f522fc8d7992349d7d244bbb",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\native_stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\OWNED_CHILD.json": "d071bf60659fc28190d4298d5b07e9b0f6bf7e9b903f9f5d2940f1d064f2969f",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\STARTUP.json": "5d28313a2572f897c2fa86b76f8d8d02723772340c4c3944d748b10bf2167fdd",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\STARTUP_PHASES.json": "381d729e82db7a3f46c9670c6775a25a4d0f530ad14107912ed20c1f8a8e03d7",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\STOP": "c60fefd0c0a6751b4529aabd6043bd00fa7757116e5ee3743bf5da43f7715a3e",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\SUPERVISOR_ERROR.json": "7e16e7b928dce7112fa1213263a8267198a5fb406c302e0e2d6e456b1c843064",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\supervisor_stderr.log": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\wsl_pipe_supervisor_659b292697a9439c93e6d86cecb3f39a\\WORKER_STARTUP.json": "55ab87526171c8bedcd3d1f03a12e51797e06cc3d2641aa9418f77bc5aa06e98",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\actual_frames\\sensor_8.bgr": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+    "native\\binding_0f85d87defea4b2daee5a9c07962775e\\actual_frames\\sensor_8.json": "0130c74b74a7bfd074de6ae0b10cda38bfd2c1d87f01470f330ddafc36ed93ea",
+    "native\\host_spec_3a48e91a330745dd8710e190731d48eb.json": "2d05377d12cd0127cb714b4f08e4291bb828c3ba027057d8191d22bb7c46776d"
+  },
+  "source_sha256": {
+    "rm_match/integrations/wsl_operator.py": "59826d1b149abb7d5f1f40ed3a1662ae6d3a49f1a33fa437a20bc82f76547b90",
+    "rm_match/integrations/wsl_operator_pipe.py": "62684d40a4ab8dc3567780539b8292ed0d89975428458523c9ed88f19c83844b",
+    "rm_match/integrations/wsl_operator_pipe_worker.py": "22aa406e56f821798f7f0124241e04c3589f97205df33fb5cdd4e33e18bd6ccb",
+    "rm_match/platform_v2/native_adapter.py": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
+    "rm_match/platform_v2/wsl_native_adapter.py": "4765c6b879a6b262e2fc2f9b196922aaf5ad11caeb79379c3014f90940337158",
+    "rm_match/platform_v2/native_image.py": "0f8dbff6a093f3068701d8fa2e449fb56765c0f2a70af9a66f5c36f3bb35e5ad",
+    "tools/smoke_wsl_native_live.py": "415dbe5156615e990d113300272df01fbfeac7c22444c2a6880da3c4663b65c7"
+  },
+  "selected_sources_match_actual_snapshot": false,
+  "original_identity": {
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 9,
+    "frame_id": 8,
+    "capture_sim_time": 0.47600000000000037,
+    "observation_sim_time": 0.4860000000000004,
+    "wall_deadline": 8309.1848211
+  },
+  "exposure_timestamp_ns_from_source_round": 476000000,
+  "exposure_integer_scope": "Derived by the exact pinned native_adapter frame construction; full stdin JSON bytes were not archived.",
+  "actual_control_time_ns": 486000000,
+  "host_timeline": {
+    "capture": 8309.1048211,
+    "private_publication": 8309.1145416,
+    "public_complete": 8309.1158128,
+    "adapter_enqueue": 8309.1165611,
+    "adapter_started": 8309.1172364,
+    "native_frame_prepare": 8309.123698,
+    "adapter_native_request": 8309.1237022,
+    "bridge_prepare": 8309.1238542,
+    "bridge_native_request": 8309.123857,
+    "original_deadline": 8309.1848211,
+    "adapter_completed": 8309.1983704,
+    "runtime_collect": 8309.2011624
+  },
+  "host_durations_ms": {
+    "original_capture_budget": 79.99999999992724,
+    "capture_to_private": 9.720500000184984,
+    "private_to_enqueue": 2.0194999997329433,
+    "enqueue_to_adapter_native_request": 7.141100000808365,
+    "capture_to_bridge_request": 19.035900000744732,
+    "bridge_prepare_remaining_recorded": 60.969399999521556,
+    "bridge_request_remaining": 60.96409999918251,
+    "adapter_completed_after_original_deadline": 13.54929999979504
+  },
+  "image_prepare_stages": {
+    "converter": "opencv_cvtColor_exact_channel_swap",
+    "clock_domain": "host_perf_counter",
+    "rgb_to_bgr_s": 0.0025218999999196967,
+    "immutable_bgr_snapshot_s": 0.0006855000010546064,
+    "bgr_sha256_s": 0.002015199999732431,
+    "bgr_file_write_s": 6.8999997893115506e-06,
+    "rgb_trace_sha256_s": 1.9999970390927047e-07,
+    "total_s": 0.005229700000199955
+  },
+  "host_bridge_prepare": {
+    "event": "control_prepare",
+    "host_perf_counter": 8309.1238542,
+    "transport": "wsl_stdio_bgr_v2",
+    "stages_s": {
+      "admission_s": 3.399998604436405e-06,
+      "frame_copy_s": 3.2500000088475645e-05,
+      "sensor_validate_s": 2.080000012938399e-05,
+      "private_image_admission_s": 1.8599999748403206e-05,
+      "prepared_bgr_admission_s": 1.8400000044493936e-05,
+      "serialize_s": 4.620000072463881e-05,
+      "total_s": 0.000139899999339832
+    },
+    "failed_phase": null,
+    "error_type": null,
+    "original_host_deadline": 8309.1848211,
+    "remaining_host_budget_s": 0.060969399999521556,
+    "clock_domain": "host_perf_counter"
+  },
+  "linux_stages_s": {
+    "pipe_receive_s": 0.009306717000001186,
+    "payload_sha256_s": 0.001977017999998054,
+    "tmpfs_write_s": 0.0019194440000021018,
+    "native_stdin_write_s": 2.403999999955886e-05,
+    "native_result_wait_s": 0.04737886799999558
+  },
+  "linux_stage_sum_ms": 60.60608699999648,
+  "linux_error": {
+    "reason": "control_timeout",
+    "error_type": "TimeoutError",
+    "error": "control_timeout",
+    "linux_stages_s": {
+      "pipe_receive_s": 0.009306717000001186,
+      "payload_sha256_s": 0.001977017999998054,
+      "tmpfs_write_s": 0.0019194440000021018,
+      "native_stdin_write_s": 2.403999999955886e-05,
+      "native_result_wait_s": 0.04737886799999558
+    },
+    "received_bgr_bytes": 4665600,
+    "native_stdin_bytes_written": 1732,
+    "native_stdin_complete": true,
+    "native_stdin_expected_bytes": 1732,
+    "request_id": 1,
+    "clock_domain": "linux_local_diagnostic_only"
+  },
+  "host_exception_diagnostic": {
+    "phase": "private_native_act",
+    "frames": [
+      {
+        "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\runtime.py",
+        "function": "_run",
+        "line": 141
+      },
+      {
+        "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\native_adapter.py",
+        "function": "_act_native_pixels",
+        "line": 107
+      },
+      {
+        "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\native_adapter.py",
+        "function": "_act_sensor",
+        "line": 191
+      },
+      {
+        "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\wsl_native_adapter.py",
+        "function": "_native_control",
+        "line": 140
+      },
+      {
+        "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\wsl_operator_pipe.py",
+        "function": "control",
+        "line": 165
+      },
+      {
+        "file": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\wsl_operator.py",
+        "function": "_receive",
+        "line": 76
+      }
+    ]
+  },
+  "bgr_identity": {
+    "bytes": 4665600,
+    "actual_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+    "manifest": {
+      "bytes": 4665600,
+      "encoding": "bgr8",
+      "file": "sensor_8.bgr",
+      "frame_id": 8,
+      "height": 1080,
+      "schema": "polar.sim.actual_native_frame_evidence.v1",
+      "sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+      "stride_bytes": 4320,
+      "width": 1440
+    },
+    "request_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+    "bridge_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+    "Linux_received_bytes": 4665600,
+    "native_stdin_bytes_written": 1732,
+    "native_stdin_expected_bytes": 1732,
+    "native_stdin_complete": true
+  },
+  "original_postclose_pixel_audit": {
+    "schema": "polar.live.native-pixel-audit.v1",
+    "clean": true,
+    "proofs": [
+      {
+        "frame_id": 8,
+        "original_capture_wall": 8309.1048211,
+        "original_capture_sim_time": 0.47600000000000037,
+        "original_control_time_ns": 486000000,
+        "observation_sim_time": 0.4860000000000004,
+        "request_identities": [
+          {
+            "observed_seq": 9,
+            "episode": 0,
+            "binding_epoch": 1
+          }
+        ],
+        "native_request_count": 1,
+        "raw_bgr_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+        "derived_rgb_sha256": "cb9515a3a46dfb910764e398e2f10e7a500a7aa8665dee299457adcaacc536b6",
+        "raw_rgb_sha256": "cb9515a3a46dfb910764e398e2f10e7a500a7aa8665dee299457adcaacc536b6",
+        "image": "native/binding_0f85d87defea4b2daee5a9c07962775e/actual_frames/sensor_8.bgr",
+        "manifest": "native/binding_0f85d87defea4b2daee5a9c07962775e/actual_frames/sensor_8.json",
+        "manifest_sha256": "0130c74b74a7bfd074de6ae0b10cda38bfd2c1d87f01470f330ddafc36ed93ea",
+        "image_bytes": 4665600,
+        "shape": [
+          1080,
+          1440,
+          3
+        ],
+        "strategy": "archived_bgr_postclose_exact_channel_swap"
+      }
+    ],
+    "errors": [],
+    "sources": {
+      "ledger_sha256": "2d59090d852a19af0e3fd21c6800b4b81ba387d929462df740d31b7f936806a7",
+      "frame_bindings_sha256": "228f69939ad090b9a528065c1aad7b09772ff114f23dfbe5c01deb60fb06a226"
+    },
+    "strategy": "archived_bgr_postclose_exact_channel_swap"
+  },
+  "stdout_bytes_or_partial_buffer_recorded": false,
+  "native_read_tick_infer_serialize_flush_phase_recorded": false,
+  "cold_first_request": true,
+  "startup_zero_counters": {
+    "native_ticks": 0,
+    "inference_calls": 0,
+    "camera_captures": 0,
+    "physics_steps": 0
+  },
+  "native_main_sha256": "4357b6e6b3495730229b0b08e9eeb94d0de7db57a5dc435b916a4ae26772e5ca",
+  "native_main_matches_build_manifest": true,
+  "build_manifest_sha256": "193123c829c8d989d92ab4e95a9943d59e7120394edf333cc99a49e38bd9198c",
+  "native_binary_declared_sha256": "4d3570674a7a150da0e86f64bbbd25adcfa8bb9e2731672ac6aeaa296cf92b42",
+  "same_owned_child_identity": true,
+  "worker_identity_namespace_note": "WORKER_STARTUP run_id is a bootstrap identity distinct from LinuxOwnedProcessGroup child run_id; correlate supervisor PID, boot/spec then exact child run_id across OWNED_CHILD/STARTUP/CLEANUP.",
+  "worker_child_supervisor_matches": true,
+  "cleanup": {
+    "run_id": "ff94bbb9043a4082aaa8e788e74ce116",
+    "supervisor_pid": 367,
+    "boot_id": "b60f7cca-9556-4efb-8cca-160e17ea0be3",
+    "pid": 679,
+    "pgid": 679,
+    "leader_start_ticks": 5245,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": -15,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.02976135499999799,
+    "transport": "wsl_stdio_bgr_v2",
+    "spec_sha256": "42ea570cf52105ce40990ef262b6bb9ff4579cc19fd259d8386588f2a4ef2b29",
+    "reason": "control_timeout",
+    "tmpfs_directory": "/dev/shm/polar-wsl-bgr-v66jsg2n",
+    "tmpfs_removed": true,
+    "native_lifetime_cpu": {
+      "user_s": 0.6336269999999999,
+      "system_s": 0.486811,
+      "max_rss_kib": 146484,
+      "scope": "Owned child process lifetime including model startup; Linux getrusage, not timed-run NN latency"
+    },
+    "cleanup_linux_monotonic": 54.073097472,
+    "clock_domain": "linux_local_diagnostic_only"
+  },
+  "classification": {
+    "checks": {
+      "configuration_unchanged": true,
+      "bounded_real_wall_run": true,
+      "physics_rtf": true,
+      "raw_sample_count": true,
+      "native_sample_count": false,
+      "no_sticky_adapter_fault": false,
+      "all_native_requests_completed": false,
+      "actual_evidence_preserved": true,
+      "actual_native_actuation": false,
+      "native_sensor_budget_80ms": true,
+      "actual_transport_matches_plan": true,
+      "exact_sensor_pixel_binding": true,
+      "source_unchanged": true,
+      "sdk_admission": true,
+      "window_acknowledged": true,
+      "zero_fire": true,
+      "clean_shutdown": true,
+      "runtime_error_free": true,
+      "raw_ages_s": true,
+      "native_result_ages_s": false,
+      "actuator_wall_ages_s": false,
+      "actuator_sim_ages_s": false,
+      "raw_codec_identity_unchanged": true,
+      "postclose_actual_pixel_audit": true
+    },
+    "live_static_chain_qualified": false,
+    "full_match_qualified": false,
+    "hardware_qualified": false,
+    "visible_qt_qualified": false,
+    "rejected_or_failed_criteria": [
+      "native_sample_count",
+      "no_sticky_adapter_fault",
+      "all_native_requests_completed",
+      "actual_native_actuation",
+      "native_result_ages_s",
+      "actuator_wall_ages_s",
+      "actuator_sim_ages_s"
+    ]
+  },
+  "cross_clock_subtraction": false,
+  "native_lifetime_cpu_used_as_inference_time": false,
+  "benchmark_started": false,
+  "ROS_started": false,
+  "WSL_started": false,
+  "NN_started": false,
+  "GL_started": false,
+  "bgr_sha_bindings_equal": true,
+  "input_unchanged": true,
+  "source_unchanged": true,
+  "raw_copies_byteidentical": true
+}

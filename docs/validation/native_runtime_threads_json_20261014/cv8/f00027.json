@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/bin/rmcs_sim_operator_fov",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/configs/simulation_executor.yaml"
+  ],
+  "cwd": "/dev/shm/polar-cv-threads-3xdeurg3/03_cv1",
+  "variant": "cv1",
+  "environment_difference": {
+    "OPENCV_FOR_THREADS_NUM": "1"
+  },
+  "relevant_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OPENCV_FOR_THREADS_NUM": "1"
+  },
+  "cwd_mode": "0o700",
+  "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+}

@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "/usr/bin/python3",
+    "artifacts/probe_native_compiled_properties_20261014.py"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "source_before": {
+    "artifacts/probe_native_compiled_properties_20261014.py": "742fe97e09996ddc858355f8ccc9988be4cc1b849874a599b6ec1a543935aea9",
+    "tools/native_model_properties.py": "02b99ed76160c823f48dfcc0591cf6df242cc64eed625bf745faada203e3e7be",
+    "tools/validate_native_performance_profile.py": "b9548cca34fdc3c20c3c6d28fcd3402c26e140002e455d885cbc7bca9ff5fb5b",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "rm_match/integrations/wsl_operator_worker.py": "7c43f998479d616a79376b575259e9c5a9d87be6486e66dc8350b257ee640d36"
+  }
+}

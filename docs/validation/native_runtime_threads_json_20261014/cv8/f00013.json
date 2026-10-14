@@ -1,0 +1,97 @@
+{
+  "index": 2,
+  "variant": "cv1",
+  "errors": [
+    "ValueError:opencv_threads_not_effective"
+  ],
+  "startup_s": 0.8128545370000069,
+  "zero_tick_readiness": {
+    "abi": "Linux x86_64 read(0)",
+    "syscall": "0 0x0 0x5f9a6c4c9070 0x1000 0x0 0x0 0x0 0x7ffd85ae18c8 0x756a8ccaca82",
+    "wchan": "pipe_read"
+  },
+  "startup_properties": {
+    "schema": "polar.native-model-properties-report.v1",
+    "available": true,
+    "valid": true,
+    "core_properties_known": true,
+    "record": {
+      "schema": "rmcs.compiled-model-properties.v1",
+      "profile": "first-frame-trace",
+      "startup": true,
+      "native_ticks": 0,
+      "inference_calls": 0,
+      "clock_domain": "linux_steady_diagnostic_only",
+      "linux_steady_ns": 68810580122,
+      "properties": {
+        "execution_devices": {
+          "status": "known",
+          "value": [
+            "CPU"
+          ],
+          "reason": null
+        },
+        "inference_num_threads": {
+          "status": "known",
+          "value": 16,
+          "reason": null
+        },
+        "num_streams": {
+          "status": "known",
+          "value": 1,
+          "reason": null
+        },
+        "performance_mode": {
+          "status": "known",
+          "value": "LATENCY",
+          "reason": null
+        },
+        "inference_precision": {
+          "status": "known",
+          "value": "f32",
+          "reason": null
+        },
+        "enable_cpu_pinning": {
+          "status": "known",
+          "value": true,
+          "reason": null
+        },
+        "scheduling_core_type": {
+          "status": "known",
+          "value": "ANY_CORE",
+          "reason": null
+        }
+      },
+      "cv_num_threads": {
+        "status": "known",
+        "value": 32,
+        "reason": null
+      },
+      "report_error": null
+    },
+    "errors": []
+  },
+  "cleanup": {
+    "run_id": "921dec13847c4727b63e0f352d771abe",
+    "supervisor_pid": 365,
+    "boot_id": "2701423e-80f6-4c09-9882-1ed5366d1b15",
+    "pid": 751,
+    "pgid": 751,
+    "leader_start_ticks": 6800,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": -15,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.01690128199999208
+  },
+  "lifetime_cpu": {
+    "user_s": 0.501666,
+    "system_s": 0.328715,
+    "max_rss_kib_cumulative": 148152,
+    "scope": "RUSAGE_CHILDREN lifetime includes model startup/reap; cumulative maxRSS is not per-case peak or per-infer CPU"
+  }
+}

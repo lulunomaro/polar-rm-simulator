@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\docs\validation\native_runtime_threads_json_20261014\verify_archive.py", line 114, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\docs\validation\native_runtime_threads_json_20261014\verify_archive.py", line 103, in main
+    if read_bounded(target/'INDEX.tsv').decode('utf8')!=expected:fail('INDEX differs from manifest')
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\docs\validation\native_runtime_threads_json_20261014\verify_archive.py", line 17, in fail
+    def fail(message):raise ValueError(message)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: INDEX differs from manifest

@@ -1,0 +1,13 @@
+{
+  "run_id": "76913cc111ed47f5bb64790aabe5582c",
+  "supervisor_pid": 353,
+  "boot_id": "fe702ff4-148f-41f8-b9f1-66f5fe9b4c7d",
+  "pid": 693,
+  "pgid": 693,
+  "leader_start_ticks": 52449,
+  "spec_sha256": "4b9d19719fe7bde039bc0e6c98352ad60087bfdedf24f5e31567056b14b75e96",
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/bin/rmcs_sim_operator_fov",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-compiled-properties-trace-build-20261014/configs/simulation_executor.yaml"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "polar.wsl.stdout-telemetry-change.v1",
+  "before_sha256": {
+    "rm_match/integrations/wsl_operator_pipe_worker.py": "22aa406e56f821798f7f0124241e04c3589f97205df33fb5cdd4e33e18bd6ccb"
+  },
+  "after_sha256": {
+    "rm_match/integrations/wsl_operator_pipe_worker.py": "56866edb9cebcbf4885a5147be64c332b32a52e055def6433181bcf52b1d1d7c",
+    "tests/test_wsl_pipe_stdout_telemetry.py": "828589151fbd636bf931a2d9026f87f4e16fae81cd1f140b1472c0c7cc723c4c"
+  },
+  "focused": {
+    "command": [
+      ".venv-sim/Scripts/python.exe",
+      "-m",
+      "pytest",
+      "tests/test_wsl_pipe_stdout_telemetry.py",
+      "rm_match/integrations/test_wsl_operator_pipe.py",
+      "-q"
+    ],
+    "environment": {
+      "POLAR_TEST_WSL": "0"
+    },
+    "exit_code": 0,
+    "passed": 15,
+    "skipped": 14,
+    "seconds": 0.41
+  },
+  "actual_WSL_started": false,
+  "ROS_started": false,
+  "NN_started": false,
+  "GL_started": false,
+  "business_paths_modified": [
+    "rm_match/integrations/wsl_operator_pipe_worker.py",
+    "tests/test_wsl_pipe_stdout_telemetry.py"
+  ],
+  "bounded_prefix_bytes": 4096,
+  "original_budgets_unchanged": true,
+  "clock_domain": "Linux monotonic diagnostic only; no Host QPC subtraction",
+  "evidence_scope": "Pure mocked child FD/clock supervisor logic plus existing Windows host tests; actual Linux harmless fixture pending parent resource window",
+  "old_actual3_stdout_observation": "Unknown: absent telemetry remains absent in original evidence",
+  "frozen": true
+}

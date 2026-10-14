@@ -1,0 +1,36 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "/usr/bin/env",
+    "POLAR_TEST_JSON_OWNED_POSIX=1",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_json_owned_process.py",
+    "tests/test_deployment.py::JsonAdapterTests",
+    "-q",
+    "--junitxml=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/runtime-checkpoint-linux-20261014-01/pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "source_before": {
+    "rm_match/deployment/json_adapter.py": "23ba8fe4190bdbedb078746465907ae9eb1ea058a9febd5338eee16d74691ca5",
+    "rm_match/deployment/json_owned_process.py": "0d06d8da504596aca0d61fe8fd53fa2c118ef7044c5e37fb2e6f410476c7abfe",
+    "rm_match/deployment/windows_owned_job.py": "f45be9e1a9894ca93202693600821ba8b32a9df2e4a73816d3497da721faa964",
+    "tests/test_json_owned_process.py": "ea248f06b8d393a7aa8eb726601db0f5f0eb9ef20442b86118eeb9f559a4c2ef",
+    "rm_match/integrations/wsl_operator_pipe_worker.py": "56866edb9cebcbf4885a5147be64c332b32a52e055def6433181bcf52b1d1d7c",
+    "tests/test_wsl_pipe_stdout_telemetry.py": "828589151fbd636bf931a2d9026f87f4e16fae81cd1f140b1472c0c7cc723c4c",
+    "operator_native/runtime/overlays/first_frame_trace.hpp": "e34ec73d1ba7379a3ed8f168ad8b03378b1efcd72a98f6d4c361ceaf7896deff",
+    "operator_native/runtime/overlays/prepare_first_frame_profile.py": "70e8dd789ee7cb16f4a66dac44d1eedde3ff7e6e070e09fb9348ee2f9f4841f2",
+    "tools/native_model_properties.py": "02b99ed76160c823f48dfcc0591cf6df242cc64eed625bf745faada203e3e7be",
+    "tests/test_native_model_properties.py": "f31cdb413d38e8cdd49be7f23b8c959823e91dbc96851a1f34b0c18dca83dd6d",
+    "tools/compare_native_opencv_threads.py": "059c939fc771e2cb1b00bcffb1035560d91d50a31177c2b55bac9557be652996",
+    "tests/test_native_opencv_thread_comparison.py": "ede04564a09602321f7235c22c03692c58a0a6ef3b05f389b13c179cd22ab08c"
+  },
+  "explicit_env": {},
+  "scope": "Actual harmless process fixtures for linux/pipe; full local quality for quality. Not live/match acceptance."
+}

@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 进行中：最新冻结质量1286passed/33明确skip/876subtests；原QA01旧spec门禁失败保留，显式42spec选择与源/修改归属分开 | 质量不替live/许可/发布门禁；QA后仅文档与永久证据增补，M0–M5仍未签收 |
+| T17 | 进行中：最新冻结质量1324passed/35明确skip/930subtests；原QA01旧spec门禁失败保留，显式42spec选择与源/修改归属分开 | 质量不替live/许可/发布门禁；QA后仅文档与永久证据增补，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -457,3 +457,17 @@ actual3已有validation前/后guard与WORKER phase；其后仅补最终Popen前�
 统一QA01原件为1285passed/1failed/32skip/875subtests，默认旧a808初始化spec被严格builder门禁拒绝。QA02由显式POLAR_WSL_TEST_SPEC选择已有42spec，非自动fallback：1286passed/33明确skip/876subtests、6已有warnings，四阶段exit0、source_unchanged_during_checks=true；pytest118.64s，driver137.428s/reaped。QA后仅本进度说明、WSL传输说明和新永久证据增补，执行源码与DEVELOPMENT保持原已检验SHA；不声称新增文档/归档曾参与该QA。
 
 已有生产导航单目标局部成功保持；旧导航seq67尾超时、原模型3.85m漏检、实时自瞄0响应/0消费、移动与开火、多车/完整比赛、两机LAN/第二实现、Windows native与HIL仍按T01–T18/M0–M5门禁未签收。保存帧2s等待或预加载模型不替实际live证据。
+
+## 模型实际属性与 JSONL 进程树修复（2026-10-14）
+
+本轮[独立证据](validation/native_runtime_threads_json_20261014/README.md)区分诊断构建、零帧资源检查、保存帧离线响应、无害进程夹具和统一QA。原生产导航已有 Windows→WSL 点云/IMU→自家Point-LIO/SLAM/Smac/PID→物理底盘的30秒单目标局部通过记录；本轮未重跑导航或完整哨兵任务。
+
+仅 first-frame-trace 诊断 overlay 增加真实 CompiledModel 属性查询；没有 set_property、暖推理或改变原94源/模型/ROI/生产配置。新独立29syntax/29TU clean build通过，原42生产spec保持严格匹配。实际零帧read(0) readiness后记录 CPU、16推理线程、1 stream、LATENCY、f32、pinning=true、ANY_CORE，OpenCV getNumThreads=32；0图像/0NN/0physics，owned组回收与tmpfs删除通过。它不是实时性能验收。
+
+固定原失败帧8、曝光476000000ns/control486000000ns、BGR3951a597…的8fresh ABBAABBA离线诊断保留失败：默认4进程完整提交各1700bytes、14phase完整，首次真实回复61.720/37.697/38.116/37.881ms；2秒离线等待不能替80ms live。cv1四进程仅改OPENCV_FOR_THREADS_NUM=1，实际属性仍32，均在发送首packet前严格拒绝，0stdin/0NN；comparison_complete=false，没有有效线程对照或因果改善结论。所有8组reaped/empty且tmpfs删除、源不变。下一可执行方案是在独立诊断构建中显式调用cv::setNumThreads(1)，先测实际属性再对照，不把环境变量未生效的原因写成已证。
+
+新worker只增加每事务stdout已读字节、select可读次数、原stdin完成后首次可读/读取时长、有界前缀长度与SHA及保留buffer长度，不记录原stdout前缀文本。select、读取和解析后仍重检原deadline；0读取不证明ELF从未写出。旧actual3缺这些字段仍未知，不能补填。实际Windows→WSL无害pipe29项通过；不等于原NN实时通过。
+
+通用JSONL插件原Windows实际复现：leader退出且close返回成功，孙进程仍存活。修复使用执行前归属的Windows Job和Linux owned session，leader先退出仍清理后代；共享1.5秒资源预算涵盖生命周期锁/回收/IO join，原reset2秒和action原deadline不扩大。取消/Job assignment/句柄关闭/IO thread启动/归属检查失败保留明确unclean proof，未spawn与reaped分开；无法验证group时只对直接Popen尝试回收，不声称未知后代已消失。Windows after02原专测29passed/2Linuxskip/2subtests；CRLF→LF仅字节规范记录另存，最终LF源实际Linux02为20passed/11Windowsskip/2subtests，包括TERM-ignore孤儿孙进程和blocked pipe实际回收。原before/after01与错误标签ERRATA全部保留。
+
+最终统一 artifacts/quality-20261014-runtime-threads-frozen-01 四阶段退出0，1324passed/35明确skip/930subtests/6已有warnings，pytest108.77s、driver128.635s/reaped、source_unchanged_during_checks=true；显式POLAR_TEST_WSL=1/POLAR_WSL_TEST_SPEC=原42spec。QA后只有本文、WSL说明和新永久包增补，不称这些文档或归档参与此前QA。当前最新真实live自瞄仍1请求/0回复/0消费/fire0；导航与自瞄同时实时、自动开火、完整巡逻/比赛及M0–M5仍未签收。

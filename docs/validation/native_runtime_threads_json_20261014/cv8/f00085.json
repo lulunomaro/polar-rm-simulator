@@ -1,0 +1,312 @@
+{
+  "index": 7,
+  "variant": "cv1",
+  "errors": [
+    "ValueError:opencv_threads_not_effective",
+    "first_frame_phases_incomplete",
+    "stderr_properties_or_phases:opencv_threads_not_effective"
+  ],
+  "startup_s": 0.7615679499999999,
+  "zero_tick_readiness": {
+    "abi": "Linux x86_64 read(0)",
+    "syscall": "0 0x0 0x63f14f467070 0x1000 0x0 0x0 0x0 0x7fffc8fe3668 0x7267df4aca82",
+    "wchan": "pipe_read"
+  },
+  "startup_properties": {
+    "schema": "polar.native-model-properties-report.v1",
+    "available": true,
+    "valid": true,
+    "core_properties_known": true,
+    "record": {
+      "schema": "rmcs.compiled-model-properties.v1",
+      "profile": "first-frame-trace",
+      "startup": true,
+      "native_ticks": 0,
+      "inference_calls": 0,
+      "clock_domain": "linux_steady_diagnostic_only",
+      "linux_steady_ns": 73409929274,
+      "properties": {
+        "execution_devices": {
+          "status": "known",
+          "value": [
+            "CPU"
+          ],
+          "reason": null
+        },
+        "inference_num_threads": {
+          "status": "known",
+          "value": 16,
+          "reason": null
+        },
+        "num_streams": {
+          "status": "known",
+          "value": 1,
+          "reason": null
+        },
+        "performance_mode": {
+          "status": "known",
+          "value": "LATENCY",
+          "reason": null
+        },
+        "inference_precision": {
+          "status": "known",
+          "value": "f32",
+          "reason": null
+        },
+        "enable_cpu_pinning": {
+          "status": "known",
+          "value": true,
+          "reason": null
+        },
+        "scheduling_core_type": {
+          "status": "known",
+          "value": "ANY_CORE",
+          "reason": null
+        }
+      },
+      "cv_num_threads": {
+        "status": "known",
+        "value": 32,
+        "reason": null
+      },
+      "report_error": null
+    },
+    "errors": []
+  },
+  "cleanup": {
+    "run_id": "0a9b8ac11ce34d4ba7e26fa9991db0de",
+    "supervisor_pid": 365,
+    "boot_id": "2701423e-80f6-4c09-9882-1ed5366d1b15",
+    "pid": 936,
+    "pgid": 936,
+    "leader_start_ticks": 7265,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": -15,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.017149853999995912
+  },
+  "lifetime_cpu": {
+    "user_s": 0.34589599999999976,
+    "system_s": 0.42821,
+    "max_rss_kib_cumulative": 148152,
+    "scope": "RUSAGE_CHILDREN lifetime includes model startup/reap; cumulative maxRSS is not per-case peak or per-infer CPU"
+  },
+  "stderr_sha256": "4f3d5cd78a6ab7e166dda8a96816a6f1b246406a956a78622c934cd35a17375f",
+  "properties": {
+    "schema": "polar.native-model-properties-report.v1",
+    "available": true,
+    "valid": true,
+    "core_properties_known": true,
+    "record": {
+      "schema": "rmcs.compiled-model-properties.v1",
+      "profile": "first-frame-trace",
+      "startup": true,
+      "native_ticks": 0,
+      "inference_calls": 0,
+      "clock_domain": "linux_steady_diagnostic_only",
+      "linux_steady_ns": 73409929274,
+      "properties": {
+        "execution_devices": {
+          "status": "known",
+          "value": [
+            "CPU"
+          ],
+          "reason": null
+        },
+        "inference_num_threads": {
+          "status": "known",
+          "value": 16,
+          "reason": null
+        },
+        "num_streams": {
+          "status": "known",
+          "value": 1,
+          "reason": null
+        },
+        "performance_mode": {
+          "status": "known",
+          "value": "LATENCY",
+          "reason": null
+        },
+        "inference_precision": {
+          "status": "known",
+          "value": "f32",
+          "reason": null
+        },
+        "enable_cpu_pinning": {
+          "status": "known",
+          "value": true,
+          "reason": null
+        },
+        "scheduling_core_type": {
+          "status": "known",
+          "value": "ANY_CORE",
+          "reason": null
+        }
+      },
+      "cv_num_threads": {
+        "status": "known",
+        "value": 32,
+        "reason": null
+      },
+      "report_error": null
+    },
+    "errors": []
+  },
+  "phases": {
+    "schema": "polar.saved-native-phase-report.v1",
+    "available": true,
+    "required": true,
+    "expected_profile": "first-frame-trace",
+    "profile": "first-frame-trace",
+    "original_identity": {
+      "frame_id": 8,
+      "exposure_timestamp_ns": 476000000,
+      "control_time_ns": 486000000
+    },
+    "clock_domain": "linux_steady_diagnostic_only",
+    "eof_complete": true,
+    "valid": false,
+    "stream_valid": true,
+    "first_frame_complete": false,
+    "required_first_frame_phases": [
+      "actual_bgr_read",
+      "control",
+      "detector",
+      "first_tick",
+      "generate_request",
+      "infer",
+      "input_attach",
+      "pose_estimation",
+      "post_nms",
+      "request_create",
+      "resize",
+      "stdout_serialize",
+      "tensor_create",
+      "tracker"
+    ],
+    "missing_first_frame_phases": [
+      "actual_bgr_read",
+      "control",
+      "detector",
+      "first_tick",
+      "generate_request",
+      "infer",
+      "input_attach",
+      "pose_estimation",
+      "post_nms",
+      "request_create",
+      "resize",
+      "stdout_serialize",
+      "tensor_create",
+      "tracker"
+    ],
+    "required_startup_phases": [
+      "model_compile"
+    ],
+    "missing_startup_phases": [],
+    "completed_phases": [
+      {
+        "phase": "model_compile",
+        "startup": true,
+        "begin_linux_steady_ns": 72819612579,
+        "end_linux_steady_ns": 73407602067,
+        "elapsed_ns": 587989488,
+        "exception_unwinding": false
+      }
+    ],
+    "incomplete_phases": [],
+    "events": [
+      {
+        "schema": "rmcs.first-frame-trace.v1",
+        "profile": "first-frame-trace",
+        "phase": "model_compile",
+        "event": "begin",
+        "frame_id": -1,
+        "exposure_timestamp_ns": -1,
+        "control_time_ns": -1,
+        "linux_steady_ns": 72819612579,
+        "clock_domain": "linux_steady_diagnostic_only",
+        "startup": true
+      },
+      {
+        "schema": "rmcs.first-frame-trace.v1",
+        "profile": "first-frame-trace",
+        "phase": "model_compile",
+        "event": "end",
+        "frame_id": -1,
+        "exposure_timestamp_ns": -1,
+        "control_time_ns": -1,
+        "linux_steady_ns": 73407602067,
+        "clock_domain": "linux_steady_diagnostic_only",
+        "startup": true,
+        "elapsed_ns": 587989488,
+        "exception_unwinding": false
+      }
+    ],
+    "errors": [
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "actual_bgr_read"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "control"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "detector"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "first_tick"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "generate_request"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "infer"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "input_attach"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "pose_estimation"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "post_nms"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "request_create"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "resize"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "stdout_serialize"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "tensor_create"
+      },
+      {
+        "code": "required_first_frame_phase_missing",
+        "phase": "tracker"
+      }
+    ],
+    "qualification": "Linux-local scoped phase wall durations; startup is zero-frame, not per-inference lifetime CPU"
+  }
+}
