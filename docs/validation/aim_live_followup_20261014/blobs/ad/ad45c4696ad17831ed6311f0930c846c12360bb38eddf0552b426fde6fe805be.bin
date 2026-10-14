@@ -1,0 +1,23 @@
+{
+  "run_id": "d692d6169e004fdd962e3a7557f06849",
+  "supervisor_pid": 367,
+  "boot_id": "72b07fe0-581e-429e-96bd-174fbf604201",
+  "pid": 696,
+  "pgid": 696,
+  "leader_start_ticks": 388,
+  "clean": true,
+  "reaped": true,
+  "group_empty": true,
+  "remaining_members": [],
+  "errors": [],
+  "killed": false,
+  "returncode": -15,
+  "reaped_descendants": [],
+  "cleanup_elapsed_s": 0.017794348999998988,
+  "transport": "wsl_async_bgr_v3",
+  "spec_sha256": "8dd41a6905a1bb49e69b28a5c4f432d8b6c0fd9ab9b9b042f3a03fbffaba8e49",
+  "reason": "host_cancel",
+  "tmpfs_directory": "/dev/shm/polar-aim-async-yt086wn8",
+  "tmpfs_removed": true,
+  "clock_domain": "linux_local_diagnostic_only"
+}

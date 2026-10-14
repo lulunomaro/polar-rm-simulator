@@ -1,0 +1,12 @@
+# 未采用的内部 snapshot cache 方案
+
+本次只读审查未修改 core，也未新增 cache 测试。当前产品每次读取 fresh detached snapshot，下面的反例只针对尚未实现的 revision-only 跨 tick 复用方案。
+
+1. renew 改变 lease.expires 却不增加 revision；实际 _expire 后仍可能同 revision。旧快照将错误拒绝仍有效的续租。
+2. 无持有租约的 stop 改 stopped，revision 不变。
+3. snapshot 按当前时间把过期 input 变为 None，revision 不变；server_monotonic_s 本来就应每次新鲜。
+4. duck/subclass、snapshot 或 mutator 覆盖不能偷偷 unwrap 后视为原方法。当前 live 诊断工具包装 control.snapshot 计时，所以严格原方法 cache 本应回退。
+
+根代理已停止该优化：旧代码在禁用 authority 额外诊断 timers 的真实生产 profile 达 RTF 0.998440549、112及时结果/103物理帧，0fault/0stale/clean；这项数值由根代理实际报告，本目录未独立重算其原日志。不将一次静态通过推广到全部场景，也不把诊断 timers 下较低 RTF 当纯生产负载。根代理继续同配置复测、PB 与全量 QA。
+
+OBSERVATION 精确区分原工具观察与缺少 raw 子进程日志。source/ 仅保存审查时原始源码，不能称新性能实现或新正式验收。

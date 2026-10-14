@@ -736,15 +736,30 @@ class PlatformRuntime:
                     guard_cache[rid]=dict(robot_ids=[rid],leases={rid:state['leases'][rid]},
                                          bindings={rid:state['bindings'][rid]})
                 guard_snapshot=guard_cache[rid]
-                checked=self._targets(guard_snapshot,self.backend.sim_time,sampled_wall=sampled_wall)[rid]
+                # Prepare detached evidence before sampling the logical consume
+                # boundary. A second clock read for the receipt could cross the
+                # original deadline after _targets had already authorized input.
+                receipt=dict(episode=self._episode,robot_id=rid,phase=phase,
+                    binding_epoch=guard_snapshot['bindings'][rid]['aim']['epoch'],
+                    adapter_authorizations={k:{f:guard_snapshot['bindings'][rid][k].get(f) for f in ('epoch','owner','adapter_id','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')} for k in KINDS},
+                    adapter_output_authorizations={k:copy.deepcopy(value) if (value:=self.output_authorizations.get((rid,k))) is not None else None for k in KINDS},
+                    manual_inputs={c:{k:guard_snapshot['leases'][rid][c].get(k) for k in ('owner','epoch','seq','expires','input_expires','input_window_id','input_window_deadline')} for c in ('motion','gimbal','fire')},
+                    budget=copy.deepcopy(budget) if (budget:=self.output_budgets.get((rid,'aim'))) is not None else None)
+                # The engine's uniform integration-entry sample remains its
+                # original logical latch for all cars. Other phases take a new
+                # sample here; Python scheduling cannot promise hard real time.
+                consume_wall=self.clock() if sampled_wall is None else sampled_wall
+                consume_sim_time=self.backend.sim_time
+                checked=self._targets(guard_snapshot,consume_sim_time,sampled_wall=consume_wall)[rid]
                 # Every displayed applied target reflects the final guard too.
                 targets[rid]=checked
-                consumed.append(dict(episode=self._episode,robot_id=rid,phase=phase,consume_wall=self.clock() if sampled_wall is None else sampled_wall,consume_sim_time=self.backend.sim_time,
-                    target=checked,binding_epoch=guard_snapshot['bindings'][rid]['aim']['epoch'],
-                    adapter_authorizations={k:{f:guard_snapshot['bindings'][rid][k].get(f) for f in ('epoch','owner','adapter_id','activation_required','activation_seq','activation_expires','activation_window_id','activation_window_deadline')} for k in KINDS},
-                    adapter_output_authorizations={k:self.output_authorizations.get((rid,k)) for k in KINDS},
-                    manual_inputs={c:{k:guard_snapshot['leases'][rid][c].get(k) for k in ('owner','epoch','seq','expires','input_expires','input_window_id','input_window_deadline')} for c in ('motion','gimbal','fire')},
-                    budget=self.output_budgets.get((rid,'aim'))))
+                # Validated motion/spin/gimbal command fields are flat scalars;
+                # copying their small dictionaries detaches evidence without
+                # traversing nonexistent commands for every idle robot/phase.
+                receipt_target=dict(checked,motion=dict(checked['motion']) if checked['motion'] is not None else None,
+                    gimbal=dict(checked['gimbal']) if checked['gimbal'] is not None else None)
+                receipt.update(consume_wall=consume_wall,consume_sim_time=consume_sim_time,target=receipt_target)
+                consumed.append(receipt)
                 return checked
             if hasattr(self.backend,'guarded_step'):self.backend.guarded_step(targets,command_guard,clock=self.clock)
             else:self.backend.step(targets)

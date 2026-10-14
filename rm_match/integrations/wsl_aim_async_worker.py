@@ -112,7 +112,13 @@ def checked_response(response,header):
         raise ValueError('async_native_response_identity_or_execution')
     for k in ('direction','robot_center'):
         values=response.get(k)
-        if type(values) is not list or len(values)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in values):
+        # Original runner serializes an unavailable Point3d as [null,null,null].
+        # That is no command only when tracking is explicitly false; a tracking
+        # result must still provide three finite numbers. Never fill hold angles.
+        unavailable=(response['tracking'] is False and type(values) is list
+                     and len(values)==3 and all(v is None for v in values))
+        if not unavailable and (type(values) is not list or len(values)!=3
+            or any(type(v) not in (int,float) or not math.isfinite(v) for v in values)):
             raise ValueError('async_native_direction')
     return copy.deepcopy(response)
 
@@ -239,8 +245,20 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                     if len(native_buffer)>MAX_LINE:raise ValueError('async_native_stdout_bound')
                     if b'\n' in native_buffer:
                         line,_,tail=native_buffer.partition(b'\n')
-                        if tail or writebuf or slot.current is None:raise ValueError('async_unsolicited_or_multiple_stdout')
-                        completed=slot.complete(parse_json(line),time.monotonic())
+                        try:
+                            if tail or writebuf or slot.current is None:raise ValueError('async_unsolicited_or_multiple_stdout')
+                            completed=slot.complete(parse_json(line),time.monotonic())
+                        except Exception:
+                            # Keep bounded original bytes even when validation
+                            # fails before emit/journal; these are never a result.
+                            rejected=bytes(native_buffer)
+                            (out/'REJECTED_NATIVE_STDOUT.bin').write_bytes(rejected)
+                            _record(out,'REJECTED_NATIVE_STDOUT.json',dict(
+                                schema=SCHEMA,event='rejected_native_stdout',
+                                bytes=len(rejected),sha256=hashlib.sha256(rejected).hexdigest(),
+                                path='REJECTED_NATIVE_STDOUT.bin',
+                                inflight=None if slot.current is None else slot.source()))
+                            raise
                         (Path(tmp.name)/('sensor_'+str(completed['id'])+'.bgr')).unlink()
                         emit(completed);native_buffer.clear()
                     continue

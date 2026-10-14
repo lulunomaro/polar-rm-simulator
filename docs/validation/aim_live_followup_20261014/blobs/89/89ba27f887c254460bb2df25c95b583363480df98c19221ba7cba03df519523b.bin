@@ -1,0 +1,54 @@
+"""Explicit isolated Python scheduling diagnostic, never alter original deadlines."""
+from pathlib import Path
+import argparse,hashlib,json,os,subprocess,sys,time
+ROOT=Path(__file__).resolve().parents[1]
+p=argparse.ArgumentParser();p.add_argument('--label',required=True);p.add_argument('--switch-interval',required=True,type=float);p.add_argument('--authority-affinity-mask',type=lambda x:int(x,0));p.add_argument('--no-profile-authority',action='store_true');a=p.parse_args()
+assert __import__('re').fullmatch('[a-z0-9_-]{1,70}',a.label)
+assert 0.0001<=a.switch_interval<=0.01
+out=ROOT/('artifacts/aim-gil-driver-20261014-'+a.label);out.mkdir()
+names=sorted(x.relative_to(ROOT).as_posix() for x in (ROOT/'rm_match').rglob('*.py'))+['tools/smoke_wsl_native_live.py']
+before={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
+for n in names:
+    target=out/'source'/n;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes((ROOT/n).read_bytes())
+bootstrap=out/'bootstrap.py'
+bootstrap.write_text('from pathlib import Path\nimport json,runpy,sys\nROOT=Path('+repr(str(ROOT))+')\nsys.path.insert(0,str(ROOT))\noriginal=sys.getswitchinterval()\nsys.setswitchinterval('+repr(a.switch_interval)+')\n(ROOT/'+repr(out.relative_to(ROOT).as_posix()+'/SCHEDULING_PROFILE.json')+').write_text(json.dumps(dict(original_switch_interval_s=original,actual_switch_interval_s=sys.getswitchinterval(),qualification="explicit resource scheduling diagnostic; original 80/150ms unchanged"),indent=2))\nsys.argv[0]=str(ROOT/"tools/smoke_wsl_native_live.py")\nrunpy.run_path(sys.argv[0],run_name="__main__")\n',encoding='utf8')
+if a.authority_affinity_mask is not None:
+    assert 0<a.authority_affinity_mask<2**32
+    old=bootstrap.read_text(encoding='utf8')
+    hook='''import ctypes,threading,time
+from rm_match.platform_v2.runtime import PlatformRuntime
+kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+kernel.GetCurrentThread.restype=ctypes.c_void_p
+kernel.SetThreadAffinityMask.argtypes=[ctypes.c_void_p,ctypes.c_size_t]
+kernel.SetThreadAffinityMask.restype=ctypes.c_size_t
+original_run=PlatformRuntime.run
+def run_with_local_affinity(self,*args,**kwargs):
+    thread=kernel.GetCurrentThread()
+    previous=kernel.SetThreadAffinityMask(thread,MASK)
+    if not previous:raise ctypes.WinError(ctypes.get_last_error())
+    record=dict(native_thread_id=threading.get_native_id(),requested_mask=MASK,previous_mask=previous,qualification='Only this authority thread; processor class unqualified; original source/clock/gates and physics unchanged')
+    try:return original_run(self,*args,**kwargs)
+    finally:
+        restored=kernel.SetThreadAffinityMask(thread,previous)
+        record['restore_succeeded']=bool(restored)
+        (ROOT/PROFILE).write_text(json.dumps(record,indent=2))
+        if not restored:raise ctypes.WinError(ctypes.get_last_error())
+PlatformRuntime.run=run_with_local_affinity
+'''.replace('MASK',str(a.authority_affinity_mask)).replace('PROFILE',repr(out.relative_to(ROOT).as_posix()+'/AUTHORITY_AFFINITY.json'))
+    bootstrap.write_text(old.replace('sys.argv[0]=',hook+'sys.argv[0]='),encoding='utf8')
+command=[sys.executable,str(bootstrap),'--run','--native-transport','wsl_async_bgr_v3','--private-native-pixels','--raw-base64-codec','pybase64_1_5_1',
+ '--linux-native-spec',str(ROOT/'artifacts/native-production-cpu4-build-20261014/operator_source.local.json'),
+ '--client-root',str(ROOT/'external/polar-rm-client-state-review'),'--out',str(ROOT/('artifacts/aim-live-20261014-'+a.label)),
+ '--host-opencv-threads','4','--seconds','10','--profile-authority']
+if a.no_profile_authority:command.remove('--profile-authority')
+(out/'COMMAND.json').write_text(json.dumps(dict(argv=command,driver_pid=os.getpid(),source_before=before),indent=2),encoding='utf8')
+(out/'driver.py').write_bytes(Path(__file__).read_bytes())
+start=time.perf_counter()
+with (out/'stdout.log').open('xb') as stdout,(out/'stderr.log').open('xb') as stderr:
+    child=subprocess.Popen(command,cwd=ROOT,stdin=subprocess.DEVNULL,stdout=stdout,stderr=stderr,shell=False,creationflags=subprocess.CREATE_NO_WINDOW)
+    (out/'PID.json').write_text(json.dumps(dict(pid=child.pid,driver_pid=os.getpid())),encoding='utf8')
+    code=child.wait()
+after={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
+result=dict(returncode=code,reaped=child.poll() is not None,elapsed_s=time.perf_counter()-start,source_before=before,source_after=after,source_unchanged=before==after)
+(out/'RESULT.json').write_text(json.dumps(result,indent=2),encoding='utf8')
+print(json.dumps({k:v for k,v in result.items() if k not in ('source_before','source_after')}));raise SystemExit(code)

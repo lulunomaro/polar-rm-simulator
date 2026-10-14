@@ -1,0 +1,12 @@
+{
+  "row": {
+    "path": "rm_match/platform_v2/test_native_timing.py",
+    "original_sha256": "ce6e81beb5154cb540ecfa410bb93d8734f26d3308a314c6e8d318d804cf7c3a",
+    "current_sha256": "8ca25b186c5aa79051c00711b94e99f6baf37cfe0fd6ecb39e020db0d75c68cc",
+    "task": "T03",
+    "reason": "Regression cases for consume-time expiry after receipt preparation, exact 80ms boundary rejection and detached actuator receipts; injected-clock unit tests do not claim native or real-time qualification"
+  },
+  "manifest_before_sha256": "e504b81dea878f91c2f95994ac7c7d0c97eef9ae9f0181a58595e695cfdf5cf2",
+  "manifest_after_sha256": "854e1a63e424f69175b89cfc99fdcb13debe1118741972ac5f59f746df1441ef",
+  "qualification": "Original extraction baseline unchanged; regression amendment explicitly attributed"
+}

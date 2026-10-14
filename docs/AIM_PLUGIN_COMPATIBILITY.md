@@ -8,7 +8,7 @@
 
 当前仿真接口链路是：**MuJoCo 场景实际渲染 RGB/BGR → 原 CameraInfo/K/D/标定和曝光源上下文 + 同次物理快照的本车姿态反馈 → 上位机完整自瞄算法（检测、跟踪及其控制/弹道链）→ 规范 yaw/pitch action → runtime 重查原 80/150 ms 门限及租约 → MuJoCo 云台关节 actuator → 下一次曝光和关节反馈**。适配程序把原图与本车测量交给算法，不从仿真器喂敌方位置、Target 角度或目标身份真值。yaw/pitch 是算法计算后的控制输出，不是替代图像的输入。相机像素由模拟相机产生，不是物理工业相机采集；qpos/qvel 来自模拟关节，不是实物 IMU/编码器采样。[camera.py](../rm_match/platform_v2/camera.py) 在曝光时复制实际 MuJoCo data；[backend.py](../rm_match/platform_v2/backend.py) 执行经过重检的目标并推进物理。仿真 adapter/runtime/actuator 在这里替代 C 板控制与电机执行，没有连接或验证物理 C 板/电机，也尚未复现特定固件的 CAN、电流环、滤波或硬件延迟。
 
-自家 T2 已产生首批实时有效返回和物理消费，但完整门禁仍未通过：v3 async02有65个真实NN stdout、5及时返回/3独立新帧物理消费、0fault/0fire/clean，物理RTF仅0.5475。额外计时诊断有11及时返回/3消费、RTF0.6023，仍FAIL；pending/late不计及时推理或动作。同济 source04 已完成 clean 19 项构建；随后 Windows→WSL实际原模型prepare/reset/清理通过，零图像/零NN。PB source03的系统OpenCV依赖选择已修复，实际preflight04与七包编译/链接/ldd通过；随后三真实节点prepare 10.179s、当前context reset 52.627ms及全进程树清理通过，零图像/零NN。接口合同不表示三套实时自瞄通过，也不保证未经适配的程序零修改接入。逐次证据见[本轮验证包](validation/universal_aim_20261014/README.md)。
+自家 T2 的显式配置已连续三次通过本机静态实时链，正式入口一次物理RTF0.9971029、107个及时结果/97个独立新帧实际关节消费、0fault/0fire/clean；原80/150ms保持，late/pending不计及时推理或动作。旧async02的RTF0.5475和额外计时/调度失败保留。同济source04实际原模型prepare/reset/清理通过，仍无真实图像计算。PB source03七包build/三真实节点graph/reset/clean已过；实际首帧在host序列化或跨WSL请求部分传输时超原80ms，尚无该帧MLP/PnP或控制结果。接口合同不表示三套实时自瞄都通过，也不保证未经适配的程序零修改接入。见[最新逐次验证](validation/aim_live_followup_20261014/README.md)与[此前构建/准备记录](validation/universal_aim_20261014/README.md)。
 
 导航已有 Windows→WSL、实际 LiDAR/IMU→Point-LIO→Nav2→SDK→MuJoCo 的单目标生产 SIL 闭环证据，见 [导航生产验证](validation/pb_wsl_production_20261014/README.md)。这是导航的局部结果，不替代自瞄实时门禁、定位精度、完整比赛或实机 C 板验收。
 
@@ -66,15 +66,31 @@ Qt 的受限状态可显示带 episode/绑定/adapter/source frame/原 deadline 
 
 | 实现 | 已核对接口 | 尚需验证 |
 |---|---|---|
-| 自家 RMCS T2 | 固定原生 spec/source/model，独立原生 wrapper；v3已有原80ms内返回和真实关节消费 | 持续NN负载下RTF与及时消费样本不足，整体FAIL；移动/多车/火控及整场未验收 |
+| 自家 RMCS T2 | 固定完整原生spec/model/CPU4；显式host配置三次静态live通过，正式入口107及时/97新帧消费/RTF.9971 | 默认profile、命中精度、移动/多车/火控/可见Qt及整场未验收 |
 | TongjiSuperPower/sp_vision_25 | 固定 `bd9f5e7...` 原检测/跟踪/MPC源；source04 clean19构建与实际原模型prepare/当前context reset/clean已过 | 零图像/零NN阶段，尚未实际图像控制和原80ms live；不用像素baseline充当同济 |
 | PB Gitee PB_RM_Vision | `ab0c83b...` 的 Image/CameraInfo→Armors/Target；Target.yaw 是目标姿态，旧仓发 MCU 目标状态 | 控制链及原曝光关联，不能裸 atan2 替换原控制器 |
-| PB 官方 GitHub pb2025_rm_vision | `df1892c...` 原detector→tracker→projectile/GimbalCmd；source03、signed依赖与实际七包构建；三真实节点graph/原2s reset/全树清理已过 | 零图像/零NN资源阶段，真实MLP/PnP/图像控制与80ms live未验收，节点启动不当ROS图像闭环 |
+| PB 官方 GitHub pb2025_rm_vision | `df1892c...` 原完整节点；source03/七包build/真实graph/reset/清理已过；首帧失败已定位并保存 | 图像请求host过期或WSL未完整输入，无实际MLP/PnP/图像控制，80ms live未验收 |
 
 本轮已有纯契约与真实客户端解析/计划代码测试；它们不等于第二套自瞄检测器、ROS DDS 或 GUI/物理闭环通过。实际验收应逐插件保留源码/模型/构建、原图 SHA/标定、源关联、SDK ACK、真实消费和全 owned-process 清理，并继续核对原时限与人工火控。
 
 ## 可选工具依赖
 
-自家 T2 Windows入口可显式用 `--wsl-native-spec LOCAL_LINUX_SPEC --native-out LOCAL_SHARED_OUT --wsl-native-transport wsl_async_bgr_v3 --private-native-pixels`，配合原 `--camera --admission-manifest`。实际零NN模型准备在physics前，绑定仍reset当前context。v3仅有一个原compute，迟到stdout只归原帧；忙或证据背压返回无角度进度，原80/150ms不变。默认同步transport及其严格超时判定保留。该入口当前实时整体FAIL，不是完整部署验收。
+自家 T2 Windows入口可显式用 `--wsl-native-spec LOCAL_LINUX_SPEC --native-out LOCAL_SHARED_OUT --wsl-native-transport wsl_async_bgr_v3 --private-native-pixels`，配合原 `--camera --admission-manifest`。实际零NN模型准备在physics前，绑定仍reset当前context。v3仅有一个原compute，迟到stdout只归原帧；忙或证据背压返回无角度进度，原80/150ms不变。默认同步transport及其严格超时判定保留。该入口在下述显式本机配置取得静态实时资格，完整部署范围仍未验收。
 
 `pip install -e ".[aim-tools]"` 仅增加准备工具所需 PyYAML：同济生成器用 `yaml.safe_load` 读取原 YAML 参数，PB owned launch 同样读取原配置。C++ `yaml-cpp`、OpenVINO、ROS Humble、消息/TF包及 `image_transport_plugins` 是各算法自己的依赖，应按其有来源/hash 的安装前缀准备；Python optional extra 不会替它们安装 ROS 或宣布 preflight 通过。通用 JSONL 合同本身不需要 PyYAML。
+
+显式本机运行设置为 `--host-opencv-threads 4 --raw-base64-codec pybase64_1_5_1 --host-python-switch-interval-ms 1 --authority-affinity-mask 0x10`。
+这些参数只允许本地启动指定，HTTP不能选择；codec需要实际固定1.5.1依赖，CLI报告实际模块和extension SHA。
+切换间隔在准备前生效、全部资源清理后恢复；亲和性仅Windows当前authority线程的runtime.run区间，同CPU group实读并finally恢复。
+默认不修改调度或调用WinAPI；Linux显式线程亲和性请求失败。mask0x10是本机实测配置，没有证明其CPU类别或跨机性能。
+它保持原模型、像素、80/150ms及fire权限，不改变系统优先级、电源或计时器，也不提供Python硬实时保证。
+
+用同一真实Linux CPU4 spec、原客户端checkout和新输出目录复测：
+
+```powershell
+.venv-sim/Scripts/python.exe tools/smoke_wsl_native_live.py --run --native-transport wsl_async_bgr_v3 --private-native-pixels --linux-native-spec artifacts/native-production-cpu4-build-20261014/operator_source.local.json --client-root external/polar-rm-client-state-review --out artifacts/aim-live-local-reproduction01 --host-opencv-threads 4 --raw-base64-codec pybase64_1_5_1 --host-python-switch-interval-ms 1 --authority-affinity-mask 0x10 --seconds 10
+```
+
+该本机spec含哈希固定的实际Linux构建路径，需先按构建证据准备；克隆仓库中的验证包不携带模型/ELF。
+额外authority计时探针默认关闭，旧加探针诊断未达RTF的失败保留。验收仍逐帧检查原capture、SDK ACK、实际消费和清理；
+静态链资格不代表所有NN都在80ms内、精度、第二套算法、移动/多车、整场或硬件通过。

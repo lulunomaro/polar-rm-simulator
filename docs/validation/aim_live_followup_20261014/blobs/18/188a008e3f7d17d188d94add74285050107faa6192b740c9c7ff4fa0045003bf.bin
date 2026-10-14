@@ -1,0 +1,19 @@
+[RMCS-PRODUCTION-INFERENCE] {"schema":"rmcs.production-inference-threads.v1","startup":true,"native_ticks":0,"inference_calls":0,"clock_domain":"linux_steady_startup_only","linux_steady_ns":5023933782,"requested_threads":4,"effective_threads":4,"execution_cpu_only":true,"num_streams":1,"latency":true,"f32":true,"enable_cpu_pinning":true,"any_core":true,"cv_num_threads":32,"error":null}
+tracking mode switched to multi_ekf
+Init OK with INFANTRY_3
+observations frames=8 empty2d=0 single=8 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=12 empty2d=0 single=12 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=0 single=13 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+[PROF-DET] n=34 wall=5.0s fps=6.8 pre=0.58ms infer=13.71ms post=0.21ms sum=14.50ms
+observations frames=12 empty2d=0 single=12 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=2 single=11 no_detection=2 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=12 empty2d=5 single=7 no_detection=5 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+[PROF-DET] n=43 wall=5.1s fps=8.5 pre=0.45ms infer=13.07ms post=0.15ms sum=13.67ms
+observations frames=12 empty2d=4 single=8 no_detection=4 filtered=0 pnp_missing=0 last_raw2d=0 kept2d=0 kept3d=0
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN

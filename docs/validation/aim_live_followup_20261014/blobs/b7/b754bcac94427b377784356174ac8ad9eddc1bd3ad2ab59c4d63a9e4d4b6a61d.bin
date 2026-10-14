@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "configuration_unchanged": true,
+    "bounded_real_wall_run": true,
+    "physics_rtf": false,
+    "raw_sample_count": true,
+    "native_sample_count": true,
+    "no_sticky_adapter_fault": false,
+    "all_native_requests_completed": false,
+    "actual_evidence_preserved": true,
+    "actual_native_actuation": true,
+    "native_sensor_budget_80ms": true,
+    "actual_transport_matches_plan": true,
+    "exact_sensor_pixel_binding": true,
+    "source_unchanged": true,
+    "sdk_admission": true,
+    "window_acknowledged": true,
+    "zero_fire": true,
+    "clean_shutdown": true,
+    "runtime_error_free": false,
+    "raw_ages_s": true,
+    "native_result_ages_s": true,
+    "actuator_wall_ages_s": true,
+    "actuator_sim_ages_s": true,
+    "raw_codec_identity_unchanged": true,
+    "postclose_actual_pixel_audit": true,
+    "host_opencv_setting_unchanged": true,
+    "original_async_transactions_accounted": false
+  },
+  "live_static_chain_qualified": false,
+  "full_match_qualified": false,
+  "hardware_qualified": false,
+  "visible_qt_qualified": false,
+  "rejected_or_failed_criteria": [
+    "physics_rtf",
+    "no_sticky_adapter_fault",
+    "all_native_requests_completed",
+    "runtime_error_free",
+    "original_async_transactions_accounted"
+  ]
+}

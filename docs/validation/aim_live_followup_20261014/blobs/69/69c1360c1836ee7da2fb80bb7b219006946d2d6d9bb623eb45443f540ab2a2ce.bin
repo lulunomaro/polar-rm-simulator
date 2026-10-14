@@ -1,0 +1,160 @@
+"""Artifact-only original PB peer with bounded, read-only source observations."""
+import argparse,hashlib,json,os,queue,signal,sys,threading,time,traceback
+from pathlib import Path
+class Phases:
+ def __init__(self,out):self.out=out;self.rows=[];self.total=0;self.dropped=0;self.line=0;self.signal_wall=None
+ def record(self,stage,**fields):
+  self.total+=1
+  if len(self.rows)>=64:self.dropped+=1;return
+  self.rows.append(dict(stage=stage,linux_perf_counter=time.perf_counter(),clock_domain='linux_local_diagnostic_only',**fields))
+ def close(self,observer_summary,deadline):
+  value=dict(schema='polar.pb-aim-resource-phases.v1',total=self.total,dropped=self.dropped,capacity=64,rows=self.rows,
+   observer_summary=observer_summary,shutdown_signal_wall=self.signal_wall,
+   scope='Original callbacks only; timings do not authorize control and are not HostQPC',
+   missing_when_killed='No final artifact means unknown, never proof of no computation')
+  errors=[]
+  def persist():
+   try:
+    with (self.out/'PEER_PHASES.json').open('xb') as stream:stream.write((json.dumps(value,allow_nan=False,indent=2)+'\n').encode())
+   except BaseException:errors.append(traceback.format_exc())
+  # Diagnostic disk IO cannot indefinitely hold the inner resource closer.
+  # The original external owner still kills/reaps any blocked process/thread.
+  writer=threading.Thread(target=persist,name='pb-final-phase-evidence',daemon=True);writer.start()
+  writer.join(min(.03,max(0.,deadline-time.perf_counter())))
+  if writer.is_alive() or errors:raise RuntimeError('phase evidence unfinished or failed; completeness unknown')
+ def timed(self,stage,call):
+  def wrapped(*args,**kwargs):
+   self.record(stage+'_begin')
+   try:value=call(*args,**kwargs)
+   except BaseException as exc:self.record(stage+'_error',error_type=type(exc).__name__);raise
+   self.record(stage+'_end');return value
+  return wrapped
+def install_exit_signals(phases):
+ def shutdown(signum,_frame):
+  # Owned-tree cleanup may send TERM repeatedly. Re-entry cannot interrupt
+  # the original engine.close; external SIGKILL remains authoritative.
+  if phases.signal_wall is not None:return
+  signal.signal(signal.SIGTERM,signal.SIG_IGN);signal.signal(signal.SIGINT,signal.SIG_IGN)
+  phases.signal_wall=time.perf_counter();phases.record('shutdown_signal',signal=int(signum))
+  raise SystemExit(128+int(signum))
+ signal.signal(signal.SIGTERM,shutdown);signal.signal(signal.SIGINT,shutdown)
+class Input:
+ def __init__(self,stream,phases):self.stream=stream;self.phases=phases
+ def readline(self,limit):
+  self.phases.line+=1;line=self.phases.line;self.phases.record('line_wait_begin',line_index=line)
+  raw=self.stream.readline(limit)
+  self.phases.record('complete_line_received',line_index=line,bytes=len(raw),newline=raw.endswith(b'\n'))
+  return raw
+def checked(path,sha):
+ path=Path(path)
+ if any(p.is_symlink() for p in (path,*path.parents)):raise ValueError('bootstrap source link')
+ raw=path.read_bytes()
+ if hashlib.sha256(raw).hexdigest()!=sha:raise ValueError('bootstrap source changed')
+ return raw
+class Observer:
+ def __init__(self,engine,out):
+  from polar_pb_aim_interfaces.msg import SourceArmors,SourceTarget
+  from rclpy.qos import qos_profile_sensor_data
+  self.engine=engine;self.out=out;self.events=queue.Queue(maxsize=32);self.done=threading.Event()
+  self.total=0;self.dropped=0;self.error=None;self.expected=None;self.subscriptions=[]
+  self.file=(out/'SOURCE_EVENTS.jsonl').open('xb',buffering=0)
+  self.writer=threading.Thread(target=self.write,name='pb-resource-source-evidence',daemon=True);self.writer.start()
+  self.subscriptions.append(engine.transport.node.create_subscription(SourceArmors,'detector/armors',self.armors,qos_profile_sensor_data))
+  self.subscriptions.append(engine.transport.node.create_subscription(SourceTarget,'tracker/target',self.target,qos_profile_sensor_data))
+ def write(self):
+  try:
+   while not self.done.is_set() or not self.events.empty():
+    try:event=self.events.get(timeout=.01)
+    except queue.Empty:continue
+    self.file.write((json.dumps(event,allow_nan=False,separators=(',',':'))+'\n').encode())
+  except BaseException:self.error=traceback.format_exc()
+  finally:self.file.close()
+ def record(self,kind,msg,fields):
+  self.total+=1
+  try:
+   source=json.loads(msg.source_context);expected=self.expected
+   match=type(source) is dict and type(expected) is dict and set(source)==set(expected) and all(type(source[k]) is type(v) and source[k]==v for k,v in expected.items())
+   stamp=int(msg.header.stamp.sec)*1000000000+int(msg.header.stamp.nanosec)
+   event=dict(kind=kind,linux_local_monotonic=time.monotonic(),clock_domain='linux_local_diagnostic_only',
+    source_context=source,source_exact_match=match,header_stamp_ns=stamp,
+    original_capture_stamp_match=match and stamp==expected['capture_stamp_ns'],**fields)
+   phases=getattr(self,'phases',None)
+   if phases is not None:phases.record('source_callback',kind=kind,source_exact_match=match,header_stamp_ns=stamp)
+   self.events.put_nowait(event)
+  except queue.Full:self.dropped+=1
+  except BaseException:
+   self.dropped+=1;self.error=traceback.format_exc()
+ def armors(self,msg):
+  values=msg.armors.armors
+  self.record('source_armors',msg,dict(count=len(values),details_truncated=len(values)>32,
+   armors=[dict(type=a.type,number=a.number,pose=dict(position=[a.pose.position.x,a.pose.position.y,a.pose.position.z],
+    orientation_xyzw=[a.pose.orientation.x,a.pose.orientation.y,a.pose.orientation.z,a.pose.orientation.w])) for a in values[:32]],
+   inner_stamp_ns=int(msg.armors.header.stamp.sec)*1000000000+int(msg.armors.header.stamp.nanosec)))
+ def target(self,msg):
+  self.record('source_target',msg,dict(tracking=msg.target.tracking,
+   inner_stamp_ns=int(msg.target.header.stamp.sec)*1000000000+int(msg.target.header.stamp.nanosec)))
+ def close(self,timeout=.15):
+  self.done.set();self.writer.join(max(0.,min(.15,timeout)))
+  summary=dict(total=self.total,dropped=self.dropped,writer_reaped=not self.writer.is_alive(),error=self.error,
+   evidence_scope='read-only callbacks during original exchange; no postdeadline reads, no approximate source matching')
+  if self.writer.is_alive() or self.error:raise RuntimeError('source evidence incomplete')
+  return summary
+class ObservedEngine:
+ def __init__(self,engine,observer,phases):self.engine=engine;self.observer=observer;self.phases=phases
+ def reset(self,context):return self.phases.timed('reset_original',self.engine.reset)(context)
+ def __call__(self,bundle,observation):
+  self.observer.expected=bundle.source_context
+  self.phases.record('engine_compute_enter',frame_id=bundle.source_context['frame_id'],observed_seq=observation['observed_seq'])
+  try:
+   value=self.engine(bundle,observation);self.phases.record('engine_compute_end',response_schema=value['schema']);return value
+  except SystemExit:
+   self.phases.record('engine_compute_cancelled');raise
+  except BaseException:
+   self.phases.record('engine_compute_error',error_type=type(sys.exception()).__name__ if hasattr(sys,'exception') else type(sys.exc_info()[1]).__name__)
+   traceback.print_exc(file=sys.stderr);sys.stderr.flush();raise
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--bootstrap-ref',required=True);p.add_argument('--bootstrap-sha256',required=True);p.add_argument('--peer-sha256',required=True)
+ a=p.parse_args();checked(__file__,a.peer_sha256)
+ spec=json.loads(checked(a.bootstrap_ref,a.bootstrap_sha256));engine=observer=None;code=0
+ phases=Phases(Path(a.bootstrap_ref).parent)
+ sys.stdout.flush();protocol=os.fdopen(os.dup(sys.stdout.fileno()),'wb',buffering=0);os.dup2(sys.stderr.fileno(),sys.stdout.fileno())
+ try:
+  install_exit_signals(phases)
+  if spec['schema']!='polar.pb-aim-local-bootstrap.v1':raise ValueError('bootstrap schema')
+  for path,sha in spec['installed_module_sha256'].items():checked(path,sha)
+  sys.path[:0]=[spec['repo_root'],*spec['module_paths']]
+  from rm_match.integrations.pb_aim_engine import PBAimEngine
+  from rm_match.integrations.pb_aim_stack import load_stack
+  from rm_match.integrations import aim_jsonl_peer
+  stack=load_stack(spec['stack_ref']['path'],spec['stack_ref']['sha256'])
+  engine=PBAimEngine(stack);engine.prepare()
+  # rclpy.init may install its own native signal handlers. Restore the
+  # artifact exit handler after real initialization, before any reset/image.
+  install_exit_signals(phases)
+  observer=Observer.__new__(Observer);observer.__init__(engine,Path(a.bootstrap_ref).parent)
+  observer.phases=phases
+  # Artifact-only instrumentation wraps actual bound implementations; no
+  # input/result edits, alternative codec, model invocation or new spinner.
+  aim_jsonl_peer.prepare_aim_input=phases.timed('strict_raw_decode',aim_jsonl_peer.prepare_aim_input)
+  engine.core.begin=phases.timed('bridge_begin',engine.core.begin)
+  engine.transport.publish=phases.timed('actual_publish',engine.transport.publish)
+  aim_jsonl_peer.serve_aim_plugin(ObservedEngine(engine,observer,phases),Input(sys.stdin.buffer,phases),protocol)
+ except SystemExit as exc:code=exc.code if type(exc.code) is int else 2
+ except BaseException:traceback.print_exc(file=sys.stderr);sys.stderr.flush();code=2
+ finally:
+  # Resource close runs first; evidence never precedes or extends its budget.
+  # 1.10s diagnostic tail is inside original outer1.3/host1.5, not an
+  # extension to the original engine.close1s, observation80/control150.
+  final_deadline=(phases.signal_wall if phases.signal_wall is not None else time.perf_counter())+1.10
+  if engine is not None:
+   try:engine.close()
+   except BaseException:traceback.print_exc(file=sys.stderr);code=2
+  summary=dict(available=False,completeness='unknown')
+  if observer is not None:
+   try:summary=observer.close(max(0.,final_deadline-time.perf_counter()-.03))
+   except BaseException:summary=dict(available=False,completeness='unknown',close_failed=True);code=2
+  try:phases.close(summary,final_deadline)
+  except BaseException:traceback.print_exc(file=sys.stderr);code=2
+  protocol.close()
+ return code
+if __name__=='__main__':raise SystemExit(main())

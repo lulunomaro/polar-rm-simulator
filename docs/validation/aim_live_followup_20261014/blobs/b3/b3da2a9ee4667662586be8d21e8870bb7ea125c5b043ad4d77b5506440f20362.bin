@@ -1,0 +1,36 @@
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+
+ROOT=Path(__file__).resolve().parents[2]
+OUT=Path(__file__).resolve().parent
+SOURCES=('rm_match/platform_v2/host_scheduling.py','rm_match/platform_v2/__main__.py',
+    'tools/smoke_wsl_native_live.py','tests/test_host_scheduling.py')
+manifest={}
+for name in SOURCES:
+    raw=(ROOT/name).read_bytes();sha=hashlib.sha256(raw).hexdigest()
+    target=OUT/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+    manifest[name]={'sha256':sha,'bytes':len(raw)}
+(OUT/'SOURCE_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
+command=[sys.executable,'-m','pytest','tests/test_host_scheduling.py',
+    'tests/test_platform_aim_prepare_cli.py','tests/test_platform_wsl_navigation_cli.py',
+    'tests/test_wsl_native_live_classification.py','-q','--capture=tee-sys',
+    '--junitxml='+str(OUT/'pytest.xml')]
+(OUT/'COMMAND.json').write_text(json.dumps({'argv':command,'cwd':str(ROOT),
+    'scope':'Pure contract/CLI mocks plus actual harmless Windows current-thread affinity; no WSL/ROS/NN/GL/physics'},indent=2)+'\n',encoding='utf-8')
+start=time.perf_counter()
+with (OUT/'stdout.log').open('wb') as stdout,(OUT/'stderr.log').open('wb') as stderr:
+    process=subprocess.Popen(command,cwd=ROOT,stdout=stdout,stderr=stderr)
+    code=process.wait(timeout=30.)
+unchanged=all(hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==row['sha256'] for name,row in manifest.items())
+result={'exit_code':code,'elapsed_s':time.perf_counter()-start,'reaped':process.poll() is not None,
+    'source_unchanged':unchanged,'scope':'Tests only; not inference, timing or physics qualification'}
+(OUT/'PROCESS_RESULT.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(result))
+print((OUT/'stdout.log').read_text(encoding='utf-8',errors='replace'))
+print((OUT/'stderr.log').read_text(encoding='utf-8',errors='replace'))
+raise SystemExit(code)

@@ -1,0 +1,54 @@
+.................................................... [  2%]
+...............................................ss....................... [  6%]
+........................................s............................. [ 10%]
+........................................................................ [ 14%]
+s................ss...............................s................... [ 18%]
+.................... [ 19%]
+.......................... [ 21%]
+...s................... [ 22%]
+............................................................... [ 26%]
+............................................sssssssss.................... [ 30%]
+............................s.............s....................s..s....s..... [ 34%]
+..........s.............. [ 36%]
+.....s...........ss....s................................................. [ 40%]
+..........sssssss................................................ [ 43%]
+........................................................s........................................... [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+.............................s........ss..........s..................... [ 61%]
+.........................................................................s........................... [ 67%]
+.................................................................................................... [ 72%]
+.................................................................................................. [ 78%]
+............................................................................................... [ 83%]
+........................................................ [ 86%]
+......................................................................................... [ 91%]
+.............................. [ 93%]
+................................................................ [ 96%]
+.......................................................                [100%]
+============================== warnings summary ===============================
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_camera.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_native_timing.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:28
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:28: PytestCollectionWarning: cannot collect test class 'TestAdapter' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestAdapter:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_server.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_spin_feedback.py)
+    class TestRegistry:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1745 passed, 40 skipped, 6 warnings, 1008 subtests passed in 129.71s (0:02:09)

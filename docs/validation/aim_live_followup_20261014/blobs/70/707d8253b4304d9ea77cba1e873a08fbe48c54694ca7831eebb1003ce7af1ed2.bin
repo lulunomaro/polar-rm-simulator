@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.194" timestamp="2026-10-14T17:39:25.987256+08:00" hostname="LULUnoMARO"><testcase classname="rm_match.platform_v2.test_native_timing.ConsumptionSampleTests" name="test_exact_eighty_ms_boundary_still_revokes_target" time="0.004"><failure message="AssertionError: 1000.081 != 1000.08">self = &lt;rm_match.platform_v2.test_native_timing.ConsumptionSampleTests testMethod=test_exact_eighty_ms_boundary_still_revokes_target&gt;
+
+    def test_exact_eighty_ms_boundary_still_revokes_target(self):
+     clock,b,r,deadline,records=self.make()
+     def step(targets,guard,clock=None):
+      clock_owner.values=[deadline-.001,deadline,deadline+.001];clock_owner.armed=True
+      b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+      b.sim_time+=b.timestep
+     clock_owner=clock;b.guarded_step=step
+     try:
+      r.step_once();self.assertIsNone(b.targets['alpha']['gimbal'])
+&gt;     self.assertEqual(records[0]['consume_wall'],deadline)
+E     AssertionError: 1000.081 != 1000.08
+
+rm_match\platform_v2\test_native_timing.py:117: AssertionError</failure></testcase><testcase classname="rm_match.platform_v2.test_native_timing.ConsumptionSampleTests" name="test_permission_and_receipt_use_same_fresh_logical_boundary_sample" time="0.001"><failure message="AssertionError: 1000.08 not less than 1000.08">self = &lt;rm_match.platform_v2.test_native_timing.ConsumptionSampleTests testMethod=test_permission_and_receipt_use_same_fresh_logical_boundary_sample&gt;
+
+    def test_permission_and_receipt_use_same_fresh_logical_boundary_sample(self):
+     clock,b,r,deadline,records=self.make()
+     # Old code reads expiry, _targets, receipt: the final read crosses 80 ms.
+     # New code reads expiry and then exactly one fresh consumption sample.
+     def step(targets,guard,clock=None):
+      clock_owner.values=[deadline-.001,deadline-.001,deadline];clock_owner.armed=True
+      b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+      b.sim_time+=b.timestep
+     clock_owner=clock;b.guarded_step=step
+     try:
+      r.step_once();receipt=records[0]
+      self.assertIsNotNone(b.targets['alpha']['gimbal'])
+&gt;     self.assertLess(receipt['consume_wall'],receipt['budget']['wall_deadline'])
+E     AssertionError: 1000.08 not less than 1000.08
+
+rm_match\platform_v2\test_native_timing.py:105: AssertionError</failure></testcase><testcase classname="rm_match.platform_v2.test_native_timing.ConsumptionSampleTests" name="test_receipt_metadata_detached_before_backend_mutates_runtime_state" time="0.001"><failure message="AssertionError: 1010.08 != 1000.08">self = &lt;rm_match.platform_v2.test_native_timing.ConsumptionSampleTests testMethod=test_receipt_metadata_detached_before_backend_mutates_runtime_state&gt;
+
+    def test_receipt_metadata_detached_before_backend_mutates_runtime_state(self):
+     clock,b,r,deadline,records=self.make()
+     def step(targets,guard,clock=None):
+      b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+      r.output_budgets['alpha','aim']['wall_deadline']+=10.
+      r.output_authorizations['alpha','aim']['activation_window_deadline']+=10.
+      b.sim_time+=b.timestep
+     b.guarded_step=step
+     try:
+      r.step_once();self.assertIsNotNone(b.targets['alpha']['gimbal'])
+&gt;     self.assertEqual(records[0]['budget']['wall_deadline'],deadline)
+E     AssertionError: 1010.08 != 1000.08
+
+rm_match\platform_v2\test_native_timing.py:129: AssertionError</failure></testcase></testsuite></testsuites>

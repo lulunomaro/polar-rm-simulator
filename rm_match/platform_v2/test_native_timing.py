@@ -68,4 +68,103 @@ class UniformEntryTests(unittest.TestCase):
    self.assertGreater(b.last_integration_timing['integration_start_wall'],o['wall_deadline'])
   finally:r.close()
 
+class ConsumptionSampleTests(unittest.TestCase):
+ """Deterministic clock-boundary reproductions, no renderer or native process."""
+ def make(self):
+  from .contracts import build_observation,action_for
+  class BoundaryClock(Clock):
+   armed=False
+   values=[]
+   def __call__(self):
+    if self.armed and self.values:self.now=self.values.pop(0)
+    return self.now
+  clock=BoundaryClock();b=FakeBackend(('alpha',));r=PlatformRuntime(b,clock=clock,registry=TestRegistry())
+  r._episode=b.episode;r._schedule=lambda *_:None
+  c=r.control;t=c.open_session('operator')['token'];e=c.claim(t,'alpha',['gimbal'])['lease_epochs']
+  r.bind(t,'alpha','aim',e,'aim',{});binding=c.snapshot()['bindings']['alpha']['aim']
+  deadline=clock()+.08
+  o=build_observation(b.sensor_sample('alpha'),binding_epoch=binding['epoch'],observed_seq=1,wall_deadline=deadline)
+  r.outputs['alpha','aim']=action_for(o,'aim','gimbal_target',dict(frame='base_link',yaw_rad=.2,pitch_rad=.1,active=True,confidence=None,fire_permission=False))
+  r.output_budgets['alpha','aim']=dict(robot_id='alpha',episode=0,frame_id=1,
+   capture_wall=clock(),capture_sim_time=0.,wall_deadline=deadline,sim_deadline=.08)
+  r.output_authorizations['alpha','aim']=dict(activation_window_deadline=clock()+.15)
+  records=[];r._trace=lambda event,**value:records.append(value) if event=='actuator_consumed' else None
+  return clock,b,r,deadline,records
+ def test_permission_and_receipt_use_same_fresh_logical_boundary_sample(self):
+  clock,b,r,deadline,records=self.make()
+  # Old code reads expiry, _targets, receipt: the final read crosses 80 ms.
+  # New code reads expiry and then exactly one fresh consumption sample.
+  def step(targets,guard,clock=None):
+   clock_owner.values=[deadline-.001,deadline-.001,deadline];clock_owner.armed=True
+   b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+   b.sim_time+=b.timestep
+  clock_owner=clock;b.guarded_step=step
+  try:
+   r.step_once();receipt=records[0]
+   self.assertIsNotNone(b.targets['alpha']['gimbal'])
+   self.assertLess(receipt['consume_wall'],receipt['budget']['wall_deadline'])
+   self.assertEqual(receipt['consume_wall'],deadline-.001)
+  finally:r.close()
+ def test_exact_eighty_ms_boundary_still_revokes_target(self):
+  clock,b,r,deadline,records=self.make()
+  def step(targets,guard,clock=None):
+   clock_owner.values=[deadline-.001,deadline,deadline+.001];clock_owner.armed=True
+   b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+   b.sim_time+=b.timestep
+  clock_owner=clock;b.guarded_step=step
+  try:
+   r.step_once();self.assertIsNone(b.targets['alpha']['gimbal'])
+   self.assertEqual(records[0]['consume_wall'],deadline)
+  finally:r.close()
+ def test_receipt_metadata_detached_before_backend_mutates_runtime_state(self):
+  clock,b,r,deadline,records=self.make()
+  def step(targets,guard,clock=None):
+   b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+   r.output_budgets['alpha','aim']['wall_deadline']+=10.
+   r.output_authorizations['alpha','aim']['activation_window_deadline']+=10.
+   b.sim_time+=b.timestep
+  b.guarded_step=step
+  try:
+   r.step_once();self.assertIsNotNone(b.targets['alpha']['gimbal'])
+   self.assertEqual(records[0]['budget']['wall_deadline'],deadline)
+   self.assertEqual(records[0]['adapter_output_authorizations']['aim']['activation_window_deadline'],1000.15)
+  finally:r.close()
+ def test_metadata_preparation_stall_crossing_eighty_ms_revokes_at_new_sample(self):
+  clock,b,r,deadline,records=self.make()
+  class DelayedMetadata(dict):
+   def __deepcopy__(self,memo):
+    clock.now=deadline
+    return dict(self)
+  r.output_authorizations['alpha','aim']=DelayedMetadata(r.output_authorizations['alpha','aim'])
+  def step(targets,guard,clock=None):
+   clock_owner.now=deadline-.001
+   b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+   b.sim_time+=b.timestep
+  clock_owner=clock;b.guarded_step=step
+  try:
+   r.step_once();self.assertIsNone(b.targets['alpha']['gimbal'])
+   self.assertEqual(records[0]['consume_wall'],deadline)
+   self.assertEqual(records[0]['budget']['wall_deadline'],deadline)
+  finally:r.close()
+ def test_uniform_entry_latch_kept_but_next_boundary_samples_fresh_after_stall(self):
+  clock,b,r,deadline,records=self.make()
+  class DelayedMetadata(dict):
+   def __deepcopy__(self,memo):
+    clock.now=deadline+.001
+    return dict(self)
+  r.output_authorizations['alpha','aim']=DelayedMetadata(r.output_authorizations['alpha','aim'])
+  def step(targets,guard,clock=None):
+   clock_owner.now=deadline-.001
+   entry=guard('alpha',None,'integration_entry',deadline-.001)
+   self.assertIsNotNone(entry['gimbal'])
+   later=guard('alpha',None,'fire')
+   b.targets={'alpha':copy.deepcopy(later)};b.sim_time+=b.timestep
+  clock_owner=clock;b.guarded_step=step
+  try:
+   r.step_once();self.assertEqual(records[0]['phase'],'integration_entry')
+   self.assertEqual(records[0]['consume_wall'],deadline-.001)
+   self.assertEqual(records[1]['consume_wall'],deadline+.001)
+   self.assertIsNone(records[1]['target']['gimbal'])
+  finally:r.close()
+
 if __name__=='__main__':unittest.main()

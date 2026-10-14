@@ -1,0 +1,100 @@
+{
+  "schema": "polar.pb-aim-first-frame-readonly-audit.v1",
+  "attempt_result": "FAIL",
+  "no_new_execution": {
+    "WSL": false,
+    "ROS": false,
+    "GL": false,
+    "NN": false,
+    "benchmark": false
+  },
+  "metrics": {
+    "capture_to_public_ms": 30.673300003400072,
+    "public_to_observation_ms": 7.814099997631274,
+    "capture_to_act_ms": 38.48850000213133,
+    "remaining_at_act_ms": 41.5114999996149,
+    "act_enter_to_failure_including_synchronous_cleanup_ms": 1265.9596000012243,
+    "deadline_to_reported_failure_including_synchronous_cleanup_ms": 1224.4481000016094,
+    "linux_tree_cleanup_ms": 1188.235450999997
+  },
+  "original_identity": {
+    "robot_id": {
+      "value": "blue_hero",
+      "type": "str"
+    },
+    "episode": {
+      "value": 0,
+      "type": "int"
+    },
+    "binding_epoch": {
+      "value": 1,
+      "type": "int"
+    },
+    "observed_seq": {
+      "value": 1,
+      "type": "int"
+    },
+    "sim_time": {
+      "value": 0.002,
+      "type": "float"
+    },
+    "wall_deadline": {
+      "value": 34027.7521023,
+      "type": "float"
+    }
+  },
+  "actual_image": {
+    "rgb_bytes": 4665600,
+    "rgb_sha256": "d0357b7458dc5123aca53f293cb8d38f3a305a3f00d431763e17a67cc20dfead",
+    "base64_characters": 6220800,
+    "width": 1440,
+    "height": 1080,
+    "encoding": "rgb8",
+    "original_sim_stamp_ns": 2000000
+  },
+  "minimum_worker_reads_if_every_read_reaches_65536": 95,
+  "minimum_worker_reads_if_reads_are_8192": 760,
+  "read_counts_scope": "Lower bounds derived from actual base64 length; actual read sizes/counts are not recorded",
+  "source_callbacks": {
+    "journal_bytes": 0,
+    "summary_exists": false,
+    "saved_source_armors": 0,
+    "saved_source_target": 0,
+    "actual_model_calls": "unknown",
+    "actual_PnP_calls": "unknown",
+    "TF_processing": "unknown"
+  },
+  "model_prepared": true,
+  "actual_three_context_ACKs": true,
+  "original_node_stderr": "Startup and SIGTERM only; no algorithm/TF failure message or wrapper traceback",
+  "cleanup": {
+    "clean": true,
+    "host_tree_clean": true,
+    "linux_tree_clean": true,
+    "linux_forced_kill": true,
+    "all_descendants_reaped": true
+  },
+  "manual_visual_observation": "Human inspection of original capture.png: wall/black upper background, grey foreground and steps; no identifiable visible armor. Not an automated detector result or proof that no armor exists.",
+  "source_evidence": [
+    "json_adapter.py:172 queue timeout; except at182 synchronously closes before rethrow, so failure_wall includes cleanup",
+    "wsl_jsonl_worker.py:106 stopped() before each read,52 DrvFs STOP.exists,115 read<=65536,122 full-line JSON validation before125 forwarding",
+    "aim_jsonl_peer.py:18 waits complete JSONL,47 strict public base64 decode before50 calling engine",
+    "ros2_bridge.py:96-108 validates/encodes observation before publish; pb_aim_ros_peer.py:begin separately camera_sensor_bundle strict decode",
+    "peer_bootstrap.py opens journal after successful engine.prepare; observer writes only actual callbacks, no finally SUMMARY after default SIGTERM kill"
+  ],
+  "causal_limits": [
+    "No timestamp of host enqueue, complete worker receive, peer complete-line, compute-enter or image DDS publish.",
+    "Zero recorded callback bytes cannot distinguish no image arrival, parsing/decode delay, TF wait, NN/PnP delay or callback scheduling.",
+    "No wrapper traceback or SourceGate error is not proof that those code paths completed.",
+    "Do not subtract Windows absolute QPC from Linux local/ROS absolute timestamps.",
+    "Cleanup duration is observed Linux interval; without host phase timestamps do not derive an exact original exception time.",
+    "The first default empty-view exposure cannot establish missed detections. A controlled scene would be a separately identified experiment."
+  ],
+  "next_steps": [
+    "Add scalar artifact peer milestones: complete original line received, engine entered after original codec, bridge begin/publish entry and completion, callbacks and response completion; no extra frame/read/retiming.",
+    "Measure actual generic supervisor chunks/bytes and STOP poll elapsed independently, preserving original deadline; only then attribute transfer or optimize batching.",
+    "For detection/PnP evidence, a fresh public controlled scene may place a red robot at 2.3m along the actual camera forward direction; scene truth is only evaluator/setup state and never added to DTO. Keep detect_color0/model/thresholds.",
+    "Continue strict host capture+.08 act; no stale offline resend or later response acceptance; absence of complete-line/compute milestone remains unknown rather than NN failure."
+  ],
+  "original_files_unchanged": true
+}

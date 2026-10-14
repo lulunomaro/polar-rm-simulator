@@ -1,0 +1,10 @@
+{
+  "run_id": "567658e606e44da2a2e1b9c567b0ab57",
+  "supervisor_pid": 375,
+  "supervisor_start_ticks": 290,
+  "boot_id": "6e21db31-702e-45ae-9643-696f71729437",
+  "transport": "wsl_async_bgr_v3",
+  "spec_sha256": "8dd41a6905a1bb49e69b28a5c4f432d8b6c0fd9ab9b9b042f3a03fbffaba8e49",
+  "native_spawn_attempted": false,
+  "clock_domain": "linux_local_diagnostic_only"
+}

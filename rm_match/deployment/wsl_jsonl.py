@@ -8,6 +8,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 import os
 from pathlib import Path, PurePosixPath
 import queue
@@ -91,7 +92,10 @@ def validate_hello(value,run_id,sha):
     return copy.deepcopy(value)
 
 def validate_cleanup(record,run_id,sha,hello):
-    exact(record,('event','run_id','spec_sha256','hello','ownership','io_thread_stopped','clean','error_type'),'wsl_cleanup')
+    fields=('event','run_id','spec_sha256','hello','ownership','io_thread_stopped','clean','error_type')
+    if type(record) is dict and 'io_metrics' in record:fields+=('io_metrics',)
+    exact(record,fields,'wsl_cleanup')
+    if 'io_metrics' in record:validate_io_metrics(record['io_metrics'])
     if type(record) is not dict or record.get('event')!='cleanup' or record.get('run_id')!=run_id or record.get('spec_sha256')!=sha:
         raise ContractError('wsl_cleanup_run_identity_mismatch')
     if hello is not None and record.get('hello')!=hello:raise ContractError('wsl_cleanup_birth_identity_mismatch')
@@ -106,6 +110,33 @@ def validate_cleanup(record,run_id,sha,hello):
             raise ContractError('wsl_cleanup_peer_identity_mismatch')
     elif proof.get('not_spawned') is not True:raise ContractError('wsl_spawned_peer_birth_identity_missing')
     return copy.deepcopy(record)
+
+def validate_io_metrics(value):
+    """Bounded Linux IO observations, never an NN or foreign-deadline proof."""
+    exact(value,('clock','input_chunks','input_bytes','complete_requests','stop_file_checks',
+        'stop_check_cost_s','last_request'),'wsl_io_metrics')
+    if type(value['clock']) is not str or value['clock']!='linux_monotonic':raise ContractError('wsl_io_clock')
+    for key in ('input_chunks','input_bytes','complete_requests','stop_file_checks'):
+        if type(value[key]) is not int or not 0<=value[key]<=2**53-1:raise ContractError('wsl_io_count')
+    if not value['input_chunks']<=value['input_bytes']<=value['input_chunks']*65536 or value['complete_requests']>value['input_chunks']:
+        raise ContractError('wsl_io_chunk_count_mismatch')
+    cost=value['stop_check_cost_s']
+    if type(cost) not in (int,float) or not math.isfinite(cost) or cost<0:raise ContractError('wsl_io_cost')
+    names=('first_read_wall','last_read_wall','queued_wall','peer_write_completed_wall','response_received_wall')
+    exact(value['last_request'],names,'wsl_io_last_request')
+    previous=None;missing=False
+    for key in names:
+        current=value['last_request'][key]
+        if current is None:missing=True;continue
+        if type(current) not in (int,float) or not math.isfinite(current) or current<0 or missing:
+            raise ContractError('wsl_io_partial_or_invalid_time')
+        if previous is not None and current<previous:raise ContractError('wsl_io_time_order')
+        previous=current
+    if value['complete_requests']==0 and value['last_request']['queued_wall'] is not None:
+        raise ContractError('wsl_io_request_count_mismatch')
+    if value['input_chunks']==0 and (value['input_bytes']!=0 or value['last_request']['first_read_wall'] is not None):
+        raise ContractError('wsl_io_input_count_mismatch')
+    return copy.deepcopy(value)
 
 class _Lines:
     def __init__(self,owner):self.owner=owner

@@ -1,0 +1,61 @@
+"""Small source-only verifier; never imports runtime/ROS/model/camera packages."""
+import ast,hashlib,json,xml.etree.ElementTree as ET
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];OUT=Path(__file__).parent
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def main():
+ names=['register_linux.py','peer_bootstrap.py','probe_host.py','controlled_scene.py','static_review.py','diagnose_saved_serialization.py']
+ scripts={}
+ for name in names:
+  p=OUT/name;raw=p.read_bytes();ast.parse(raw.decode('utf-8'),feature_version=(3,10))
+  scripts[name]=dict(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw),python310_ast_valid=True)
+ original=ROOT/'artifacts/pb2025-aim-first-frame-probe-20261014-01/register_linux.py'
+ if (OUT/'register_linux.py').read_bytes()!=original.read_bytes():raise ValueError('registration semantics changed')
+ source=ROOT/'artifacts/pb2025-aim-source-20261014-03';manifest=source/'SOURCE_MANIFEST.json';v=json.loads(manifest.read_bytes())
+ checked={}
+ for rel,wanted in v['adapter_sources_sha256'].items():
+  actual=sha(ROOT/rel);checked[rel]=actual
+  if actual!=wanted:raise ValueError('Source03 adapter binding changed: '+rel)
+ generated={}
+ for rel,wanted in v['generated_sha256'].items():
+  actual=sha(source/rel);generated[rel]=actual
+  if actual!=wanted:raise ValueError('Source03 generated source changed: '+rel)
+ mount=ROOT/'artifacts/aim-mount-calibration-20261014-03/MOUNTS.json';m=json.loads(mount.read_bytes())
+ for rel,wanted in m['source_sha256'].items():
+  if sha(ROOT/rel)!=wanted:raise ValueError('Mount03 source binding changed: '+rel)
+ xml=ET.parse(ROOT/'rm_match/harness.xml').getroot();body=xml.find('worldbody/body[@name="robot"]')
+ cam=body.find('body/body/camera[@name="aim"]')
+ if cam.get('xyaxes')!='0 -1 0 0 0 1':raise ValueError('own camera source basis changed')
+ # Source X=(0,-1,0), Y=(0,0,1), Z=XcrossY=(-1,0,0).
+ # MuJoCo -Z looks +X in local gimbal frame, then compiled cam_xmat maps
+ # this to actual world. Candidate reads the matrix, never hardcodes world X.
+ host=ast.parse((OUT/'probe_host.py').read_text());helper=ast.parse((OUT/'controlled_scene.py').read_text())
+ peer=ast.parse((OUT/'peer_bootstrap.py').read_text());signals=next(n for n in peer.body if isinstance(n,ast.FunctionDef) and n.name=='install_exit_signals')
+ shutdown=next(n for n in signals.body if isinstance(n,ast.FunctionDef))
+ if not any(isinstance(n,ast.Raise) and isinstance(n.exc,ast.Call) and isinstance(n.exc.func,ast.Name) and n.exc.func.id=='SystemExit' for n in ast.walk(shutdown)):
+  raise ValueError('cancel signal must enter existing finally via SystemExit')
+ if any(isinstance(n,ast.Call) and ((isinstance(n.func,ast.Name) and n.func.id in ('open','print')) or (isinstance(n.func,ast.Attribute) and n.func.attr in ('write','close','join'))) for n in ast.walk(shutdown)):
+  raise ValueError('signal handler must be nonblocking scalar-only')
+ calls=lambda tree:[n for n in ast.walk(tree) if isinstance(n,ast.Call)]
+ if not any(isinstance(n.func,ast.Name) and n.func.id=='place_target' for n in calls(host)):raise ValueError('scene helper not used')
+ if any(isinstance(n.func,ast.Attribute) and n.func.attr=='act' for n in calls(helper)):raise ValueError('scene helper leaks algorithm invocation')
+ source_text=(OUT/'probe_host.py').read_text()
+ for expected in ["PythonSwitchInterval(1.)","configure_opencv_threads(4)","raw_base64_codec='pybase64_1_5_1'","switch.close()","cv.setNumThreads(opencv_original)"]:
+  if expected not in source_text:raise ValueError('explicit setting/restoration missing: '+expected)
+ result=dict(schema='polar.pb-aim-controlled-static-review.v1',success=True,scripts=scripts,
+  registration_exact_previous_helper=True,source03_sha256=sha(manifest),source03_adapter_bindings=checked,
+  signal_handler_static=dict(SIGTERM=True,SIGINT=True,raises_SystemExit=True,handler_contains_no_disk_or_join=True,
+   original_engine_close_budget_s=1.,diagnostic_final_shared_budget_s=1.10,evidence_join_max_s=.03,outer_budget_unchanged=True),
+  source03_generated_checked_count=len(generated),source03_generated_all_match=True,mount03_sha256=sha(mount),mount03_source_all_match=True,
+  own_camera_static_basis=dict(x=[0,-1,0],y=[0,0,1],z=[-1,0,0],forward_local=[1,0,0],
+   actual_placement='world forward=-actual cam_xmat[:,2]; nearly horizontal XY projection',
+   target_body_distance_m=2.3,target_front_plate_distance_m=1.99),
+  current_generic_transport_sha256={p:sha(ROOT/p) for p in ['rm_match/deployment/wsl_jsonl.py','rm_match/deployment/wsl_jsonl_worker.py']},
+  generic_transport_binding='Informational current SHA only; new registration/WSL spec binds then-current source. Old expected generic SHA is never applied.',
+  explicit_local_settings=dict(hostCV=4,raw_base64_codec='pybase64_1_5_1',python_switch_interval_ms=1.,
+   default_algorithm_parameters_unchanged=True,restoration_static_paths_present=True,not_single_factor_causal_claim=True),
+  actual_execution=dict(WSL=False,ROS=False,GL=False,NN=False,physics=False,tests=False),
+  checks_scope='AST/source/hash/source basis only, not runtime correctness',
+  gaps=['Actual target placement/occlusion must be checked during root run','No actual MLP/PnP/source callback evidence yet','Phase artifact may be missing on abrupt kill; no inference causality from absence'])
+ (OUT/'STATIC_REVIEW.json').write_bytes((json.dumps(result,indent=2)+'\n').encode());print(json.dumps(result))
+if __name__=='__main__':main()

@@ -1,0 +1,29 @@
+# Root-only PB actual first-exposure resource probe
+
+No final-QA program, upstream algorithm, model, threshold, Source03 asset or original venv.pth is edited. These new artifact scripts did not participate in that QA. Execute only when the root agent has the exclusive resource window.
+
+1. Under the existing pinned Humble runtime environment, run registration using the exact Linux venv and local repo cwd:
+
+```text
+/root/polar-humble-ext4-20261014-01/venv/bin/python /mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-first-frame-probe-20261014-01/register_linux.py --label attempt1 --robot-id blue_hero
+```
+
+2. On Windows, from the repo root:
+
+```text
+.venv-sim/Scripts/python.exe artifacts/pb2025-aim-first-frame-probe-20261014-01/probe_host.py --label attempt1 --manifest artifacts/pb2025-aim-first-frame-probe-20261014-01/registered_attempt1/AIM_PLUGINS.json
+```
+
+Use a new label for each new registration/instance. The old prepare/reset manifest is never reused. The registration script is an exact copy of the previously successful static registration helper; its new peer path is automatically hash-bound by the fresh manifest.
+
+The peer loads the real three model nodes, receives canonical prepare, and then freezes actual reset generation 0/1 for blue_hero. No preparation image or dummy NN invocation is sent. CameraProvider creates its actual GL renderer with zero exposures; one neutral physical 2ms step gives a nonzero actual ROS timestamp. Then it captures one real 1440x1080 RGB exposure in the original scene. Its original K/D, static camera calibration, capture-own feedback, sim timestamp, robot/episode/epoch and source remain unchanged. Original detect_color=0 and every original classifier/tracker/solver parameter are retained.
+
+The host uses only the full canonical public DTO, the original exposure+.08 deadline and unchanged .15 control limit. It calls adapter.act at most once. Any expired publication, serialization/compute timeout or late reply is retained as a failure. There is no resend, timestamp replacement, tracker reset, synthetic input or automatic fire. No returned yaw/pitch is applied. This is **resource/first-frame evidence only**, not SDK or live80 closed-loop qualification.
+
+All RGB/PNG/DTO evidence is persisted after act or failure. An already expired cache can be archived read-only and is expressly never sent. If rendering was incomplete at stop, missing image evidence is an explicit gap. The original logs are under the new registration stack and the host owned WSL directories. Full wrapper traceback is on actual supervisor stderr.
+
+The peer subscribes read-only to original SourceArmors and SourceTarget, using the same node/executor. It does not change algorithm callbacks, add a spinner, wait after the deadline, or associate nearest timestamps. A dedicated bounded queue (32 events) writes source callbacks outside the callback; drops/errors/unfinished writer are explicit. Thus missing evidence cannot be treated as zero model calls. A peer killed before normal finally may have no summary; that also means evidence completeness is unknown.
+
+Only an exact source-context and capture-stamp matched, nonempty original SourceArmors output can support the structural proof that the fixed original detector executed MLP classification and successful PnP. This comes from the original classified-armor and solvePnP publication path, **not a direct NN kernel counter**. Empty or absent SourceArmors is not that proof. SourceTarget records actual tracking without exposing target position to the platform input. Later tracker readiness or gimbal output is not implied by a single first exposure.
+
+Close must prove CameraProvider threads reaped and actual host/Linux process trees clean. Error or incomplete cleanup forces resource result failure. Host perf_counter and Linux local diagnostic monotonic numbers must never be subtracted across domains.

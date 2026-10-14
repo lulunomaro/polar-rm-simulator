@@ -254,9 +254,16 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             self._outgoing.put_nowait((encoded,raw,deadline,serial))
             while True:
                 with self._async_lock:
-                    if self._fault is not None or self._broken.is_set() or self._stop.is_set():raise RuntimeError('async_compute_fault:'+str(self._fault))
+                    if self._fault is not None or self._broken.is_set():raise RuntimeError('async_compute_fault:'+str(self._fault))
                     slot=self._inflight
                     if slot is None:raise ValueError('async_original_transaction_missing')
+                    if self._stop.is_set():
+                        # An owned stop revokes this request; it is not a native
+                        # failure or a completed inference. Keep the transaction
+                        # for the independent Linux stdout/cancellation proof.
+                        slot['abandoned']=True
+                        self._record('async_control_cancelled',reason='owned_stop_requested',**self._source_fields(slot))
+                        return self._pending(source,'owned_stop_requested',serial,slot['started'])
                     terminal=slot['terminal'];now=time.perf_counter()
                     if terminal is not None:
                         self._inflight=None

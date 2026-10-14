@@ -1,0 +1,16 @@
+{
+  "schema": "polar.sim.host-opencv-threads.v1",
+  "process_id": 9064,
+  "before_threads": 32,
+  "requested_threads": 4,
+  "effective_threads": 4,
+  "opencv_version": "5.0.0",
+  "module_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Lib\\site-packages\\cv2\\__init__.py",
+  "action": "set_num_threads",
+  "scope": "host_camera_lenswarp_and_color_conversion",
+  "environment_changed": false,
+  "linux_native_changed": false,
+  "images_processed": 0,
+  "inference_calls": 0,
+  "qualification": "Verified host OpenCV API setup only; no camera/native/live performance acceptance"
+}

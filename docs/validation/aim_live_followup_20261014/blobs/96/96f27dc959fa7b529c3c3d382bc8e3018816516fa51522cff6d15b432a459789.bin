@@ -1,0 +1,99 @@
+"""Read-only actual fast attempt1. No peer/ROS/GL/NN or timing benchmark."""
+import base64,hashlib,json,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT));OUT=Path(__file__).parent
+FAST=ROOT/'artifacts/pb2025-aim-controlled-fast-probe-20261014-01'
+OLD=ROOT/'artifacts/pb2025-aim-controlled-probe-20261014-01'
+DRIVER=ROOT/'artifacts/pb-aim-controlled-fast-driver-20261014-01'
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def read(path):return json.loads(path.read_bytes())
+def ordered(value,keys):
+ if set(value)!=set(keys):raise ValueError('reconstruction field set mismatch')
+ return {k:value[k] for k in keys}
+def typed_same(a,b):
+ if type(a) is not type(b):return False
+ if type(a) is dict:return set(a)==set(b) and all(typed_same(a[k],b[k]) for k in a)
+ if type(a) is list:return len(a)==len(b) and all(typed_same(x,y) for x,y in zip(a,b))
+ return a==b
+def source_order(o):
+ # Explicitly source-based reconstruction, not a captured OS pipe buffer.
+ # build_observation/_encode/current frozen original calibration dictionaries
+ # give this insertion order. Archive JSON is sort_keys=True, so its own
+ # order would yield a different SHA despite identical values/types.
+ v=ordered(o,['schema','robot_id','episode','binding_epoch','observed_seq','sim_time','wall_deadline','frames','own','referee','sensors'])
+ v['frames']=ordered(v['frames'],['world','base_link','gimbal_link','camera_optical'])
+ v['own']=ordered(v['own'],['team','role','qpos','qvel','odom_xyyaw','odom_vxyw','hp','ammo','heat','alive'])
+ v['referee']=ordered(v['referee'],['phase','remaining_seconds','emergency_stop'])
+ s=ordered(v['sensors'],['camera','ranges']);v['sensors']=s
+ c=ordered(s['camera'],['available','reason','frame_id','capture_sim_time','own_qpos_at_capture','own_qvel_at_capture','own_odom_at_capture','own_odom_velocity_at_capture','image','intrinsics','extrinsics','provenance']);s['camera']=c
+ c['image']=ordered(c['image'],['encoding','width','height','stride_bytes','data_base64'])
+ c['intrinsics']=ordered(c['intrinsics'],['fx','fy','cx','cy','distortion_model','distortion'])
+ c['extrinsics']=ordered(c['extrinsics'],['parent_frame','translation_m','rotation_xyzw','calibration_id'])
+ s['ranges']=ordered(s['ranges'],['available','reason','ranges_m','angles_rad','range_max_m','capture_sim_time','frame','provenance'] if s['ranges']['available'] else ['available','reason'])
+ if not typed_same(v,o):raise ValueError('source reconstruction changed original values/types')
+ return v
+def wire(o):return (json.dumps(dict(schema='polar.sim.adapter.jsonl.v1',op='act',observation=o),allow_nan=False,separators=(',',':'))+'\n').encode()
+def main():
+ files=[p for folder in [FAST/'host_attempt1',FAST/'registered_attempt1',DRIVER] for p in folder.rglob('*') if p.is_file()]
+ files += [OLD/'host_attempt1/PROBE_RESULT.json',OLD/'host_attempt1/CAPTURE.json',ROOT/'rm_match/deployment/wsl_jsonl_worker.py',ROOT/'rm_match/deployment/json_adapter.py',ROOT/'rm_match/platform_v2/contracts.py',ROOT/'rm_match/platform_v2/camera.py']
+ before={str(p.relative_to(ROOT)):dict(sha256=sha(p),bytes=p.stat().st_size) for p in files}
+ host=read(FAST/'host_attempt1/PROBE_RESULT.json');old=read(OLD/'host_attempt1/PROBE_RESULT.json');driver=read(DRIVER/'RESULT.json')
+ phase=read(FAST/'registered_attempt1/PEER_PHASES.json');cleanup=read(next((FAST/'host_attempt1/owned').glob('*/CLEANUP.json')))
+ cap=read(FAST/'host_attempt1/CAPTURE.json');o=read(FAST/'host_attempt1/OBSERVATION.json');rgb=(FAST/'host_attempt1/capture.rgb').read_bytes()
+ from rm_match.platform_v2.contracts import validate_observation
+ decoded={};validated=validate_observation(o,image_bytes=decoded)
+ if not typed_same(validated,o) or type(decoded['raw']) is not bytes or decoded['raw']!=rgb:raise ValueError('strict original pixels/metadata mismatch')
+ if hashlib.sha256(rgb).hexdigest()!=cap['rgb_sha256']:raise ValueError('actual capture SHA mismatch')
+ saved_wire=wire(validated);reconstructed=wire(source_order(validated));io=cleanup['io_metrics']
+ complete=[r for r in phase['rows'] if r['stage']=='complete_line_received']
+ prior_bytes=sum(r['bytes'] for r in complete);partial=io['input_bytes']-prior_bytes;act_chunks=io['input_chunks']-len(complete)
+ metrics=lambda h:dict(capture_to_public_ms=(h['public_camera_received_wall']-h['budget']['capture_wall'])*1000,
+  capture_to_act_ms=(h['act_enter_wall']-h['budget']['capture_wall'])*1000,
+  remaining_at_act_ms=(h['budget']['wall_deadline']-h['act_enter_wall'])*1000)
+ now=metrics(host);previous=metrics(old)
+ report=dict(schema='polar.pb-aim-controlled-fast-readonly-audit.v1',attempt='fast controlled attempt1',actual_result='FAIL',
+  evidence_scope='Resource first exposure only; no SDK/live NN qualification',original_host_clock='Windows perf_counter/QPC',
+  actual_host_times={k:host[k] for k in ['public_camera_received_wall','observation_built_wall','act_enter_wall','failure_wall']},
+  original_budget=host['budget'],host_metrics=now,previous_controlled_metrics=previous,
+  positive_observed_differences_ms=dict(capture_to_public_saved=previous['capture_to_public_ms']-now['capture_to_public_ms'],
+   capture_to_act_saved=previous['capture_to_act_ms']-now['capture_to_act_ms'],more_budget_at_act=now['remaining_at_act_ms']-previous['remaining_at_act_ms']),
+  difference_limits='Two distinct runs/combined host settings; observational improvements, not isolated causal factor or NN/closedloop success.',
+  actual_error=host['error'],failure_time_scope='Caller failure includes synchronous owned close; not inference latency',
+  actual_rgb=dict(bytes=len(rgb),sha256=hashlib.sha256(rgb).hexdigest(),encoding='rgb8',width=1440,height=1080,
+   decoded_exact_actual_archive=True,previous_controlled_pixels_same=cap['rgb_sha256']==read(OLD/'host_attempt1/CAPTURE.json')['rgb_sha256']),
+  serialized_wire=dict(default_ascii=True,allow_nan=False,newline=True,
+   archived_order_reconstruction=dict(bytes=len(saved_wire),sha256=hashlib.sha256(saved_wire).hexdigest()),
+   producer_source_order_reconstruction=dict(bytes=len(reconstructed),sha256=hashlib.sha256(reconstructed).hexdigest()),
+   original_values_and_exact_types_unchanged=True,
+   limitation='Original full wire SHA/bytes were not logged at enqueue. These are read-only deterministic reconstructions; neither was sent. Producer order derives from recorded frozen source. No assertion of captured full OS write or prefix SHA is made.'),
+  actual_linux_io=io,linux_partial_request=dict(original_prepare_reset_bytes=prior_bytes,partial_act_bytes=partial,
+   partial_act_chunks=act_chunks,remaining_bytes=len(reconstructed)-partial,
+   fraction_received=partial/len(reconstructed),first_read_local=io['last_request']['first_read_wall'],last_read_local=io['last_request']['last_read_wall'],
+   observed_read_span_ms=(io['last_request']['last_read_wall']-io['last_request']['first_read_wall'])*1000,
+   limitation='Read span only; includes gaps/polls/scheduling. Not a HostQPC-aligned transfer interval and not pure syscall time.'),
+  pipeline=dict(complete_peer_line_indexes=[r['line_index'] for r in complete],complete_worker_requests=io['complete_requests'],
+   full_act_delivered=False,engine_compute_entered=False,source_armors=0,source_target=0,
+   observer_summary=phase['observer_summary'],this_exposure_triggered_NN=False,
+   inference_statement='Partial JSONL never queued/forwarded, no complete third peer line or compute/decode. No inference was invoked by this exposure; no claim about unrelated model execution.',
+   no_inference_latency_measurement=True),
+  actual_settings=dict(host_opencv=host['host_opencv'],host_opencv_after_compute=host['host_opencv_after_compute'],
+   opencv_restore=host['host_opencv_restoration'],switch=host['host_python_switch_interval'],
+   raw_encoder=host['checked_raw_encoder_metadata'],encoder_extension_unchanged=host['raw_encoder_extension_unchanged']),
+  actual_cleanup=dict(camera_thread_reaped=host['camera_worker_reaped'],host_clean=host['cleanup']['ownership']['windows']['clean'],
+   linux_clean=cleanup['clean'],linux_remaining_members=cleanup['ownership']['remaining_members'],forced_kill=cleanup['ownership']['killed'],
+   original_three_node_births={k:v for k,v in cleanup['ownership']['observed_births'].items() if int(k)!=cleanup['ownership']['pid']}),
+  lifetime_STOP=dict(checks=io['stop_file_checks'],total_seconds=io['stop_check_cost_s'],mean_cost_ms=io['stop_check_cost_s']/io['stop_file_checks']*1000,
+   limitation='Lifetime across startup/prepare/reset/camera waiting/partial act/stop, NOT this exposure or per-act sum.'),
+  source_before=host['source_before'],source_after=host['source_after'],host_source_unchanged=host['source_unchanged'],
+  source_ref_unchanged=host['ref_before']==host['ref_after'],driver_source_unchanged=driver['source_before']==driver['source_after'],driver_stages=driver['stages'],
+  next_minimal_steps=[
+   dict(kind='hypothesis/code fact, not measured causal conclusion',proposal="For an incomplete line, check LF only in newly received part (or maintain bounded scan offset). Current b'\\n' in whole growing buffer revisits prior bytes on each chunk. Keep exact full-line strict JSON, oversize/tail/concurrency/EOF rejection."),
+   dict(kind='hypothesis needing request-scoped evidence',proposal='Measure stop poll count/cost deltas for this original partial request and host enqueue/write durations. Current 5ms period and ~3.765ms lifetime mean lstat can consume substantial budget, but lifetime total cannot be attributed to this frame. Use owned local cancellation channel while retaining durable run/SHA STOP and original cleanup deadlines if optimizing.'),
+   dict(kind='observed mechanical cost, not this-run phase attribution',proposal='Host still serializes 6.22MB public base64 DTO. Saved CPU evidence showed decode~7.5ms plus serialization~11ms and one30ms tail. Add enqueue/serialize/writer scalar timing before considering a separately declared typed byte transport; retain exact public validation/source identity, immutable pixels/SHA and original host cutoff.')],
+  no_new_execution=dict(WSL=False,ROS=False,GL=False,NN=False,model=False,benchmark=False,resend=False),
+  no_foreign_clock_subtraction=True)
+ after={str(p.relative_to(ROOT)):dict(sha256=sha(p),bytes=p.stat().st_size) for p in files};report['all_original_input_files_unchanged']=before==after
+ (OUT/'INPUT_HASHES.json').write_bytes((json.dumps(before,indent=2)+'\n').encode())
+ (OUT/'REPORT.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());print(json.dumps(report,indent=2))
+ if not (report['all_original_input_files_unchanged'] and report['host_source_unchanged'] and report['source_ref_unchanged'] and report['driver_source_unchanged']):raise ValueError('readonly source proof failed')
+if __name__=='__main__':main()

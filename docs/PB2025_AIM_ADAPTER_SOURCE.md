@@ -1,7 +1,7 @@
 PB2025 自瞄源适配候选
 =====================
 
-本候选接入 PB2025 原 OpenCV 灯条检测、`mlp.onnx` 数字分类、PnP、EKF tracker 和 Gravity/Gaf 弹道节点；最终云台角度来自原 `publishGimbalCommand`。截至本轮，source03的七个Humble包实际编译/链接/ldd通过，三个真实节点实际graph准备和原context复位、全树清理通过；零图像/零NN，尚未验证原MLP/PnP图像计算或实时闭环。下述02准备阶段与失败历史保留，最新执行范围见末节。
+本候选接入 PB2025 原 OpenCV 灯条检测、`mlp.onnx` 数字分类、PnP、EKF tracker 和 Gravity/Gaf 弹道节点；最终云台角度来自原 `publishGimbalCommand`。截至本轮，source03七包build/ldd、三真实节点graph/reset/全树清理通过；真实首帧试验仍在host序列化或跨WSL部分图像请求时超原80ms，无完整图像输入/MLP/PnP/控制结果。下述02准备阶段与失败历史保留，最新执行范围见末节。
 
 固定来源是 [SMBU-PolarBear-Robotics-Team/pb2025_rm_vision](https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_rm_vision)，commit `df1892c48f90093f86a2f7b02af6441a80aa2d97`。审计 checkout 位于 `external/pb2025-aim-interface-review`，当前生成源码在 `artifacts/pb2025-aim-source-20261014-03`；早期 01/02 保留。`tools/prepare_pb_aim_plugin.py` 核对固定 Git blobs、LFS OIDs、分类模型/标签 SHA 后复制快照；只生成独立目录，不修改 upstream。
 
@@ -58,3 +58,17 @@ PB03 实际构建与零图像准备
 实际Windows→Ubuntu-22.04注册/prepare/reset探针attempt1使用同一封存source03和build01，三个真实节点由通用owned supervisor启动：prepare 10.1790645s，当前robot/episode/binding_epoch reset 0.0526272s，三条源门ACK符合原本地1s/host2s预算，Windows/Linux全树clean。prepare/reset未发送任何图像或act，没有NN热身；探针context不是SDK租约，不能把本结果当原80ms实时控制通过。注册核验实际模型/标定/source/完整namespace配置，安装消息路径只加入该peer的内存sys.path，没有修改原venv.pth或设置manifest PYTHONPATH。
 
 实际报告与失败原文保存在[本轮验证包](validation/universal_aim_20261014/README.md)，`pbprobe`组包含注册脚本、静态审查、原结果及owned清理日志。实际MLP/PnP、移动反馈、实时图像控制与Qt绑定继续验证。
+
+PB03 真实首帧失败与传输分段
+--------------------------
+
+最新[逐次验证包](validation/aim_live_followup_20261014/README.md)保存default、controlled和controlled-fast独立尝试、真实RGB/PNG/DTO、phase与cleanup IO记录。
+default尝试拍到场外墙面；controlled公开测试场景按本车相机实际前向放置原红装甲，场景真值仅存评测设置，不进算法DTO。
+controlled首次capture→public约37.9ms、act入口约50.4ms，host序列化后原80ms过期，尚未提交act；只有prepare/reset两个完整请求。
+controlled-fast显式CV4/pybase641.5.1/switch1ms，capture→public16.3977ms、act入口30.4881ms，仍在原80ms等返回时queue.Empty。
+Linux实际IO43chunks/2334917bytes（含prepare/reset）、complete_requests=2；act只有部分输入，没有peer第三条完整line、compute或SourceArmors/Target。
+因而该图像尚未到原分类/PnP链，不能把失败解释为模型推理时间或TF拒绝；零结果不证明分类器已推理。
+prepare4.0485265s/reset55.7953ms、原source03和71生成文件/模型/标定保持、Windows/Linux全部节点和相机clean；CV32/switch5ms实际恢复。
+总STOP检查551次/2.074553s是全生命周期累积成本，不能当该act耗时；5ms调度是最佳努力，不是硬实时响应保证。
+下一步针对完整大图跨WSL传输和host校验/序列化分段改进，保持原80/150ms与完整原图，不通过重贴时刻、裁切/降分辨率或暖机帧过关。
+离线保存DTO的ABBA编码对照只用于测量：相同wire/原身份/像素不变，样本少且有尾延迟，不证明1ms因果收益，也不算NN/ROS/实时闭环。

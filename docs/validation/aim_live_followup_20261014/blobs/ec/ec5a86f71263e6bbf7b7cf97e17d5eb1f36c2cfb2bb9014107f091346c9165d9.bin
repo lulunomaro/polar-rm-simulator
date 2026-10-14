@@ -1,0 +1,24 @@
+"""Captured real native run through formal explicit scheduling flags."""
+from pathlib import Path
+import argparse,hashlib,json,os,subprocess,sys,time
+ROOT=Path(__file__).resolve().parents[1]
+p=argparse.ArgumentParser();p.add_argument('--attempt',required=True,type=int);a=p.parse_args();assert 1<=a.attempt<=20
+label=f'formal-scheduling-{a.attempt:02}'
+out=ROOT/('artifacts/aim-formal-scheduling-driver-20261014-'+label);out.mkdir()
+names=sorted(x.relative_to(ROOT).as_posix() for d in ('rm_match','tools') for x in (ROOT/d).rglob('*.py'))
+before={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
+for n in names:
+    dest=out/'source'/n;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes((ROOT/n).read_bytes())
+command=[sys.executable,str(ROOT/'tools/smoke_wsl_native_live.py'),'--run','--native-transport','wsl_async_bgr_v3','--private-native-pixels','--raw-base64-codec','pybase64_1_5_1',
+ '--linux-native-spec',str(ROOT/'artifacts/native-production-cpu4-build-20261014/operator_source.local.json'),
+ '--client-root',str(ROOT/'external/polar-rm-client-state-review'),'--out',str(ROOT/('artifacts/aim-live-20261014-'+label)),
+ '--host-opencv-threads','4','--seconds','10','--host-python-switch-interval-ms','1','--authority-affinity-mask','0x10']
+(out/'COMMAND.json').write_bytes((json.dumps(dict(argv=command,source_before=before),indent=2)+'\n').encode())
+(out/'driver.py').write_bytes(Path(__file__).read_bytes());start=time.perf_counter()
+with (out/'stdout.log').open('xb') as stdout,(out/'stderr.log').open('xb') as stderr:
+    child=subprocess.Popen(command,cwd=ROOT,stdin=subprocess.DEVNULL,stdout=stdout,stderr=stderr,shell=False,creationflags=subprocess.CREATE_NO_WINDOW)
+    (out/'PID.json').write_bytes((json.dumps(dict(pid=child.pid,driver_pid=os.getpid()))+'\n').encode());code=child.wait()
+after={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
+result=dict(returncode=code,reaped=child.poll() is not None,elapsed_s=time.perf_counter()-start,source_before=before,source_after=after,source_unchanged=before==after)
+(out/'RESULT.json').write_bytes((json.dumps(result,indent=2)+'\n').encode())
+print(json.dumps({k:v for k,v in result.items() if k not in ('source_before','source_after')}));raise SystemExit(code)

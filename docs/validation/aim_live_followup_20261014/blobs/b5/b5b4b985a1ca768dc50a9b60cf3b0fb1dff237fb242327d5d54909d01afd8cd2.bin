@@ -1,0 +1,22 @@
+{
+  "event": "ready",
+  "schema": "polar.sim.wsl-async-aim.v1",
+  "transport": "wsl_async_bgr_v3",
+  "native_pid": 698,
+  "run_id": "b7f92ffcbda4475c906ee7731bdd082f",
+  "supervisor_pid": 375,
+  "spec_sha256": "8dd41a6905a1bb49e69b28a5c4f432d8b6c0fd9ab9b9b042f3a03fbffaba8e49",
+  "readiness": {
+    "abi": "Linux x86_64 read(0)",
+    "syscall": "0 0x0 0x609386884640 0x1000 0x0 0x0 0x0 0x7ffe6d602d88 0x7d265b6ac802",
+    "wchan": "pipe_read"
+  },
+  "startup_elapsed_linux_s": 0.7868375329999999,
+  "tmpfs_directory": "/dev/shm/polar-aim-async-4kr6vrta",
+  "tmpfs_mode": "0o700",
+  "compute_watchdog_s": 1.0,
+  "native_ticks": 0,
+  "inference_calls": 0,
+  "camera_captures": 0,
+  "physics_steps": 0
+}

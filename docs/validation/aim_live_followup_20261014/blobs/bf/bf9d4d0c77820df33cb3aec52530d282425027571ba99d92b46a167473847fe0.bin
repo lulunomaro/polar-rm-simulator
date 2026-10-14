@@ -1,0 +1,15 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\pb2025-aim-controlled-fast-probe-20261014-01\\static_review.py"
+  ],
+  "exit_code": 0,
+  "completed": true,
+  "wall_seconds": null,
+  "source_unchanged": true,
+  "WSL": false,
+  "ROS": false,
+  "GL": false,
+  "NN": false,
+  "qualifying_live_run": false
+}

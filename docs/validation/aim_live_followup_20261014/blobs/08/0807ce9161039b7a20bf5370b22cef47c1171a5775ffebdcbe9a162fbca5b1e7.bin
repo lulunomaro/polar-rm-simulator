@@ -1,0 +1,23 @@
+{
+  "qualification": "Post-QA prose only; normalize actual documentation to Git LF, no tested program bytes changed",
+  "files": [
+    {
+      "path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "before_sha256": "a630312a6b0a596911e036d90ab5e31838e15e3a014f12e5d8893a27ad4a826e",
+      "after_sha256": "0e3693d8a034f5cee0c8f59abe7325bf6b5d97efa8f8dd4f1c12cb4de533545c",
+      "decoded_text_unchanged": true
+    },
+    {
+      "path": "docs/AIM_PLUGIN_COMPATIBILITY.md",
+      "before_sha256": "877151e351a600984aa1e552e7ceaf85d7c364adf9b7e5a17cdb3a993dea1a65",
+      "after_sha256": "bfb7d075c7438053b81c9828eec1192b5849874ad44686f4a3654c3add9b7040",
+      "decoded_text_unchanged": true
+    },
+    {
+      "path": "docs/PB2025_AIM_ADAPTER_SOURCE.md",
+      "before_sha256": "2e69e0a8293fafba80c90d98d2cfcc87534c847bb6fb8bac3fd0b780aadc163f",
+      "after_sha256": "4fa67f2dc7d93c9e2d1d6a0b5423ca943800015a8c8049e27517cb6ece944d18",
+      "decoded_text_unchanged": true
+    }
+  ]
+}

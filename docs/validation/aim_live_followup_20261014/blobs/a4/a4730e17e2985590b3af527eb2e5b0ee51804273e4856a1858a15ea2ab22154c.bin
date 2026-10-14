@@ -1,0 +1,68 @@
+{
+  "schema": "polar.pb-aim-resource-phases.v1",
+  "total": 8,
+  "dropped": 0,
+  "capacity": 64,
+  "rows": [
+    {
+      "stage": "line_wait_begin",
+      "linux_perf_counter": 14.284446239,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 1
+    },
+    {
+      "stage": "complete_line_received",
+      "linux_perf_counter": 14.28445839,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 1,
+      "bytes": 67,
+      "newline": true
+    },
+    {
+      "stage": "line_wait_begin",
+      "linux_perf_counter": 14.284567639,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 2
+    },
+    {
+      "stage": "complete_line_received",
+      "linux_perf_counter": 14.300126675,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 2,
+      "bytes": 130,
+      "newline": true
+    },
+    {
+      "stage": "reset_original_begin",
+      "linux_perf_counter": 14.300178982,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "reset_original_end",
+      "linux_perf_counter": 14.344438443,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "stage": "line_wait_begin",
+      "linux_perf_counter": 14.344475397,
+      "clock_domain": "linux_local_diagnostic_only",
+      "line_index": 3
+    },
+    {
+      "stage": "shutdown_signal",
+      "linux_perf_counter": 15.649800948,
+      "clock_domain": "linux_local_diagnostic_only",
+      "signal": 15
+    }
+  ],
+  "observer_summary": {
+    "total": 0,
+    "dropped": 0,
+    "writer_reaped": true,
+    "error": null,
+    "evidence_scope": "read-only callbacks during original exchange; no postdeadline reads, no approximate source matching"
+  },
+  "shutdown_signal_wall": 15.649796734,
+  "scope": "Original callbacks only; timings do not authorize control and are not HostQPC",
+  "missing_when_killed": "No final artifact means unknown, never proof of no computation"
+}

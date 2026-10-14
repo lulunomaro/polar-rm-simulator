@@ -1,0 +1,12 @@
+{
+  "run_id": "b7f92ffcbda4475c906ee7731bdd082f",
+  "supervisor_pid": 375,
+  "boot_id": "6e21db31-702e-45ae-9643-696f71729437",
+  "pid": 698,
+  "pgid": 698,
+  "leader_start_ticks": 498,
+  "spec_sha256": "8dd41a6905a1bb49e69b28a5c4f432d8b6c0fd9ab9b9b042f3a03fbffaba8e49",
+  "transport": "wsl_async_bgr_v3",
+  "tmpfs_directory": "/dev/shm/polar-aim-async-4kr6vrta",
+  "tmpfs_mode": "0o700"
+}

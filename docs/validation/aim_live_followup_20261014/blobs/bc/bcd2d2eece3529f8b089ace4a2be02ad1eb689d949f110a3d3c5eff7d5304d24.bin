@@ -1,0 +1,19 @@
+{
+  "actual_build_sha256": "be410d26e3488f8dd39213bfcc53c28487fcbf624f46b5540f80d59aea17352d",
+  "bootstrap_sha256": "776c774fb85c02aec705fe7b445198aefe8e4b8c2268a49f59e53dc39b6bda67",
+  "calibration_id": "role_v23:blue_hero:ef242a6f2f6b0d09c8202e663e9438245b5a8681e9f6537e04f241c552aa4f6b",
+  "image_captures": 0,
+  "inference_calls": 0,
+  "model_nodes_started": false,
+  "module_paths": [
+    "/root/polar-pb-aim-build-20261014-01/install/lib/python3.10/site-packages"
+  ],
+  "peer_sha256": "69c1360c1836ee7da2fb80bb7b219006946d2d6d9bb623eb45443f540ab2a2ce",
+  "physics_steps": 0,
+  "registration_sha256": "3e6a575ef128cb0a1961edbb988feeb5a3a600250d0d9a10121d36ad9b25088e",
+  "stack": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-controlled-probe-20261014-01/registered_attempt1/stack/STACK.json",
+    "sha256": "8a0d6e58a03d3fe7b200027ded73eac11e7d84d3f74d939d7180006ab01285fc"
+  },
+  "success": true
+}

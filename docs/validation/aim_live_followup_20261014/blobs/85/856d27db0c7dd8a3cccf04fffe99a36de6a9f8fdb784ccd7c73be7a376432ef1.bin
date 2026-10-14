@@ -1,0 +1,50 @@
+{
+  "adapter_id": "custom_pb_aim",
+  "calibration_id": "role_v23:blue_hero:ef242a6f2f6b0d09c8202e663e9438245b5a8681e9f6537e04f241c552aa4f6b",
+  "domain_id": 85,
+  "environment": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-first-frame-probe-20261014-01/registered_attempt1/ENVIRONMENT.json",
+    "sha256": "960509b9018b3bde2929d0a7fca97bf127c7789ffeb10d6bd0d6c421e0516e9b"
+  },
+  "executables": {
+    "armor_detector_opencv": {
+      "path": "/root/polar-pb-aim-build-20261014-01/install/lib/armor_detector_opencv/armor_detector_opencv_node",
+      "sha256": "b1b9f857ae57d96e17bba3720047cd38f8c26d91a8a4add40d10382d73533737"
+    },
+    "armor_tracker": {
+      "path": "/root/polar-pb-aim-build-20261014-01/install/lib/armor_tracker/armor_tracker_node",
+      "sha256": "cc9ecbf59b2ba5500be95d18e804a6555989c6ca62a7bd97cedc6e7aa4353e07"
+    },
+    "projectile_motion": {
+      "path": "/root/polar-pb-aim-build-20261014-01/install/lib/projectile_motion/projectile_motion_node",
+      "sha256": "0b61456a864e4c33f5472458a7a2ba0bb9fdd7b54347831277e14a527ba774ee"
+    }
+  },
+  "labels": {
+    "path": "/root/polar-pb-aim-build-20261014-01/install/share/armor_detector_opencv/model/label.txt",
+    "sha256": "8cc04e2a54c7ee1c39925c9ca8e6eebe2d1015ee9dab77ab3befd8095be74411"
+  },
+  "model": {
+    "path": "/root/polar-pb-aim-build-20261014-01/install/share/armor_detector_opencv/model/mlp.onnx",
+    "sha256": "b3250176ea8fdbe6d1585be954363757ff6a8245a81e8797f16cea601976d47a"
+  },
+  "mount": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/aim-mount-calibration-20261014-03/MOUNTS.json",
+    "sha256": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62"
+  },
+  "namespace": "/polar_aim_02a8b2555543431db48933071a7054a5",
+  "params": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-first-frame-probe-20261014-01/registered_attempt1/stack/SCOPED_PARAMS.yaml",
+    "sha256": "a4f69596b1ebe80ee6b5d94f306f3bcced823c8394220d995e879d8abe91e4e3"
+  },
+  "params_original": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/PB_AIM_PARAMS.yaml",
+    "sha256": "1de46e046646394c62f4f9c693a5e470d133a68bb8be88cf5684a4dde7110269"
+  },
+  "run_uuid": "02a8b2555543431db48933071a7054a5",
+  "schema": "polar.sim.pb-aim-stack.v1",
+  "source_manifest": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/SOURCE_MANIFEST.json",
+    "sha256": "3871fc79ad57946a8dfcdbde50a198f1faf8915bf18b5718f33a966f5ba466ed"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "python_switch_interval": {
+    "schema": "polar.host.python-switch-interval.v1",
+    "enabled": true,
+    "requested_ms": 1.0,
+    "original_ms": 5.0,
+    "effective_ms": 1.0,
+    "restored_ms": 5.0,
+    "applied": true,
+    "restored": true,
+    "scope": "Current owned CPython process only"
+  },
+  "authority_affinity": {
+    "schema": "polar.host.authority-affinity.v1",
+    "enabled": true,
+    "requested_mask": 16,
+    "process_id": 49288,
+    "thread_id": 61828,
+    "cpu_group": 0,
+    "processor_count": 32,
+    "original_mask": 4294967295,
+    "effective_mask": 16,
+    "restored_mask": 4294967295,
+    "restored_group": 0,
+    "applied": true,
+    "restored": true,
+    "scope": "Current authority thread during runtime.run only; no priority, power or OS timer changes"
+  }
+}

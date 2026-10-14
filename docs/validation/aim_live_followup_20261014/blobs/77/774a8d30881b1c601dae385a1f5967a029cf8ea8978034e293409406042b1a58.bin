@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "rm_match/platform_v2/test_native_timing.py",
+    "rm_match/platform_v2/test_window_consumption.py",
+    "rm_match/platform_v2/test_spin_feedback.py",
+    "rm_match/platform_v2/test_observation_refresh.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\native-consumption-sampling-20261014-after02\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "expected_exit_code": 0
+}

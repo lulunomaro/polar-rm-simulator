@@ -1,0 +1,65 @@
+"""Read-only existing attempt1 analysis; no optional runtime/ROS imports."""
+import hashlib,json,math
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2]
+ORIGINAL=ROOT/'artifacts/pb2025-aim-first-frame-probe-20261014-01'
+OUT=Path(__file__).parent
+def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def main():
+ files=[p for folder in ('host_attempt1','registered_attempt1') for p in (ORIGINAL/folder).rglob('*') if p.is_file()]
+ before={str(p.relative_to(ROOT)):dict(sha256=digest(p),bytes=p.stat().st_size) for p in files}
+ result=json.loads((ORIGINAL/'host_attempt1/PROBE_RESULT.json').read_bytes())
+ obs=json.loads((ORIGINAL/'host_attempt1/OBSERVATION.json').read_bytes())
+ cap=json.loads((ORIGINAL/'host_attempt1/CAPTURE.json').read_bytes())
+ budget=result['budget'];raw=(ORIGINAL/'host_attempt1/capture.rgb').read_bytes()
+ if hashlib.sha256(raw).hexdigest()!=cap['rgb_sha256']:raise ValueError('actual RGB archive mismatch')
+ contexts=['robot_id','episode','binding_epoch','observed_seq','sim_time','wall_deadline']
+ source={k:dict(value=obs[k],type=type(obs[k]).__name__) for k in contexts}
+ base64_len=len(obs['sensors']['camera']['image']['data_base64'])
+ stats=dict(capture_to_public_ms=(result['public_camera_received_wall']-budget['capture_wall'])*1000,
+  public_to_observation_ms=(result['observation_built_wall']-result['public_camera_received_wall'])*1000,
+  capture_to_act_ms=(result['act_enter_wall']-budget['capture_wall'])*1000,
+  remaining_at_act_ms=(budget['wall_deadline']-result['act_enter_wall'])*1000,
+  act_enter_to_failure_including_synchronous_cleanup_ms=(result['failure_wall']-result['act_enter_wall'])*1000,
+  deadline_to_reported_failure_including_synchronous_cleanup_ms=(result['failure_wall']-budget['wall_deadline'])*1000,
+  linux_tree_cleanup_ms=result['cleanup']['ownership']['linux']['ownership']['cleanup_elapsed_s']*1000)
+ events=ORIGINAL/'registered_attempt1/SOURCE_EVENTS.jsonl'
+ report=dict(schema='polar.pb-aim-first-frame-readonly-audit.v1',attempt_result='FAIL',
+  no_new_execution=dict(WSL=False,ROS=False,GL=False,NN=False,benchmark=False),metrics=stats,
+  original_identity=source,actual_image=dict(rgb_bytes=len(raw),rgb_sha256=cap['rgb_sha256'],base64_characters=base64_len,
+   width=1440,height=1080,encoding='rgb8',original_sim_stamp_ns=2000000),
+  minimum_worker_reads_if_every_read_reaches_65536=math.ceil(base64_len/65536),
+  minimum_worker_reads_if_reads_are_8192=math.ceil(base64_len/8192),
+  read_counts_scope='Lower bounds derived from actual base64 length; actual read sizes/counts are not recorded',
+  source_callbacks=dict(journal_bytes=events.stat().st_size,summary_exists=(ORIGINAL/'registered_attempt1/SOURCE_EVENTS_SUMMARY.json').exists(),
+   saved_source_armors=0,saved_source_target=0,actual_model_calls='unknown',actual_PnP_calls='unknown',TF_processing='unknown'),
+  model_prepared=True,actual_three_context_ACKs=True,original_node_stderr='Startup and SIGTERM only; no algorithm/TF failure message or wrapper traceback',
+  cleanup=dict(clean=result['cleanup']['clean'],host_tree_clean=result['cleanup']['ownership']['windows']['clean'],
+   linux_tree_clean=result['cleanup']['ownership']['linux']['clean'],linux_forced_kill=result['cleanup']['ownership']['linux']['ownership']['killed'],
+   all_descendants_reaped=result['cleanup']['ownership']['linux']['ownership']['remaining_members']==[]),
+  manual_visual_observation='Human inspection of original capture.png: wall/black upper background, grey foreground and steps; no identifiable visible armor. Not an automated detector result or proof that no armor exists.',
+  source_evidence=[
+   'json_adapter.py:172 queue timeout; except at182 synchronously closes before rethrow, so failure_wall includes cleanup',
+   'wsl_jsonl_worker.py:106 stopped() before each read,52 DrvFs STOP.exists,115 read<=65536,122 full-line JSON validation before125 forwarding',
+   'aim_jsonl_peer.py:18 waits complete JSONL,47 strict public base64 decode before50 calling engine',
+   'ros2_bridge.py:96-108 validates/encodes observation before publish; pb_aim_ros_peer.py:begin separately camera_sensor_bundle strict decode',
+   'peer_bootstrap.py opens journal after successful engine.prepare; observer writes only actual callbacks, no finally SUMMARY after default SIGTERM kill'],
+  causal_limits=[
+   'No timestamp of host enqueue, complete worker receive, peer complete-line, compute-enter or image DDS publish.',
+   'Zero recorded callback bytes cannot distinguish no image arrival, parsing/decode delay, TF wait, NN/PnP delay or callback scheduling.',
+   'No wrapper traceback or SourceGate error is not proof that those code paths completed.',
+   'Do not subtract Windows absolute QPC from Linux local/ROS absolute timestamps.',
+   'Cleanup duration is observed Linux interval; without host phase timestamps do not derive an exact original exception time.',
+   'The first default empty-view exposure cannot establish missed detections. A controlled scene would be a separately identified experiment.'],
+  next_steps=[
+   'Add scalar artifact peer milestones: complete original line received, engine entered after original codec, bridge begin/publish entry and completion, callbacks and response completion; no extra frame/read/retiming.',
+   'Measure actual generic supervisor chunks/bytes and STOP poll elapsed independently, preserving original deadline; only then attribute transfer or optimize batching.',
+   'For detection/PnP evidence, a fresh public controlled scene may place a red robot at 2.3m along the actual camera forward direction; scene truth is only evaluator/setup state and never added to DTO. Keep detect_color0/model/thresholds.',
+   'Continue strict host capture+.08 act; no stale offline resend or later response acceptance; absence of complete-line/compute milestone remains unknown rather than NN failure.'])
+ after={str(p.relative_to(ROOT)):dict(sha256=digest(p),bytes=p.stat().st_size) for p in files}
+ report['original_files_unchanged']=before==after
+ (OUT/'INPUT_HASHES.json').write_bytes((json.dumps(before,indent=2)+'\n').encode())
+ (OUT/'REPORT.json').write_bytes((json.dumps(report,indent=2)+'\n').encode())
+ print(json.dumps(report,indent=2))
+ if not report['original_files_unchanged']:raise ValueError('readonly audit input changed')
+if __name__=='__main__':main()

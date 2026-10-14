@@ -46,12 +46,20 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
     scope='Bounded public-static-scene live diagnostic only; not full-match, aim accuracy, GUI or hardware qualification')
 
 
-def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None):
+def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
+        host_python_switch_interval_ms=None,authority_affinity_mask=None):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    from rm_match.platform_v2.host_scheduling import switch_interval_ms,affinity_mask
+    if host_python_switch_interval_ms is not None:
+        plan['configuration']['host_python_switch_interval_ms']=switch_interval_ms(host_python_switch_interval_ms)
+        plan['criteria']['host_scheduling_applied_and_restored']=True
+    if authority_affinity_mask is not None:
+        plan['configuration']['authority_affinity_mask']=affinity_mask(authority_affinity_mask)
+        plan['criteria']['host_scheduling_applied_and_restored']=True
     if host_opencv_threads is not None:
         if type(host_opencv_threads) is not int or not 1<=host_opencv_threads<=32:
             raise ValueError('Explicit host OpenCV threads must be an integer within 1..32')
@@ -167,6 +175,8 @@ def classify(measurements,*,plan=None):
         checks['host_opencv_setting_unchanged']=m.get('host_opencv_setting_unchanged') is True
     if c.get('original_async_transactions_accounted'):
         checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
+    if c.get('host_scheduling_applied_and_restored'):
+        checks['host_scheduling_applied_and_restored']=m.get('host_scheduling_applied_and_restored') is True
     return dict(checks=checks,live_static_chain_qualified=all(checks.values()),
         full_match_qualified=False,hardware_qualified=False,visible_qt_qualified=False,
         rejected_or_failed_criteria=[k for k,v in checks.items() if not v])
@@ -390,6 +400,26 @@ def fault_and_evidence_measurements(events, counts, *, writer_required,async_mea
 
 
 def run(a):
+    from rm_match.platform_v2.host_scheduling import PythonSwitchInterval,AuthorityThreadAffinity,scheduling_qualified
+    if a.out.exists():raise ValueError('Fresh output directory required; preserved evidence is never overwritten')
+    switch=PythonSwitchInterval(getattr(a,'host_python_switch_interval_ms',None))
+    affinity=AuthorityThreadAffinity(getattr(a,'authority_affinity_mask',None))
+    scheduling=dict(python_switch_interval=switch.record,authority_affinity=affinity.record)
+    try:
+        with switch:
+            report=_run(a,affinity,scheduling)
+    finally:
+        # Even setup failures retain actual attempted/restored scheduling state.
+        a.out.mkdir(parents=True,exist_ok=True)
+        (a.out/'HOST_SCHEDULING.json').write_text(json.dumps(scheduling,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    report['measurements']['host_scheduling_applied_and_restored']=scheduling_qualified(scheduling)
+    report['classification']=classify(report['measurements'],plan=report.pop('_plan'))
+    (a.out/'RESULT.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    print(json.dumps(report['classification'],indent=2))
+    return 0 if report['classification']['live_static_chain_qualified'] else 2
+
+
+def _run(a,affinity,scheduling):
     if sys.platform!='win32':raise RuntimeError('Actual Windows host required for NVIDIA live diagnostic')
     from rm_match.deployment.launcher import check_client
     from rm_match.deployment.enrollment import provision_operator
@@ -404,7 +434,8 @@ def run(a):
     out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
     host_threads=getattr(a,'host_opencv_threads',None)
     plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
-        host_opencv_threads=host_threads)
+        host_opencv_threads=host_threads,host_python_switch_interval_ms=getattr(a,'host_python_switch_interval_ms',None),
+        authority_affinity_mask=getattr(a,'authority_affinity_mask',None))
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
     sources={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
@@ -446,7 +477,13 @@ def run(a):
             counts['native_actuator_receipts']+=1
             wall_age=row['consume_wall']-budget['capture_wall']
             sim_age=row['consume_sim_time']-budget['capture_sim_time']
-            if not (0<=wall_age<=.08 and 0<=sim_age<=.08):counts['stale_actuator_receipts']+=1
+            if not (0<=wall_age<=.08 and 0<=sim_age<=.08):
+                counts['stale_actuator_receipts']+=1
+                # Keep each failure even if this frame already had an earlier
+                # timely receipt. First-frame deduplication must not hide it.
+                events.append(dict(row,event='stale_actuator_receipt',
+                    original_event='actuator_consumed',host_received_wall=now,
+                    wall_age_s=wall_age,sim_age_s=sim_age))
             frame_id=budget['frame_id']
             if frame_id not in consumed:
                 value=dict(row,host_received_wall=now,
@@ -529,13 +566,15 @@ def run(a):
                 window_id=window['window_id'],activation_expires=ack['activation_expires']))
         activate()
         def authority():
-            timing['start']=time.perf_counter()
-            timing['cpu_start']=time.process_time()
-            try:runtime.run(max_wall_seconds=a.seconds,real_time_factor=1.)
+            try:
+                with affinity:
+                    timing['start']=time.perf_counter()
+                    timing['cpu_start']=time.process_time()
+                    try:runtime.run(max_wall_seconds=a.seconds,real_time_factor=1.)
+                    finally:
+                        timing['end']=time.perf_counter()
+                        timing['cpu_end']=time.process_time()
             except BaseException as exc:errors.append(type(exc).__name__+':'+str(exc))
-            finally:
-                timing['end']=time.perf_counter()
-                timing['cpu_end']=time.process_time()
         physics=threading.Thread(target=authority,name='live-physics-authority',daemon=True);physics.start()
         start=time.perf_counter();renew=start;sample=start
         while physics.is_alive() and time.perf_counter()-start<a.seconds:
@@ -648,6 +687,7 @@ def run(a):
         image_preparation=image_stage_summary(events),
         raw_codec_identity=codec_identity,
         host_opencv_startup=host_opencv,
+        host_scheduling=scheduling,
         pixel_audit=pixel_audit,
         runtime_step_wall=distribution(step_durations),
         authority_stage_timing=dict(enabled=bool(getattr(a,'profile_authority',False)),
@@ -656,9 +696,8 @@ def run(a):
         native_identity=None if native_process is None else native_process.checked.metadata,
         native_spec=None if native_process is None else native_process.checked.linux_spec,
         scope=plan['scope'])
-    write('RESULT.json',report)
-    print(json.dumps(report['classification'],indent=2))
-    return 0 if report['classification']['live_static_chain_qualified'] else 2
+    report['_plan']=plan
+    return report
 
 
 def main(argv=None):
@@ -669,17 +708,24 @@ def main(argv=None):
     p.add_argument('--private-native-pixels',action='store_true',help='Explicit experimental own-native input before public base64 completion')
     p.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked')
     p.add_argument('--host-opencv-threads',type=int,help='Explicit verified host camera OpenCV thread option, 1..32')
+    from rm_match.platform_v2.host_scheduling import switch_interval_ms,parse_affinity_mask
+    p.add_argument('--host-python-switch-interval-ms',type=lambda s:switch_interval_ms(float(s)),
+        help='Explicit local CPython interval, finite 0.1..10 ms; restored after cleanup')
+    p.add_argument('--authority-affinity-mask',type=parse_affinity_mask,
+        help='Explicit Windows authority-thread mask, base-0 integer; restored after runtime.run')
     p.add_argument('--profile-authority',action='store_true',help='Additional local stage timers with explicit diagnostic overhead')
     p.add_argument('--client-root',type=Path)
     p.add_argument('--out',type=Path)
     p.add_argument('--seconds',type=float,default=10.)
     p.add_argument('--run',action='store_true')
     a=p.parse_args(argv)
+    if a.authority_affinity_mask is not None and sys.platform!='win32':p.error('--authority-affinity-mask requires Windows')
     if a.host_opencv_threads is not None and not 1<=a.host_opencv_threads<=32:p.error('--host-opencv-threads must be within 1..32')
     if not 10<=a.seconds<=20:p.error('Actual run must be bounded to 10..20 wall seconds')
     if not a.run:
         print(json.dumps(build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
-            host_opencv_threads=a.host_opencv_threads),indent=2));return 0
+            host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
+            authority_affinity_mask=a.authority_affinity_mask),indent=2));return 0
     for key in ('linux_native_spec','client_root','out'):
         if getattr(a,key) is None:p.error('--'+key.replace('_','-')+' is required with --run')
         setattr(a,key,getattr(a,key).resolve())
@@ -696,7 +742,8 @@ def main(argv=None):
             startup_admitted=admitted,runtime_evidence_available=(a.out/'RUNTIME_OBSERVATION.json').exists(),
             errors=[type(exc).__name__+':'+str(exc)],live_static_chain_qualified=False,
             cleanup_qualified=False,plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
-                host_opencv_threads=a.host_opencv_threads))
+                host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
+                authority_affinity_mask=a.authority_affinity_mask))
         (a.out/'RESULT.json').write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(value,indent=2));return 2
 

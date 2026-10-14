@@ -1,0 +1,17 @@
+{
+  "source": "actual exec tool observation, not reconstructed raw subprocess log",
+  "tool_chunk_id": "8f40fb",
+  "exit_code": 0,
+  "summary": "72 passed, 4 skipped, 2 subtests passed in 3.08s",
+  "actual_wsl": false,
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "-m",
+    "pytest",
+    "tests/test_wsl_jsonl_stop_poll.py",
+    "tests/test_wsl_jsonl.py",
+    "tests/test_owned_stderr_sink.py",
+    "tests/test_json_owned_process.py",
+    "-q"
+  ]
+}

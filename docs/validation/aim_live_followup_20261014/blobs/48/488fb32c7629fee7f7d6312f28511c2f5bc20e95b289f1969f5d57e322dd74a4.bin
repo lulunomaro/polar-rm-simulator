@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="4" time="0.693" timestamp="2026-10-14T17:52:38.722974+08:00" hostname="LULUnoMARO"><testcase classname="tests.test_wsl_aim_async_integration" name="test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles[False-10.0]" time="0.241"><failure message="Failed: Expired response cannot fabricate hold">received = 10.0, active = False
+
+    @pytest.mark.parametrize('received',[10.,10.001])
+    @pytest.mark.parametrize('active',[False,True])
+    def test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles(received,active):
+        with fixture() as (a,o):
+            response=dict(should_control=active,observation_shoot_allowed=True,target_age_s=.01,
+                direction_frame='world',direction=[1.,0.,.1],should_shoot=False)
+            a._native_control=Mock(return_value=response)
+            with patch('rm_match.platform_v2.native_adapter.time.perf_counter',return_value=received):
+&gt;               result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_wsl_aim_async_integration.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\platform_v2\native_adapter.py:242: in _act_sensor
+    if not active:return hold()
+                         ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+&gt;   result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: Expired response cannot fabricate hold
+
+tests\test_wsl_aim_async_integration.py:81: Failed</failure></testcase><testcase classname="tests.test_wsl_aim_async_integration" name="test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles[False-10.001]" time="0.036"><failure message="Failed: Expired response cannot fabricate hold">received = 10.001, active = False
+
+    @pytest.mark.parametrize('received',[10.,10.001])
+    @pytest.mark.parametrize('active',[False,True])
+    def test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles(received,active):
+        with fixture() as (a,o):
+            response=dict(should_control=active,observation_shoot_allowed=True,target_age_s=.01,
+                direction_frame='world',direction=[1.,0.,.1],should_shoot=False)
+            a._native_control=Mock(return_value=response)
+            with patch('rm_match.platform_v2.native_adapter.time.perf_counter',return_value=received):
+&gt;               result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_wsl_aim_async_integration.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\platform_v2\native_adapter.py:242: in _act_sensor
+    if not active:return hold()
+                         ^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+&gt;   result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   Failed: Expired response cannot fabricate hold
+
+tests\test_wsl_aim_async_integration.py:81: Failed</failure></testcase><testcase classname="tests.test_wsl_aim_async_integration" name="test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles[True-10.0]" time="0.033"><failure message="KeyError: 'schema'">received = 10.0, active = True
+
+    @pytest.mark.parametrize('received',[10.,10.001])
+    @pytest.mark.parametrize('active',[False,True])
+    def test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles(received,active):
+        with fixture() as (a,o):
+            response=dict(should_control=active,observation_shoot_allowed=True,target_age_s=.01,
+                direction_frame='world',direction=[1.,0.,.1],should_shoot=False)
+            a._native_control=Mock(return_value=response)
+            with patch('rm_match.platform_v2.native_adapter.time.perf_counter',return_value=received):
+                result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+&gt;           assert result['schema']==AIM_STATUS_SCHEMA and result['status']=='pending_result'
+                   ^^^^^^^^^^^^^^^^
+E           KeyError: 'schema'
+
+tests\test_wsl_aim_async_integration.py:82: KeyError</failure></testcase><testcase classname="tests.test_wsl_aim_async_integration" name="test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles[True-10.001]" time="0.033"><failure message="KeyError: 'schema'">received = 10.001, active = True
+
+    @pytest.mark.parametrize('received',[10.,10.001])
+    @pytest.mark.parametrize('active',[False,True])
+    def test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles(received,active):
+        with fixture() as (a,o):
+            response=dict(should_control=active,observation_shoot_allowed=True,target_age_s=.01,
+                direction_frame='world',direction=[1.,0.,.1],should_shoot=False)
+            a._native_control=Mock(return_value=response)
+            with patch('rm_match.platform_v2.native_adapter.time.perf_counter',return_value=received):
+                result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+&gt;           assert result['schema']==AIM_STATUS_SCHEMA and result['status']=='pending_result'
+                   ^^^^^^^^^^^^^^^^
+E           KeyError: 'schema'
+
+tests\test_wsl_aim_async_integration.py:82: KeyError</failure></testcase></testsuite></testsuites>

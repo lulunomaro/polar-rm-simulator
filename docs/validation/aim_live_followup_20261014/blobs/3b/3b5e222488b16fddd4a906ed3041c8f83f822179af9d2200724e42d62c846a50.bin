@@ -1,0 +1,23 @@
+{
+  "build_executed": false,
+  "generator_sha256": "8564232b1cbed6d77d5ccaa1e59c6c126eec457ce255a82fca12af27b5857e8e",
+  "generic_peer_argv": [
+    "-m",
+    "rm_match.integrations.pb_aim_engine",
+    "--stack-ref",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-controlled-probe-20261014-01/registered_attempt1/stack/STACK.json",
+    "--stack-sha256",
+    "8a0d6e58a03d3fe7b200027ded73eac11e7d84d3f74d939d7180006ab01285fc"
+  ],
+  "inference_executed": false,
+  "lifecycle": "factory loads three unconfigured actual nodes; prepare ACK after real graph; reset once requires three matching source ACKs",
+  "namespace": "/polar_aim_390923fa957f44afab1ae164618b2dca",
+  "ros_started": false,
+  "run_uuid": "390923fa957f44afab1ae164618b2dca",
+  "schema": "polar.pb-aim-stack-preparation.v1",
+  "stack": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-controlled-probe-20261014-01/registered_attempt1/stack/STACK.json",
+    "sha256": "8a0d6e58a03d3fe7b200027ded73eac11e7d84d3f74d939d7180006ab01285fc"
+  },
+  "validation": "static actual-byte/source binding only"
+}

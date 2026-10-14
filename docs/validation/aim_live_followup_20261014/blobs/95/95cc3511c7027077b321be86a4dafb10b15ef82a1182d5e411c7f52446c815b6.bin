@@ -1,0 +1,326 @@
+{
+  "1": {
+    "frame_id": 1,
+    "capture_wall": 34152.7136788,
+    "capture_sim_time": 0.0,
+    "encoded_wall": 34152.7456783,
+    "raw_rgb_sha256": "b57b362e6155950aa7e5a15852fb339d77769c23fc53afe85ae2b090bee52898",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "2": {
+    "frame_id": 2,
+    "capture_wall": 34152.8099001,
+    "capture_sim_time": 0.024000000000000007,
+    "encoded_wall": 34152.8329314,
+    "raw_rgb_sha256": "ff20c64fc735cb71d8263d67be345246abe7e2e09ecb24fc5a7128f9540a5ac8",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "3": {
+    "frame_id": 3,
+    "capture_wall": 34152.8777947,
+    "capture_sim_time": 0.030000000000000013,
+    "encoded_wall": 34152.8970399,
+    "raw_rgb_sha256": "01072d90415768f80f6e010fbedf87c354ebdbdd6bcc687a54d7b8694df53abd",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "4": {
+    "frame_id": 4,
+    "capture_wall": 34152.9575322,
+    "capture_sim_time": 0.04000000000000002,
+    "encoded_wall": 34152.9854188,
+    "raw_rgb_sha256": "f4ca31ec28b7f95287f4a94be3d70904b277926590560b5ec684bd85f5db2d37",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "5": {
+    "frame_id": 5,
+    "capture_wall": 34153.0243572,
+    "capture_sim_time": 0.06400000000000004,
+    "encoded_wall": 34153.0401577,
+    "raw_rgb_sha256": "afa2fc798321d279bbd3c176cb463b5e875dad7077ef84a217a1cafc78254c65",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "6": {
+    "frame_id": 6,
+    "capture_wall": 34153.0928704,
+    "capture_sim_time": 0.11000000000000008,
+    "encoded_wall": 34153.1087439,
+    "raw_rgb_sha256": "a0104db09659348d46a67038ba5bf7906a57143179989575a3b03d75d70eacd1",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "7": {
+    "frame_id": 7,
+    "capture_wall": 34153.1601431,
+    "capture_sim_time": 0.1540000000000001,
+    "encoded_wall": 34153.174999,
+    "raw_rgb_sha256": "0ee044015294ffe43e466bde28b335184e30c314db5f772db173b9627836b2c5",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "8": {
+    "frame_id": 8,
+    "capture_wall": 34153.2270409,
+    "capture_sim_time": 0.20400000000000015,
+    "encoded_wall": 34153.2424384,
+    "raw_rgb_sha256": "72263b3cf4156df550c0902b7320dedc25aee7d01fcd556f3deaad757fc08a61",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "9": {
+    "frame_id": 9,
+    "capture_wall": 34153.2941232,
+    "capture_sim_time": 0.25200000000000017,
+    "encoded_wall": 34153.3088915,
+    "raw_rgb_sha256": "37bdb2df2edb09dd532f3b97e8842b64e8fbc381e795eca7e72565abfaff5dfc",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "10": {
+    "frame_id": 10,
+    "capture_wall": 34153.3624182,
+    "capture_sim_time": 0.2880000000000002,
+    "encoded_wall": 34153.3770524,
+    "raw_rgb_sha256": "06a00adbd6e408865909ac07c984429824f74806a4dc03c4c222d39ae75e96e7",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "11": {
+    "frame_id": 11,
+    "capture_wall": 34153.4324166,
+    "capture_sim_time": 0.33400000000000024,
+    "encoded_wall": 34153.4478058,
+    "raw_rgb_sha256": "6b9491cf0434add428980ed7ace13330cb7d83daa65e4fb82ebc989a796eccc9",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "12": {
+    "frame_id": 12,
+    "capture_wall": 34153.4993963,
+    "capture_sim_time": 0.3820000000000003,
+    "encoded_wall": 34153.5139468,
+    "raw_rgb_sha256": "9b02de7c0e46470b0f3d227ebe8e976b9a0e0eb7add45ffd897d91fd26a4c227",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "13": {
+    "frame_id": 13,
+    "capture_wall": 34153.5676294,
+    "capture_sim_time": 0.4260000000000003,
+    "encoded_wall": 34153.5850079,
+    "raw_rgb_sha256": "b7789104dd7d9b0c7510f6ef8cab0294a086e458ec843493b0bf27ce9f8cfc31",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "14": {
+    "frame_id": 14,
+    "capture_wall": 34153.6356249,
+    "capture_sim_time": 0.44800000000000034,
+    "encoded_wall": 34153.6551104,
+    "raw_rgb_sha256": "dd73d2cfdf1186ddc4db92b1a4185f5c54e3a4198a3af2c19f9c3355b42aa3e3",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "15": {
+    "frame_id": 15,
+    "capture_wall": 34153.7034213,
+    "capture_sim_time": 0.47200000000000036,
+    "encoded_wall": 34153.7210653,
+    "raw_rgb_sha256": "d45f20f3733cbd9543f5bd36169434a24ea0c05b1930d17ed1d79e5d6042a79c",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "16": {
+    "frame_id": 16,
+    "capture_wall": 34153.7702522,
+    "capture_sim_time": 0.4900000000000004,
+    "encoded_wall": 34153.7879118,
+    "raw_rgb_sha256": "06dbcae787d10f4eb778e1cd150da57c30cee863c01941ca755bf7461a161114",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "17": {
+    "frame_id": 17,
+    "capture_wall": 34153.8371759,
+    "capture_sim_time": 0.5060000000000003,
+    "encoded_wall": 34153.8563555,
+    "raw_rgb_sha256": "bf867985ee78ddbc01e2314d9991cd83b2569c2c2bd129973849a2c77cc736bc",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "18": {
+    "frame_id": 18,
+    "capture_wall": 34153.91409,
+    "capture_sim_time": 0.5240000000000004,
+    "encoded_wall": 34153.9318774,
+    "raw_rgb_sha256": "7fc23b9639ed1c1f6eee8c6229e7e2f91b8cdfabf3fbde1ef296582786597b12",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "19": {
+    "frame_id": 19,
+    "capture_wall": 34153.9859869,
+    "capture_sim_time": 0.5380000000000004,
+    "encoded_wall": 34154.0078196,
+    "raw_rgb_sha256": "0371ac07aec8bdf8e5dbbc73a0f2e94d58d554c8cd5f5b833aac011807cbc1eb",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "20": {
+    "frame_id": 20,
+    "capture_wall": 34154.0588593,
+    "capture_sim_time": 0.5520000000000004,
+    "encoded_wall": 34154.0826419,
+    "raw_rgb_sha256": "860a61e51c522767ffb5e8b4036c85042f058840359f29fbc05016d7a23e2dae",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "21": {
+    "frame_id": 21,
+    "capture_wall": 34154.1373108,
+    "capture_sim_time": 0.5700000000000004,
+    "encoded_wall": 34154.1637028,
+    "raw_rgb_sha256": "fee4c6dbb00fd5f0915f59b6b9b00a8b9c8dcaa091de6db431bf8c44ccf3ec49",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "22": {
+    "frame_id": 22,
+    "capture_wall": 34154.2091807,
+    "capture_sim_time": 0.5820000000000004,
+    "encoded_wall": 34154.2283238,
+    "raw_rgb_sha256": "3c516b10deaf033535c3988d23169ea227be29c5f11b98d262356444c0fc531e",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "23": {
+    "frame_id": 23,
+    "capture_wall": 34154.2764119,
+    "capture_sim_time": 0.5980000000000004,
+    "encoded_wall": 34154.2958426,
+    "raw_rgb_sha256": "89c4807dea5c7ca81a7966db485b004e3cd4ae2ae486e5b0e65437d4e3451dc3",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "24": {
+    "frame_id": 24,
+    "capture_wall": 34154.3495715,
+    "capture_sim_time": 0.6080000000000004,
+    "encoded_wall": 34154.369395,
+    "raw_rgb_sha256": "bbef9b86c2ea7630fd5ac04eabde45e83c2aaf56c870885fc5c46a0f538b49e2",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "25": {
+    "frame_id": 25,
+    "capture_wall": 34154.4263208,
+    "capture_sim_time": 0.6220000000000004,
+    "encoded_wall": 34154.4462626,
+    "raw_rgb_sha256": "865b056c235cefad17b6aac160c3b28304fff35c82178d068a73f4a352bb00d6",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "26": {
+    "frame_id": 26,
+    "capture_wall": 34154.5019337,
+    "capture_sim_time": 0.6340000000000005,
+    "encoded_wall": 34154.523874,
+    "raw_rgb_sha256": "dbd60d7ff1a86b4596b35cb82171d64ae80476bc10ab813d1a4338f33b019217",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  },
+  "27": {
+    "frame_id": 27,
+    "capture_wall": 34154.5725624,
+    "capture_sim_time": 0.6480000000000005,
+    "encoded_wall": 34154.5971984,
+    "raw_rgb_sha256": "ef0bed16c5b18a0a64421f68d9a8eae8d670adcd7b94ae34da7f6f7c746d4881",
+    "shape": [
+      1080,
+      1440,
+      3
+    ]
+  }
+}

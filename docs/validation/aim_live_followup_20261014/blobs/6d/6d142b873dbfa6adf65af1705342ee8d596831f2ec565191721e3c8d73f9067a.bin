@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts/pb2025-aim-controlled-probe-20261014-01/static_review.py"
+  ],
+  "completed": true,
+  "ROS": false,
+  "WSL": false,
+  "scope": "AST/source hash/signal handler static checks only",
+  "fresh_candidate_frozen": true,
+  "GL": false,
+  "NN": false,
+  "wall_seconds": 0.4978495,
+  "exit_code": 0,
+  "peer_sha256": "69c1360c1836ee7da2fb80bb7b219006946d2d6d9bb623eb45443f540ab2a2ce"
+}

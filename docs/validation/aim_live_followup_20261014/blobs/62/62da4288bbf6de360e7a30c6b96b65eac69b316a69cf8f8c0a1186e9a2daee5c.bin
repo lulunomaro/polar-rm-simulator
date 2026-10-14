@@ -1,0 +1,86 @@
+{
+  "qualification": "Offline serializer cost on saved actual image DTO only; no algorithm/transport/clock substitution/resending",
+  "source_path": "artifacts/pb2025-aim-controlled-probe-20261014-01/host_attempt1/OBSERVATION.json",
+  "source_sha256": "6b214d740bebc72f34c18e07434634618097768601474f0a20a7f6d7d5824196",
+  "source_unchanged": true,
+  "rows": [
+    {
+      "ensure_ascii": true,
+      "serialization_s": 0.011419499998737592,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": false,
+      "serialization_s": 0.02081910000561038,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": false,
+      "serialization_s": 0.021181500000238884,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": true,
+      "serialization_s": 0.010833499996806495,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": true,
+      "serialization_s": 0.011367700004484504,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": false,
+      "serialization_s": 0.022106499993242323,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": false,
+      "serialization_s": 0.038175699999555945,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": true,
+      "serialization_s": 0.011029699999198783,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": true,
+      "serialization_s": 0.010968599999614526,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": false,
+      "serialization_s": 0.02033330000267597,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": false,
+      "serialization_s": 0.020334100001491606,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    },
+    {
+      "ensure_ascii": true,
+      "serialization_s": 0.010971399999107234,
+      "bytes": 6225301,
+      "sha256": "68068e922c14519252422234356e3e78198ea9a62e0bd091954b93781a0ccff1"
+    }
+  ],
+  "median_ms": {
+    "True": 11.000549999153009,
+    "False": 21.000300002924632
+  },
+  "parsed_equal": true,
+  "bytes_equal": true
+}

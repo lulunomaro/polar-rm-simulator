@@ -1,0 +1,29 @@
+{
+  "event": "error",
+  "schema": "polar.sim.wsl-async-aim.v1",
+  "transport": "wsl_async_bgr_v3",
+  "reason": "resource_or_protocol_fault",
+  "error_type": "ValueError",
+  "error": "async_native_direction",
+  "inflight": {
+    "id": 49,
+    "source_context": {
+      "robot_id": "red_sentry",
+      "episode": 0,
+      "binding_epoch": 1,
+      "observed_seq": 102,
+      "sim_time": 4.577999999999718,
+      "wall_deadline": 33274.8996514
+    },
+    "frame_id": 90,
+    "exposure_timestamp_ns": 4560000000,
+    "control_time_ns": 4578000000,
+    "image_sha256": "17d8168c920ffb13691519cb1572062af677dafc56ebd93f082200158c54f1c4",
+    "bgr_bytes": 4665600
+  },
+  "received_bgr_bytes": 0,
+  "native_stdin_bytes_written": 1749,
+  "native_stdin_expected_bytes": 1749,
+  "native_stdout_buffer_bytes": 756,
+  "clock_domain": "linux_local_diagnostic_only"
+}

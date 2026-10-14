@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\pb2025-aim-controlled-fast-audit-20261014-01\\audit.py"
+  ],
+  "exit_code": 0,
+  "completed": true,
+  "tool_wall_seconds": 0.4907039,
+  "source_unchanged": true,
+  "script_sha256": "96f27dc959fa7b529c3c3d382bc8e3018816516fa51522cff6d15b432a459789",
+  "report_sha256": "a1c5485e4ab7940a56ecb6a7fc961b581a61ce4905518cb73ac3c670b6ddb4f1",
+  "no_WSL_ROS_GL_NN_or_model": true,
+  "benchmark": false,
+  "resend": false,
+  "scope": "Existing exact evidence and one read-only strict decode/serialization reconstruction"
+}

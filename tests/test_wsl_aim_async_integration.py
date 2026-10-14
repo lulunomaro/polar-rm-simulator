@@ -24,7 +24,8 @@ def fixture():
         a._evidence_writer=Mock();a._evidence_writer.submit.return_value=1
         a._evidence_writer.can_submit.return_value=True
         a.trace=Mock()
-        yield a,o
+        with patch('rm_match.platform_v2.native_adapter.time.perf_counter',return_value=9.):
+            yield a,o
     finally:f.tearDown()
 
 
@@ -67,6 +68,24 @@ def test_absent_target_returns_status_without_actuator_command():
         result=a._act_sensor(o,lambda:a._hold(o),Mock())
         assert result['status']=='no_target' and 'command' not in result
         assert [c.args[0]['event'] for c in a.trace.call_args_list].count('native_result')==1
+
+
+@pytest.mark.parametrize('received',[10.,10.001])
+@pytest.mark.parametrize('active',[False,True])
+def test_source_return_at_or_after_original_deadline_cannot_emit_result_or_angles(received,active):
+    with fixture() as (a,o):
+        response=dict(should_control=active,observation_shoot_allowed=True,target_age_s=.01,
+            direction_frame='world',direction=[1.,0.,.1],should_shoot=False)
+        a._native_control=Mock(return_value=response)
+        with patch('rm_match.platform_v2.native_adapter.time.perf_counter',return_value=received):
+            result=a._act_sensor(o,lambda:pytest.fail('Expired response cannot fabricate hold'),lambda c:dict(command=c))
+        assert result['schema']==AIM_STATUS_SCHEMA and result['status']=='pending_result'
+        assert {k:result[k] for k in IDENTITY}=={k:o[k] for k in IDENTITY}
+        assert 'command' not in result
+        rows=[c.args[0] for c in a.trace.call_args_list]
+        assert not any(r['event']=='native_result' for r in rows)
+        late=next(r for r in rows if r['event']=='native_response_expired_before_action')
+        assert late['wall_time']==received and late['response']==response and late['wall_deadline']==10.
 
 
 def test_fault_while_busy_stays_fault_instead_of_pending():

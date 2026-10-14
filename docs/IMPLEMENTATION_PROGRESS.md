@@ -7,12 +7,12 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | 任务 | 当前状态与实际进展 | 尚待完成 |
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设及可执行校验 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
-| T02 | 进行中：原失败复现；独立图像 contour-v3 修复，完整 T2 新构建成功 | 静态 OFFLINE24 跟踪/执行与实际清理已过；模型漏检、移动目标与 live 门禁仍未关闭 |
-| T03 | 新CPU4干净29TU构建与显式v3异步进度；async02有65真实NN stdout、5及时返回/3新帧物理消费，0fault/0fire/clean；stage01计时有70NN/11及时/3消费 | async02 RTF.5475、stage01 .6023均整体FAIL；样本数/物理性能未达门禁，80/150ms保持，不以late/pending/完整stdin ACK计NN或控制通过 |
+| T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
+| T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 导航局部SIL通过；另补通用camera_gimbal_v1能力/源关联、JSONL/ROS/WSL准备层和Qt发现，按能力注册而非三家白名单；同济原模型prepare/reset/clean；PB七包实际构建及三真实节点graph/reset/全树clean | 同济/PB零图像零NN准备阶段；导航单车/单代/单目标30s；自瞄第二完整实现、原80ms闭环、原C板feedforward/固件、移动/多车/两机等未验收；旧失败保留 |
+| T07 | 通用camera_gimbal_v1/原源关联/JSONL/ROS/WSL/Qt发现；T2静态live通过；同济原模型prepare/reset；PB七包build与三节点资源graph/reset/clean | PB首帧host序列化或部分WSL请求未完成，尚无图像计算；同济无图像；第二完整live、C板feedforward/固件、移动/多车/两机等未验收 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
@@ -22,17 +22,51 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 最终冻结QA02四步骤0/source unchanged：1648pass/39明确skip/1008subtests；独立peer/资源树/纯ROS源与实际模型准备、构建证据分级保留 | 质量不替live/许可/发布；新CPU4 spec独立于旧42，持续NN负载性能与ROS闭环继续验证；M0–M5仍未签收 |
+| T17 | followup02四步骤0/source unchanged：1745pass/40明确skip/1008subtests；修复前失败、源码归因、三次静态live/资源/构建独立归档 | 质量不替live/许可/发布；PB/Tongji图像链与移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
 | --- | --- | --- |
 | M0 冻结基线 | 未完成 | T01 draft 和未决指标尚未冻结 |
-| M1 自有真实闭环 | 进行中 | 图像修复/物理性能/客户端权限已有局部实测，完整 realtime 链尚未验收 |
+| M1 自有真实闭环 | 进行中 | 自家T2显式配置静态实时链已通过；移动/重捕获/实体射击/可见客户端与完整回归未验收 |
 | M2 通用可替换 | 未完成 | T07–T11 与两机 LAN/第二实现仍缺完整证据 |
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 最新静态实时自瞄与通用层复测
+
+新[逐次验证包](validation/aim_live_followup_20261014/README.md)保留所有原失败、修复前后、真实原图和完整来源。
+自家T2完整原生检测/PnP/跟踪/控制链在本机静态场景连续三次通过 `live_static_chain`：
+
+| 尝试 | 物理RTF | 及时结果 | 独立新帧实际关节消费 | 资格 |
+| --- | --- | --- | --- | --- |
+| lean-before06 | 0.9984405490 | 112 | 103 | 静态实时链通过 |
+| lean-repeat07 | 0.9976797995 | 114 | 100 | 静态实时链通过 |
+| formal-scheduling01 | 0.9971029121 | 107 | 97 | 正式参数入口静态实时链通过 |
+
+六车场景、2ms物理步、1440×1080/15fps单相机、静止red_sentry单算法、原模型/CPU4 ELF与80/150ms保持。
+它们显式使用host CV4、pybase64 1.5.1、CPython切换间隔1ms及Windows authority线程group0/mask0x10，
+未加额外authority计时探针。正式入口实读生效值并finally恢复switch5ms和原mask4294967295；
+没有证明该CPU是P核，没有改变系统电源、优先级或计时器。0adapterfault/0fire/全部owned资源clean。
+迟到NN仍留在原帧并拒绝，pending不计及时推理/动作；这些结果不表示全部NN小于80ms、命中精度、
+可见Qt桌面、移动/多车自瞄、实体射击、整场比赛或硬件通过。默认调度配置仍未取得相同资格。
+
+本轮修复原tracker失锁时的 `[null,null,null]` 向量：仅tracking=false允许完整空三元组，active/partial-null仍拒绝；
+保留真实无目标状态，不补角度。runtime先完成分离的消费metadata，再取实际消费时刻重查门限，receipt不再共享可变字典。
+源槽收到已过原deadline的返回只保存原响应并返回无动作pending，不再记及时native_result；owned stop取消不再冒充算法fault。
+WSL JSONL的STOP检查按本地5ms最佳努力调度，原Event取消即时检查，完整身份/有界清理不变；新增固定scalar IO清理证据。
+实际两项无害Win→WSL进程树生命周期复测8.9329773s/exit0/reaped/原source不变，不是NN或实时控制验收。
+
+PB三真实节点资源已启动，但首帧未通过。controlled尝试在host序列化时过期，完整请求只有prepare/reset；
+新fast受控尝试显式CV4/pybase64/1ms后capture→public16.3977ms、act入口30.4881ms，原80ms仍queue.Empty。
+Linux只收部分act字节：43chunks/2334917bytes（含prepare/reset）、complete_requests=2，无完整act、无SourceArmors/Target/compute。
+故未取得该图像的MLP/PnP结果或云台动作；prepare4.0485265s/reset55.7953ms、原模型/source03保持、相机/全部节点clean、设置恢复。
+离线保存DTO编码对照只证明相同wire/像素，不作为推理或实时改善因果证据。同济仍仅实际模型prepare/reset，无真实图像闭环。
+
+最终QA followup02四步exit0/source unchanged，1745passed/40明确skip/1008subtests/6既有warnings；
+driver159.0866653s/reaped，pytest129.71s。首轮QA因新增原提取测试未归因失败也保留，补显式源码变更记录后再运行；
+原EXTRACTION基线不改。质量检查不替代上述live、第二实现、完整比赛、发布或M0–M5签收。
 
 ## 最新代码与证据：ROS2及实时入口修复
 

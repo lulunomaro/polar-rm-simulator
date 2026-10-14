@@ -236,7 +236,17 @@ class NativeSourceAdapter(BaseAdapter):
                     wall_clock='host_perf_counter',reason=response.reason,request_id=response.request_id,
                     complete_stdin_ack=response.submitted,**trace_identity))
                 return aim_status_for(o,'pending_result')
-        if self.trace:self.trace(dict(event='native_result',wall_time=time.perf_counter(),wall_clock='host_perf_counter',response=response,**trace_identity))
+        received_wall=time.perf_counter() if asynchronous or self.trace else None
+        if asynchronous and received_wall>=o['wall_deadline']:
+            # The reader may receive valid original stdout just before expiry
+            # while this slot regains the GIL afterwards. Preserve that response
+            # on its original frame, but do not publish it as a timely result or
+            # derive an actuator command. Runtime still checks delivery/consume.
+            if self.trace:self.trace(dict(event='native_response_expired_before_action',
+                wall_time=received_wall,wall_clock='host_perf_counter',response=response,**trace_identity))
+            from .aim_contracts import aim_status_for
+            return aim_status_for(o,'pending_result')
+        if self.trace:self.trace(dict(event='native_result',wall_time=received_wall,wall_clock='host_perf_counter',response=response,**trace_identity))
         age=response.get('target_age_s')
         active=(response.get('should_control') is True and response.get('observation_shoot_allowed') is True and type(age) in (int,float) and math.isfinite(age) and 0<=age<=.08)
         if not active:return hold()

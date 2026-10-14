@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_host_scheduling.py",
+    "tests/test_platform_aim_prepare_cli.py",
+    "tests/test_platform_wsl_navigation_cli.py",
+    "tests/test_wsl_native_live_classification.py",
+    "-q",
+    "--capture=tee-sys",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\host-scheduling-cli-20261014-after01\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "scope": "Pure contract/CLI mocks plus actual harmless Windows current-thread affinity; no WSL/ROS/NN/GL/physics"
+}

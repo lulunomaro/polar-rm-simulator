@@ -1,0 +1,160 @@
+"""Root-only real first exposure; strict original deadlines, resource scope only."""
+import argparse,base64,hashlib,json,sys,time,traceback
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def write(path,value):Path(path).write_bytes((json.dumps(value,allow_nan=False,indent=2,sort_keys=True)+'\n').encode())
+SOURCE=['rm_match/platform_v2/camera.py','rm_match/platform_v2/backend.py','rm_match/platform_v2/contracts.py',
+ 'rm_match/deployment/wsl_jsonl.py','rm_match/integrations/pb_aim_engine.py','rm_match/integrations/pb_aim_ros_peer.py',
+ 'rm_match/integrations/pb_aim_stack.py','rm_match/integrations/aim_jsonl_peer.py','rm_match/integrations/aim_camera_codec.py',
+ 'rm_match/platform_v2/host_opencv.py','rm_match/platform_v2/host_scheduling.py','rm_match/platform_v2/base64_codec.py']
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--label',required=True);p.add_argument('--manifest',type=Path,required=True)
+ a=p.parse_args()
+ if not __import__('re').fullmatch('[a-z0-9_-]{1,60}',a.label):raise ValueError('fresh label')
+ if a.manifest.resolve().parent!=Path(__file__).parent/('registered_'+a.label):raise ValueError('fresh same-label registration from this probe directory required')
+ out=Path(__file__).parent/('host_'+a.label)
+ if out.exists():raise ValueError('fresh host probe label required')
+ out.mkdir();started=time.perf_counter();before={r:sha(ROOT/r) for r in SOURCE}
+ refs=[a.manifest,ROOT/'artifacts/pb2025-aim-source-20261014-03/SOURCE_MANIFEST.json',
+  ROOT/'artifacts/aim-mount-calibration-20261014-03/MOUNTS.json',Path(__file__),Path(__file__).parent/'peer_bootstrap.py',Path(__file__).parent/'register_linux.py',Path(__file__).parent/'controlled_scene.py']
+ ref_before={str(r):sha(r) for r in refs}
+ result=dict(success=False,qualification='resource first-frame only; no SDK lease/control consumption or live80 qualification',
+  context=dict(robot_id='blue_hero',episode=0,binding_epoch=1),physics_steps=0,image_captures=0,act_calls=0,
+  response_applied=False,software_fire=False,model_inference_count=None,
+  model_proof='Unknown until exact nonempty original SourceArmors is archived; empty/absent callback does not prove zero inference')
+ prepared=adapter=backend=provider=switch=cv=None;packet=observation=None;raw_rgb=None;opencv_original=None
+ try:
+  # Imports/setup before actual exposure are not inference or dummy input.
+  from rm_match.deployment.wsl_jsonl import PreparedWslAimPlugins
+  from rm_match.platform_v2.backend import MuJoCoBackend
+  from rm_match.platform_v2.camera import CameraProvider
+  from rm_match.platform_v2.contracts import build_observation
+  from rm_match.platform_v2.host_opencv import configure_opencv_threads
+  from rm_match.platform_v2.host_scheduling import PythonSwitchInterval
+  from PIL import Image
+  switch=PythonSwitchInterval(1.);switch.__enter__()
+  import cv2 as cv
+  opencv_original=cv.getNumThreads()
+  result['host_opencv']=configure_opencv_threads(4)
+  result['requested_local_settings']=dict(host_opencv_threads=4,raw_base64_codec='pybase64_1_5_1',python_switch_interval_ms=1.,
+   linux_algorithm_threads_unchanged=True,scenario_and_thresholds_unchanged=True,
+   experiment='explicit multi-setting resource candidate; not isolated single-factor causal proof')
+  prepared=PreparedWslAimPlugins.__new__(PreparedWslAimPlugins)
+  t=time.perf_counter();prepared.__init__(a.manifest,repo_root=ROOT,shared_root=out/'owned',clock=time.perf_counter,startup_timeout=15.)
+  result['prepare_seconds']=time.perf_counter()-t
+  adapter=prepared.take('custom_pb_aim',prepared.sha);result['manifest_sha256']=prepared.sha
+  t=time.perf_counter();adapter.reset(result['context']);result['reset_seconds']=time.perf_counter()-t
+  backend=MuJoCoBackend(camera=True)
+  from controlled_scene import place_target
+  # Public fixture truth stays in evaluator setup and this separate archive;
+  # build_observation still uses only actual own sensors and actual RGB.
+  scene=place_target(backend);write(out/'SCENE.json',scene)
+  result['scene']='controlled_own_camera_forward_target_body_2_3m_not_default_attempt1'
+  provider=CameraProvider(backend._sim,clock=time.perf_counter,total_fps=15.,max_views=1,raw_base64_codec='pybase64_1_5_1')
+  result['checked_raw_encoder_metadata']=dict(provider._raw_encoder_metadata)
+  provider.start();limit=time.perf_counter()+5.
+  while provider.renderer_identity is None:
+   if provider.error is not None:raise RuntimeError('actual renderer setup: '+provider.error)
+   if time.perf_counter()>=limit:raise TimeoutError('zero-exposure renderer setup')
+   time.sleep(.001)
+  if provider.capture_count!=0:raise RuntimeError('unexpected prewarm exposure')
+  result['renderer_identity']=provider.renderer_identity
+  # One actual neutral 2ms physics step avoids ROS stamp zero (=latest TF).
+  # No returned action is ever applied; no scene/target/gimbal reset is made.
+  backend.step({r:dict(motion=None,gimbal=None,fire=False) for r in backend.robot_ids});result['physics_steps']=1
+  rid='blue_hero';raw=backend.sensor_sample(rid);consumer=('watch','resource_first_frame',1)
+  t=time.perf_counter();provider.capture_from_authority(backend._sim,{rid:{consumer}})
+  result['capture_request_wall']=t;result['image_captures']=provider.capture_count
+  if provider.capture_count!=1:raise RuntimeError('one actual exposure required')
+  while True:
+   packet=provider.sensor_packet(rid,backend.episode,consumer,backend.sim_time,.08)
+   if packet['camera']['available']:break
+   if packet['camera']['reason'] not in ('waiting_for_camera',):raise TimeoutError('original camera admission: '+packet['camera']['reason'])
+   if time.perf_counter()-t>=.08:raise TimeoutError('original 80ms publication budget')
+   time.sleep(.0005)
+  budget=packet['budget'];result['budget']=budget;result['public_camera_received_wall']=time.perf_counter()
+  # Deadline stays the original exposure+.08, also bounded by original .15.
+  deadline=min(budget['wall_deadline'],time.perf_counter()+.15)
+  observation=build_observation(raw,binding_epoch=1,observed_seq=1,wall_deadline=deadline,camera=packet['camera'])
+  result['observation_built_wall']=time.perf_counter()
+  if time.perf_counter()>=deadline:raise TimeoutError('original exposure expired before act')
+  result['act_enter_wall']=time.perf_counter();result['act_calls']=1
+  reply=adapter.act(observation);result['act_return_wall']=time.perf_counter();result['reply']=reply
+  result['reply_within_original_deadline']=result['act_return_wall']<deadline
+  result['success']=result['reply_within_original_deadline'] and result['reset_seconds']<=2.
+ except BaseException as exc:
+  result['failure_wall']=time.perf_counter();result['error']=type(exc).__name__+':'+str(exc)
+  (out/'FAILED_TRACEBACK.txt').write_text(traceback.format_exc(),encoding='utf-8')
+  if hasattr(exc,'cleanup_status'):result['failure_cleanup_status']=exc.cleanup_status
+ finally:
+  # All image serialization/evidence IO is after the original act/failure.
+  # If publication was late, archive it read-only; never submit/relabel it.
+  if provider is not None:
+   if packet is None or packet['camera'].get('available') is not True:
+    # A failed admission may still have the one actual encoded cache. This
+    # reference is archived only; it never returns to an algorithm/gate.
+    with provider.lock:
+     cached=provider.cache.get('blue_hero')
+     if cached is not None:
+      cap=cached['capture'];packet=dict(camera=cached['camera'],budget=dict(robot_id=cap.robot_id,episode=cap.episode,
+       frame_id=cap.frame_seq,capture_wall=cap.wall_time,capture_sim_time=cap.sim_time,
+       wall_deadline=cap.wall_time+.08,sim_deadline=cap.sim_time+.08))
+      result['archive_only_cache_after_failed_admission']=True
+   provider.stop()
+   try:
+    result['camera_worker_reaped']=provider.wait_closed(2.)
+    result['camera_status']=provider.status();result['camera_timings']=provider.timing_report()
+   except BaseException:result['success']=False;(out/'CAMERA_CLOSE_TRACEBACK.txt').write_text(traceback.format_exc())
+  if adapter is not None:
+   try:adapter.close()
+   except BaseException:result['success']=False;(out/'CLOSE_TRACEBACK.txt').write_text(traceback.format_exc())
+   result['cleanup']=adapter.shutdown_status
+   if not result['cleanup'] or result['cleanup'].get('clean') is not True:result['success']=False
+  if prepared is not None and hasattr(prepared,'instances'):
+   instances=dict(prepared.instances)
+   try:prepared.close_unclaimed()
+   except BaseException:result['success']=False;(out/'UNCLAIMED_TRACEBACK.txt').write_text(traceback.format_exc())
+   result['unclaimed_cleanup']={k:v.shutdown_status for k,v in instances.items()}
+  if backend is not None:
+   try:result['actual_final_sim_time']=backend.sim_time;backend.close()
+   except BaseException:result['success']=False;(out/'BACKEND_CLOSE_TRACEBACK.txt').write_text(traceback.format_exc())
+  if provider is not None and result.get('checked_raw_encoder_metadata'):
+   try:
+    metadata=result['checked_raw_encoder_metadata'];after_hash=sha(metadata['extension_path'])
+    result['raw_encoder_extension_sha256_after']=after_hash
+    result['raw_encoder_extension_unchanged']=after_hash==metadata['extension_sha256']
+    if not result['raw_encoder_extension_unchanged']:result['success']=False
+   except BaseException:result['success']=False;(out/'ENCODER_IDENTITY_TRACEBACK.txt').write_text(traceback.format_exc())
+  if cv is not None and opencv_original is not None:
+   try:
+    result['host_opencv_after_compute']=cv.getNumThreads()
+    if result.get('host_opencv') and result['host_opencv_after_compute']!=result['host_opencv']['effective_threads']:
+     result['success']=False
+    cv.setNumThreads(opencv_original);restored=cv.getNumThreads()
+    result['host_opencv_restoration']=dict(original_threads=opencv_original,restored_threads=restored,restored=restored==opencv_original)
+    if restored!=opencv_original:result['success']=False
+   except BaseException:result['success']=False;(out/'OPENCV_RESTORE_TRACEBACK.txt').write_text(traceback.format_exc())
+  if switch is not None:
+   try:switch.close()
+   except BaseException:result['success']=False;(out/'SWITCH_RESTORE_TRACEBACK.txt').write_text(traceback.format_exc())
+   result['host_python_switch_interval']=dict(switch.record)
+   if not switch.record.get('restored'):result['success']=False
+  try:
+   if observation is not None:write(out/'OBSERVATION.json',observation)
+   if packet is not None and packet['camera'].get('available') is True:
+    camera=packet['camera'];image=camera['image'];raw_rgb=base64.b64decode(image['data_base64'],validate=True)
+    (out/'capture.rgb').write_bytes(raw_rgb);Image.frombytes('RGB',(image['width'],image['height']),raw_rgb).save(out/'capture.png')
+    write(out/'CAPTURE.json',dict(camera={k:v for k,v in camera.items() if k!='image'},image={k:v for k,v in image.items() if k!='data_base64'},
+     budget=packet['budget'],rgb_sha256=hashlib.sha256(raw_rgb).hexdigest(),bytes=len(raw_rgb),
+     archived_after_act_or_failure=True,never_resent=True))
+   result['source_before']=before;result['source_after']={r:sha(ROOT/r) for r in SOURCE}
+   result['ref_before']=ref_before;result['ref_after']={str(r):sha(r) for r in refs}
+   result['source_unchanged']=result['source_before']==result['source_after'] and result['ref_before']==result['ref_after']
+   if not result['source_unchanged'] or result.get('camera_worker_reaped') is not True:result['success']=False
+   result['elapsed_including_cleanup_seconds']=time.perf_counter()-started
+   write(out/'PROBE_RESULT.json',result);print(json.dumps(result,allow_nan=False),flush=True)
+  except BaseException:
+   result['success']=False;(out/'ARCHIVE_TRACEBACK.txt').write_text(traceback.format_exc());write(out/'PROBE_RESULT.json',result)
+ return 0 if result['success'] else 2
+if __name__=='__main__':raise SystemExit(main())

@@ -1,0 +1,146 @@
+F............FF                                                          [100%]
+================================== FAILURES ===================================
+_ test_original_lost_target_is_a_completed_inference_then_next_source_recovers _
+
+    def test_original_lost_target_is_a_completed_inference_then_next_source_recovers():
+        h,_=header();model=worker.NativeComputeSlot();model.begin(h,10.)
+>       value=lost_target_response();result=model.complete(value,10.04)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_wsl_aim_async.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\integrations\wsl_aim_async_worker.py:144: in complete
+    self.check_watchdog(now);response=checked_response(response,self.current)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+response = {'status': 'ok', 'runner_identity': 'rmcs-sim-operator-fov-v1', 'clock_time_ns': 422000000, 'direction_frame': 'world', ...}
+header = {'schema': 'polar.sim.wsl-async-aim.v1', 'event': 'control', 'id': 1, 'image_bytes': 4665600, ...}
+
+    def checked_response(response,header):
+        if type(response) is not dict:raise ValueError('async_native_response_type')
+        def finite_tree(value):
+            if type(value) is float and not math.isfinite(value):raise ValueError('async_native_nonfinite')
+            if type(value) is dict:
+                for v in value.values():finite_tree(v)
+            if type(value) is list:
+                for v in value:finite_tree(v)
+        finite_tree(response)
+        packet=header['packet']
+        if 'time_s' in response and (type(response['time_s']) not in (int,float)
+            or not math.isfinite(response['time_s']) or response['time_s']!=packet['time_s']):
+            raise ValueError('async_native_response_time')
+        if (response.get('status')!='ok' or response.get('runner_identity')!='rmcs-sim-operator-fov-v1'
+            or type(response.get('clock_time_ns')) is not int or response['clock_time_ns']!=packet['control_time_ns']
+            or response.get('direction_frame')!='world' or type(response.get('tracking')) is not bool
+            or response.get('detector_executed') is not True or response.get('frame_accepted') is not True
+            or type(response.get('inference_calls')) is not int or response['inference_calls']<1):
+            raise ValueError('async_native_response_identity_or_execution')
+        for k in ('direction','robot_center'):
+            values=response.get(k)
+            if type(values) is not list or len(values)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in values):
+>               raise ValueError('async_native_direction')
+E               ValueError: async_native_direction
+
+rm_match\integrations\wsl_aim_async_worker.py:116: ValueError
+__ test_host_lost_target_keeps_original_context_and_late_disposition[False] ___
+
+tmp_path = WindowsPath('C:/Users/lulu/AppData/Local/Temp/pytest-of-lulu/pytest-111/test_host_lost_target_keeps_or0')
+late = False
+
+    @pytest.mark.parametrize('late',[False,True])
+    def test_host_lost_target_keeps_original_context_and_late_disposition(tmp_path,late):
+        a=actor(tmp_path);h,_=header();slot(a,h,abandoned=late)
+        message=reply(h);message['response']=lost_target_response()
+        with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.13 if late else 100.04):
+>           a._handle_message(message)
+
+tests\test_wsl_aim_async.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\integrations\wsl_aim_async.py:117: in _handle_message
+    response=checked_response(message.get('response'),h)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+response = {'status': 'ok', 'runner_identity': 'rmcs-sim-operator-fov-v1', 'clock_time_ns': 422000000, 'direction_frame': 'world', ...}
+header = {'schema': 'polar.sim.wsl-async-aim.v1', 'event': 'control', 'id': 1, 'image_bytes': 4665600, ...}
+
+    def checked_response(response,header):
+        if type(response) is not dict:raise ValueError('async_native_response_type')
+        def finite_tree(value):
+            if type(value) is float and not math.isfinite(value):raise ValueError('async_native_nonfinite')
+            if type(value) is dict:
+                for v in value.values():finite_tree(v)
+            if type(value) is list:
+                for v in value:finite_tree(v)
+        finite_tree(response)
+        packet=header['packet']
+        if 'time_s' in response and (type(response['time_s']) not in (int,float)
+            or not math.isfinite(response['time_s']) or response['time_s']!=packet['time_s']):
+            raise ValueError('async_native_response_time')
+        if (response.get('status')!='ok' or response.get('runner_identity')!='rmcs-sim-operator-fov-v1'
+            or type(response.get('clock_time_ns')) is not int or response['clock_time_ns']!=packet['control_time_ns']
+            or response.get('direction_frame')!='world' or type(response.get('tracking')) is not bool
+            or response.get('detector_executed') is not True or response.get('frame_accepted') is not True
+            or type(response.get('inference_calls')) is not int or response['inference_calls']<1):
+            raise ValueError('async_native_response_identity_or_execution')
+        for k in ('direction','robot_center'):
+            values=response.get(k)
+            if type(values) is not list or len(values)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in values):
+>               raise ValueError('async_native_direction')
+E               ValueError: async_native_direction
+
+rm_match\integrations\wsl_aim_async_worker.py:116: ValueError
+___ test_host_lost_target_keeps_original_context_and_late_disposition[True] ___
+
+tmp_path = WindowsPath('C:/Users/lulu/AppData/Local/Temp/pytest-of-lulu/pytest-111/test_host_lost_target_keeps_or1')
+late = True
+
+    @pytest.mark.parametrize('late',[False,True])
+    def test_host_lost_target_keeps_original_context_and_late_disposition(tmp_path,late):
+        a=actor(tmp_path);h,_=header();slot(a,h,abandoned=late)
+        message=reply(h);message['response']=lost_target_response()
+        with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.13 if late else 100.04):
+>           a._handle_message(message)
+
+tests\test_wsl_aim_async.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\integrations\wsl_aim_async.py:117: in _handle_message
+    response=checked_response(message.get('response'),h)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+response = {'status': 'ok', 'runner_identity': 'rmcs-sim-operator-fov-v1', 'clock_time_ns': 422000000, 'direction_frame': 'world', ...}
+header = {'schema': 'polar.sim.wsl-async-aim.v1', 'event': 'control', 'id': 1, 'image_bytes': 4665600, ...}
+
+    def checked_response(response,header):
+        if type(response) is not dict:raise ValueError('async_native_response_type')
+        def finite_tree(value):
+            if type(value) is float and not math.isfinite(value):raise ValueError('async_native_nonfinite')
+            if type(value) is dict:
+                for v in value.values():finite_tree(v)
+            if type(value) is list:
+                for v in value:finite_tree(v)
+        finite_tree(response)
+        packet=header['packet']
+        if 'time_s' in response and (type(response['time_s']) not in (int,float)
+            or not math.isfinite(response['time_s']) or response['time_s']!=packet['time_s']):
+            raise ValueError('async_native_response_time')
+        if (response.get('status')!='ok' or response.get('runner_identity')!='rmcs-sim-operator-fov-v1'
+            or type(response.get('clock_time_ns')) is not int or response['clock_time_ns']!=packet['control_time_ns']
+            or response.get('direction_frame')!='world' or type(response.get('tracking')) is not bool
+            or response.get('detector_executed') is not True or response.get('frame_accepted') is not True
+            or type(response.get('inference_calls')) is not int or response['inference_calls']<1):
+            raise ValueError('async_native_response_identity_or_execution')
+        for k in ('direction','robot_center'):
+            values=response.get(k)
+            if type(values) is not list or len(values)!=3 or any(type(v) not in (int,float) or not math.isfinite(v) for v in values):
+>               raise ValueError('async_native_direction')
+E               ValueError: async_native_direction
+
+rm_match\integrations\wsl_aim_async_worker.py:116: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_wsl_aim_async.py::test_original_lost_target_is_a_completed_inference_then_next_source_recovers
+FAILED tests/test_wsl_aim_async.py::test_host_lost_target_keeps_original_context_and_late_disposition[False]
+FAILED tests/test_wsl_aim_async.py::test_host_lost_target_keeps_original_context_and_late_disposition[True]
+3 failed, 12 passed, 41 deselected in 0.92s

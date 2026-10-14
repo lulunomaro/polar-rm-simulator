@@ -1,0 +1,243 @@
+{
+  "schema": "polar.pb-aim-controlled-fast-readonly-audit.v1",
+  "attempt": "fast controlled attempt1",
+  "actual_result": "FAIL",
+  "evidence_scope": "Resource first exposure only; no SDK/live NN qualification",
+  "original_host_clock": "Windows perf_counter/QPC",
+  "actual_host_times": {
+    "public_camera_received_wall": 38850.6349958,
+    "observation_built_wall": 38850.6490838,
+    "act_enter_wall": 38850.6490862,
+    "failure_wall": 38851.0307859
+  },
+  "original_budget": {
+    "capture_sim_time": 0.002,
+    "capture_wall": 38850.6185981,
+    "episode": 0,
+    "frame_id": 1,
+    "robot_id": "blue_hero",
+    "sim_deadline": 0.082,
+    "wall_deadline": 38850.6985981
+  },
+  "host_metrics": {
+    "capture_to_public_ms": 16.397699997469317,
+    "capture_to_act_ms": 30.48809999745572,
+    "remaining_at_act_ms": 49.51190000429051
+  },
+  "previous_controlled_metrics": {
+    "capture_to_public_ms": 37.87710000324296,
+    "capture_to_act_ms": 50.38060000515543,
+    "remaining_at_act_ms": 29.6193999965908
+  },
+  "positive_observed_differences_ms": {
+    "capture_to_public_saved": 21.47940000577364,
+    "capture_to_act_saved": 19.89250000769971,
+    "more_budget_at_act": 19.89250000769971
+  },
+  "difference_limits": "Two distinct runs/combined host settings; observational improvements, not isolated causal factor or NN/closedloop success.",
+  "actual_error": "Empty:",
+  "failure_time_scope": "Caller failure includes synchronous owned close; not inference latency",
+  "actual_rgb": {
+    "bytes": 4665600,
+    "sha256": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0",
+    "encoding": "rgb8",
+    "width": 1440,
+    "height": 1080,
+    "decoded_exact_actual_archive": true,
+    "previous_controlled_pixels_same": true
+  },
+  "serialized_wire": {
+    "default_ascii": true,
+    "allow_nan": false,
+    "newline": true,
+    "archived_order_reconstruction": {
+      "bytes": 6225301,
+      "sha256": "3c8e173159fc78f425cf29ab3d2d0ee8bc598608436b21ae32a930015d79b30b"
+    },
+    "producer_source_order_reconstruction": {
+      "bytes": 6225301,
+      "sha256": "6c3e7088d1b751cb9b576e9b5ac23deb5acfa8f7c34a95850cf2395b53874278"
+    },
+    "original_values_and_exact_types_unchanged": true,
+    "limitation": "Original full wire SHA/bytes were not logged at enqueue. These are read-only deterministic reconstructions; neither was sent. Producer order derives from recorded frozen source. No assertion of captured full OS write or prefix SHA is made."
+  },
+  "actual_linux_io": {
+    "clock": "linux_monotonic",
+    "input_chunks": 43,
+    "input_bytes": 2334917,
+    "complete_requests": 2,
+    "last_request": {
+      "first_read_wall": 15.594277036,
+      "last_read_wall": 15.627529186,
+      "queued_wall": null,
+      "peer_write_completed_wall": null,
+      "response_received_wall": null
+    },
+    "stop_file_checks": 551,
+    "stop_check_cost_s": 2.074552985000018
+  },
+  "linux_partial_request": {
+    "original_prepare_reset_bytes": 197,
+    "partial_act_bytes": 2334720,
+    "partial_act_chunks": 41,
+    "remaining_bytes": 3890581,
+    "fraction_received": 0.37503728735365566,
+    "first_read_local": 15.594277036,
+    "last_read_local": 15.627529186,
+    "observed_read_span_ms": 33.252150000000924,
+    "limitation": "Read span only; includes gaps/polls/scheduling. Not a HostQPC-aligned transfer interval and not pure syscall time."
+  },
+  "pipeline": {
+    "complete_peer_line_indexes": [
+      1,
+      2
+    ],
+    "complete_worker_requests": 2,
+    "full_act_delivered": false,
+    "engine_compute_entered": false,
+    "source_armors": 0,
+    "source_target": 0,
+    "observer_summary": {
+      "total": 0,
+      "dropped": 0,
+      "writer_reaped": true,
+      "error": null,
+      "evidence_scope": "read-only callbacks during original exchange; no postdeadline reads, no approximate source matching"
+    },
+    "this_exposure_triggered_NN": false,
+    "inference_statement": "Partial JSONL never queued/forwarded, no complete third peer line or compute/decode. No inference was invoked by this exposure; no claim about unrelated model execution.",
+    "no_inference_latency_measurement": true
+  },
+  "actual_settings": {
+    "host_opencv": {
+      "action": "set_num_threads",
+      "before_threads": 32,
+      "effective_threads": 4,
+      "environment_changed": false,
+      "images_processed": 0,
+      "inference_calls": 0,
+      "linux_native_changed": false,
+      "module_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Lib\\site-packages\\cv2\\__init__.py",
+      "opencv_version": "5.0.0",
+      "process_id": 58712,
+      "qualification": "Verified host OpenCV API setup only; no camera/native/live performance acceptance",
+      "requested_threads": 4,
+      "schema": "polar.sim.host-opencv-threads.v1",
+      "scope": "host_camera_lenswarp_and_color_conversion"
+    },
+    "host_opencv_after_compute": 4,
+    "opencv_restore": {
+      "original_threads": 32,
+      "restored": true,
+      "restored_threads": 32
+    },
+    "switch": {
+      "applied": true,
+      "effective_ms": 1.0,
+      "enabled": true,
+      "original_ms": 5.0,
+      "requested_ms": 1.0,
+      "restored": true,
+      "restored_ms": 5.0,
+      "schema": "polar.host.python-switch-interval.v1",
+      "scope": "Current owned CPython process only"
+    },
+    "raw_encoder": {
+      "codec": "pybase64_1_5_1",
+      "extension_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Lib\\site-packages\\pybase64\\_pybase64.cp312-win_amd64.pyd",
+      "extension_sha256": "2b9cfb88f2a2318a6e6d021dc78d86fa6e472e7d988e4ab9525796c4c65b712d",
+      "function": "b64encode_as_string",
+      "module": "pybase64._pybase64",
+      "version": "1.5.1"
+    },
+    "encoder_extension_unchanged": true
+  },
+  "actual_cleanup": {
+    "camera_thread_reaped": true,
+    "host_clean": true,
+    "linux_clean": true,
+    "linux_remaining_members": [],
+    "forced_kill": false,
+    "original_three_node_births": {
+      "495": 1391,
+      "496": 1391,
+      "497": 1391
+    }
+  },
+  "lifetime_STOP": {
+    "checks": 551,
+    "total_seconds": 2.074552985000018,
+    "mean_cost_ms": 3.765068938294044,
+    "limitation": "Lifetime across startup/prepare/reset/camera waiting/partial act/stop, NOT this exposure or per-act sum."
+  },
+  "source_before": {
+    "rm_match/deployment/wsl_jsonl.py": "2bb62b663c525dcec11bed01331d58f9132967a32a6eac9199bbbb74535afec9",
+    "rm_match/integrations/aim_camera_codec.py": "c2d789b8bd73b51a0108aa076ef353cd8f6affe7fb1e3178d91b2781b8a0ec7a",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/pb_aim_engine.py": "3bb6598c2a6f941cc44a5cfb990412ce81b66a6c7cc2ee42aca2e82cab4543c6",
+    "rm_match/integrations/pb_aim_ros_peer.py": "436c4d53a9ef103293c1620e37f1aaaa02904bb1abd22f054c593e93b6e6260a",
+    "rm_match/integrations/pb_aim_stack.py": "dd3eb61e8dad6d0042ac85e7cd7b728af7f6d0f28ca0fb03dbc7cfa155edc2ac",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/base64_codec.py": "575d17d4d8b6663bea06fc443e28233de3209e6fec28f9bb634554c3c4aa3d1f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/host_opencv.py": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05",
+    "rm_match/platform_v2/host_scheduling.py": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c"
+  },
+  "source_after": {
+    "rm_match/deployment/wsl_jsonl.py": "2bb62b663c525dcec11bed01331d58f9132967a32a6eac9199bbbb74535afec9",
+    "rm_match/integrations/aim_camera_codec.py": "c2d789b8bd73b51a0108aa076ef353cd8f6affe7fb1e3178d91b2781b8a0ec7a",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/pb_aim_engine.py": "3bb6598c2a6f941cc44a5cfb990412ce81b66a6c7cc2ee42aca2e82cab4543c6",
+    "rm_match/integrations/pb_aim_ros_peer.py": "436c4d53a9ef103293c1620e37f1aaaa02904bb1abd22f054c593e93b6e6260a",
+    "rm_match/integrations/pb_aim_stack.py": "dd3eb61e8dad6d0042ac85e7cd7b728af7f6d0f28ca0fb03dbc7cfa155edc2ac",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/base64_codec.py": "575d17d4d8b6663bea06fc443e28233de3209e6fec28f9bb634554c3c4aa3d1f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "rm_match/platform_v2/host_opencv.py": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05",
+    "rm_match/platform_v2/host_scheduling.py": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c"
+  },
+  "host_source_unchanged": true,
+  "source_ref_unchanged": true,
+  "driver_source_unchanged": true,
+  "driver_stages": [
+    {
+      "stage": 1,
+      "returncode": 0,
+      "reaped": true,
+      "elapsed_s": 10.67048899999645
+    },
+    {
+      "stage": 2,
+      "returncode": 2,
+      "reaped": true,
+      "elapsed_s": 6.228325199997926
+    }
+  ],
+  "next_minimal_steps": [
+    {
+      "kind": "hypothesis/code fact, not measured causal conclusion",
+      "proposal": "For an incomplete line, check LF only in newly received part (or maintain bounded scan offset). Current b'\\n' in whole growing buffer revisits prior bytes on each chunk. Keep exact full-line strict JSON, oversize/tail/concurrency/EOF rejection."
+    },
+    {
+      "kind": "hypothesis needing request-scoped evidence",
+      "proposal": "Measure stop poll count/cost deltas for this original partial request and host enqueue/write durations. Current 5ms period and ~3.765ms lifetime mean lstat can consume substantial budget, but lifetime total cannot be attributed to this frame. Use owned local cancellation channel while retaining durable run/SHA STOP and original cleanup deadlines if optimizing."
+    },
+    {
+      "kind": "observed mechanical cost, not this-run phase attribution",
+      "proposal": "Host still serializes 6.22MB public base64 DTO. Saved CPU evidence showed decode~7.5ms plus serialization~11ms and one30ms tail. Add enqueue/serialize/writer scalar timing before considering a separately declared typed byte transport; retain exact public validation/source identity, immutable pixels/SHA and original host cutoff."
+    }
+  ],
+  "no_new_execution": {
+    "WSL": false,
+    "ROS": false,
+    "GL": false,
+    "NN": false,
+    "model": false,
+    "benchmark": false,
+    "resend": false
+  },
+  "no_foreign_clock_subtraction": true,
+  "all_original_input_files_unchanged": true
+}

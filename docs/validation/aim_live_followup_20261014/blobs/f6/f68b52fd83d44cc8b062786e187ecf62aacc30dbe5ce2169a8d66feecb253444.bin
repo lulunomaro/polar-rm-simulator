@@ -1,0 +1,3 @@
+[RMCS-PRODUCTION-INFERENCE] {"schema":"rmcs.production-inference-threads.v1","startup":true,"native_ticks":0,"inference_calls":0,"clock_domain":"linux_steady_startup_only","linux_steady_ns":5919181373,"requested_threads":4,"effective_threads":4,"execution_cpu_only":true,"num_streams":1,"latency":true,"f32":true,"enable_cpu_pinning":true,"any_core":true,"cv_num_threads":32,"error":null}
+tracking mode switched to multi_ekf
+Init OK with INFANTRY_3

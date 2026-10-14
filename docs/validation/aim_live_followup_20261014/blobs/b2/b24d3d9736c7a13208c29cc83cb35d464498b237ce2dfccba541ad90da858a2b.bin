@@ -1,0 +1,1384 @@
+{
+  "schema": "polar.live.native-pixel-audit.v1",
+  "clean": true,
+  "proofs": [
+    {
+      "frame_id": 8,
+      "original_capture_wall": 33269.2525597,
+      "original_capture_sim_time": 0.47200000000000036,
+      "original_control_time_ns": 484000000,
+      "observation_sim_time": 0.4840000000000004,
+      "request_identities": [
+        {
+          "observed_seq": 10,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "6e039caf9c9737c85bf2bb44128152021cf210ca1edf65d1ca5231e92defb745",
+      "derived_rgb_sha256": "7f7a087fc79c566cdc37e872c1df7e6942b049b61d0eafb093ecb9b88b52425f",
+      "raw_rgb_sha256": "7f7a087fc79c566cdc37e872c1df7e6942b049b61d0eafb093ecb9b88b52425f",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_8.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_8.json",
+      "manifest_sha256": "e0437dac3ff7618febd72bc02b21d7cc90f73cb50507f0dbf13de34b9cc23a7b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 10,
+      "original_capture_wall": 33269.3872959,
+      "original_capture_sim_time": 0.5920000000000004,
+      "original_control_time_ns": 608000000,
+      "observation_sim_time": 0.6080000000000004,
+      "request_identities": [
+        {
+          "observed_seq": 12,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "ee1911401f1d9a691730181748ef40bd405de14b3f2aab9594dde1668881b92d",
+      "derived_rgb_sha256": "ff32b1c0cb262639d47c8005b4895ef69948c6ee7d3d88d1de212366a64fe0d0",
+      "raw_rgb_sha256": "ff32b1c0cb262639d47c8005b4895ef69948c6ee7d3d88d1de212366a64fe0d0",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_10.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_10.json",
+      "manifest_sha256": "8a346db5f4b04ce0dd0b28b8c8153ecb6f7526325f14d8bf410309c2b034d696",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 11,
+      "original_capture_wall": 33269.4561179,
+      "original_capture_sim_time": 0.6300000000000004,
+      "original_control_time_ns": 650000000,
+      "observation_sim_time": 0.6500000000000005,
+      "request_identities": [
+        {
+          "observed_seq": 13,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "55a62fe8365e04b0367fd6d1d23be726cae3968f20c83566d111498d65d841ba",
+      "derived_rgb_sha256": "63851bbfb1f3642675941085b84c4c59b1e916529620ecb130dfda77f1a9bd16",
+      "raw_rgb_sha256": "63851bbfb1f3642675941085b84c4c59b1e916529620ecb130dfda77f1a9bd16",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_11.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_11.json",
+      "manifest_sha256": "82bf0baae7d2ffb2c921032749198071fadeea2be39185c1fbde9474e5737662",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 13,
+      "original_capture_wall": 33269.589732,
+      "original_capture_sim_time": 0.7240000000000005,
+      "original_control_time_ns": 742000000,
+      "observation_sim_time": 0.7420000000000005,
+      "request_identities": [
+        {
+          "observed_seq": 15,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "b3ee8db30649407b8a61580f8e0e2933c6f9bd2f2ec76228ac77e99ea7886526",
+      "derived_rgb_sha256": "d1727fa7b9c66c01f4de7560c50118eac5c31023a473f20fe0bd3cf3f94a4e85",
+      "raw_rgb_sha256": "d1727fa7b9c66c01f4de7560c50118eac5c31023a473f20fe0bd3cf3f94a4e85",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_13.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_13.json",
+      "manifest_sha256": "89bbbb50e42ab3c21af50e9b5ae3d01b5b33f2845f516133c62eaf7753264d0c",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 14,
+      "original_capture_wall": 33269.6571472,
+      "original_capture_sim_time": 0.7900000000000006,
+      "original_control_time_ns": 804000000,
+      "observation_sim_time": 0.8040000000000006,
+      "request_identities": [
+        {
+          "observed_seq": 17,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "13c9006f04d7f13e8a3fd31c74ebaf96c5ef843e88a2246089c09722dad98ccd",
+      "derived_rgb_sha256": "7e378e035c3f2fe2d6a538c78c96f8568cc428372dbc4920bbc2771747087b3f",
+      "raw_rgb_sha256": "7e378e035c3f2fe2d6a538c78c96f8568cc428372dbc4920bbc2771747087b3f",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_14.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_14.json",
+      "manifest_sha256": "2e6cbf9323499aadb44bb5e9328985963400c3d31696e0d5b23c9c0de814637f",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 16,
+      "original_capture_wall": 33269.7933583,
+      "original_capture_sim_time": 0.8840000000000007,
+      "original_control_time_ns": 898000000,
+      "observation_sim_time": 0.8980000000000007,
+      "request_identities": [
+        {
+          "observed_seq": 19,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "0b1017c2a102b702320c58ec6d00658bd732d35d337f8edcffe6f8f3462a38ea",
+      "derived_rgb_sha256": "5d3ac3a3367db17d1117c596698db5613eda9096c40055048eb5bec289bdf5b8",
+      "raw_rgb_sha256": "5d3ac3a3367db17d1117c596698db5613eda9096c40055048eb5bec289bdf5b8",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_16.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_16.json",
+      "manifest_sha256": "1246f004f168fa83b8fb025c9d6aff286d2dc53cd5ea54327ce4525399ae35ea",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 18,
+      "original_capture_wall": 33269.9291946,
+      "original_capture_sim_time": 0.9820000000000008,
+      "original_control_time_ns": 998000000,
+      "observation_sim_time": 0.9980000000000008,
+      "request_identities": [
+        {
+          "observed_seq": 22,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "09c0141bd2c0e5bf7dc4a0fec4f1eeea25a195ad2723ebdebce00e3ebbc25498",
+      "derived_rgb_sha256": "eae905464884e926e8355da4dcf6ddcd44225fddcfceadbdd49a35ec3f070164",
+      "raw_rgb_sha256": "eae905464884e926e8355da4dcf6ddcd44225fddcfceadbdd49a35ec3f070164",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_18.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_18.json",
+      "manifest_sha256": "cfe2929d2663ce7a9149f9fecffec763a569716ee2b3c04e9f73ea25802648d1",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 19,
+      "original_capture_wall": 33269.9973015,
+      "original_capture_sim_time": 1.0280000000000007,
+      "original_control_time_ns": 1046000000,
+      "observation_sim_time": 1.0460000000000007,
+      "request_identities": [
+        {
+          "observed_seq": 23,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "6d9c9489fd038ad63558bb7c59e580a7e17872f315c7dfb92d3ebb0ba5c542c0",
+      "derived_rgb_sha256": "b81187e7a076355790abdf8e9aea685aff8c7f9f6d37cea53d16a9eb8ac32c71",
+      "raw_rgb_sha256": "b81187e7a076355790abdf8e9aea685aff8c7f9f6d37cea53d16a9eb8ac32c71",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_19.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_19.json",
+      "manifest_sha256": "bb6da94473cf2d831705b84b0bb24b245d8fe464f4ba695384ead34abc42e7ab",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 21,
+      "original_capture_wall": 33270.1333896,
+      "original_capture_sim_time": 1.1220000000000008,
+      "original_control_time_ns": 1138000000,
+      "observation_sim_time": 1.1380000000000008,
+      "request_identities": [
+        {
+          "observed_seq": 25,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "e67d1de9ef136ef25c8cc446672a48a17672b8908eb5f334c8452edd48fa6545",
+      "derived_rgb_sha256": "973d8bafedc112e4641d21a03b04ca74483e25fdebcd3e1df2913f1579dfb211",
+      "raw_rgb_sha256": "973d8bafedc112e4641d21a03b04ca74483e25fdebcd3e1df2913f1579dfb211",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_21.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_21.json",
+      "manifest_sha256": "3b251d9536f3da992a0db403bf166e40165eb6c3c2a84570c0c997a14beda24b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 23,
+      "original_capture_wall": 33270.2681317,
+      "original_capture_sim_time": 1.2120000000000009,
+      "original_control_time_ns": 1232000000,
+      "observation_sim_time": 1.2320000000000009,
+      "request_identities": [
+        {
+          "observed_seq": 27,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "09cc0dfb422a103d6fea0d20e7dd0ca9422f73c919849b9b5bd24bcf0c5a31bd",
+      "derived_rgb_sha256": "3fe73c8bb490f5c73b00965b335445f312e0f0f49171d102f8f6247809b445bb",
+      "raw_rgb_sha256": "3fe73c8bb490f5c73b00965b335445f312e0f0f49171d102f8f6247809b445bb",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_23.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_23.json",
+      "manifest_sha256": "fed09c4a115ff24ba14da0cd7f6db0c65afa419bf7a25dfb5109c97c50e53647",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 25,
+      "original_capture_wall": 33270.4036656,
+      "original_capture_sim_time": 1.294000000000001,
+      "original_control_time_ns": 1312000000,
+      "observation_sim_time": 1.312000000000001,
+      "request_identities": [
+        {
+          "observed_seq": 29,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "1528036ba293bc41db1e58458ea3d56d30b99c59cf24304128b10fa13a4e9df0",
+      "derived_rgb_sha256": "0afbe9fd8f0e3b48b8f72744fee4125851af4462340b4a97eff83a2fec1a326f",
+      "raw_rgb_sha256": "0afbe9fd8f0e3b48b8f72744fee4125851af4462340b4a97eff83a2fec1a326f",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_25.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_25.json",
+      "manifest_sha256": "ea37c12b611163eb0d75d04d6efe26dfd7b6e451e70a39049db7e485546129f5",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 26,
+      "original_capture_wall": 33270.4707306,
+      "original_capture_sim_time": 1.344000000000001,
+      "original_control_time_ns": 1362000000,
+      "observation_sim_time": 1.362000000000001,
+      "request_identities": [
+        {
+          "observed_seq": 30,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "39b8e640ce3c32674f33b79dec89f54a01d7e0206a2b2607a78a9fa52035b930",
+      "derived_rgb_sha256": "78724b4ce406a3b0ee52e8714a32380d8a338c67c77159d1fdc7d029408b5742",
+      "raw_rgb_sha256": "78724b4ce406a3b0ee52e8714a32380d8a338c67c77159d1fdc7d029408b5742",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_26.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_26.json",
+      "manifest_sha256": "a2d30ace63fb5be80c4798a260fcfc8d5b628d115b0ae5952b5f1f34e0164822",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 28,
+      "original_capture_wall": 33270.605985,
+      "original_capture_sim_time": 1.440000000000001,
+      "original_control_time_ns": 1456000000,
+      "observation_sim_time": 1.456000000000001,
+      "request_identities": [
+        {
+          "observed_seq": 33,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "cca47614f3f7782f7d30dca45cbf07f50fe6502cd99be4ef95cbb8aa16b3ab8f",
+      "derived_rgb_sha256": "ef444473094702b37f944ab94c0d08b840c42fab487c2e8fded879b0b5f87afe",
+      "raw_rgb_sha256": "ef444473094702b37f944ab94c0d08b840c42fab487c2e8fded879b0b5f87afe",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_28.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_28.json",
+      "manifest_sha256": "3fe5b45dbe93b320ac3c42c2acc2cc3d9e276c41facf9e0911e3f4a84cc0dbd2",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 30,
+      "original_capture_wall": 33270.7415794,
+      "original_capture_sim_time": 1.5420000000000011,
+      "original_control_time_ns": 1556000000,
+      "observation_sim_time": 1.5560000000000012,
+      "request_identities": [
+        {
+          "observed_seq": 35,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "0e12bc06212f554b00c9a2a2739eefa661e6eabceb0bec8276dba3b4a946b401",
+      "derived_rgb_sha256": "74844fb49c6ed929e441091ee5090d10f1a6b49e3d1c2dbe7f2ccfa67523349b",
+      "raw_rgb_sha256": "74844fb49c6ed929e441091ee5090d10f1a6b49e3d1c2dbe7f2ccfa67523349b",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_30.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_30.json",
+      "manifest_sha256": "f0db025250b24430d1716a424364dc5a88a90c574817c4ef9237d9f6af65c15b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 32,
+      "original_capture_wall": 33270.875478,
+      "original_capture_sim_time": 1.6320000000000012,
+      "original_control_time_ns": 1650000000,
+      "observation_sim_time": 1.6500000000000012,
+      "request_identities": [
+        {
+          "observed_seq": 37,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "055a9924f3ec948e1be571e7a84652cb082c986afaa12d8a909db643c1a450d6",
+      "derived_rgb_sha256": "ee17efa7c1befd43eb0e0f85ef3997058462011c58b6d7d47949c9edb8ceec54",
+      "raw_rgb_sha256": "ee17efa7c1befd43eb0e0f85ef3997058462011c58b6d7d47949c9edb8ceec54",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_32.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_32.json",
+      "manifest_sha256": "b73a51869ed5b0c11610ed4cecc4996b846a342d3177c7e6ab1bd818454fc5c0",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 34,
+      "original_capture_wall": 33271.0112578,
+      "original_capture_sim_time": 1.7300000000000013,
+      "original_control_time_ns": 1744000000,
+      "observation_sim_time": 1.7440000000000013,
+      "request_identities": [
+        {
+          "observed_seq": 39,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "a8b0f8dda5634b46415f47bb6d832c2af99e1f2427bde93116be163bed1318c9",
+      "derived_rgb_sha256": "881d1a01fb2d4f36cb53aeb55ea3407e70abaa54baabfa676242d8ab21d2111c",
+      "raw_rgb_sha256": "881d1a01fb2d4f36cb53aeb55ea3407e70abaa54baabfa676242d8ab21d2111c",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_34.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_34.json",
+      "manifest_sha256": "5216051f9420bedc902dc0b01d660cc1686a40cf62e1cadac3b3c7fadc61766b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 35,
+      "original_capture_wall": 33271.0789124,
+      "original_capture_sim_time": 1.7760000000000014,
+      "original_control_time_ns": 1794000000,
+      "observation_sim_time": 1.7940000000000014,
+      "request_identities": [
+        {
+          "observed_seq": 40,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "9083306605585804976e4a1ee1c6615a88ff62a9bf62e1fc213f139586fdc52e",
+      "derived_rgb_sha256": "7322a5a7546daab5471a92270f2c3364226f641adb7d05bffe90ff52e80d491a",
+      "raw_rgb_sha256": "7322a5a7546daab5471a92270f2c3364226f641adb7d05bffe90ff52e80d491a",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_35.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_35.json",
+      "manifest_sha256": "84f2f319a4f7ae22abd7443d49272f6cdd7db5b398d667c63402efedd1be6074",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 37,
+      "original_capture_wall": 33271.2144417,
+      "original_capture_sim_time": 1.8820000000000014,
+      "original_control_time_ns": 1900000000,
+      "observation_sim_time": 1.9000000000000015,
+      "request_identities": [
+        {
+          "observed_seq": 42,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "de02e49006ccd85f8e609dd1cacf7f8c1fff4a4de2a6e63eed96cf07be5a4976",
+      "derived_rgb_sha256": "8766817b02bf3e8e9b1fd075bb5827093ebc33cc71bb1b7f7111f86538f6b019",
+      "raw_rgb_sha256": "8766817b02bf3e8e9b1fd075bb5827093ebc33cc71bb1b7f7111f86538f6b019",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_37.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_37.json",
+      "manifest_sha256": "2a2bb5e29003b381f68cd92316e47f8ab2e084dbfd1f007d1ac25888586b881d",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 38,
+      "original_capture_wall": 33271.2825995,
+      "original_capture_sim_time": 1.9380000000000015,
+      "original_control_time_ns": 1950000000,
+      "observation_sim_time": 1.9500000000000015,
+      "request_identities": [
+        {
+          "observed_seq": 43,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "35ff3c95b3a9f995194ed6e28476b1d163ec8d90137fb25542f7c97733d48c99",
+      "derived_rgb_sha256": "8b47f9624183eada7974dd9df43d34fedf0f4529b91f96a883f531c281e136b9",
+      "raw_rgb_sha256": "8b47f9624183eada7974dd9df43d34fedf0f4529b91f96a883f531c281e136b9",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_38.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_38.json",
+      "manifest_sha256": "6dfdb9df5b440d92c1ad92e89382aca1990ff3b6bfd899d761b8dfda026953a2",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 40,
+      "original_capture_wall": 33271.4190107,
+      "original_capture_sim_time": 2.037999999999997,
+      "original_control_time_ns": 2052000000,
+      "observation_sim_time": 2.0519999999999956,
+      "request_identities": [
+        {
+          "observed_seq": 45,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "4f184496fd0c2ce9a70ebfe9a004afbe059b784215862199b4ec5a7931aa5b47",
+      "derived_rgb_sha256": "a1b08d9ed801941fc7b9d90d6e314dc087e9ea2bb3787920912e10680a0bf5d3",
+      "raw_rgb_sha256": "a1b08d9ed801941fc7b9d90d6e314dc087e9ea2bb3787920912e10680a0bf5d3",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_40.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_40.json",
+      "manifest_sha256": "73bac650b10d9129709ba1cf47f6adfb34988477825b6ce4ea2a28d630b99be2",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 42,
+      "original_capture_wall": 33271.5553151,
+      "original_capture_sim_time": 2.1419999999999857,
+      "original_control_time_ns": 2160000000,
+      "observation_sim_time": 2.1599999999999837,
+      "request_identities": [
+        {
+          "observed_seq": 48,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "f5bbbef75c9ae51642e9c322f63359167b60ef4536e8fad9c62c82d6be24f9b2",
+      "derived_rgb_sha256": "967f32d10ca9fdc8090165bf9b1ea83c7ecedc168b3174ba20f609a855eaaf94",
+      "raw_rgb_sha256": "967f32d10ca9fdc8090165bf9b1ea83c7ecedc168b3174ba20f609a855eaaf94",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_42.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_42.json",
+      "manifest_sha256": "06958d8fb25f7f01135ca9cca6174a0a387e33b88a8e99a8c775adebf7c0fdb6",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 43,
+      "original_capture_wall": 33271.6226884,
+      "original_capture_sim_time": 2.1959999999999797,
+      "original_control_time_ns": 2214000000,
+      "observation_sim_time": 2.2139999999999778,
+      "request_identities": [
+        {
+          "observed_seq": 50,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "36e82eba618449f80b706d08f137c72292a071d463a6b1b497431b4df78d6d8d",
+      "derived_rgb_sha256": "47c26beaca4d9e135e685c25d6d3929805f83d4058c95be2b24c9dd7dab3bf2e",
+      "raw_rgb_sha256": "47c26beaca4d9e135e685c25d6d3929805f83d4058c95be2b24c9dd7dab3bf2e",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_43.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_43.json",
+      "manifest_sha256": "1a0813c9c0253394477007ba1927405b2b0d02ace70ff038f7087d10bee887d2",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 45,
+      "original_capture_wall": 33271.7576179,
+      "original_capture_sim_time": 2.2979999999999685,
+      "original_control_time_ns": 2314000000,
+      "observation_sim_time": 2.3139999999999668,
+      "request_identities": [
+        {
+          "observed_seq": 52,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "0587d24df5e285a43ba6183db6335fceac78178983157789183e097654eef6ed",
+      "derived_rgb_sha256": "ae87e73b2ca6c4d4d6538d4867848f9936b1a940dcffac178734a74b12d457fc",
+      "raw_rgb_sha256": "ae87e73b2ca6c4d4d6538d4867848f9936b1a940dcffac178734a74b12d457fc",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_45.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_45.json",
+      "manifest_sha256": "8c26e55f94da283e1f6af779c5b12adf78f0156803109a1718ee474d5569c70c",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 47,
+      "original_capture_wall": 33271.8919289,
+      "original_capture_sim_time": 2.403999999999957,
+      "original_control_time_ns": 2420000000,
+      "observation_sim_time": 2.419999999999955,
+      "request_identities": [
+        {
+          "observed_seq": 54,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "e58ec4d8a348092fd1a8bfd87b9fd6c5da20246d27e982befee4d1266c2880c4",
+      "derived_rgb_sha256": "40092648c22d91126136ea334fca48595e7ae59fe78efa5ea270359d15783b40",
+      "raw_rgb_sha256": "40092648c22d91126136ea334fca48595e7ae59fe78efa5ea270359d15783b40",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_47.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_47.json",
+      "manifest_sha256": "f1ec624ae820bfa7b30656a5365e3e362377310827547955f20d49e748a9b632",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 49,
+      "original_capture_wall": 33272.0288235,
+      "original_capture_sim_time": 2.5059999999999456,
+      "original_control_time_ns": 2522000000,
+      "observation_sim_time": 2.521999999999944,
+      "request_identities": [
+        {
+          "observed_seq": 56,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "0d67f1f928a5d5ed31d53a39f45d4d8d240d7d602173a660a087007c1165e2ee",
+      "derived_rgb_sha256": "83e2cec6f919c57b30f153434290d2898b4f05d80de00b55d270cdf25bc79b54",
+      "raw_rgb_sha256": "83e2cec6f919c57b30f153434290d2898b4f05d80de00b55d270cdf25bc79b54",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_49.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_49.json",
+      "manifest_sha256": "83b6fd81c194a18bdcad1af7630a2928026ef4dd946b8a2dc14e23aee46b81de",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 50,
+      "original_capture_wall": 33272.0954911,
+      "original_capture_sim_time": 2.5619999999999394,
+      "original_control_time_ns": 2578000000,
+      "observation_sim_time": 2.5779999999999377,
+      "request_identities": [
+        {
+          "observed_seq": 57,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "105716e5d2b1b0c2f5e8739bb9a52395acdd3ee3f82b99923aa7aef117977260",
+      "derived_rgb_sha256": "30773c3051019dac3cd5be30954c8ad530ea377afb71cbd08bcd6aac995a6e2f",
+      "raw_rgb_sha256": "30773c3051019dac3cd5be30954c8ad530ea377afb71cbd08bcd6aac995a6e2f",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_50.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_50.json",
+      "manifest_sha256": "e864579739c448b91c05c7fa5c4525909fe04eeeead52e8bf7ba37f0a7ad61b8",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 52,
+      "original_capture_wall": 33272.2306498,
+      "original_capture_sim_time": 2.6679999999999278,
+      "original_control_time_ns": 2682000000,
+      "observation_sim_time": 2.681999999999926,
+      "request_identities": [
+        {
+          "observed_seq": 59,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "8f0e63e1a788de8ce4ec12f6cc797c22eab83c5f9b9125d1eb7f5a76971d3263",
+      "derived_rgb_sha256": "f98a100488a218aa43497ccb5ce93eb1959bfa00f64061fd83e0060d5145d217",
+      "raw_rgb_sha256": "f98a100488a218aa43497ccb5ce93eb1959bfa00f64061fd83e0060d5145d217",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_52.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_52.json",
+      "manifest_sha256": "e8857e1e429b962178a9a9b93d53b1694ee4e8f4d09e06e05df9f5122a8c5ea4",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 54,
+      "original_capture_wall": 33272.3683812,
+      "original_capture_sim_time": 2.7779999999999156,
+      "original_control_time_ns": 2792000000,
+      "observation_sim_time": 2.791999999999914,
+      "request_identities": [
+        {
+          "observed_seq": 61,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "6b58bb5d3be3d9a33c73a30348db0a8f16267853134365837f506781865a7794",
+      "derived_rgb_sha256": "7f08c80448f1384cc20e59916bb9f9987971ae475facab8cbe28ca8e4ed2ebb6",
+      "raw_rgb_sha256": "7f08c80448f1384cc20e59916bb9f9987971ae475facab8cbe28ca8e4ed2ebb6",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_54.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_54.json",
+      "manifest_sha256": "0fa9d4570a8100830f878fc60eda079fd728b42a8032aa7817c1c879d2dcaafe",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 55,
+      "original_capture_wall": 33272.437278,
+      "original_capture_sim_time": 2.8339999999999095,
+      "original_control_time_ns": 2846000000,
+      "observation_sim_time": 2.845999999999908,
+      "request_identities": [
+        {
+          "observed_seq": 62,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "673054ce307beea220edf50f9de3e2360662c929b720d0e5633ec4846d775919",
+      "derived_rgb_sha256": "d50d518f49c67c2c199a4008b23519e2726764c6d00a1f829484ad79b51e0e9b",
+      "raw_rgb_sha256": "d50d518f49c67c2c199a4008b23519e2726764c6d00a1f829484ad79b51e0e9b",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_55.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_55.json",
+      "manifest_sha256": "bac7f6ccf0daf248473fb2f648d289b27ed7cec921b906ee7d6ff084907a65da",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 57,
+      "original_capture_wall": 33272.571966,
+      "original_capture_sim_time": 2.937999999999898,
+      "original_control_time_ns": 2960000000,
+      "observation_sim_time": 2.9599999999998956,
+      "request_identities": [
+        {
+          "observed_seq": 65,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "7ad5280b6e2edfb0287e123332ad04d308f0e523d6c1e7f898afcf79d4371094",
+      "derived_rgb_sha256": "8e2b5b04697a6c5a96065a0a28d611a258095748ee69daaca783cf85171d914c",
+      "raw_rgb_sha256": "8e2b5b04697a6c5a96065a0a28d611a258095748ee69daaca783cf85171d914c",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_57.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_57.json",
+      "manifest_sha256": "5f9c79b67ba6ec38b5a7426f53eab8b3367315eaf95f245dc722ecebd98cec09",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 58,
+      "original_capture_wall": 33272.6405324,
+      "original_capture_sim_time": 2.999999999999891,
+      "original_control_time_ns": 3016000000,
+      "observation_sim_time": 3.0159999999998894,
+      "request_identities": [
+        {
+          "observed_seq": 67,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "aa8a669f989419bfb4b65e9635947d2c0fedea2537d0bf47f18dd3577861af5f",
+      "derived_rgb_sha256": "0fb9a8564ec153ea58d9e269951b65a555b77a5c25ed65fe007a3d3c7f630f0e",
+      "raw_rgb_sha256": "0fb9a8564ec153ea58d9e269951b65a555b77a5c25ed65fe007a3d3c7f630f0e",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_58.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_58.json",
+      "manifest_sha256": "0b4d59a6f03dbb73e892b64d7ab8a790bd09e0b5ff8537550f5ce577da4eab02",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 60,
+      "original_capture_wall": 33272.7770796,
+      "original_capture_sim_time": 3.1079999999998793,
+      "original_control_time_ns": 3120000000,
+      "observation_sim_time": 3.119999999999878,
+      "request_identities": [
+        {
+          "observed_seq": 69,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "8b2a92940cc525c576bbc764a206de6fc20ad166e83decfa475d9fe05667f0ff",
+      "derived_rgb_sha256": "e1e0043642cd6ef20e41179dec5d56916a9b105369ec5b5741723edbc9bafb95",
+      "raw_rgb_sha256": "e1e0043642cd6ef20e41179dec5d56916a9b105369ec5b5741723edbc9bafb95",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_60.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_60.json",
+      "manifest_sha256": "72874dd41390c8c32e0b03dcff9c42efbd1d8ef5ec29831e8685dfd187fbb4e5",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 62,
+      "original_capture_wall": 33272.9123303,
+      "original_capture_sim_time": 3.2059999999998685,
+      "original_control_time_ns": 3224000000,
+      "observation_sim_time": 3.2239999999998665,
+      "request_identities": [
+        {
+          "observed_seq": 72,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "b3f1f1ff9a9e24795c1ad359b7b8e59e248fac30a8a27f1bf84ebd0230fad744",
+      "derived_rgb_sha256": "dd0e2ba7ef13ddc81fa7d6546aa3caad2655867c8de3e7f38b72a38293699635",
+      "raw_rgb_sha256": "dd0e2ba7ef13ddc81fa7d6546aa3caad2655867c8de3e7f38b72a38293699635",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_62.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_62.json",
+      "manifest_sha256": "bd56233f4caf04e6ae4b76a39a287ab2877115767ed56783a57561394aad0b4c",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 64,
+      "original_capture_wall": 33273.0476924,
+      "original_capture_sim_time": 3.309999999999857,
+      "original_control_time_ns": 3328000000,
+      "observation_sim_time": 3.327999999999855,
+      "request_identities": [
+        {
+          "observed_seq": 74,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "a78e1ac2cd0169e12dadcc916cca24d82a1a1a028fe93d858295f0f29755f8bf",
+      "derived_rgb_sha256": "5174d8aa7719d5c179b59070e7357059acd0f6860e70dde75bb675edd01cf34c",
+      "raw_rgb_sha256": "5174d8aa7719d5c179b59070e7357059acd0f6860e70dde75bb675edd01cf34c",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_64.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_64.json",
+      "manifest_sha256": "d3f42434c342558898c74b14f720e9565784bae7fbeb580f7321c7206d76680f",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 66,
+      "original_capture_wall": 33273.1811843,
+      "original_capture_sim_time": 3.4059999999998465,
+      "original_control_time_ns": 3424000000,
+      "observation_sim_time": 3.4239999999998445,
+      "request_identities": [
+        {
+          "observed_seq": 76,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "eed4e2db8f1c6e9dd4896fca4953a320d3b8a59cd90c9cb8a5e1f5e352a6d272",
+      "derived_rgb_sha256": "5058092584ed8470597d2079d6e93b40310bfa773e2af8c09629579ebb80c151",
+      "raw_rgb_sha256": "5058092584ed8470597d2079d6e93b40310bfa773e2af8c09629579ebb80c151",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_66.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_66.json",
+      "manifest_sha256": "e83cd869d0a503917b7bcf9b5135a8c3b77d9907d510f57bc2352be983181ee0",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 67,
+      "original_capture_wall": 33273.2491449,
+      "original_capture_sim_time": 3.455999999999841,
+      "original_control_time_ns": 3472000000,
+      "observation_sim_time": 3.471999999999839,
+      "request_identities": [
+        {
+          "observed_seq": 77,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "2cfeeba1c25772c1fc6c00b77b0e7b08fb7e9c1438c7bd876bb639706735c7de",
+      "derived_rgb_sha256": "9615facc2c13048842b8c902242fd2b2aff850ee298097153321dd164d1edd9d",
+      "raw_rgb_sha256": "9615facc2c13048842b8c902242fd2b2aff850ee298097153321dd164d1edd9d",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_67.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_67.json",
+      "manifest_sha256": "90309c508f38572008e43500ff93b55ab038c4516e1e81522be8df006441fa65",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 69,
+      "original_capture_wall": 33273.3847341,
+      "original_capture_sim_time": 3.547999999999831,
+      "original_control_time_ns": 3564000000,
+      "observation_sim_time": 3.563999999999829,
+      "request_identities": [
+        {
+          "observed_seq": 79,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "68830f74d1c5731105355bc33673caf37bf0e6cd3d614e370972751f2ed9ffe5",
+      "derived_rgb_sha256": "f2f39397c8bb447c4eb13da3c36eba3d59ec9633dce58076ba6a045fc6f6e82f",
+      "raw_rgb_sha256": "f2f39397c8bb447c4eb13da3c36eba3d59ec9633dce58076ba6a045fc6f6e82f",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_69.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_69.json",
+      "manifest_sha256": "cf3d8e6d4e46cd4a85eb1348c29738cd2f6314bb00ad7d5096aaa40aeaf65ad8",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 71,
+      "original_capture_wall": 33273.5224564,
+      "original_capture_sim_time": 3.635999999999821,
+      "original_control_time_ns": 3656000000,
+      "observation_sim_time": 3.655999999999819,
+      "request_identities": [
+        {
+          "observed_seq": 81,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "730dc3f2c4da7e7491337213fce9bd46d93419a1e0b7862ed4b9a9d54ee2fa92",
+      "derived_rgb_sha256": "f3685db5c0ccd81359bd2ac171fdb394ed42cfee8253824346e2051f5919f6c5",
+      "raw_rgb_sha256": "f3685db5c0ccd81359bd2ac171fdb394ed42cfee8253824346e2051f5919f6c5",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_71.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_71.json",
+      "manifest_sha256": "3b5c3e47920b8f93e40f497ba5070ba9c1151baef24fb90ee1a9f95aaf0c0959",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 72,
+      "original_capture_wall": 33273.58992,
+      "original_capture_sim_time": 3.6859999999998156,
+      "original_control_time_ns": 3700000000,
+      "observation_sim_time": 3.699999999999814,
+      "request_identities": [
+        {
+          "observed_seq": 82,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "735d522c17878468600ac06f0eb6603d08ecda881528b2c2a865ffd50b1fc690",
+      "derived_rgb_sha256": "b63e22872f84324c47e23cdc425fad3090482753594df66dd48bc67c41b35617",
+      "raw_rgb_sha256": "b63e22872f84324c47e23cdc425fad3090482753594df66dd48bc67c41b35617",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_72.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_72.json",
+      "manifest_sha256": "9fa903b06e1525ed3ca1b0dc875aa1729e0f26b9d6b8c33819cd7df3ccda603c",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 74,
+      "original_capture_wall": 33273.7274231,
+      "original_capture_sim_time": 3.789999999999804,
+      "original_control_time_ns": 3802000000,
+      "observation_sim_time": 3.801999999999803,
+      "request_identities": [
+        {
+          "observed_seq": 84,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "fa3fef4d56038684009350ece434a71f3e8c3fe78a2f15abaca77c61e3d470b9",
+      "derived_rgb_sha256": "28d4bd552542b9432ace45e2d44c72ed1760e7a4cf3906c7e1fc30d62286bcc3",
+      "raw_rgb_sha256": "28d4bd552542b9432ace45e2d44c72ed1760e7a4cf3906c7e1fc30d62286bcc3",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_74.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_74.json",
+      "manifest_sha256": "902690cdfa86ff8a3ccd06711512795332bbef217ae3b3bb215af0811fd1721b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 76,
+      "original_capture_wall": 33273.8639777,
+      "original_capture_sim_time": 3.8879999999997934,
+      "original_control_time_ns": 3902000000,
+      "observation_sim_time": 3.901999999999792,
+      "request_identities": [
+        {
+          "observed_seq": 86,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "866fd75a11e83b1575b3010a8fbe929a6cfb0d733692e4fff3bb2f46b9456a4f",
+      "derived_rgb_sha256": "b2891cf62f9de49b19c16629a8e8663db524a7934f3a380f8fd35901c368d3ea",
+      "raw_rgb_sha256": "b2891cf62f9de49b19c16629a8e8663db524a7934f3a380f8fd35901c368d3ea",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_76.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_76.json",
+      "manifest_sha256": "efb7bee76fc23d4465abe982aa1717c2cd3d1aaafee9c936abac34ecb476aab8",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 77,
+      "original_capture_wall": 33273.9326775,
+      "original_capture_sim_time": 3.935999999999788,
+      "original_control_time_ns": 3954000000,
+      "observation_sim_time": 3.953999999999786,
+      "request_identities": [
+        {
+          "observed_seq": 87,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "34bf174e5edc319de5335f641a6378b4e22db8fd5d604a55b4d9fe69885d9b31",
+      "derived_rgb_sha256": "c05b529bb06f85366bae4dabdd15144663dfc5de110476a35cf189bca95e7bb8",
+      "raw_rgb_sha256": "c05b529bb06f85366bae4dabdd15144663dfc5de110476a35cf189bca95e7bb8",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_77.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_77.json",
+      "manifest_sha256": "25d86cb1cdf49f746961c5cf685d8b9e5fdc0d5862a13b6a521de3fe63f6035b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 79,
+      "original_capture_wall": 33274.0683598,
+      "original_capture_sim_time": 4.041999999999777,
+      "original_control_time_ns": 4060000000,
+      "observation_sim_time": 4.059999999999775,
+      "request_identities": [
+        {
+          "observed_seq": 90,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "2f90560a30f604ed3ccd8eaeaf2a075ec48532b4213c5389c392e58feac39aa8",
+      "derived_rgb_sha256": "a655fc03908a5fa40a6ae9686ae7a77948dea14bebbe3c15dc754997eeb53e00",
+      "raw_rgb_sha256": "a655fc03908a5fa40a6ae9686ae7a77948dea14bebbe3c15dc754997eeb53e00",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_79.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_79.json",
+      "manifest_sha256": "06ebb51a3ad2cbc58c1758c7372af1648c4a7c3ddb8fc0c7f319cfe230e2fc35",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 80,
+      "original_capture_wall": 33274.1351538,
+      "original_capture_sim_time": 4.091999999999771,
+      "original_control_time_ns": 4106000000,
+      "observation_sim_time": 4.10599999999977,
+      "request_identities": [
+        {
+          "observed_seq": 91,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "c495bfb671217e28976b600430e2a7da745901dc98a07ff561588ff7b0492e83",
+      "derived_rgb_sha256": "9d790814e7f3f00829581e120e2a70d25d92a91f59dfd3e5f16b499cd78dfc6e",
+      "raw_rgb_sha256": "9d790814e7f3f00829581e120e2a70d25d92a91f59dfd3e5f16b499cd78dfc6e",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_80.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_80.json",
+      "manifest_sha256": "51722b94ab3c72a6adbf6dde527abfaa7cf9401a7b0d911228801640dd08544c",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 82,
+      "original_capture_wall": 33274.2721882,
+      "original_capture_sim_time": 4.173999999999762,
+      "original_control_time_ns": 4192000000,
+      "observation_sim_time": 4.19199999999976,
+      "request_identities": [
+        {
+          "observed_seq": 93,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "f0cdaaba8f71527fa248d84546df8b5a913002d9cf8a25bc3eeebc65e309e138",
+      "derived_rgb_sha256": "1297150928f68ee01ad9998bf4c4e7795054a369d561daa415c91319d8c26ca2",
+      "raw_rgb_sha256": "1297150928f68ee01ad9998bf4c4e7795054a369d561daa415c91319d8c26ca2",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_82.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_82.json",
+      "manifest_sha256": "71e2288e265cd53566b502f0c0196e9532fb08734d6906379fb45cf58b2b0113",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 84,
+      "original_capture_wall": 33274.408077,
+      "original_capture_sim_time": 4.263999999999752,
+      "original_control_time_ns": 4282000000,
+      "observation_sim_time": 4.2819999999997505,
+      "request_identities": [
+        {
+          "observed_seq": 95,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "63b50a7cc3351312ced276b9b0ffaad3b6eaec01a216c4ea24f74d145bdfd2e5",
+      "derived_rgb_sha256": "a1e887c06cb8fb2dfe6c3725225b0324ea176aaf54047c99eff1f481ce73d575",
+      "raw_rgb_sha256": "a1e887c06cb8fb2dfe6c3725225b0324ea176aaf54047c99eff1f481ce73d575",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_84.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_84.json",
+      "manifest_sha256": "e43bfa91bb39d30a18366b4eec29176538a803a40df4c61771d5fb64669eef2b",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 86,
+      "original_capture_wall": 33274.5442267,
+      "original_capture_sim_time": 4.357999999999742,
+      "original_control_time_ns": 4374000000,
+      "observation_sim_time": 4.37399999999974,
+      "request_identities": [
+        {
+          "observed_seq": 97,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "b4c494101605919eb8dc08121e6a1869cc668aee38edee095eea2b536dc0557b",
+      "derived_rgb_sha256": "27799fca24122864a806db42e4b85958e5dbf9417486e1016382e7ebe910a39e",
+      "raw_rgb_sha256": "27799fca24122864a806db42e4b85958e5dbf9417486e1016382e7ebe910a39e",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_86.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_86.json",
+      "manifest_sha256": "c500b2836bc3a63c173be099ed9531cb932dd868854ffe3ce2639a8481161d80",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 88,
+      "original_capture_wall": 33274.6829864,
+      "original_capture_sim_time": 4.461999999999731,
+      "original_control_time_ns": 4478000000,
+      "observation_sim_time": 4.477999999999729,
+      "request_identities": [
+        {
+          "observed_seq": 100,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "09fbc22dab905580e83693723c5590512a2ad024c86c95477bf8fac8c9407acb",
+      "derived_rgb_sha256": "be848d2b3a2b8d598c2b9ed5b44b4329d9649c3cd1f877b0dc0c0f7280fc124e",
+      "raw_rgb_sha256": "be848d2b3a2b8d598c2b9ed5b44b4329d9649c3cd1f877b0dc0c0f7280fc124e",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_88.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_88.json",
+      "manifest_sha256": "e8c0286b0ed4acf898b04097af525133f2b81d2b181d9533714ae5875c26b3b8",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    },
+    {
+      "frame_id": 90,
+      "original_capture_wall": 33274.8196514,
+      "original_capture_sim_time": 4.55999999999972,
+      "original_control_time_ns": 4578000000,
+      "observation_sim_time": 4.577999999999718,
+      "request_identities": [
+        {
+          "observed_seq": 102,
+          "episode": 0,
+          "binding_epoch": 1
+        }
+      ],
+      "native_request_count": 1,
+      "raw_bgr_sha256": "17d8168c920ffb13691519cb1572062af677dafc56ebd93f082200158c54f1c4",
+      "derived_rgb_sha256": "2d99242b049a24fde7c87c76bcf3e0e0d34ae2a25221260e7446dabdfb1b32e6",
+      "raw_rgb_sha256": "2d99242b049a24fde7c87c76bcf3e0e0d34ae2a25221260e7446dabdfb1b32e6",
+      "image": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_90.bgr",
+      "manifest": "native/binding_ebf398cfcd534a9d8ac9993f5be522d9/actual_frames/sensor_90.json",
+      "manifest_sha256": "9c3f8266e8a00f1d299970f9dffd651ef005d9cfb16462e368f97582c0f4d6a8",
+      "image_bytes": 4665600,
+      "shape": [
+        1080,
+        1440,
+        3
+      ],
+      "strategy": "archived_bgr_postclose_exact_channel_swap"
+    }
+  ],
+  "errors": [],
+  "sources": {
+    "ledger_sha256": "7421e8c143243daa61511f2195e9146c440cc6adaf4bb4dab9ee1d7a99a977ce",
+    "frame_bindings_sha256": "a81c71d6af65a448f61e26544954fc33a8365fe84dfb82ef0a176047c10c9e8e"
+  },
+  "strategy": "archived_bgr_postclose_exact_channel_swap"
+}

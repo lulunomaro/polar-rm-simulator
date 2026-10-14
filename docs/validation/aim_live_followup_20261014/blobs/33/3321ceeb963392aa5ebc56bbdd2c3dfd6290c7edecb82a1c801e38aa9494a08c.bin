@@ -1,0 +1,26 @@
+{
+  "scope": "Read-only rejection of an unimplemented revision-only authority-cache proposal; not a current product bug",
+  "source": "actual pure ControlPlane exec observation, tool chunk 8bf7be; no reconstructed raw subprocess log",
+  "renew": {
+    "before_revision": 1,
+    "after_revision": 1,
+    "old_lease_expires": 1001.0,
+    "renewed_lease_expires": 1001.1,
+    "after_actual_expire_revision": 1,
+    "actual_lease_still_owned": true,
+    "cached_expiry_would_reject": true
+  },
+  "stop_empty": {
+    "revision_equal": true,
+    "stopped_before": false,
+    "stopped_after": true
+  },
+  "input_expiry": {
+    "revision_equal": true,
+    "before_input_present": true,
+    "after_input_is_none": true
+  },
+  "implementation_adopted": false,
+  "source_or_tests_modified": false,
+  "qualification_change": false
+}

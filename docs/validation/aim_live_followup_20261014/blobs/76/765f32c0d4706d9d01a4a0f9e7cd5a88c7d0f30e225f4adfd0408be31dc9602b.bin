@@ -1,0 +1,103 @@
+{
+  "scope": "harmless nested-session process ownership only",
+  "leader_exit": false,
+  "source_sha256": {
+    "rm_match/deployment/wsl_jsonl.py": "2bb62b663c525dcec11bed01331d58f9132967a32a6eac9199bbbb74535afec9",
+    "rm_match/deployment/wsl_jsonl_worker.py": "a71fc94ee6718be5190c06c82734d0d26a73c9fcca59b92aeae56f262028b1a4",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48"
+  },
+  "status": {
+    "clean": true,
+    "errors": [],
+    "ownership": {
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "linux": {
+        "event": "cleanup",
+        "run_id": "58c3c7d6eea441dea774fc0cf7544ab2",
+        "spec_sha256": "c33567d53c8f254b3ec512f15dbcf11ccfe16e4cf853d7e08bf282370ad6856a",
+        "hello": {
+          "event": "hello",
+          "run_id": "58c3c7d6eea441dea774fc0cf7544ab2",
+          "spec_sha256": "c33567d53c8f254b3ec512f15dbcf11ccfe16e4cf853d7e08bf282370ad6856a",
+          "worker_pid": 334,
+          "worker_start_ticks": 256,
+          "boot_id": "3676b7ae-509a-4d15-af2c-5fa440162d43",
+          "peer_identity": {
+            "run_id": "f4853b60f4f3450597bd0d281a2dfc7a",
+            "supervisor_pid": 334,
+            "boot_id": "3676b7ae-509a-4d15-af2c-5fa440162d43",
+            "pid": 411,
+            "pgid": 411,
+            "leader_start_ticks": 366
+          },
+          "algorithm_ready": false
+        },
+        "ownership": {
+          "run_id": "f4853b60f4f3450597bd0d281a2dfc7a",
+          "supervisor_pid": 334,
+          "boot_id": "3676b7ae-509a-4d15-af2c-5fa440162d43",
+          "pid": 411,
+          "pgid": 411,
+          "leader_start_ticks": 366,
+          "clean": true,
+          "reaped": true,
+          "group_empty": true,
+          "remaining_members": [],
+          "errors": [],
+          "owned_scope": "birth_bound_descendants_including_nested_sessions",
+          "observed_births": {
+            "411": 366,
+            "413": 390
+          },
+          "reaped_descendants": [
+            {
+              "pid": 413,
+              "start_ticks": 390,
+              "status": 9
+            }
+          ],
+          "killed": true,
+          "cleanup_elapsed_s": 1.183499988
+        },
+        "io_thread_stopped": true,
+        "clean": true,
+        "error_type": null,
+        "io_metrics": {
+          "clock": "linux_monotonic",
+          "input_chunks": 2,
+          "input_bytes": 200,
+          "complete_requests": 2,
+          "last_request": {
+            "first_read_wall": 3.935644782,
+            "last_read_wall": 3.935651858,
+            "queued_wall": 3.93569213,
+            "peer_write_completed_wall": 3.935761042,
+            "response_received_wall": 3.935904933
+          },
+          "stop_file_checks": 36,
+          "stop_check_cost_s": 0.10856327999999982
+        }
+      },
+      "windows": {
+        "clean": true,
+        "reaped": true,
+        "group_empty": true,
+        "active_processes": 0,
+        "returncode": 1,
+        "errors": [],
+        "pid": 20140,
+        "ownership": "suspended_before_execute_job_kill_on_close"
+      },
+      "errors": [],
+      "transport": "wsl_jsonl_v1",
+      "resource_budget_s": 1.5,
+      "run_id": "58c3c7d6eea441dea774fc0cf7544ab2",
+      "stderr_log": "supervisor.stderr.log",
+      "host_stderr_closed": true
+    },
+    "io_thread_stopped": true,
+    "resource_budget_s": 1.5
+  }
+}

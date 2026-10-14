@@ -1,0 +1,46 @@
+"""Saved real DTO CPU mechanics only: never open a peer or resend an image."""
+import argparse,gc,hashlib,json,statistics,sys,time
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--label',required=True);p.add_argument('--run',action='store_true')
+ p.add_argument('--input',type=Path,default=ROOT/'artifacts/pb2025-aim-controlled-probe-20261014-01/host_attempt1/OBSERVATION.json')
+ a=p.parse_args()
+ if not __import__('re').fullmatch('[a-z0-9_-]{1,60}',a.label):raise ValueError('fresh label')
+ if not a.run:print('Read-only actual saved DTO validation/serialization ABBA; --run required. No resend/WSL/ROS/GL/model.');return 0
+ out=Path(__file__).parent/('serialization_'+a.label)
+ if out.exists():raise ValueError('fresh offline output required')
+ out.mkdir();files=[a.input,ROOT/'rm_match/platform_v2/contracts.py',ROOT/'rm_match/platform_v2/host_scheduling.py',Path(__file__)]
+ before={str(path):sha(path) for path in files};raw=a.input.read_bytes();original=json.loads(raw)
+ from rm_match.platform_v2.contracts import validate_observation,IDENTITY
+ from rm_match.platform_v2.host_scheduling import PythonSwitchInterval
+ rows=[];wire_sha=[];original_interval=sys.getswitchinterval();raw_pixel_sha=[]
+ for index,variant in enumerate(['default','switch1','switch1','default']):
+  scope=PythonSwitchInterval(None if variant=='default' else 1.)
+  with scope:
+   counts=gc.get_count();t=time.perf_counter();decoded={};value=validate_observation(original,image_bytes=decoded);validated=time.perf_counter()
+   # Exactly the existing JSONL ASCII-default serialization, never False.
+   wire=(json.dumps(dict(schema='polar.sim.adapter.jsonl.v1',op='act',observation=value),allow_nan=False,separators=(',',':'))+'\n').encode()
+   serialized=time.perf_counter()
+  if value!=original or any(type(value[k]) is not type(original[k]) or value[k]!=original[k] for k in IDENTITY):
+   raise ValueError('original source identity changed')
+  wire_sha.append(hashlib.sha256(wire).hexdigest());raw_pixel_sha.append(hashlib.sha256(decoded['raw']).hexdigest())
+  rows.append(dict(index=index,variant=variant,validate_ms=(validated-t)*1000,
+   json_dump_plus_utf8_ms=(serialized-validated)*1000,total_ms=(serialized-t)*1000,wire_bytes=len(wire),
+   gc_enabled=gc.isenabled(),gc_counts_before=list(counts),gc_counts_after=list(gc.get_count()),scheduling=dict(scope.record)))
+ after={str(path):sha(path) for path in files}
+ summary={name:{field:dict(p50=statistics.median([r[field] for r in rows if r['variant']==name]),
+  max=max(r[field] for r in rows if r['variant']==name),samples=2) for field in ['validate_ms','json_dump_plus_utf8_ms','total_ms']} for name in ['default','switch1']}
+ result=dict(schema='polar.pb-aim-saved-serialization-diagnostic.v1',source_before=before,source_after=after,
+  source_unchanged=before==after,rows=rows,summary=summary,wire_sha256_all_equal=len(set(wire_sha))==1,
+  original_pixel_sha256=raw_pixel_sha[0],decoded_pixel_sha256_all_equal=len(set(raw_pixel_sha))==1,
+  original_identity={k:original[k] for k in IDENTITY},original_deadline_unchanged=True,
+  settings_restored=sys.getswitchinterval()==original_interval,qualification='Pure saved-input CPU mechanics, not live/NN/transport timing',
+  no_execution=dict(peer=False,resend=False,WSL=False,ROS=False,GL=False,NN=False,model=False),
+  limits=['Two retained samples/variant cannot characterize tails','No competing camera/authority threads; switch interval effect may differ live',
+   'Old absolute deadline is only read and unchanged; no authority accepts this saved frame','No ensure_ascii=False change is tested or used'])
+ (out/'RESULT.json').write_bytes((json.dumps(result,indent=2)+'\n').encode());print(json.dumps(result,indent=2))
+ if not (result['source_unchanged'] and result['settings_restored'] and result['wire_sha256_all_equal'] and result['decoded_pixel_sha256_all_equal']):raise ValueError('saved mechanics invariants failed')
+ return 0
+if __name__=='__main__':raise SystemExit(main())

@@ -1,0 +1,39 @@
+{
+  "schema": "polar.pb-aim-resource-static-review.v1",
+  "scripts": {
+    "register_linux.py": {
+      "sha256": "ddf43136fad478686c5a671d9ff67ff11294e5d9ec49c550b13dc6186f97667e",
+      "ast_parse": true,
+      "bytes": 6111
+    },
+    "peer_bootstrap.py": {
+      "sha256": "b7a37c89738f3d978223a9aba655938036a5b1082e46980592548152200f6853",
+      "ast_parse": true,
+      "bytes": 5492
+    },
+    "probe_host.py": {
+      "sha256": "096d4341b9f3c2f14dea3bab7c33bb4cc7d1ddf5c6fd8ff72ed16c8abb8769f6",
+      "ast_parse": true,
+      "bytes": 9215
+    }
+  },
+  "registration_exact_previous_successful_helper": true,
+  "mount_source_current_matches": true,
+  "source03_sha256": "3871fc79ad57946a8dfcdbde50a198f1faf8915bf18b5718f33a966f5ba466ed",
+  "mount03_sha256": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+  "executed_only": [
+    "AST parse",
+    "small static source hash reads"
+  ],
+  "WSL": false,
+  "ROS": false,
+  "GL": false,
+  "NN": false,
+  "actual_test": false,
+  "scope": "Artifacts only; execution exclusively scheduled by root",
+  "gaps": [
+    "No actual snapshot/reply yet",
+    "No NN/PnP execution evidence until exact nonempty sourced armors",
+    "Observer may miss callbacks after host cancellation; absence does not mean no execution"
+  ]
+}

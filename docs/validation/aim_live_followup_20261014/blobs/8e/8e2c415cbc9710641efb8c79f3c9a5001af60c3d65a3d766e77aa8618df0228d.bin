@@ -1,0 +1,347 @@
+{
+  "act_calls": 1,
+  "act_enter_wall": 34027.7105908,
+  "actual_final_sim_time": 0.002,
+  "budget": {
+    "capture_sim_time": 0.002,
+    "capture_wall": 34027.6721023,
+    "episode": 0,
+    "frame_id": 1,
+    "robot_id": "blue_hero",
+    "sim_deadline": 0.082,
+    "wall_deadline": 34027.7521023
+  },
+  "camera_status": {
+    "available": false,
+    "cached": 0,
+    "calibration_resolution_association": "ASSUMED; absent from source YAML",
+    "display_cached": 0,
+    "display_dropped": 0,
+    "display_error": null,
+    "display_pending": 0,
+    "display_running": false,
+    "dropped": 0,
+    "error": null,
+    "max_cached_jpeg_bytes": 2097152,
+    "max_cached_raw_base64_bytes": 6220800,
+    "max_cached_raw_bytes": 4665600,
+    "max_data_buffers": 2,
+    "max_display_encoder_threads": 1,
+    "max_display_pending": 1,
+    "max_display_pending_seen": 1,
+    "max_display_rgb_bytes": 13996800,
+    "max_frame_age_wall_s": 2.5,
+    "max_native_cached_rgb_bytes": 0,
+    "max_pending": 1,
+    "max_renderer_threads": 1,
+    "max_views": 1,
+    "native_cached": 0,
+    "native_pixels_enabled": false,
+    "pending": 0,
+    "raw_base64_codec": "stdlib_chunked",
+    "raw_published": 1,
+    "reason": "runtime_stopped",
+    "rendered": 1,
+    "renderer_identity": {
+      "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+      "vendor": "NVIDIA Corporation",
+      "version": "4.6.0 NVIDIA 596.21"
+    },
+    "running": false,
+    "timing_report_available": true,
+    "total_fps_limit": 15.0
+  },
+  "camera_timings": {
+    "capture_to_display": {
+      "capacity": 4096,
+      "max_s": 0.07698850000451785,
+      "mean_s": 0.07698850000451785,
+      "p50_s": 0.07698850000451785,
+      "p95_s": 0.07698850000451785,
+      "p99_s": 0.07698850000451785,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "capture_to_private_pixels": {
+      "capacity": 4096,
+      "max_s": null,
+      "mean_s": null,
+      "p50_s": null,
+      "p95_s": null,
+      "p99_s": null,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 0,
+      "sample_count": 0
+    },
+    "capture_to_raw": {
+      "capacity": 4096,
+      "max_s": 0.03058749999763677,
+      "mean_s": 0.03058749999763677,
+      "p50_s": 0.03058749999763677,
+      "p95_s": 0.03058749999763677,
+      "p99_s": 0.03058749999763677,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "jpeg_encode": {
+      "capacity": 4096,
+      "max_s": 0.019393299997318536,
+      "mean_s": 0.019393299997318536,
+      "p50_s": 0.019393299997318536,
+      "p95_s": 0.019393299997318536,
+      "p99_s": 0.019393299997318536,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "lens_warp": {
+      "capacity": 4096,
+      "max_s": 0.009199600004649255,
+      "mean_s": 0.009199600004649255,
+      "p50_s": 0.009199600004649255,
+      "p95_s": 0.009199600004649255,
+      "p99_s": 0.009199600004649255,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "raw_encode": {
+      "capacity": 4096,
+      "max_s": 0.015201199996226933,
+      "mean_s": 0.015201199996226933,
+      "p50_s": 0.015201199996226933,
+      "p95_s": 0.015201199996226933,
+      "p99_s": 0.015201199996226933,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "render_queue_wait": {
+      "capacity": 4096,
+      "max_s": 0.000134599999000784,
+      "mean_s": 0.000134599999000784,
+      "p50_s": 0.000134599999000784,
+      "p95_s": 0.000134599999000784,
+      "p99_s": 0.000134599999000784,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "render_readback": {
+      "capacity": 4096,
+      "max_s": 0.0056751999945845455,
+      "mean_s": 0.0056751999945845455,
+      "p50_s": 0.0056751999945845455,
+      "p95_s": 0.0056751999945845455,
+      "p99_s": 0.0056751999945845455,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "render_total": {
+      "capacity": 4096,
+      "max_s": 0.015219000000797678,
+      "mean_s": 0.015219000000797678,
+      "p50_s": 0.015219000000797678,
+      "p95_s": 0.015219000000797678,
+      "p99_s": 0.015219000000797678,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "renderer_init": {
+      "capacity": 4096,
+      "max_s": 0.8713046999982907,
+      "mean_s": 0.8713046999982907,
+      "p50_s": 0.8713046999982907,
+      "p95_s": 0.8713046999982907,
+      "p99_s": 0.8713046999982907,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "scene_update": {
+      "capacity": 4096,
+      "max_s": 0.00015220000204863027,
+      "mean_s": 0.00015220000204863027,
+      "p50_s": 0.00015220000204863027,
+      "p95_s": 0.00015220000204863027,
+      "p99_s": 0.00015220000204863027,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    },
+    "snapshot_copy": {
+      "capacity": 4096,
+      "max_s": 3.619999915827066e-05,
+      "mean_s": 3.619999915827066e-05,
+      "p50_s": 3.619999915827066e-05,
+      "p95_s": 3.619999915827066e-05,
+      "p99_s": 3.619999915827066e-05,
+      "percentile_scope": "latest_retained_samples",
+      "retained_count": 1,
+      "sample_count": 1
+    }
+  },
+  "camera_worker_reaped": true,
+  "capture_request_wall": 34027.6720995,
+  "cleanup": {
+    "clean": true,
+    "errors": [],
+    "io_thread_stopped": true,
+    "ownership": {
+      "clean": true,
+      "errors": [],
+      "group_empty": true,
+      "host_stderr_closed": true,
+      "linux": {
+        "clean": true,
+        "error_type": null,
+        "event": "cleanup",
+        "hello": {
+          "algorithm_ready": false,
+          "boot_id": "044e78af-9943-4763-9c1c-ec32497c9c05",
+          "event": "hello",
+          "peer_identity": {
+            "boot_id": "044e78af-9943-4763-9c1c-ec32497c9c05",
+            "leader_start_ticks": 5095,
+            "pgid": 413,
+            "pid": 413,
+            "run_id": "d248e1eefdc04fcca7002b90e7f85e5d",
+            "supervisor_pid": 317
+          },
+          "run_id": "802cc0c2829a449db9f9c3b02bfb5152",
+          "spec_sha256": "e166bc3b91a112916922cddda909681a1c5393a18c45891bfafb25d46dda88a9",
+          "worker_pid": 317,
+          "worker_start_ticks": 5017
+        },
+        "io_thread_stopped": true,
+        "ownership": {
+          "boot_id": "044e78af-9943-4763-9c1c-ec32497c9c05",
+          "clean": true,
+          "cleanup_elapsed_s": 1.188235450999997,
+          "errors": [],
+          "group_empty": true,
+          "killed": true,
+          "leader_start_ticks": 5095,
+          "observed_births": {
+            "413": 5095,
+            "415": 5470,
+            "416": 5470,
+            "417": 5470
+          },
+          "owned_scope": "birth_bound_descendants_including_nested_sessions",
+          "pgid": 413,
+          "pid": 413,
+          "reaped": true,
+          "reaped_descendants": [
+            {
+              "pid": 415,
+              "start_ticks": 5470,
+              "status": 0
+            },
+            {
+              "pid": 416,
+              "start_ticks": 5470,
+              "status": 0
+            },
+            {
+              "pid": 417,
+              "start_ticks": 5470,
+              "status": 0
+            }
+          ],
+          "remaining_members": [],
+          "run_id": "d248e1eefdc04fcca7002b90e7f85e5d",
+          "supervisor_pid": 317
+        },
+        "run_id": "802cc0c2829a449db9f9c3b02bfb5152",
+        "spec_sha256": "e166bc3b91a112916922cddda909681a1c5393a18c45891bfafb25d46dda88a9"
+      },
+      "reaped": true,
+      "resource_budget_s": 1.5,
+      "run_id": "802cc0c2829a449db9f9c3b02bfb5152",
+      "stderr_log": "supervisor.stderr.log",
+      "transport": "wsl_jsonl_v1",
+      "windows": {
+        "active_processes": 0,
+        "clean": true,
+        "errors": [],
+        "group_empty": true,
+        "ownership": "suspended_before_execute_job_kill_on_close",
+        "pid": 64576,
+        "reaped": true,
+        "returncode": 1
+      }
+    },
+    "resource_budget_s": 1.5
+  },
+  "context": {
+    "binding_epoch": 1,
+    "episode": 0,
+    "robot_id": "blue_hero"
+  },
+  "elapsed_including_cleanup_seconds": 9.132728600001428,
+  "error": "Empty:",
+  "failure_wall": 34028.9765504,
+  "image_captures": 1,
+  "manifest_sha256": "0db5616b9e99604ae78eb3473cbb9e16663eca51780bb2a965e39d74410fb708",
+  "model_inference_count": null,
+  "model_proof": "Unknown until exact nonempty original SourceArmors is archived; empty/absent callback does not prove zero inference",
+  "observation_built_wall": 34027.7105897,
+  "physics_steps": 1,
+  "prepare_seconds": 6.432521599999745,
+  "public_camera_received_wall": 34027.7027756,
+  "qualification": "resource first-frame only; no SDK lease/control consumption or live80 qualification",
+  "ref_after": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\aim-mount-calibration-20261014-03\\MOUNTS.json": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-first-frame-probe-20261014-01\\peer_bootstrap.py": "b7a37c89738f3d978223a9aba655938036a5b1082e46980592548152200f6853",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-first-frame-probe-20261014-01\\probe_host.py": "096d4341b9f3c2f14dea3bab7c33bb4cc7d1ddf5c6fd8ff72ed16c8abb8769f6",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-first-frame-probe-20261014-01\\register_linux.py": "ddf43136fad478686c5a671d9ff67ff11294e5d9ec49c550b13dc6186f97667e",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\SOURCE_MANIFEST.json": "3871fc79ad57946a8dfcdbde50a198f1faf8915bf18b5718f33a966f5ba466ed",
+    "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\AIM_PLUGINS.json": "0db5616b9e99604ae78eb3473cbb9e16663eca51780bb2a965e39d74410fb708"
+  },
+  "ref_before": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\aim-mount-calibration-20261014-03\\MOUNTS.json": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-first-frame-probe-20261014-01\\peer_bootstrap.py": "b7a37c89738f3d978223a9aba655938036a5b1082e46980592548152200f6853",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-first-frame-probe-20261014-01\\probe_host.py": "096d4341b9f3c2f14dea3bab7c33bb4cc7d1ddf5c6fd8ff72ed16c8abb8769f6",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-first-frame-probe-20261014-01\\register_linux.py": "ddf43136fad478686c5a671d9ff67ff11294e5d9ec49c550b13dc6186f97667e",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\SOURCE_MANIFEST.json": "3871fc79ad57946a8dfcdbde50a198f1faf8915bf18b5718f33a966f5ba466ed",
+    "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\AIM_PLUGINS.json": "0db5616b9e99604ae78eb3473cbb9e16663eca51780bb2a965e39d74410fb708"
+  },
+  "renderer_identity": {
+    "renderer": "NVIDIA GeForce RTX 5070 Ti Laptop GPU/PCIe/SSE2",
+    "vendor": "NVIDIA Corporation",
+    "version": "4.6.0 NVIDIA 596.21"
+  },
+  "reset_seconds": 0.043634499998006504,
+  "response_applied": false,
+  "software_fire": false,
+  "source_after": {
+    "rm_match/deployment/wsl_jsonl.py": "45e1f4fed502d665d86359aeff0947ffffcf642473c16602dc7314b75d1cd14d",
+    "rm_match/integrations/aim_camera_codec.py": "c2d789b8bd73b51a0108aa076ef353cd8f6affe7fb1e3178d91b2781b8a0ec7a",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/pb_aim_engine.py": "3bb6598c2a6f941cc44a5cfb990412ce81b66a6c7cc2ee42aca2e82cab4543c6",
+    "rm_match/integrations/pb_aim_ros_peer.py": "436c4d53a9ef103293c1620e37f1aaaa02904bb1abd22f054c593e93b6e6260a",
+    "rm_match/integrations/pb_aim_stack.py": "dd3eb61e8dad6d0042ac85e7cd7b728af7f6d0f28ca0fb03dbc7cfa155edc2ac",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631"
+  },
+  "source_before": {
+    "rm_match/deployment/wsl_jsonl.py": "45e1f4fed502d665d86359aeff0947ffffcf642473c16602dc7314b75d1cd14d",
+    "rm_match/integrations/aim_camera_codec.py": "c2d789b8bd73b51a0108aa076ef353cd8f6affe7fb1e3178d91b2781b8a0ec7a",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/pb_aim_engine.py": "3bb6598c2a6f941cc44a5cfb990412ce81b66a6c7cc2ee42aca2e82cab4543c6",
+    "rm_match/integrations/pb_aim_ros_peer.py": "436c4d53a9ef103293c1620e37f1aaaa02904bb1abd22f054c593e93b6e6260a",
+    "rm_match/integrations/pb_aim_stack.py": "dd3eb61e8dad6d0042ac85e7cd7b728af7f6d0f28ca0fb03dbc7cfa155edc2ac",
+    "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "rm_match/platform_v2/contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631"
+  },
+  "source_unchanged": true,
+  "success": false,
+  "unclaimed_cleanup": {}
+}

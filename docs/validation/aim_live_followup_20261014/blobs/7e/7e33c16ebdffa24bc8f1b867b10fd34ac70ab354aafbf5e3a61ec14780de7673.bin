@@ -1,0 +1,18 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\pb2025-aim-controlled-fast-probe-20261014-01\\diagnose_saved_serialization.py",
+    "--label",
+    "abba01",
+    "--run"
+  ],
+  "exit_code": 0,
+  "completed": true,
+  "wall_seconds": 0.5510798,
+  "source_unchanged": true,
+  "WSL": false,
+  "ROS": false,
+  "GL": false,
+  "NN": false,
+  "qualifying_live_run": false
+}

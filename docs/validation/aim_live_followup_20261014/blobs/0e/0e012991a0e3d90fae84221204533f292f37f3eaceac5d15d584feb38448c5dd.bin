@@ -1,0 +1,9 @@
+from pathlib import Path
+import json,runpy,sys
+ROOT=Path('C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator')
+sys.path.insert(0,str(ROOT))
+original=sys.getswitchinterval()
+sys.setswitchinterval(0.001)
+(ROOT/'artifacts/aim-gil-driver-20261014-production-cpu4-hostcv4-async-gil1ms-fixed02/SCHEDULING_PROFILE.json').write_text(json.dumps(dict(original_switch_interval_s=original,actual_switch_interval_s=sys.getswitchinterval(),qualification="explicit resource scheduling diagnostic; original 80/150ms unchanged"),indent=2))
+sys.argv[0]=str(ROOT/"tools/smoke_wsl_native_live.py")
+runpy.run_path(sys.argv[0],run_name="__main__")

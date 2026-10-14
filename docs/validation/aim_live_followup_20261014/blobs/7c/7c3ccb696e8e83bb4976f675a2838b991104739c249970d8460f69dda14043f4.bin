@@ -1,0 +1,20 @@
+from pathlib import Path
+import hashlib,json,os,subprocess,sys,time
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'artifacts/wsl-jsonl-followup-actual-20261014-01';OUT.mkdir()
+names=['rm_match/deployment/wsl_jsonl.py','rm_match/deployment/wsl_jsonl_worker.py','rm_match/deployment/wsl_jsonl_owned_tree.py','tests/test_wsl_jsonl_actual.py']
+before={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
+existing={p.name for p in (ROOT/'artifacts').glob('wsl-jsonl-harmless-*')}
+env=dict(os.environ);env['POLAR_RUN_WSL_JSONL_ACTUAL']='1';env['POLAR_WSL_JSONL_TEST_PYTHON']='/root/polar-humble-ext4-20261014-01/venv/bin/python'
+cmd=[sys.executable,'-m','pytest','-q','tests/test_wsl_jsonl_actual.py','--junitxml='+str(OUT/'actual.xml')]
+(OUT/'driver.py').write_bytes(Path(__file__).read_bytes())
+(OUT/'COMMAND.json').write_bytes((json.dumps(dict(argv=cmd,explicit_env={k:env[k] for k in ('POLAR_RUN_WSL_JSONL_ACTUAL','POLAR_WSL_JSONL_TEST_PYTHON')},source_before=before),indent=2)+'\n').encode())
+start=time.perf_counter()
+with (OUT/'stdout.log').open('xb') as out,(OUT/'stderr.log').open('xb') as err:
+    child=subprocess.Popen(cmd,cwd=ROOT,env=env,stdin=subprocess.DEVNULL,stdout=out,stderr=err,shell=False,creationflags=subprocess.CREATE_NO_WINDOW)
+    (OUT/'PID.json').write_bytes((json.dumps(dict(pid=child.pid,driver_pid=os.getpid()))+'\n').encode())
+    code=child.wait()
+after={n:hashlib.sha256((ROOT/n).read_bytes()).hexdigest() for n in names}
+created=[p.name for p in (ROOT/'artifacts').glob('wsl-jsonl-harmless-*') if p.name not in existing]
+result=dict(returncode=code,reaped=child.poll() is not None,elapsed_s=time.perf_counter()-start,source_before=before,source_after=after,source_unchanged=before==after,created_proof_directories=created,qualification='Two real harmless ownership fixtures; no images, ROS, NN or physical control')
+(OUT/'RESULT.json').write_bytes((json.dumps(result,indent=2)+'\n').encode())
+print(json.dumps({k:v for k,v in result.items() if k not in ('source_before','source_after')}));raise SystemExit(code)

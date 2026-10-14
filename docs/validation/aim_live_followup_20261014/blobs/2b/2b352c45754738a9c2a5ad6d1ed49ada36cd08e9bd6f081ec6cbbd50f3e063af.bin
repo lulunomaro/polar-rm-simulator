@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 1.0461442000014358,
+  "expected_exit_code": 0,
+  "expected_exit_matched": true,
+  "source_unchanged": true,
+  "changed_sources": [],
+  "scope": "guard timing/receipts only; no renderer/native process"
+}

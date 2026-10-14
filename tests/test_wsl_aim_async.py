@@ -82,6 +82,46 @@ def test_watchdog_and_wrong_clock_or_inference_count_are_real_faults():
     with pytest.raises(ValueError,match='inference_count'):model.complete(response(2),10.03)
 
 
+def lost_target_response(calls=1):
+    # Original main.cpp num/vec emits three JSON nulls for kNaN points.
+    return dict(response(calls),tracking=False,should_shoot=False,
+                direction=[None,None,None],robot_center=[None,None,None])
+
+
+def test_original_lost_target_is_a_completed_inference_then_next_source_recovers():
+    h,_=header();model=worker.NativeComputeSlot();model.begin(h,10.)
+    value=lost_target_response();result=model.complete(value,10.04)
+    assert result['response']==value and result['source_context']==h['source_context']
+    assert model.current is None and model.inferences==1
+    model.begin(header(8,2,2)[0],11.)
+    recovered=model.complete(response(2),11.03)
+    assert recovered['frame_id']==8 and recovered['response']['tracking'] is True
+
+
+@pytest.mark.parametrize('tracking,vector',[
+    (True,[None,None,None]),(False,[None,0.,None]),(False,[False,0.,0.]),
+    (False,[float('inf'),0.,0.]),(False,None),(False,[]),
+])
+@pytest.mark.parametrize('field',['direction','robot_center'])
+def test_no_target_contract_does_not_admit_active_nulls_or_malformed_points(tracking,vector,field):
+    h,_=header();value=lost_target_response();value['tracking']=tracking;value[field]=vector
+    with pytest.raises(ValueError):worker.checked_response(value,h)
+
+
+@pytest.mark.parametrize('late',[False,True])
+def test_host_lost_target_keeps_original_context_and_late_disposition(tmp_path,late):
+    a=actor(tmp_path);h,_=header();slot(a,h,abandoned=late)
+    message=reply(h);message['response']=lost_target_response()
+    with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.13 if late else 100.04):
+        a._handle_message(message)
+    assert not a._broken.is_set() and not a._stop.is_set()
+    row=a.diagnostics[-1]
+    assert row['source_context']==h['source_context'] and row['response']==lost_target_response()
+    assert row['event']==('async_late_discard' if late else 'async_native_stdout')
+    if late:assert a._inflight is None and a._incoming.empty()
+    else:assert a._inflight['terminal']==dict(kind='result',response=lost_target_response())
+
+
 @pytest.mark.parametrize('field,value',[('binding_epoch',True),('observed_seq',1.),('wall_deadline',float('inf'))])
 def test_six_original_context_types_cannot_be_aliased(field,value):
     h,_=header();h['source_context'][field]=value
@@ -151,6 +191,28 @@ def test_busy_is_immediate_typed_pending_for_current_context_without_new_image(t
     assert result.source_context==current and result.submitted is False and a._outgoing.empty()
     detached=result.source_context;detached['observed_seq']=100
     assert result.source_context['observed_seq']==2 and not a._stop.is_set()
+
+
+@pytest.mark.parametrize('actual_fault',[False,True])
+def test_owner_stop_during_control_is_distinct_from_an_existing_real_fault(tmp_path,actual_fault):
+    a=actor(tmp_path);h,raw=header();source=h['source_context']
+    def stopped(_):
+        if actual_fault:a._fault='OSError:fixture genuine failure'
+        a._stop.set()
+    a._async_wake.wait=stopped
+    with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.01):
+        if actual_fault:
+            with pytest.raises(RuntimeError,match='genuine failure'):
+                a.control(packet(a,h,raw),source_context=source)
+            assert a._fault=='OSError:fixture genuine failure' and a._broken.is_set()
+        else:
+            value=a.control(packet(a,h,raw),source_context=source)
+            assert type(value) is NativeAimPending and value.reason=='owned_stop_requested'
+            assert value.source_context==source and value.request_id==1 and not value.submitted
+            assert a._fault is None and not a._broken.is_set()
+            assert a._inflight is not None and a._inflight['abandoned']
+            assert not any(r['event']=='async_native_fault' for r in a.diagnostics)
+            assert not any(r['event']=='async_result_accepted80' for r in a.diagnostics)
 
 
 def test_original_expired_authority_returns_pending_without_any_new_native_compute(tmp_path):

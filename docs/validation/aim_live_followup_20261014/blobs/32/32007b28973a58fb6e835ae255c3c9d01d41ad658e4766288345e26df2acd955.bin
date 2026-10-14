@@ -1,0 +1,18 @@
+"""Offline serialization only of one preserved actual RGB DTO; never resend."""
+from pathlib import Path
+import hashlib,json,time,statistics
+ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'artifacts/aim-json-serialization-offline-20261014-01';OUT.mkdir()
+source=ROOT/'artifacts/pb2025-aim-controlled-probe-20261014-01/host_attempt1/OBSERVATION.json'
+raw=source.read_bytes();observation=json.loads(raw)
+packet=dict(schema='polar.sim.adapter.jsonl.v1',op='act',observation=observation)
+rows=[];hashes={}
+for ascii_mode in [True,False,False,True]*3:
+    start=time.perf_counter()
+    payload=(json.dumps(packet,ensure_ascii=ascii_mode,allow_nan=False,separators=(',',':'))+'\n').encode()
+    elapsed=time.perf_counter()-start
+    assert json.loads(payload)==packet
+    rows.append(dict(ensure_ascii=ascii_mode,serialization_s=elapsed,bytes=len(payload),sha256=hashlib.sha256(payload).hexdigest()))
+    hashes[str(ascii_mode)]=hashlib.sha256(payload).hexdigest()
+report=dict(qualification='Offline serializer cost on saved actual image DTO only; no algorithm/transport/clock substitution/resending',source_path=source.relative_to(ROOT).as_posix(),source_sha256=hashlib.sha256(raw).hexdigest(),source_unchanged=source.read_bytes()==raw,rows=rows,median_ms={str(k):statistics.median([r['serialization_s'] for r in rows if r['ensure_ascii']==k])*1000 for k in (True,False)},parsed_equal=True,bytes_equal=hashes['True']==hashes['False'])
+(OUT/'REPORT.json').write_bytes((json.dumps(report,indent=2)+'\n').encode());(OUT/'driver.py').write_bytes(Path(__file__).read_bytes())
+print(json.dumps({k:v for k,v in report.items() if k!='rows'}))

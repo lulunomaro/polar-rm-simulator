@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\docs\validation\aim_live_followup_20261014\verify_archive.py", line 80, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\docs\validation\aim_live_followup_20261014\verify_archive.py", line 70, in main
+    if safe(archive,'INDEX.tsv').read_bytes()!=''.join(index).encode('utf-8'):raise ValueError('INDEX is not exact manifest inventory')
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: INDEX is not exact manifest inventory

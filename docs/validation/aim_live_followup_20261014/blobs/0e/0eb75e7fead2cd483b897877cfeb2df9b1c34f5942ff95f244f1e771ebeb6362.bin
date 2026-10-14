@@ -1,0 +1,14 @@
+{
+  "rm_match/deployment/wsl_jsonl_worker.py": {
+    "sha256": "a71fc94ee6718be5190c06c82734d0d26a73c9fcca59b92aeae56f262028b1a4",
+    "bytes": 11177
+  },
+  "rm_match/deployment/wsl_jsonl.py": {
+    "sha256": "2bb62b663c525dcec11bed01331d58f9132967a32a6eac9199bbbb74535afec9",
+    "bytes": 20940
+  },
+  "tests/test_wsl_jsonl_stop_poll.py": {
+    "sha256": "7908a163c69581f15cdb7da5a5909d7ba1de8b7a8df66241b7aa48732a4e734f",
+    "bytes": 5863
+  }
+}

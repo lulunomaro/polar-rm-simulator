@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="0.351" timestamp="2026-10-14T18:19:08.971497+08:00" hostname="LULUnoMARO"><testcase classname="tests.test_wsl_aim_async" name="test_owner_stop_during_control_is_distinct_from_an_existing_real_fault[False]" time="0.014"><failure message="RuntimeError: async_compute_fault:None">tmp_path = WindowsPath('C:/Users/lulu/AppData/Local/Temp/pytest-of-lulu/pytest-116/test_owner_stop_during_control0')
+actual_fault = False
+
+    @pytest.mark.parametrize('actual_fault',[False,True])
+    def test_owner_stop_during_control_is_distinct_from_an_existing_real_fault(tmp_path,actual_fault):
+        a=actor(tmp_path);h,raw=header();source=h['source_context']
+        def stopped(_):
+            if actual_fault:a._fault='OSError:fixture genuine failure'
+            a._stop.set()
+        a._async_wake.wait=stopped
+        with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.01):
+            if actual_fault:
+                with pytest.raises(RuntimeError,match='genuine failure'):
+                    a.control(packet(a,h,raw),source_context=source)
+                assert a._fault=='OSError:fixture genuine failure' and a._broken.is_set()
+            else:
+&gt;               value=a.control(packet(a,h,raw),source_context=source)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_wsl_aim_async.py:209: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;rm_match.integrations.wsl_aim_async.WslAsyncAimProcess object at 0x000001FD69317200&gt;
+packet = {'episode': 9, 'frame': {'schema': 'rmcs-mujoco-actor-frame-v1', 'episode': 9, 'frame_id': 7, 'exposure_timestamp_ns': 410000000, ...}, 'control_time_ns': 422000000, 'host_deadline': 100.08, ...}
+source_context = {'robot_id': 'red_sentry', 'episode': 9, 'binding_epoch': 1, 'observed_seq': 1, ...}
+
+    def control(self,packet,*,source_context=None):
+        if not self._transaction.acquire(blocking=False):raise RuntimeError('async_concurrent_host_control')
+        try:
+            if type(packet) is not dict:raise ValueError('async_control_packet')
+            packet=dict(packet);source=validate_source_context(source_context if source_context is not None else packet.get('source_context'))
+            if self.ready is None or self.process is None or self._stop.is_set() or self._broken.is_set():raise RuntimeError('async_bridge_not_ready')
+            if not same_identity({'wall_deadline':packet.get('host_deadline')},{'wall_deadline':source['wall_deadline']}):
+                raise ValueError('async_original_authority_mismatch')
+            host_started=time.perf_counter();deadline=min(host_started+self.timeout,source['wall_deadline'])
+            if host_started&gt;=deadline-RETURN_MARGIN_S:return self._pending(source,'original_deadline_no_budget')
+            with self._async_lock:
+                if self._fault is not None:raise RuntimeError(self._fault)
+                if self._inflight is not None:return self._pending(source,'native_compute_inflight')
+            frame=copy.deepcopy(packet['frame']);image=frame['image']
+            if 'image_bytes' in packet:
+                raw=packet['image_bytes']
+                if type(raw) is not bytes or len(raw)!=IMAGE_BYTES or image['path']!=str(self.out/'sensor_input.bgr'):
+                    raise ValueError('async_private_image_source')
+            else:
+                path=checked_host_path(Path(image['path']))
+                if not path.is_relative_to(self.out):raise ValueError('async_image_outside_binding')
+                with path.open('rb') as stream:raw=stream.read(IMAGE_BYTES+1)
+            if 'prepared_image' in packet:
+                if not prepared_native_bgr_matches(packet['prepared_image'],raw,dict(packet,frame=frame)):
+                    raise ValueError('async_prepared_source_mismatch')
+            elif len(raw)!=IMAGE_BYTES or hashlib.sha256(raw).hexdigest()!=image['sha256']:
+                raise ValueError('async_image_sha_mismatch')
+            ns=packet['control_time_ns'];remaining=deadline-time.perf_counter()
+            if remaining&lt;=RETURN_MARGIN_S:return self._pending(source,'original_deadline_no_budget')
+            self._serial+=1;serial=self._serial
+            header=checked_header(dict(schema=SCHEMA,event='control',id=serial,image_bytes=IMAGE_BYTES,
+                timeout_s=min(remaining,self.timeout),packet=dict(control_time_ns=ns,time_s=ns/1e9,frame=frame,operator_fov=self.fov),
+                source_context=source),self.fov,self.timeout)
+            generation=tuple(source[k] for k in ('robot_id','episode','binding_epoch'))
+            if (self._generation is not None and self._generation!=generation) or frame['frame_id']&lt;=self._last_frame or source['observed_seq']&lt;=self._last_seq:
+                raise ValueError('async_replayed_or_foreign_generation')
+            encoded=json.dumps(header,allow_nan=False,separators=(',',':')).encode()+b'\n'
+            if len(encoded)&gt;MAX_LINE:raise ValueError('async_binary_header_bound')
+            with self._async_lock:
+                self._inflight=dict(header=header,deadline=deadline,host_started=host_started,started=False,abandoned=False,terminal=None)
+                self._generation=generation;self._last_frame=frame['frame_id'];self._last_seq=source['observed_seq']
+                self._async_wake.clear();self._record('async_transport_request',original_host_deadline=deadline,**self._source_fields(self._inflight))
+            self._outgoing.put_nowait((encoded,raw,deadline,serial))
+            while True:
+                with self._async_lock:
+&gt;                   if self._fault is not None or self._broken.is_set() or self._stop.is_set():raise RuntimeError('async_compute_fault:'+str(self._fault))
+                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E                   RuntimeError: async_compute_fault:None
+
+rm_match\integrations\wsl_aim_async.py:257: RuntimeError</failure></testcase><testcase classname="tests.test_wsl_aim_async" name="test_owner_stop_during_control_is_distinct_from_an_existing_real_fault[True]" time="0.009" /></testsuite></testsuites>

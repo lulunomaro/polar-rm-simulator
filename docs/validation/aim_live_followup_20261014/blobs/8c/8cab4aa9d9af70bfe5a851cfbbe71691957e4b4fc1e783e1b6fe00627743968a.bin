@@ -1,0 +1,4 @@
+.............................ACTUAL_WINDOWS_AFFINITY_READBACK={"applied": true, "cpu_group": 0, "effective_mask": 1, "enabled": true, "original_mask": 4294967295, "process_id": 48380, "processor_count": 32, "requested_mask": 1, "restored": true, "restored_group": 0, "restored_mask": 4294967295, "schema": "polar.host.authority-affinity.v1", "scope": "Current authority thread during runtime.run only; no priority, power or OS timer changes", "thread_id": 38940}
+...............uuu.....uu.....uuuuuuuu..... [ 62%]
+...................................                                      [100%]
+94 passed, 13 subtests passed in 0.62s

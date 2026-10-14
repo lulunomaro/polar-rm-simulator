@@ -1,0 +1,62 @@
+FFF                                                                      [100%]
+================================== FAILURES ===================================
+__ ConsumptionSampleTests.test_exact_eighty_ms_boundary_still_revokes_target __
+
+self = <rm_match.platform_v2.test_native_timing.ConsumptionSampleTests testMethod=test_exact_eighty_ms_boundary_still_revokes_target>
+
+    def test_exact_eighty_ms_boundary_still_revokes_target(self):
+     clock,b,r,deadline,records=self.make()
+     def step(targets,guard,clock=None):
+      clock_owner.values=[deadline-.001,deadline,deadline+.001];clock_owner.armed=True
+      b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+      b.sim_time+=b.timestep
+     clock_owner=clock;b.guarded_step=step
+     try:
+      r.step_once();self.assertIsNone(b.targets['alpha']['gimbal'])
+>     self.assertEqual(records[0]['consume_wall'],deadline)
+E     AssertionError: 1000.081 != 1000.08
+
+rm_match\platform_v2\test_native_timing.py:117: AssertionError
+_ ConsumptionSampleTests.test_permission_and_receipt_use_same_fresh_logical_boundary_sample _
+
+self = <rm_match.platform_v2.test_native_timing.ConsumptionSampleTests testMethod=test_permission_and_receipt_use_same_fresh_logical_boundary_sample>
+
+    def test_permission_and_receipt_use_same_fresh_logical_boundary_sample(self):
+     clock,b,r,deadline,records=self.make()
+     # Old code reads expiry, _targets, receipt: the final read crosses 80 ms.
+     # New code reads expiry and then exactly one fresh consumption sample.
+     def step(targets,guard,clock=None):
+      clock_owner.values=[deadline-.001,deadline-.001,deadline];clock_owner.armed=True
+      b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+      b.sim_time+=b.timestep
+     clock_owner=clock;b.guarded_step=step
+     try:
+      r.step_once();receipt=records[0]
+      self.assertIsNotNone(b.targets['alpha']['gimbal'])
+>     self.assertLess(receipt['consume_wall'],receipt['budget']['wall_deadline'])
+E     AssertionError: 1000.08 not less than 1000.08
+
+rm_match\platform_v2\test_native_timing.py:105: AssertionError
+_ ConsumptionSampleTests.test_receipt_metadata_detached_before_backend_mutates_runtime_state _
+
+self = <rm_match.platform_v2.test_native_timing.ConsumptionSampleTests testMethod=test_receipt_metadata_detached_before_backend_mutates_runtime_state>
+
+    def test_receipt_metadata_detached_before_backend_mutates_runtime_state(self):
+     clock,b,r,deadline,records=self.make()
+     def step(targets,guard,clock=None):
+      b.targets={'alpha':copy.deepcopy(guard('alpha',None,'actuator'))}
+      r.output_budgets['alpha','aim']['wall_deadline']+=10.
+      r.output_authorizations['alpha','aim']['activation_window_deadline']+=10.
+      b.sim_time+=b.timestep
+     b.guarded_step=step
+     try:
+      r.step_once();self.assertIsNotNone(b.targets['alpha']['gimbal'])
+>     self.assertEqual(records[0]['budget']['wall_deadline'],deadline)
+E     AssertionError: 1010.08 != 1000.08
+
+rm_match\platform_v2\test_native_timing.py:129: AssertionError
+=========================== short test summary info ===========================
+FAILED rm_match/platform_v2/test_native_timing.py::ConsumptionSampleTests::test_exact_eighty_ms_boundary_still_revokes_target
+FAILED rm_match/platform_v2/test_native_timing.py::ConsumptionSampleTests::test_permission_and_receipt_use_same_fresh_logical_boundary_sample
+FAILED rm_match/platform_v2/test_native_timing.py::ConsumptionSampleTests::test_receipt_metadata_detached_before_backend_mutates_runtime_state
+3 failed in 0.35s

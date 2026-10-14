@@ -1,0 +1,53 @@
+{
+  "/polar_aim_390923fa957f44afab1ae164618b2dca/armor_detector_opencv": {
+    "ros__parameters": {
+      "armor.min_light_ratio": 0.8,
+      "binary_thres": 80,
+      "camera_name": "front_industrial_camera",
+      "classifier_threshold": 0.25,
+      "debug": true,
+      "detect_color": 0,
+      "ignore_classes": [
+        "negative"
+      ],
+      "light.min_ratio": 0.1,
+      "use_sim_time": true
+    }
+  },
+  "/polar_aim_390923fa957f44afab1ae164618b2dca/armor_tracker": {
+    "ros__parameters": {
+      "ekf": {
+        "r_xyz_factor": 0.0004,
+        "r_yaw": 0.003,
+        "sigma2_q_r": 80.0,
+        "sigma2_q_xyz": 0.05,
+        "sigma2_q_yaw": 5.0
+      },
+      "max_armor_distance": 10.0,
+      "target_frame": "gimbal_aim_origin",
+      "tracker": {
+        "lost_time_thres": 1.0,
+        "max_match_distance": 0.5,
+        "max_match_yaw_diff": 1.0,
+        "tracking_thres": 5
+      },
+      "use_sim_time": true
+    }
+  },
+  "/polar_aim_390923fa957f44afab1ae164618b2dca/projectile_motion": {
+    "ros__parameters": {
+      "projectile": {
+        "gimbal_cmd_topic": "cmd_gimbal",
+        "initial_speed": 18.0,
+        "offset_pitch": 0.0,
+        "offset_time": 0.08,
+        "offset_yaw": 0.0,
+        "shoot_cmd_topic": "cmd_shoot",
+        "solver_type": "gravity",
+        "target_frame": "shooter_link",
+        "target_topic": "tracker/target"
+      },
+      "use_sim_time": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+[RMCS-PRODUCTION-INFERENCE] {"schema":"rmcs.production-inference-threads.v1","startup":true,"native_ticks":0,"inference_calls":0,"clock_domain":"linux_steady_startup_only","linux_steady_ns":4703658513,"requested_threads":4,"effective_threads":4,"execution_cpu_only":true,"num_streams":1,"latency":true,"f32":true,"enable_cpu_pinning":true,"any_core":true,"cv_num_threads":32,"error":null}
+tracking mode switched to multi_ekf
+Init OK with INFANTRY_3
+observations frames=9 empty2d=0 single=9 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=0 single=13 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=0 single=13 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=12 empty2d=0 single=12 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+[PROF-DET] n=49 wall=5.0s fps=9.8 pre=0.52ms infer=13.44ms post=0.20ms sum=14.15ms
+observations frames=12 empty2d=0 single=12 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=0 single=13 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=0 single=13 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=12 empty2d=0 single=12 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+observations frames=13 empty2d=0 single=13 no_detection=0 filtered=0 pnp_missing=0 last_raw2d=1 kept2d=1 kept3d=1
+rejected color=0 genre=0 margin_band=0 clipped=0 last_genre=UNKNOWN
+[PROF-DET] n=62 wall=5.0s fps=12.3 pre=0.43ms infer=12.41ms post=0.15ms sum=12.99ms

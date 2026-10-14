@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\verify_standalone.py", line 80, in <module>
+    main()
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\verify_standalone.py", line 45, in main
+    raise ValueError('Source bytes differ: ' + row['path'])
+ValueError: Source bytes differ: rm_match/platform_v2/test_native_timing.py

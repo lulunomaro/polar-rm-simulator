@@ -8,6 +8,7 @@ from pathlib import Path
 from .backend import MuJoCoBackend
 from .runtime import PlatformRuntime
 from .server import PlatformHTTPServer,TransportConfig
+from .host_scheduling import PythonSwitchInterval,AuthorityThreadAffinity,switch_interval_ms,parse_affinity_mask
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
@@ -15,7 +16,13 @@ def main(argv=None):
     parser.add_argument('--max-wall-seconds',type=float,default=300.)
     parser.add_argument('--camera',action='store_true',help='Opt in to actual role_v23 calibrated cameras')
     parser.add_argument('--camera-total-fps',type=float,default=2.)
+    parser.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked',
+        help='Explicit raw image encoder; optional codec requires matching installed identity')
     parser.add_argument('--host-opencv-threads',type=int,help='Explicit local host camera OpenCV thread option, 1..32')
+    parser.add_argument('--host-python-switch-interval-ms',type=lambda s:switch_interval_ms(float(s)),
+        help='Explicit local CPython switch interval, finite 0.1..10 ms; restored on exit')
+    parser.add_argument('--authority-affinity-mask',type=parse_affinity_mask,
+        help='Explicit Windows current authority-thread CPU mask (base-0 integer); restored after runtime.run')
     parser.add_argument('--virtual-resupply',choices=('disabled','v1-baseline'),default='disabled',
         help='Explicit scenario baseline automatic virtual ammo purchase; not full official-rule qualification')
     native=parser.add_mutually_exclusive_group()
@@ -35,6 +42,7 @@ def main(argv=None):
     navigation.add_argument('--pb-wsl-navigation-manifest',help='Opt-in trusted local Windows + WSL Humble navigation manifest; prepared before physics')
     parser.add_argument('--real-time-factor',type=float,default=1.,help='Maximum simulation/wall rate; wall leases and deadlines never scale')
     args=parser.parse_args(argv)
+    if args.authority_affinity_mask is not None and sys.platform!='win32':parser.error('--authority-affinity-mask requires Windows')
     if args.pb_wsl_navigation_manifest and sys.platform!='win32':parser.error('--pb-wsl-navigation-manifest requires a Windows host')
     from .admission import AdmissionPolicy
     admission=AdmissionPolicy.from_manifest(args.admission_manifest)
@@ -43,13 +51,18 @@ def main(argv=None):
     if args.wsl_native_spec and sys.platform!='win32':parser.error('--wsl-native-spec requires a Windows host')
     if args.private_native_pixels and not args.wsl_native_spec:parser.error('--private-native-pixels requires --wsl-native-spec')
     if args.aim_plugins_json and not args.camera:parser.error('Aim plugins require --camera')
+    if args.raw_base64_codec!='stdlib_chunked' and not args.camera:parser.error('--raw-base64-codec requires --camera')
     if args.prepare_aim_plugins and not args.aim_plugins_json:parser.error('--prepare-aim-plugins requires --aim-plugins-json')
     if args.prepare_aim_plugins and sys.platform!='win32':parser.error('--prepare-aim-plugins currently requires a Windows host')
     if args.host_opencv_threads is not None and not 1<=args.host_opencv_threads<=32:parser.error('--host-opencv-threads must be within 1..32')
     if not 0<args.real_time_factor<=1:parser.error('--real-time-factor must be within (0, 1]')
     if not 0<args.max_wall_seconds<=3600:parser.error('--max-wall-seconds must be within (0, 3600]')
     backend=camera=runtime=server=http=session=aim_resources=wsl_native_registry=None;http_started=False;old_signals={}
+    switch=PythonSwitchInterval(args.host_python_switch_interval_ms)
+    affinity=AuthorityThreadAffinity(args.authority_affinity_mask)
+    scheduling=dict(python_switch_interval=switch.record,authority_affinity=affinity.record)
     try:
+        switch.__enter__()
         host_opencv=None
         if args.host_opencv_threads is not None:
             from .host_opencv import configure_opencv_threads
@@ -91,7 +104,8 @@ def main(argv=None):
         backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply,navigation_sensors=navigation_config)
         if args.camera:
             from .camera import CameraProvider
-            camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps,enable_native_pixels=args.private_native_pixels)
+            camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps,enable_native_pixels=args.private_native_pixels,
+                raw_base64_codec=args.raw_base64_codec)
         runtime=PlatformRuntime(backend,camera=camera,registry=registry,enable_native_pixels=args.private_native_pixels)
         server=PlatformHTTPServer(TransportConfig(port=args.port,admission_policy=admission),runtime)
         http=threading.Thread(target=server.serve_forever,name='sim-v2-http',daemon=True);http.start();http_started=True
@@ -107,12 +121,15 @@ def main(argv=None):
             wsl_native_transport=None if not args.wsl_native_spec else args.wsl_native_transport,
             prepared_aim_plugin_count=0 if aim_resources is None else len(aim_resources.instances),
             host_opencv=host_opencv,
+            host_scheduling=scheduling,
+            raw_codec_identity=None if camera is None else getattr(camera,'_raw_encoder_metadata',None),
             navigation_sensor_profile=None if navigation_config is None else navigation_config.identity(),
             pb_navigation_registered=bool(args.pb_navigation_manifest),
             pb_wsl_navigation_registered=bool(args.pb_wsl_navigation_manifest),
             pb_wsl_navigation_namespace=None if session is None else session.namespace,
             pb_wsl_navigation_domain=None if session is None else 84)),flush=True)
-        runtime.run(max_wall_seconds=args.max_wall_seconds,real_time_factor=args.real_time_factor)
+        with affinity:
+            runtime.run(max_wall_seconds=args.max_wall_seconds,real_time_factor=args.real_time_factor)
     finally:
         original_error=sys.exc_info()[1];errors=[]
         def finish(label,callback):
@@ -141,6 +158,9 @@ def main(argv=None):
                 if not camera.wait_closed(2.):raise RuntimeError('camera_threads_unfinished')
             finish('camera_close',close_camera)
         for sig,handler in old_signals.items():finish('signal_restore',lambda s=sig,h=handler:signal.signal(s,h))
+        finish('python_switch_restore',switch.close)
+        if args.host_python_switch_interval_ms is not None or args.authority_affinity_mask is not None:
+            print(json.dumps(dict(event='host_scheduling_finished',host_scheduling=scheduling)),flush=True)
         if errors:raise RuntimeError('Platform CLI cleanup failed: '+';'.join(errors)) from original_error
 
 if __name__=='__main__':main()

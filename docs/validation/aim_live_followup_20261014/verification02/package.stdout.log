@@ -1,0 +1,12 @@
+{
+  "schema": "polar.evidence.independent-reconstruction.v1",
+  "verified": true,
+  "original_paths": 3915,
+  "unique_blobs": 2216,
+  "manifest_sha256": "8e26ba593e81b5b465c61d61846b19471ad5268608024a345927a4d307d159e2",
+  "originals_requested": false,
+  "originals_checked": 0,
+  "originals_missing": [],
+  "scope": "Package hashes/decompression/INDEX only",
+  "algorithm_or_physics_execution": false
+}

@@ -1,0 +1,8 @@
+{
+  "path": "rm_match/platform_v2/runtime.py",
+  "before_sha256": "1a5619ea2f614ff206db4d87409f7df383f6aec153597778e81c8c9a23958909",
+  "after_sha256": "a23dcf4bc5248686824954f27419bf84647fad0316481494b35070905b634643",
+  "manifest_before_sha256": "3f71e5057c32713e0a6c1ef52f61fa3ab98ff24496cd49bd6437944e5f023b3f",
+  "manifest_after_sha256": "b751ad1aae78c6efe3f7bece6d84fe7d192643da136166c359aebe6390385f1b",
+  "qualification": "New change after pushed checkpoint 5b6ca284; old QA and archive identities preserved"
+}

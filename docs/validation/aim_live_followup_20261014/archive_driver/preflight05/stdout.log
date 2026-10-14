@@ -1,0 +1,12 @@
+{
+  "schema": "polar.evidence.selection-preflight.v1",
+  "original_paths": 3915,
+  "original_bytes": 3749804466,
+  "text_or_gzip_inputs_scanned": 3101,
+  "missing_groups": [],
+  "unique_blob_count": null,
+  "compressed_unique_bytes": null,
+  "scope": "Read-only metadata and credential preflight; binary full hashes/compression/literal proof deferred to authorized generation",
+  "permanent_package_generated": false,
+  "algorithm_or_physics_execution": false
+}

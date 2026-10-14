@@ -1,0 +1,11 @@
+# Read-only fast controlled attempt1 audit, frozen
+
+Files: audit.py (reproducible pure-Python reader), console.log (raw output), REPORT.json, INPUT_HASHES.json, PROCESS_RESULT.json. Original fast/previous controlled evidence and root driver are unchanged. No core/model/Source03 edits, new simulation, WSL/ROS/GL/NN process, timing benchmark or resend.
+
+Observed positive local stage differences are from two distinct combined-setting runs, not a single-factor causal experiment. Fast actual capture/public16.3977ms and capture/act30.4881ms left49.5119ms of the original80. It still failed queue.Empty after transmitting only part of its JSON line. Original model did not receive this exposure: two complete worker/peer lines are prepare/reset only, queued/peer-written time for act is null, no third complete peer line, no raw decode/compute/DDS publish and zero source callbacks. This is not inference latency evidence or live qualification.
+
+Exact archived RGB equals the strict validator's decoded bytes and CAPTURE's SHA; the fast and prior controlled RGB SHA are identical. Wire length/SHA are explicitly reconstructions using strict unchanged DTO values/types, ASCII default, allow_nan=False and newline. The source-based dictionary ordering reconstruction differs from sorted archival ordering. No original full-enqueue wire hash or partial-buffer hash was instrumented, so neither reconstruction is claimed to be a captured OS-pipe byte string or proof that all bytes were written. No reconstructed packet is sent.
+
+Inputbytes includes both completed small requests. Their67+130 bytes are subtracted to obtain the actual partial image request bytes. Linux read span is within that one clock, not compared to HostQPC or called pure syscall throughput. STOP551checks/2.074552985s is lifetime cost (startup through cleanup); mean check cost is not the cost of this frame. The proposed incremental newline scan, request-scoped STOP cost deltas and host enqueue/write metrics are next-step hypotheses, not causal findings or implemented changes.
+
+Actual CV32→4→32, Python5→1→5, checked exact Cencoder SHA, camera thread reap and three-node/full host/Linux tree cleanup are retained in REPORT. Actual failure/first exposure, old failures and archive bytes are preserved. No interval, capture stamp, identity, calibration/model or deadline is refreshed.

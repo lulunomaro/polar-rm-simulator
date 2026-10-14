@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\pb2025-aim-controlled-probe-20261014-01\probe_host.py", line 72, in main
+    reply=adapter.act(observation);result['act_return_wall']=time.perf_counter();result['reply']=reply
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\aim_plugin.py", line 96, in act
+    response=self._exchange(dict(op='act',observation=o),timeout=min(.25,o['wall_deadline']-self.clock()))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 167, in _exchange
+    raise TimeoutError('custom_deadline_expired_during_serialization')
+TimeoutError: custom_deadline_expired_during_serialization

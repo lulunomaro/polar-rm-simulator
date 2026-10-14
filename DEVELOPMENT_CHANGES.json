@@ -3,6 +3,13 @@
   "baseline_manifest": "EXTRACTION_MANIFEST.json",
   "files": [
     {
+      "path": "rm_match/platform_v2/test_native_timing.py",
+      "original_sha256": "ce6e81beb5154cb540ecfa410bb93d8734f26d3308a314c6e8d318d804cf7c3a",
+      "current_sha256": "8ca25b186c5aa79051c00711b94e99f6baf37cfe0fd6ecb39e020db0d75c68cc",
+      "task": "T03",
+      "reason": "Regression cases for consume-time expiry after receipt preparation, exact 80ms boundary rejection and detached actuator receipts; injected-clock unit tests do not claim native or real-time qualification"
+    },
+    {
       "path": "rm_match/operator/server.py",
       "original_sha256": "c739354795b0ff550d5a18750561bc962008a165e26c40da364d47cdde3c7e39",
       "current_sha256": "a68f603043c576549424d604afba6e4719a0b001c55b11c6417c5574339f27a6",
@@ -26,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "1f14d4f9eb84e31e9249d830804e3f9a37173d00971eb9ddbd1366567375aa83",
+      "current_sha256": "9340041fb941f4f4b0a515fe9ccd4091d739b0544cc432dda5e45fbd1ae84977",
       "task": "T09",
-      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures"
+      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
@@ -82,9 +89,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "1a5619ea2f614ff206db4d87409f7df383f6aec153597778e81c8c9a23958909",
+      "current_sha256": "a23dcf4bc5248686824954f27419bf84647fad0316481494b35070905b634643",
       "task": "T09",
-      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO"
+      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts"
     },
     {
       "path": "rm_match/platform_v2/server.py",
@@ -180,9 +187,9 @@
     {
       "path": "rm_match/platform_v2/native_adapter.py",
       "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
-      "current_sha256": "2f9ab0b2357ac78e18ed5577917531c41fef5ef415d2101e9d8db5f2d74dff98",
+      "current_sha256": "43640c0154d421e761ce2eb11944d88b87e6a0797027fe52167dc734dd63b4af",
       "task": "T03",
-      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget"
+      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget; v3 response that expires between the reader and source slot remains original evidence and no-command pending status, never a timely native_result or angles; receipt time is a fresh real sample and delivery/consumption guards remain independent"
     },
     {
       "path": "rm_match/platform_v2/offline_runtime.py",

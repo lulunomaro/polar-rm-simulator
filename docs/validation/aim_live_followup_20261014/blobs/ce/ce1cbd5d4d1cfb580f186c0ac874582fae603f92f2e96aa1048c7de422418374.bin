@@ -1,0 +1,40 @@
+"""Public resource fixture setup only. Never imported by an algorithm peer."""
+import math
+def place_target(backend,robot='blue_hero',target='red_infantry',distance=2.3):
+ import mujoco
+ import numpy as np
+ backend._check();sim=backend._sim
+ if sim.time!=0. or robot not in sim.robot_ids or target not in sim.robot_ids or robot==target:
+  raise ValueError('one-time zero-step controlled scene setup')
+ if not math.isfinite(distance) or distance!=2.3:raise ValueError('fixed public distance')
+ mujoco.mj_forward(sim.model,sim.data)
+ cid=sim.model.camera(robot+'__aim').id
+ origin=sim.data.cam_xpos[cid].copy();rotation=sim.data.cam_xmat[cid].reshape(3,3).copy()
+ if not np.allclose(rotation.T@rotation,np.eye(3),atol=1e-10) or not abs(np.linalg.det(rotation)-1)<1e-10:
+  raise ValueError('actual camera rotation invalid')
+ forward=-rotation[:,2];horizontal=forward[:2];length=float(np.linalg.norm(horizontal))
+ if length<.99:raise ValueError('fixture requires nearly horizontal actual camera')
+ horizontal=horizontal/length;desired=origin[:2]+distance*horizontal
+ body=sim.body_ids[target];old=sim.data.xpos[body].copy();qi=sim.qindices[target];vi=sim.vindices[target]
+ if not np.array_equal(sim.model.body_quat[body],[1.,0.,0.,0.]):raise ValueError('target root body rotation changed')
+ # The fixed robot root has unrotated world X/Y slide axes in harness.xml.
+ # Verify the compiled actual axes before using its source-based mapping.
+ for name,wanted in [('base_x',[1.,0.,0.]),('base_y',[0.,1.,0.])]:
+  joint=sim.model.joint(target+'__'+name).id
+  if sim.model.jnt_type[joint]!=mujoco.mjtJoint.mjJNT_SLIDE or not np.array_equal(sim.model.jnt_axis[joint],wanted):
+   raise ValueError('target slide source mapping changed')
+ sim.data.qpos[qi[0]]+=desired[0]-old[0];sim.data.qpos[qi[1]]+=desired[1]-old[1]
+ # Original armor's outward +X front normal faces the actual own camera.
+ sim.data.qpos[qi[2]]=math.atan2(-horizontal[1],-horizontal[0]);sim.data.qvel[vi]=0.
+ mujoco.mj_forward(sim.model,sim.data)
+ actual=sim.data.xpos[body].copy()
+ if not np.allclose(actual[:2],desired,atol=1e-9,rtol=0.):raise ValueError('actual scene placement mismatch')
+ return dict(schema='polar.pb-aim-public-controlled-scene.v1',scene_scope='evaluator setup only, never algorithm input',
+  robot_id=robot,target_robot_id=target,target_team=sim.teams[target],target_role=sim.roles[target],
+  original_sim_time=sim.time,own_camera_origin=origin.tolist(),own_camera_rotation=rotation.tolist(),
+  own_camera_forward=forward.tolist(),horizontal_forward=horizontal.tolist(),
+  target_body_horizontal_distance_m=distance,target_original_body_position=old.tolist(),target_actual_body_position=actual.tolist(),
+  target_front_plate_source_local_position_m=[.31,0.,.10],
+  target_front_plate_horizontal_distance_m=distance-.31,occlusion_or_detection_not_guaranteed=True,
+  unchanged=['original model bytes','own pose','camera calibration','K/D','MLP','detect_color0','thresholds'],
+  forbidden_algorithm_inputs=['scene metadata','enemy position','target labels','ideal target angle'])

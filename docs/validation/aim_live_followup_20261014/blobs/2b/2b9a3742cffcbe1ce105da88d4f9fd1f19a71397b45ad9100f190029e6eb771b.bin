@@ -1,0 +1,13 @@
+{
+  "command": [
+    ".venv-sim/Scripts/python.exe",
+    "artifacts\\pb2025-aim-first-frame-audit-20261014-01\\audit.py"
+  ],
+  "exit_code": 0,
+  "completion_observed": true,
+  "tool_wall_seconds": 0.5477132,
+  "script_sha256": "535570067aee85d414491c09e0c0ba5157a6e6b4bb47a454aaac6f68618a3767",
+  "report_sha256": "12d7bb6e91239625e9ffba478e20987dbb4a7b764e00c4970f7214af766047c5",
+  "original_files_unchanged": true,
+  "owned_WSL_or_ROS_process_started": false
+}

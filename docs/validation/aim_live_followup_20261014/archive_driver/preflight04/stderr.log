@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-live-followup-archive-preparation-20261014\archive_evidence.py", line 269, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-live-followup-archive-preparation-20261014\archive_evidence.py", line 208, in main
+    raw=path.read_bytes();inspect_text(path,raw)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-live-followup-archive-preparation-20261014\archive_evidence.py", line 116, in inspect_text
+    raise ValueError('Possible real credential in text: '+str(path))
+ValueError: Possible real credential in text: C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-formal-scheduling-driver-20261014-formal-scheduling-01\source\tools\smoke_client_operator_state.py

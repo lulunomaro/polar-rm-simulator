@@ -1,0 +1,78 @@
+{
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\CAPTURE.json": {
+    "sha256": "247a0dc3a92c2ccf0dc8944af463b0a6be60b32e6921a819501324016530dff9",
+    "bytes": 1894
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\capture.png": {
+    "sha256": "4b3a2ec6fe07df3e7eb6b0b990f0b8d7b38f64ad00459491f77b52ba35e479f5",
+    "bytes": 78557
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\capture.rgb": {
+    "sha256": "d0357b7458dc5123aca53f293cb8d38f3a305a3f00d431763e17a67cc20dfead",
+    "bytes": 4665600
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\FAILED_TRACEBACK.txt": {
+    "sha256": "bafd5d138851a2c6bc2a437adae7659e357144b1b6d769f479a82f89bc4cefdf",
+    "bytes": 1062
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\OBSERVATION.json": {
+    "sha256": "cc8214467473c279ea22ea1e9cd9c67cbc25b9638ca19838b403fed80ddc3a09",
+    "bytes": 6227347
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\PROBE_RESULT.json": {
+    "sha256": "8e2c415cbc9710641efb8c79f3c9a5001af60c3d65a3d766e77aa8618df0228d",
+    "bytes": 14049
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_802cc0c2829a449db9f9c3b02bfb5152\\CLEANUP.json": {
+    "sha256": "b8b3553ddae610939f37b7c47a6d9a41db8773735b570b5f0392eab17baff51f",
+    "bytes": 1233
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_802cc0c2829a449db9f9c3b02bfb5152\\SPEC.json": {
+    "sha256": "e166bc3b91a112916922cddda909681a1c5393a18c45891bfafb25d46dda88a9",
+    "bytes": 6715
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_802cc0c2829a449db9f9c3b02bfb5152\\STOP": {
+    "sha256": "af242ccdddd95bdfaaa27448a7606c8f4c973a42fa050026158c1c2554ef0db6",
+    "bytes": 129
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_802cc0c2829a449db9f9c3b02bfb5152\\supervisor.stderr.log": {
+    "sha256": "e9e22e232f26a2ed408df9deee501fc40618aafda9d539599470703b180c91c0",
+    "bytes": 895
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\AIM_PLUGINS.json": {
+    "sha256": "0db5616b9e99604ae78eb3473cbb9e16663eca51780bb2a965e39d74410fb708",
+    "bytes": 6920
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\BOOTSTRAP.json": {
+    "sha256": "8cb9c97dfd2b38ca03a5d10480de154e7803cede5975e54fc918cc9d6416de75",
+    "bytes": 23380
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\CALIBRATION.json": {
+    "sha256": "786959eaced0d917fcd5449faf84a5f823c1afd3a2503b4c29ffc8aee4754989",
+    "bytes": 2357
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\ENVIRONMENT.json": {
+    "sha256": "960509b9018b3bde2929d0a7fca97bf127c7789ffeb10d6bd0d6c421e0516e9b",
+    "bytes": 6808
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\REGISTER_RESULT.json": {
+    "sha256": "4fa28286f53c80314da6ec42be8f36a4f2590c57942e44f4294dd151bb350a47",
+    "bytes": 966
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\SOURCE_EVENTS.jsonl": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\stack\\PREPARATION.json": {
+    "sha256": "e7670ebc9ec4e8d421b2a08bba8542b0ca61057903c2b251e02d192475f7c65f",
+    "bytes": 1164
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\stack\\SCOPED_PARAMS.yaml": {
+    "sha256": "a4f69596b1ebe80ee6b5d94f306f3bcced823c8394220d995e879d8abe91e4e3",
+    "bytes": 1420
+  },
+  "artifacts\\pb2025-aim-first-frame-probe-20261014-01\\registered_attempt1\\stack\\STACK.json": {
+    "sha256": "856d27db0c7dd8a3cccf04fffe99a36de6a9f8fdb784ccd7c73be7a376432ef1",
+    "bytes": 2713
+  }
+}

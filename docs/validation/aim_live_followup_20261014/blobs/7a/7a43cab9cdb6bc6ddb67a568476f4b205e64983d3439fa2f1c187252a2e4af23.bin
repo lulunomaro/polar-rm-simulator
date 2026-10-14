@@ -1,0 +1,203 @@
+{
+  "schema": "polar.pb-aim-saved-serialization-diagnostic.v1",
+  "source_before": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\OBSERVATION.json": "6b214d740bebc72f34c18e07434634618097768601474f0a20a7f6d7d5824196",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\host_scheduling.py": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-controlled-fast-probe-20261014-01\\diagnose_saved_serialization.py": "2d61e5464d93e459e6b12a43173f136b6f369e9551079fd281f9b4b0d2debd68"
+  },
+  "source_after": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\OBSERVATION.json": "6b214d740bebc72f34c18e07434634618097768601474f0a20a7f6d7d5824196",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\contracts.py": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\platform_v2\\host_scheduling.py": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-controlled-fast-probe-20261014-01\\diagnose_saved_serialization.py": "2d61e5464d93e459e6b12a43173f136b6f369e9551079fd281f9b4b0d2debd68"
+  },
+  "source_unchanged": true,
+  "rows": [
+    {
+      "index": 0,
+      "variant": "default",
+      "validate_ms": 7.558700002846308,
+      "json_dump_plus_utf8_ms": 11.44429999840213,
+      "total_ms": 19.003000001248438,
+      "wire_bytes": 6225301,
+      "gc_enabled": true,
+      "gc_counts_before": [
+        134,
+        7,
+        1
+      ],
+      "gc_counts_after": [
+        162,
+        7,
+        1
+      ],
+      "scheduling": {
+        "schema": "polar.host.python-switch-interval.v1",
+        "enabled": false,
+        "requested_ms": null,
+        "original_ms": null,
+        "effective_ms": null,
+        "restored_ms": null,
+        "applied": false,
+        "restored": false,
+        "scope": "Current owned CPython process only"
+      }
+    },
+    {
+      "index": 1,
+      "variant": "switch1",
+      "validate_ms": 7.5556000010692514,
+      "json_dump_plus_utf8_ms": 11.569499998586252,
+      "total_ms": 19.125099999655504,
+      "wire_bytes": 6225301,
+      "gc_enabled": true,
+      "gc_counts_before": [
+        167,
+        7,
+        1
+      ],
+      "gc_counts_after": [
+        188,
+        7,
+        1
+      ],
+      "scheduling": {
+        "schema": "polar.host.python-switch-interval.v1",
+        "enabled": true,
+        "requested_ms": 1.0,
+        "original_ms": 5.0,
+        "effective_ms": 1.0,
+        "restored_ms": 5.0,
+        "applied": true,
+        "restored": true,
+        "scope": "Current owned CPython process only"
+      }
+    },
+    {
+      "index": 2,
+      "variant": "switch1",
+      "validate_ms": 7.457200001226738,
+      "json_dump_plus_utf8_ms": 30.031900001631584,
+      "total_ms": 37.48910000285832,
+      "wire_bytes": 6225301,
+      "gc_enabled": true,
+      "gc_counts_before": [
+        193,
+        7,
+        1
+      ],
+      "gc_counts_after": [
+        194,
+        7,
+        1
+      ],
+      "scheduling": {
+        "schema": "polar.host.python-switch-interval.v1",
+        "enabled": true,
+        "requested_ms": 1.0,
+        "original_ms": 5.0,
+        "effective_ms": 1.0,
+        "restored_ms": 5.0,
+        "applied": true,
+        "restored": true,
+        "scope": "Current owned CPython process only"
+      }
+    },
+    {
+      "index": 3,
+      "variant": "default",
+      "validate_ms": 8.333099998708349,
+      "json_dump_plus_utf8_ms": 10.889199998928234,
+      "total_ms": 19.222299997636583,
+      "wire_bytes": 6225301,
+      "gc_enabled": true,
+      "gc_counts_before": [
+        199,
+        7,
+        1
+      ],
+      "gc_counts_after": [
+        200,
+        7,
+        1
+      ],
+      "scheduling": {
+        "schema": "polar.host.python-switch-interval.v1",
+        "enabled": false,
+        "requested_ms": null,
+        "original_ms": null,
+        "effective_ms": null,
+        "restored_ms": null,
+        "applied": false,
+        "restored": false,
+        "scope": "Current owned CPython process only"
+      }
+    }
+  ],
+  "summary": {
+    "default": {
+      "validate_ms": {
+        "p50": 7.945900000777328,
+        "max": 8.333099998708349,
+        "samples": 2
+      },
+      "json_dump_plus_utf8_ms": {
+        "p50": 11.166749998665182,
+        "max": 11.44429999840213,
+        "samples": 2
+      },
+      "total_ms": {
+        "p50": 19.11264999944251,
+        "max": 19.222299997636583,
+        "samples": 2
+      }
+    },
+    "switch1": {
+      "validate_ms": {
+        "p50": 7.506400001147995,
+        "max": 7.5556000010692514,
+        "samples": 2
+      },
+      "json_dump_plus_utf8_ms": {
+        "p50": 20.800700000108918,
+        "max": 30.031900001631584,
+        "samples": 2
+      },
+      "total_ms": {
+        "p50": 28.307100001256913,
+        "max": 37.48910000285832,
+        "samples": 2
+      }
+    }
+  },
+  "wire_sha256_all_equal": true,
+  "original_pixel_sha256": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0",
+  "decoded_pixel_sha256_all_equal": true,
+  "original_identity": {
+    "robot_id": "blue_hero",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 1,
+    "sim_time": 0.002,
+    "wall_deadline": 37636.5614335
+  },
+  "original_deadline_unchanged": true,
+  "settings_restored": true,
+  "qualification": "Pure saved-input CPU mechanics, not live/NN/transport timing",
+  "no_execution": {
+    "peer": false,
+    "resend": false,
+    "WSL": false,
+    "ROS": false,
+    "GL": false,
+    "NN": false,
+    "model": false
+  },
+  "limits": [
+    "Two retained samples/variant cannot characterize tails",
+    "No competing camera/authority threads; switch interval effect may differ live",
+    "Old absolute deadline is only read and unchanged; no authority accepts this saved frame",
+    "No ensure_ascii=False change is tested or used"
+  ]
+}

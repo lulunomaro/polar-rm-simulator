@@ -1,0 +1,50 @@
+{
+  "schema": "polar.pb-aim-controlled-failure-source-review.v1",
+  "input_sha256": {
+    "artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\PROBE_RESULT.json": "83e6ae604304a81939902d7c8dc33e82225c4aced9af3f31e895761e65c21305",
+    "artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\FAILED_TRACEBACK.txt": "dfbab3f651d3ea76320b4c3e639aaf8fd19d57d0727488f7758db24464839e72",
+    "artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\CAPTURE.json": "4219274cf296af7fa35a7adf5d648326ef0f1124baca03f81bb3c6dfff6862d6",
+    "artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\capture.rgb": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0",
+    "artifacts\\pb2025-aim-controlled-probe-20261014-01\\registered_attempt1\\PEER_PHASES.json": "cbd042b391c8572a30552bf6aedd5117a9d17b59e2e72560a75a8821f5f05fe5",
+    "artifacts\\pb2025-aim-controlled-probe-20261014-01\\host_attempt1\\owned\\wsl_jsonl_95a441b48c7c45d8a5c1fa568314a5af\\CLEANUP.json": "403ec4671a7b789d55176086900eb4e9025d339ff896e24992c754d8ff4aa160"
+  },
+  "original_files_unchanged": true,
+  "capture_to_public_ms": 37.87710000324296,
+  "capture_to_act_ms": 50.38060000515543,
+  "remaining_at_act_ms": 29.6193999965908,
+  "actual_error": "TimeoutError:custom_deadline_expired_during_serialization",
+  "peer_complete_line_indexes": [
+    1,
+    2
+  ],
+  "actual_io_metrics": {
+    "clock": "linux_monotonic",
+    "input_chunks": 2,
+    "input_bytes": 197,
+    "complete_requests": 2,
+    "last_request": {
+      "first_read_wall": 45.103921978,
+      "last_read_wall": 45.103926502,
+      "queued_wall": 45.10396578,
+      "peer_write_completed_wall": 45.104044243,
+      "response_received_wall": 45.146214689
+    },
+    "stop_file_checks": 591,
+    "stop_check_cost_s": 2.482964337999981
+  },
+  "this_exposure_was_sent_to_peer_or_model": false,
+  "proof_scope": "host exception before requests.put, worker only prepare/reset 2requests197bytes, complete peer phase no third complete line/no decode or compute",
+  "observer_summary": {
+    "total": 0,
+    "dropped": 0,
+    "writer_reaped": true,
+    "error": null,
+    "evidence_scope": "read-only callbacks during original exchange; no postdeadline reads, no approximate source matching"
+  },
+  "cleanup_clean": true,
+  "cleanup_forced_kill": false,
+  "manual_visual_observation": "Human inspection: target red bars and numeral3 clearly visible in original actual controlled capture.png. This is not an NN/PnP output.",
+  "saved_decoder_matches_actual_RGB": true,
+  "saved_pixel_sha256": "8d63a5c1b5a4aa78acc5bb85137c6dbdb3a8a1907215aaf78b37992b0097c4d0",
+  "saved_cpu_limits": "No timing attribution to switch interval with only two samples per variant; no live image/pipe/model in micro experiment."
+}

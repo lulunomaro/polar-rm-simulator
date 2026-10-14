@@ -1,0 +1,25 @@
+# Root-only controlled fast resource candidate
+
+Separate from default first-frame01 and controlled01. The previous controlled failure is preserved: public took ~37.9ms and original act entered at ~50.38ms; with ~29.6ms left, ASCII-default JSON serialization expired before request enqueue. Actual supervisor metrics contain exactly two requests/197 bytes (prepare/reset), and complete PEER_PHASES has no act line/raw decode/compute/DDS publish. Thus **that exposure was never sent to a peer or model**. Its failure does not measure TF, classifier, PnP or tracking performance. Signal finally was observed, callbacks0, journal writer reaped, and cleanup did not need forced kill.
+
+This candidate uses the same frozen peer (69c1360c...), controlled_scene.py and exact registration helper. It changes only explicit Windows host settings before real prepare/capture: verified OpenCV API4, CameraProvider raw_base64_codec=pybase64_1_5_1 (exact installed C1.5.1, no fallback) and the formal PythonSwitchInterval(1ms) helper. It records effective OpenCV/scheduling/encoder identity, verifies extension SHA after close and restores original OpenCV thread count/switch interval after every owned resource closes. Restoration failure fails the resource result. These are combined settings; a successful candidate is not single-factor causal proof.
+
+Original Source03 eleven adapter bindings, generated source/model/labels, mounted optics, thresholds, detect_color0, local body2.3m/frontplate1.99m fixture, original exposure stamp and 80/150/reset2/graph1 gates are unchanged. There is one fresh actual exposure after prepare/reset and one neutral actual 2ms step, no warm image or retransmission. Returned action is never applied. Scene metadata stays solely in evaluator SCENE.json. This is resource/first-frame scope, **not SDK or live closed-loop qualification**.
+
+Root schedules the actual WSL/ROS/GL run exclusively. Use fresh label and the checked Humble ENV for registration:
+
+```text
+/root/polar-humble-ext4-20261014-01/venv/bin/python /mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-controlled-fast-probe-20261014-01/register_linux.py --label attempt1 --robot-id blue_hero
+.venv-sim/Scripts/python.exe artifacts/pb2025-aim-controlled-fast-probe-20261014-01/probe_host.py --label attempt1 --manifest artifacts/pb2025-aim-controlled-fast-probe-20261014-01/registered_attempt1/AIM_PLUGINS.json
+```
+
+Registration binds the latest actual generic transport source at execution; no old generic SHA is hardcoded. Source03 and mount03 are still strict sealed refs. Keep existing owned deadline/close behavior, including the bounded artifact-only signal/phase writer from controlled01. Callback summary is within PEER_PHASES; missing or partial phase evidence is unknown and not zero inference. Only exact nonempty SourceArmors output proves the fixed classified/PnP path structurally, not an NN kernel counter.
+
+Optional source-only and saved real-input CPU mechanics checks (no WSL/GL/ROS/model/resend):
+
+```text
+.venv-sim/Scripts/python.exe artifacts/pb2025-aim-controlled-fast-probe-20261014-01/static_review.py
+.venv-sim/Scripts/python.exe artifacts/pb2025-aim-controlled-fast-probe-20261014-01/diagnose_saved_serialization.py --label abba01 --run
+```
+
+The second command has already executed once after root released its measured window. It preserves the saved original absolute deadline and only measures the original strict decode plus ASCII-default JSON serialization in a quiet CPU process. No ensure_ascii=False change, GC forcing, model startup, dummy input or response acceptance is performed. Four ABBA samples (two per setting) are mechanical evidence and cannot establish tail behavior or explain contention during a real camera/authority run. Use a new label for additional explicitly scheduled checks; do not rerun the existing label.

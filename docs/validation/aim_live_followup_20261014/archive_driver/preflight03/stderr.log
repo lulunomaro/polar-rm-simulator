@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-live-followup-archive-preparation-20261014\archive_evidence.py", line 263, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-live-followup-archive-preparation-20261014\archive_evidence.py", line 202, in main
+    raw=path.read_bytes();inspect_text(path,raw)
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-live-followup-archive-preparation-20261014\archive_evidence.py", line 137, in inspect_text
+    raise ValueError('Literal credential-like source value requires explicit review: '+str(path))
+ValueError: Literal credential-like source value requires explicit review: C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\artifacts\aim-formal-scheduling-driver-20261014-formal-scheduling-01\source\rm_match\platform_v2\test_window_client.py

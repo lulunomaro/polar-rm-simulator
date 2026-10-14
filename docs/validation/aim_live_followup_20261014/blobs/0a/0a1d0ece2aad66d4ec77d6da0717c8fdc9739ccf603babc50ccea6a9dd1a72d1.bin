@@ -1,0 +1,209 @@
+{
+  "schema": "polar.source-amendments.v1",
+  "baseline_manifest": "EXTRACTION_MANIFEST.json",
+  "files": [
+    {
+      "path": "rm_match/operator/server.py",
+      "original_sha256": "c739354795b0ff550d5a18750561bc962008a165e26c40da364d47cdde3c7e39",
+      "current_sha256": "a68f603043c576549424d604afba6e4719a0b001c55b11c6417c5574339f27a6",
+      "task": "T13",
+      "reason": "Preserve 4096-byte control limit and neutralization; flush rejected HTTP responses and half-close before bounded 64KiB/100ms disposal to prevent Windows unread-body resets; valid bodies use the original 2s timeout value as one total read budget against slow dripping"
+    },
+    {
+      "path": "pyproject.toml",
+      "original_sha256": "8c9d9e751a197d91313dc690c355ae021bf69156d76877e0523ee504493f0837",
+      "current_sha256": "e3779cbdb678fdb191f04ecd8c400a11c57172cca8ebcb038c6f8f6fb8e5e1e6",
+      "task": "T03",
+      "reason": "Pin public runtime dependencies, isolate test discovery and keep canonical optional camera codec; declare optional PyYAML 6.x for reproducible reviewed original aim configuration preparation"
+    },
+    {
+      "path": "rm_match/match_engine.py",
+      "original_sha256": "6c3f542ae3511a638cd15994941a08b6682760b9d10f272b0707e4ce05404abd",
+      "current_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "task": "T03",
+      "reason": "Skip collision bounds preparation only when no projectiles exist"
+    },
+    {
+      "path": "rm_match/platform_v2/__main__.py",
+      "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
+      "current_sha256": "1f14d4f9eb84e31e9249d830804e3f9a37173d00971eb9ddbd1366567375aa83",
+      "task": "T09",
+      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures"
+    },
+    {
+      "path": "rm_match/platform_v2/backend.py",
+      "original_sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
+      "current_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "task": "T09",
+      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation profile samples actual rays/gyro/accelerometer on physics authority outside the control lock; repeated preparation at the same physical time preserves the original sensor bytes and capture clock"
+    },
+    {
+      "path": "rm_match/platform_v2/camera.py",
+      "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
+      "current_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "task": "T03",
+      "reason": "Separate raw/display and bounded sealed actual RGB before encoding; preserve original capture/deadlines and pixel bytes; measure renderer substages with QPC perf_counter to avoid Windows monotonic quantization"
+    },
+    {
+      "path": "rm_match/platform_v2/client.py",
+      "original_sha256": "a0597ecec1f9407cf3c3df6a4b1420e101d3ec4607fa59fe7a3b8f309c6232c5",
+      "current_sha256": "9be9c8507a245c3d81e68c29a652dbe6ca54f7b607377d128d4009974af16e10",
+      "task": "T13",
+      "reason": "Accept in-memory admission credential without changing scoped bearer authority"
+    },
+    {
+      "path": "rm_match/platform_v2/control.py",
+      "original_sha256": "2e4f0c1d2ce316c880c1f49ff3bca1a8bb898d19168b4723eb910c51eaf3ae2d",
+      "current_sha256": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+      "task": "T03,T13",
+      "reason": "Single-robot authority snapshots, monotonic expiry and server-owned robot/audit grants enforced at every authority operation"
+    },
+    {
+      "path": "rm_match/platform_v2/qa_camera.py",
+      "original_sha256": "a20dc2e530740edcad3bea113dc1cf6537431d93b7a2ef091dbb3681b9fdd5b5",
+      "current_sha256": "0f894366f04f5d2c91f58da64dec5314d8d44ea9f7f3e2f8d076c54e9d535cbc",
+      "task": "T13",
+      "reason": "Explicit randomly provisioned local role grants for real camera QA; secrets remain in memory"
+    },
+    {
+      "path": "rm_match/platform_v2/qa_multiclient.py",
+      "original_sha256": "a10e184c852ee8b2285d94fcc33e0e433dfe72392cb79b72cd542f07b25e30ef",
+      "current_sha256": "7278a9f512b31fdc9c6b25d2b74daf0a4230b22f8e1747e4080535a0090fbe33",
+      "task": "T13",
+      "reason": "Explicit random scoped operator/audit grants and credential-aware HTTP QA client"
+    },
+    {
+      "path": "rm_match/platform_v2/qa_resupply.py",
+      "original_sha256": "0de520cf612965e51c14b3d4be88c72be4423bf7831fbe81c38aea458625d55d",
+      "current_sha256": "bbf6f84f026f6493d393cbc84a5b25bd611ec8f95b93eae37cfc1fed8a856e2e",
+      "task": "T13",
+      "reason": "Explicit random local role grants for actual referee/resupply QA"
+    },
+    {
+      "path": "rm_match/platform_v2/runtime.py",
+      "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
+      "current_sha256": "a23dcf4bc5248686824954f27419bf84647fad0316481494b35070905b634643",
+      "task": "T09",
+      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts"
+    },
+    {
+      "path": "rm_match/platform_v2/server.py",
+      "original_sha256": "93d51c5610e191075030fb8cdcd89a7f0c5369c662e570943fe72b69ea22bccf",
+      "current_sha256": "f7051d9c4beab13cd4ea2863c3ca8c2ea0c0d06d542be6618615de67bf016fbc",
+      "task": "T13,T16",
+      "reason": "Fail-closed credential admission and scoped public catalogs; handle Windows peer socket abort; preserve rejected HTTP responses with flush/FIN then at most 64KiB/100ms discard, and enforce the original 1s valid-body timeout as a total read deadline; keep 16384-byte acceptance, admission and SDK control windows unchanged"
+    },
+    {
+      "path": "rm_match/platform_v2/test_adapter_activation.py",
+      "original_sha256": "786421be8f65829dc9927acd23ca12a9f45b506b24974f66cc231129d663ff63",
+      "current_sha256": "ea8180bfd97268e42b1bc26cabb6d8cc2f94945d963e2d34c69dd46017fccfcf",
+      "task": "T13",
+      "reason": "Use explicit local admission fixtures while preserving activation and deadline regression semantics"
+    },
+    {
+      "path": "rm_match/platform_v2/test_camera.py",
+      "original_sha256": "adfd110cbcb95e22972a07a3ef52deff9dde0acd32a88b333ab48a48e1871821",
+      "current_sha256": "bf9449fc8cffd2d50270d079cba6924b2b0ba72fe0d7be4c151ebfaeb94816ce",
+      "task": "T03,T13",
+      "reason": "Test raw freshness/display stalls and post-release operator revocation; read physical neutral output through explicit audit"
+    },
+    {
+      "path": "rm_match/platform_v2/test_client.py",
+      "original_sha256": "9dc80191b51cac5d37f78959856fbbc9dcb3e6f2cf4a9548ba37d13cf36a0014",
+      "current_sha256": "751bf5f62f091292e2dc68fe40635548b5f1d9733a88b30b5ee8c501649f3de8",
+      "task": "T13",
+      "reason": "Use explicitly scoped local HTTP enrollment fixtures"
+    },
+    {
+      "path": "rm_match/platform_v2/test_server.py",
+      "original_sha256": "9f5485a80c7d46d18d652fcf05a8cde352a6996b8f389cba6eef2dc517eb5340",
+      "current_sha256": "b2b2bde273bfa16b03c400d1cd4d7ea5f41cd31d67dbce7aa4f3a053a94b26a9",
+      "task": "T13,T16",
+      "reason": "Explicit local admission fixtures and OS-independent connection rejection checks"
+    },
+    {
+      "path": "rm_match/platform_v2/test_spin_feedback.py",
+      "original_sha256": "e4afe0f05c1ef9990be78fcf3512b8819be00f6fc416cf1c85ffd8e8aaf4ba2a",
+      "current_sha256": "aca4579e2e244305f031db1cb474d670bfce6bdbf0ddff07ad2e6255614f2837",
+      "task": "T13",
+      "reason": "Read physical spin receipts through an explicit audit session rather than an operator truth response"
+    },
+    {
+      "path": "rm_match/platform_v2/test_window_client.py",
+      "original_sha256": "02865def36b2c1e7c509961b96517d26aaf2517724faacd57fca4a596d261994",
+      "current_sha256": "0553728efd28423bfb9180bd58688c1d80f1ed70c641d60baf7e7b950485bed8",
+      "task": "T13",
+      "reason": "Explicit admission fixtures while preserving window/epoch failure checks"
+    },
+    {
+      "path": "tests/test_opening_strategy.py",
+      "original_sha256": "281995e851ba91d7f77b30c7319576533bd7075a5bd8648ec6b36f1319d686ec",
+      "current_sha256": "31cbc143aff785c9b999f4e7529bee0a4678716e87985b864247aebbd11f6326",
+      "task": "T16",
+      "reason": "Read Chinese original source explicitly as UTF-8 on Windows"
+    },
+    {
+      "path": "tools/platform_v2/control_window/serve_no_gl.py",
+      "original_sha256": "55b3797902fc46620c134f7e53f794dd0b1e60c1160e4cf35bfd7c012e0fdf10",
+      "current_sha256": "e21c825234aa0cf31f3f6e608645c06985b44876f0b1901164b09d75fea97954",
+      "task": "T13",
+      "reason": "Require a server-owned local admission manifest for bounded control QA"
+    },
+    {
+      "path": "tools/platform_v2/native_stage5/qa_live_native.py",
+      "original_sha256": "1a48f9a47da9647254bb609ac98e29c0c96f3bd114a1937ce8d0d76a2baa5eff",
+      "current_sha256": "4b230e93a34ee716ee8f1af8e2dfce243853f55de621e5b9fbfdf079f380cce5",
+      "task": "T13",
+      "reason": "Require explicit local grants and memory-only credential in live native QA"
+    },
+    {
+      "path": "tools/platform_v2/offline_stage6/serve.py",
+      "original_sha256": "e71d188b988d7da826197e657ebdd1b77514f26708f6f0a90ca497899dc2e9de",
+      "current_sha256": "944edf1818e9e0137fe20197389631b172d222c73e9cc37dc62ead4a6d790ba6",
+      "task": "T13",
+      "reason": "Require explicit local role/robot admission for offline QA server"
+    },
+    {
+      "path": "rm_match/platform_v2/CONTRACT.md",
+      "original_sha256": "150c3e342f8353eacc271580ad83bb17660dba59148a66934505d6cf184c6db6",
+      "current_sha256": "9bc1b58263b9408d97722d90f2419cfa6e599942cedb0e545241d60560646987",
+      "task": "T01,T13",
+      "reason": "Document explicit local role/robot/audit enrollment and restricted state/frame metadata"
+    },
+    {
+      "path": "rm_match/integrations/rmcs_process.py",
+      "original_sha256": "6806e6a094ed7ab4f9af698e55b87460afe85b461b5d4e54d340785834adaf16",
+      "current_sha256": "2fa115b0aa26b48949dc72f961e74bf0fa9a57993af0b526793e43b7d1ee3a08",
+      "task": "T16,T17",
+      "reason": "Bounded owned native process termination/kill/reap and stream cleanup; durable cancellation prevents late launch"
+    },
+    {
+      "path": "rm_match/platform_v2/native_adapter.py",
+      "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
+      "current_sha256": "43640c0154d421e761ce2eb11944d88b87e6a0797027fe52167dc734dd63b4af",
+      "task": "T03",
+      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget; v3 response that expires between the reader and source slot remains original evidence and no-command pending status, never a timely native_result or angles; receipt time is a fresh real sample and delivery/consumption guards remain independent"
+    },
+    {
+      "path": "rm_match/platform_v2/offline_runtime.py",
+      "original_sha256": "9e70871452313d2268ad793d68204658d684f88abc42ffa042bfce1f9d6bf529",
+      "current_sha256": "7cf3033acb6f9b99283ff2e7b213d9f132d4a64e63aaea8d7e78095934b0c8df",
+      "task": "T03,T17",
+      "reason": "Offline owned worker cancellation and shared bounded shutdown; report HALTED when cleanup is incomplete"
+    },
+    {
+      "path": "rm_match/platform_v2/contracts.py",
+      "original_sha256": "400d417505c93f28884e48d0c4bca6434fc395ab347d4833faa888ac8fc448e1",
+      "current_sha256": "9e2f3942c449e512757305a79e1ffd3273aca40761309270ee1cac529bf05631",
+      "task": "T09",
+      "reason": "Preserve strict camera/range observation.v2 and pixel proofs; dispatch separate pose-free pointcloud/IMU navigation schema without fabricating missing legacy pose fields"
+    },
+    {
+      "path": "rm_match/platform_v2/adapters.py",
+      "original_sha256": "dadb5bd731327270d0314d90648abfcebcf112adc54ea15ab348b81647d372e2",
+      "current_sha256": "8c3a1ef6cc777205aa3357ef42490cb6e41311394ecf12c89b6d2a2269821539",
+      "task": "T03",
+      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data"
+    }
+  ]
+}
