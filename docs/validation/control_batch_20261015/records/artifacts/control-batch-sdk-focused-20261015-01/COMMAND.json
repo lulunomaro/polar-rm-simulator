@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_control_batch_client.py",
+    "rm_match/platform_v2/test_client.py",
+    "rm_match/platform_v2/test_window_client.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\control-batch-sdk-focused-20261015-01\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "source_before": {
+    "rm_match/platform_v2/client.py": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+    "rm_match/platform_v2/control.py": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+    "rm_match/platform_v2/server.py": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "tests/test_control_batch_client.py": "32f8f03ac083c5245524f8da1327ffdd1382a18f8bbbd62de6c8ed06f562df3a",
+    "rm_match/platform_v2/test_window_client.py": "0553728efd28423bfb9180bd58688c1d80f1ed70c641d60baf7e7b950485bed8",
+    "rm_match/platform_v2/test_client.py": "751bf5f62f091292e2dc68fe40635548b5f1d9733a88b30b5ee8c501649f3de8"
+  }
+}

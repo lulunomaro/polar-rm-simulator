@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import math
 import threading
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -26,7 +27,7 @@ class PlatformClient:
         if admission_credential is not None and (type(admission_credential) is not str or not 32<=len(admission_credential)<=256):raise ValueError('Bounded admission credential required')
         self._admission_credential=admission_credential
         self.allowed_robots=();self.audit_authorized=False
-        self.control_profile=control_profile;self._windows={};self._last_window_ids={};self._bindings={};self._adapter_seq={}
+        self.control_profile=control_profile;self.control_batch_version=None;self._batch_clock=time.perf_counter;self._window_started={};self._windows={};self._last_window_ids={};self._bindings={};self._adapter_seq={}
         self.url=f'http://127.0.0.1:{u.port}';self.timeout=timeout
         self._opener=urllib.request.build_opener(urllib.request.ProxyHandler({}),NoRedirect())
         self._token=None;self.session_id=None;self.role=None;self._leases={};self._seq={};self._lock=threading.RLock();self.uncertain=False
@@ -43,7 +44,13 @@ class PlatformClient:
                 raw=response.read(max_bytes+1)
                 if len(raw)>max_bytes:raise ClientError('Response too large')
                 def reject_constant(_):raise ValueError("Nonfinite JSON")
-                result=json.loads(raw,parse_constant=reject_constant)
+                def unique_fields(pairs):
+                    result={}
+                    for key,value in pairs:
+                        if key in result:raise ValueError('Duplicate JSON response field')
+                        result[key]=value
+                    return result
+                result=json.loads(raw,parse_constant=reject_constant,object_pairs_hook=unique_fields)
         except urllib.error.HTTPError as e:
             raw=e.read(4097)
             try:reason=json.loads(raw).get('error','request_rejected') if len(raw)<=4096 else 'request_rejected'
@@ -83,6 +90,9 @@ class PlatformClient:
             if (type(result.get('token')) is not str or not 1<=len(result['token'])<=256 or type(result.get('session_id')) is not str or not 1<=len(result['session_id'])<=128 or result.get('role')!=role or not self._number(result.get('session_expires')) or not self._number(result.get('server_monotonic_s')) or result['session_expires']<=result['server_monotonic_s']):self._invalid('Invalid session response')
             if self.control_profile=='server_window_v1':
                 if result.get('control_profile')!=self.control_profile or type(result.get('control_window_version')) is not int or result['control_window_version']!=1 or not self._number(result.get('control_window_ttl_s')) or not 0<result['control_window_ttl_s']<=.15:self._invalid('Required server input window profile unavailable')
+            batch_version=result.get('control_batch_version')
+            if 'control_batch_version' in result and (self.control_profile!='server_window_v1' or type(batch_version) is not int or batch_version!=1):self._invalid('Invalid control batch negotiation')
+            self.control_batch_version=batch_version
             self._token=result['token'];self.session_id=result['session_id'];self.role=role;self.uncertain=False
             scope=result.get('allowed_robots')
             if self._admission_credential is not None and (scope is None or type(result.get('audit_authorized')) is not bool
@@ -144,6 +154,7 @@ class PlatformClient:
             if self.uncertain:raise ClientError('Uncertain session; reconnect before input window')
             if self.control_profile!='server_window_v1' or self.role!='operator':raise ClientError('Operator window profile required')
             expected=self._epochs(rid,channels)
+            started=self._batch_clock()
             result=self._request('/v2/control_window',dict(robot_id=rid,lease_epochs=expected))
             wid=result.get('window_id');issued=result.get('issued_wall');expires=result.get('expires_wall');ttl=result.get('valid_for_s')
             if (result.get('robot_id')!=rid or result.get('session_id')!=self.session_id or result.get('lease_epochs')!=expected
@@ -151,7 +162,7 @@ class PlatformClient:
                 or not self._epoch(wid) or wid<=self._last_window_ids.get(rid,-1)
                 or not self._number(issued) or not self._number(expires) or not self._number(ttl)
                 or not 0<ttl<=.15 or not issued<expires or abs((expires-issued)-ttl)>1e-6):self._invalid('Invalid input window acknowledgement')
-            self._windows[rid]=dict(result);self._last_window_ids[rid]=wid
+            self._windows[rid]=dict(result);self._last_window_ids[rid]=wid;self._window_started[rid]=started
             return result
     def control(self,rid,channel,value,valid_for_s=.15,*,window_id=None):
         with self._lock:
@@ -208,11 +219,64 @@ class PlatformClient:
             if any(type(result.get(k)) is not type(v) or result.get(k)!=v for k,v in expected.items()):self._invalid('Invalid adapter activation acknowledgement')
             if not self._number(result.get('activation_expires')) or not window['issued_wall']<result['activation_expires']<=window['expires_wall']:self._invalid('Invalid adapter activation deadline')
             return result
+    def control_batch(self,rid,adapter_inputs,controls,*,window_id,valid_for_s=.15):
+        """One no-retry, complete operator batch under an existing input window."""
+        with self._lock:
+            if self.uncertain:raise ClientError('Uncertain session; reconnect before control batch')
+            if self.role!='operator' or self.control_profile!='server_window_v1' or type(self.control_batch_version) is not int or self.control_batch_version!=1:raise ClientError('Negotiated operator control batch required')
+            if (type(adapter_inputs) is not dict or type(controls) is not dict
+                or any(type(k) is not str or k not in ('navigation','aim') for k in adapter_inputs)
+                or any(type(k) is not str or k not in ('motion','gimbal','fire') for k in controls)):
+                raise ClientError('Invalid control batch entries')
+            channels={'navigation':'motion','aim':'gimbal'}
+            covered={channels[k] for k in adapter_inputs}
+            if covered.intersection(controls) or covered|set(controls)!={'motion','gimbal','fire'}:raise ClientError('Complete disjoint control batch required')
+            epochs=self._epochs(rid,('motion','gimbal','fire'));window=self._windows.get(rid);started=self._window_started.get(rid)
+            if (not self._epoch(window_id) or window is None or window_id!=window['window_id']
+                or type(window['lease_epochs']) is not dict or window['lease_epochs']!=epochs
+                or any(not self._epoch(v) for v in window['lease_epochs'].values())):
+                raise ClientError('Current complete input window required')
+            now=self._batch_clock()
+            if not self._number(started) or not self._number(now) or now<started or now>=started+window['valid_for_s']:self._invalid('Expired local control batch window')
+            if not self._number(valid_for_s) or not 0<valid_for_s<=.15:raise ClientError('Invalid control batch duration')
+            for kind,epoch in adapter_inputs.items():
+                if not self._epoch(epoch) or self._bindings.get((rid,kind))!=epoch:raise ClientError('Current binding required')
+            rows=[];values=[]
+            # Reserve every sequence before the one send; never replay uncertainty.
+            for kind,epoch in adapter_inputs.items():
+                key=rid,kind,epoch;seq=self._adapter_seq[key]+1;self._adapter_seq[key]=seq
+                rows.append(dict(kind=kind,binding_epoch=epoch,seq=seq))
+            for channel,value in controls.items():
+                epoch=epochs[channel];key=rid,channel,epoch;seq=self._seq[key]+1;self._seq[key]=seq
+                values.append(dict(channel=channel,lease_epoch=epoch,seq=seq,value=value))
+            result=self._request('/v2/control_batch',dict(robot_id=rid,lease_epochs=epochs,window_id=window_id,
+                valid_for_s=valid_for_s,adapter_inputs=rows,controls=values))
+            if (set(result)!=set(('schema','accepted','robot_id','lease_epochs','window_id','batch_version','adapter_inputs','controls'))
+                or result.get('schema')!=SCHEMA):self._invalid('Invalid control batch response fields')
+            expected=dict(accepted=True,robot_id=rid,window_id=window_id,batch_version=1)
+            if any(type(result.get(k)) is not type(v) or result.get(k)!=v for k,v in expected.items()):self._invalid('Invalid control batch acknowledgement')
+            reply_epochs=result.get('lease_epochs')
+            if type(reply_epochs) is not dict or reply_epochs!=epochs or any(not self._epoch(v) for v in reply_epochs.values()):self._invalid('Invalid control batch lease acknowledgement')
+            def check_list(label,sent,identity_fields,expiry):
+                received=result[label]
+                if type(received) is not list or len(received)!=len(sent):self._invalid('Invalid control batch entry count')
+                for row,ack in zip(sent,received):
+                    fields={'accepted','robot_id','window_id',expiry}|set(identity_fields)
+                    if type(ack) is not dict or set(ack)!=fields:self._invalid('Invalid control batch entry fields')
+                    expect=dict(accepted=True,robot_id=rid,window_id=window_id,**{k:row[k] for k in identity_fields})
+                    if any(type(ack.get(k)) is not type(v) or ack.get(k)!=v for k,v in expect.items()):self._invalid('Invalid control batch entry identity')
+                    if not self._number(ack[expiry]) or not window['issued_wall']<ack[expiry]<=window['expires_wall']:self._invalid('Invalid control batch entry deadline')
+            check_list('adapter_inputs',rows,('kind','binding_epoch','seq'),'activation_expires')
+            check_list('controls',values,('channel','lease_epoch','seq'),'input_expires')
+            now=self._batch_clock()
+            if not self._number(now) or now<started or any(now>=min(started+(ack[expiry]-window['issued_wall']),started+window['valid_for_s'])
+                for label,expiry in (('adapter_inputs','activation_expires'),('controls','input_expires')) for ack in result[label]):self._invalid('Expired local control batch acknowledgement')
+            return result
     def close(self):
         with self._lock:
             try:
                 if self._token is not None:
                     result=self._request('/v2/close',{})
                     if result.get('closed') is not True:self._invalid('Invalid close response')
-            finally:self._token=None;self.session_id=None;self.role=None;self._leases.clear();self._seq.clear();self._windows.clear();self._last_window_ids.clear();self._bindings.clear();self._adapter_seq.clear()
+            finally:self._token=None;self.session_id=None;self.role=None;self.control_batch_version=None;self._window_started.clear();self._leases.clear();self._seq.clear();self._windows.clear();self._last_window_ids.clear();self._bindings.clear();self._adapter_seq.clear()
     def __repr__(self):return f'PlatformClient({self.url!r}, role={self.role!r})'

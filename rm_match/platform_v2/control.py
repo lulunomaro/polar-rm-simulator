@@ -187,8 +187,10 @@ class ControlPlane:
             s=Session(secrets.token_hex(12),secrets.token_urlsafe(32),role,self.clock()+self.session_ttl)
             s.allowed_robots=allowed_robots;s.audit_authorized=audit;s.trusted_admin=trusted_admin
             s.control_profile=control_profile;self.sessions[s.sid]=s
-            return dict(session_id=s.sid,token=s.token,role=role,session_expires=s.expires,server_monotonic_s=self.clock(),control_profile=control_profile,control_window_version=1,control_window_ttl_s=self.control_window_ttl,
+            result=dict(session_id=s.sid,token=s.token,role=role,session_expires=s.expires,server_monotonic_s=self.clock(),control_profile=control_profile,control_window_version=1,control_window_ttl_s=self.control_window_ttl,
                         allowed_robots=list(self.robot_ids if s.allowed_robots is None else s.allowed_robots),audit_authorized=s.audit_authorized)
+            if control_profile=='server_window_v1':result['control_batch_version']=1
+            return result
 
     def authorize_robot(self,session,rid):
         self._robot(rid)
@@ -327,6 +329,138 @@ class ControlPlane:
             window=dict(robot_id=rid,session_id=s.sid,lease_epochs=dict(epochs),window_id=s.next_window_id,issued_wall=now,expires_wall=now+self.control_window_ttl,valid_for_s=self.control_window_ttl)
             s.windows[rid]=window
             return copy.deepcopy(window)
+
+    def _batch_control_value(self,rid,channel,value):
+        """Parse detached bounded commands without modifying authority state."""
+        if type(value) is not dict:raise Rejected('invalid_fields',400)
+        if channel=='motion' and value.get('mode')=='spin_v1':
+            from .spin import parse_spin
+            return parse_spin(value,self._spin_capabilities.get(rid))
+        if channel=='motion':
+            exact(value,('vx_mps','vy_mps','wz_rps','frame'))
+            if type(value['frame']) is not str or value['frame']!='base_link':raise Rejected('invalid_motion_frame',400)
+            value=dict(value)
+            for key,limit in (('vx_mps',3.),('vy_mps',3.),('wz_rps',4.)):
+                value[key]=finite(value[key],key)
+                if abs(value[key])>limit:raise Rejected('motion_limit',400)
+        elif channel=='gimbal':
+            exact(value,('yaw_rad','pitch_rad','frame'))
+            if type(value['frame']) is not str or value['frame']!='base_link':raise Rejected('invalid_gimbal_frame',400)
+            value=dict(value)
+            for key,low,high in (('yaw_rad',-3.14,3.14),('pitch_rad',-.4,.5)):
+                value[key]=finite(value[key],key)
+                if not low<=value[key]<=high:raise Rejected('gimbal_limit',400)
+        else:
+            exact(value,('fire',))
+            if type(value['fire']) is not bool:raise Rejected('invalid_fire',400)
+            value=dict(value)
+        return value
+
+    def control_batch(self,token,rid,epochs,window_id,valid_for_s,adapter_inputs,controls):
+        """Atomically populate an existing three-channel operator window.
+
+        Pure parsing precedes the short authority lock. Every member is checked
+        before any sequence/input/activation write; a batch never issues a new
+        window, renews a lease or turns an adapter result into a fire command.
+        """
+        if type(rid) is not str:raise Rejected('unknown_robot',404)
+        if type(epochs) is not dict or set(epochs)!=set(CHANNELS):raise Rejected('batch_requires_all_channels',400)
+        epochs={channel:integer(epochs[channel],'lease_epoch') for channel in CHANNELS}
+        integer(window_id,'window_id')
+        ttl=duration(valid_for_s,min(self.control_window_ttl,self.command_ttl))
+        if type(adapter_inputs) is not list or len(adapter_inputs)>len(KINDS):raise Rejected('invalid_batch_adapters',400)
+        if type(controls) is not list or not 1<=len(controls)<=len(CHANNELS):raise Rejected('invalid_batch_controls',400)
+        adapters=[];manual=[];kinds=set();covered=set()
+        for entry in adapter_inputs:
+            if type(entry) is not dict:raise Rejected('invalid_fields',400)
+            exact(entry,('kind','binding_epoch','seq'))
+            kind=entry['kind']
+            if type(kind) is not str or kind not in KINDS:raise Rejected('invalid_kind',400)
+            if kind in kinds:raise Rejected('duplicate_batch_adapter',400)
+            kinds.add(kind);covered.update(KINDS[kind])
+            adapters.append(dict(kind=kind,binding_epoch=integer(entry['binding_epoch'],'binding_epoch'),seq=integer(entry['seq'],'seq')))
+        for entry in controls:
+            if type(entry) is not dict:raise Rejected('invalid_fields',400)
+            exact(entry,('channel','lease_epoch','seq','value'))
+            channel=entry['channel']
+            if type(channel) is not str or channel not in CHANNELS:raise Rejected('invalid_channels',400)
+            if channel in covered:raise Rejected('duplicate_batch_channel',400)
+            covered.add(channel)
+            epoch=integer(entry['lease_epoch'],'lease_epoch')
+            if epoch!=epochs[channel]:raise Rejected('lease_mismatch')
+            parsed=dict(channel=channel,lease_epoch=epoch,seq=integer(entry['seq'],'seq'),
+                value=self._batch_control_value(rid,channel,entry['value']))
+            if channel=='motion':
+                from .spin import motion_signature
+                parsed['signature']=motion_signature(parsed['value'])
+            manual.append(parsed)
+        if covered!=set(CHANNELS):raise Rejected('batch_requires_all_channels',400)
+
+        with self.lock:
+            s=self._session(token,True);self._owned(s,rid,epochs)
+            if s.control_profile!='server_window_v1':raise Rejected('batch_window_profile_required')
+            window=s.windows.get(rid)
+            if window is None or window_id!=window['window_id']:raise Rejected('stale_control_window')
+            if (type(window['lease_epochs']) is not dict or set(window['lease_epochs'])!=set(CHANNELS)
+                or any(type(window['lease_epochs'][channel]) is not type(epoch)
+                       or window['lease_epochs'][channel]!=epoch for channel,epoch in epochs.items())):
+                raise Rejected('control_window_lease_mismatch')
+            for entry in adapters:
+                kind=entry['kind'];b=self.bindings[rid,kind]
+                expected={channel:epochs[channel] for channel in KINDS[kind]}
+                if (b.owner!=s.sid or b.epoch!=entry['binding_epoch'] or b.lease_epochs!=expected
+                    or any(type(b.lease_epochs.get(channel)) is not int for channel in expected)):
+                    raise Rejected('binding_mismatch')
+                if entry['seq']<=b.activation_seq:raise Rejected('stale_adapter_seq')
+            mode_changed=False
+            for entry in manual:
+                channel=entry['channel'];l=self.leases[rid,channel]
+                if entry['seq']<=l.seq:raise Rejected('stale_seq')
+                kind='navigation' if channel=='motion' else 'aim'
+                if channel!='fire' and self.bindings[rid,kind].owner is not None:
+                    raise Rejected('channel_bound_to_adapter')
+                if channel=='motion':
+                    if l.mode_fault:raise Rejected('mode_change_requires_release')
+                    mode_changed=l.mode_signature is not None and entry['signature']!=l.mode_signature
+
+            # Validation and lock acquisition can consume the whole lifetime.
+            # Sample once after all members validate, then cap every write using
+            # this original server-clock instant and unchanged lease/window.
+            now=self.clock()
+            if now>=s.expires:
+                self._expire();raise Rejected('invalid_session',401)
+            if any(now>=self.leases[rid,channel].expires for channel in CHANNELS):
+                self._expire();raise Rejected('lease_mismatch')
+            if now>=window['expires_wall']:raise Rejected('expired_control_window')
+            for entry in adapters:
+                b=self.bindings[rid,entry['kind']]
+                if b.activation_seq>=0 and now>=b.activation_expires:
+                    self._clear_binding(rid,entry['kind']);raise Rejected('adapter_activation_expired')
+            if mode_changed:
+                # A mode mismatch can only remove existing motion authority.
+                # No other batch member or sequence is partially committed.
+                l=self.leases[rid,'motion'];l.mode_fault=True;l.input=None;l.input_expires=0.;self.revision+=1
+                raise Rejected('mode_change_requires_release')
+
+            adapter_acks=[];control_acks=[]
+            for entry in adapters:
+                kind=entry['kind'];b=self.bindings[rid,kind]
+                deadline=min(now+ttl,window['expires_wall'],*(self.leases[rid,channel].expires for channel in KINDS[kind]))
+                if b.activation_window_id==window_id:deadline=min(deadline,b.activation_expires)
+                b.activation_seq=entry['seq'];b.activation_expires=deadline;b.activation_window_id=window_id
+                b.activation_window_deadline=window['expires_wall']
+                adapter_acks.append(dict(accepted=True,robot_id=rid,kind=kind,binding_epoch=b.epoch,
+                    seq=entry['seq'],window_id=window_id,activation_expires=deadline))
+            for entry in manual:
+                channel=entry['channel'];l=self.leases[rid,channel]
+                if channel=='motion':l.mode_signature=entry['signature']
+                l.seq=entry['seq'];l.input=entry['value'];l.input_expires=min(now+ttl,window['expires_wall'],l.expires)
+                l.input_window_id=window_id;l.input_window_deadline=window['expires_wall']
+                control_acks.append(dict(accepted=True,robot_id=rid,channel=channel,lease_epoch=entry['lease_epoch'],
+                    seq=entry['seq'],window_id=window_id,input_expires=l.input_expires))
+            self.revision+=1
+            return dict(accepted=True,robot_id=rid,lease_epochs=dict(epochs),window_id=window_id,batch_version=1,
+                adapter_inputs=adapter_acks,controls=control_acks)
 
     def control(self,token,rid,channel,epoch,seq,value,valid_for_s,window_id=None):
         with self.lock:

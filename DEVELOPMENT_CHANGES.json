@@ -54,16 +54,16 @@
     {
       "path": "rm_match/platform_v2/client.py",
       "original_sha256": "a0597ecec1f9407cf3c3df6a4b1420e101d3ec4607fa59fe7a3b8f309c6232c5",
-      "current_sha256": "37ba09fad0e777da3701d722e1ecb989ac58e63f87c8e4a6cf3c438b096a94bb",
+      "current_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
       "task": "T13,T01,T07",
-      "reason": "Accept in-memory admission credential without changing scoped bearer authority; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
+      "reason": "Accept in-memory admission credential without changing scoped bearer authority; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; Opt-in no-retry complete batch SDK with original typed acknowledgements and request-start relative expiry bounds for every member; duplicate JSON fields and uncertain or late ACKs fail closed, while legacy single calls remain available"
     },
     {
       "path": "rm_match/platform_v2/control.py",
       "original_sha256": "2e4f0c1d2ce316c880c1f49ff3bca1a8bb898d19168b4723eb910c51eaf3ae2d",
-      "current_sha256": "b65eb98ea64f3b80fa7e4fc6ad38908e2af91c14fb94fc75c7e2fa96abaca9e7",
+      "current_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
       "task": "T03,T13",
-      "reason": "Single-robot authority snapshots, monotonic expiry and server-owned robot/audit grants enforced at every authority operation"
+      "reason": "Single-robot authority snapshots, monotonic expiry and server-owned robot/audit grants enforced at every authority operation; Explicit three-channel control_batch_v1 validates every original lease/window/binding/sequence and detached bounded value before one atomic commit; real lease and unchanged 150ms window cap every member, with no new authority or fire permit"
     },
     {
       "path": "rm_match/platform_v2/qa_camera.py",
@@ -96,9 +96,9 @@
     {
       "path": "rm_match/platform_v2/server.py",
       "original_sha256": "93d51c5610e191075030fb8cdcd89a7f0c5369c662e570943fe72b69ea22bccf",
-      "current_sha256": "ed94583efc249557a11ef7fd588e519acc9234bc03d549cbdb39f142acb6e4df",
+      "current_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
       "task": "T13,T16,T01,T07",
-      "reason": "Fail-closed credential admission and scoped public catalogs; handle Windows peer socket abort; preserve rejected HTTP responses with flush/FIN then at most 64KiB/100ms discard, and enforce the original 1s valid-body timeout as a total read deadline; keep 16384-byte acceptance, admission and SDK control windows unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
+      "reason": "Fail-closed credential admission and scoped public catalogs; handle Windows peer socket abort; preserve rejected HTTP responses with flush/FIN then at most 64KiB/100ms discard, and enforce the original 1s valid-body timeout as a total read deadline; keep 16384-byte acceptance, admission and SDK control windows unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; Advertise control_batch_version=1 only for strict operator window negotiation and dispatch the exact bounded atomic batch request; retain original transport, limits, admission and legacy endpoints"
     },
     {
       "path": "rm_match/platform_v2/test_adapter_activation.py",

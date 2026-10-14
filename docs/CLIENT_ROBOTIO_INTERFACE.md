@@ -3,6 +3,26 @@
 新的显式组合补丁支持按能力合同选择通用导航、决策/导航 pipeline，以及已有通用自瞄。
 注册和显示不按队名分派。队伍仍需提供匹配协议的本地 wrapper；目录可选不代表算法或整场比赛已经通过。
 
+## 第四份批量控制组合补丁（2026-10-15）
+
+[CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json](../client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json) 与
+[robotio_control_batch_v1.patch](../client_patches/robotio_control_batch_v1.patch) 从相同固定基线完整应用，
+patch SHA `bda801aeec7e0f1e6f34bc96708285eb90350880d1602df15a1f365d70a9e0f7`。
+必须使用新的干净基线checkout，不能叠加到先前三个补丁；原三个checkout/patch/manifest逐字节保持。
+
+新服务器明确协商版本1时，导航/自瞄授权与剩余手动云台/开火按[原子控制协议](CONTROL_BATCH_INTERFACE.md)一次发送。
+缺少能力仍走原single路径，非法能力/部分ACK/迟到成员/重复JSON字段均拒绝，不重试或放宽150ms。
+原window ACK后新采样、F2/own HUD/焦点、租约竞态修复和真正撤权均保持；测量batch实际RTT上界而不是削减旧预测。
+29模块完整实际Qt offscreen回归484passed/347subtests/0skip，pytest21.72秒，owned child/reader全部退出且源不变；
+另21项专项及17模块351passed/141subtests原记录保留。物理协议结果与算法/比赛资格另记进度。
+
+```powershell
+.venv-sim/Scripts/python.exe tools/apply_client_patch.py --manifest client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json --client-root YOUR_FRESH_CLIENT_PATH --run
+.venv-sim/Scripts/python.exe -m rm_match.deployment.coop_launcher --config examples/coop_robotio_batch_protocol.json
+```
+
+第二条默认仅生成合成协议示例的启动计划，不证明实际队伍算法或比赛；本地示例选择独立batch review目录。
+
 ## 后继租约状态顺序补丁（2026-10-15）
 
 [CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json](../client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json) 与

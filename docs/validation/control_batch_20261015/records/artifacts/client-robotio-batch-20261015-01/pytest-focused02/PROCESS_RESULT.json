@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_platform_control_batch.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\client-robotio-batch-20261015-01\\pytest-focused02\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-robotio-batch-review",
+  "source_sha256": {
+    "rm_client/sim_platform_transport.py": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+    "rm_client/sim_platform_client.py": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+    "rm_client/sim_platform_handoff.py": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+    "rm_client/sim_platform_diagnostics.py": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+    "tests/test_platform_control_batch.py": "c60f29fb0f6a51e4bc73cbe9ded3ca84236e8cfaab8bb937e6d92f8c5e769f9d"
+  },
+  "mode": "focused02",
+  "scope": "batch protocol, original transport concurrency/negative fixtures plus installed PySide6 offscreen suite; no physics/GL renderer/ROS/NN/visible GUI",
+  "pid": 49032,
+  "exit_code": 0,
+  "cleanup": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 0,
+    "errors": [],
+    "pid": 49032,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "reader_stopped": true,
+  "errors": [],
+  "source_unchanged": true,
+  "elapsed_s": 1.7707191999943461,
+  "driver_sha256": "e71dbea6f305b6d3af65aa22c34166cb0669454f02bad7fe572b91e8c3d7dcb9"
+}

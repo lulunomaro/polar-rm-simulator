@@ -1,0 +1,2689 @@
+{
+  "schema": "polar.evidence.literal-preservation.v1",
+  "parent_commit": "3e6094ce9c2775e7651c6e82ecc549e51a746a54",
+  "qualification": "atomic batch tests and two real offscreen window camera SDK MuJoCo short low-rate synthetic protocol passes; no team algorithm/long duration/visible desktop/raw aim80ms/match/milestone acceptance",
+  "records": [
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-08/COMMAND.json",
+      "original_bytes": 44895,
+      "original_sha256": "05ac945bbcd6db54c4f03972e6b7a9ccca28d29226d2e8563b9f0414ce5db690",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-08/COMMAND.json.gz",
+      "stored_bytes": 19604,
+      "stored_sha256": "6d08a4bf01eeccfa1e4f397c3cbc5f7607ec764115b37530238dcf4c67fd14bc",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-08/driver.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-08/driver.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-08/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "23ccdc2a9b9a30f5ecb1d5d9708ee7175a3bfb6f0ce3d5987658c59a3969e713",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-08/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "23ccdc2a9b9a30f5ecb1d5d9708ee7175a3bfb6f0ce3d5987658c59a3969e713",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-08/RESULT.json",
+      "original_bytes": 88704,
+      "original_sha256": "fcecbf3a509b4cfa1fa62dceb8d3ce4295e5f45b68e32b9ccde20f96d087ef4d",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-08/RESULT.json.gz",
+      "stored_bytes": 38126,
+      "stored_sha256": "47a1756a084815a9206da5583bcd9d82736b36d86e45fb7cbec17391563507a8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-08/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-08/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/aim-followup-quality-driver-20261014-08/stdout.log",
+      "original_bytes": 96,
+      "original_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "stored_path": "records/artifacts/aim-followup-quality-driver-20261014-08/stdout.log",
+      "stored_bytes": 96,
+      "stored_sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/before/sim_platform_client.py",
+      "original_bytes": 18156,
+      "original_sha256": "39ca9cd87a1e8f46b136fe74210f47625bc25f538cc0c1bf4d3585831195ec21",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/before/sim_platform_client.py.gz",
+      "stored_bytes": 4466,
+      "stored_sha256": "495826b5006f57538f353a9a12e85d95c48c0d2629c72c3f79b1e4ecf24ab754",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/before/sim_platform_diagnostics.py",
+      "original_bytes": 6866,
+      "original_sha256": "52c8f66c109d5b88ea8bb63de874169b3eb483bbb815a248bb4adb44689b82d1",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/before/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2352,
+      "stored_sha256": "43c34b134f138813ff81070d28814173bedc586c6ae38e64a0d53b5cf4f6212d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/before/sim_platform_handoff.py",
+      "original_bytes": 6371,
+      "original_sha256": "79a16e2a058d23f463551ef5c53ddba77cdeee4d41169191cbe28f3d79d2cf0d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/before/sim_platform_handoff.py.gz",
+      "stored_bytes": 1958,
+      "stored_sha256": "a8a8825413ab6a8fa6947e0fefd0bc0dcb853308825c7648671f7206fdb4d006",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/before/sim_platform_transport.py",
+      "original_bytes": 63081,
+      "original_sha256": "d5eb1c4e005800328754cf7dc58355c8cd960814c4ea59a40e2e86cfc3ce413e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/before/sim_platform_transport.py.gz",
+      "stored_bytes": 14093,
+      "stored_sha256": "5414525eb97e1ee718b196c185f215ababc96149415d9bc585c599cbe6127d8b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/export.log",
+      "original_bytes": 1127,
+      "original_sha256": "eaecccbe5d001b0480270ecf9c95df9ecb8c26430bd2b5a84e281513809bb6b0",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/export.log",
+      "stored_bytes": 1127,
+      "stored_sha256": "eaecccbe5d001b0480270ecf9c95df9ecb8c26430bd2b5a84e281513809bb6b0",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/export_patch.py",
+      "original_bytes": 7395,
+      "original_sha256": "d7ebf38b75075e753dd636af20dd1a8116f0ceb4f1711fd46de7af0615041162",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/export_patch.py.gz",
+      "stored_bytes": 2885,
+      "stored_sha256": "1d524282e94a6b140d739b2ecda0f5202af1c0b5d21a82460c049651a1231232",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/EXPORT_PROOF.json",
+      "original_bytes": 19036,
+      "original_sha256": "e87a51acb3308edd3be8316a16809c106c1f1bee8588c9d64b75d6c40d9fd9ff",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/EXPORT_PROOF.json.gz",
+      "stored_bytes": 3660,
+      "stored_sha256": "cbe17b5824918cd16247867cb3e28cfc396ed5cb36b5d99486b57038b062fd62",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/final/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/final/tests/test_platform_control_batch.py",
+      "original_bytes": 17868,
+      "original_sha256": "c60f29fb0f6a51e4bc73cbe9ded3ca84236e8cfaab8bb937e6d92f8c5e769f9d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/final/tests/test_platform_control_batch.py.gz",
+      "stored_bytes": 4838,
+      "stored_sha256": "09448dd34edcc75ed382c9c97afc05c9a0711c450ba57bb9b6b1d860482e49d4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/final/tests/test_platform_handoff.py",
+      "original_bytes": 14043,
+      "original_sha256": "2ec28739a39073f09405b2ea68f88c9e66ddcb353f385b42b3cc895505e45545",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/final/tests/test_platform_handoff.py.gz",
+      "stored_bytes": 3862,
+      "stored_sha256": "e92b380cd23eab8b78b4c65b36ba221648dcf6f1744f913b7a847ca387b0abcf",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/OLD_IDENTITIES.json",
+      "original_bytes": 10534,
+      "original_sha256": "d5b102a93b7299bf361095f311dee52350822321c48f24b478f6b7999c1fe96f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/OLD_IDENTITIES.json.gz",
+      "stored_bytes": 2421,
+      "stored_sha256": "850d45d6f648327f51e10a47a42b4aa0ed98090c77295e2570e597e98621a101",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/preserve_before.py",
+      "original_bytes": 1153,
+      "original_sha256": "79cc025df82df7ec28b851e0feeef9faefd2bd31994f4ef15205ef0d26a2a370",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/preserve_before.py",
+      "stored_bytes": 1153,
+      "stored_sha256": "79cc025df82df7ec28b851e0feeef9faefd2bd31994f4ef15205ef0d26a2a370",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/COMMAND.json",
+      "original_bytes": 5656,
+      "original_sha256": "94e5227c4e7b81a96dc30d799e825e29b9d807dd27fd55887a9d0a2db69af631",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/COMMAND.json.gz",
+      "stored_bytes": 2155,
+      "stored_sha256": "864d37ddf773c3db9adf2935bf7b9c311324812a425747449926d378ddd6231a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/PROCESS_RESULT.json",
+      "original_bytes": 6129,
+      "original_sha256": "22f99738254c310d400c7b513c21641cd481d58b79f949c59cb9f48c591dfc8f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/PROCESS_RESULT.json.gz",
+      "stored_bytes": 2379,
+      "stored_sha256": "ab7c7c5432e7ea4b8003cf8a9575347c8e57976c49c486274a677aa5afd8bbad",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/pytest.xml",
+      "original_bytes": 90553,
+      "original_sha256": "c0f9e50761747da86934bbbfbd21c1c4ee696ef566e8c20d98efa4b2e44ea208",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/pytest.xml.gz",
+      "stored_bytes": 10190,
+      "stored_sha256": "964c61427987650fc88f572eec91cd07c6fc36631f85282465566e8b69d256a4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_aim_plugin_discovery.py",
+      "original_bytes": 3413,
+      "original_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_aim_plugin_discovery.py",
+      "stored_bytes": 3413,
+      "stored_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_aim_status_display.py",
+      "original_bytes": 3050,
+      "original_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_aim_status_display.py",
+      "stored_bytes": 3050,
+      "stored_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_api_freeze_platform_regressions.py",
+      "original_bytes": 5085,
+      "original_sha256": "b15a034dc4590b6949084b415b1879b1d836f1264912e6303e5bb127e1ba7a78",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_api_freeze_platform_regressions.py.gz",
+      "stored_bytes": 1449,
+      "stored_sha256": "06ad5564d2ae6eb4a4ef0a8cd3b1fd6ff4f4ac6c9c379db6dd304a6bf1f0b0aa",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_offline_platform_view.py",
+      "original_bytes": 2148,
+      "original_sha256": "91336a6a6fd909ecc871ac33cfe75e28de9abd65e08d6b885fe7c8924c749f1f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_offline_platform_view.py",
+      "stored_bytes": 2148,
+      "stored_sha256": "91336a6a6fd909ecc871ac33cfe75e28de9abd65e08d6b885fe7c8924c749f1f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_operator_offline_clock.py",
+      "original_bytes": 3987,
+      "original_sha256": "f17882e5a9855f8316073e5c551d791cc5a708232770af248a59a5a65eca77ec",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_operator_offline_clock.py",
+      "stored_bytes": 3987,
+      "stored_sha256": "f17882e5a9855f8316073e5c551d791cc5a708232770af248a59a5a65eca77ec",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_operator_state_projection.py",
+      "original_bytes": 10047,
+      "original_sha256": "76c2c863689a1d09875a8cec04c286f68f935fc2a0ebcad2c78aa9e7fe5d4cfa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_operator_state_projection.py.gz",
+      "stored_bytes": 2945,
+      "stored_sha256": "57dcfaeb71a9002946eec8ccd8f4dd41561bb925bd2e6f6afd0c2af14e4e9ca0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_adapters.py",
+      "original_bytes": 22294,
+      "original_sha256": "49cfa6ef6d53eba0794e115f3a42aea80eb48c1df52a1d38782bcd7892575b40",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_adapters.py.gz",
+      "stored_bytes": 5185,
+      "stored_sha256": "c4302d227abdb07897e31c3d013b938ae7a2e172885e0e7b8c3e8f21d7fe20c9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_admission_client.py",
+      "original_bytes": 2163,
+      "original_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_admission_client.py",
+      "stored_bytes": 2163,
+      "stored_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_claim_state_order.py",
+      "original_bytes": 6677,
+      "original_sha256": "cf5067ad5814401928b4a38236f2d96b74fef0de145f7881cb129b26b72474ff",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_claim_state_order.py.gz",
+      "stored_bytes": 1924,
+      "stored_sha256": "9ce028792f586a6c272c82b4605cc637c01fc2bd9e6777d4c6dafc7347b40dc7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_control_batch.py",
+      "original_bytes": 17868,
+      "original_sha256": "c60f29fb0f6a51e4bc73cbe9ded3ca84236e8cfaab8bb937e6d92f8c5e769f9d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_control_batch.py.gz",
+      "stored_bytes": 4838,
+      "stored_sha256": "09448dd34edcc75ed382c9c97afc05c9a0711c450ba57bb9b6b1d860482e49d4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_control_windows.py",
+      "original_bytes": 4386,
+      "original_sha256": "5b89ad5edf3ecf06bd25a46b583fae8f39ff5da72a910167ac15094e83708be0",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_control_windows.py.gz",
+      "stored_bytes": 1281,
+      "stored_sha256": "f5dc4709c3c32248f954d3b736528a32567a7f8b88a8454c83b975bc81175918",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_diagnostics.py",
+      "original_bytes": 10042,
+      "original_sha256": "f8c38ee5c6d18266a82e640789fa209c69903f4d62324d7ef1fceda7be17a115",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_diagnostics.py.gz",
+      "stored_bytes": 3087,
+      "stored_sha256": "df1e039e02f56b7d368c2e4968763e71b95eae53339bdff76b5fd447c44b032b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_display_generation.py",
+      "original_bytes": 3494,
+      "original_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_display_generation.py",
+      "stored_bytes": 3494,
+      "stored_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_handoff.py",
+      "original_bytes": 14043,
+      "original_sha256": "2ec28739a39073f09405b2ea68f88c9e66ddcb353f385b42b3cc895505e45545",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_handoff.py.gz",
+      "stored_bytes": 3862,
+      "stored_sha256": "e92b380cd23eab8b78b4c65b36ba221648dcf6f1744f913b7a847ca387b0abcf",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_handoff_lookahead.py",
+      "original_bytes": 3944,
+      "original_sha256": "1c43bbd20957a013325c774499d9d4d54087b13ec5c7783b9507514a8bd7881e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_handoff_lookahead.py",
+      "stored_bytes": 3944,
+      "stored_sha256": "1c43bbd20957a013325c774499d9d4d54087b13ec5c7783b9507514a8bd7881e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw.py",
+      "original_bytes": 5853,
+      "original_sha256": "aec55b80ac91dd08ff583cc744eab32eaee7b007ace6be99a5c2065ed1c1643f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw.py.gz",
+      "stored_bytes": 1746,
+      "stored_sha256": "915b0b46e10be496605cfe9820fa84b66bc807aa953edb31c97a3228fd973460",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw_ui.py",
+      "original_bytes": 3725,
+      "original_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_manual_yaw_ui.py",
+      "stored_bytes": 3725,
+      "stored_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_spin.py",
+      "original_bytes": 9527,
+      "original_sha256": "e82166f36ea9c7b75f3ea97c8922ab25733d65013162fd1672f4bdfb73a8e463",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_spin.py.gz",
+      "stored_bytes": 2476,
+      "stored_sha256": "e0698af50c594ba0f178e30ca56f3ff3da4f5a1b4d498da9ae4f7ec28150a43a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_status.py",
+      "original_bytes": 14159,
+      "original_sha256": "f2cd24b60af1f18aa55a611f4ef71e44bb53bc8d34beb31826cf61cf13d0d51c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_platform_status.py.gz",
+      "stored_bytes": 3737,
+      "stored_sha256": "b56727fb915e731dfd4126702ee4ee27e91630e115b1551f02ab496018f40a5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator.py",
+      "original_bytes": 10616,
+      "original_sha256": "fbf829224e6db12d957b0817518625aef4cb3c72ecc4b75bee3c519ddf35ca07",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator.py.gz",
+      "stored_bytes": 3108,
+      "stored_sha256": "7d9851fdb3274e0e3447c131eb30ae145bc8e465888c8e645f6f8930220270e3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_boundaries.py",
+      "original_bytes": 10262,
+      "original_sha256": "fffbb9d647c54bedef67e09e980ff21fdd67e17a6efcfa6d0acc1577b4f7d758",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_boundaries.py.gz",
+      "stored_bytes": 3296,
+      "stored_sha256": "531bea932cd03fd70001dab6847093147b3ad76d783e6d35c0c0615356b7de82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_modes.py",
+      "original_bytes": 12533,
+      "original_sha256": "ac45cfe765b0f66d2f663c8898978de76c3dafe753f44c2fe711b8464916e392",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_modes.py.gz",
+      "stored_bytes": 3319,
+      "stored_sha256": "f9b32641c651bbb07aa2d61136f13650fc37b84e1a013fd3ce8676f4f98c84f1",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_mouse_angle.py",
+      "original_bytes": 9073,
+      "original_sha256": "8071ad0621a2d485bd199acbf418e89a1ba628680e7431bc0807beb7ee9e66e8",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_mouse_angle.py.gz",
+      "stored_bytes": 2395,
+      "stored_sha256": "62da17698884d4846736ddc2d1f95f610517f68092731df792a4112e51540271",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth.py",
+      "original_bytes": 6179,
+      "original_sha256": "ec64453dd219ca34775d7690001872be1bd0ca7a7f1729957c9d9094e6bdaed3",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth.py.gz",
+      "stored_bytes": 1988,
+      "stored_sha256": "9cc121a0958e4433cff2c796b8dc7c40e5cf56a57c1ddbe878b5053cb213d659",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth_review.py",
+      "original_bytes": 7553,
+      "original_sha256": "fc516cf5ba1e5178de8fc5b567400865d405d0173c05f615680c042c5c9e4537",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_operator_truth_review.py.gz",
+      "stored_bytes": 2292,
+      "stored_sha256": "0f4539dccb5540d77c77c5b6a1ed1fef06a55397f92e0fdda5f70127edf6f225",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_platform_entry.py",
+      "original_bytes": 1466,
+      "original_sha256": "5c5b59010e53860b36df9e077b31475e912ae6126f5b823f630d31d074fd22fb",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_platform_entry.py",
+      "stored_bytes": 1466,
+      "stored_sha256": "5c5b59010e53860b36df9e077b31475e912ae6126f5b823f630d31d074fd22fb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_platform_lifecycle.py",
+      "original_bytes": 4819,
+      "original_sha256": "098b3e49b05e0b525797ffc230a9ce3d55dd9ccf559d17ea3246d1ab890dde7f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_platform_lifecycle.py.gz",
+      "stored_bytes": 1616,
+      "stored_sha256": "cea65178573b500fd4a978e211385a1bf641356c1b3a9d0b6135c3323ab00345",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_platform_v2.py",
+      "original_bytes": 11048,
+      "original_sha256": "cac03bde27c5a7bc49209973656b148ca056158015f15229148623a4e8828ffa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_sim_platform_v2.py.gz",
+      "stored_bytes": 2952,
+      "stored_sha256": "5ee51b23441c09acbf227f78f1d2cb66a08d2b24ef9f9784c37b511320ef1986",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_transport_safety_regressions.py",
+      "original_bytes": 29797,
+      "original_sha256": "7122e1169cfa34dd2f90c2719d452b5604a3aca66f9d36d857d0df344a4e4b47",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/source/tests/test_transport_safety_regressions.py.gz",
+      "stored_bytes": 7884,
+      "stored_sha256": "531fbc0c30979545dc823e182bffddf5da8fe776be80b304f142558b46590a16",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all/stdout.log",
+      "original_bytes": 623,
+      "original_sha256": "8e09e938346a365e52ab86085407a20589d33dd5bc046c08db5a37714ee7f3da",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all/stdout.log",
+      "stored_bytes": 623,
+      "stored_sha256": "8e09e938346a365e52ab86085407a20589d33dd5bc046c08db5a37714ee7f3da",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after-all-driver.log",
+      "original_bytes": 2406,
+      "original_sha256": "b59593a30cadf18c4be16d376b6aceaf176f52518218b7208541ff12d6b2e6e1",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after-all-driver.log",
+      "stored_bytes": 2406,
+      "stored_sha256": "b59593a30cadf18c4be16d376b6aceaf176f52518218b7208541ff12d6b2e6e1",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/COMMAND.json",
+      "original_bytes": 3764,
+      "original_sha256": "b1aa07236599d842eb0e492eea337d88d8d053ead45dd6df87af3d88b79e8f7f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/COMMAND.json",
+      "stored_bytes": 3764,
+      "stored_sha256": "b1aa07236599d842eb0e492eea337d88d8d053ead45dd6df87af3d88b79e8f7f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/PROCESS_RESULT.json",
+      "original_bytes": 4237,
+      "original_sha256": "b008902efb235ae482281dc6dea5e3c86c2316afbfe8a6e06511a1d1acd0912e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/PROCESS_RESULT.json.gz",
+      "stored_bytes": 1749,
+      "stored_sha256": "0f1e43c33ed31b3d0f97288612bb423f95ba085ae4bab2d9782cffed9c02c47f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/pytest.xml",
+      "original_bytes": 65358,
+      "original_sha256": "785c1dab9bdf660dd7cd774076819bc3a55787af8851f0a5b3fd8522ae156690",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/pytest.xml.gz",
+      "stored_bytes": 7288,
+      "stored_sha256": "f70bb7bd61833b4df1a8b00ff1da5792f5b61bda03e3432624cafd98b39f36aa",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_aim_plugin_discovery.py",
+      "original_bytes": 3413,
+      "original_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_aim_plugin_discovery.py",
+      "stored_bytes": 3413,
+      "stored_sha256": "67b877adea6f1c14f1066ba3060785f8e9388d28b9af85851dd9af8d6124918a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_aim_status_display.py",
+      "original_bytes": 3050,
+      "original_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_aim_status_display.py",
+      "stored_bytes": 3050,
+      "stored_sha256": "8e0a9cd4328b2433746dfec43c7990f3548a7f6645c9fe7937512d4aeddfc13d",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_operator_state_projection.py",
+      "original_bytes": 10047,
+      "original_sha256": "76c2c863689a1d09875a8cec04c286f68f935fc2a0ebcad2c78aa9e7fe5d4cfa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_operator_state_projection.py.gz",
+      "stored_bytes": 2945,
+      "stored_sha256": "57dcfaeb71a9002946eec8ccd8f4dd41561bb925bd2e6f6afd0c2af14e4e9ca0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_adapters.py",
+      "original_bytes": 22294,
+      "original_sha256": "49cfa6ef6d53eba0794e115f3a42aea80eb48c1df52a1d38782bcd7892575b40",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_adapters.py.gz",
+      "stored_bytes": 5185,
+      "stored_sha256": "c4302d227abdb07897e31c3d013b938ae7a2e172885e0e7b8c3e8f21d7fe20c9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_admission_client.py",
+      "original_bytes": 2163,
+      "original_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_admission_client.py",
+      "stored_bytes": 2163,
+      "stored_sha256": "8477a9a0ae6a9412b459d3dada5ed1c1cd4bf699f2ec64211c98cf244cfaf49f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_claim_state_order.py",
+      "original_bytes": 6677,
+      "original_sha256": "cf5067ad5814401928b4a38236f2d96b74fef0de145f7881cb129b26b72474ff",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_claim_state_order.py.gz",
+      "stored_bytes": 1924,
+      "stored_sha256": "9ce028792f586a6c272c82b4605cc637c01fc2bd9e6777d4c6dafc7347b40dc7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_control_batch.py",
+      "original_bytes": 17868,
+      "original_sha256": "c60f29fb0f6a51e4bc73cbe9ded3ca84236e8cfaab8bb937e6d92f8c5e769f9d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_control_batch.py.gz",
+      "stored_bytes": 4838,
+      "stored_sha256": "09448dd34edcc75ed382c9c97afc05c9a0711c450ba57bb9b6b1d860482e49d4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_control_windows.py",
+      "original_bytes": 4386,
+      "original_sha256": "5b89ad5edf3ecf06bd25a46b583fae8f39ff5da72a910167ac15094e83708be0",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_control_windows.py.gz",
+      "stored_bytes": 1281,
+      "stored_sha256": "f5dc4709c3c32248f954d3b736528a32567a7f8b88a8454c83b975bc81175918",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_diagnostics.py",
+      "original_bytes": 10042,
+      "original_sha256": "f8c38ee5c6d18266a82e640789fa209c69903f4d62324d7ef1fceda7be17a115",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_diagnostics.py.gz",
+      "stored_bytes": 3087,
+      "stored_sha256": "df1e039e02f56b7d368c2e4968763e71b95eae53339bdff76b5fd447c44b032b",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_display_generation.py",
+      "original_bytes": 3494,
+      "original_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_display_generation.py",
+      "stored_bytes": 3494,
+      "stored_sha256": "4f711826daa3fb690d2a64f10323e461a1042c74866cd66ca3a22f7d78cefaed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_handoff.py",
+      "original_bytes": 14043,
+      "original_sha256": "2ec28739a39073f09405b2ea68f88c9e66ddcb353f385b42b3cc895505e45545",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_handoff.py.gz",
+      "stored_bytes": 3862,
+      "stored_sha256": "e92b380cd23eab8b78b4c65b36ba221648dcf6f1744f913b7a847ca387b0abcf",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_manual_yaw.py",
+      "original_bytes": 5853,
+      "original_sha256": "aec55b80ac91dd08ff583cc744eab32eaee7b007ace6be99a5c2065ed1c1643f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_manual_yaw.py.gz",
+      "stored_bytes": 1746,
+      "stored_sha256": "915b0b46e10be496605cfe9820fa84b66bc807aa953edb31c97a3228fd973460",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_manual_yaw_ui.py",
+      "original_bytes": 3725,
+      "original_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_manual_yaw_ui.py",
+      "stored_bytes": 3725,
+      "stored_sha256": "bb5c09ecc061c5b5e32d231dd836b4c8b4f95642b7d17a1d78295f07d5fe51fa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_spin.py",
+      "original_bytes": 9527,
+      "original_sha256": "e82166f36ea9c7b75f3ea97c8922ab25733d65013162fd1672f4bdfb73a8e463",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_spin.py.gz",
+      "stored_bytes": 2476,
+      "stored_sha256": "e0698af50c594ba0f178e30ca56f3ff3da4f5a1b4d498da9ae4f7ec28150a43a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_status.py",
+      "original_bytes": 14159,
+      "original_sha256": "f2cd24b60af1f18aa55a611f4ef71e44bb53bc8d34beb31826cf61cf13d0d51c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_platform_status.py.gz",
+      "stored_bytes": 3737,
+      "stored_sha256": "b56727fb915e731dfd4126702ee4ee27e91630e115b1551f02ab496018f40a5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_sim_platform_v2.py",
+      "original_bytes": 11048,
+      "original_sha256": "cac03bde27c5a7bc49209973656b148ca056158015f15229148623a4e8828ffa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_sim_platform_v2.py.gz",
+      "stored_bytes": 2952,
+      "stored_sha256": "5ee51b23441c09acbf227f78f1d2cb66a08d2b24ef9f9784c37b511320ef1986",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_transport_safety_regressions.py",
+      "original_bytes": 29797,
+      "original_sha256": "7122e1169cfa34dd2f90c2719d452b5604a3aca66f9d36d857d0df344a4e4b47",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/source/tests/test_transport_safety_regressions.py.gz",
+      "stored_bytes": 7884,
+      "stored_sha256": "531fbc0c30979545dc823e182bffddf5da8fe776be80b304f142558b46590a16",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01/stdout.log",
+      "original_bytes": 451,
+      "original_sha256": "612a4cb422d2ca1eb75f26e8dddd14a9835503de8d57749787179d8305a6abab",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01/stdout.log",
+      "stored_bytes": 451,
+      "stored_sha256": "612a4cb422d2ca1eb75f26e8dddd14a9835503de8d57749787179d8305a6abab",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-after01-driver.log",
+      "original_bytes": 1866,
+      "original_sha256": "9e300b357cab17db09629e8597daeb9c9f9de4ffe2e7a5ec903fa0185b823718",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-after01-driver.log",
+      "stored_bytes": 1866,
+      "stored_sha256": "9e300b357cab17db09629e8597daeb9c9f9de4ffe2e7a5ec903fa0185b823718",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/COMMAND.json",
+      "original_bytes": 1284,
+      "original_sha256": "09715509cc04f8ab5cf31f7506ca1a7719df48d1da5af82891de6eaec1ad3eef",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/COMMAND.json",
+      "stored_bytes": 1284,
+      "stored_sha256": "09715509cc04f8ab5cf31f7506ca1a7719df48d1da5af82891de6eaec1ad3eef",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/PROCESS_RESULT.json",
+      "original_bytes": 1757,
+      "original_sha256": "0b894dc59619bcc6461ea4fdf3e3c3fab449e06415d6c9671e88c37bace66b1e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/PROCESS_RESULT.json",
+      "stored_bytes": 1757,
+      "stored_sha256": "0b894dc59619bcc6461ea4fdf3e3c3fab449e06415d6c9671e88c37bace66b1e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/pytest.xml",
+      "original_bytes": 3357,
+      "original_sha256": "dbf2266a14483c3530d4b26d2c8a970b655acc64ee5ea18af54c6f6fc78cc2fa",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/pytest.xml",
+      "stored_bytes": 3357,
+      "stored_sha256": "dbf2266a14483c3530d4b26d2c8a970b655acc64ee5ea18af54c6f6fc78cc2fa",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_client.py",
+      "original_bytes": 23554,
+      "original_sha256": "a94f0f9f55f684c10c384d573622baf093db6e79eff9e78b44def0e6922045c1",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5489,
+      "stored_sha256": "18d8969026b19f90c7df899927d9169ddfde6243ecd3ef27f99a452864d069c9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/tests/test_platform_control_batch.py",
+      "original_bytes": 14037,
+      "original_sha256": "8f8a3a909782c67877cd1f9c3a5b401daf2685fcd4873193815019b6cae4541c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/source/tests/test_platform_control_batch.py.gz",
+      "stored_bytes": 3804,
+      "stored_sha256": "23edf0934735d51d4a3a8270bb3d3640394a99397bae54e1693be82de15bac82",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01/stdout.log",
+      "original_bytes": 83,
+      "original_sha256": "5228f68d34100494476b8f38574bf2b219f9427ace7b7bf98a85a2068a5130e5",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01/stdout.log",
+      "stored_bytes": 83,
+      "stored_sha256": "5228f68d34100494476b8f38574bf2b219f9427ace7b7bf98a85a2068a5130e5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused01-driver.log",
+      "original_bytes": 1172,
+      "original_sha256": "8592d1ee7f95b2c8e0bc85882ad3ef41286f29506f6bc71732f2609d5a2db27f",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused01-driver.log",
+      "stored_bytes": 1172,
+      "stored_sha256": "8592d1ee7f95b2c8e0bc85882ad3ef41286f29506f6bc71732f2609d5a2db27f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/COMMAND.json",
+      "original_bytes": 1284,
+      "original_sha256": "7200efe7ab2ac0d04301a0043e8bad732efc8fb178ee75c90c88dcda1098ef27",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/COMMAND.json",
+      "stored_bytes": 1284,
+      "stored_sha256": "7200efe7ab2ac0d04301a0043e8bad732efc8fb178ee75c90c88dcda1098ef27",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/PROCESS_RESULT.json",
+      "original_bytes": 1757,
+      "original_sha256": "ba70adb9d464f31e6dd3c6b8684eb7ec91d7909f44b0d4fe0b5dcb51f82b721a",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/PROCESS_RESULT.json",
+      "stored_bytes": 1757,
+      "stored_sha256": "ba70adb9d464f31e6dd3c6b8684eb7ec91d7909f44b0d4fe0b5dcb51f82b721a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/pytest.xml",
+      "original_bytes": 4399,
+      "original_sha256": "b966f8d4a0cef1e6a49ef6c24e96c11b2909afe87388d8a46999414332f6517c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/pytest.xml.gz",
+      "stored_bytes": 963,
+      "stored_sha256": "3656eca8dd95b7c6a0e6f94e342f118806d57799142d322effea4b12071715d7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_diagnostics.py",
+      "original_bytes": 6886,
+      "original_sha256": "69bd78a98592f8b73e64d654dd940104dc85e16743753f591a8bbca25e402d44",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_diagnostics.py.gz",
+      "stored_bytes": 2356,
+      "stored_sha256": "36ba9eb5efee7ddda16f2492df58b9440f1a95d61694b7900622363773eefd5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/tests/test_platform_control_batch.py",
+      "original_bytes": 17868,
+      "original_sha256": "c60f29fb0f6a51e4bc73cbe9ded3ca84236e8cfaab8bb937e6d92f8c5e769f9d",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/source/tests/test_platform_control_batch.py.gz",
+      "stored_bytes": 4838,
+      "stored_sha256": "09448dd34edcc75ed382c9c97afc05c9a0711c450ba57bb9b6b1d860482e49d4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02/stdout.log",
+      "original_bytes": 83,
+      "original_sha256": "c0078d97ccb8754d0943fd39882e3c4858ac1986c2b28d1ddd8cdbdf7bcc01d2",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02/stdout.log",
+      "stored_bytes": 83,
+      "stored_sha256": "c0078d97ccb8754d0943fd39882e3c4858ac1986c2b28d1ddd8cdbdf7bcc01d2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/pytest-focused02-driver.log",
+      "original_bytes": 1172,
+      "original_sha256": "b499b044deea5f33588be3780c109bf34b2cc7ea1ae66bb111680fd1308ebcfc",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/pytest-focused02-driver.log",
+      "stored_bytes": 1172,
+      "stored_sha256": "b499b044deea5f33588be3780c109bf34b2cc7ea1ae66bb111680fd1308ebcfc",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/client-robotio-batch-20261015-01/run_owned_suite.py",
+      "original_bytes": 4539,
+      "original_sha256": "af52fa0664cb168ce3700253a24f7e11578c54efe5fead0031d775484eba359e",
+      "stored_path": "records/artifacts/client-robotio-batch-20261015-01/run_owned_suite.py.gz",
+      "stored_bytes": 1893,
+      "stored_sha256": "143863e4ebfad2ed9386edcbbcd21c4b51367b4f38fac444ee9ee2d81e21347f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-focused-20261015-01/pytest.stderr.txt",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/control-batch-focused-20261015-01/pytest.stderr.txt",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-focused-20261015-01/pytest.stdout.txt",
+      "original_bytes": 101,
+      "original_sha256": "51f72ac3ece8649684e6fc9f29c485eed66b669b950210326b4454766e2ed0af",
+      "stored_path": "records/artifacts/control-batch-focused-20261015-01/pytest.stdout.txt",
+      "stored_bytes": 101,
+      "stored_sha256": "51f72ac3ece8649684e6fc9f29c485eed66b669b950210326b4454766e2ed0af",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-focused-20261015-01/pytest.xml",
+      "original_bytes": 5731,
+      "original_sha256": "2c4cd20f7b609f4101449a22f6534591667b156ce7afcfda4a53272351ee606f",
+      "stored_path": "records/artifacts/control-batch-focused-20261015-01/pytest.xml.gz",
+      "stored_bytes": 850,
+      "stored_sha256": "9048fae91eb8b43e618329ad2f1ec8a4ecf466a5878ac4edc5a9e8fcbc68aba8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-focused-20261015-01/RESULT.json",
+      "original_bytes": 1579,
+      "original_sha256": "f0e0b9cd34ce4b88ae94c558d4756e3baeee58e0ff73e56d32d7187ad9ac40c9",
+      "stored_path": "records/artifacts/control-batch-focused-20261015-01/RESULT.json",
+      "stored_bytes": 1579,
+      "stored_sha256": "f0e0b9cd34ce4b88ae94c558d4756e3baeee58e0ff73e56d32d7187ad9ac40c9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-focused-20261015-01/run_capture.py",
+      "original_bytes": 1960,
+      "original_sha256": "7faa1d2ee661c0105a80ebe7b258f28353e5a9c15a4e818d48f01a46e5e1909e",
+      "stored_path": "records/artifacts/control-batch-focused-20261015-01/run_capture.py",
+      "stored_bytes": 1960,
+      "stored_sha256": "7faa1d2ee661c0105a80ebe7b258f28353e5a9c15a4e818d48f01a46e5e1909e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/COMMAND.json",
+      "original_bytes": 1319,
+      "original_sha256": "4667fab50521f9079d552564af13ec8a8f991edf4a57577029150f0f6fa69295",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/COMMAND.json",
+      "stored_bytes": 1319,
+      "stored_sha256": "4667fab50521f9079d552564af13ec8a8f991edf4a57577029150f0f6fa69295",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/driver.py",
+      "original_bytes": 3434,
+      "original_sha256": "0eab5d7d8e0cb5d06358b6155b8cf0b92a26f2c5a1013d73d23982887752927b",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/driver.py",
+      "stored_bytes": 3434,
+      "stored_sha256": "0eab5d7d8e0cb5d06358b6155b8cf0b92a26f2c5a1013d73d23982887752927b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "49c7f65d9a1ac5107892512b42a301bbb07d090f55240dd6d6038129714a0189",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "49c7f65d9a1ac5107892512b42a301bbb07d090f55240dd6d6038129714a0189",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/pytest.xml",
+      "original_bytes": 7900,
+      "original_sha256": "7823db5fdebf3aaf4daa87c70d519e625657a98c3ffa63b5678d6465e7e57ab5",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/pytest.xml.gz",
+      "stored_bytes": 1212,
+      "stored_sha256": "5faaccc97458e609762b9d9133a006145634837ec708f507fb967b58ffc51f95",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/RESULT.json",
+      "original_bytes": 1935,
+      "original_sha256": "7c0da9afa08bac581b1bf2b6a020ddf9e9eb7695a10ac5888023f71d8a76e9e8",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/RESULT.json",
+      "stored_bytes": 1935,
+      "stored_sha256": "7c0da9afa08bac581b1bf2b6a020ddf9e9eb7695a10ac5888023f71d8a76e9e8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/test_client.py",
+      "original_bytes": 6656,
+      "original_sha256": "751bf5f62f091292e2dc68fe40635548b5f1d9733a88b30b5ee8c501649f3de8",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/test_client.py.gz",
+      "stored_bytes": 1865,
+      "stored_sha256": "fa5fb0d6477c7d7582989469860b590b3a8b4aa0206bd9f51fe0f50b563be567",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/test_window_client.py",
+      "original_bytes": 4260,
+      "original_sha256": "0553728efd28423bfb9180bd58688c1d80f1ed70c641d60baf7e7b950485bed8",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/rm_match/platform_v2/test_window_client.py.gz",
+      "stored_bytes": 1357,
+      "stored_sha256": "113f2c578eb3ac960b17744516a0db56762d50557999a3483489f21415f6f4c6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/source/tests/test_control_batch_client.py",
+      "original_bytes": 9361,
+      "original_sha256": "32f8f03ac083c5245524f8da1327ffdd1382a18f8bbbd62de6c8ed06f562df3a",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/source/tests/test_control_batch_client.py.gz",
+      "stored_bytes": 2681,
+      "stored_sha256": "a6d072e62e7c4eb0c491c091662e10eb8405243f6e648ddcb6108583a638caed",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/control-batch-sdk-focused-20261015-01/stdout.log",
+      "original_bytes": 101,
+      "original_sha256": "7feffc13e105e1b7176c5143bb166167544ca8c4ac776bb60e194e2aca5e7395",
+      "stored_path": "records/artifacts/control-batch-sdk-focused-20261015-01/stdout.log",
+      "stored_bytes": 101,
+      "stored_sha256": "7feffc13e105e1b7176c5143bb166167544ca8c4ac776bb60e194e2aca5e7395",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/preserve_control_batch_20261015.py",
+      "original_bytes": 4204,
+      "original_sha256": "4ae21fe31f15e6f10dccba74406a8391eeb3565831931ab0c5b4612e98de1131",
+      "stored_path": "records/artifacts/preserve_control_batch_20261015.py.gz",
+      "stored_bytes": 1894,
+      "stored_sha256": "8078410fa653a2b257ff6894e60b73ff2dbdfb8950db3708b718d97f2d6f9025",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/AUDIT.json",
+      "original_bytes": 535,
+      "original_sha256": "97c95fe3e865b50159a7707462a9cb8fffd9b5ae9903656daba71f7cfd687687",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/AUDIT.json",
+      "stored_bytes": 535,
+      "stored_sha256": "97c95fe3e865b50159a7707462a9cb8fffd9b5ae9903656daba71f7cfd687687",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/CAMERA.json",
+      "original_bytes": 5496,
+      "original_sha256": "5361fc726030afa7c372578ee78cf11b6053369409be4e874db89d11c1e6d1a4",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/CAMERA.json.gz",
+      "stored_bytes": 1433,
+      "stored_sha256": "19a927f390a407552d989b1604fb58940f6aab0bae0ee1238e4ff9baf5dc07f1",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/CHILD_COMMAND.json",
+      "original_bytes": 1159,
+      "original_sha256": "1ced8f6e0ad1e0b807807bcbe785836d7d122099c1305d8cd03189bd30e36ff2",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/CHILD_COMMAND.json",
+      "stored_bytes": 1159,
+      "stored_sha256": "1ced8f6e0ad1e0b807807bcbe785836d7d122099c1305d8cd03189bd30e36ff2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/CLEANUP.json",
+      "original_bytes": 1653,
+      "original_sha256": "96875354629f1ecf1a8d7d5422021698152c6aac3d811e1be5ac18473db3bd8b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/CLEANUP.json",
+      "stored_bytes": 1653,
+      "stored_sha256": "96875354629f1ecf1a8d7d5422021698152c6aac3d811e1be5ac18473db3bd8b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 14998,
+      "original_sha256": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5370,
+      "stored_sha256": "6f26a84af112c28abbe91425dc7726173578c8a66f1141a05abea1e32111d27c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_adapters.py",
+      "original_bytes": 12424,
+      "original_sha256": "68da709418ddb9c3c3ea8929982a3923b25d80146329e18a5677f9fb577b9ed7",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_adapters.py.gz",
+      "stored_bytes": 3729,
+      "stored_sha256": "efd8ed85378c24b3f7ea6b2b5816d708cebc961ac7e9e819e0844e2cb11112fb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/COMMAND.json",
+      "original_bytes": 1859,
+      "original_sha256": "dc34e8fa0b471934f04e03e56131aaa9db881d3e2b31978e1903e062f2b3e29f",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/COMMAND.json",
+      "stored_bytes": 1859,
+      "stored_sha256": "dc34e8fa0b471934f04e03e56131aaa9db881d3e2b31978e1903e062f2b3e29f",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/EVAL.json",
+      "original_bytes": 208,
+      "original_sha256": "27ee6201200c320fa565ad7fc6afe32cc371b4a176ff0d7b441b58ef6c7f971b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/EVAL.json",
+      "stored_bytes": 208,
+      "stored_sha256": "27ee6201200c320fa565ad7fc6afe32cc371b4a176ff0d7b441b58ef6c7f971b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/HOST_SCHEDULING.json",
+      "original_bytes": 590,
+      "original_sha256": "db146f7cb0d73d4e8f31d88d0697b9af5800d33f2ff71e01d5e1875db1a79ee3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/HOST_SCHEDULING.json",
+      "stored_bytes": 590,
+      "stored_sha256": "db146f7cb0d73d4e8f31d88d0697b9af5800d33f2ff71e01d5e1875db1a79ee3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/PREPARE.json",
+      "original_bytes": 499,
+      "original_sha256": "784b403ad62319a1ab6f30fa7a1268294c1eb43b16bb34055777197cf357e32b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/PREPARE.json",
+      "stored_bytes": 499,
+      "stored_sha256": "784b403ad62319a1ab6f30fa7a1268294c1eb43b16bb34055777197cf357e32b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/PROTOCOL_TRACE.jsonl.gz",
+      "original_bytes": 148895,
+      "original_sha256": "a184bded2f027c3ffa69e8bab8d0b3a3be60644f4d388b812759b9eb3962ffe9",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/PROTOCOL_TRACE.jsonl.gz",
+      "stored_bytes": 148895,
+      "stored_sha256": "a184bded2f027c3ffa69e8bab8d0b3a3be60644f4d388b812759b9eb3962ffe9",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145972,
+      "original_sha256": "bba5ec1803924214578506eb78bdb037dcc54e0d860e92d1424980975bb1bde6",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145972,
+      "stored_sha256": "bba5ec1803924214578506eb78bdb037dcc54e0d860e92d1424980975bb1bde6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/qt/RESULT.json",
+      "original_bytes": 358319,
+      "original_sha256": "469d33a116c397b5fff8cc3d9450064d99ec32eb964e401f56243961a4348f03",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/qt/RESULT.json.gz",
+      "stored_bytes": 10898,
+      "stored_sha256": "68e0ca12f95d3564a31281ed8fa65af06fb37044788789c0c4ee2782968a0eb9",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/qt/STAGES.json",
+      "original_bytes": 145589,
+      "original_sha256": "55bb7504481c62b68c5f638745f6d3752437ec257933cf0f5d6902f76cabaf83",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/qt/STAGES.json.gz",
+      "stored_bytes": 7939,
+      "stored_sha256": "91b9d3552b8d60999b60ab562e7e6b4e678b953227d0a7ed5c217b189ef10f51",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 12809,
+      "original_sha256": "14ffa1979ab8d17ed04116df9622afa8264079ee0fa701d2ab23dd4ca7c860cc",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1511,
+      "stored_sha256": "a28ad10a2f35d0de2adb971f183106fae69c59f3ac294183e5275500cd67f5a0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/qt.stderr.log",
+      "original_bytes": 1392,
+      "original_sha256": "743d50f1299a3888b9f1cecd4efd524725983e4538b724273b8a1d5a100e497a",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/qt.stderr.log",
+      "stored_bytes": 1392,
+      "stored_sha256": "743d50f1299a3888b9f1cecd4efd524725983e4538b724273b8a1d5a100e497a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/QT_STAGES.json",
+      "original_bytes": 2156,
+      "original_sha256": "1f8aeb9731bf49e3069c8b9e9c517b6289ca82ac111b52e58b52270ee6fd7177",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/QT_STAGES.json",
+      "stored_bytes": 2156,
+      "stored_sha256": "1f8aeb9731bf49e3069c8b9e9c517b6289ca82ac111b52e58b52270ee6fd7177",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/RESULT.json",
+      "original_bytes": 1481,
+      "original_sha256": "fc6ccad1e6ca656a45f36d09e7f3c3d3d545002fe2bd410ea81cce336a7ce976",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/RESULT.json",
+      "stored_bytes": 1481,
+      "stored_sha256": "fc6ccad1e6ca656a45f36d09e7f3c3d3d545002fe2bd410ea81cce336a7ce976",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/examples/robotio_protocol_decision.json",
+      "original_bytes": 1703,
+      "original_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/examples/robotio_protocol_decision.json",
+      "stored_bytes": 1703,
+      "stored_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/examples/robotio_protocol_navigation.json",
+      "original_bytes": 1961,
+      "original_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/examples/robotio_protocol_navigation.json",
+      "stored_bytes": 1961,
+      "stored_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/examples/robotio_protocol_plugins.json",
+      "original_bytes": 847,
+      "original_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/examples/robotio_protocol_plugins.json",
+      "stored_bytes": 847,
+      "stored_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 12143,
+      "original_sha256": "04aabeaca2f84f9c64719786501fec94c81154a61b4399ba8190f47e095e18fb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3502,
+      "stored_sha256": "4e0c70a6b7ae4d2f90e344e0dfa944f8b10b7403e4b404472a815a983d55e4f5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/robotio_plugin.py",
+      "original_bytes": 15069,
+      "original_sha256": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/robotio_plugin.py.gz",
+      "stored_bytes": 4238,
+      "stored_sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/integrations/decision_jsonl_peer.py",
+      "original_bytes": 5049,
+      "original_sha256": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "stored_bytes": 1525,
+      "stored_sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5365,
+      "original_sha256": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1683,
+      "stored_sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 12011,
+      "original_sha256": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3573,
+      "stored_sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/tests/fixtures/decision_heat_v2.py",
+      "original_bytes": 1140,
+      "original_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/tests/fixtures/decision_heat_v2.py",
+      "stored_bytes": 1140,
+      "stored_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/tests/fixtures/decision_supply_v1.py",
+      "original_bytes": 1160,
+      "original_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/tests/fixtures/decision_supply_v1.py",
+      "stored_bytes": 1160,
+      "stored_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/tests/fixtures/navigation_goal_fixture.py",
+      "original_bytes": 942,
+      "original_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/tests/fixtures/navigation_goal_fixture.py",
+      "stored_bytes": 942,
+      "stored_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/tools/qa_qt_platform_robotio.py",
+      "original_bytes": 23589,
+      "original_sha256": "2a70f1005cb85e5b4cc1ef51670e1b2b308f8728d62949d43d11bfeca06d615e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/tools/qa_qt_platform_robotio.py.gz",
+      "stored_bytes": 7166,
+      "stored_sha256": "78fbf2ecadcdece515ce64f276cbc39216ab5e4093d7bc957e6e04f6d9f91bcb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/tools/qa_qt_platform_robotio_peer.py",
+      "original_bytes": 35398,
+      "original_sha256": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/tools/qa_qt_platform_robotio_peer.py.gz",
+      "stored_bytes": 9298,
+      "stored_sha256": "3d0ca35b0af1ee4f85f2d27c896aa84c2e3484c7d9eebe8c2f9053d59a71bfd3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/source/tools/qa_robotio_protocol_sil.py",
+      "original_bytes": 23159,
+      "original_sha256": "f24282d73207d794c9ad450bc8fc83b7406da9b905c9c6a31544f31dd1331f15",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/source/tools/qa_robotio_protocol_sil.py.gz",
+      "stored_bytes": 7024,
+      "stored_sha256": "f216507e65a1f965cec489ba767fe83ae079cc895554260cda96da6da3f57920",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-01/SOURCE_MANIFEST.json",
+      "original_bytes": 14178,
+      "original_sha256": "5dfe664679cf31c3db85e87e8201dc4a9d5849e0c558cbc814444c4ffcf1adb8",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-01/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 2954,
+      "stored_sha256": "1c424832d3ef8efbd31bb5439dcaf5e19ceea2f4d0453a2f1cddd2d0bd6c6a87",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/AUDIT.json",
+      "original_bytes": 535,
+      "original_sha256": "19c35d26f7e21b93860cb9a055d570dd3f59db2b23c536b5246b7da7d6ca366c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/AUDIT.json",
+      "stored_bytes": 535,
+      "stored_sha256": "19c35d26f7e21b93860cb9a055d570dd3f59db2b23c536b5246b7da7d6ca366c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/CAMERA.json",
+      "original_bytes": 5483,
+      "original_sha256": "397f3ab9ec3b307f4e857b8f000b682c7bb7cd475511597243b278529d34aeec",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/CAMERA.json.gz",
+      "stored_bytes": 1428,
+      "stored_sha256": "1be950830a01d534e75b8f5979964ac826ede1c209bb24a731103d80f70961c4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/CHILD_COMMAND.json",
+      "original_bytes": 1159,
+      "original_sha256": "dc3b970a4bbc80ee6a481c387dbed16cf5f6d3fb0c8b72bb95c112b580976abb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/CHILD_COMMAND.json",
+      "stored_bytes": 1159,
+      "stored_sha256": "dc3b970a4bbc80ee6a481c387dbed16cf5f6d3fb0c8b72bb95c112b580976abb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/CLEANUP.json",
+      "original_bytes": 1653,
+      "original_sha256": "3201b696b36244fcd6f062131ac1e5ebc8d131eb5ce03f63aa38d4022a95ccef",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/CLEANUP.json",
+      "stored_bytes": 1653,
+      "stored_sha256": "3201b696b36244fcd6f062131ac1e5ebc8d131eb5ce03f63aa38d4022a95ccef",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/CLIENT_PATCH_MANIFEST.json",
+      "original_bytes": 14998,
+      "original_sha256": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/CLIENT_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5370,
+      "stored_sha256": "6f26a84af112c28abbe91425dc7726173578c8a66f1141a05abea1e32111d27c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_adapters.py",
+      "original_bytes": 12424,
+      "original_sha256": "68da709418ddb9c3c3ea8929982a3923b25d80146329e18a5677f9fb577b9ed7",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_adapters.py.gz",
+      "stored_bytes": 3729,
+      "stored_sha256": "efd8ed85378c24b3f7ea6b2b5816d708cebc961ac7e9e819e0844e2cb11112fb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_client.py",
+      "original_bytes": 24258,
+      "original_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_client.py.gz",
+      "stored_bytes": 5637,
+      "stored_sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py",
+      "original_bytes": 6504,
+      "original_sha256": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py.gz",
+      "stored_bytes": 1997,
+      "stored_sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "original_bytes": 2538,
+      "original_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "stored_bytes": 2538,
+      "stored_sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py",
+      "original_bytes": 11038,
+      "original_sha256": "9d81aa7f17bbbebcb5a191093c79984a86ed89574a7027531be4dde13741d47a",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py.gz",
+      "stored_bytes": 3442,
+      "stored_sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_transport.py",
+      "original_bytes": 65131,
+      "original_sha256": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/sim_platform_transport.py.gz",
+      "stored_bytes": 14439,
+      "stored_sha256": "eecc095850bf03056f0f0490fd7b691581f469d188e92ee76c39b3a8156baf23",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py",
+      "original_bytes": 17881,
+      "original_sha256": "c571b41079e7e3ccf947b59d566193efe59cd7b2a93eae938ca4b84499e9c2e0",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "stored_bytes": 5251,
+      "stored_sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py",
+      "original_bytes": 9850,
+      "original_sha256": "190354c1a472b012f35394b9f060dd61f260da3c316c6a65e89ab9da1693703c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "stored_bytes": 3367,
+      "stored_sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/COMMAND.json",
+      "original_bytes": 1859,
+      "original_sha256": "388b9e407718a6a7ad635f6d7a10d9dfb6eb8d200694b03a1879e506d280b00e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/COMMAND.json",
+      "stored_bytes": 1859,
+      "stored_sha256": "388b9e407718a6a7ad635f6d7a10d9dfb6eb8d200694b03a1879e506d280b00e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/EVAL.json",
+      "original_bytes": 210,
+      "original_sha256": "ca3e1794b258e13f12eb1d9feda57b0ce2799fef70cbcc8ac37fb6039250f7c8",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/EVAL.json",
+      "stored_bytes": 210,
+      "stored_sha256": "ca3e1794b258e13f12eb1d9feda57b0ce2799fef70cbcc8ac37fb6039250f7c8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/HOST_SCHEDULING.json",
+      "original_bytes": 590,
+      "original_sha256": "db146f7cb0d73d4e8f31d88d0697b9af5800d33f2ff71e01d5e1875db1a79ee3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/HOST_SCHEDULING.json",
+      "stored_bytes": 590,
+      "stored_sha256": "db146f7cb0d73d4e8f31d88d0697b9af5800d33f2ff71e01d5e1875db1a79ee3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/PREPARE.json",
+      "original_bytes": 497,
+      "original_sha256": "137c2a07b34dac16105d65c383e0b125484faef230b03276ef22009e79496a15",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/PREPARE.json",
+      "stored_bytes": 497,
+      "stored_sha256": "137c2a07b34dac16105d65c383e0b125484faef230b03276ef22009e79496a15",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/PROTOCOL_TRACE.jsonl.gz",
+      "original_bytes": 153435,
+      "original_sha256": "ad327266b2ed03bf0f82301a1193c8d9d1be8f96c20601d2a2d969a8cc1245d8",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/PROTOCOL_TRACE.jsonl.gz",
+      "stored_bytes": 153435,
+      "stored_sha256": "ad327266b2ed03bf0f82301a1193c8d9d1be8f96c20601d2a2d969a8cc1245d8",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "original_bytes": 145934,
+      "original_sha256": "3dee00f4c4166dd1ae44889b0b3c38fbc9cdd19f27e774a4524da5eeaf6c6f67",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "stored_bytes": 145934,
+      "stored_sha256": "3dee00f4c4166dd1ae44889b0b3c38fbc9cdd19f27e774a4524da5eeaf6c6f67",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/qt/RESULT.json",
+      "original_bytes": 353823,
+      "original_sha256": "7e188ec854cbb5031c4d47d424db1c94cf76fd1c08f4cd0e841955789250be1d",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/qt/RESULT.json.gz",
+      "stored_bytes": 10733,
+      "stored_sha256": "9f844d44715290e6db5baddd1f73ea3143efc29f8b2b7b7efe8b024c17b0f391",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/qt/STAGES.json",
+      "original_bytes": 137889,
+      "original_sha256": "f01ca9b9945cbcab3a8594e703e86c3f3b33da73e036d814c1e7d50833321273",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/qt/STAGES.json.gz",
+      "stored_bytes": 7635,
+      "stored_sha256": "bf50c396e56da9fb0f47b3811a797027f8834ab3a479b12e5c889b2c9220f130",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/qt/STATE_SNAPSHOTS.json",
+      "original_bytes": 12262,
+      "original_sha256": "2941d851048a9e5a6469785cab8cb5fb8f1ae610ed1ed0eb35217e0c99199c62",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/qt/STATE_SNAPSHOTS.json.gz",
+      "stored_bytes": 1489,
+      "stored_sha256": "dd0bec7b74194a02d1944eb1e6329115ccc969acecc96f64059ef56a20bb10e3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/qt.stderr.log",
+      "original_bytes": 1392,
+      "original_sha256": "65235fd37d38cece4e6b23a5b7fd88017868eac0790710f471a5ed017b98368a",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/qt.stderr.log",
+      "stored_bytes": 1392,
+      "stored_sha256": "65235fd37d38cece4e6b23a5b7fd88017868eac0790710f471a5ed017b98368a",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/QT_STAGES.json",
+      "original_bytes": 2156,
+      "original_sha256": "c5aaf0b56e960e7387c7f8c1141f35dfa9bf206f5a51af89b41df13833a6454b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/QT_STAGES.json",
+      "stored_bytes": 2156,
+      "stored_sha256": "c5aaf0b56e960e7387c7f8c1141f35dfa9bf206f5a51af89b41df13833a6454b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/RESULT.json",
+      "original_bytes": 1481,
+      "original_sha256": "c5c31e5c037242efa4ec564576ae7875c8e85d3142e9bffde213556d949a5fe3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/RESULT.json",
+      "stored_bytes": 1481,
+      "stored_sha256": "c5c31e5c037242efa4ec564576ae7875c8e85d3142e9bffde213556d949a5fe3",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/examples/robotio_protocol_decision.json",
+      "original_bytes": 1703,
+      "original_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/examples/robotio_protocol_decision.json",
+      "stored_bytes": 1703,
+      "stored_sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/examples/robotio_protocol_navigation.json",
+      "original_bytes": 1961,
+      "original_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/examples/robotio_protocol_navigation.json",
+      "stored_bytes": 1961,
+      "stored_sha256": "f5c3de061dfbf7a6d689c419e179dbd752ddfd5fe013007ee6ddc0e1744e3d3e",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/examples/robotio_protocol_plugins.json",
+      "original_bytes": 847,
+      "original_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/examples/robotio_protocol_plugins.json",
+      "stored_bytes": 847,
+      "stored_sha256": "6367d63a01ff0cfbd641642268d49a5dd841939a7c482c59ade478381f8fa7e5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/camera_profile.py",
+      "original_bytes": 4914,
+      "original_sha256": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/camera_profile.py.gz",
+      "stored_bytes": 2004,
+      "stored_sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/coop_launcher.py",
+      "original_bytes": 27986,
+      "original_sha256": "4bb95636ae47f652bbac8be1a7bcff4091ca74bd6634b85a24f25026bfab69a3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/coop_launcher.py.gz",
+      "stored_bytes": 8191,
+      "stored_sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/decision_plugin.py",
+      "original_bytes": 9425,
+      "original_sha256": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/decision_plugin.py.gz",
+      "stored_bytes": 2812,
+      "stored_sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/json_adapter.py",
+      "original_bytes": 14778,
+      "original_sha256": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/json_adapter.py.gz",
+      "stored_bytes": 4082,
+      "stored_sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/json_owned_process.py",
+      "original_bytes": 6384,
+      "original_sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/json_owned_process.py.gz",
+      "stored_bytes": 1820,
+      "stored_sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/launcher.py",
+      "original_bytes": 23024,
+      "original_sha256": "ec0697ae37aaed017f96810bc21b44dca662c646f9f554b3421aacf2057d3734",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/launcher.py.gz",
+      "stored_bytes": 6872,
+      "stored_sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/navigation_plugin.py",
+      "original_bytes": 12143,
+      "original_sha256": "04aabeaca2f84f9c64719786501fec94c81154a61b4399ba8190f47e095e18fb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/navigation_plugin.py.gz",
+      "stored_bytes": 3502,
+      "stored_sha256": "4e0c70a6b7ae4d2f90e344e0dfa944f8b10b7403e4b404472a815a983d55e4f5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/robotio_plugin.py",
+      "original_bytes": 15069,
+      "original_sha256": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/robotio_plugin.py.gz",
+      "stored_bytes": 4238,
+      "stored_sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py",
+      "original_bytes": 14448,
+      "original_sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "stored_bytes": 3860,
+      "stored_sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/integrations/decision_jsonl_peer.py",
+      "original_bytes": 5049,
+      "original_sha256": "aa29e3e011a94a8118bebaa750bd9f443f9334448d965f1e8eb46dfff55d71fb",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "stored_bytes": 1525,
+      "stored_sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/integrations/navigation_jsonl_peer.py",
+      "original_bytes": 5365,
+      "original_sha256": "dcbf8e7702e154fede80dce34900f2d3ac992fc923ac663a32b0dd8ea84163f5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "stored_bytes": 1683,
+      "stored_sha256": "b37a6d59700016e455dbb711dd4f41efa4929d024d0d6ca8cc2b7ccf20c0e336",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/match_engine.py",
+      "original_bytes": 16196,
+      "original_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/match_engine.py.gz",
+      "stored_bytes": 4888,
+      "stored_sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/match_model.py",
+      "original_bytes": 4701,
+      "original_sha256": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/match_model.py.gz",
+      "stored_bytes": 1791,
+      "stored_sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/navigation_sensors.py",
+      "original_bytes": 11934,
+      "original_sha256": "b487ae9e08125c15cac4f23b46d2fd8dcbd976d1f0e6ade461a26dcb0b79493e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/navigation_sensors.py.gz",
+      "stored_bytes": 4037,
+      "stored_sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/adapters.py",
+      "original_bytes": 10779,
+      "original_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/adapters.py.gz",
+      "stored_bytes": 3504,
+      "stored_sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/admission.py",
+      "original_bytes": 4328,
+      "original_sha256": "bcd3a7d2124e901ffddaa515fedce12c5824d60b463e7033e63c95797e564bed",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/admission.py.gz",
+      "stored_bytes": 1573,
+      "stored_sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/backend.py",
+      "original_bytes": 13578,
+      "original_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/backend.py.gz",
+      "stored_bytes": 4115,
+      "stored_sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/camera.py",
+      "original_bytes": 31275,
+      "original_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/camera.py.gz",
+      "stored_bytes": 8101,
+      "stored_sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/contracts.py",
+      "original_bytes": 12011,
+      "original_sha256": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/contracts.py.gz",
+      "stored_bytes": 3573,
+      "stored_sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/decision_contracts.py",
+      "original_bytes": 4861,
+      "original_sha256": "979e28541722a73f18524f2641711f88fab717ea52547252d0cd6bab7e02e930",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "stored_bytes": 1450,
+      "stored_sha256": "86170d5108c410bc7e8eb5f90819d451d46db37637ad780e2db3fbf59d19cc85",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py",
+      "original_bytes": 7424,
+      "original_sha256": "1cb617b1f5edd8f084f7eb04aebb8e96e69c994f050d88b2a52809e564d9906c",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "stored_bytes": 2071,
+      "stored_sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/navigation_contracts.py",
+      "original_bytes": 8003,
+      "original_sha256": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "stored_bytes": 2527,
+      "stored_sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/runtime.py",
+      "original_bytes": 62137,
+      "original_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/runtime.py.gz",
+      "stored_bytes": 14301,
+      "stored_sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/tests/fixtures/decision_heat_v2.py",
+      "original_bytes": 1140,
+      "original_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/tests/fixtures/decision_heat_v2.py",
+      "stored_bytes": 1140,
+      "stored_sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/tests/fixtures/decision_supply_v1.py",
+      "original_bytes": 1160,
+      "original_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/tests/fixtures/decision_supply_v1.py",
+      "stored_bytes": 1160,
+      "stored_sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/tests/fixtures/navigation_goal_fixture.py",
+      "original_bytes": 942,
+      "original_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/tests/fixtures/navigation_goal_fixture.py",
+      "stored_bytes": 942,
+      "stored_sha256": "42cb928ca8bacef023ecc5d97d852b3d74d0a4cba69e4ebf4c9b4d6b24ac8438",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/tools/qa_qt_platform_robotio.py",
+      "original_bytes": 23589,
+      "original_sha256": "2a70f1005cb85e5b4cc1ef51670e1b2b308f8728d62949d43d11bfeca06d615e",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/tools/qa_qt_platform_robotio.py.gz",
+      "stored_bytes": 7166,
+      "stored_sha256": "78fbf2ecadcdece515ce64f276cbc39216ab5e4093d7bc957e6e04f6d9f91bcb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/tools/qa_qt_platform_robotio_peer.py",
+      "original_bytes": 35398,
+      "original_sha256": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/tools/qa_qt_platform_robotio_peer.py.gz",
+      "stored_bytes": 9298,
+      "stored_sha256": "3d0ca35b0af1ee4f85f2d27c896aa84c2e3484c7d9eebe8c2f9053d59a71bfd3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/source/tools/qa_robotio_protocol_sil.py",
+      "original_bytes": 23159,
+      "original_sha256": "f24282d73207d794c9ad450bc8fc83b7406da9b905c9c6a31544f31dd1331f15",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/source/tools/qa_robotio_protocol_sil.py.gz",
+      "stored_bytes": 7024,
+      "stored_sha256": "f216507e65a1f965cec489ba767fe83ae079cc895554260cda96da6da3f57920",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-actual-20261015-02/SOURCE_MANIFEST.json",
+      "original_bytes": 14178,
+      "original_sha256": "5dfe664679cf31c3db85e87e8201dc4a9d5849e0c558cbc814444c4ffcf1adb8",
+      "stored_path": "records/artifacts/qt-control-batch-actual-20261015-02/SOURCE_MANIFEST.json.gz",
+      "stored_bytes": 2954,
+      "stored_sha256": "1c424832d3ef8efbd31bb5439dcaf5e19ceea2f4d0453a2f1cddd2d0bd6c6a87",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-01/COMMAND.json",
+      "original_bytes": 2335,
+      "original_sha256": "f1d1188f57dec509430ab6cf9acef45d9577dd92384efbdbc9cf2a1bafe06afd",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-01/COMMAND.json",
+      "stored_bytes": 2335,
+      "stored_sha256": "f1d1188f57dec509430ab6cf9acef45d9577dd92384efbdbc9cf2a1bafe06afd",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-01/driver.py",
+      "original_bytes": 2659,
+      "original_sha256": "5574afb917c86595bf00177646ff4a1557b4b5e738a5974eebe8f35627542803",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-01/driver.py",
+      "stored_bytes": 2659,
+      "stored_sha256": "5574afb917c86595bf00177646ff4a1557b4b5e738a5974eebe8f35627542803",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-01/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "6e62aa89ac0c4b92fb3e43efc56388c90ca886399daaaf1096b9d990d320cd37",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-01/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "6e62aa89ac0c4b92fb3e43efc56388c90ca886399daaaf1096b9d990d320cd37",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-01/RESULT.json",
+      "original_bytes": 3156,
+      "original_sha256": "caea14c17d5517d989bc945666636686aff774e94e957681ede22a2e24484230",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-01/RESULT.json",
+      "stored_bytes": 3156,
+      "stored_sha256": "caea14c17d5517d989bc945666636686aff774e94e957681ede22a2e24484230",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-01/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-01/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-01/stdout.log",
+      "original_bytes": 162,
+      "original_sha256": "7013aeae52d43b3b4e410a377093cb31b387acde8c45c3f93b6ee83415212ba6",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-01/stdout.log",
+      "stored_bytes": 162,
+      "stored_sha256": "7013aeae52d43b3b4e410a377093cb31b387acde8c45c3f93b6ee83415212ba6",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-02/COMMAND.json",
+      "original_bytes": 2335,
+      "original_sha256": "acaefb35d3ad267cf545d738651449c96ac3ef5ae7ae47cffcc381339a36901c",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-02/COMMAND.json",
+      "stored_bytes": 2335,
+      "stored_sha256": "acaefb35d3ad267cf545d738651449c96ac3ef5ae7ae47cffcc381339a36901c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-02/driver.py",
+      "original_bytes": 2659,
+      "original_sha256": "5574afb917c86595bf00177646ff4a1557b4b5e738a5974eebe8f35627542803",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-02/driver.py",
+      "stored_bytes": 2659,
+      "stored_sha256": "5574afb917c86595bf00177646ff4a1557b4b5e738a5974eebe8f35627542803",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-02/PID.json",
+      "original_bytes": 36,
+      "original_sha256": "874d41fcd4acdb57376fe22962135bfd0bb1825502cb8faf9cae1ab439736bd2",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-02/PID.json",
+      "stored_bytes": 36,
+      "stored_sha256": "874d41fcd4acdb57376fe22962135bfd0bb1825502cb8faf9cae1ab439736bd2",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-02/RESULT.json",
+      "original_bytes": 3156,
+      "original_sha256": "ecba39a68de7af607dc7e38703c61a6f4492d1c710cf5a1f90e0ff9202f78092",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-02/RESULT.json",
+      "stored_bytes": 3156,
+      "stored_sha256": "ecba39a68de7af607dc7e38703c61a6f4492d1c710cf5a1f90e0ff9202f78092",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-02/stderr.log",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-02/stderr.log",
+      "stored_bytes": 0,
+      "stored_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-control-batch-driver-20261015-02/stdout.log",
+      "original_bytes": 162,
+      "original_sha256": "983d262f37529aa8900a6435065e3076ee37d483d88a282501a843b68cd11575",
+      "stored_path": "records/artifacts/qt-control-batch-driver-20261015-02/stdout.log",
+      "stored_bytes": 162,
+      "stored_sha256": "983d262f37529aa8900a6435065e3076ee37d483d88a282501a843b68cd11575",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/COMMAND.json",
+      "original_bytes": 394,
+      "original_sha256": "74b9ae9e556c2fc59db285bc7bd93e0e940f6b6c9588e263ac2f487d06ff8440",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/COMMAND.json",
+      "stored_bytes": 394,
+      "stored_sha256": "74b9ae9e556c2fc59db285bc7bd93e0e940f6b6c9588e263ac2f487d06ff8440",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/PEER_AFTER.py",
+      "original_bytes": 35398,
+      "original_sha256": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/PEER_AFTER.py.gz",
+      "stored_bytes": 9298,
+      "stored_sha256": "3d0ca35b0af1ee4f85f2d27c896aa84c2e3484c7d9eebe8c2f9053d59a71bfd3",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/PEER_BEFORE.py",
+      "original_bytes": 35264,
+      "original_sha256": "7168616497c82910b1983dfdf67a1d2939a8826c530a3ab2b2d10c01d0cc7a04",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/PEER_BEFORE.py.gz",
+      "stored_bytes": 9285,
+      "stored_sha256": "79042a1600e072ee89ca25e0ae667d1d6badc8d8a89bcdb0ef816f0d0512d116",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/PROCESS_RESULT.json",
+      "original_bytes": 364,
+      "original_sha256": "78ddd4552c21899b84047bd97e756437502435b6f3da398598f6b960ab6f1c48",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/PROCESS_RESULT.json",
+      "stored_bytes": 364,
+      "stored_sha256": "78ddd4552c21899b84047bd97e756437502435b6f3da398598f6b960ab6f1c48",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/raw.log",
+      "original_bytes": 129,
+      "original_sha256": "727f20e585f58d28ee3c120b54141d946899cf5cc2babc9868867dc7094ad581",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/raw.log",
+      "stored_bytes": 129,
+      "stored_sha256": "727f20e585f58d28ee3c120b54141d946899cf5cc2babc9868867dc7094ad581",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/RESULT.json",
+      "original_bytes": 2902,
+      "original_sha256": "026828ec8da0b39512a72d82b10298b4d0785311ea71d2bccfefc21b69f7d944",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/RESULT.json",
+      "stored_bytes": 2902,
+      "stored_sha256": "026828ec8da0b39512a72d82b10298b4d0785311ea71d2bccfefc21b69f7d944",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/qt-platform-batch-seq-static-20261015-01/verify_seq.py",
+      "original_bytes": 5691,
+      "original_sha256": "eb5d2ab277e655f957d980a64e3ed77692839b7021727ad1e95eb14a088f997d",
+      "stored_path": "records/artifacts/qt-platform-batch-seq-static-20261015-01/verify_seq.py.gz",
+      "stored_bytes": 2200,
+      "stored_sha256": "afe5a2217a7fd3c520a2f0059a79d25ff932cb5162ae77f823773aeab3aee313",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/acceptance_preset.log",
+      "original_bytes": 1166,
+      "original_sha256": "759d2ffc6be82ee842d0a995188f6dfd10ae4396fdd91e2475d15866b1bac2fb",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/acceptance_preset.log",
+      "stored_bytes": 1166,
+      "stored_sha256": "759d2ffc6be82ee842d0a995188f6dfd10ae4396fdd91e2475d15866b1bac2fb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/interface_static.log",
+      "original_bytes": 23957,
+      "original_sha256": "1f849ae7a5f9e9231330ea5073e7d0c8121b9e6ef3257162657c9e9e85c03344",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/interface_static.log.gz",
+      "stored_bytes": 3867,
+      "stored_sha256": "9ca9619b9a6b9ff49af2d6bfbe2b2f7d283f0086990343590a1c84ca523b77ef",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/manifest.json",
+      "original_bytes": 1428770,
+      "original_sha256": "e86afe0165772c7a6d30f569c31830d01258f21bf31dacb1bc0b70d2bd0fd2ca",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/manifest.json.gz",
+      "stored_bytes": 385507,
+      "stored_sha256": "cad179ba06160fa4901ff2d194c561d32f726a2c1f5d3b96f785e0e5ef13e84f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/preset.json",
+      "original_bytes": 1166,
+      "original_sha256": "759d2ffc6be82ee842d0a995188f6dfd10ae4396fdd91e2475d15866b1bac2fb",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/preset.json",
+      "stored_bytes": 1166,
+      "stored_sha256": "759d2ffc6be82ee842d0a995188f6dfd10ae4396fdd91e2475d15866b1bac2fb",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/pytest.log",
+      "original_bytes": 4692,
+      "original_sha256": "88aad8c592e0b9b94a2e61a906cfc1ba85935731ff3260616949664a5ec799e2",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/pytest.log.gz",
+      "stored_bytes": 607,
+      "stored_sha256": "ad0f2caa59fd5854f5b84e501904a96cd998385752661f52e3d6c04cbd8b000d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/pytest.xml",
+      "original_bytes": 335371,
+      "original_sha256": "3a906f33b5b02b5ad0dcd2fd7e9f369b3738812f53314ebaa2973d240aaa5eec",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/pytest.xml.gz",
+      "stored_bytes": 48394,
+      "stored_sha256": "b77f0c81851ee1a3989bcaceb0018cc7aa1ee306d6f3409cc018c5fa074724a6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "artifacts/quality-aim-followup-20261014-08/source_provenance.log",
+      "original_bytes": 1627,
+      "original_sha256": "61cb17539d82801b3c5bb2bd10f08aaa1868082ae3328f2d14291bf170e7fd80",
+      "stored_path": "records/artifacts/quality-aim-followup-20261014-08/source_provenance.log",
+      "stored_bytes": 1627,
+      "stored_sha256": "61cb17539d82801b3c5bb2bd10f08aaa1868082ae3328f2d14291bf170e7fd80",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_aim_followup_quality_20261014.py",
+      "original_bytes": 2009,
+      "original_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "stored_path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "stored_bytes": 2009,
+      "stored_sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_batch_sdk_focused_20261015.py",
+      "original_bytes": 3434,
+      "original_sha256": "0eab5d7d8e0cb5d06358b6155b8cf0b92a26f2c5a1013d73d23982887752927b",
+      "stored_path": "records/artifacts/run_batch_sdk_focused_20261015.py",
+      "stored_bytes": 3434,
+      "stored_sha256": "0eab5d7d8e0cb5d06358b6155b8cf0b92a26f2c5a1013d73d23982887752927b",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/run_qt_control_batch_20261015.py",
+      "original_bytes": 2659,
+      "original_sha256": "5574afb917c86595bf00177646ff4a1557b4b5e738a5974eebe8f35627542803",
+      "stored_path": "records/artifacts/run_qt_control_batch_20261015.py",
+      "stored_bytes": 2659,
+      "stored_sha256": "5574afb917c86595bf00177646ff4a1557b4b5e738a5974eebe8f35627542803",
+      "compression": "literal"
+    },
+    {
+      "original_path": "artifacts/update_batch_provenance_20261015.py",
+      "original_bytes": 1656,
+      "original_sha256": "3a2879374900ab1a78192ef6c4b2532e001802edad3acdfe70e0a1e1f16a2eb5",
+      "stored_path": "records/artifacts/update_batch_provenance_20261015.py",
+      "stored_bytes": 1656,
+      "stored_sha256": "3a2879374900ab1a78192ef6c4b2532e001802edad3acdfe70e0a1e1f16a2eb5",
+      "compression": "literal"
+    },
+    {
+      "original_path": "client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json",
+      "original_bytes": 14998,
+      "original_sha256": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+      "stored_path": "records/client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json.gz",
+      "stored_bytes": 5370,
+      "stored_sha256": "6f26a84af112c28abbe91425dc7726173578c8a66f1141a05abea1e32111d27c",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "client_patches/README.md",
+      "original_bytes": 9021,
+      "original_sha256": "a0fd62d15934d32ed7f715f66d8a9f5ebe12aef55bb5f6c847b3265fee10747e",
+      "stored_path": "records/client_patches/README.md.gz",
+      "stored_bytes": 4932,
+      "stored_sha256": "cf3fa92c871502556cc2ea2e39dc6b8debab5f53acc6bd065c603928554d84f2",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "client_patches/robotio_control_batch_v1.patch",
+      "original_bytes": 160222,
+      "original_sha256": "bda801aeec7e0f1e6f34bc96708285eb90350880d1602df15a1f365d70a9e0f7",
+      "stored_path": "records/client_patches/robotio_control_batch_v1.patch.gz",
+      "stored_bytes": 37958,
+      "stored_sha256": "ff48fd2cf43e6ccbf6c0efc0cef9ba975054cc454b1fd0bf69760a5dc6618349",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "DEVELOPMENT_CHANGES.json",
+      "original_bytes": 16502,
+      "original_sha256": "6b8fd528a1980916f2498d223b0319ad42a24850b3d266227f7022aca7cebcc4",
+      "stored_path": "records/DEVELOPMENT_CHANGES.json.gz",
+      "stored_bytes": 6179,
+      "stored_sha256": "f4e9596a9f74287e8fe09e6fca846810540006d34d7bbbfd3ee956897f571dc5",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/CLIENT_ROBOTIO_INTERFACE.md",
+      "original_bytes": 10037,
+      "original_sha256": "ac21b7d0291fe28ddde1acd974032a09d4e797b708e4fbdf6abe78f4dc5927d8",
+      "stored_path": "records/docs/CLIENT_ROBOTIO_INTERFACE.md.gz",
+      "stored_bytes": 5057,
+      "stored_sha256": "c6553537ac561e48a90c0133c490b8fa0a0823ed399d34cf8c1054e3f737ba6d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/CONTROL_BATCH_INTERFACE.md",
+      "original_bytes": 4607,
+      "original_sha256": "5ff456fa5577d6b9acf37a6d8dea0f8e858b953c025a48fe081e6653bcec0779",
+      "stored_path": "records/docs/CONTROL_BATCH_INTERFACE.md.gz",
+      "stored_bytes": 2627,
+      "stored_sha256": "c51718aaa4d495b75aeccffb92284493c5ffdec71ad3d936555dbcd029b404b8",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "original_bytes": 66709,
+      "original_sha256": "01d1c6e324ccbe59da67e37f0276372b0821359b0077d814bd0d9f056e619c92",
+      "stored_path": "records/docs/IMPLEMENTATION_PROGRESS.md.gz",
+      "stored_bytes": 30986,
+      "stored_sha256": "a9ddb96688639e7e54149983b5600e6e0642f0d2f21df91d1dc7eeb10b5f832f",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "docs/UNIVERSAL_PLUGIN_INTERFACES.md",
+      "original_bytes": 16633,
+      "original_sha256": "af639716e81916bb263a7d8fc8f2b5507b2e1097d883d4871191fe49764d7fe1",
+      "stored_path": "records/docs/UNIVERSAL_PLUGIN_INTERFACES.md.gz",
+      "stored_bytes": 7999,
+      "stored_sha256": "2280aa86c8f8d66bc47f4e8173f5b36ac5416224b55f656c81cbdb0187a466d6",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "examples/coop_robotio_batch_protocol.json",
+      "original_bytes": 499,
+      "original_sha256": "9cce209223ee3dfb78d24980e49b3205eb5ebf7e1975dad9879e584acc118a5c",
+      "stored_path": "records/examples/coop_robotio_batch_protocol.json",
+      "stored_bytes": 499,
+      "stored_sha256": "9cce209223ee3dfb78d24980e49b3205eb5ebf7e1975dad9879e584acc118a5c",
+      "compression": "literal"
+    },
+    {
+      "original_path": "rm_match/platform_v2/client.py",
+      "original_bytes": 22269,
+      "original_sha256": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+      "stored_path": "records/rm_match/platform_v2/client.py.gz",
+      "stored_bytes": 5082,
+      "stored_sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "rm_match/platform_v2/control.py",
+      "original_bytes": 32201,
+      "original_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "stored_path": "records/rm_match/platform_v2/control.py.gz",
+      "stored_bytes": 6711,
+      "stored_sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "rm_match/platform_v2/server.py",
+      "original_bytes": 11899,
+      "original_sha256": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+      "stored_path": "records/rm_match/platform_v2/server.py.gz",
+      "stored_bytes": 3349,
+      "stored_sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tests/test_control_batch.py",
+      "original_bytes": 16596,
+      "original_sha256": "fe41eb617b9aba54f9ce74f42c08f0983f0cc782419dcfa5095ec3cb7da0fbf2",
+      "stored_path": "records/tests/test_control_batch.py.gz",
+      "stored_bytes": 4162,
+      "stored_sha256": "4051a998932b96fa74284f72c713f3982709b786c370832c930cdbb8e25031f4",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tests/test_control_batch_client.py",
+      "original_bytes": 9361,
+      "original_sha256": "32f8f03ac083c5245524f8da1327ffdd1382a18f8bbbd62de6c8ed06f562df3a",
+      "stored_path": "records/tests/test_control_batch_client.py.gz",
+      "stored_bytes": 2681,
+      "stored_sha256": "a6d072e62e7c4eb0c491c091662e10eb8405243f6e648ddcb6108583a638caed",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tools/qa_qt_platform_robotio.py",
+      "original_bytes": 23589,
+      "original_sha256": "2a70f1005cb85e5b4cc1ef51670e1b2b308f8728d62949d43d11bfeca06d615e",
+      "stored_path": "records/tools/qa_qt_platform_robotio.py.gz",
+      "stored_bytes": 7166,
+      "stored_sha256": "78fbf2ecadcdece515ce64f276cbc39216ab5e4093d7bc957e6e04f6d9f91bcb",
+      "compression": "gzip"
+    },
+    {
+      "original_path": "tools/qa_qt_platform_robotio_peer.py",
+      "original_bytes": 35398,
+      "original_sha256": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+      "stored_path": "records/tools/qa_qt_platform_robotio_peer.py.gz",
+      "stored_bytes": 9298,
+      "stored_sha256": "3d0ca35b0af1ee4f85f2d27c896aa84c2e3484c7d9eebe8c2f9053d59a71bfd3",
+      "compression": "gzip"
+    }
+  ]
+}

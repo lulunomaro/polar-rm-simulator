@@ -1,0 +1,36 @@
+{
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 13.527822300005937,
+  "timed_out": false,
+  "forced_direct_child_termination": false,
+  "source_before": {
+    "tools/qa_qt_platform_robotio.py": "2a70f1005cb85e5b4cc1ef51670e1b2b308f8728d62949d43d11bfeca06d615e",
+    "tools/qa_qt_platform_robotio_peer.py": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+    "rm_match/platform_v2/client.py": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+    "rm_match/platform_v2/control.py": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+    "rm_match/platform_v2/server.py": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+    "client_patches/robotio_control_batch_v1.patch": "bda801aeec7e0f1e6f34bc96708285eb90350880d1602df15a1f365d70a9e0f7",
+    "external/polar-rm-client-robotio-batch-review/rm_client/sim_platform_client.py": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+    "external/polar-rm-client-robotio-batch-review/rm_client/sim_platform_transport.py": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+    "external/polar-rm-client-robotio-batch-review/rm_client/sim_platform_handoff.py": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e"
+  },
+  "source_after": {
+    "tools/qa_qt_platform_robotio.py": "2a70f1005cb85e5b4cc1ef51670e1b2b308f8728d62949d43d11bfeca06d615e",
+    "tools/qa_qt_platform_robotio_peer.py": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+    "rm_match/platform_v2/client.py": "cbe3cd1006e1ca50403bdc54c8a7ccc38cd6fe6349ac0284d6643855ac7b6051",
+    "rm_match/platform_v2/control.py": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+    "rm_match/platform_v2/server.py": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+    "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+    "client_patches/CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json": "f7c3ff3d8bae1dca409389d289ae20d3c2f6e19efc90377d4718f623e92ff506",
+    "client_patches/robotio_control_batch_v1.patch": "bda801aeec7e0f1e6f34bc96708285eb90350880d1602df15a1f365d70a9e0f7",
+    "external/polar-rm-client-robotio-batch-review/rm_client/sim_platform_client.py": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+    "external/polar-rm-client-robotio-batch-review/rm_client/sim_platform_transport.py": "d6dfed558e6495be0d31aaea97d53d267f1910a21853328dcf224104217eaefc",
+    "external/polar-rm-client-robotio-batch-review/rm_client/sim_platform_handoff.py": "43fdc25bd50cc521192049db6987ed56682704b2053e530634d456e2d1d6f35e"
+  },
+  "source_unchanged": true
+}

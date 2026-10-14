@@ -203,6 +203,9 @@ class PlatformHandler(BaseHTTPRequestHandler):
                     result=p.adapter_input(token,v['robot_id'],v['kind'],v['lease_epochs'],v['binding_epoch'],v['seq'],v['window_id'],v['valid_for_s'])
                 elif path=='/v2/control_window':
                     exact(v,('robot_id','lease_epochs'));result=p.control_window(token,v['robot_id'],v['lease_epochs'])
+                elif path=='/v2/control_batch':
+                    exact(v,('robot_id','lease_epochs','window_id','valid_for_s','adapter_inputs','controls'))
+                    result=p.control_batch(token,v['robot_id'],v['lease_epochs'],v['window_id'],v['valid_for_s'],v['adapter_inputs'],v['controls'])
                 elif path=='/v2/control':
                     keys=('robot_id','channel','lease_epoch','seq','value','valid_for_s')
                     exact(v,keys+('window_id',) if 'window_id' in v else keys)

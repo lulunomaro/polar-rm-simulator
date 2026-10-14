@@ -1,0 +1,109 @@
+{
+  "schema": "polar.qt.batch-sequence-static.v1",
+  "pid": 65264,
+  "passed": true,
+  "scope": "Pure ACK fixture only; original SDK call uses intercepted HTTP, no Qt/WSL/physics/NN",
+  "checks": [
+    "original_SDK_first_batch_generates_three_seq_zero",
+    "actual_peer_hook_accepts_zero_and_preserves_identity",
+    "reject_adapter_inputs_seq_int_-1",
+    "reject_adapter_inputs_seq_bool_True",
+    "reject_adapter_inputs_seq_float_0.0",
+    "reject_controls_seq_int_-1",
+    "reject_controls_seq_bool_True",
+    "reject_controls_seq_float_0.0",
+    "reject_adapter_inputs_binding_epoch_int_0",
+    "reject_adapter_inputs_window_id_int_0",
+    "reject_controls_lease_epoch_int_0",
+    "reject_controls_window_id_int_0"
+  ],
+  "check_count": 12,
+  "original_SDK_request": {
+    "path": "/v2/control_batch",
+    "body": {
+      "robot_id": "red_infantry",
+      "lease_epochs": {
+        "motion": 1,
+        "gimbal": 1,
+        "fire": 1
+      },
+      "window_id": 1,
+      "valid_for_s": 0.15,
+      "adapter_inputs": [
+        {
+          "kind": "navigation",
+          "binding_epoch": 1,
+          "seq": 0
+        }
+      ],
+      "controls": [
+        {
+          "channel": "gimbal",
+          "lease_epoch": 1,
+          "seq": 0,
+          "value": {
+            "yaw_rad": 0.0,
+            "pitch_rad": 0.0
+          }
+        },
+        {
+          "channel": "fire",
+          "lease_epoch": 1,
+          "seq": 0,
+          "value": {
+            "fire": false
+          }
+        }
+      ]
+    }
+  },
+  "original_SDK_first_ACK": {
+    "schema": "rm.sim.platform.v2",
+    "accepted": true,
+    "robot_id": "red_infantry",
+    "lease_epochs": {
+      "motion": 1,
+      "gimbal": 1,
+      "fire": 1
+    },
+    "window_id": 1,
+    "batch_version": 1,
+    "adapter_inputs": [
+      {
+        "kind": "navigation",
+        "binding_epoch": 1,
+        "seq": 0,
+        "accepted": true,
+        "robot_id": "red_infantry",
+        "window_id": 1,
+        "activation_expires": 100.15
+      }
+    ],
+    "controls": [
+      {
+        "channel": "gimbal",
+        "lease_epoch": 1,
+        "seq": 0,
+        "accepted": true,
+        "robot_id": "red_infantry",
+        "window_id": 1,
+        "input_expires": 100.15
+      },
+      {
+        "channel": "fire",
+        "lease_epoch": 1,
+        "seq": 0,
+        "accepted": true,
+        "robot_id": "red_infantry",
+        "window_id": 1,
+        "input_expires": 100.15
+      }
+    ]
+  },
+  "peer_sha256": "91b1761d8b60c5ecb9e0315b182df3c8da5c86dee1afe33b5aaad545570dd8e5",
+  "client_sha256": "4e154225c84802b0fc3f03faf0814d492b838c9e13f34eb203ce3a0d9060109c",
+  "before_sha256": "7168616497c82910b1983dfdf67a1d2939a8826c530a3ab2b2d10c01d0cc7a04",
+  "ast_python_310": true,
+  "source_unchanged": true,
+  "no_Qt_import": true
+}

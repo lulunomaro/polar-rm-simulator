@@ -70,11 +70,12 @@ def main(argv=None):
     errors = [];events = [];total_events = 0;dropped = 0;stdout_rows = 0
     app = window = runtime = transport = None
     snapshots = {};images = {};wrapped = {};threads = [];buffer = bytearray()
+    manual_batch_channels=set()
     original_neutral=None
     state = dict(phase='watch',watch_selected=False,first_f2=False,second_f2=False,
                  plan_selected=False,ready=False,go_wall=None,release_wall=None,
                  release_ack=False,close_ack=False,activation_count=0,finished=False,
-                 last_wait_wall=None)
+                 last_wait_wall=None,control_batch_submit_count=0,control_batch_ack_count=0)
     result = dict(schema='polar.sim.qt-platform-robotio-peer.v1',robot_id=args.robot_id,
         adapter_id=args.adapter_id,qualification='offscreen_original_window_HTTP_camera_F2_SDK_protocol_only',
         clock='unmodified_original_client_clock; probe metadata host_perf_counter',
@@ -184,6 +185,8 @@ def main(argv=None):
         nonlocal original_neutral
         client=transport.client
         original_neutral=transport.neutral
+        cost_code=transport._handoff.cost.__func__.__code__
+        supports_batched='batched' in cost_code.co_varnames[:cost_code.co_argcount+cost_code.co_kwonlyargcount]
         def neutral(reason='Input released'):
             # Bounded code locations and scheduling scalars, no stack source
             # reads or sleeps. Original arguments and estimator are unchanged.
@@ -201,6 +204,8 @@ def main(argv=None):
                         scheduling_call=dict(kinds=len(plan),controls=controls,
                             maintenance=None if type(maintenance) is not list else
                             [item for item in maintenance if item in ('renew','keepalive')])
+                        if supports_batched and type(values.get('batched')) is bool:
+                            scheduling_call['batched']=values['batched']
                 frame=frame.f_back
             try:
                 with transport._lock:
@@ -220,6 +225,7 @@ def main(argv=None):
         transport.neutral=neutral
         for name in ('control_window','adapter_input','_request'):
             wrapped[name]=getattr(client,name)
+        if hasattr(client,'control_batch'):wrapped['control_batch']=client.control_batch
         last_window={}
         def control_window(*pos,**kw):
             value=wrapped['control_window'](*pos,**kw)
@@ -243,6 +249,78 @@ def main(argv=None):
                 remember('actual_adapter_activation_ack',window_id=safe['window_id'],seq=safe['seq'])
             except BaseException as exc:error('activation_evidence',exc)
             return value
+        def control_batch(*pos,**kw):
+            # One original RPC. Evidence never issues a replacement pulse,
+            # window, control or renew, nor changes its deadline or values.
+            with lock:
+                state['control_batch_submit_count']+=1
+                submission=state['control_batch_submit_count']
+            entered=time.perf_counter()
+            remember('actual_control_batch_submit',submission=submission)
+            value=wrapped['control_batch'](*pos,**kw)
+            returned=time.perf_counter()
+            try:
+                if (type(value) is not dict or set(value)!={'schema','accepted','robot_id','lease_epochs',
+                    'window_id','batch_version','adapter_inputs','controls'}
+                    or value['schema']!='rm.sim.platform.v2' or value['accepted'] is not True
+                    or type(value['robot_id']) is not str or value['robot_id']!=args.robot_id
+                    or type(value['batch_version']) is not int or value['batch_version']!=1
+                    or type(value['window_id']) is not int or value['window_id']<=0
+                    or type(value['lease_epochs']) is not dict
+                    or type(value['adapter_inputs']) is not list or type(value['controls']) is not list
+                    or len(value['adapter_inputs'])>3 or len(value['controls'])>3):
+                    raise RuntimeError('original_batch_ACK_shape_or_identity_mismatch')
+                with lock:actual=copy.deepcopy(last_window.get(value['window_id']))
+                if actual is None or actual['robot_id']!=value['robot_id']:
+                    raise RuntimeError('batch_without_recorded_original_window')
+                epochs=value['lease_epochs']
+                if (set(epochs)!=set(actual['lease_epochs']) or any(
+                    type(epoch) is not int or epoch<=0 or epoch!=actual['lease_epochs'][channel]
+                    for channel,epoch in epochs.items())):
+                    raise RuntimeError('batch_original_window_lease_epoch_mismatch')
+                activation_keys={'accepted','robot_id','kind','binding_epoch','seq','window_id','activation_expires'}
+                control_keys={'accepted','robot_id','channel','lease_epoch','seq','window_id','input_expires'}
+                activations=[];controls=[];kinds=set();channels=set()
+                for item in value['adapter_inputs']:
+                    if (type(item) is not dict or set(item)!=activation_keys or item['accepted'] is not True
+                        or type(item['robot_id']) is not str or item['robot_id']!=value['robot_id']
+                        or type(item['kind']) is not str or item['kind'] not in ('navigation','aim')
+                        or item['kind'] in kinds or any(type(item[k]) is not int or item[k]<=0
+                            for k in ('binding_epoch','window_id'))
+                        or type(item['seq']) is not int or item['seq']<0
+                        or item['window_id']!=value['window_id']
+                        or type(item['activation_expires']) not in (int,float)
+                        or not math.isfinite(item['activation_expires'])
+                        or not actual['issued_wall']<item['activation_expires']<=actual['expires_wall']):
+                        raise RuntimeError('original_batch_activation_ACK_not_typed')
+                    kinds.add(item['kind']);activations.append(copy.deepcopy(item))
+                for item in value['controls']:
+                    if (type(item) is not dict or set(item)!=control_keys or item['accepted'] is not True
+                        or type(item['robot_id']) is not str or item['robot_id']!=value['robot_id']
+                        or type(item['channel']) is not str or item['channel'] not in ('motion','gimbal','fire')
+                        or item['channel'] in channels or any(type(item[k]) is not int or item[k]<=0
+                            for k in ('lease_epoch','window_id'))
+                        or type(item['seq']) is not int or item['seq']<0
+                        or item['window_id']!=value['window_id']
+                        or item['lease_epoch']!=epochs.get(item['channel'])
+                        or type(item['input_expires']) not in (int,float)
+                        or not math.isfinite(item['input_expires'])
+                        or not actual['issued_wall']<item['input_expires']<=actual['expires_wall']):
+                        raise RuntimeError('original_batch_manual_ACK_not_typed')
+                    channels.add(item['channel']);controls.append(copy.deepcopy(item))
+                with lock:
+                    state['control_batch_ack_count']+=1
+                    manual_batch_channels.update(channels)
+                    state['activation_count']+=len(activations)
+                remember('actual_control_batch_ack',submission=submission,window_id=value['window_id'],
+                    elapsed_host_s=returned-entered,adapter_kinds=sorted(kinds),manual_ACKs=controls)
+                for activation in activations:
+                    emit('sdk_activation',robot_id=args.robot_id,window=actual,activation=activation)
+                    remember('actual_adapter_activation_ack',window_id=activation['window_id'],
+                        seq=activation['seq'],source='original_control_batch_ACK')
+            except BaseException as exc:error('control_batch_evidence',exc)
+            return value
+
         def request(path,*pos,**kw):
             # Include pre-F2 in-flight requests, whose responses can arrive
             # after the real claim ACK. Keep the original source/revision.
@@ -263,6 +341,7 @@ def main(argv=None):
                 remember('actual_close_ack',closed=state['close_ack'])
             return value
         client.control_window=control_window;client.adapter_input=adapter_input;client._request=request
+        if 'control_batch' in wrapped:client.control_batch=control_batch
 
     def quit_loop():
         state['finished']=True
@@ -460,6 +539,9 @@ def main(argv=None):
         result['host_scheduling_qualified']=all(not row['enabled'] or
             (row['applied'] and row['restored']) for row in scheduling.values())
         result.update(stages=state,errors=errors,elapsed_s=time.perf_counter()-started,
+            control_batch_submit_count=state['control_batch_submit_count'],
+            control_batch_ack_count=state['control_batch_ack_count'],
+            manual_batch_ack_channels=sorted(manual_batch_channels),
             stdout_rows=stdout_rows,diagnostic_total=total_events,diagnostic_dropped=dropped)
         # Protocol rejection is distinct from actual resources being reaped.
         result['resource_errors']=[item for item in errors if item.startswith(

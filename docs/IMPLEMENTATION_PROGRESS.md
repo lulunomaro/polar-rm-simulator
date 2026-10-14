@@ -9,20 +9,20 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
-| T04 | 进行中：第三份独立组合补丁修复claim后旧状态误撤权；330项实际Qt offscreen回归/103subtests；原PlatformWindow第三轮已两F2/真实画面/159非零步，但预算压力整体失败 | 原150ms下持续可见按键/相机全链、移动完整自瞄、云台/实体弹丸全链 |
+| T04 | 进行中：第四独立batch补丁，484项完整Qt回归/347subtests；原PlatformWindow两次3秒协议链通过，真实画面/两F2/SDK/543与601非零步/clean；此前预算失败原件保持 | 长时及可见桌面、移动完整自瞄、云台/实体弹丸、队伍算法组合全链 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope；修复canonical六身份数值同值异型放行及graph注册复读竞态，21/18专项通过；通用Qt目录与既有合成协议物理/DDS/T2静态证据保持 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
+| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope；六身份/注册竞态修复保持；新原子control_batch保持完整租约/绑定/window/通道/typedACK，36后端和53 SDK回归；两次原窗口低点频合成协议链通过 | 决策 v1 未提供定位/感知反馈；各队需审核包装层；第二套完整算法/实时自瞄、移动/多车/自动火未验收；PB图像仍超80ms、同济无图像闭环 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
-| T13 | 本地局部修复：显式admission、scope、/v2/plugins、SDK组合；第三客户端旧状态竞态已修复，真正撤权仍停止；原窗口03完成38激活后真实预算护栏退出/clean | 两物理电脑LAN、多人冲突/断线、原PlatformWindow持续全链及完整可见GUI验收 |
+| T13 | 本地局部修复：显式admission、scope、SDK组合；原150ms下53/49批量ACK、手动gimbal/fire ACK与独立撤权/close全部通过，两次source unchanged/owned资源clean | 两物理电脑LAN、多人冲突/断线、长时/可见桌面及队伍算法全链 |
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup07四步骤0/source unchanged：2076pass/40明确skip/1010subtests；另21/18专项与新客户端330pass/103subtests；旧客户端、三次窗口失败及历史证据不改 | 质量与协议夹具不替队伍live/许可/发布；原窗口预算压力、PB/Tongji图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup08四步骤0/source unchanged：2147pass/40明确skip/1010subtests；另第四客户端484pass/347subtests；两次3秒原窗口协议物理通过；旧三次失败及历史证据不改 | 质量与协议夹具不替队伍live/许可/发布；长时/可见桌面、PB/Tongji图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,41 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 原窗口批量提交与短时物理协议通过（2026-10-15）
+
+为解决原Handoff对多个真实HTTP往返预测157ms而超过150ms的问题，新增明确协商的
+[control_batch_v1](CONTROL_BATCH_INTERFACE.md)。完整三通道的原租约/window/绑定/序号和值先全验证再原子提交，
+任何成员失败不推进其它输入；保持独立手动fire、当前lease/window期限、旧单条接口和原时间门限。
+SDK完整typed ACK、重复JSON键、窗口request-start与每个entry原expiry相对界逐项拒错，不重放。
+Qt仍等原窗口ACK后新采样；仅batch能力下记录真实batch RTT会话上界，保留原window/采样20ms/唤醒5ms/余量5ms成本。
+
+后端36专项通过，含真实锁等待/验证后过期、完整原子失败和实际HTTP；SDK53项含实际HTTP回归通过，
+driver3.4094219秒/exit0/source unchanged/OwnedJob空且回收。第四客户端从固定0ced基线导出新完整补丁，
+旧三个checkout/patch/manifest逐字节保持。29模块484passed/347subtests/0skip，pytest21.72秒/driver22.2378568秒；
+全部owned线程/子进程clean且源不变，另21项batch专测和17模块351pass/141subtests原记录保留。
+peer最初将合法seq0视为错误的纯代码问题在实际运行前修复，12个AST提取原hook/真实SDK ACK0负例检查通过；
+保存修复前后源与记录，没有伪造一次Qt实际失败。
+
+两次独立原PlatformWindow实际通过，使用显式host/Qt CV4、CPython1ms，实读后还原；
+真实HTTP相机画面、Jello选择、watch、新own HUD、原两F2/焦点/输入与SDK期限均保持：
+
+| 运行 | 实际batch ACK | 独立策略动作 | 非零物理消费步 | receipt | 内部/driver秒 |
+| --- | --- | --- | --- | --- | --- |
+| batch01 | 53 | 21 | 543 | 1621 | 10.6882914 / 13.5278223 |
+| batch02 | 49 | 21 | 601 | 1798 | 10.1062680 / 12.1504109 |
+
+两次原3秒GO测量后F12/release和close ACK、原typed6/SDK150ms join errors=[]、0adapterfault、source unchanged，
+所有owned Job/SDK/HTTP/相机在原预算内clean；02 runtime join .0412382秒。
+它们是offscreen内部show、实际MuJoCo2ms步长/1000points/s ray/IMU、两个合成JSONL策略的短时协议SIL。
+没有ROS/NN/WSL/队伍算法、可见桌面、raw aim80ms、长时/RTF/SLAM/目标到达或整场比赛验收。
+此前原窗口01–03失败及清理缺证保持原字节，新通过不覆盖旧失败。
+
+最终统一QA08四步骤exit0/source unchanged：2147passed/40明确skip/1010subtests/6已有warnings，
+pytest137.46秒、外层driver170.4405427秒/reaped，显式同一CPU4 WSL spec，无回退。
+实际代码、完整source/失败与修复前后、两次原窗口/画面/时间/清理和质量记录在[独立永久包](validation/control_batch_20261015/README.md)。
+QA后仅结果说明/归档/Git交付，程序、测试、DEVELOPMENT_CHANGES与第四patch/MF保持最终已测SHA；
+历史包和旧三客户端保持。T01–T18/M0–M5仍按上表逐项资格，不能以短时协议通过签收比赛。
 
 ## 原身份、注册竞态与客户端租约修复（2026-10-15）
 

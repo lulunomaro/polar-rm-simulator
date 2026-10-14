@@ -237,3 +237,9 @@ finally:
 原 SDK/传感器时限审计无错误，四个子进程/HTTP/SDK 全部回收。前两轮退出竞争与原期限超时失败原样保留；
 这个通过使用专用资源准备 harness，不证明服务器默认 JSONL 启动或实时性能已通过。复跑应读取新 RESULT/AUDIT/CLEANUP。
 它不验收 MID360/SLAM、目标到达、RTF、移动自瞄、开火或 3v3；生产接入仍须换成实际 wrapper 并分别验证。
+
+## 同一窗口批量控制
+
+通用SDK可使用[control_batch_v1](CONTROL_BATCH_INTERFACE.md)，将已绑定navigation/aim的操作手授权与其余手动通道一次原子提交。
+必须完整覆盖motion/gimbal/fire，保留独立fire权限；它不改变组件观测、算法输出或原typed六身份，且不创建/延长控制窗口。
+仅明确能力版本1启用，原单条端点继续可用；任何成员无效整批拒绝，ACK逐项原期限/no-retry校验。

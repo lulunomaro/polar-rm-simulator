@@ -235,6 +235,10 @@ def run(out,a,identity):
         qt_job_clean=bool(qt_proof and qt_proof['clean'] and qt_proof['group_empty'] and qt_proof['reaped']),
         qt_exit_zero=bool(qt_proof and qt_proof['returncode']==0),
         io_http_threads_stopped=cleanup['reader_stopped'] and cleanup['http_stopped'] and cleanup['http_workers_idle'],errors_empty=not failures)
+    if a.require_control_batch:
+        checks.update(actual_control_batch_ack=type(qt_result.get('control_batch_ack_count')) is int and qt_result['control_batch_ack_count']>0,
+            original_manual_gimbal_fire_ack=type(qt_result.get('manual_batch_ack_channels')) is list and
+                {'gimbal','fire'}<=set(qt_result['manual_batch_ack_channels']))
     return dict(passed=all(checks.values()),checks=checks,errors=failures,physical=physical,
         steps=None if runtime is None else runtime.steps,qualification='actual_offscreen_PlatformWindow_camera_F2_SDK_low_rate_protocol_SIL_only',
         limitations=['Qt offscreen internal show, not visible desktop/Qt GL qualification',
@@ -248,6 +252,7 @@ def main(argv=None):
     p.add_argument('--patch-manifest',type=Path,default=ROOT/'client_patches/CLIENT_ROBOTIO_STATE_PATCH_MANIFEST.json')
     p.add_argument('--client-python',type=Path,default=ROOT/'.venv-client/Scripts/python.exe')
     p.add_argument('--out',type=Path);p.add_argument('--duration',type=float,default=12.);p.add_argument('--run',action='store_true')
+    p.add_argument('--require-control-batch',action='store_true',help='Require actual negotiated batch and manual gimbal/fire acknowledgements')
     p.add_argument('--host-opencv-threads',type=int)
     p.add_argument('--host-python-switch-interval-ms',type=float)
     a=p.parse_args(argv)
@@ -258,7 +263,7 @@ def main(argv=None):
     a.client_root=plain(a.client_root,True);a.patch_manifest=plain(a.patch_manifest);a.client_python=plain(a.client_python)
     from rm_match.deployment.launcher import check_client
     identity=check_client(a.client_root,patch_manifest=a.patch_manifest)
-    plan=dict(phase='DRY_PLAN_NOT_READY',robot_id=RID,adapter_id=AID,duration=a.duration,
+    plan=dict(phase='DRY_PLAN_NOT_READY',robot_id=RID,adapter_id=AID,duration=a.duration,require_control_batch=a.require_control_batch,
         client_identity=identity,physics_timestep_s=.002,point_rate_hz=1000,credential_transport='memory/environment_only',
         host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
         explicit_run_required=True,scope='original offscreen PlatformWindow, HTTP camera/F2 and clientSDK protocol; no visible desktop/team algorithms')
@@ -278,6 +283,7 @@ def main(argv=None):
             records.append(dict(path=str(ROOT/rel),snapshot='source/'+rel,size=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
         for rel in ('rm_client/sim_platform_adapters.py','rm_client/sim_platform_client.py',
                     'rm_client/sim_platform_transport.py','rm_client/sim_platform_runtime.py',
+                    'rm_client/sim_platform_handoff.py',
                     'rm_client/sim_platform_input.py','rm_client/ui/sim_platform_window.py',
                     'rm_client/ui/sim_operator_window.py'):
             source=a.client_root/rel;raw=source.read_bytes();target=out/'client_source'/rel

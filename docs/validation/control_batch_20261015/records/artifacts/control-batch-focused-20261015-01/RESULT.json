@@ -1,0 +1,33 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_control_batch.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\control-batch-focused-20261015-01\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "pid": 30420,
+  "reaped": true,
+  "timed_out": false,
+  "elapsed_s": 0.8011138000001665,
+  "source_before": {
+    "rm_match/platform_v2/control.py": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+    "rm_match/platform_v2/server.py": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+    "tests/test_control_batch.py": "fe41eb617b9aba54f9ce74f42c08f0983f0cc782419dcfa5095ec3cb7da0fbf2",
+    "rm_match/platform_v2/spin.py": "b1610e2a1e20e461b1c01b41f986f1878b28f5a8ac19374a51a76327b2f650dd"
+  },
+  "source_after": {
+    "rm_match/platform_v2/control.py": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+    "rm_match/platform_v2/server.py": "a0467b6424bec1ff6cf202e9f00b6a63b4db07646b21eb574a2064c4f400587f",
+    "tests/test_control_batch.py": "fe41eb617b9aba54f9ce74f42c08f0983f0cc782419dcfa5095ec3cb7da0fbf2",
+    "rm_match/platform_v2/spin.py": "b1610e2a1e20e461b1c01b41f986f1878b28f5a8ac19374a51a76327b2f650dd"
+  },
+  "source_unchanged": true,
+  "scope": "control_batch_fake_clock_atomicity_and_real_loopback_http_only",
+  "started_algorithm_ros_wsl_physics_gl_gui": false
+}

@@ -75,3 +75,9 @@ Git 检查逐调用启用 `core.autocrlf=true`、`core.filemode=false` 并尊重
 客户端对 `algorithm_status_context` 只接受原 episode/绑定 epoch/adapter 身份一致、当前本会话 gimbal lease 下的有限状态和七个标量字段。原 result deadline 从服务端时钟通过请求开始时间保守映射为本地显示期限；过期、他人车辆、旧代、坐标及异常文本被拒绝。`no_target/pending_result` 表示无动作，`result_available` 不等于机械应用。该显示字段不更新 SDK 控制窗口或 fire 权限。
 
 本次新增客户端纯解析/计划/状态测试 9 项通过；不是 GUI/第二检测器/ROS DDS/物理自瞄闭环证据。后续真实 Qt/算法验收须按当前补丁和算法/source 模型身份另存新报告。
+
+## 第四份显式原子控制补丁
+
+`CLIENT_ROBOTIO_BATCH_PATCH_MANIFEST.json` / `robotio_control_batch_v1.patch` 必须从同一固定BASE完整安装在新checkout。
+它包含前三份修复，只在服务器明确协商batch版本1时合并同一原窗口的授权与手动输入。
+旧三版本原字节保持，不能叠加；完整协议和资格见[接口说明](../docs/CONTROL_BATCH_INTERFACE.md)。

@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "checks": {
+    "two_actual_resource_prepare_acks": true,
+    "actual_platform_window_armed": true,
+    "actual_http_camera": true,
+    "camera_workers_clean": true,
+    "original_qt_stages": true,
+    "original_qt_guards": true,
+    "original_qt_peer_passed": true,
+    "actual_sdk_clean_ack": true,
+    "actual_physical_motion": true,
+    "typed_source_sdk150_receipt_join": true,
+    "no_adapter_fault": true,
+    "original_dt_2ms": true,
+    "runtime_clean": true,
+    "pipeline_clean": true,
+    "qt_job_clean": true,
+    "qt_exit_zero": true,
+    "io_http_threads_stopped": true,
+    "errors_empty": true,
+    "actual_control_batch_ack": true,
+    "original_manual_gimbal_fire_ack": true
+  },
+  "errors": [],
+  "physical": {
+    "receipts": 1798,
+    "distinct_sim_steps": 601,
+    "distinct_source_actions": 21,
+    "phases": [
+      "actuator",
+      "integration",
+      "integration_entry"
+    ],
+    "nonzero_sim_steps": 601
+  },
+  "steps": 3139,
+  "qualification": "actual_offscreen_PlatformWindow_camera_F2_SDK_low_rate_protocol_SIL_only",
+  "limitations": [
+    "Qt offscreen internal show, not visible desktop/Qt GL qualification",
+    "synthetic fixtures, not team decision/navigation/aim",
+    "1000 points/s, not MID360/SLAM/RTF/match qualification",
+    "no NN/ROS/WSL or raw aim80ms qualification"
+  ],
+  "source_unchanged": true,
+  "elapsed_seconds": 10.106268000003183,
+  "exit_code": 0
+}
