@@ -1,0 +1,20 @@
+[
+  {
+    "path": "rm_match/integrations/wsl_aim_async.py",
+    "sha256": "4071d14e7186da7a588e0f8291882f193ba81b76c14bf9deacc34423bf00bb00",
+    "bytes": 22058,
+    "snapshot": "source\\rm_match\\integrations\\wsl_aim_async.py"
+  },
+  {
+    "path": "rm_match/integrations/wsl_aim_async_worker.py",
+    "sha256": "766c4d409301f9ca93573f6a5aaa5f746594ffb1478fd9444bef85a1449a7ea3",
+    "bytes": 26194,
+    "snapshot": "source\\rm_match\\integrations\\wsl_aim_async_worker.py"
+  },
+  {
+    "path": "tests/test_wsl_aim_async.py",
+    "sha256": "39fa80212fa62977449babb625f74a8a4bc74fa929eb33f2ef05854f2aaf7de5",
+    "bytes": 18497,
+    "snapshot": "source\\tests\\test_wsl_aim_async.py"
+  }
+]

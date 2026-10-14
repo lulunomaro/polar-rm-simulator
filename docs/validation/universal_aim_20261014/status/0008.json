@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "argv": [
+        "C:/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-sim/Scripts/python.exe",
+        "-m",
+        "pytest",
+        "tests/test_aim_status_runtime.py",
+        "rm_match/platform_v2/test_runtime.py",
+        "rm_match/platform_v2/test_state_projection.py",
+        "-q",
+        "--junitxml=artifacts/aim-status-runtime-focused-20261014-01/pytest.xml"
+      ],
+      "pid": 52604,
+      "driver_pid": 47400,
+      "returncode": 0,
+      "reaped": true,
+      "elapsed_s": 2.5899575000003097
+    }
+  ],
+  "all_expected_exit_codes": true,
+  "source_before": {
+    "rm_match/platform_v2/runtime.py": "8c86063af3e3301c96f6acc599dafc56f0d1a873de462e384b62a033cfb87a85",
+    "rm_match/platform_v2/state_projection.py": "02b26de426753a950ccb6ebc9661711fc8e53bdc9648e8b99adeb6dc5fff4718",
+    "rm_match/platform_v2/aim_contracts.py": "1cdf69e81b6e64718d90b80ecdc18a8f89cf1d6da01eb49ba7f34fb0eb64bb02",
+    "tests/test_aim_status_runtime.py": "9169d0f561dc0e84f1c9a97df14976b0eb77fe485406dd3f7871e55f4abf38f8",
+    "rm_match/platform_v2/test_runtime.py": "74ccb589f98f6c84785ad76eb9a88125a1215061e214ac2c1960537601c8d0f5",
+    "rm_match/platform_v2/test_state_projection.py": "3ea5a09361271327388c0553120d62a35d2dcccf518ce87098dfc93796517521"
+  },
+  "source_after": {
+    "rm_match/platform_v2/runtime.py": "8c86063af3e3301c96f6acc599dafc56f0d1a873de462e384b62a033cfb87a85",
+    "rm_match/platform_v2/state_projection.py": "02b26de426753a950ccb6ebc9661711fc8e53bdc9648e8b99adeb6dc5fff4718",
+    "rm_match/platform_v2/aim_contracts.py": "1cdf69e81b6e64718d90b80ecdc18a8f89cf1d6da01eb49ba7f34fb0eb64bb02",
+    "tests/test_aim_status_runtime.py": "9169d0f561dc0e84f1c9a97df14976b0eb77fe485406dd3f7871e55f4abf38f8",
+    "rm_match/platform_v2/test_runtime.py": "74ccb589f98f6c84785ad76eb9a88125a1215061e214ac2c1960537601c8d0f5",
+    "rm_match/platform_v2/test_state_projection.py": "3ea5a09361271327388c0553120d62a35d2dcccf518ce87098dfc93796517521"
+  },
+  "source_unchanged": true
+}

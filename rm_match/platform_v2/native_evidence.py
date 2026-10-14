@@ -48,6 +48,18 @@ class ActualFrameEvidenceWriter:
         self.thread=threading.Thread(target=self._run,name='native-actual-frame-evidence',daemon=True)
         self.thread.start()
 
+    def can_submit(self):
+        """Bounded capacity query, no pixels, IO, checksums or wait.
+
+        Single adapter producer may skip an entire fresh frame before doing
+        image work. Every already accepted frame still must be preserved.
+        Writer failure/stopping remains an error, never mere backpressure.
+        """
+        with self.lock:
+            if self.error is not None:raise NativeEvidenceError('actual_frame_evidence_failed') from self.error
+            if self.stop.is_set():raise NativeEvidenceError('actual_frame_evidence_stopped')
+            return not self.pending.full()
+
     def submit(self,frame_id,immutable_bgr_bytes,expected_sha256):
         if type(frame_id) is not int or not 0<=frame_id<=2**53-1:raise NativeEvidenceError('invalid_evidence_frame_id')
         if type(immutable_bgr_bytes) is not bytes or len(immutable_bgr_bytes)!=FRAME_BYTES:

@@ -1,0 +1,46 @@
+{
+  "schema": "polar.sim.aim-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_tongji_original_camera_aim",
+      "label": "Tongji original native algorithm, actual startup only",
+      "command": [
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+        "-u",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/jsonl_wrapper.py",
+        "--spec",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-instance-20261014-02/instance.json",
+        "--spec-sha256",
+        "e133645ed65ccc171c7dcbfd244844ecb9b7ba563ee37da8f94749b247899be1"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "supported_robots": [
+        "red_sentry"
+      ],
+      "transport": "wsl_jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.aim-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.observation.v2",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.aim-status.v1",
+        "sensor_profile": "calibrated_camera_capture_own_v1",
+        "pipeline_level": "direct_gimbal_v1",
+        "source_association": "exact_capture_context_v1",
+        "image_encodings": [
+          "rgb8",
+          "bgr8"
+        ],
+        "output_modes": [
+          "gimbal_target"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1"
+      },
+      "wsl": {
+        "distribution": "Ubuntu",
+        "python": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+        "process_env": {}
+      }
+    }
+  ]
+}

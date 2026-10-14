@@ -1,0 +1,97 @@
+[0.631s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/polar-pb-aim-system-deps-20261014-02/prefix/opt/ros/humble' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+[0.631s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+[0.631s] WARNING:colcon.colcon_ros.prefix_path.ament:The path '/root/polar-humble-ext4-20261014-01/livox_ros_driver2' in the environment variable AMENT_PREFIX_PATH doesn't contain any 'local_setup.*' files.
+[0.631s] WARNING:colcon.colcon_ros.prefix_path.catkin:The path '/root/polar-humble-ext4-20261014-01/livox_ros_driver2' in the environment variable CMAKE_PREFIX_PATH seems to be a catkin workspace but it doesn't contain any 'local_setup.*' files. Maybe the catkin version is not up-to-date?
+Starting >>> auto_aim_interfaces
+--- stderr: auto_aim_interfaces
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    OpenCV_DIR
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< auto_aim_interfaces [21.4s]
+Starting >>> pb_rm_interfaces
+--- stderr: pb_rm_interfaces
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    OpenCV_DIR
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< pb_rm_interfaces [28.8s]
+Starting >>> rmoss_projectile_motion
+--- stderr: rmoss_projectile_motion
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    OpenCV_DIR
+    PYTHON_EXECUTABLE
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< rmoss_projectile_motion [28.5s]
+Starting >>> polar_pb_aim_interfaces
+--- stderr: polar_pb_aim_interfaces
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    OpenCV_DIR
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< polar_pb_aim_interfaces [18.3s]
+Starting >>> armor_detector_opencv
+--- stderr: armor_detector_opencv
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/armor_detector_opencv` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    PYTHON_EXECUTABLE
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< armor_detector_opencv [51.9s]
+Starting >>> armor_tracker
+--- stderr: armor_tracker
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/armor_tracker` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    OpenCV_DIR
+    PYTHON_EXECUTABLE
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< armor_tracker [56.0s]
+Starting >>> projectile_motion
+--- stderr: projectile_motion
+In this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/projectile_motion` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    OpenCV_DIR
+    PYTHON_EXECUTABLE
+    Python_EXECUTABLE
+    Python_FIND_VIRTUALENV
+
+
+---
+Finished <<< projectile_motion [1min 6s]
+
+Summary: 7 packages finished [4min 31s]
+  7 packages had stderr output: armor_detector_opencv armor_tracker auto_aim_interfaces pb_rm_interfaces polar_pb_aim_interfaces projectile_motion rmoss_projectile_motion

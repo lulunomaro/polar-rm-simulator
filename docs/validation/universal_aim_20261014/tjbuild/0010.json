@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "cmake",
+    "--build",
+    "artifacts/tongji-aim-native-preparation-20261014-04/build",
+    "--target",
+    "polar_native_aim",
+    "--parallel",
+    "2"
+  ],
+  "pid": 41140,
+  "driver_pid": 25112,
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 86.31364480000047
+}

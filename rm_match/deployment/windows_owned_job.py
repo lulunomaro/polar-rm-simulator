@@ -44,6 +44,8 @@ def _api():
         'CreatePipe':([ctypes.POINTER(w.HANDLE),ctypes.POINTER(w.HANDLE),ctypes.POINTER(_Security),w.DWORD],w.BOOL),
         'SetHandleInformation':([w.HANDLE,w.DWORD,w.DWORD],w.BOOL),
         'CreateFileW':([w.LPCWSTR,w.DWORD,w.DWORD,ctypes.POINTER(_Security),w.DWORD,w.DWORD,w.HANDLE],w.HANDLE),
+        'GetCurrentProcess':([],w.HANDLE),
+        'DuplicateHandle':([w.HANDLE,w.HANDLE,w.HANDLE,ctypes.POINTER(w.HANDLE),w.DWORD,w.BOOL,w.DWORD],w.BOOL),
         'CreateJobObjectW':([w.LPVOID,w.LPCWSTR],w.HANDLE),
         'SetInformationJobObject':([w.HANDLE,ctypes.c_int,w.LPVOID,w.DWORD],w.BOOL),
         'AssignProcessToJobObject':([w.HANDLE,w.HANDLE],w.BOOL),
@@ -71,7 +73,7 @@ class OwnedLaunchFailure(RuntimeError):
         self.cleanup_status=status
 
 class WindowsOwnedJobProcess:
-    def __init__(self,command,*,cwd,env,stop_event=None):
+    def __init__(self,command,*,cwd,env,stop_event=None,stderr=None):
         import msvcrt
         if type(command) is not list or not command or any(type(v) is not str for v in command):raise ValueError('Explicit argv required')
         self.command=list(command);self.stdin=None;self.stdout=None;self.returncode=None
@@ -95,8 +97,16 @@ class WindowsOwnedJobProcess:
             _checked(self._k.CreatePipe(ctypes.byref(stdout_read),ctypes.byref(stdout_write),ctypes.byref(sa),0))
             handles.extend((stdout_read.value,stdout_write.value))
             _checked(self._k.SetHandleInformation(stdin_write,1,0));_checked(self._k.SetHandleInformation(stdout_read,1,0))
-            null=self._k.CreateFileW('NUL',0x40000000,3,ctypes.byref(sa),3,0x80,None)
-            if null==ctypes.c_void_p(-1).value:raise ctypes.WinError(ctypes.get_last_error())
+            if stderr is None:
+                null=self._k.CreateFileW('NUL',0x40000000,3,ctypes.byref(sa),3,0x80,None)
+                if null==ctypes.c_void_p(-1).value:raise ctypes.WinError(ctypes.get_last_error())
+            else:
+                # Duplicate only this caller-owned sink; do not make its original
+                # handle inheritable or alter/close the caller's file object.
+                duplicate=w.HANDLE();current=self._k.GetCurrentProcess()
+                original=msvcrt.get_osfhandle(stderr.fileno())
+                _checked(self._k.DuplicateHandle(current,original,current,ctypes.byref(duplicate),0,True,2))
+                null=duplicate.value
             handles.append(null)
             size=ctypes.c_size_t();self._k.InitializeProcThreadAttributeList(None,1,0,ctypes.byref(size))
             if not size.value:raise ctypes.WinError(ctypes.get_last_error())

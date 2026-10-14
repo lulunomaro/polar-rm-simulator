@@ -8,11 +8,11 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设及可执行校验 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败复现；独立图像 contour-v3 修复，完整 T2 新构建成功 | 静态 OFFLINE24 跟踪/执行与实际清理已过；模型漏检、移动目标与 live 门禁仍未关闭 |
-| T03 | 局部修复验证：sealed私有像素、BGR/SHA配对复用、启动/退出证明和分母分离；最新prepared第3轮5000实际步/物理RTF.999953、148raw | 原ELF完整输入1732/1732，等待47.379ms仍超时，0返回/0消费；后继最终Popen guard只有专测/资源probe，默认live、GUI/完整比赛仍未验收 |
+| T03 | 新CPU4干净29TU构建与显式v3异步进度；async02有65真实NN stdout、5及时返回/3新帧物理消费，0fault/0fire/clean；stage01计时有70NN/11及时/3消费 | async02 RTF.5475、stage01 .6023均整体FAIL；样本数/物理性能未达门禁，80/150ms保持，不以late/pending/完整stdin ACK计NN或控制通过 |
 | T04 | 进行中：固定原客户端加显式哈希补丁；282 项实际 Qt 回归；HTTP/相机/人工控制与实际 offscreen Qt 已过 | 新自有 T2 完整链、可见桌面交互、云台/实体弹丸全链 |
 | T05 | 待推进：已有 scoped roster，native 支持仍限 stationary red_sentry | 角色/队伍/状态硬编码、移动与多车 native |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 局部SIL通过：Linux SIL8、Windows内部QA3/4及生产Gate+独立外部动作客户端均由自家Point-LIO/SLAM/Smac/PID产生真实物理消费，原SDK与deadline保持 | 单车/单代/单目标30s；旧内部QA第2轮间歇超时根因未关闭，完整行为树/任务/第二实现/第二机器仍需验证；旧失败保留 |
+| T07 | 导航局部SIL通过；另补通用camera_gimbal_v1能力/源关联、JSONL/ROS/WSL准备层和Qt发现，按能力注册而非三家白名单；同济原模型prepare/reset/clean；PB七包实际构建及三真实节点graph/reset/全树clean | 同济/PB零图像零NN准备阶段；导航单车/单代/单目标30s；自瞄第二完整实现、原80ms闭环、原C板feedforward/固件、移动/多车/两机等未验收；旧失败保留 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 局部SIL通过：导航profile实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；Linux及Windows→WSL均有Point-LIO/Nav2真实消费；默认ideal odom/64rays限制仍保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 进行中：最新冻结质量1324passed/35明确skip/930subtests；原QA01旧spec门禁失败保留，显式42spec选择与源/修改归属分开 | 质量不替live/许可/发布门禁；QA后仅文档与永久证据增补，M0–M5仍未签收 |
+| T17 | 最终冻结QA02四步骤0/source unchanged：1648pass/39明确skip/1008subtests；独立peer/资源树/纯ROS源与实际模型准备、构建证据分级保留 | 质量不替live/许可/发布；新CPU4 spec独立于旧42，持续NN负载性能与ROS闭环继续验证；M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |

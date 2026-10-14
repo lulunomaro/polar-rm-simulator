@@ -1,0 +1,75 @@
+{
+  "files": {
+    "rm_match/deployment/aim_plugin.py": {
+      "sha256": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+      "bytes": 7821,
+      "snapshot": "source\\rm_match\\deployment\\aim_plugin.py"
+    },
+    "rm_match/deployment/json_adapter.py": {
+      "sha256": "9394006b8aa03490567370c847a328124a0c63482437ae95513e20ac8d0f13fb",
+      "bytes": 13606,
+      "snapshot": "source\\rm_match\\deployment\\json_adapter.py"
+    },
+    "rm_match/deployment/json_owned_process.py": {
+      "sha256": "ccc771d5b9722f3ea6537bc63d576427bad660a2ac5e499924bef1d420a969cd",
+      "bytes": 6328,
+      "snapshot": "source\\rm_match\\deployment\\json_owned_process.py"
+    },
+    "rm_match/deployment/wsl_jsonl.py": {
+      "sha256": "b9651b7a49c6daa91aba3c4a19319e10b5a5468c315aef0fa74411f4c4567f50",
+      "bytes": 17305,
+      "snapshot": "source\\rm_match\\deployment\\wsl_jsonl.py"
+    },
+    "rm_match/deployment/wsl_jsonl_worker.py": {
+      "sha256": "456a915cdfbb8e4215099e7486552e021a99487cf3980360282fceb8a438336c",
+      "bytes": 7907,
+      "snapshot": "source\\rm_match\\deployment\\wsl_jsonl_worker.py"
+    },
+    "rm_match/deployment/wsl_jsonl_owned_tree.py": {
+      "sha256": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+      "bytes": 6029,
+      "snapshot": "source\\rm_match\\deployment\\wsl_jsonl_owned_tree.py"
+    },
+    "rm_match/deployment/profile.py": {
+      "sha256": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+      "bytes": 14335,
+      "snapshot": "source\\rm_match\\deployment\\profile.py"
+    },
+    "rm_match/deployment/windows_owned_job.py": {
+      "sha256": "f45be9e1a9894ca93202693600821ba8b32a9df2e4a73816d3497da721faa964",
+      "bytes": 13781,
+      "snapshot": "source\\rm_match\\deployment\\windows_owned_job.py"
+    },
+    "rm_match/integrations/aim_jsonl_peer.py": {
+      "sha256": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+      "bytes": 4573,
+      "snapshot": "source\\rm_match\\integrations\\aim_jsonl_peer.py"
+    },
+    "rm_match/integrations/owned_linux_group.py": {
+      "sha256": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+      "bytes": 5895,
+      "snapshot": "source\\rm_match\\integrations\\owned_linux_group.py"
+    },
+    "tests/test_wsl_jsonl.py": {
+      "sha256": "b238953a5ba20dde0780af1d9311664f0926eabef6f76f9c0d337089ad4d9c85",
+      "bytes": 12926,
+      "snapshot": "source\\tests\\test_wsl_jsonl.py"
+    },
+    "tests/test_wsl_jsonl_owned_tree.py": {
+      "sha256": "31b7af5b81b7b730591f0d7379eecb0666fee80fc142346c46affa58294c62fd",
+      "bytes": 3244,
+      "snapshot": "source\\tests\\test_wsl_jsonl_owned_tree.py"
+    },
+    "tests/test_wsl_jsonl_actual.py": {
+      "sha256": "4744f28a78eabdb5b1e7922f0ddbab1fd41abc528f5f954a4a67ab4de1b7d588",
+      "bytes": 4252,
+      "snapshot": "source\\tests\\test_wsl_jsonl_actual.py"
+    },
+    "docs/AIM_PLUGIN_COMPATIBILITY.md": {
+      "sha256": "f3dd5a37ad24e7bcdb99744570489de2046cd6f0274e2be00999c9915d458c28",
+      "bytes": 11726,
+      "snapshot": "source\\docs\\AIM_PLUGIN_COMPATIBILITY.md"
+    }
+  },
+  "checked_scope": "14 explicit files only"
+}

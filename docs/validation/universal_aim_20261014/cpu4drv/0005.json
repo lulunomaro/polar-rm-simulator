@@ -1,0 +1,38 @@
+{
+  "out": "artifacts/production-cpu4-build-driver-20261014-01",
+  "sources": [
+    "operator_native/runtime/build_portable.py",
+    "operator_native/runtime/CMakeLists.txt",
+    "operator_native/runtime/overlays/prepare_inference_threads.py",
+    "operator_native/runtime/overlays/production_inference_threads.hpp",
+    "rm_match/deployment/profile.py",
+    "rm_match/deployment/wsl_profile.py",
+    "rm_match/integrations/wsl_operator_worker.py"
+  ],
+  "scope": "Fresh production build with explicit hash-bound CPU4 compile configuration. Original 94 recovered files and model remain sealed; no trace or warm inference.",
+  "commands": [
+    {
+      "argv": [
+        "C:/Windows/System32/wsl.exe",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+        "--exec",
+        "/usr/bin/python3",
+        "operator_native/runtime/build_portable.py",
+        "build",
+        "--out",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-production-cpu4-build-20261014",
+        "--prefix",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/deps/openvino/runtime/cmake",
+        "--jobs",
+        "2",
+        "--corner-refinement",
+        "contour-v3",
+        "--inference-threads",
+        "4"
+      ]
+    }
+  ]
+}

@@ -72,6 +72,24 @@ class NativeSourceAdapter(BaseAdapter):
             process=self.process;self.process=None
             evidence=getattr(self,'_evidence_writer',None);self._evidence_writer=None
         errors=[]
+        if getattr(self,'transport',None)=='wsl_async_bgr_v3':
+            # Both owned resources stop together. The writer drains concurrently
+            # with Linux cleanup, within the original outer 1.5s join budget.
+            deadline=time.perf_counter()+1.5
+            if evidence is not None:evidence.request_stop()
+            if process is not None:
+                try:process.request_stop();process.close()
+                except BaseException as exc:errors.append(exc)
+            if evidence is not None:
+                try:evidence.close(timeout=max(0.,deadline-time.perf_counter()))
+                except BaseException as exc:errors.append(exc)
+                self._last_evidence_status=evidence.shutdown_status
+                if self.trace:
+                    try:self.trace(dict(event='native_evidence_closed',wall_time=time.perf_counter(),
+                        wall_clock='host_perf_counter',status=evidence.shutdown_status))
+                    except BaseException as exc:errors.append(exc)
+            if errors:raise errors[0]
+            return
         if evidence is not None:
             try:evidence.close(timeout=.15)
             except BaseException as exc:errors.append(exc)
@@ -84,6 +102,9 @@ class NativeSourceAdapter(BaseAdapter):
             except BaseException as exc:errors.append(exc)
         if errors:raise errors[0]
     def _hold(self,o):
+        if getattr(self,'transport',None)=='wsl_async_bgr_v3':
+            from .aim_contracts import aim_status_for
+            return aim_status_for(o,'no_target')
         q=o['own']['qpos']
         return action_for(o,'aim','gimbal_target',dict(frame='base_link',yaw_rad=math.atan2(math.sin(q[3]),math.cos(q[3])),pitch_rad=max(-math.pi/2,min(math.pi/2,q[4])),active=False,confidence=None,fire_permission=False))
     def act(self,o):
@@ -152,13 +173,26 @@ class NativeSourceAdapter(BaseAdapter):
         if self.stable_since is None:self.stable_since=t;self.anchor=list(xy)
         if t-self.stable_since<.4 or t-cam['capture_sim_time']>.08:return hold()
         if cam['frame_id']<=self.last_capture:return hold()
+        if self.process is None:
+            self._start_process(o['episode'])
+        asynchronous=getattr(self,'transport',None)=='wsl_async_bgr_v3'
+        if asynchronous and self.process.is_busy():
+            # No image preparation, evidence submission or native request while
+            # the previous actual computation finishes. Status carries only
+            # this observation's original identity and clears old commands.
+            from .aim_contracts import aim_status_for
+            return aim_status_for(o,'pending_result')
+        if asynchronous and self._evidence_writer is not None and not self._evidence_writer.can_submit():
+            from .aim_contracts import aim_status_for
+            if self.trace:self.trace(dict(event='native_evidence_backpressure_status',
+                wall_time=time.perf_counter(),wall_clock='host_perf_counter',robot_id=o['robot_id'],
+                episode=o['episode'],binding_epoch=o['binding_epoch'],observed_seq=o['observed_seq'],frame_id=cam['frame_id']))
+            return aim_status_for(o,'pending_result')
         if native_envelope is None:raw=raw_observation(o,decoded_image=decoded_image)
         else:
             from .native_observation import raw_native_observation
             raw=raw_native_observation(native_envelope)
-        if self.process is None:
-            self._start_process(o['episode'])
-        inline=getattr(self,'transport',None)=='wsl_stdio_bgr_v2'
+        inline=getattr(self,'transport',None) in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3')
         # Only this private v2 route preserves every immutable BGR frame. The
         # post-close auditor must verify/reconstruct RGB; a missing digest here
         # is an explicit deferred obligation, never fabricated audit success.
@@ -189,6 +223,19 @@ class NativeSourceAdapter(BaseAdapter):
         control_kwargs=dict(image_bytes=image_bytes)
         if proof is not None:control_kwargs['prepared_image']=proof
         response=self._native_control(dict(episode=o['episode'],control_time_ns=round(t*1e9),frame=frame),o,**control_kwargs)
+        if asynchronous:
+            from ..integrations.wsl_aim_async import NativeAimPending
+            from .contracts import IDENTITY
+            from .aim_contracts import aim_status_for
+            if type(response) is NativeAimPending:
+                source=response.source_context
+                if (type(source) is not dict or set(source)!=set(IDENTITY)
+                    or any(type(source[k]) is not type(o[k]) or source[k]!=o[k] for k in IDENTITY)):
+                    raise ContractError('native_pending_source_mismatch')
+                if self.trace:self.trace(dict(event='native_pending_status',wall_time=time.perf_counter(),
+                    wall_clock='host_perf_counter',reason=response.reason,request_id=response.request_id,
+                    complete_stdin_ack=response.submitted,**trace_identity))
+                return aim_status_for(o,'pending_result')
         if self.trace:self.trace(dict(event='native_result',wall_time=time.perf_counter(),wall_clock='host_perf_counter',response=response,**trace_identity))
         age=response.get('target_age_s')
         active=(response.get('should_control') is True and response.get('observation_shoot_allowed') is True and type(age) in (int,float) and math.isfinite(age) and 0<=age<=.08)

@@ -2,7 +2,8 @@
 import json
 import unittest
 
-from tools.native_model_properties import PREFIX, PROPERTIES, parse_native_model_properties
+from tools.native_model_properties import (PREFIX, PROPERTIES, parse_native_model_properties,
+    OPENCV_PREFIX, parse_native_opencv_threads)
 
 
 def fixture():
@@ -79,6 +80,48 @@ class NativeModelPropertiesTests(unittest.TestCase):
         self.assertEqual(result['errors'], ['report_construction_failed'])
         row.update(startup=False, native_ticks=None, inference_calls=None, report_error='report_not_startup')
         self.assertFalse(parse_native_model_properties(line(row))['valid'])
+
+
+def api_fixture(single=False):
+    return dict(schema='rmcs.opencv-thread-api.v1', profile='first-frame-trace', startup=True,
+                native_ticks=0, inference_calls=0, clock_domain='linux_steady_diagnostic_only',
+                linux_steady_ns=12345, requested='1' if single else 'original',
+                action='set_num_threads' if single else 'none', before_threads=32,
+                after_threads=1 if single else 32, error=None)
+
+
+def api_line(row):
+    return (OPENCV_PREFIX+json.dumps(row,separators=(',',':'))+'\n').encode()
+
+
+class NativeOpencvApiTests(unittest.TestCase):
+    def test_actual_api_proof_and_compiled_properties_are_separate_required_evidence(self):
+        for single in (False,True):
+            raw=api_line(api_fixture(single))
+            result=parse_native_opencv_threads(raw,expected_profile='first-frame-trace',expected_threads=1 if single else 32)
+            self.assertTrue(result['valid']);self.assertEqual(result['record']['native_ticks'],0)
+            self.assertFalse(parse_native_model_properties(raw)['valid'])
+        self.assertFalse(parse_native_opencv_threads(line(fixture()))['valid'])
+
+    def test_wrong_actual_effect_type_or_action_is_not_effective_setting(self):
+        for key,value in [('requested','2'),('action','none'),('after_threads',32),
+                          ('after_threads',True),('before_threads',32.),('startup',False),
+                          ('native_ticks',True),('inference_calls',1),('clock_domain','host_perf_counter')]:
+            row=api_fixture(True);row[key]=value
+            with self.subTest(key=key):
+                self.assertFalse(parse_native_opencv_threads(api_line(row),expected_threads=1)['valid'])
+        row=api_fixture(False);row['after_threads']=1
+        self.assertFalse(parse_native_opencv_threads(api_line(row))['valid'])
+        self.assertFalse(parse_native_opencv_threads(api_line(api_fixture(True)),expected_threads=32)['valid'])
+
+    def test_unknown_parameter_query_failure_duplicate_and_partial_reports_fail(self):
+        for code in ('invalid_diagnostic_opencv_threads','opencv_thread_api_not_effective','opencv_thread_api_query_or_set_failed'):
+            row=api_fixture(True);row.update(error=code,after_threads=-1)
+            result=parse_native_opencv_threads(api_line(row));self.assertFalse(result['valid']);self.assertEqual(result['errors'],[code])
+        raw=api_line(api_fixture(True))
+        for candidate in (raw+raw,raw.rstrip(b'\n'),raw.replace(b'"native_ticks":0',b'"native_ticks":0,"native_ticks":1'),
+                          raw.replace(b'"linux_steady_ns":12345',b'"linux_steady_ns":1e999'),OPENCV_PREFIX.encode()+b' '*768+b'\n'):
+            self.assertFalse(parse_native_opencv_threads(candidate)['valid'])
 
     def test_duplicate_missing_truncated_malformed_oversize_and_nonfinite_rejected(self):
         raw = line(fixture())

@@ -55,7 +55,7 @@ def read_json(path, limit=1024 * 1024):
     return read_json_snapshot(path,limit)[0]
 
 
-def validate_source_identity(source):
+def _validate_base_source_identity(source):
     if any(key in source for key in ('runtime_performance_profile', 'performance_base_patch_sha256')):
         raise ValueError('Diagnostic native performance profiles require the explicit offline validator')
     if source.get('base_commit') != T2_BASE:
@@ -80,6 +80,89 @@ def validate_source_identity(source):
     if frontend['source_sha256'] != frontend_hash or source.get('patch_sha256') != expected:
         raise ValueError('Corner frontend source or composition hash mismatch')
     return known[0], {known[1]:frontend_hash}
+
+
+def _same_json_identity(left,right):
+    # JSON scalar spelling preserves bool/int/float distinctions in metadata.
+    return json.dumps(left,sort_keys=True,separators=(',',':'),allow_nan=False)==json.dumps(right,sort_keys=True,separators=(',',':'),allow_nan=False)
+
+
+def _without_inference_identity(source):
+    base=dict(source)
+    base.pop('runtime_inference_profile',None)
+    prior=base.pop('inference_base_patch_sha256',None)
+    if prior is not None:
+        base['patch_sha256']=prior
+        if base.get('vision_frontend') is None:base.pop('patch_identity_format',None)
+        else:base['patch_identity_format']='rmcs-own-source-composition.v1'
+    return base
+
+
+def validate_source_identity(source):
+    if type(source) is not dict:raise ValueError('Own T2 source identity must be an object')
+    if any(key in source for key in ('runtime_performance_profile','performance_base_patch_sha256')):
+        raise ValueError('Diagnostic native performance profiles require the explicit offline validator')
+    selected=source.get('runtime_inference_profile')
+    if selected is None:
+        if 'runtime_inference_profile' in source or 'inference_base_patch_sha256' in source:
+            raise ValueError('Incomplete production inference source identity')
+        return _validate_base_source_identity(source)
+    if type(selected) is not dict:raise ValueError('Production inference profile must be an object')
+    from operator_native.runtime import build_portable
+    expected=build_portable.inference_identity(RUNTIME_ROOT,selected.get('inference_threads'))
+    if not _same_json_identity(selected,expected):raise ValueError('Production inference source profile mismatch')
+    base=_without_inference_identity(source)
+    revision,extra=_validate_base_source_identity(base)
+    if (source.get('patch_identity_format')!='rmcs-own-source-inference-composition.v1'
+        or source.get('inference_base_patch_sha256')!=base['patch_sha256']
+        or source.get('patch_sha256')!=build_portable.inference_combined_patch_hash(base['patch_sha256'],expected['patch_sha256'])):
+        raise ValueError('Production inference source composition mismatch')
+    extra.update({rel:digest(RUNTIME_ROOT/rel) for rel in build_portable.INFERENCE_SOURCES})
+    return revision,extra
+
+
+def base_source_identity(source):
+    """Validated recovery identity for host/Linux source-file lineage checks."""
+    validate_source_identity(source)
+    base=_without_inference_identity(source)
+    for key in ('vision_frontend','tracker_patch_sha256','patch_identity_format'):base.pop(key,None)
+    base['patch_sha256']=T2_PATCH
+    return base
+
+
+def validate_inference_build_metadata(spec,build,*,build_root=None):
+    """Production option must agree across source/spec/build and real overlays."""
+    source=spec.get('source_identity',{});validate_source_identity(source)
+    selected=source.get('runtime_inference_profile');inputs=build.get('input_identity',{})
+    frozen=spec.get('frozen_build',{})
+    if selected is None:
+        if any('inference_profile' in container for container in (spec,build,inputs,frozen)) or 'inference_threads' in inputs:
+            raise ValueError('Original build cannot hide a production inference profile')
+        return
+    if any(key in container for container in (spec,build,inputs,frozen) for key in ('diagnostic_only','performance_profile')):
+        raise ValueError('Production inference profile cannot mix diagnostic metadata')
+    for container in (spec,build,inputs,frozen):
+        if not _same_json_identity(container.get('inference_profile'),selected):
+            raise ValueError('Production inference build profile mismatch')
+    if type(inputs.get('inference_threads')) is not int or inputs['inference_threads']!=selected['inference_threads']:
+        raise ValueError('Production inference build thread count mismatch')
+    from operator_native.runtime import build_portable
+    flag='-DRMCS_INFERENCE_THREADS='+str(selected['inference_threads'])
+    commands=build.get('commands')
+    if (type(commands) is not list or len(commands)!=2 or type(commands[0]) is not list
+        or commands[0].count(flag)!=1 or any(type(arg) is not str or 'RMCS_PERFORMANCE_PROFILE=' in arg for arg in commands[0])):
+        raise ValueError('Production inference compile command mismatch')
+    if build_root is not None:
+        from operator_native.runtime.overlays.prepare_inference_threads import render_threads
+        root=Path(build_root);generated=inputs.get('generated_sha256',{})
+        expected=render_threads(RUNTIME_ROOT,selected['inference_threads'])
+        expected['prepare_inference_threads.py']=(RUNTIME_ROOT/build_portable.INFERENCE_SOURCES[0]).read_bytes()
+        for name,raw in expected.items():
+            path=root/'generated'/name;wanted=hashlib.sha256(raw).hexdigest()
+            if path.read_bytes()!=raw or generated.get('generated/'+name)!=wanted:
+                raise ValueError('Production inference overlay differs from trusted transformation')
+        if any('first_frame_trace' in name or 'armor_detection_profile' in name for name in generated):
+            raise ValueError('Production inference build contains a diagnostic overlay')
 
 
 def validate_t2_spec(path):
@@ -113,12 +196,15 @@ def validate_t2_spec(path):
             or build.get('binary_sha256') != spec.get('sha256', {}).get('binary')):
         raise ValueError('Portable clean build evidence does not match the native spec')
     inputs = build['input_identity']
+    validate_inference_build_metadata(spec,build,build_root=Path(path).parent)
     if additional_sources:
         if inputs.get('corner_refinement') != corner_revision or inputs.get('additional_source_files') != additional_sources:
             raise ValueError('Contour build inputs do not match the declared frontend')
-        generated_hash = digest(Path(path).parent / 'generated/corners_contour_v1.cpp')
-        if generated_hash != next(iter(additional_sources.values())) or inputs.get('generated_sha256',{}).get('generated/corners_contour_v1.cpp') != generated_hash:
-            raise ValueError('Prepared contour source differs from the frozen build')
+        if corner_revision!='original':
+            generated_hash = digest(Path(path).parent / 'generated/corners_contour_v1.cpp')
+            frontend_path=FRONTENDS[source['vision_frontend']['id']][1]
+            if generated_hash != additional_sources[frontend_path] or inputs.get('generated_sha256',{}).get('generated/corners_contour_v1.cpp') != generated_hash:
+                raise ValueError('Prepared contour source differs from the frozen build')
     elif inputs.get('additional_source_files') or inputs.get('corner_refinement','original') != 'original':
         raise ValueError('Original T2 build cannot hide an additional frontend')
     from ..platform_v2.native_adapter import validate_native_spec
@@ -131,7 +217,7 @@ def validate_t2_spec(path):
     return checked, spec_sha
 
 
-def own_registry(spec_path, native_out, *, adapters_json=None, native_trace=None):
+def own_registry(spec_path, native_out, *, adapters_json=None, aim_plugins_json=None, native_trace=None, wsl_prepared=None):
     from ..platform_v2.adapters import Registry, descriptor
     from ..platform_v2.native_adapter import NativeSourceAdapter
     checked_spec, registered_sha = validate_t2_spec(spec_path)
@@ -153,4 +239,7 @@ def own_registry(spec_path, native_out, *, adapters_json=None, native_trace=None
     if adapters_json:
         from .json_adapter import register_json_adapters
         register_json_adapters(registry, adapters_json)
+    if aim_plugins_json:
+        from .aim_plugin import register_aim_plugins
+        register_aim_plugins(registry, aim_plugins_json,wsl_prepared=wsl_prepared)
     return registry

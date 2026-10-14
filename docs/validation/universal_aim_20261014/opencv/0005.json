@@ -1,0 +1,34 @@
+{
+  "schema": "polar.pb-aim-system-opencv-selection-pure-validation.v1",
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_build_pb_aim_plugins.py",
+    "tests/test_pb_aim_system_dependencies.py",
+    "-q"
+  ],
+  "pid": 31240,
+  "exit_code": 0,
+  "reaped": true,
+  "wall_seconds": 1.3967205000008107,
+  "source_before": {
+    "tools/build_pb_aim_plugins.py": "b015786a70988ad7931ce932dcba842698624cc8218c318939601a923608e22d",
+    "tools/prepare_pb_aim_system_dependencies.py": "6d9bce57a862df4aa640adca63e67b96d6544db692d96c45efd0204411b68c73",
+    "tests/test_build_pb_aim_plugins.py": "5ffc6d06295ed31648e65441d936c43e37611c0e6262a65f4f071f336e7124cf"
+  },
+  "source_after": {
+    "tools/build_pb_aim_plugins.py": "b015786a70988ad7931ce932dcba842698624cc8218c318939601a923608e22d",
+    "tools/prepare_pb_aim_system_dependencies.py": "6d9bce57a862df4aa640adca63e67b96d6544db692d96c45efd0204411b68c73",
+    "tests/test_build_pb_aim_plugins.py": "5ffc6d06295ed31648e65441d936c43e37611c0e6262a65f4f071f336e7124cf"
+  },
+  "source_unchanged": true,
+  "scope": "Pure synthetic asset bytes and command selection only; no system OpenCV inventory/WSL/LD/ROS/build/NN executed",
+  "change": "Explicit OpenCV_DIR selects real installed system dependency; before/after complete export/header/module asset SHA plus actual ldd required by Linux run",
+  "extra_prefix_qualification": "Complete signed extraction only, not standalone closure; original c296 manifest and files unchanged",
+  "deployment_argument": [
+    "--opencv-dir",
+    "/usr/lib/x86_64-linux-gnu/cmake/opencv4"
+  ],
+  "next_step": "Root preflight04 captures actual system_opencv.asset_sha256; root build passes --opencv-sha256 with that frozen value"
+}

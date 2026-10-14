@@ -1,0 +1,25 @@
+{
+  "schema": "polar.host-opencv-threads-focused.v1",
+  "exit_code": 0,
+  "counts": "25 passed, 0 skip",
+  "qualification": "Pure API mock fixtures; no actual cv2 calls, WSL/native/NN/GL or live performance",
+  "api": "rm_match.platform_v2.host_opencv.configure_opencv_threads(requested_threads=None)",
+  "explicit_integer_bounds": [
+    1,
+    32
+  ],
+  "default_action": "query_only without setter",
+  "native_scope": "No environment or Linux/C++ changes",
+  "source": [
+    {
+      "path": "rm_match/platform_v2/host_opencv.py",
+      "sha256": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05",
+      "snapshot_sha256": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05"
+    },
+    {
+      "path": "tests/test_host_opencv_threads.py",
+      "sha256": "4f1421e55219f7759d917bad984dbe7a280b46478dfb6589c3e896776cb3e9c4",
+      "snapshot_sha256": "4f1421e55219f7759d917bad984dbe7a280b46478dfb6589c3e896776cb3e9c4"
+    }
+  ]
+}

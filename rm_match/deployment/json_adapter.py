@@ -83,6 +83,15 @@ class JsonLineAdapter(BaseAdapter):
 
     def reset(self, context):
         super().reset(context)
+        self._open_owned_process()
+        self._exchange(dict(op='reset', context=context, config=self.config), timeout=2.)
+
+    def _start_owned_process(self, env):
+        """Reviewed transports replace ownership, never deadline enforcement."""
+        return OwnedJsonProcess(self.registration['command'], cwd=self.registration['cwd'],
+            env=env, stop_event=self._cancelled)
+
+    def _open_owned_process(self):
         if digest(self.manifest) != self.manifest_sha:
             raise ContractError('custom_manifest_changed_after_registration')
         if self.process is not None or self.failed:
@@ -94,8 +103,7 @@ class JsonLineAdapter(BaseAdapter):
         with self._close_lock:
             if self.failed or self._cancelled.is_set():raise ContractError('custom_instance_cannot_restart')
             try:
-                self._owned_process = OwnedJsonProcess(self.registration['command'], cwd=self.registration['cwd'],
-                    env=env, stop_event=self._cancelled)
+                self._owned_process = self._start_owned_process(env)
             except BaseException as exc:
                 self._launch_cleanup_status=getattr(exc,'cleanup_status',None)
                 self.failed=True;self._cancelled.set()
@@ -142,10 +150,9 @@ class JsonLineAdapter(BaseAdapter):
         if thread_start_error is not None:
             self.close()
             raise thread_start_error
-        self._exchange(dict(op='reset', context=context, config=self.config), timeout=2.)
 
     def _exchange(self, packet, *, timeout):
-        if self.failed or self.process is None or timeout <= 0:
+        if self.failed or self._cancelled.is_set() or self.process is None or timeout <= 0:
             raise ContractError('custom_adapter_unavailable_or_expired')
         deadline = self.clock() + timeout
         if packet['op'] == 'act':
@@ -155,6 +162,7 @@ class JsonLineAdapter(BaseAdapter):
             raise ContractError('custom_request_oversized')
         try:
             remaining = deadline - self.clock()
+            if self._cancelled.is_set():raise RuntimeError('custom_adapter_cancelled')
             if remaining <= 0:
                 raise TimeoutError('custom_deadline_expired_during_serialization')
             self.requests.put_nowait(raw)
@@ -162,6 +170,7 @@ class JsonLineAdapter(BaseAdapter):
             if remaining <= 0:
                 raise TimeoutError('custom_deadline_expired_before_response_wait')
             result = self.responses.get(timeout=remaining)
+            if self._cancelled.is_set():raise RuntimeError('custom_adapter_cancelled')
             if self.clock() >= deadline:
                 raise TimeoutError('custom_response_after_original_deadline')
             if isinstance(result, Exception):
@@ -185,6 +194,12 @@ class JsonLineAdapter(BaseAdapter):
         response = self._exchange(dict(op='act', observation=o),
                                   timeout=min(.25, o['wall_deadline'] - self.clock()))
         return validate_action(response['action'], o, self.descriptor)
+
+    def cancel(self):
+        """Reviewed nonblocking request; lifecycle worker owns close/reaping."""
+        self._cancelled.set()
+        try:self.responses.put_nowait(RuntimeError('custom_adapter_cancelled'))
+        except queue.Full:pass
 
     def close(self):
         # One resource deadline covers ownership cleanup, leader and IO join.

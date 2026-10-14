@@ -15,6 +15,7 @@ camera-fast = ["pybase64==1.5.1"]
 test = ["pytest>=8"]
 video = ["imageio>=2.37", "imageio-ffmpeg>=0.6"]
 aim = ["onnxruntime==1.31.0", "onnx==1.23.2", "opencv-python-headless==5.0.0.93"]
+aim-tools = ["PyYAML>=6.0,<7"]
 
 [project.scripts]
 rm-match-viewer = "rm_match.viewer:main"

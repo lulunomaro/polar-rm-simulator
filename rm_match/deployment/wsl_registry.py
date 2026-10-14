@@ -18,12 +18,14 @@ class WslRegistry(Registry):
         self.distribution=distribution;self.trace=trace
         self._lock=threading.Lock();self._prepared=None;self.native_instance=None
         self._closed=False;self._preparing=False;self._preparing_instance=None
+        capabilities={}
+        if checked.metadata['transport']=='wsl_async_bgr_v3':capabilities['aim_plugin_contract']='camera_gimbal_v1'
         self.register(descriptor('aim_native_rmcs_v1','aim',
             'Own RMCS T2, Windows camera / WSL native (stationary red sentry)',
             ('camera','odometry'),supported_robots=['red_sentry'],stationary_only=True,
             confidence_available=False,max_camera_age_sim_s=.08,max_camera_age_wall_s=.08,schedule_on_camera_frame=True,
             source_identity=checked.linux_spec['source_identity'],deployment_profile=PROFILE,
-            transport=checked.metadata['transport'],windows_native=False),self._make)
+            transport=checked.metadata['transport'],windows_native=False,**capabilities),self._make)
 
     def _new(self,config):
         return WslNativeSourceAdapter(config,checked=self.checked,out=self.out,
@@ -98,20 +100,26 @@ class WslRegistry(Registry):
 
 
 def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu',native_trace=None,transport='wsl_stdio_v1'):
-    if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2'):raise ContractError('wsl_transport_not_authorized')
+    if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ContractError('wsl_transport_not_authorized')
     checked=validate_wsl_spec(linux_spec_path,repo_root=repo_root,
         shared_out=native_out,distribution=distribution)
-    if transport=='wsl_stdio_bgr_v2':
+    if transport in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3'):
         # Distinct, explicit bytes transport; bind both added programs at startup.
         from .wsl_profile import _host_path
         sources={};identities=dict(checked._identities);metadata=deepcopy(checked.metadata)
-        for rel in ('rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py'):
+        paths=['rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py']
+        if transport=='wsl_async_bgr_v3':paths+=['rm_match/integrations/wsl_aim_async.py','rm_match/integrations/wsl_aim_async_worker.py']
+        for rel in paths:
             selected=_host_path(Path(repo_root)/rel)
             if not selected.is_relative_to(checked._repo_root):raise ContractError('wsl_transport_source_outside_repository')
             sha=digest(selected);identities[str(selected)]=sha;sources[rel]=sha
         metadata.update(transport=transport,image_transport='exact_inline_bgr_to_owned_linux_tmpfs',
             qualification='Explicit Windows host + WSL inline BGR; live/full-match/Windows-native acceptance not qualified')
         metadata['transport_source_sha256'].update(sources)
+        if transport=='wsl_async_bgr_v3':
+            metadata.update(image_transport='exact_inline_bgr_one_original_async_compute',
+                compute_watchdog_s=1.,late_response_policy='discard_original_frame_never_relabel',
+                qualification='Explicit async transport; pending is not inference or actuation; live qualification requires actual fresh samples')
         checked=replace(checked,metadata=metadata,_identities=identities)
         checked.verify_unchanged()
     return WslRegistry(checked,native_out,distribution,native_trace)

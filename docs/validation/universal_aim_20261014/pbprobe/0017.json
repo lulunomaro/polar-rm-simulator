@@ -1,0 +1,9 @@
+{
+  "scope": "AST/static file checks only: no imported algorithm, WSL, ROS, NN or script execution",
+  "scripts": {
+    "peer_bootstrap.py": "9e46f37642b38eebf6b3baaa4dbc4553a4067973fc08e9671664942e15c9e27e",
+    "probe_host.py": "cdda4bb818361e9dbc26b1bd9a50f91729da93d99c0d49fc9bc331ca95e5a16e",
+    "register_linux.py": "ddf43136fad478686c5a671d9ff67ff11294e5d9ec49c550b13dc6186f97667e"
+  },
+  "sealed03_adapter_source_mismatches": {}
+}

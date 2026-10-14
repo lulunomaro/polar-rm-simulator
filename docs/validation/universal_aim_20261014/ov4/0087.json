@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-ov4-api-trace-build-20261014/bin/rmcs_sim_operator_fov",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-ov4-api-trace-build-20261014/configs/simulation_executor.yaml"
+  ],
+  "cwd": "/dev/shm/polar-cv-threads-1ktcxnf0/07_ov4",
+  "variant": "ov4",
+  "environment_difference": {
+    "RMCS_DIAGNOSTIC_OV_INFERENCE_THREADS": "4"
+  },
+  "relevant_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "RMCS_DIAGNOSTIC_OPENCV_THREADS": null,
+    "RMCS_DIAGNOSTIC_OV_INFERENCE_THREADS": "4"
+  },
+  "cwd_mode": "0o700",
+  "tracking_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+}

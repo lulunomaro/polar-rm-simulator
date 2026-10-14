@@ -1,0 +1,309 @@
+{
+  "schema": "polar.sim.wsl-async-aim.v1",
+  "transport": "wsl_async_bgr_v3",
+  "events": [
+    {
+      "event": "ready",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "native_pid": 697,
+      "run_id": "88d9b2f01e4e4d0c8b113e97caaa2067",
+      "supervisor_pid": 367,
+      "spec_sha256": "8dd41a6905a1bb49e69b28a5c4f432d8b6c0fd9ab9b9b042f3a03fbffaba8e49",
+      "readiness": {
+        "abi": "Linux x86_64 read(0)",
+        "syscall": "0 0x0 0x639646e33640 0x1000 0x0 0x0 0x0 0x7fffabbfa008 0x7db0712ac802",
+        "wchan": "pipe_read"
+      },
+      "startup_elapsed_linux_s": 1.110198413,
+      "tmpfs_directory": "/dev/shm/polar-aim-async-4hvn0046",
+      "tmpfs_mode": "0o700",
+      "compute_watchdog_s": 1.0,
+      "native_ticks": 0,
+      "inference_calls": 0,
+      "camera_captures": 0,
+      "physics_steps": 0
+    },
+    {
+      "event": "native_started",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 1,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 14,
+        "sim_time": 0.4900000000000004,
+        "wall_deadline": 27766.9479694
+      },
+      "frame_id": 13,
+      "exposure_timestamp_ns": 474000000,
+      "control_time_ns": 490000000,
+      "image_sha256": "0b5b89a573887d747b122a4cc40579bf62131a40d4b967922a0f643db3996320",
+      "bgr_bytes": 4665600,
+      "native_stdin_bytes_written": 1727,
+      "native_stdin_expected_bytes": 1727,
+      "native_stdin_complete": true,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "event": "result",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 1,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 14,
+        "sim_time": 0.4900000000000004,
+        "wall_deadline": 27766.9479694
+      },
+      "frame_id": 13,
+      "exposure_timestamp_ns": 474000000,
+      "control_time_ns": 490000000,
+      "image_sha256": "0b5b89a573887d747b122a4cc40579bf62131a40d4b967922a0f643db3996320",
+      "bgr_bytes": 4665600,
+      "response": {
+        "status": "ok",
+        "runner_identity": "rmcs-sim-operator-fov-v1",
+        "time_s": 0.49,
+        "clock_time_ns": 490000000,
+        "tracking": true,
+        "should_shoot": false,
+        "direction": [
+          0.9907717828056715,
+          2.1931443632716402e-05,
+          -0.13554067254917596
+        ],
+        "direction_frame": "world",
+        "robot_center": [
+          1.984449363850112,
+          4.392720919242707e-05,
+          -0.2996089926943382
+        ],
+        "detector_executed": true,
+        "inference_calls": 1,
+        "frame_accepted": true,
+        "frame_stats": {
+          "raw2d": 1,
+          "accepted2d": 1,
+          "accepted3d": 1,
+          "rejected_color": 0,
+          "rejected_genre": 0,
+          "rejected_margin": 0,
+          "rejected_clipped": 0
+        },
+        "fov_raw2d": 1,
+        "fov_admitted2d": 1,
+        "fov_rejected2d": 0,
+        "pose_estimated3d": 1,
+        "target_age_s": 0.016,
+        "completed_result_event": true,
+        "result_exposure_time_s": 0.474,
+        "completed_result_observed_now": true,
+        "observation_shoot_allowed": true,
+        "runtime_mode_observed_config": "multi_ekf",
+        "runtime_mode_state_api": null
+      },
+      "native_elapsed_linux_s": 0.07463679700000014,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "event": "native_started",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 2,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 16,
+        "sim_time": 0.5600000000000004,
+        "wall_deadline": 27767.0820601
+      },
+      "frame_id": 15,
+      "exposure_timestamp_ns": 544000000,
+      "control_time_ns": 560000000,
+      "image_sha256": "222ec867c2e00d68fe00c70ac6d6f5bd8e8b7e0cd323288c0e099fd2802a3140",
+      "bgr_bytes": 4665600,
+      "native_stdin_bytes_written": 1727,
+      "native_stdin_expected_bytes": 1727,
+      "native_stdin_complete": true,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "event": "result",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 2,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 16,
+        "sim_time": 0.5600000000000004,
+        "wall_deadline": 27767.0820601
+      },
+      "frame_id": 15,
+      "exposure_timestamp_ns": 544000000,
+      "control_time_ns": 560000000,
+      "image_sha256": "222ec867c2e00d68fe00c70ac6d6f5bd8e8b7e0cd323288c0e099fd2802a3140",
+      "bgr_bytes": 4665600,
+      "response": {
+        "status": "ok",
+        "runner_identity": "rmcs-sim-operator-fov-v1",
+        "time_s": 0.56,
+        "clock_time_ns": 560000000,
+        "tracking": true,
+        "should_shoot": false,
+        "direction": [
+          0.990773358508394,
+          2.4933143304814467e-05,
+          -0.1355291534996649
+        ],
+        "direction_frame": "world",
+        "robot_center": [
+          1.9843021374940095,
+          4.993562768852816e-05,
+          -0.2995601301517123
+        ],
+        "detector_executed": true,
+        "inference_calls": 2,
+        "frame_accepted": true,
+        "frame_stats": {
+          "raw2d": 1,
+          "accepted2d": 1,
+          "accepted3d": 1,
+          "rejected_color": 0,
+          "rejected_genre": 0,
+          "rejected_margin": 0,
+          "rejected_clipped": 0
+        },
+        "fov_raw2d": 1,
+        "fov_admitted2d": 1,
+        "fov_rejected2d": 0,
+        "pose_estimated3d": 1,
+        "target_age_s": 0.016,
+        "completed_result_event": true,
+        "result_exposure_time_s": 0.544,
+        "completed_result_observed_now": true,
+        "observation_shoot_allowed": true,
+        "runtime_mode_observed_config": "multi_ekf",
+        "runtime_mode_state_api": null
+      },
+      "native_elapsed_linux_s": 0.047193820000000386,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "event": "native_started",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 3,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 18,
+        "sim_time": 0.6260000000000004,
+        "wall_deadline": 27767.2197095
+      },
+      "frame_id": 17,
+      "exposure_timestamp_ns": 608000000,
+      "control_time_ns": 626000000,
+      "image_sha256": "f82ddbecfbbf8939ee1fde1bc671929851f8fc2c5ce456d13e4e54c3813b47df",
+      "bgr_bytes": 4665600,
+      "native_stdin_bytes_written": 1731,
+      "native_stdin_expected_bytes": 1731,
+      "native_stdin_complete": true,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "event": "result",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 3,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 18,
+        "sim_time": 0.6260000000000004,
+        "wall_deadline": 27767.2197095
+      },
+      "frame_id": 17,
+      "exposure_timestamp_ns": 608000000,
+      "control_time_ns": 626000000,
+      "image_sha256": "f82ddbecfbbf8939ee1fde1bc671929851f8fc2c5ce456d13e4e54c3813b47df",
+      "bgr_bytes": 4665600,
+      "response": {
+        "status": "ok",
+        "runner_identity": "rmcs-sim-operator-fov-v1",
+        "time_s": 0.626,
+        "clock_time_ns": 626000000,
+        "tracking": true,
+        "should_shoot": false,
+        "direction": [
+          0.9907660428821078,
+          3.0645213015646763e-05,
+          -0.13558262179424097
+        ],
+        "direction_frame": "world",
+        "robot_center": [
+          1.9843256532005766,
+          6.137683338222758e-05,
+          -0.2996742314887438
+        ],
+        "detector_executed": true,
+        "inference_calls": 3,
+        "frame_accepted": true,
+        "frame_stats": {
+          "raw2d": 1,
+          "accepted2d": 1,
+          "accepted3d": 1,
+          "rejected_color": 0,
+          "rejected_genre": 0,
+          "rejected_margin": 0,
+          "rejected_clipped": 0
+        },
+        "fov_raw2d": 1,
+        "fov_admitted2d": 1,
+        "fov_rejected2d": 0,
+        "pose_estimated3d": 1,
+        "target_age_s": 0.018,
+        "completed_result_event": true,
+        "result_exposure_time_s": 0.608,
+        "completed_result_observed_now": true,
+        "observation_shoot_allowed": true,
+        "runtime_mode_observed_config": "multi_ekf",
+        "runtime_mode_state_api": null
+      },
+      "native_elapsed_linux_s": 0.035676344000000526,
+      "clock_domain": "linux_local_diagnostic_only"
+    },
+    {
+      "event": "discarded_before_native",
+      "schema": "polar.sim.wsl-async-aim.v1",
+      "transport": "wsl_async_bgr_v3",
+      "id": 4,
+      "source_context": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 19,
+        "sim_time": 0.6620000000000005,
+        "wall_deadline": 27767.2878504
+      },
+      "frame_id": 18,
+      "exposure_timestamp_ns": 642000000,
+      "control_time_ns": 662000000,
+      "image_sha256": "63a011045d128580dfd3f5cebed8baa7c42f6b1395964cc0699fe248c4799886",
+      "bgr_bytes": 4665600,
+      "reason": "linux_input_transaction_expired",
+      "clock_domain": "linux_local_diagnostic_only"
+    }
+  ],
+  "inflight_at_close": null,
+  "clock_domain": "linux_local_diagnostic_only"
+}

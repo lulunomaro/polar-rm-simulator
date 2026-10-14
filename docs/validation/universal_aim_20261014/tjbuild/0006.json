@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "cmake",
+    "-S",
+    "artifacts/tongji-aim-native-preparation-20261014-04",
+    "-B",
+    "artifacts/tongji-aim-native-preparation-20261014-04/build",
+    "-G",
+    "Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DPOLAR_UPSTREAM_DIR=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream",
+    "-DCMAKE_PREFIX_PATH=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/deps/openvino/runtime/cmake"
+  ],
+  "pid": 23072,
+  "driver_pid": 25112,
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 7.765542200002528
+}

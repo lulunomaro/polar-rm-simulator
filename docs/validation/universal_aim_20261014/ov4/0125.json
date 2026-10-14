@@ -1,0 +1,52 @@
+{
+  "schema": "polar.native-opencv-thread-plan.v2",
+  "factor": "ov4",
+  "sequence": [
+    "default",
+    "ov4",
+    "ov4",
+    "default",
+    "default",
+    "ov4",
+    "ov4",
+    "default"
+  ],
+  "sole_child_environment_change": {
+    "RMCS_DIAGNOSTIC_OV_INFERENCE_THREADS": {
+      "default": null,
+      "ov4": "4"
+    }
+  },
+  "expected_cv_threads": {
+    "default": 32,
+    "ov4": 32
+  },
+  "expected_compiled_properties": {
+    "execution_devices": [
+      "CPU"
+    ],
+    "inference_num_threads": 16,
+    "num_streams": 1,
+    "performance_mode": "LATENCY",
+    "inference_precision": "f32",
+    "enable_cpu_pinning": true,
+    "scheduling_core_type": "ANY_CORE"
+  },
+  "expected_variant_inference_threads": {
+    "default": 16,
+    "ov4": 4
+  },
+  "saved_identity": {
+    "frame_id": 8,
+    "exposure_timestamp_ns": 476000000,
+    "control_time_ns": 486000000
+  },
+  "image_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+  "fresh_processes": 8,
+  "startup_timeout_s": 15.0,
+  "offline_first_response_timeout_s": 2.0,
+  "no_warm_inference": true,
+  "live_budget_or_timestamp_changes": false,
+  "implementation": "Explicit diagnostic core.set_property(CPU,ov::inference_num_threads(4)); startup actual queries must prove one changed factor before any inference.",
+  "qualification": "Linux offline first-response diagnostic only; never live/RTF qualification. No duplicate-packet throughput."
+}

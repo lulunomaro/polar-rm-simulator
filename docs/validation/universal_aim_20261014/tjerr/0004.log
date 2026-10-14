@@ -1,0 +1,8 @@
+{
+  "images_submitted": 0,
+  "physics_steps": 0,
+  "scope": "Actual native model loading, prepare and reset only; no NN/image/live/GUI qualification",
+  "error": "RuntimeError:Unclaimed WSL cleanup unproved: custom_tongji_original_camera_aim:RuntimeError",
+  "cleanup_errors": [],
+  "passed": false
+}

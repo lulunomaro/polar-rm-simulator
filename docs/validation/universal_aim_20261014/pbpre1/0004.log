@@ -1,0 +1,20 @@
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/root/polar-pb-aim-preflight-20261014-01/preflight/python_probe.py", line 3, in <module>
+    modules={name:str(importlib.import_module(name).__file__) for name in names}
+  File "/root/polar-pb-aim-preflight-20261014-01/preflight/python_probe.py", line 3, in <dictcomp>
+    modules={name:str(importlib.import_module(name).__file__) for name in names}
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/cv_bridge/__init__.py", line 6, in <module>
+    from cv_bridge.boost.cv_bridge_boost import cvtColorForDisplay, getCvType
+AttributeError: _ARRAY_API not found
+{"interpreter": "/root/polar-humble-ext4-20261014-01/venv/bin/python", "prefix": "/root/polar-humble-ext4-20261014-01/venv", "version": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]", "paths": ["/root/polar-pb-aim-preflight-20261014-01/preflight", "/usr/lib/python310.zip", "/usr/lib/python3.10", "/usr/lib/python3.10/lib-dynload", "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages", "/opt/ros/humble/lib/python3.10/site-packages", "/opt/ros/humble/local/lib/python3.10/dist-packages", "/root/polar-humble-ext4-20261014-01/livox_ros_driver2/local/lib/python3.10/dist-packages", "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/local/lib/python3.10/dist-packages", "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/python3.10/site-packages", "/usr/local/lib/python3.10/dist-packages", "/usr/lib/python3/dist-packages"], "modules": {"colcon_core": "/usr/lib/python3/dist-packages/colcon_core/__init__.py", "ament_package": "/opt/ros/humble/lib/python3.10/site-packages/ament_package/__init__.py", "catkin_pkg": "/usr/lib/python3/dist-packages/catkin_pkg/__init__.py", "rosidl_adapter": "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_adapter/__init__.py", "rosidl_parser": "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_parser/__init__.py", "em": "/usr/lib/python3/dist-packages/em.py", "lark": "/usr/lib/python3/dist-packages/lark/__init__.py", "setuptools": "/usr/lib/python3/dist-packages/setuptools/__init__.py", "yaml": "/usr/lib/python3/dist-packages/yaml/__init__.py", "rclpy": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", "cv_bridge": "/opt/ros/humble/local/lib/python3.10/dist-packages/cv_bridge/__init__.py"}, "model_loaded": false, "ros_context_started": false}

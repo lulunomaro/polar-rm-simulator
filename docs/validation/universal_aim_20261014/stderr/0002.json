@@ -1,0 +1,10 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 5.9233015999998315,
+  "checked_source_unchanged": true,
+  "changed_sources": [],
+  "scope": "actual harmless Windows child stderr sink plus pure ownership/failure checks; actual Linux skips remain",
+  "actual_wsl_test": false,
+  "actual_algorithm_test": false
+}

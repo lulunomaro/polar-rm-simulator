@@ -1,0 +1,45 @@
+{
+  "event": "native_request",
+  "wall_time": 8309.1237022,
+  "wall_clock": "host_perf_counter",
+  "robot_id": "red_sentry",
+  "episode": 0,
+  "binding_epoch": 1,
+  "observed_seq": 9,
+  "frame_id": 8,
+  "capture_sim_time": 0.47600000000000037,
+  "observation_sim_time": 0.4860000000000004,
+  "clock_profile": "wall_deadline_live",
+  "wall_deadline": 8309.1848211,
+  "schedule": null,
+  "raw_bgr_sha256": "3951a59714c439828f5e45b405d1373f03964aba342cf36d9c33e5e87ffd863e",
+  "raw_rgb_sha256": null,
+  "rgb_trace_strategy": "archived_bgr_postclose_exact_channel_swap",
+  "own_at_capture": {
+    "own_qpos_at_capture": [
+      1.7500000322335971,
+      -0.6500000000000004,
+      2.6876352585300556e-15,
+      -3.8167266222916133e-16,
+      -0.023071704218652414
+    ],
+    "own_qvel_at_capture": [
+      1.1959116257146766e-08,
+      3.4649045813280015e-15,
+      7.124266304740445e-14,
+      -1.5738077424147976e-14,
+      -0.003911985433789145
+    ],
+    "own_odom_at_capture": [
+      -3.499999967766403,
+      3.0,
+      2.6876352585300556e-15
+    ],
+    "own_odom_velocity_at_capture": [
+      1.1959116257146766e-08,
+      3.4649045813280015e-15,
+      7.124266304740445e-14
+    ]
+  },
+  "host_received_wall": 8309.1237044
+}

@@ -14,6 +14,97 @@ index 9f129a1..fa43feb 100644
              return
          own=telemetry['own'];state.robot_id=IDS[own['robot_id']];state.alliance_color=own['team'].title()
          state.robot_profile={'hero':'Hero','infantry':'Infantry1','sentry':'Sentinel'}[own['role']]
+diff --git a/rm_client/sim_platform_adapters.py b/rm_client/sim_platform_adapters.py
+index 5a5bb81..d578cfe 100644
+--- a/rm_client/sim_platform_adapters.py
++++ b/rm_client/sim_platform_adapters.py
+@@ -4,6 +4,7 @@ import copy
+ import hashlib
+ import json
+ import math
++import re
+ 
+ KINDS={'navigation':'motion','aim':'gimbal'}
+ MANUAL='Manual'
+@@ -11,6 +12,22 @@ SETTINGS=('V2 Navigation','V2 Aim','V2 Goal X','V2 Goal Y','V2 Aim FOV','V2 Aim
+ KNOWN={'nav_rule_v1':('navigation','goal_world_2d_v1'),
+        'aim_pixel_baseline_v1':('aim','empty_v1'),
+        'aim_native_rmcs_v1':('aim','native_fov_v1')}
++PLUGIN_CAPABILITIES=dict(schema='polar.sim.aim-plugin.capabilities.v1',
++    observation_schema='polar.sim.observation.v2',action_schema='polar.sim.action.v2',
++    status_schema='polar.sim.aim-status.v1',sensor_profile='calibrated_camera_capture_own_v1',
++    pipeline_level='direct_gimbal_v1',source_association='exact_capture_context_v1',
++    image_encodings=['rgb8','bgr8'],output_modes=['gimbal_target'],
++    fire_authority='manual_only',ui_config_contract='empty_v1')
++
++def reviewed_aim_plugin(d):
++    """Negotiate a public interface, never infer readiness from a team/ID."""
++    aid=d.get('adapter_id');caps=d.get('aim_plugin_capabilities')
++    if type(aid) is not str or not re.fullmatch(r'custom_[a-z0-9_]{1,100}',aid):return False
++    if d.get('kind')!='aim' or d.get('aim_plugin_contract')!='camera_gimbal_v1':return False
++    if d.get('plugin_transport') not in ('jsonl_v1','ros2_envelope_v1'):return False
++    if type(caps) is not dict or any(type(k) is not str for k in caps) or set(caps)!=set(PLUGIN_CAPABILITIES):return False
++    if any(type(caps[k]) is not type(v) or caps[k]!=v for k,v in PLUGIN_CAPABILITIES.items()):return False
++    return d.get('required_sensors')==['camera'] and type(d.get('supported_robots')) is list and bool(d['supported_robots'])
+ 
+ def number(v,lo,hi):
+     if type(v) not in (int,float):raise ValueError('Expected finite scalar')
+@@ -35,8 +52,10 @@ def parse_catalog(raw):
+     for d in descriptors:
+         if type(d) is not dict or type(d.get('adapter_id')) is not str or not 1<=len(d['adapter_id'])<=128 or d['adapter_id'] in parsed:raise ValueError('Invalid adapter identity')
+         aid=d['adapter_id'];reason='';kind=d.get('kind')
+-        if aid not in KNOWN:reason='Test fixture / unsupported UI contract'
+-        elif d.get('version')!='1.0.0' or (kind,d.get('ui_config_contract'))!=KNOWN[aid]:reason='Unsupported adapter version/config contract'
++        contract=KNOWN.get(aid)
++        if contract is None and reviewed_aim_plugin(d):contract=('aim','empty_v1')
++        if contract is None:reason='Test fixture / unsupported UI contract'
++        elif d.get('version')!='1.0.0' or (kind,d.get('ui_config_contract'))!=contract:reason='Unsupported adapter version/config contract'
+         elif type(d.get('available')) is not bool or d.get('available') is not True:reason=str(d.get('reason','Registration unavailable'))
+         elif type(d.get('test_only',False)) is not bool or d.get('test_only',False):reason='Test fixture, no operational binding'
+         elif d.get('fire_authority')!='manual_only':reason='Unsupported fire authority'
+@@ -64,10 +83,12 @@ def candidate(catalog,rid,kind,aid):
+ def options(catalog,rid,kind):
+     return [MANUAL]+[aid for aid in catalog.get('adapters',{}) if candidate(catalog,rid,kind,aid)[0]]
+ 
+-def config_for(aid,values):
++def config_for(aid,values,*,catalog=None):
+     if aid=='nav_rule_v1':return {'goal_world_m':[number(values.get('V2 Goal X',0),-100,100),number(values.get('V2 Goal Y',0),-100,100)]}
+     if aid=='aim_pixel_baseline_v1':return {}
+     if aid=='aim_native_rmcs_v1':return dict(fov_degrees=number(values.get('V2 Aim FOV',85),10,180),circle_radius_x_norm=number(values.get('V2 Aim Radius X',.25),.001,2),circle_radius_y_norm=number(values.get('V2 Aim Radius Y',.25),.001,2))
++    item=(catalog or {}).get('adapters',{}).get(aid)
++    if item and item['selectable'] and item['kind']=='aim' and item['config_contract']=='empty_v1' and re.fullmatch(r'custom_[a-z0-9_]{1,100}',aid):return {}
+     raise ValueError('Unrecognized operational adapter')
+ 
+ def make_plan(catalog,rid,choices,values):
+@@ -77,7 +98,7 @@ def make_plan(catalog,rid,choices,values):
+         if aid==MANUAL:continue
+         ok,reason=candidate(catalog,rid,kind,aid)
+         if not ok:raise ValueError(reason)
+-        result[kind]=dict(adapter_id=aid,config=config_for(aid,values))
++        result[kind]=dict(adapter_id=aid,config=config_for(aid,values,catalog=catalog))
+     return result
+ 
+ def _feedback(state,rid,kind,expected,session_id):
+@@ -86,8 +107,18 @@ def _feedback(state,rid,kind,expected,session_id):
+     if type(state) is not dict:return 'waiting for state'
+     b=(state.get('control') or {}).get('bindings',{}).get(rid,{}).get(kind,{})
+     if b.get('owner')!=session_id or type(b.get('epoch')) is not int or b['epoch']!=expected['binding_epoch']:return 'revoked / pending'
++    context=(state.get('algorithm_status_context') or {}).get(rid,{}).get(kind,{})
++    status=None
++    if (kind=='aim' and type(context) is dict and type(state.get('episode')) is int and type(context.get('episode')) is int
++        and context['episode']==state.get('episode') and type(context.get('binding_epoch')) is int
++        and context['binding_epoch']==b['epoch'] and type(context.get('adapter_id')) is str
++        and context['adapter_id']==b.get('adapter_id')):
++        status=context.get('status')
++    if status=='no_target':return 'no target in current binding (no action)'
++    if status=='pending_result':return 'waiting for current source result (no action)'
+     receipt=(state.get('manual_consumption_receipts') or {}).get(rid)
+-    if type(receipt) is not dict or receipt.get('robot_id')!=rid:return 'waiting for sensor/result'
++    if type(receipt) is not dict or receipt.get('robot_id')!=rid:
++        return 'result available; physical application unconfirmed' if status=='result_available' else 'waiting for sensor/result'
+     old=(receipt.get('adapter_authorizations') or {}).get(kind,{})
+     if old.get('owner')!=session_id or type(old.get('epoch')) is not int or old['epoch']!=b['epoch']:return 'waiting for current binding sample'
+     # Receipt was sampled in this display snapshot's episode by the authority.
 diff --git a/rm_client/sim_platform_client.py b/rm_client/sim_platform_client.py
 index cb501ce..2189881 100644
 --- a/rm_client/sim_platform_client.py
@@ -106,7 +197,7 @@ index fd19c74..f045126 100644
 +                import math
 +                state.relative_yaw_deg=math.degrees(own['gimbal_yaw'])
 diff --git a/rm_client/sim_platform_transport.py b/rm_client/sim_platform_transport.py
-index e0b791b..205b857 100644
+index e0b791b..c02eb23 100644
 --- a/rm_client/sim_platform_transport.py
 +++ b/rm_client/sim_platform_transport.py
 @@ -7,6 +7,7 @@ from __future__ import annotations
@@ -175,16 +266,17 @@ index e0b791b..205b857 100644
          self._diagnostic_failures=0;self._diagnostics=DiagnosticLog(clock=clock)
          self._lock=threading.RLock();self._stop=threading.Event();self._threads=[]
          self._wake_control=threading.Event();self._handoff=HandoffSchedule();self._batch_revision=-1
-@@ -68,6 +112,8 @@ class PlatformTransport:
+@@ -68,6 +112,9 @@ class PlatformTransport:
          self._selection_busy=False;self.selection_pending=False;self.selection_status='';self.selection_target=None
          self.catalog=parse_catalog(None);self._catalog_serial=0;self._catalog_at=-1e9
          self.plan={};self._plan_generation=0;self._bindings={};self._bind_pending=False;self._activation_acks={}
 +        self._operator_hud_sample=None;self._operator_hud_at=-1e9;self._operator_hud_deadline=-1e9
 +        self._operator_lease_deadlines={}
++        self._algorithm_status_deadlines={}
      def _diagnostic_context(self):
          try:now=self.clock()
          except BaseException:now=None
-@@ -138,6 +184,10 @@ class PlatformTransport:
+@@ -138,6 +185,10 @@ class PlatformTransport:
              self._claim_job=None;self.claim_pending=False;self._bindings={};self._bind_pending=False;self._activation_acks={}
              if self.owned_robot is not None:self._release_job=(self.owned_robot,dict(self.owned_epochs))
              self.owned_robot=None;self.owned_epochs={};self.note=reason
@@ -195,7 +287,7 @@ index e0b791b..205b857 100644
      def watch(self,rid):
          with self._lock:
              self.neutral('Watching '+str(rid)+'; no control requested')
-@@ -163,6 +213,7 @@ class PlatformTransport:
+@@ -163,6 +214,7 @@ class PlatformTransport:
      def activate(self):
          with self._lock:
              if self.role!='operator' or self.client.uncertain or self.owned_robot!=self.watch_robot or not self.selection_ready():return False
@@ -203,7 +295,7 @@ index e0b791b..205b857 100644
              own=self.telemetry['own'];self._angles=[own['gimbal_yaw'],own['pitch']]
              self._bindings={};self._activation_acks={};self._bind_pending=bool(self.plan)
              self._focus=True;self._heartbeat_at=self.clock();self._input_at=self.clock();self._intent=dict(vx=0.,vy=0.,wz=0.,fire=False,spin=None)
-@@ -175,6 +226,7 @@ class PlatformTransport:
+@@ -175,6 +227,7 @@ class PlatformTransport:
      def submit_input(self,*,vx_mps,vy_mps,chassis_yaw_rps=0.,spin_request=None,yaw_rate_rps=0.,pitch_rate_rps=0.,fire=False):
          with self._lock:
              if not self._focus:return
@@ -211,7 +303,23 @@ index e0b791b..205b857 100644
              vx=finite(vx_mps,'vx',-1,1);vy=finite(vy_mps,'vy',-1,1);norm=max(1.,math.hypot(vx,vy))
              wz=finite(chassis_yaw_rps,'chassis yaw',-1.,1.)
              from .sim_platform_spin import request
-@@ -266,10 +318,94 @@ class PlatformTransport:
+@@ -232,9 +285,14 @@ class PlatformTransport:
+             if self._bind_pending:return 'Adapter bind pending; no actuation confirmed'
+             if not self.plan:return 'Manual motion + manual gimbal'
+             labels=[]
++            shown=self.raw_state
++            if shown is not None and self.role=='operator':
++                shown=dict(shown);contexts=shown.get('algorithm_status_context',{})
++                shown['algorithm_status_context']={rid:{kind:c for kind,c in kinds.items()
++                    if self.clock()<self._algorithm_status_deadlines.get((rid,kind),-1e9)} for rid,kinds in contexts.items()}
+             for kind in self.plan:
+                 bound=self._bindings.get(kind)
+-                status=feedback(self.raw_state,self.watch_robot,kind,bound,self.client.session_id) if bound else 'selected, disarmed'
++                status=feedback(shown,self.watch_robot,kind,bound,self.client.session_id) if bound else 'selected, disarmed'
+                 labels.append(kind+': '+status)
+             return ' | '.join(labels)
+     def _same_control(self,rid,epochs,generation,plan_generation):
+@@ -266,10 +324,117 @@ class PlatformTransport:
      def selection_ready(self):
          data,video,*_=self.snapshot()
          return bool(not self.client.uncertain and self.watch_robot is not None and self.watch_epoch is not None and data is not None and video is not None and not self.selection_pending)
@@ -235,6 +343,7 @@ index e0b791b..205b857 100644
 +            'episode','sim_time','sample_sim_time','remaining_seconds','duration_seconds','phase','winner',
 +            'runtime_state','applied_sample_is_historical','robots','control','applied_targets'}
 +        allowed.update({'clock_profile','offline_final_state','completed_captures','offline_halt_code'})
++        allowed.add('algorithm_status_context')
 +        if set(data)-allowed:raise ValueError('Unexpected operator state fields')
 +        validate_operator_clock(data)
 +        stamp=finite(data.get('sim_time'),'simulation time',0);episode=integer(data.get('episode'),'episode')
@@ -273,6 +382,26 @@ index e0b791b..205b857 100644
 +                deadlines[rid]=anchor+max(live)-server_now
 +            mapped.append(r)
 +        if control.get('robot_ids')!=[r['robot_id'] for r in mapped]:raise ValueError('Limited roster mismatch')
++        contexts=data.get('algorithm_status_context',{});checked_contexts={};status_deadlines={}
++        if type(contexts) is not dict or len(contexts)>64 or any(type(r) is not str or r not in seen for r in contexts):raise ValueError('Invalid aim status roster')
++        fields={'episode','binding_epoch','adapter_id','status','observed_seq','wall_deadline','source_frame_id'}
++        for rid,kinds in contexts.items():
++            if type(kinds) is not dict or set(kinds)!={'aim'}:raise ValueError('Invalid aim status channel')
++            context=kinds['aim']
++            if type(context) is not dict or set(context)!=fields:raise ValueError('Unexpected aim status fields')
++            for key in ('episode','binding_epoch','observed_seq','source_frame_id'):integer(context[key],'aim status '+key)
++            if type(context['adapter_id']) is not str or not 1<=len(context['adapter_id'])<=128:raise ValueError('Invalid aim status adapter')
++            if type(context['status']) is not str or context['status'] not in ('no_target','pending_result','result_available'):raise ValueError('Unknown aim status')
++            deadline=finite(context['wall_deadline'],'aim result deadline',0)
++            binding=control.get('bindings',{}).get(rid,{}).get('aim',{})
++            lease=control.get('leases',{}).get(rid,{}).get('gimbal',{})
++            if (context['episode']!=episode or binding.get('owner')!=self.client.session_id
++                or type(binding.get('epoch')) is not int or binding['epoch']!=context['binding_epoch']
++                or binding.get('adapter_id')!=context['adapter_id'] or lease.get('owner')!=self.client.session_id
++                or (rid,'gimbal') not in lease_deadlines):raise ValueError('Aim status lacks current own binding')
++            local_deadline=min(anchor+deadline-server_now,lease_deadlines[rid,'gimbal'])
++            if received<local_deadline:
++                checked_contexts[rid]={'aim':copy.deepcopy(context)};status_deadlines[rid,'aim']=local_deadline
 +        remaining=None if data.get('remaining_seconds') is None else finite(data['remaining_seconds'],'remaining seconds',0)
 +        with self._lock:
 +            if generation!=self._connection_generation or not self._connected or self._stop.is_set() or self.client.uncertain:return False
@@ -281,6 +410,8 @@ index e0b791b..205b857 100644
 +                self.neutral('New episode; explicit claim required');self._clear_frame('New episode',reset_identity=True)
 +                self.watch_epoch=None;self._watch_generation+=1;self._watch_job=(self.watch_robot,self._watch_generation);self._generation+=1
 +            self.raw_state=copy.deepcopy(data);self.raw_state_at=received;self.robot_ids=tuple(r['robot_id'] for r in mapped)
++            if 'algorithm_status_context' in data:self.raw_state['algorithm_status_context']=checked_contexts
++            self._algorithm_status_deadlines=status_deadlines
 +            row=next((r for r in mapped if r['robot_id']==self.watch_robot),None)
 +            own=row if row is not None and 'gimbal_yaw' in row else None
 +            identity=(self._connection_generation,self._watch_generation,self.watch_robot,episode,sample)
@@ -307,7 +438,7 @@ index e0b791b..205b857 100644
          if data.get('schema')!='rm.sim.platform.v2' or data.get('source')!='simulator_truth_display_only' or data.get('algorithm_input') is not False:raise ValueError('Wrong v2 display provenance')
          stamp=finite(data.get('sim_time'),'simulation time',0);episode=integer(data.get('episode'),'episode')
          robots=data.get('robots')
-@@ -309,6 +445,8 @@ class PlatformTransport:
+@@ -309,6 +474,8 @@ class PlatformTransport:
              now=self.clock()
              if not self._connected or self._stop.is_set() or self.client.uncertain:return None,None,0.,self.video_sequence,self.video_sim_time
              state=self.telemetry if now-self.telemetry_at<=.5 else None
@@ -316,7 +447,7 @@ index e0b791b..205b857 100644
              video=self.video if now-self.video_at<=self.max_frame_age else None
              return state,video,self.video_at if video is not None else 0.,self.video_sequence,self.video_sim_time
      def process_jobs(self):
-@@ -350,7 +488,7 @@ class PlatformTransport:
+@@ -350,7 +517,7 @@ class PlatformTransport:
              now=self.clock();rid=self.owned_robot;epochs=dict(self.owned_epochs)
              if rid is None:return
              state,video,*_=self.snapshot()
@@ -325,7 +456,7 @@ index e0b791b..205b857 100644
                  self.neutral('V2 state/camera/heartbeat expired');return
              renew=now-self._renew_at>.3
              active=self._focus and now-self._input_at<=.15
-@@ -422,7 +560,7 @@ class PlatformTransport:
+@@ -422,7 +589,7 @@ class PlatformTransport:
                  reason=self._handoff.expired(now)
                  if self._intent.get('spin') is not None and self.spin_capability() is None:
                      reason='spin_capability_unavailable'
@@ -334,7 +465,7 @@ index e0b791b..205b857 100644
                      reason='state_camera_or_input_expired'
                  if reason:
                      self._record('handoff_cancelled',failure=True,stage='deadline_recheck',reason_code=reason)
-@@ -545,7 +683,8 @@ class PlatformTransport:
+@@ -545,7 +712,8 @@ class PlatformTransport:
                      if hasattr(self.client,'adapters') and self.clock()-self._catalog_at>2:
                          serial=self._catalog_serial+1;raw=self.client.adapters()
                          self.install_catalog(raw,connection_generation=generation,serial=serial,watch_generation=watch_generation);self._catalog_at=self.clock()
@@ -344,7 +475,7 @@ index e0b791b..205b857 100644
                  except Exception as exc:
                      with self._lock:
                          if generation==self._connection_generation:self._failed(exc,stage='state_loop')
-@@ -567,6 +706,13 @@ class PlatformTransport:
+@@ -567,6 +735,13 @@ class PlatformTransport:
          # The camera provider supplies this extension in its separate checkpoint.
          with self._lock:
              if generation!=self._watch_generation or not self._connected or self._stop.is_set() or self.client.uncertain:return False
@@ -358,7 +489,7 @@ index e0b791b..205b857 100644
              if type(data.get('available')) is not bool:raise ValueError('Invalid camera availability')
              if not data['available']:
                  self._clear_frame(str(data.get('reason','Camera unavailable')));return False
-@@ -583,11 +729,16 @@ class PlatformTransport:
+@@ -583,11 +758,16 @@ class PlatformTransport:
              if received_at-capture_local>ttl:raise ValueError('Expired camera sample')
              capture_wall=finite(data.get('capture_wall_monotonic'),'capture wall',0)
              encoded_wall=finite(data.get('encode_completed_wall_monotonic'),'encode wall',capture_wall)
@@ -379,7 +510,7 @@ index e0b791b..205b857 100644
              for k in ('fx','fy'):finite(intr.get(k),k,1e-6)
              for k in ('cx','cy'):finite(intr.get(k),k)
              if intr.get('distortion_model')!='brown_conrady_5' or type(intr.get('distortion')) is not list or len(intr['distortion'])!=5:raise ValueError('Unknown camera distortion')
-@@ -598,11 +749,13 @@ class PlatformTransport:
+@@ -598,11 +778,13 @@ class PlatformTransport:
                  if type(values) is not list or len(values)!=n:raise ValueError('Invalid camera extrinsics')
                  for v in values:finite(v,k)
              if abs(sum(v*v for v in ext['rotation_xyzw'])-1)>1e-6:raise ValueError('Nonunit camera rotation')
@@ -819,6 +950,7 @@ index 3893665..4a91cdd 100644
      if terminal is None and select.select([child.stdout],[],[],0)[0]:
 diff --git a/tests/platform_v2_fixtures.py b/tests/platform_v2_fixtures.py
 new file mode 100644
+index 0000000..9e38b5e
 --- /dev/null
 +++ b/tests/platform_v2_fixtures.py
 @@ -0,0 +1,54 @@
@@ -876,8 +1008,177 @@ new file mode 100644
 +    epoch=t.owned_epochs.get('motion',1)
 +    return t.install_state(state(owner=t.client.session_id,epoch=epoch,complete=complete,
 +                                 stamp=(t.raw_state or {}).get('sim_time',1.)+.001))
+diff --git a/tests/test_aim_plugin_discovery.py b/tests/test_aim_plugin_discovery.py
+new file mode 100644
+index 0000000..eb78189
+--- /dev/null
++++ b/tests/test_aim_plugin_discovery.py
+@@ -0,0 +1,47 @@
++"""Actual own-client capability/plan code; synthetic catalog, no GUI/detector."""
++import copy
++import unittest
++from rm_client.sim_platform_adapters import parse_catalog,options,make_plan,config_for,PLUGIN_CAPABILITIES
++
++def catalog(aid='custom_independent_aim'):
++    d=dict(adapter_id=aid,kind='aim',version='1.0.0',label='External reviewed aim plugin',
++        available=True,required_sensors=['camera'],supported_robots=['red_sentry'],
++        fire_authority='manual_only',output_modes=['gimbal_target'],ui_config_contract='empty_v1',
++        aim_plugin_contract='camera_gimbal_v1',plugin_transport='jsonl_v1',
++        aim_plugin_capabilities=copy.deepcopy(PLUGIN_CAPABILITIES))
++    return dict(schema='rm.sim.platform.v2',adapter_ui_version=1,adapter_activation_version=1,
++        readiness='declared_support_only',fire_authority='manual_only',adapters=[d],
++        robots=[dict(robot_id='red_sentry',declared_sensors=['camera']),
++                dict(robot_id='blue_sentry',declared_sensors=['camera'])])
++
++class DiscoveryTests(unittest.TestCase):
++    def test_unrelated_ids_negotiate_same_public_contract_and_empty_config(self):
++        for aid in ('custom_independent_aim','custom_other_group_binary','custom_ros_team4'):
++            with self.subTest(aid=aid):
++                c=parse_catalog(catalog(aid));self.assertEqual(options(c,'red_sentry','aim'),['Manual',aid])
++                plan=make_plan(c,'red_sentry',{'aim':aid},{'command':['bad'],'model_path':'bad','V2 Aim FOV':False})
++                self.assertEqual(plan,{'aim':dict(adapter_id=aid,config={})})
++                self.assertEqual(options(c,'blue_sentry','aim'),['Manual'])
++    def test_ros_transport_negotiates_without_changing_action_channel(self):
++        raw=catalog();raw['adapters'][0]['plugin_transport']='ros2_envelope_v1'
++        self.assertIn('custom_independent_aim',options(parse_catalog(raw),'red_sentry','aim'))
++    def test_arbitrary_id_alone_never_becomes_selectable(self):
++        raw=catalog();raw['adapters'][0].pop('aim_plugin_capabilities')
++        self.assertEqual(options(parse_catalog(raw),'red_sentry','aim'),['Manual'])
++        with self.assertRaises(ValueError):config_for('custom_independent_aim',{})
++    def test_unknown_capability_version_fire_and_missing_sensor_reject(self):
++        cases=[('version','2.0'),('fire_authority','automatic'),('ui_config_contract','exec'),
++            ('available',True),('test_only',True),('plugin_transport','shell')]
++        for key,value in cases:
++            with self.subTest(key=key):
++                raw=catalog();raw['adapters'][0][key]=value
++                if key=='available':raw['robots'][0]['declared_sensors']=[]
++                self.assertEqual(options(parse_catalog(raw),'red_sentry','aim'),['Manual'])
++        raw=catalog();raw['adapters'][0]['aim_plugin_capabilities']['unknown']=True
++        self.assertEqual(options(parse_catalog(raw),'red_sentry','aim'),['Manual'])
++    def test_catalog_change_does_not_keep_stale_selected_plan(self):
++        c=parse_catalog(catalog());self.assertTrue(make_plan(c,'red_sentry',{'aim':'custom_independent_aim'},{}))
++        raw=catalog();raw['adapters'][0]['available']=False;raw['adapters'][0]['reason']='stopped'
++        with self.assertRaises(ValueError):make_plan(parse_catalog(raw),'red_sentry',{'aim':'custom_independent_aim'},{})
++
++if __name__=='__main__':unittest.main()
+diff --git a/tests/test_aim_status_display.py b/tests/test_aim_status_display.py
+new file mode 100644
+index 0000000..f007f52
+--- /dev/null
++++ b/tests/test_aim_status_display.py
+@@ -0,0 +1,44 @@
++"""Synthetic own-client state/clock checks; no GUI, DDS or detector."""
++import copy
++import unittest
++from platform_v2_fixtures import state
++from test_platform_control_windows import WindowClient
++from rm_client.sim_platform_transport import PlatformTransport
++
++class StatusDisplayTests(unittest.TestCase):
++    def setUp(self):
++        self.now=[100.];self.c=WindowClient();self.t=PlatformTransport(role='operator',clock=lambda:self.now[0],client=self.c)
++        self.t.connect_once();self.t.watch_robot='red_infantry'
++        self.t.plan={'aim':{'adapter_id':'custom_independent_aim','config':{}}}
++        self.t._bindings={'aim':{'binding_epoch':2}}
++    def message(self,status='no_target'):
++        data=state(owner=self.c.session_id)
++        data['control']['bindings']['red_infantry']['aim']=dict(owner=self.c.session_id,epoch=2,adapter_id='custom_independent_aim')
++        data['algorithm_status_context']={'red_infantry':{'aim':dict(episode=0,binding_epoch=2,
++            adapter_id='custom_independent_aim',status=status,observed_seq=1,wall_deadline=100.08,source_frame_id=1)}}
++        return data
++    def test_no_target_and_result_available_are_not_physical_confirmation(self):
++        self.t.install_state(self.message());self.assertIn('no target',self.t.adapter_feedback())
++        self.t.install_state(self.message('result_available'));shown=self.t.adapter_feedback()
++        self.assertIn('physical application unconfirmed',shown);self.assertNotIn('last applied',shown)
++        self.assertIsNone(self.t._window);self.assertFalse(self.t._focus)
++    def test_received_and_later_expired_status_cannot_be_displayed(self):
++        self.now[0]=100.09
++        self.t.install_state(self.message(),request_started=100.)
++        self.assertNotIn('no target',self.t.adapter_feedback())
++        self.now[0]=100.;self.t.install_state(self.message(),request_started=100.)
++        self.now[0]=100.081;self.assertNotIn('no target',self.t.adapter_feedback())
++    def test_epoch_episode_owner_and_truth_fields_reject(self):
++        for key,value in [('binding_epoch',3),('episode',1),('episode',True),('adapter_id','custom_other'),('status','enemy_xy'),('xy',[1,2])]:
++            with self.subTest(key=key,value=value):
++                raw=self.message();raw['algorithm_status_context']['red_infantry']['aim'][key]=value
++                with self.assertRaises(ValueError):self.t.install_state(raw)
++        raw=self.message();raw['control']['leases']['red_infantry']['gimbal']['owner']='other'
++        with self.assertRaises(ValueError):self.t.install_state(raw)
++    def test_other_robot_or_channel_is_not_a_display_shortcut(self):
++        for rid,kind in [('blue_sentry','aim'),('red_infantry','navigation')]:
++            raw=self.message();context=raw['algorithm_status_context']['red_infantry']['aim']
++            raw['algorithm_status_context']={rid:{kind:context}}
++            with self.subTest(rid=rid,kind=kind),self.assertRaises(ValueError):self.t.install_state(raw)
++
++if __name__=='__main__':unittest.main()
+diff --git a/tests/test_operator_offline_clock.py b/tests/test_operator_offline_clock.py
+new file mode 100644
+index 0000000..bceb710
+--- /dev/null
++++ b/tests/test_operator_offline_clock.py
+@@ -0,0 +1,59 @@
++"""Strict scoped operator clock/lifecycle support without truth fallback."""
++import copy
++import unittest
++
++from rm_client.sim_platform_transport import PlatformTransport
++from test_operator_state_projection import Client,state
++
++
++def offline():
++    value=state()
++    value.update(clock_profile=dict(kind='offline_modeled_latency_v1',label='OFFLINE / SIL',barrier_state='native_barrier',
++        simulation_tick=5,simulation_ns=10_000_000,episode_origin_mj_time_ns=0,
++        delays_are_engineering_configuration_not_device_calibration=True,host_delay_s=.15,wall_elapsed_s=1.,
++        delays=dict(physics_step_ns=2_000_000,capture_period_ns=40_000_000,controller_period_ns=10_000_000,
++            sensor_delay_ns=10_000_000,compute_delay_ns=10_000_000,actuation_delay_ns=0,max_age_ns=80_000_000)),
++        completed_captures=3)
++    return value
++
++
++class OfflineClockTests(unittest.TestCase):
++    def setUp(self):
++        self.t=PlatformTransport(role='operator',clock=lambda:10.,client=Client());self.t.connect_once()
++    def test_real_projection_shape_and_terminal_are_accepted(self):
++        value=offline();self.assertTrue(self.t.install_state(value))
++        value['clock_profile']['barrier_state']='HALTED';value.update(offline_final_state='HALTED',offline_halt_code='native_error')
++        self.assertTrue(self.t.install_state(value))
++        self.assertEqual(self.t.raw_state['offline_halt_code'],'native_error')
++        self.assertEqual(self.t.raw_state['completed_captures'],3)
++    def test_live_clock_shape_is_accepted(self):
++        value=state();value['clock_profile']=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=1.)
++        self.assertTrue(self.t.install_state(value))
++    def test_offline_private_or_unknown_nested_fields_are_rejected(self):
++        cases=[]
++        for container,key,value in [('clock_profile','world_pose',[1,2]),('delays','private_path','SECRET_PATH'),
++            ('clock_profile','label','SECRET_PATH'),('clock_profile','barrier_state','future:SECRET_PATH')]:
++            item=offline();target=item['clock_profile']['delays'] if container=='delays' else item['clock_profile'];target[key]=value;cases.append(item)
++        item=offline();item['offline_halt_code']='native_error:SECRET_PATH';cases.append(item)
++        item=offline();item['offline_halt_reason']='SECRET_PATH';cases.append(item)
++        for item in cases:
++            with self.subTest(item=item),self.assertRaises(ValueError):self.t.install_state(item)
++        self.assertIsNone(self.t.raw_state)
++    def test_offline_scalar_bool_nonfinite_negative_and_relaxed_age_are_rejected(self):
++        for key,bad in [('simulation_ns',True),('simulation_tick',-1),('host_delay_s',float('nan')),('wall_elapsed_s',-1),('episode_origin_mj_time_ns',{})]:
++            item=offline();item['clock_profile'][key]=bad
++            with self.subTest(key=key),self.assertRaises(ValueError):self.t.install_state(item)
++        for key,bad in [('compute_delay_ns',True),('max_age_ns',81_000_000),('capture_period_ns',40_000_001)]:
++            item=offline();item['clock_profile']['delays'][key]=bad
++            with self.subTest(delay=key),self.assertRaises(ValueError):self.t.install_state(item)
++        for key,bad in [('completed_captures',True),('offline_final_state','future')]:
++            item=offline();item[key]=bad
++            with self.subTest(field=key),self.assertRaises(ValueError):self.t.install_state(item)
++    def test_offline_terminal_cannot_be_smuggled_into_live_or_absent_clock(self):
++        item=state();item['completed_captures']=1
++        with self.assertRaises(ValueError):self.t.install_state(item)
++        item['clock_profile']=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=1.)
++        with self.assertRaises(ValueError):self.t.install_state(item)
++
++
++if __name__=='__main__':unittest.main()
 diff --git a/tests/test_operator_state_projection.py b/tests/test_operator_state_projection.py
 new file mode 100644
+index 0000000..1dfd0d3
 --- /dev/null
 +++ b/tests/test_operator_state_projection.py
 @@ -0,0 +1,147 @@
@@ -1030,6 +1331,7 @@ new file mode 100644
 +if __name__=='__main__':unittest.main()
 diff --git a/tests/test_platform_admission_client.py b/tests/test_platform_admission_client.py
 new file mode 100644
+index 0000000..4862626
 --- /dev/null
 +++ b/tests/test_platform_admission_client.py
 @@ -0,0 +1,36 @@
@@ -1066,70 +1368,6 @@ new file mode 100644
 +        for value in (True,15,'short','x'*257):
 +            with self.subTest(type=type(value).__name__),self.assertRaisesRegex(ValueError,'Invalid admission credential'):
 +                PlatformClient('http://127.0.0.1:8766',admission_credential=value)
-+
-+
-+if __name__=='__main__':unittest.main()
-diff --git a/tests/test_operator_offline_clock.py b/tests/test_operator_offline_clock.py
-new file mode 100644
---- /dev/null
-+++ b/tests/test_operator_offline_clock.py
-@@ -0,0 +1,59 @@
-+"""Strict scoped operator clock/lifecycle support without truth fallback."""
-+import copy
-+import unittest
-+
-+from rm_client.sim_platform_transport import PlatformTransport
-+from test_operator_state_projection import Client,state
-+
-+
-+def offline():
-+    value=state()
-+    value.update(clock_profile=dict(kind='offline_modeled_latency_v1',label='OFFLINE / SIL',barrier_state='native_barrier',
-+        simulation_tick=5,simulation_ns=10_000_000,episode_origin_mj_time_ns=0,
-+        delays_are_engineering_configuration_not_device_calibration=True,host_delay_s=.15,wall_elapsed_s=1.,
-+        delays=dict(physics_step_ns=2_000_000,capture_period_ns=40_000_000,controller_period_ns=10_000_000,
-+            sensor_delay_ns=10_000_000,compute_delay_ns=10_000_000,actuation_delay_ns=0,max_age_ns=80_000_000)),
-+        completed_captures=3)
-+    return value
-+
-+
-+class OfflineClockTests(unittest.TestCase):
-+    def setUp(self):
-+        self.t=PlatformTransport(role='operator',clock=lambda:10.,client=Client());self.t.connect_once()
-+    def test_real_projection_shape_and_terminal_are_accepted(self):
-+        value=offline();self.assertTrue(self.t.install_state(value))
-+        value['clock_profile']['barrier_state']='HALTED';value.update(offline_final_state='HALTED',offline_halt_code='native_error')
-+        self.assertTrue(self.t.install_state(value))
-+        self.assertEqual(self.t.raw_state['offline_halt_code'],'native_error')
-+        self.assertEqual(self.t.raw_state['completed_captures'],3)
-+    def test_live_clock_shape_is_accepted(self):
-+        value=state();value['clock_profile']=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=1.)
-+        self.assertTrue(self.t.install_state(value))
-+    def test_offline_private_or_unknown_nested_fields_are_rejected(self):
-+        cases=[]
-+        for container,key,value in [('clock_profile','world_pose',[1,2]),('delays','private_path','SECRET_PATH'),
-+            ('clock_profile','label','SECRET_PATH'),('clock_profile','barrier_state','future:SECRET_PATH')]:
-+            item=offline();target=item['clock_profile']['delays'] if container=='delays' else item['clock_profile'];target[key]=value;cases.append(item)
-+        item=offline();item['offline_halt_code']='native_error:SECRET_PATH';cases.append(item)
-+        item=offline();item['offline_halt_reason']='SECRET_PATH';cases.append(item)
-+        for item in cases:
-+            with self.subTest(item=item),self.assertRaises(ValueError):self.t.install_state(item)
-+        self.assertIsNone(self.t.raw_state)
-+    def test_offline_scalar_bool_nonfinite_negative_and_relaxed_age_are_rejected(self):
-+        for key,bad in [('simulation_ns',True),('simulation_tick',-1),('host_delay_s',float('nan')),('wall_elapsed_s',-1),('episode_origin_mj_time_ns',{})]:
-+            item=offline();item['clock_profile'][key]=bad
-+            with self.subTest(key=key),self.assertRaises(ValueError):self.t.install_state(item)
-+        for key,bad in [('compute_delay_ns',True),('max_age_ns',81_000_000),('capture_period_ns',40_000_001)]:
-+            item=offline();item['clock_profile']['delays'][key]=bad
-+            with self.subTest(delay=key),self.assertRaises(ValueError):self.t.install_state(item)
-+        for key,bad in [('completed_captures',True),('offline_final_state','future')]:
-+            item=offline();item[key]=bad
-+            with self.subTest(field=key),self.assertRaises(ValueError):self.t.install_state(item)
-+    def test_offline_terminal_cannot_be_smuggled_into_live_or_absent_clock(self):
-+        item=state();item['completed_captures']=1
-+        with self.assertRaises(ValueError):self.t.install_state(item)
-+        item['clock_profile']=dict(kind='wall_deadline_live',simulation_time_unit='seconds',wall_clock='server_monotonic',real_time_factor_limit=1.)
-+        with self.assertRaises(ValueError):self.t.install_state(item)
 +
 +
 +if __name__=='__main__':unittest.main()

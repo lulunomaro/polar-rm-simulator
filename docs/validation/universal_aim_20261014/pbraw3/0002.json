@@ -1,0 +1,589 @@
+{
+  "schema": "polar.pb-aim-build-source-copy.v1",
+  "packages": [
+    "armor_detector_opencv",
+    "armor_tracker",
+    "projectile_motion",
+    "polar_pb_aim_interfaces",
+    "auto_aim_interfaces",
+    "pb_rm_interfaces",
+    "rmoss_projectile_motion"
+  ],
+  "original_files_sha256": {
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/SOURCE_MANIFEST.json": "3871fc79ad57946a8dfcdbde50a198f1faf8915bf18b5718f33a966f5ba466ed",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/pb_aim_launch.py": "3b261265a561c354a28b86b377716f5f63b5e95a9cc392f95224ed0da44d3831",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/PB_AIM_PARAMS.yaml": "1de46e046646394c62f4f9c693a5e470d133a68bb8be88cf5684a4dde7110269",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/upstream_notices/dependencies.repos": "74521bb0b59d138564d9529e2eaf02861733ff0101732ce310a13ac36ad121be",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/upstream_notices/LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/upstream_notices/NOTICE": "4b5c5d7767fcb7fdcd670b8ab9c297126f50e923b060f95e253c4a8e19186340",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/.clang-format": "70091de3edcf77f4fbbf33cba8e6adec333f243c94c69d8850bbc5b0b5b25541",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/.clang-tidy": "71b3cb8a68fed41b37663c4ef1f6e5a516c15e7923f76105dd9a7a1ee4c3f8ad",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/CMakeLists.txt": "91be0a8ebc983f760a8f3a8f6fb2404aaa75610d3cf9ed250319872f094c2903",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/package.xml": "b186863dfc18379697f1a7344bb67ba2b8143699dbbe1235e887f3020c3e7041",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/README.md": "984df469b370fed7bf9ae2373122d275af3e7ff1b5afd7604456c845c5ea734d",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/.clang-format": "70091de3edcf77f4fbbf33cba8e6adec333f243c94c69d8850bbc5b0b5b25541",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/.clang-tidy": "71b3cb8a68fed41b37663c4ef1f6e5a516c15e7923f76105dd9a7a1ee4c3f8ad",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/CMakeLists.txt": "909d439a9f9ebda9606879ed39210d59b8e14a284ebc5f228efd86f3d1ec3871",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/package.xml": "daae3edf3c6898e9a7891c3df560e939f3a671f6191c7ef5579ac42bfcc761d4",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/README.md": "5391894a745bb9e71e439c7ab9705616c0d1a950ddc09a706f20b74ba6c96608",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/polar_pb_aim_interfaces/CMakeLists.txt": "48ac7131d96cce85cd23dd23b48ca1ce42dc2c0e67cf24119f31f044a2c030ee",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/polar_pb_aim_interfaces/package.xml": "473ae222fd53b9e6f8e3fb4e9c6deec90d87fec9b4552a5ebe881f8ee1dd1ab7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/.clang-format": "70091de3edcf77f4fbbf33cba8e6adec333f243c94c69d8850bbc5b0b5b25541",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/.clang-tidy": "71b3cb8a68fed41b37663c4ef1f6e5a516c15e7923f76105dd9a7a1ee4c3f8ad",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/CMakeLists.txt": "ab17b765baa041fc0d24cb50c9cc1e7f008c78301dcaa3a8c4353b325fde4936",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/package.xml": "b21050971f12467c4e8a353df97adf511a7430952fb25919d04911cc6f7a83b7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/blue.png": "f257bc67657cbdf8d71c8624beefecbec1a41aa288b612d7a858012209fe777a",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/gray_bin.png": "d45d9a171153de0b5bd32fbe5e92b46c1d32e10e354f5dfe6f807b1f067e8281",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/hsv_bin.png": "93d376bc03b4ecf61645e7af72981fb29c59dbb923a19620dc576006db8b197c",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/model.svg": "0617870c34943b4c8afc4a6cb8e0bb7b15dba10b1b293c12af1ec0b5805c57f5",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/num_bin.png": "57b75350b9d2967be6b57a8956c1d368ec2b52bed634976c59353fb4328449b7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/num_raw.png": "3df506a903e2aa76465775c5988d6f7727a0630114c98cfc4c60077ddb973e16",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/num_roi.png": "0581f27192e81e6b629d00a9859971048d4c014baa679dd0da4af5acb22f9935",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/num_warp.png": "8a7dcae74cd7a72da87958922cbe18225793bfdda678d990f0cd001309ad4784",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/raw.png": "625731edbb5d2d5c66162999d23532fbc79203a742fd20ffe37ebb769302e58b",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/red.png": "7671227703ddd2e44ebfd4d12f1fff9d9ed37f21253465ddca74364795d0defc",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/result.png": "87d10a223c64b882da8188d5c08d4ba5be45348c7a3f1a7536cc48824633db87",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/train_acc.png": "b9f966ea08cb31bf46ec4403e7742023fba42a8114b593f20e15a2c35dfcd841",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/train_loss.png": "f82654b7666f32c7af305c6a9409034ea1c95008f9c9344ebce745a1d76a8529",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/val_acc.png": "d9353fde2ab6d33a21b5fa26a304d748e6da55ad0d67a8cfd73e6ad8149b19aa",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/docs/val_loss.png": "35806775ae3a5cb9e319d6887a9ab3ee961a7a7345465642c36abb6a7b152e1a",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/pb_aim_source.hpp": "ca50ecadeece8154451dc71f483f109082b0999bf3cce97b70e9745cb2757ab7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/model/label.txt": "8cc04e2a54c7ee1c39925c9ca8e6eebe2d1015ee9dab77ab3befd8095be74411",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/model/mlp.onnx": "b3250176ea8fdbe6d1585be954363757ff6a8245a81e8797f16cea601976d47a",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/src/detector.cpp": "b47b2730171704e2d9403dd79767611b874e051da527fb4acd4d9ce88b0aea93",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/src/detector_node.cpp": "84b5ef26dadd58d57fcde9c1cbb290c22fd146b36af4d42453b186512fccd874",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/src/number_classifier.cpp": "9f1aafd46cf4149e3a1726779beac25fd4433335e1c9e44813bc2ec773b14ad8",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/src/pnp_solver.cpp": "83d84d7a0cdb40ae2b3f62e15a5f862241d411c6562ae051bdf0a4a0c88fee98",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/test/test_node_startup.cpp": "54563622313886fd189fcb97555e9dca7f3c9685eb52cc820a6680c9ef978343",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/test/test_number_cls.cpp": "c519487004e3e90fe0a61fd98286ffc2c0f0ac5765758a2e71d5cd073dd4ddaa",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/armor_detector_opencv/armor.hpp": "bd7b09ee9837245eae9676b4384f145b5aff45ea5eb2af1127b03dbdf7f46abc",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/armor_detector_opencv/detector.hpp": "1e6a21d117f7f92615809dd1c2fb25b89745c29880ce52de9b13873666bd45f5",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/armor_detector_opencv/detector_node.hpp": "0789376e92e09a14d3d53138d1f561705ff92bf1541fb93f9f64eef26835f5c0",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/armor_detector_opencv/number_classifier.hpp": "06827c8efb6f33c04a1c289be9f83dbd48c84ea75d05e57aef6d9bec3df5d10e",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_detector_opencv/include/armor_detector_opencv/pnp_solver.hpp": "3f2c1e060c989905bdf260d249edcfea4529078e205b2e86e277a6d303d4c051",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/docs/Kalman_filter_model.png": "6a86fdebe1d70c45dabc86899a60ba22c828b8b06327c101aad2990fba5b3462",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/include/pb_aim_source.hpp": "ca50ecadeece8154451dc71f483f109082b0999bf3cce97b70e9745cb2757ab7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/include/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/src/extended_kalman_filter.cpp": "d0f6fa74a28670f0a6e27081871239b904ae040c277c8eb17ee28d651ae46a3e",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/src/tracker.cpp": "4908092270eb5714966f301b0b1d4ebcd55b2d68deb3419c873750cc07199e23",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/src/tracker_node.cpp": "03aebcc260799e04b94c23cdb100fa8ea0409127b9f8d20609f150f6bc749431",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/include/armor_tracker/extended_kalman_filter.hpp": "c9c60c3037f71608367cad99cda6bc0ebe63fd908ac73d45dea9a057681fe18e",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/include/armor_tracker/tracker.hpp": "f953abc3f7f97f344198effaa9c26bc375d43a7bb365a0a5a63f016f2baecc9a",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/armor_tracker/include/armor_tracker/tracker_node.hpp": "a539faff066cd87df914fc278e4c0dca35fe16c7b022be696153ab0ab1a4c001",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/polar_pb_aim_interfaces/msg/SourceArmors.msg": "871b6381421e4fe41ed1a06818c9451b2e432251d9aa81755c8a437f0e36e6ca",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/polar_pb_aim_interfaces/msg/SourceImage.msg": "4980d6e6ebd425d6c92aefd4ee7d19b84fc1a64e8ede6a7525273e08b2fffba6",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/polar_pb_aim_interfaces/msg/SourceTarget.msg": "12329d45ea9574d122c4a1f654e6dd2f08c0b2f8ba87a3b13afb1ae5cb69445f",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/config/projectile_motion.yaml": "92d19d8b2551ed038f60d190a30469aeff3411d4dbfd44e3529b0ed334a9f314",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/include/pb_aim_source.hpp": "ca50ecadeece8154451dc71f483f109082b0999bf3cce97b70e9745cb2757ab7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/include/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/launch/projectile_motion_launch.py": "fc710e9d96306ccd933512f5a3c56886cbb9c17f6af8d09d14e21aa0831e0cea",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/src/projectile_motion_node.cpp": "6f76ba848c59d8ec8901a8549e0d26359d11207427041c7dbfb77553f790e7a7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/src/projectile_motion/include/projectile_motion/projectile_motion_node.hpp": "199edd6ac3b1b91bfbeecf94917f431bcf9447b1974c41f375b7b9b37c542158",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-source-20261014-03/upstream_notices/pb2025_vision_bringup/params/simulation/vision_params.yaml": "1de46e046646394c62f4f9c693a5e470d133a68bb8be88cf5684a4dde7110269",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/SOURCE_MANIFEST.json": "7af632d034786f18e0e5b5703e840845c8911dfef110200f92bd6e9cde23c365",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/CMakeLists.txt": "cab637880cde2ee4fdac014675a9246aa480baf9239eb58afbdde57376614e18",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/package.xml": "9b15a1a5be4ab96aa56fd337d8999fdf247281acc6088d58fc43a8d78084b6fd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/.gitignore": "0f757e4650fcbcc3e9f7b97632ea3c5e2f2633a9417c897ef1b2e64c6d9e8b4e",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/CMakeLists.txt": "b2adc58716396774f7102bdb6fa5cca5c5005c4334c4ea1b70657caa243fbef1",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/LICENSE": "e27d20d301ddb6a8386f5cf3485a0c5c01b9062a4cc32bec265a7deabc82177f",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/package.xml": "43a497bbdccc3c20440887f95877ede53468c2af83d2438be1898b0550adc496",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/README.md": "3bfeb6c97cb23e2040b92ab9e7bf455fcfb380bbd9cf12808333eee11ef93cea",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/CMakeLists.txt": "60b64e11cb9b3a28976a76f83bedd9d973b27397005e2145b96bbdf8f587b261",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/package.xml": "0dc64c9023a7af90ea5c8d4300ec397804981247d8022ad06faaddc39b7fa266",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/README.md": "586a792962b34774c9624116e5deb6328738236843bae383fe34ebd411900a52",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/Armor.msg": "0bb71122d45974543b3be054888a6e1b29b64edd9835c3362e2eccdd15ed11c8",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/Armors.msg": "940745482c339562eb706025a4f96eb6ed21e4c24aed47486efdc250fbe6c525",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/DebugArmor.msg": "eabb29f20f166af2832c672bba4d7806edda0b75d96f31f5a5d1dd74f7252de8",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/DebugArmors.msg": "ab5e2bd78f1970a8efc43c658ba5dec2c226486925c11a5bfd5c825336152da5",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/DebugLight.msg": "914575280aabf4f8d39b43593f1c5a4fa05f79f09b1aa8bbbe6513e437329b05",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/DebugLights.msg": "33835665f4b33944348bc3eeaad83e958eb987b3a9fde3d9f92bb5b98d0f09a7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/Target.msg": "86d06e63ac9c42d255059b1b839e7fbf07bf4d21ff7dda8ad428922d20545543",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/auto_aim_interfaces/msg/TrackerInfo.msg": "fe57384faf935f269da61485e45e35f2be75d6c86fbda7518733be3a81f6f94b",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/Gimbal.msg": "7bcefebf551657ad89f190818bdea40b18b8aa84b697f48256e219d2107b21d7",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/GimbalCmd.msg": "6332f3f6a58112c27b642e44bdeffa5cab823670c7d309a3c2d8f0f4d4516236",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/Models.msg": "82469a9669ab007d51ff32b81fd2784c6d7e82c89105e3e1f084c864cdaac9f1",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/RobotStateInfo.msg": "4191a84985e5c32a5527cda9886d503f7590e5577e6a18994776dc751622cd41",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/.github/workflows/ci.yml": "cbb64300a6df8a53c3ceba13cca8cb56d4709782d2280ad14e3bbbb40c020586",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/Buff.msg": "63c63fdea181804bc9cd85052a41a47d800a2c78c7f3a00daf0f0e11da7ee089",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/EventData.msg": "85d95af1ae9a0133153e27d34248ee16e43c12de8eb352b42210a71d2ea05ce2",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/GameRobotHP.msg": "f4f0210a28176b5a44649e935b75229097b05e0a1fb87d352a723149b166c655",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/GameStatus.msg": "4d79fef478d44b8be33f367c77b42e2721914947092770db2bf34d56cf5e287a",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/GroundRobotPosition.msg": "22906ef492800cf7a1b2aed9ee2c33825630c8c0f66a90e39cccdeae491a72b3",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/RfidStatus.msg": "da5e5b50ac395f296128b9a3aa761a8b383dd1112c318358727fc97e9e941224",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/pb_rm_interfaces/msg/referee/RobotStatus.msg": "bffa8921fc0a3feb68404b488beff0a4847e7be38af14d1eaaaced9bb3797d31",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/src/gaf_projectile_solver.cpp": "160b4ced52925ffa5cbbf097c22b39525ed85f8dc3504ba30b6512fe10e75c54",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/src/gimbal_transform_tool.cpp": "7bb514a36f4a81e7cfad43fa5d463724f1ab29a50a841f3b14bec7058ff650b8",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/src/gravity_projectile_solver.cpp": "39cfd8050f850fa7e9b6b0d057729a7bdd7f70eab79496811ca77a700d9626c3",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/src/iterative_projectile_tool.cpp": "1f32aca2d0c62eab27e83ae6d6d618ecb72205680d817d789f81b1d91889cff4",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/include/rmoss_projectile_motion/gaf_projectile_solver.hpp": "d8501dbe5ad09f9d783aa4fb3315cae9aee86e06da1c797287590982d54d2d6e",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/include/rmoss_projectile_motion/gimbal_transform_tool.hpp": "848f476da7b5dcab19f3b059cc8b288d37b7efbe44a2db3f80eccb706bc0dbb1",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/include/rmoss_projectile_motion/gravity_projectile_solver.hpp": "d5a6672f9ddd4498f3500c32681a6125ec9333c4a511a52dde3d251259c1b4f4",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/include/rmoss_projectile_motion/iterative_projectile_tool.hpp": "c3d5d23dd0c738310c960ffe9e55d3c88f8de0121513f2ae6f343c9aabdf69ae",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/src/rmoss_projectile_motion/include/rmoss_projectile_motion/projectile_solver_interface.hpp": "f466548d8365a4c1a997770613b730f43c9ce236df07bdae2d3465d5a1cd742a",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/upstream_notices/pb_rm_interfaces/LICENSE": "e27d20d301ddb6a8386f5cf3485a0c5c01b9062a4cc32bec265a7deabc82177f",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/upstream_notices/rmoss_core/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb2025-aim-dependency-compat-20261014-03/upstream_notices/rmoss_interfaces/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "copied_files": {
+    "inputs/source/pb_aim_launch.py": {
+      "bytes": 1463,
+      "sha256": "3b261265a561c354a28b86b377716f5f63b5e95a9cc392f95224ed0da44d3831"
+    },
+    "inputs/source/PB_AIM_PARAMS.yaml": {
+      "bytes": 1693,
+      "sha256": "1de46e046646394c62f4f9c693a5e470d133a68bb8be88cf5684a4dde7110269"
+    },
+    "inputs/source/upstream_notices/dependencies.repos": {
+      "bytes": 837,
+      "sha256": "74521bb0b59d138564d9529e2eaf02861733ff0101732ce310a13ac36ad121be"
+    },
+    "inputs/source/upstream_notices/LICENSE": {
+      "bytes": 11558,
+      "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+    },
+    "inputs/source/upstream_notices/NOTICE": {
+      "bytes": 270,
+      "sha256": "4b5c5d7767fcb7fdcd670b8ab9c297126f50e923b060f95e253c4a8e19186340"
+    },
+    "src/armor_detector_opencv/.clang-format": {
+      "bytes": 401,
+      "sha256": "70091de3edcf77f4fbbf33cba8e6adec333f243c94c69d8850bbc5b0b5b25541"
+    },
+    "src/armor_detector_opencv/.clang-tidy": {
+      "bytes": 2681,
+      "sha256": "71b3cb8a68fed41b37663c4ef1f6e5a516c15e7923f76105dd9a7a1ee4c3f8ad"
+    },
+    "src/armor_detector_opencv/CMakeLists.txt": {
+      "bytes": 1701,
+      "sha256": "91be0a8ebc983f760a8f3a8f6fb2404aaa75610d3cf9ed250319872f094c2903"
+    },
+    "src/armor_detector_opencv/package.xml": {
+      "bytes": 1461,
+      "sha256": "b186863dfc18379697f1a7344bb67ba2b8143699dbbe1235e887f3020c3e7041"
+    },
+    "src/armor_detector_opencv/README.md": {
+      "bytes": 5026,
+      "sha256": "984df469b370fed7bf9ae2373122d275af3e7ff1b5afd7604456c845c5ea734d"
+    },
+    "src/armor_tracker/.clang-format": {
+      "bytes": 401,
+      "sha256": "70091de3edcf77f4fbbf33cba8e6adec333f243c94c69d8850bbc5b0b5b25541"
+    },
+    "src/armor_tracker/.clang-tidy": {
+      "bytes": 2681,
+      "sha256": "71b3cb8a68fed41b37663c4ef1f6e5a516c15e7923f76105dd9a7a1ee4c3f8ad"
+    },
+    "src/armor_tracker/CMakeLists.txt": {
+      "bytes": 1360,
+      "sha256": "909d439a9f9ebda9606879ed39210d59b8e14a284ebc5f228efd86f3d1ec3871"
+    },
+    "src/armor_tracker/package.xml": {
+      "bytes": 1224,
+      "sha256": "daae3edf3c6898e9a7891c3df560e939f3a671f6191c7ef5579ac42bfcc761d4"
+    },
+    "src/armor_tracker/README.md": {
+      "bytes": 3255,
+      "sha256": "5391894a745bb9e71e439c7ab9705616c0d1a950ddc09a706f20b74ba6c96608"
+    },
+    "src/polar_pb_aim_interfaces/CMakeLists.txt": {
+      "bytes": 495,
+      "sha256": "48ac7131d96cce85cd23dd23b48ca1ce42dc2c0e67cf24119f31f044a2c030ee"
+    },
+    "src/polar_pb_aim_interfaces/package.xml": {
+      "bytes": 647,
+      "sha256": "473ae222fd53b9e6f8e3fb4e9c6deec90d87fec9b4552a5ebe881f8ee1dd1ab7"
+    },
+    "src/projectile_motion/.clang-format": {
+      "bytes": 401,
+      "sha256": "70091de3edcf77f4fbbf33cba8e6adec333f243c94c69d8850bbc5b0b5b25541"
+    },
+    "src/projectile_motion/.clang-tidy": {
+      "bytes": 2681,
+      "sha256": "71b3cb8a68fed41b37663c4ef1f6e5a516c15e7923f76105dd9a7a1ee4c3f8ad"
+    },
+    "src/projectile_motion/CMakeLists.txt": {
+      "bytes": 1267,
+      "sha256": "ab17b765baa041fc0d24cb50c9cc1e7f008c78301dcaa3a8c4353b325fde4936"
+    },
+    "src/projectile_motion/LICENSE": {
+      "bytes": 11560,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    "src/projectile_motion/package.xml": {
+      "bytes": 1167,
+      "sha256": "b21050971f12467c4e8a353df97adf511a7430952fb25919d04911cc6f7a83b7"
+    },
+    "src/armor_detector_opencv/docs/blue.png": {
+      "bytes": 7938,
+      "sha256": "f257bc67657cbdf8d71c8624beefecbec1a41aa288b612d7a858012209fe777a"
+    },
+    "src/armor_detector_opencv/docs/gray_bin.png": {
+      "bytes": 9701,
+      "sha256": "d45d9a171153de0b5bd32fbe5e92b46c1d32e10e354f5dfe6f807b1f067e8281"
+    },
+    "src/armor_detector_opencv/docs/hsv_bin.png": {
+      "bytes": 17354,
+      "sha256": "93d376bc03b4ecf61645e7af72981fb29c59dbb923a19620dc576006db8b197c"
+    },
+    "src/armor_detector_opencv/docs/model.svg": {
+      "bytes": 16475,
+      "sha256": "0617870c34943b4c8afc4a6cb8e0bb7b15dba10b1b293c12af1ec0b5805c57f5"
+    },
+    "src/armor_detector_opencv/docs/num_bin.png": {
+      "bytes": 5631,
+      "sha256": "57b75350b9d2967be6b57a8956c1d368ec2b52bed634976c59353fb4328449b7"
+    },
+    "src/armor_detector_opencv/docs/num_raw.png": {
+      "bytes": 314706,
+      "sha256": "3df506a903e2aa76465775c5988d6f7727a0630114c98cfc4c60077ddb973e16"
+    },
+    "src/armor_detector_opencv/docs/num_roi.png": {
+      "bytes": 16557,
+      "sha256": "0581f27192e81e6b629d00a9859971048d4c014baa679dd0da4af5acb22f9935"
+    },
+    "src/armor_detector_opencv/docs/num_warp.png": {
+      "bytes": 25787,
+      "sha256": "8a7dcae74cd7a72da87958922cbe18225793bfdda678d990f0cd001309ad4784"
+    },
+    "src/armor_detector_opencv/docs/raw.png": {
+      "bytes": 266558,
+      "sha256": "625731edbb5d2d5c66162999d23532fbc79203a742fd20ffe37ebb769302e58b"
+    },
+    "src/armor_detector_opencv/docs/red.png": {
+      "bytes": 5726,
+      "sha256": "7671227703ddd2e44ebfd4d12f1fff9d9ed37f21253465ddca74364795d0defc"
+    },
+    "src/armor_detector_opencv/docs/result.png": {
+      "bytes": 155080,
+      "sha256": "87d10a223c64b882da8188d5c08d4ba5be45348c7a3f1a7536cc48824633db87"
+    },
+    "src/armor_detector_opencv/docs/train_acc.png": {
+      "bytes": 21557,
+      "sha256": "b9f966ea08cb31bf46ec4403e7742023fba42a8114b593f20e15a2c35dfcd841"
+    },
+    "src/armor_detector_opencv/docs/train_loss.png": {
+      "bytes": 25814,
+      "sha256": "f82654b7666f32c7af305c6a9409034ea1c95008f9c9344ebce745a1d76a8529"
+    },
+    "src/armor_detector_opencv/docs/val_acc.png": {
+      "bytes": 28087,
+      "sha256": "d9353fde2ab6d33a21b5fa26a304d748e6da55ad0d67a8cfd73e6ad8149b19aa"
+    },
+    "src/armor_detector_opencv/docs/val_loss.png": {
+      "bytes": 26901,
+      "sha256": "35806775ae3a5cb9e319d6887a9ab3ee961a7a7345465642c36abb6a7b152e1a"
+    },
+    "src/armor_detector_opencv/include/pb_aim_source.hpp": {
+      "bytes": 6211,
+      "sha256": "ca50ecadeece8154451dc71f483f109082b0999bf3cce97b70e9745cb2757ab7"
+    },
+    "src/armor_detector_opencv/include/pb_request_context.hpp": {
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "src/armor_detector_opencv/model/label.txt": {
+      "bytes": 47,
+      "sha256": "8cc04e2a54c7ee1c39925c9ca8e6eebe2d1015ee9dab77ab3befd8095be74411"
+    },
+    "src/armor_detector_opencv/model/mlp.onnx": {
+      "bytes": 314058,
+      "sha256": "b3250176ea8fdbe6d1585be954363757ff6a8245a81e8797f16cea601976d47a"
+    },
+    "src/armor_detector_opencv/src/detector.cpp": {
+      "bytes": 8075,
+      "sha256": "b47b2730171704e2d9403dd79767611b874e051da527fb4acd4d9ce88b0aea93"
+    },
+    "src/armor_detector_opencv/src/detector_node.cpp": {
+      "bytes": 13218,
+      "sha256": "84b5ef26dadd58d57fcde9c1cbb290c22fd146b36af4d42453b186512fccd874"
+    },
+    "src/armor_detector_opencv/src/number_classifier.cpp": {
+      "bytes": 4742,
+      "sha256": "9f1aafd46cf4149e3a1726779beac25fd4433335e1c9e44813bc2ec773b14ad8"
+    },
+    "src/armor_detector_opencv/src/pnp_solver.cpp": {
+      "bytes": 2589,
+      "sha256": "83d84d7a0cdb40ae2b3f62e15a5f862241d411c6562ae051bdf0a4a0c88fee98"
+    },
+    "src/armor_detector_opencv/test/test_node_startup.cpp": {
+      "bytes": 754,
+      "sha256": "54563622313886fd189fcb97555e9dca7f3c9685eb52cc820a6680c9ef978343"
+    },
+    "src/armor_detector_opencv/test/test_number_cls.cpp": {
+      "bytes": 1673,
+      "sha256": "c519487004e3e90fe0a61fd98286ffc2c0f0ac5765758a2e71d5cd073dd4ddaa"
+    },
+    "src/armor_detector_opencv/include/armor_detector_opencv/armor.hpp": {
+      "bytes": 1798,
+      "sha256": "bd7b09ee9837245eae9676b4384f145b5aff45ea5eb2af1127b03dbdf7f46abc"
+    },
+    "src/armor_detector_opencv/include/armor_detector_opencv/detector.hpp": {
+      "bytes": 2281,
+      "sha256": "1e6a21d117f7f92615809dd1c2fb25b89745c29880ce52de9b13873666bd45f5"
+    },
+    "src/armor_detector_opencv/include/armor_detector_opencv/detector_node.hpp": {
+      "bytes": 2997,
+      "sha256": "0789376e92e09a14d3d53138d1f561705ff92bf1541fb93f9f64eef26835f5c0"
+    },
+    "src/armor_detector_opencv/include/armor_detector_opencv/number_classifier.hpp": {
+      "bytes": 1067,
+      "sha256": "06827c8efb6f33c04a1c289be9f83dbd48c84ea75d05e57aef6d9bec3df5d10e"
+    },
+    "src/armor_detector_opencv/include/armor_detector_opencv/pnp_solver.hpp": {
+      "bytes": 1354,
+      "sha256": "3f2c1e060c989905bdf260d249edcfea4529078e205b2e86e277a6d303d4c051"
+    },
+    "src/armor_tracker/docs/Kalman_filter_model.png": {
+      "bytes": 21247,
+      "sha256": "6a86fdebe1d70c45dabc86899a60ba22c828b8b06327c101aad2990fba5b3462"
+    },
+    "src/armor_tracker/include/pb_aim_source.hpp": {
+      "bytes": 6211,
+      "sha256": "ca50ecadeece8154451dc71f483f109082b0999bf3cce97b70e9745cb2757ab7"
+    },
+    "src/armor_tracker/include/pb_request_context.hpp": {
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "src/armor_tracker/src/extended_kalman_filter.cpp": {
+      "bytes": 1838,
+      "sha256": "d0f6fa74a28670f0a6e27081871239b904ae040c277c8eb17ee28d651ae46a3e"
+    },
+    "src/armor_tracker/src/tracker.cpp": {
+      "bytes": 8318,
+      "sha256": "4908092270eb5714966f301b0b1d4ebcd55b2d68deb3419c873750cc07199e23"
+    },
+    "src/armor_tracker/src/tracker_node.cpp": {
+      "bytes": 15266,
+      "sha256": "03aebcc260799e04b94c23cdb100fa8ea0409127b9f8d20609f150f6bc749431"
+    },
+    "src/armor_tracker/include/armor_tracker/extended_kalman_filter.hpp": {
+      "bytes": 2510,
+      "sha256": "c9c60c3037f71608367cad99cda6bc0ebe63fd908ac73d45dea9a057681fe18e"
+    },
+    "src/armor_tracker/include/armor_tracker/tracker.hpp": {
+      "bytes": 2394,
+      "sha256": "f953abc3f7f97f344198effaa9c26bc375d43a7bb365a0a5a63f016f2baecc9a"
+    },
+    "src/armor_tracker/include/armor_tracker/tracker_node.hpp": {
+      "bytes": 3246,
+      "sha256": "a539faff066cd87df914fc278e4c0dca35fe16c7b022be696153ab0ab1a4c001"
+    },
+    "src/polar_pb_aim_interfaces/msg/SourceArmors.msg": {
+      "bytes": 79,
+      "sha256": "871b6381421e4fe41ed1a06818c9451b2e432251d9aa81755c8a437f0e36e6ca"
+    },
+    "src/polar_pb_aim_interfaces/msg/SourceImage.msg": {
+      "bytes": 104,
+      "sha256": "4980d6e6ebd425d6c92aefd4ee7d19b84fc1a64e8ede6a7525273e08b2fffba6"
+    },
+    "src/polar_pb_aim_interfaces/msg/SourceTarget.msg": {
+      "bytes": 79,
+      "sha256": "12329d45ea9574d122c4a1f654e6dd2f08c0b2f8ba87a3b13afb1ae5cb69445f"
+    },
+    "src/projectile_motion/config/projectile_motion.yaml": {
+      "bytes": 547,
+      "sha256": "92d19d8b2551ed038f60d190a30469aeff3411d4dbfd44e3529b0ed334a9f314"
+    },
+    "src/projectile_motion/include/pb_aim_source.hpp": {
+      "bytes": 6211,
+      "sha256": "ca50ecadeece8154451dc71f483f109082b0999bf3cce97b70e9745cb2757ab7"
+    },
+    "src/projectile_motion/include/pb_request_context.hpp": {
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "src/projectile_motion/launch/projectile_motion_launch.py": {
+      "bytes": 3519,
+      "sha256": "fc710e9d96306ccd933512f5a3c56886cbb9c17f6af8d09d14e21aa0831e0cea"
+    },
+    "src/projectile_motion/src/projectile_motion_node.cpp": {
+      "bytes": 10893,
+      "sha256": "6f76ba848c59d8ec8901a8549e0d26359d11207427041c7dbfb77553f790e7a7"
+    },
+    "src/projectile_motion/include/projectile_motion/projectile_motion_node.hpp": {
+      "bytes": 3621,
+      "sha256": "199edd6ac3b1b91bfbeecf94917f431bcf9447b1974c41f375b7b9b37c542158"
+    },
+    "inputs/source/upstream_notices/pb2025_vision_bringup/params/simulation/vision_params.yaml": {
+      "bytes": 1693,
+      "sha256": "1de46e046646394c62f4f9c693a5e470d133a68bb8be88cf5684a4dde7110269"
+    },
+    "src/auto_aim_interfaces/CMakeLists.txt": {
+      "bytes": 652,
+      "sha256": "cab637880cde2ee4fdac014675a9246aa480baf9239eb58afbdde57376614e18"
+    },
+    "src/auto_aim_interfaces/package.xml": {
+      "bytes": 738,
+      "sha256": "9b15a1a5be4ab96aa56fd337d8999fdf247281acc6088d58fc43a8d78084b6fd"
+    },
+    "src/pb_rm_interfaces/.gitignore": {
+      "bytes": 112,
+      "sha256": "0f757e4650fcbcc3e9f7b97632ea3c5e2f2633a9417c897ef1b2e64c6d9e8b4e"
+    },
+    "src/pb_rm_interfaces/CMakeLists.txt": {
+      "bytes": 784,
+      "sha256": "b2adc58716396774f7102bdb6fa5cca5c5005c4334c4ea1b70657caa243fbef1"
+    },
+    "src/pb_rm_interfaces/LICENSE": {
+      "bytes": 1085,
+      "sha256": "e27d20d301ddb6a8386f5cf3485a0c5c01b9062a4cc32bec265a7deabc82177f"
+    },
+    "src/pb_rm_interfaces/package.xml": {
+      "bytes": 781,
+      "sha256": "43a497bbdccc3c20440887f95877ede53468c2af83d2438be1898b0550adc496"
+    },
+    "src/pb_rm_interfaces/README.md": {
+      "bytes": 1062,
+      "sha256": "3bfeb6c97cb23e2040b92ab9e7bf455fcfb380bbd9cf12808333eee11ef93cea"
+    },
+    "src/rmoss_projectile_motion/CMakeLists.txt": {
+      "bytes": 1399,
+      "sha256": "60b64e11cb9b3a28976a76f83bedd9d973b27397005e2145b96bbdf8f587b261"
+    },
+    "src/rmoss_projectile_motion/package.xml": {
+      "bytes": 852,
+      "sha256": "0dc64c9023a7af90ea5c8d4300ec397804981247d8022ad06faaddc39b7fa266"
+    },
+    "src/rmoss_projectile_motion/README.md": {
+      "bytes": 2180,
+      "sha256": "586a792962b34774c9624116e5deb6328738236843bae383fe34ebd411900a52"
+    },
+    "src/auto_aim_interfaces/msg/Armor.msg": {
+      "bytes": 82,
+      "sha256": "0bb71122d45974543b3be054888a6e1b29b64edd9835c3362e2eccdd15ed11c8"
+    },
+    "src/auto_aim_interfaces/msg/Armors.msg": {
+      "bytes": 37,
+      "sha256": "940745482c339562eb706025a4f96eb6ed21e4c24aed47486efdc250fbe6c525"
+    },
+    "src/auto_aim_interfaces/msg/DebugArmor.msg": {
+      "bytes": 85,
+      "sha256": "eabb29f20f166af2832c672bba4d7806edda0b75d96f31f5a5d1dd74f7252de8"
+    },
+    "src/auto_aim_interfaces/msg/DebugArmors.msg": {
+      "bytes": 17,
+      "sha256": "ab5e2bd78f1970a8efc43c658ba5dec2c226486925c11a5bfd5c825336152da5"
+    },
+    "src/auto_aim_interfaces/msg/DebugLight.msg": {
+      "bytes": 56,
+      "sha256": "914575280aabf4f8d39b43593f1c5a4fa05f79f09b1aa8bbbe6513e437329b05"
+    },
+    "src/auto_aim_interfaces/msg/DebugLights.msg": {
+      "bytes": 17,
+      "sha256": "33835665f4b33944348bc3eeaad83e958eb987b3a9fde3d9f92bb5b98d0f09a7"
+    },
+    "src/auto_aim_interfaces/msg/Target.msg": {
+      "bytes": 195,
+      "sha256": "86d06e63ac9c42d255059b1b839e7fbf07bf4d21ff7dda8ad428922d20545543"
+    },
+    "src/auto_aim_interfaces/msg/TrackerInfo.msg": {
+      "bytes": 170,
+      "sha256": "fe57384faf935f269da61485e45e35f2be75d6c86fbda7518733be3a81f6f94b"
+    },
+    "src/pb_rm_interfaces/msg/Gimbal.msg": {
+      "bytes": 188,
+      "sha256": "7bcefebf551657ad89f190818bdea40b18b8aa84b697f48256e219d2107b21d7"
+    },
+    "src/pb_rm_interfaces/msg/GimbalCmd.msg": {
+      "bytes": 292,
+      "sha256": "6332f3f6a58112c27b642e44bdeffa5cab823670c7d309a3c2d8f0f4d4516236"
+    },
+    "src/pb_rm_interfaces/msg/Models.msg": {
+      "bytes": 77,
+      "sha256": "82469a9669ab007d51ff32b81fd2784c6d7e82c89105e3e1f084c864cdaac9f1"
+    },
+    "src/pb_rm_interfaces/msg/RobotStateInfo.msg": {
+      "bytes": 36,
+      "sha256": "4191a84985e5c32a5527cda9886d503f7590e5577e6a18994776dc751622cd41"
+    },
+    "src/pb_rm_interfaces/.github/workflows/ci.yml": {
+      "bytes": 409,
+      "sha256": "cbb64300a6df8a53c3ceba13cca8cb56d4709782d2280ad14e3bbbb40c020586"
+    },
+    "src/pb_rm_interfaces/msg/referee/Buff.msg": {
+      "bytes": 824,
+      "sha256": "63c63fdea181804bc9cd85052a41a47d800a2c78c7f3a00daf0f0e11da7ee089"
+    },
+    "src/pb_rm_interfaces/msg/referee/EventData.msg": {
+      "bytes": 1375,
+      "sha256": "85d95af1ae9a0133153e27d34248ee16e43c12de8eb352b42210a71d2ea05ce2"
+    },
+    "src/pb_rm_interfaces/msg/referee/GameRobotHP.msg": {
+      "bytes": 904,
+      "sha256": "f4f0210a28176b5a44649e935b75229097b05e0a1fb87d352a723149b166c655"
+    },
+    "src/pb_rm_interfaces/msg/referee/GameStatus.msg": {
+      "bytes": 525,
+      "sha256": "4d79fef478d44b8be33f367c77b42e2721914947092770db2bf34d56cf5e287a"
+    },
+    "src/pb_rm_interfaces/msg/referee/GroundRobotPosition.msg": {
+      "bytes": 384,
+      "sha256": "22906ef492800cf7a1b2aed9ee2c33825630c8c0f66a90e39cccdeae491a72b3"
+    },
+    "src/pb_rm_interfaces/msg/referee/RfidStatus.msg": {
+      "bytes": 2593,
+      "sha256": "da5e5b50ac395f296128b9a3aa761a8b383dd1112c318358727fc97e9e941224"
+    },
+    "src/pb_rm_interfaces/msg/referee/RobotStatus.msg": {
+      "bytes": 1956,
+      "sha256": "bffa8921fc0a3feb68404b488beff0a4847e7be38af14d1eaaaced9bb3797d31"
+    },
+    "src/rmoss_projectile_motion/src/gaf_projectile_solver.cpp": {
+      "bytes": 2638,
+      "sha256": "160b4ced52925ffa5cbbf097c22b39525ed85f8dc3504ba30b6512fe10e75c54"
+    },
+    "src/rmoss_projectile_motion/src/gimbal_transform_tool.cpp": {
+      "bytes": 1134,
+      "sha256": "7bb514a36f4a81e7cfad43fa5d463724f1ab29a50a841f3b14bec7058ff650b8"
+    },
+    "src/rmoss_projectile_motion/src/gravity_projectile_solver.cpp": {
+      "bytes": 1642,
+      "sha256": "39cfd8050f850fa7e9b6b0d057729a7bdd7f70eab79496811ca77a700d9626c3"
+    },
+    "src/rmoss_projectile_motion/src/iterative_projectile_tool.cpp": {
+      "bytes": 1628,
+      "sha256": "1f32aca2d0c62eab27e83ae6d6d618ecb72205680d817d789f81b1d91889cff4"
+    },
+    "src/rmoss_projectile_motion/include/rmoss_projectile_motion/gaf_projectile_solver.hpp": {
+      "bytes": 1774,
+      "sha256": "d8501dbe5ad09f9d783aa4fb3315cae9aee86e06da1c797287590982d54d2d6e"
+    },
+    "src/rmoss_projectile_motion/include/rmoss_projectile_motion/gimbal_transform_tool.hpp": {
+      "bytes": 2386,
+      "sha256": "848f476da7b5dcab19f3b059cc8b288d37b7efbe44a2db3f80eccb706bc0dbb1"
+    },
+    "src/rmoss_projectile_motion/include/rmoss_projectile_motion/gravity_projectile_solver.hpp": {
+      "bytes": 1569,
+      "sha256": "d5a6672f9ddd4498f3500c32681a6125ec9333c4a511a52dde3d251259c1b4f4"
+    },
+    "src/rmoss_projectile_motion/include/rmoss_projectile_motion/iterative_projectile_tool.hpp": {
+      "bytes": 2584,
+      "sha256": "c3d5d23dd0c738310c960ffe9e55d3c88f8de0121513f2ae6f343c9aabdf69ae"
+    },
+    "src/rmoss_projectile_motion/include/rmoss_projectile_motion/projectile_solver_interface.hpp": {
+      "bytes": 1150,
+      "sha256": "f466548d8365a4c1a997770613b730f43c9ce236df07bdae2d3465d5a1cd742a"
+    },
+    "inputs/dependencies/upstream_notices/pb_rm_interfaces/LICENSE": {
+      "bytes": 1085,
+      "sha256": "e27d20d301ddb6a8386f5cf3485a0c5c01b9062a4cc32bec265a7deabc82177f"
+    },
+    "inputs/dependencies/upstream_notices/rmoss_core/LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "inputs/dependencies/upstream_notices/rmoss_interfaces/LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  },
+  "originals_unchanged": true,
+  "source_manifest_sha256": "3871fc79ad57946a8dfcdbde50a198f1faf8915bf18b5718f33a966f5ba466ed",
+  "dependency_manifest_sha256": "7af632d034786f18e0e5b5703e840845c8911dfef110200f92bd6e9cde23c365",
+  "source_patch_executed": false,
+  "model_loaded": false,
+  "nodes_started": false
+}

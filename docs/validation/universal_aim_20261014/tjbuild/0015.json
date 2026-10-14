@@ -1,0 +1,101 @@
+{
+  "steps": [
+    {
+      "argv": [
+        "C:/Windows/System32/wsl.exe",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+        "--exec",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+        "tools/prepare_tongji_aim_plugin.py",
+        "--prepare",
+        "--source-root",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/aim-external-sources-20261014/tongji",
+        "--model-root",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/external/polar-rm-client-state-review/\u540c\u6d4e\u81ea\u7784/sp_vision_25/assets",
+        "--classifier",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/aim-external-sources-20261014/tongji/assets/tiny_resnet.onnx",
+        "--out",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04",
+        "--camera-profile",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-camera-input-20261014-01/CAMERA.json",
+        "--enemy-color",
+        "blue"
+      ],
+      "pid": 63432,
+      "driver_pid": 25112,
+      "returncode": 0,
+      "reaped": true,
+      "elapsed_s": 17.28524010000183
+    },
+    {
+      "argv": [
+        "C:/Windows/System32/wsl.exe",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+        "--exec",
+        "cmake",
+        "-S",
+        "artifacts/tongji-aim-native-preparation-20261014-04",
+        "-B",
+        "artifacts/tongji-aim-native-preparation-20261014-04/build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DPOLAR_UPSTREAM_DIR=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream",
+        "-DCMAKE_PREFIX_PATH=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/deps/openvino/runtime/cmake"
+      ],
+      "pid": 23072,
+      "driver_pid": 25112,
+      "returncode": 0,
+      "reaped": true,
+      "elapsed_s": 7.765542200002528
+    },
+    {
+      "argv": [
+        "C:/Windows/System32/wsl.exe",
+        "-d",
+        "Ubuntu",
+        "--cd",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+        "--exec",
+        "cmake",
+        "--build",
+        "artifacts/tongji-aim-native-preparation-20261014-04/build",
+        "--target",
+        "polar_native_aim",
+        "--parallel",
+        "2"
+      ],
+      "pid": 41140,
+      "driver_pid": 25112,
+      "returncode": 0,
+      "reaped": true,
+      "elapsed_s": 86.31364480000047
+    }
+  ],
+  "all_expected_exit_codes": true,
+  "source_before": {
+    "tools/prepare_tongji_aim_plugin.py": "665b254304b6a9e4c8119c1e427039eabd394bc05de4fe314c407ea23685ad34",
+    "adapters/native/tongji/CMakeLists.txt": "c0c478a44ca4722149807b69d1c18140e0eb97f44a9216064b3a832e6e027ce5",
+    "adapters/native/tongji/runner.cpp": "17654f3c464708ce2991e11eb95fe01c1fee5f81f0aa2de53b093ccddcb5438b",
+    "adapters/native/tongji/logger_stderr.cpp": "e766d0be966ad4433e52be4bf9dde4c6fa806ac4469c45703a56caac158d2996",
+    "adapters/native/tongji/jsonl_wrapper.py": "425aaa86363ecb729ce8dd46e28b81c5f0c377d96ff9114ce7bda47ead289e6d",
+    "rm_match/camera_profile.py": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+    "adapters/native/tongji/fmt_armor_name_compat.hpp": "327015b118e567e79aa04c1d8cf0ef203e931e0d66cac48996cd038e9b8b8509"
+  },
+  "source_after": {
+    "tools/prepare_tongji_aim_plugin.py": "665b254304b6a9e4c8119c1e427039eabd394bc05de4fe314c407ea23685ad34",
+    "adapters/native/tongji/CMakeLists.txt": "c0c478a44ca4722149807b69d1c18140e0eb97f44a9216064b3a832e6e027ce5",
+    "adapters/native/tongji/runner.cpp": "17654f3c464708ce2991e11eb95fe01c1fee5f81f0aa2de53b093ccddcb5438b",
+    "adapters/native/tongji/logger_stderr.cpp": "e766d0be966ad4433e52be4bf9dde4c6fa806ac4469c45703a56caac158d2996",
+    "adapters/native/tongji/jsonl_wrapper.py": "425aaa86363ecb729ce8dd46e28b81c5f0c377d96ff9114ce7bda47ead289e6d",
+    "rm_match/camera_profile.py": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3",
+    "adapters/native/tongji/fmt_armor_name_compat.hpp": "327015b118e567e79aa04c1d8cf0ef203e931e0d66cac48996cd038e9b8b8509"
+  },
+  "source_unchanged": true
+}

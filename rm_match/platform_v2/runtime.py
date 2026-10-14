@@ -72,10 +72,22 @@ class AdapterSlot:
 
     @staticmethod
     def _cancel_native(instance):
-        # Arbitrary Python cancel/close hooks may hang. Only the reviewed native
-        # lifecycle has a nonblocking authority-side cancellation contract.
+        # Arbitrary Python cancel/close hooks may hang. Call only the reviewed
+        # base implementation for loaded native or exact reviewed JSON types.
         cls=_loaded_native_class()
-        if cls is not None and isinstance(instance,cls):cls.cancel(instance)
+        if cls is not None and isinstance(instance,cls):
+            cls.cancel(instance);return
+        module=sys.modules.get('rm_match.deployment.json_adapter')
+        base=vars(module).get('JsonLineAdapter') if module is not None else None
+        if not isinstance(base,type):return
+        for module_name,class_name in (
+            ('rm_match.deployment.json_adapter','JsonLineAdapter'),
+            ('rm_match.deployment.aim_plugin','AimPluginAdapter'),
+            ('rm_match.deployment.wsl_jsonl','WslAimPluginAdapter')):
+            loaded=sys.modules.get(module_name)
+            reviewed=vars(loaded).get(class_name) if loaded is not None else None
+            if type(instance) is reviewed:
+                base.cancel(instance);return
 
     def _run(self):
         instance=None;identity=None;failed_identity=None
@@ -158,10 +170,14 @@ class AdapterSlot:
                     if not private_rejected and not discarded_reason:
                         phase='action_validation'
                         from .navigation_contracts import NAV_SCHEMA,NAV_PROFILE,NAV_STATUS_SCHEMA,validate_navigation_status
+                        from .aim_contracts import AIM_STATUS_SCHEMA,AIM_PLUGIN_CONTRACT,validate_aim_status
                         metadata=self.registry.get(b['adapter_id']).descriptor
                         if (metadata.get('observation_profile')==NAV_PROFILE and o['schema']==NAV_SCHEMA
                             and type(value) is dict and value.get('schema')==NAV_STATUS_SCHEMA):
                             value=validate_navigation_status(value,o)
+                        elif (metadata.get('kind')=='aim' and metadata.get('aim_plugin_contract')==AIM_PLUGIN_CONTRACT
+                            and type(value) is dict and value.get('schema')==AIM_STATUS_SCHEMA):
+                            value=validate_aim_status(value,o)
                         else:value=validate_action(value,o,metadata)
                 except BaseException as exc:
                     error=type(exc).__name__;failed_identity=current;exception_diagnostic=_exception_location(exc,phase)
@@ -211,7 +227,7 @@ class PlatformRuntime:
         if not 0<observation_period<=.2 or not 0<action_ttl<=.25:raise ValueError('Invalid scheduling bounds')
         self.observation_period=observation_period;self.action_ttl=action_ttl
         self.slots={};self.outputs={};self.observed={};self.next_observation={};self.status={};self._navigation_samples={}
-        self._fault_epochs={};self._slot_bound={};self._own_samples={};self._camera_samples={}
+        self._fault_epochs={};self._slot_bound={};self._own_samples={};self._camera_samples={};self._aim_status_context={}
         self.stop_event=threading.Event();self.cache_lock=threading.Lock()
         self.cached={'runtime_state':'starting','telemetry_available':False}
         self._authority=None;self._episode=None;self.steps=0;self.last_step_wall=None;self.error=None
@@ -376,12 +392,29 @@ class PlatformRuntime:
                 self.outputs.pop(key,None);self.status[key]='late_result';continue
             try:
                 from .navigation_contracts import NAV_STATUS_SCHEMA,validate_navigation_status
+                from .aim_contracts import AIM_STATUS_SCHEMA,AIM_PLUGIN_CONTRACT,validate_aim_status
                 if result['value'].get('schema')==NAV_STATUS_SCHEMA:
                     metadata=self.registry.get(b['adapter_id']).descriptor
                     if metadata.get('observation_profile')!='pointcloud_imu_v1':raise ValueError('navigation_status_profile')
                     status=validate_navigation_status(result['value'],o)
                     self.outputs.pop(key,None);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
                     self.status[key]='waiting_for_navigation:'+status['status']
+                    continue
+                if result['value'].get('schema')==AIM_STATUS_SCHEMA:
+                    metadata=self.registry.get(b['adapter_id']).descriptor
+                    if kind!='aim' or metadata.get('aim_plugin_contract')!=AIM_PLUGIN_CONTRACT:
+                        raise ValueError('aim_status_contract')
+                    status=validate_aim_status(result['value'],o)
+                    current=self.outputs.get(key)
+                    if current and status['observed_seq']<=current['observed_seq']:
+                        raise ValueError('replayed aim status')
+                    self.outputs.pop(key,None);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
+                    self._private_outputs.discard(key)
+                    self.status[key]='waiting_for_aim:'+status['status']
+                    self._remember_aim_status(key,b,o,budget,status['status'])
+                    self._trace('aim_status',robot_id=rid,binding_epoch=old['epoch'],
+                        observed_seq=o['observed_seq'],episode=o['episode'],status=status['status'],
+                        camera_frame_id=o['sensors']['camera'].get('frame_id'),command=None)
                     continue
                 action=validate_action(result['value'],o,self.registry.get(b['adapter_id']).descriptor)
                 if action['kind']!=kind:raise ValueError('kind mismatch')
@@ -390,8 +423,21 @@ class PlatformRuntime:
                 self.outputs[key]=action;self.output_budgets[key]=budget;self.output_authorizations[key]=job.get('operator_authorization');self.status[key]='active'
                 if job.get('native_pixels') is not None:self._private_outputs.add(key)
                 else:self._private_outputs.discard(key)
+                if kind=='aim':
+                    self._remember_aim_status(key,b,o,budget,
+                        'result_available' if action['command']['active'] else 'no_target')
             except (ValueError,TypeError,KeyError):
                 self.outputs.pop(key,None);self.status[key]='invalid_result';self._fault_epochs[key]=b['epoch']
+
+    def _remember_aim_status(self,key,b,o,budget,status):
+        """UI metadata only, bound to the original source and owner; not motion."""
+        fid=(budget or {}).get('frame_id')
+        if type(fid) is not int:fid=o.get('sensors',{}).get('camera',{}).get('frame_id')
+        if type(fid) is not int or fid<0:return
+        self._aim_status_context[key]=dict(episode=o['episode'],binding_epoch=o['binding_epoch'],
+            adapter_id=b['adapter_id'],status=status,observed_seq=o['observed_seq'],
+            wall_deadline=o['wall_deadline'],source_frame_id=fid,
+            owner=b['owner'],lease_epoch=b['lease_epochs'].get('gimbal'))
 
     def _private_camera_valid(self,rid,kind,b,budget,sim_time):
         check=getattr(self.camera,'native_capture_valid',None)
@@ -649,7 +695,7 @@ class PlatformRuntime:
         if self.stop_event.is_set() or self.control.stopped:return False
         episode=self.backend.episode
         if self._episode is not None and self._episode!=episode:
-            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._navigation_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear()
+            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._navigation_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear();self._aim_status_context.clear()
         self._episode=episode
         sim_time=self.backend.sim_time
         prepare=getattr(self.backend,'prepare_navigation_sensors',None)
@@ -730,6 +776,9 @@ class PlatformRuntime:
             manual_consumption_receipts={r:detached['receipts'][r]['final'] for r in self.control.robot_ids},
             algorithm_status={r:{k:self.status.get((r,k),'unbound') if current['bindings'][r][k]['owner'] else 'unbound'
                 for k in KINDS} for r in self.control.robot_ids},
+            algorithm_status_context={r:{'aim':dict(self._aim_status_context[(r,'aim')])}
+                for r in self.control.robot_ids if (r,'aim') in self._aim_status_context
+                and self.status.get((r,'aim')) in ('active','waiting_for_aim:no_target','waiting_for_aim:pending_result')},
             worker_limits=dict(max_slots=2*len(self.control.robot_ids),created=len(self.slots),
                 max_pending_per_slot=1,max_running_per_slot=1,dropped=sum(s.dropped for s in self.slots.values()),
                 lifecycle_errors=sum(s.lifecycle_error is not None for s in self.slots.values())))

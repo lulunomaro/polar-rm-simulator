@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "/usr/bin/python3",
+    "operator_native/runtime/build_portable.py",
+    "build",
+    "--out",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-production-cpu4-build-20261014",
+    "--prefix",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/deps/openvino/runtime/cmake",
+    "--jobs",
+    "2",
+    "--corner-refinement",
+    "contour-v3",
+    "--inference-threads",
+    "4"
+  ],
+  "pid": 57628,
+  "driver_pid": 7676,
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 589.2921311999999
+}

@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-sim/Scripts/python.exe",
+    "-m",
+    "pytest",
+    "tests/test_wsl_jsonl_actual.py",
+    "-q",
+    "--junitxml=artifacts/wsl-jsonl-actual-20261014-01/pytest.xml"
+  ],
+  "pid": 59308,
+  "driver_pid": 29740,
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 8.978473600000143
+}

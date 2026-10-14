@@ -1,0 +1,32 @@
+{
+  "clean": true,
+  "process": {
+    "run_id": "f156b4b124754c7689c4c1c81f7671d6",
+    "supervisor_pid": 734,
+    "boot_id": "aeb3718d-a495-48f1-89c6-c123b5b02c4e",
+    "pid": 737,
+    "pgid": 737,
+    "leader_start_ticks": 8329,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": -15,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.02340315099999657
+  },
+  "evidence": {
+    "clean": true,
+    "worker_alive": false,
+    "submitted": 0,
+    "written": 0,
+    "failed": 0,
+    "pending": 0,
+    "running": false,
+    "elapsed_s": 0.0001627869999936138,
+    "error_type": null
+  },
+  "errors": []
+}

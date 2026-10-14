@@ -172,9 +172,10 @@ def validate_wsl_spec(spec_path,*,repo_root,shared_out,distribution=DISTRIBUTION
             or build.get('binary_sha256')!=hashes['binary'] or inputs.get('algorithm_identity')!=source
             or inputs.get('corner_refinement')!=revision or inputs.get('additional_source_files')!=extra):
         raise ValueError('wsl_build_source_lineage_mismatch')
+    profile.validate_inference_build_metadata(spec,build,build_root=spec_path.parent)
     for rel,expected in extra.items():_check_hash(_relative_file(runtime,rel),expected,'frontend',identities)
     generated=inputs.get('generated_sha256',{})
-    if generated.get('generated/corners_contour_v1.cpp')!=next(iter(extra.values())):
+    if generated.get('generated/corners_contour_v1.cpp')!=source['vision_frontend']['source_sha256']:
         raise ValueError('wsl_copied_frontend_identity_mismatch')
     if type(generated) is not dict or not generated:raise ValueError('wsl_generated_inputs_missing')
     for rel,expected in generated.items():_check_hash(_relative_file(spec_path.parent,rel),expected,'generated',identities)
@@ -187,9 +188,7 @@ def validate_wsl_spec(spec_path,*,repo_root,shared_out,distribution=DISTRIBUTION
     recovery,recovery_sha=profile.read_json_snapshot(recovery_path,4*1024*1024)
     if recovery_sha!=inputs.get('recovery_manifest_sha256'):raise ValueError('wsl_recovery_manifest_identity_mismatch')
     identities[str(recovery_path)]=recovery_sha
-    base_source=deepcopy(source)
-    for key in ('vision_frontend','tracker_patch_sha256','patch_identity_format'):base_source.pop(key,None)
-    base_source['patch_sha256']=source['tracker_patch_sha256']
+    base_source=profile.base_source_identity(source)
     if recovery.get('algorithm_identity')!=base_source:raise ValueError('wsl_recovered_tracker_identity_mismatch')
     declared={row['path']:row['sha256'] for row in recovery['files']}
     if inputs.get('source_files')!=declared:raise ValueError('wsl_recovered_source_identity_mismatch')

@@ -1,0 +1,32 @@
+[1/19] Building CXX object CMakeFiles/polar_native_aim.dir/logger_stderr.cpp.o
+[2/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/armor.cpp.o
+[3/19] Building CXX object CMakeFiles/polar_native_aim.dir/runner.cpp.o
+[4/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/classifier.cpp.o
+[5/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/solver.cpp.o
+[6/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/detector.cpp.o
+[7/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/target.cpp.o
+[8/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/tracker.cpp.o
+[9/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/planner/planner.cpp.o
+[10/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/yolos/yolov5.cpp.o
+[11/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/planner/tinympc/admm.cpp.o
+/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream/tasks/auto_aim/planner/tinympc/admm.cpp: In function ‘tinyVector project_soc(tinyVector, float)’:
+/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream/tasks/auto_aim/planner/tinympc/admm.cpp:40:42: warning: ‘Eigen::placeholders::last’ is deprecated [-Wdeprecated-declarations]
+   40 |     tinytype u0 = s(Eigen::placeholders::last) * mu;
+      |                                          ^~~~
+In file included from /usr/include/eigen3/Eigen/Core:265,
+                 from /usr/include/eigen3/Eigen/Dense:1,
+                 from /usr/include/eigen3/Eigen/Eigen:1,
+                 from /mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream/tasks/auto_aim/planner/tinympc/types.hpp:3,
+                 from /mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream/tasks/auto_aim/planner/tinympc/admm.hpp:3,
+                 from /mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/tongji-aim-native-preparation-20261014-04/upstream/tasks/auto_aim/planner/tinympc/admm.cpp:3:
+/usr/include/eigen3/Eigen/src/Core/util/IndexedViewHelper.h:180:40: note: declared here
+  180 |   EIGEN_DEPRECATED static const last_t last = Eigen::last;   // PLEASE use Eigen::last   instead of Eigen::placeholders::last
+      |                                        ^~~~
+[12/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/planner/tinympc/rho_benchmark.cpp.o
+[13/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/planner/tinympc/tiny_api.cpp.o
+[14/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tasks/auto_aim/planner/tinympc/codegen.cpp.o
+[15/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tools/math_tools.cpp.o
+[16/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tools/extended_kalman_filter.cpp.o
+[17/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tools/trajectory.cpp.o
+[18/19] Building CXX object CMakeFiles/polar_native_aim.dir/upstream/tools/img_tools.cpp.o
+[19/19] Linking CXX executable polar_native_aim

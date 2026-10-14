@@ -1,0 +1,39 @@
+{
+  "schema": "polar.production-inference-threads-focused.v1",
+  "exit_code": 0,
+  "qualification": "43 pure tests and 31 subtests; no real ELF/compiler/WSL/model/renderer. Synthetic ELF fixtures explicitly never executed.",
+  "sources": [
+    {
+      "path": "operator_native/runtime/build_portable.py",
+      "sha256": "6e1fb94a7bf9deb7278a1bbb4d7f764c5515dab276034ff4d06e9171311b3389",
+      "snapshot_sha256": "6e1fb94a7bf9deb7278a1bbb4d7f764c5515dab276034ff4d06e9171311b3389"
+    },
+    {
+      "path": "operator_native/runtime/CMakeLists.txt",
+      "sha256": "85ef80b8ac2b5e642a9f89a72e617798e0bdc827fede67490c2ab2ca0c0b8fbc",
+      "snapshot_sha256": "85ef80b8ac2b5e642a9f89a72e617798e0bdc827fede67490c2ab2ca0c0b8fbc"
+    },
+    {
+      "path": "operator_native/runtime/overlays/prepare_inference_threads.py",
+      "sha256": "afc455e6f515f404e4e4873034ebe0e3afc44e15eba2b9d3cc759c98c1efff2f",
+      "snapshot_sha256": "afc455e6f515f404e4e4873034ebe0e3afc44e15eba2b9d3cc759c98c1efff2f"
+    },
+    {
+      "path": "operator_native/runtime/overlays/production_inference_threads.hpp",
+      "sha256": "effcfd1cd3034d7acc2582332453c1bb0e1693a3ee5dff1ff120868036cb5bd4",
+      "snapshot_sha256": "effcfd1cd3034d7acc2582332453c1bb0e1693a3ee5dff1ff120868036cb5bd4"
+    },
+    {
+      "path": "rm_match/deployment/profile.py",
+      "sha256": "ca7f926410f4dc56b2c9fd7e17669184ba37eff19a33fd56bd346a534f363148",
+      "snapshot_sha256": "ca7f926410f4dc56b2c9fd7e17669184ba37eff19a33fd56bd346a534f363148"
+    },
+    {
+      "path": "tests/test_production_inference_threads.py",
+      "sha256": "bfaa4614b716ef1505f3767966c4940bca11413ad08fe97f4ab347c0e6813a90",
+      "snapshot_sha256": "bfaa4614b716ef1505f3767966c4940bca11413ad08fe97f4ab347c0e6813a90"
+    }
+  ],
+  "default_behavior": "inference_threads=None: original source/algorithm graph/JSON protocol/config",
+  "old_build_scope": "Builder/CMake hashes changed; old strict WSL stock42 cannot pass current build-input identity. Old evidence was not rewritten."
+}

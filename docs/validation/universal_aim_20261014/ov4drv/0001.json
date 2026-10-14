@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-linux/bin/python",
+    "tools/compare_native_opencv_threads.py",
+    "--native-spec",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-ov4-api-trace-build-20261014/operator_source.local.json",
+    "--run-root",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/wsl-native-live-20261014-prepared-bgr-attempt3",
+    "--out",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-ov4-api-thread-comparison-20261014-01",
+    "--factor",
+    "ov4",
+    "--run"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "source_before": {
+    "tools/compare_native_opencv_threads.py": "58f47db4e97489c9c75f4199db940050cf4f2f95a79035aea46e3b6d4dbfb80f",
+    "tools/native_model_properties.py": "71e86c8e402b67a9aec3e0539b348dc70796567ef1500fa56e9ac749d1752a88",
+    "tools/diagnose_native_saved_compute.py": "51e11d3d0eef1486f84cc07ceddebadbad0e71921404f94d5fc911faf5136978",
+    "tools/validate_native_performance_profile.py": "b9548cca34fdc3c20c3c6d28fcd3402c26e140002e455d885cbc7bca9ff5fb5b",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "rm_match/integrations/wsl_operator_worker.py": "7c43f998479d616a79376b575259e9c5a9d87be6486e66dc8350b257ee640d36",
+    "rm_match/integrations/rmcs_contract.py": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf",
+    "rm_match/camera_profile.py": "8bb35855992bb5311b4e644a96920ec1c15bc43ad053d055d8122b981c03e8d3"
+  },
+  "scope": "Eight fresh processes, unchanged saved pixels, CPU 16 vs 4 only. Offline 2s, not live 80ms."
+}

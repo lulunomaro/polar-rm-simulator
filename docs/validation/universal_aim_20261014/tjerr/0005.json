@@ -1,0 +1,25 @@
+{
+  "out": "artifacts/tongji-aim-actual-prepare-driver-20261014-01",
+  "sources": [
+    "adapters/native/tongji/jsonl_wrapper.py",
+    "rm_match/deployment/wsl_jsonl.py",
+    "rm_match/deployment/wsl_jsonl_worker.py",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py",
+    "rm_match/deployment/json_adapter.py",
+    "rm_match/deployment/json_owned_process.py",
+    "rm_match/deployment/windows_owned_job.py",
+    "rm_match/deployment/aim_plugin.py",
+    "rm_match/integrations/aim_jsonl_peer.py",
+    "rm_match/integrations/owned_linux_group.py",
+    "artifacts/tongji_prepare_reset01_20261014.py"
+  ],
+  "scope": "Actual original model prepare / 2s reset / owned cleanup, zero images and zero NN",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+        "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\tongji_prepare_reset01_20261014.py"
+      ]
+    }
+  ]
+}

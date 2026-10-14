@@ -1,0 +1,84 @@
+{
+  "images_submitted": 0,
+  "physics_steps": 0,
+  "scope": "Actual native model loading, prepare and reset only; no NN/image/live/GUI qualification",
+  "prepare_s": 4.032624699997541,
+  "reset_s": 0.01203940000050352,
+  "prepare_ack": true,
+  "reset_ack": true,
+  "adapter_shutdown": {
+    "clean": true,
+    "errors": [],
+    "ownership": {
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "linux": {
+        "event": "cleanup",
+        "run_id": "2bf327f1c95b4163808f9bfe4e2e63ff",
+        "spec_sha256": "3e827c1b58c1bfff838ac85b6e1e63675980a1dbd1ad629094384e6a9fef58c0",
+        "hello": {
+          "event": "hello",
+          "run_id": "2bf327f1c95b4163808f9bfe4e2e63ff",
+          "spec_sha256": "3e827c1b58c1bfff838ac85b6e1e63675980a1dbd1ad629094384e6a9fef58c0",
+          "worker_pid": 702,
+          "worker_start_ticks": 8098,
+          "boot_id": "aeb3718d-a495-48f1-89c6-c123b5b02c4e",
+          "peer_identity": {
+            "run_id": "f377259525cc4c199a2fbc77b80a0341",
+            "supervisor_pid": 702,
+            "boot_id": "aeb3718d-a495-48f1-89c6-c123b5b02c4e",
+            "pid": 734,
+            "pgid": 734,
+            "leader_start_ticks": 8260
+          },
+          "algorithm_ready": false
+        },
+        "ownership": {
+          "run_id": "f377259525cc4c199a2fbc77b80a0341",
+          "supervisor_pid": 702,
+          "boot_id": "aeb3718d-a495-48f1-89c6-c123b5b02c4e",
+          "pid": 734,
+          "pgid": 734,
+          "leader_start_ticks": 8260,
+          "clean": true,
+          "reaped": true,
+          "group_empty": true,
+          "remaining_members": [],
+          "errors": [],
+          "owned_scope": "birth_bound_descendants_including_nested_sessions",
+          "observed_births": {
+            "734": 8260,
+            "737": 8329
+          },
+          "reaped_descendants": [],
+          "killed": false,
+          "cleanup_elapsed_s": 0.044795845000010104
+        },
+        "io_thread_stopped": true,
+        "clean": true,
+        "error_type": null
+      },
+      "windows": {
+        "clean": true,
+        "reaped": true,
+        "group_empty": true,
+        "active_processes": 0,
+        "returncode": 1,
+        "errors": [],
+        "pid": 55580,
+        "ownership": "suspended_before_execute_job_kill_on_close"
+      },
+      "errors": [],
+      "transport": "wsl_jsonl_v1",
+      "resource_budget_s": 1.5,
+      "run_id": "2bf327f1c95b4163808f9bfe4e2e63ff",
+      "stderr_log": "supervisor.stderr.log",
+      "host_stderr_closed": true
+    },
+    "io_thread_stopped": true,
+    "resource_budget_s": 1.5
+  },
+  "cleanup_errors": [],
+  "passed": true
+}

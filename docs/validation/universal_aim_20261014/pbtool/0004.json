@@ -1,0 +1,26 @@
+{
+  "schema": "polar.pb-aim-build-bootstrap-validation.v1",
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_build_pb_aim_plugins.py",
+    "tests/test_pb_aim_system_dependencies.py",
+    "-q"
+  ],
+  "pid": 57568,
+  "exit_code": 0,
+  "reaped": true,
+  "wall_seconds": 1.317753499999526,
+  "source_before": {
+    "tools/build_pb_aim_plugins.py": "68284252fdb8aa1cc1dc0ea5dfcb3e25ace64b7c20eccedcbeca9ba367f0b274",
+    "tests/test_build_pb_aim_plugins.py": "597d7c0f5ed2f48ec54554a7a3a98e6368da552c136e5c2b5794328dad4b7fa3"
+  },
+  "source_after": {
+    "tools/build_pb_aim_plugins.py": "68284252fdb8aa1cc1dc0ea5dfcb3e25ace64b7c20eccedcbeca9ba367f0b274",
+    "tests/test_build_pb_aim_plugins.py": "597d7c0f5ed2f48ec54554a7a3a98e6368da552c136e5c2b5794328dad4b7fa3"
+  },
+  "source_unchanged": true,
+  "scope": "Pure source/prefix tests plus actual Windows Python subprocess from external cwd; no WSL/ROS/build/NN",
+  "change": "Prepend fixed file-derived repository ROOT to sys.path before tools imports; original manifests/prefix/failed roots unchanged"
+}

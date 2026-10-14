@@ -30,6 +30,33 @@ CORNER_FRONTENDS = {
 }
 PERFORMANCE_PROFILES=('original','first-frame-trace','request-preallocate-trace')
 PERFORMANCE_SOURCES=('overlays/prepare_first_frame_profile.py','overlays/first_frame_trace.hpp')
+INFERENCE_SOURCES=('overlays/prepare_inference_threads.py','overlays/production_inference_threads.hpp')
+
+
+def checked_inference_threads(value,performance_profile='original'):
+    if value is not None:
+        if type(value) is not int or not 1<=value<=32:raise ValueError('inference_threads must be an integer in 1..32')
+        if performance_profile!='original':raise ValueError('Production inference threads cannot mix with diagnostic profiles')
+    return value
+
+
+def inference_identity(base,threads):
+    checked_inference_threads(threads)
+    if threads is None:raise ValueError('Explicit production thread count required')
+    sources={rel:sha(base/rel) for rel in INFERENCE_SOURCES}
+    payload=dict(schema='rmcs.production-inference-patch.v1',inference_threads=threads,sources=sources)
+    patch=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    return dict(schema='rmcs.production-inference-profile.v1',id='cpu-inference-threads-v1',
+        inference_threads=threads,device='CPU',patch_sha256=patch,
+        generator_source_path=INFERENCE_SOURCES[0],generator_sha256=sources[INFERENCE_SOURCES[0]],
+        header_source_path=INFERENCE_SOURCES[1],header_sha256=sources[INFERENCE_SOURCES[1]],
+        inference_during_setup=False,diagnostic_only=False)
+
+
+def inference_combined_patch_hash(base_patch,inference_patch):
+    payload=dict(schema='rmcs-own-source-inference-composition.v1',base_patch_sha256=base_patch,
+        inference_patch_sha256=inference_patch)
+    return hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
 
 
 def combined_patch_hash(tracker_patch_sha256, frontend_sha256):
@@ -74,7 +101,8 @@ def verify_sources(base=ROOT):
     return manifest
 
 
-def make_commands(base, out, *, cmake='cmake', jobs=2, prefix=None, corner_refinement='original',performance_profile='original'):
+def make_commands(base, out, *, cmake='cmake', jobs=2, prefix=None, corner_refinement='original',performance_profile='original',inference_threads=None):
+    checked_inference_threads(inference_threads,performance_profile)
     configure = [cmake, '-S', str(base), '-B', str(out / 'cmake'),
                  '-DCMAKE_BUILD_TYPE=Release',
                  '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',
@@ -87,11 +115,13 @@ def make_commands(base, out, *, cmake='cmake', jobs=2, prefix=None, corner_refin
     if corner_refinement!='original':configure.append('-DRMCS_USE_CONTOUR_CORNERS=ON')
     if performance_profile not in PERFORMANCE_PROFILES:raise ValueError('Unsupported performance profile')
     if performance_profile!='original':configure.append('-DRMCS_PERFORMANCE_PROFILE='+performance_profile)
+    if inference_threads is not None:configure.append('-DRMCS_INFERENCE_THREADS='+str(inference_threads))
     return [configure, [cmake, '--build', str(out / 'cmake'), '--target',
                         'rmcs_sim_operator_fov', '--parallel', str(jobs)]]
 
 
-def input_identity(base, model, hook, *, corner_refinement='original',performance_profile='original'):
+def input_identity(base, model, hook, *, corner_refinement='original',performance_profile='original',inference_threads=None):
+    checked_inference_threads(inference_threads,performance_profile)
     recovered = verify_sources(base)
     if model.name != 'shenzhen-0526.onnx' or not model.is_file() or sha(model) != MODEL_HASH:
         raise ValueError('Expected exact shenzhen-0526.onnx model is missing or changed')
@@ -118,6 +148,13 @@ def input_identity(base, model, hook, *, corner_refinement='original',performanc
             patch_sha256=performance_combined_patch_hash(original_patch,selected['patch_sha256']))
         extra.update({rel:sha(base/rel) for rel in PERFORMANCE_SOURCES});performance['performance_profile']=selected
     elif performance_profile not in PERFORMANCE_PROFILES:raise ValueError('Unsupported performance profile')
+    if inference_threads is not None:
+        selected=inference_identity(base,inference_threads);original_patch=algorithm['patch_sha256']
+        algorithm.update(runtime_inference_profile=selected,inference_base_patch_sha256=original_patch,
+            patch_identity_format='rmcs-own-source-inference-composition.v1',
+            patch_sha256=inference_combined_patch_hash(original_patch,selected['patch_sha256']))
+        extra.update({rel:sha(base/rel) for rel in INFERENCE_SOURCES})
+        performance.update(inference_profile=selected,inference_threads=inference_threads)
     return {'recovery_manifest_sha256': sha(base / 'RECOVERY_MANIFEST.json'),
             'source_files': {r['path']: r['sha256'] for r in recovered['files']},
             'algorithm_identity': algorithm,
@@ -128,8 +165,8 @@ def input_identity(base, model, hook, *, corner_refinement='original',performanc
             'profile_sha256': sha(base / 'simulation_profile.json'),**performance}
 
 
-def prepare(base, out, model, hook, *, corner_refinement='original',performance_profile='original'):
-    identity = input_identity(base, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile)
+def prepare(base, out, model, hook, *, corner_refinement='original',performance_profile='original',inference_threads=None):
+    identity = input_identity(base, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile,inference_threads=inference_threads)
     # Each attempt gets a fresh directory. Preserve prior failures and results.
     if out.exists():
         raise ValueError('Output already exists; choose a fresh --out directory')
@@ -155,6 +192,11 @@ def prepare(base, out, model, hook, *, corner_refinement='original',performance_
         shutil.copyfile(base/PERFORMANCE_SOURCES[0],isolated_generator)
         subprocess.run([sys.executable,str(isolated_generator),'--base',str(base),
             '--generated',str(generated),'--profile',performance_profile],check=True)
+    if inference_threads is not None:
+        isolated_generator=generated/'prepare_inference_threads.py'
+        shutil.copyfile(base/INFERENCE_SOURCES[0],isolated_generator)
+        subprocess.run([sys.executable,str(isolated_generator),'--base',str(base),
+            '--generated',str(generated),'--inference-threads',str(inference_threads)],check=True)
     profile = json.loads((base / 'simulation_profile.json').read_text())
     profile['autoaim']['detector']['model_location'] = str(model)
     configs = out / 'configs'
@@ -220,6 +262,10 @@ def make_spec(binary, configs, model, identity, build_manifest_hash):
         spec['frozen_build']['performance_profile']=selected
         spec['frozen_build']['diagnostic_only']=True
         spec['algorithm_description']+='; explicit diagnostic performance profile '+selected['id']
+    if 'inference_profile' in identity:
+        selected=identity['inference_profile'];spec['inference_profile']=selected
+        spec['frozen_build']['inference_profile']=selected
+        spec['algorithm_description']+='; production CPU inference threads '+str(selected['inference_threads'])
     return spec
 
 
@@ -258,14 +304,14 @@ def syntax_checks(out):
     return reports
 
 
-def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='original',performance_profile='original'):
+def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='original',performance_profile='original',inference_threads=None):
     if platform.system() != 'Linux' or platform.machine().lower() not in ('x86_64', 'amd64'):
         raise RuntimeError('This native build supports Linux x86-64 only')
     cmake = shutil.which('cmake')
     if cmake is None:
         raise RuntimeError('CMake is missing; install documented local prerequisites yourself')
-    identity = prepare(base, out, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile)
-    commands = make_commands(base, out, cmake=cmake, jobs=jobs, prefix=prefix,corner_refinement=corner_refinement,performance_profile=performance_profile)
+    identity = prepare(base, out, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile,inference_threads=inference_threads)
+    commands = make_commands(base, out, cmake=cmake, jobs=jobs, prefix=prefix,corner_refinement=corner_refinement,performance_profile=performance_profile,inference_threads=inference_threads)
     write_json(out / 'BUILD_ATTEMPT.json', {'status': 'running', 'commands': commands})
     try:
         for name, command in zip(('configure.log', 'build.log'), commands):
@@ -273,7 +319,7 @@ def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='orig
                 subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, check=True)
             if name == 'configure.log':
                 syntax = syntax_checks(out)
-        if input_identity(base, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile) != {k:v for k,v in identity.items() if k != 'generated_sha256'}:
+        if input_identity(base, model, hook,corner_refinement=corner_refinement,performance_profile=performance_profile,inference_threads=inference_threads) != {k:v for k,v in identity.items() if k != 'generated_sha256'}:
             raise ValueError('Build inputs changed during compilation')
         for rel, digest in identity['generated_sha256'].items():
             if sha(out / rel) != digest:
@@ -288,6 +334,7 @@ def build(base, out, model, hook, *, jobs=2, prefix=None,corner_refinement='orig
                     'cmake_cache_sha256': sha(out / 'cmake/CMakeCache.txt'),
                     'compile_commands_sha256': sha(out / 'cmake/compile_commands.json')}
         if 'performance_profile' in identity:manifest.update(performance_profile=identity['performance_profile'],diagnostic_only=True)
+        if 'inference_profile' in identity:manifest['inference_profile']=identity['inference_profile']
         write_json(out / 'BUILD_MANIFEST.json', manifest)
         spec = make_spec(binary, out / 'configs', model, identity, sha(out / 'BUILD_MANIFEST.json'))
         write_json(out / 'operator_source.local.json', spec)
@@ -313,20 +360,22 @@ def main(argv=None):
                         help='Explicit source revision; each contour frontend is separately identified from original T2')
     parser.add_argument('--performance-profile',choices=PERFORMANCE_PROFILES,default='original',
         help='Opt-in diagnostic overlays only; request-preallocate does not supply pixels or run warm inference')
+    parser.add_argument('--inference-threads',type=int,default=None,
+        help='Explicit production CPU threads 1..32; no diagnostics/warm inference; default keeps original source')
     args = parser.parse_args(argv)
     if args.jobs < 1:
         parser.error('--jobs must be positive')
     out, model, hook = args.out.resolve(), args.model.resolve(), args.operator_hook.resolve()
     if args.action == 'plan':
-        identity = input_identity(ROOT, model, hook,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile)
+        identity = input_identity(ROOT, model, hook,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile,inference_threads=args.inference_threads)
         result = {'status': 'unbuilt_plan', 'inputs': identity,
-                  'commands_not_executed': make_commands(ROOT, out, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile),
+                  'commands_not_executed': make_commands(ROOT, out, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile,inference_threads=args.inference_threads),
                   'cmake_available': shutil.which('cmake') is not None,
                   'dependencies': json.loads((ROOT / 'RECOVERY_MANIFEST.json').read_text())['dependencies']}
     elif args.action == 'prepare':
-        result = {'status': 'prepared_unbuilt_no_spec', 'inputs': prepare(ROOT, out, model, hook,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile)}
+        result = {'status': 'prepared_unbuilt_no_spec', 'inputs': prepare(ROOT, out, model, hook,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile,inference_threads=args.inference_threads)}
     else:
-        result = build(ROOT, out, model, hook, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile)
+        result = build(ROOT, out, model, hook, jobs=args.jobs, prefix=args.prefix,corner_refinement=args.corner_refinement,performance_profile=args.performance_profile,inference_threads=args.inference_threads)
     print(json.dumps(result, indent=2))
 
 

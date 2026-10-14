@@ -1,0 +1,38 @@
+{
+  "steps": [
+    {
+      "argv": [
+        "C:/Windows/System32/wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/usr/bin/python3",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/build_pb_aim_plugins.py",
+        "--out",
+        "/root/polar-pb-aim-preflight-20261014-02",
+        "--extra-prefix-manifest",
+        "/root/polar-pb-aim-system-deps-20261014-02/DEPENDENCY_PREFIX.json",
+        "--extra-prefix-sha256",
+        "c29618cb4fde672d698357e932e121a879efd7a1037b3f1defca0e53b861dcc6",
+        "--preflight-only"
+      ],
+      "pid": 8292,
+      "driver_pid": 52096,
+      "returncode": 1,
+      "reaped": true,
+      "elapsed_s": 4.494713000000047
+    }
+  ],
+  "all_expected_exit_codes": false,
+  "source_before": {
+    "tools/build_pb_aim_plugins.py": "68caed4510a1f56e0edb27f8164bee965168b75b20db3e4e8a8821821bd62a0d",
+    "tools/prepare_pb_aim_system_dependencies.py": "8a2e11bfd6b2a09666e2bde64800523e6725ca21daba7a3ab5ad945931a519e0",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af"
+  },
+  "source_after": {
+    "tools/build_pb_aim_plugins.py": "68caed4510a1f56e0edb27f8164bee965168b75b20db3e4e8a8821821bd62a0d",
+    "tools/prepare_pb_aim_system_dependencies.py": "8a2e11bfd6b2a09666e2bde64800523e6725ca21daba7a3ab5ad945931a519e0",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af"
+  },
+  "source_unchanged": true
+}

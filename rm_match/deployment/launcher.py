@@ -66,12 +66,16 @@ def plan(a):
               '--admission-manifest',str(admission)]
     if a.adapters_json:
         server += ['--adapters-json', str(a.adapters_json.expanduser().absolute())]
+    aim_plugins=getattr(a,'aim_plugins_json',None)
+    if aim_plugins:
+        server += ['--aim-plugins-json',str(aim_plugins.expanduser().absolute())]
     return dict(schema='polar.sim.deployment.plan.v1', profile=PROFILE,
         server_argv=server,
         client_argv=[client_python, str(root / 'main.py'), '--sim-platform-v2',
                      '--sim-role', 'operator', '--sim-endpoint', f'http://127.0.0.1:{a.port}'],
         sim_root=str(ROOT), client_root=str(root), out=str(out), native_spec=str(spec),
         adapters_json=str(a.adapters_json.expanduser().absolute()) if a.adapters_json else None,
+        aim_plugins_json=str(aim_plugins.expanduser().absolute()) if aim_plugins else None,
         admission_manifest=str(admission), provision_local_admission=supplied_admission is None,
         admission_scope=['red_sentry'] if supplied_admission is None else 'local_manifest',
         client_repository=CLIENT_REPOSITORY, client_commit=CLIENT_COMMIT,
@@ -192,6 +196,13 @@ def doctor(p):
             return {'registered': int(run_checked([executable(p['server_argv'][0]), '-c', code], cwd=p['sim_root'])),
                     'scope': 'manifest validation only; custom code not started'}
         check('custom_adapter_manifest', extensions)
+    if p.get('aim_plugins_json'):
+        def aim_extensions():
+            code=('from rm_match.deployment.aim_plugin import load_aim_plugins; '
+                  'rows,sha=load_aim_plugins('+repr(p['aim_plugins_json'])+'); print(len(rows))')
+            return {'registered':int(run_checked([executable(p['server_argv'][0]),'-c',code],cwd=p['sim_root'])),
+                    'scope':'declared camera aim interface only; custom algorithm not started'}
+        check('aim_plugin_manifest',aim_extensions)
     return dict(schema='polar.sim.deployment.doctor.v1', profile=PROFILE,
         ready_to_attempt=all(c['ok'] for c in checks), checks=checks,
         limitations=LIMITATIONS,
@@ -362,6 +373,7 @@ def main(argv=None):
     p.add_argument('--native-spec', type=Path, default=ROOT / 'operator_native/runtime/local_build/operator_source.local.json')
     p.add_argument('--out', type=Path, default=ROOT / 'artifacts/deployment')
     p.add_argument('--adapters-json', type=Path)
+    p.add_argument('--aim-plugins-json',type=Path,help='Reviewed local camera aim plugin registrations')
     p.add_argument('--admission-manifest',type=Path,
         help='Existing local grants; supply the operator credential via POLAR_SIM_ADMISSION_CREDENTIAL')
     p.add_argument('--port', type=int, default=8766)

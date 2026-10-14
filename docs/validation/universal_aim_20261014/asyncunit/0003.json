@@ -1,0 +1,10 @@
+{
+  "returncode": 0,
+  "child_pid": 40464,
+  "child_reaped": true,
+  "elapsed_s": 0.8546726999993552,
+  "source_unchanged": true,
+  "stdout_sha256": "b37f270473d4f091f321d43edfe13540f1490a6e80cb1174589936e75dadbab8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "qualification": "Unit proof only. Actual startup/protocol cleanup and real >=10 new-frame <80ms consumption remain untested."
+}

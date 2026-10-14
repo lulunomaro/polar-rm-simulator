@@ -49,6 +49,16 @@ class ComparisonTests(unittest.TestCase):
         self.assertEqual({k for k in set(a)|set(b) if a.get(k)!=b.get(k)}, {tool.CV_KEY})
         self.assertEqual(base, before)
         with self.assertRaises(ValueError): tool.case_environment(base, 'cv2')
+        for variant in ('default','cv1'):
+            self.assertNotIn('OPENCV_FOR_THREADS_NUM',tool.case_environment(dict(base,OPENCV_FOR_THREADS_NUM='16'),variant))
+
+    def test_api_action_requires_its_own_proof_cannot_be_inferred_from_env_or_cv_count(self):
+        for variant, requested, count in [('default','original',32),('cv1','1',1)]:
+            proof=dict(valid=True,record=dict(requested=requested,before_threads=32,after_threads=count))
+            tool.check_api_setting(proof,variant)
+            proof['record']['requested']='original' if variant=='cv1' else '1'
+            with self.assertRaises(ValueError):tool.check_api_setting(proof,variant)
+        with self.assertRaises(ValueError):tool.check_api_setting(dict(valid=False,record=None),'cv1')
 
     def test_effective_cv_and_every_compiled_property_must_match_not_only_requested_env(self):
         tool.check_properties(properties(), 'default'); tool.check_properties(properties(1), 'cv1')

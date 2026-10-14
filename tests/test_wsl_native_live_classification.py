@@ -27,6 +27,65 @@ def test_fresh_real_chain_never_qualifies_fullmatch_gui_hardware():
     assert not any(r[k] for k in ('full_match_qualified','hardware_qualified','visible_qt_qualified'))
 
 
+def test_explicit_host_thread_setting_needs_unchanged_actual_api_proof():
+    plan=smoke.build_plan('wsl_stdio_v1',host_opencv_threads=1)
+    m=measured();m['configuration']=copy.deepcopy(plan['configuration'])
+    assert not smoke.classify(m,plan=plan)['live_static_chain_qualified']
+    m['host_opencv_setting_unchanged']=True
+    assert smoke.classify(m,plan=plan)['live_static_chain_qualified']
+    for wrong in (False,1,None):
+        m['host_opencv_setting_unchanged']=wrong
+        assert not smoke.classify(m,plan=plan)['live_static_chain_qualified']
+
+
+def test_async_pending_or_late_cannot_supply_required_timely_native_samples():
+    plan=smoke.build_plan('wsl_async_bgr_v3')
+    m=measured();m['configuration']=copy.deepcopy(plan['configuration'])
+    m['original_async_transactions_accounted']=True
+    assert smoke.classify(m,plan=plan)['live_static_chain_qualified']
+    for key in ('native_results','distinct_native_actuated_frames'):
+        candidate=copy.deepcopy(m);candidate[key]=0;candidate['async_pending_statuses']=100
+        candidate['async_terminal_dispositions']={'async_late_discard':100}
+        assert not smoke.classify(candidate,plan=plan)['live_static_chain_qualified']
+    m['original_async_transactions_accounted']=False
+    assert not smoke.classify(m,plan=plan)['live_static_chain_qualified']
+
+
+def async_events():
+    source=dict(robot_id='red_sentry',episode=1,binding_epoch=2,observed_seq=7,sim_time=.422,wall_deadline=100.08)
+    shared=dict(request_id=1,source_context=source,**source,frame_id=7,exposure_timestamp_ns=410000000,
+        control_time_ns=422000000,raw_bgr_sha256='a'*64)
+    response=dict(inference_calls=1,clock_time_ns=422000000)
+    rows=[dict(shared,event='async_transport_request',wall_time=100.01),
+        dict(shared,event='async_native_started',wall_time=100.02,native_stdin_complete=True),
+        dict(shared,event='async_native_stdout',wall_time=100.04,response=response),
+        dict(shared,event='async_result_accepted80',wall_time=100.05,response=response),
+        dict(shared,event='native_result',wall_time=100.051,response=response)]
+    return rows
+
+
+def test_async_original_source_accounting_rejects_late_context_and_fake_native_count():
+    rows=async_events()
+    assert smoke.async_transaction_measurements(rows,{})['original_async_transactions_accounted']
+    for index,field,value in ((2,'frame_id',8),(3,'wall_time',100.081),(4,'response',{}),(1,'native_stdin_complete',False)):
+        candidate=copy.deepcopy(rows);candidate[index][field]=value
+        assert not smoke.async_transaction_measurements(candidate,{})['original_async_transactions_accounted']
+    rows=rows[:2]+[dict(rows[2],event='async_late_discard',wall_time=100.1)]
+    result=smoke.async_transaction_measurements(rows,{})
+    assert result['original_async_transactions_accounted'] and result['async_timely_accepted_results']==0
+    assert result['async_terminal_dispositions']=={'async_late_discard':1}
+
+
+def test_async_inflight_requires_original_owned_cleanup_proof():
+    rows=async_events()[:2];r=rows[0]
+    journal={'NATIVE_EVENTS.json':{'events':[dict(event='native_cancelled',id=1,source_context=r['source_context'],
+        frame_id=7,control_time_ns=422000000,exposure_timestamp_ns=410000000,image_sha256='a'*64)]},
+        'CLEANUP.json':{'clean':True,'reason':'host_cancel'}}
+    assert smoke.async_transaction_measurements(rows,journal)['original_async_transactions_accounted']
+    journal['CLEANUP.json']['clean']=False
+    assert not smoke.async_transaction_measurements(rows,journal)['original_async_transactions_accounted']
+
+
 def test_missing_or_late_stage_cannot_be_hidden_by_successful_receipts():
     for stage in ('raw_ages_s','native_result_ages_s','actuator_wall_ages_s','actuator_sim_ages_s'):
         for values in ([],[.01,.081],[float('nan')],[-.001]):

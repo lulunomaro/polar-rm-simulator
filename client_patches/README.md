@@ -20,7 +20,7 @@ HUD 使用请求开始时间保守计算 lease 有效期；重复 sample_sim_tim
 显式 release 立即清除 own 和 robot rows 的动态 HUD 缓存，server release 后必须仍为空。
 Map 不绘制隐藏位置；世界方向、分数和敌方动态 HUD 标明 unavailable / unknown，不补 xy=0 或敌 HP。
 
-当前对应客户端与实际 Qt 回归 282 passed、67 subtests passed、0 skipped，Qt 6.12.0、`QT_QPA_PLATFORM=offscreen`。apply 工具 10 passed。
+历史 `91e3653d...` 补丁对应客户端与实际 Qt 回归 282 passed、67 subtests passed、0 skipped，Qt 6.12.0、`QT_QPA_PLATFORM=offscreen`。apply 工具 10 passed。这些实际证据不自动给后续新增能力签收。
 历史首轮 `.venv-sim` 的 193 CPU passed / 7 Qt skipped 证据保留；后来在 `.venv-client` 的真实 Qt 环境补齐了这些窗口事件测试，没有模拟 Qt 来宣称通过。
 client 的共享 synthetic fixtures 从 Qt 测试模块拆出，claim 后显式提供新 own HUD 样本。原对应 input/fire/focus/window 与 routed ControlPlane 回归已保留。
 原完整 requirements 下载在 WebEngine wheel 遇到 ReadTimeout，日志保留。已恢复同版 Essentials/Addons/shiboken 及所有被实际测试使用的核心库；源码没有 WebEngine/Pdf 引用。本轮不声称完整 PySide6 meta-package 安装已完成。
@@ -54,5 +54,11 @@ Spectator 仍校验完整旧相机元数据，但服务端必须显式授予 aud
 
 OFFLINE24 attempt3 握手后揭示的新协议字段已独立修复：operator 允许经过严格验证的 `clock_profile`、`offline_final_state`、`completed_captures`、`offline_halt_code`。
 调度器 kind、七个整数 delay、工程配置标记、终态和有限 halt-code 均有白名单；80 ms max-age 保持不变。嵌套私有字段、非有限数、bool 冒充整数、错误时钟组合或原始异常文本均拒绝。
-本轮补丁 SHA256 为 `91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee`；先前 `52fe289e...` 记录及实际 HTTP/Qt 证据保留，新回归日志在 `artifacts/plan-start/client-qt-offline-clock-regressions.log`。
+历史 offline clock 补丁 SHA256 为 `91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee`；先前 `52fe289e...` 记录及实际 HTTP/Qt 证据保留，对应回归日志在 `artifacts/plan-start/client-qt-offline-clock-regressions.log`。
 Git 检查逐调用启用 `core.autocrlf=true`、`core.filemode=false` 并尊重 attributes，不持久修改 Git 配置；canonical hash 仍拒绝真实未知改动，允许同一 Windows checkout 经 WSL 检查。
+
+2026-10-14 通用自瞄接口扩展：当前补丁 SHA 为 `a889f79c20ff850c2531ed52f0bb3b8b55facf4f201efa5ccf45149bb7b1a331`。`custom_*` 只有完整匹配 `camera_gimbal_v1` 能力合同才成为 `V2 Aim` 选项，HTTP binding config 精确为空；未知版本/能力/执行模式及仅 detector/tracker 输出均不当作直接云台控制。详见 [AIM_PLUGIN_COMPATIBILITY](../docs/AIM_PLUGIN_COMPATIBILITY.md)。旧 patch/manifest 原字节另存，未重标旧 HTTP/Qt 报告。
+
+客户端对 `algorithm_status_context` 只接受原 episode/绑定 epoch/adapter 身份一致、当前本会话 gimbal lease 下的有限状态和七个标量字段。原 result deadline 从服务端时钟通过请求开始时间保守映射为本地显示期限；过期、他人车辆、旧代、坐标及异常文本被拒绝。`no_target/pending_result` 表示无动作，`result_available` 不等于机械应用。该显示字段不更新 SDK 控制窗口或 fire 权限。
+
+本次新增客户端纯解析/计划/状态测试 9 项通过；不是 GUI/第二检测器/ROS DDS/物理自瞄闭环证据。后续真实 Qt/算法验收须按当前补丁和算法/source 模型身份另存新报告。

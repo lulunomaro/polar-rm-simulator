@@ -12,9 +12,9 @@
     {
       "path": "pyproject.toml",
       "original_sha256": "8c9d9e751a197d91313dc690c355ae021bf69156d76877e0523ee504493f0837",
-      "current_sha256": "7740a17e2ae52f173942faa5ada361118a5e341fa1240b88d36afcc15b562159",
+      "current_sha256": "e3779cbdb678fdb191f04ecd8c400a11c57172cca8ebcb038c6f8f6fb8e5e1e6",
       "task": "T03",
-      "reason": "Pin public runtime dependencies and isolate project test discovery; explicit optional camera-fast codec preserves canonical sensor bytes and defaults without bundling external C libraries"
+      "reason": "Pin public runtime dependencies, isolate test discovery and keep canonical optional camera codec; declare optional PyYAML 6.x for reproducible reviewed original aim configuration preparation"
     },
     {
       "path": "rm_match/match_engine.py",
@@ -26,9 +26,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "cf5ea2214f221ca541dc52c82fd0b35ab77503c8d4d764510b99b2d777e68fc3",
+      "current_sha256": "1f14d4f9eb84e31e9249d830804e3f9a37173d00971eb9ddbd1366567375aa83",
       "task": "T09",
-      "reason": "Preserve loopback admission, native camera entry and original deadlines; mutually exclusive trusted local PB manifests include opt-in Windows-to-WSL preparation before backend/physics; all setup/run/normal shutdown paths close the captured Session and report cleanup failures without HTTP argv"
+      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
@@ -40,9 +40,9 @@
     {
       "path": "rm_match/platform_v2/camera.py",
       "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
-      "current_sha256": "a98c549a80fa8bd53c790f0e0ab4834f0b16250b3362b3ad1b70c8dbf325a3f4",
+      "current_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
       "task": "T03",
-      "reason": "Separate raw/display; explicit bounded sealed actual RGB before public encoding with capture ownership and expiry guards, fixed publish timestamps and canonical optional C codec"
+      "reason": "Separate raw/display and bounded sealed actual RGB before encoding; preserve original capture/deadlines and pixel bytes; measure renderer substages with QPC perf_counter to avoid Windows monotonic quantization"
     },
     {
       "path": "rm_match/platform_v2/client.py",
@@ -82,9 +82,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "eb95aefbeb938e33e6f1f73b488521f9270113213d17a1ee7be0e594617f4481",
+      "current_sha256": "1a5619ea2f614ff206db4d87409f7df383f6aec153597778e81c8c9a23958909",
       "task": "T09",
-      "reason": "Keep original leases, activation, camera80ms and SDK150ms; navigation jobs preserve original scan deadlines/generations and trace exact validated cloud acquisition scalars; non-native slots avoid vision imports while preserving reviewed native dispatch/cancellation guards"
+      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO"
     },
     {
       "path": "rm_match/platform_v2/server.py",
@@ -180,9 +180,9 @@
     {
       "path": "rm_match/platform_v2/native_adapter.py",
       "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
-      "current_sha256": "0becb96b72da6a62930b943dd07b58c907b9bfa90761203bbc8e05459f8e920f",
+      "current_sha256": "2f9ab0b2357ac78e18ed5577917531c41fef5ef415d2101e9d8db5f2d74dff98",
       "task": "T03",
-      "reason": "Keep original own-sensor model/80ms gates; permit reviewed typed private RGB, immutable BGR/SHA archives and postclose RGB diagnostic only on per-frame WSL v2, retaining synchronous checks elsewhere; private WSL v2 converts/hash actual immutable renderer pixels once and passes an opaque original source/calibration/capture-state/deadline receipt; public/v1 and unsealed bytes retain host SHA, Linux still verifies every payload"
+      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget"
     },
     {
       "path": "rm_match/platform_v2/offline_runtime.py",

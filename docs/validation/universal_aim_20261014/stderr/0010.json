@@ -1,0 +1,35 @@
+{
+  "files": {
+    "rm_match/deployment/json_owned_process.py": {
+      "sha256": "5ee7bd4f31073a27438d185c6d329c64abfb0ac485cff73cd6cbda8d78f34f6b",
+      "bytes": 6384,
+      "snapshot": "source/rm_match/deployment/json_owned_process.py"
+    },
+    "rm_match/deployment/windows_owned_job.py": {
+      "sha256": "1452079aa0163af5c8fe3459fa2819ff7ccbb886676cc2d1a92996e7a8992920",
+      "bytes": 14448,
+      "snapshot": "source/rm_match/deployment/windows_owned_job.py"
+    },
+    "rm_match/deployment/wsl_jsonl.py": {
+      "sha256": "45e1f4fed502d665d86359aeff0947ffffcf642473c16602dc7314b75d1cd14d",
+      "bytes": 18879,
+      "snapshot": "source/rm_match/deployment/wsl_jsonl.py"
+    },
+    "rm_match/deployment/wsl_jsonl_worker.py": {
+      "sha256": "0b1a5051fa687e98c2430a4e392c9684abbe426b8556a7a93fc01984c2c94a5c",
+      "bytes": 7925,
+      "snapshot": "source/rm_match/deployment/wsl_jsonl_worker.py"
+    },
+    "tests/test_owned_stderr_sink.py": {
+      "sha256": "3fbda091b0bc7a8b556e4bb67476adf8625bed85e33a12cd90426822d53fc720",
+      "bytes": 4323,
+      "snapshot": "source/tests/test_owned_stderr_sink.py"
+    },
+    "tests/test_wsl_jsonl.py": {
+      "sha256": "c7f054de7f8fcc1496c9ede308233ce8bcdd059819da9d9a932a6bc67220d88e",
+      "bytes": 12949,
+      "snapshot": "source/tests/test_wsl_jsonl.py"
+    }
+  },
+  "scope": "six explicit files"
+}

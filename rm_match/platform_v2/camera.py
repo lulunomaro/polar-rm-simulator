@@ -82,7 +82,7 @@ class MuJoCoCameraRenderer:
     def render(self,capture):
         import numpy as np
         renderer=self.renderer;mujoco=self.mujoco
-        started=time.monotonic();renderer.update_scene(capture.buffer,camera=capture.robot_id+'__aim')
+        started=time.perf_counter();renderer.update_scene(capture.buffer,camera=capture.robot_id+'__aim')
         # Physical projectile spheres only. No target labels/boxes/aim overlays.
         for radius,position in capture.projectiles:
             scene=renderer.scene
@@ -90,8 +90,8 @@ class MuJoCoCameraRenderer:
             mujoco.mjv_initGeom(scene.geoms[scene.ngeom],mujoco.mjtGeom.mjGEOM_SPHERE,
                 np.array([radius]*3),position,np.eye(3).ravel(),np.array([1,.8,.1,1],dtype=np.float32))
             scene.ngeom+=1
-        scene_done=time.monotonic();ideal=renderer.render();readback_done=time.monotonic()
-        rgb=self.warp.apply(ideal).copy();warp_done=time.monotonic()
+        scene_done=time.perf_counter();ideal=renderer.render();readback_done=time.perf_counter()
+        rgb=self.warp.apply(ideal).copy();warp_done=time.perf_counter()
         self.last_timings=dict(scene_update=scene_done-started,render_readback=readback_done-scene_done,
                               lens_warp=warp_done-readback_done)
         return rgb

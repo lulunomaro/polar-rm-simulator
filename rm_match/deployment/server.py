@@ -14,6 +14,7 @@ def main(argv=None):
     p.add_argument('--native-spec', type=Path, required=True)
     p.add_argument('--native-out', type=Path, required=True)
     p.add_argument('--adapters-json', type=Path)
+    p.add_argument('--aim-plugins-json', type=Path,help='Reviewed local calibrated-camera aim interface registrations')
     p.add_argument('--admission-manifest', type=Path, required=True,
                    help='Local server-owned role/robot grants; contains credential hashes only')
     p.add_argument('--port', type=int, default=8766)
@@ -31,7 +32,7 @@ def main(argv=None):
     from ..platform_v2.admission import AdmissionPolicy
     admission = AdmissionPolicy.from_manifest(a.admission_manifest)
     admission_sha = admission.manifest_sha256
-    registry = own_registry(a.native_spec, a.native_out, adapters_json=a.adapters_json)
+    registry = own_registry(a.native_spec, a.native_out, adapters_json=a.adapters_json,aim_plugins_json=a.aim_plugins_json)
     from ..platform_v2.backend import MuJoCoBackend
     from ..platform_v2.camera import CameraProvider
     from ..platform_v2.runtime import PlatformRuntime

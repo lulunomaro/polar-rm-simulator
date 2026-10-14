@@ -20,7 +20,9 @@ def generate_profile(base,generated,profile,*,header_source=None):
     armor='#include "first_frame_trace.hpp"\n'+armor
     armor=once(armor,'        openvino_model   = model.compile(openvino_core, config.model_location);',
         '        {\n            rmcs::first_frame_trace::Scope phase("model_compile",true);\n'
-        '            openvino_model = model.compile(openvino_core, config.model_location);\n        }\n'
+        '            rmcs::first_frame_trace::configure_inference_threads(openvino_core);\n'
+        '            openvino_model = model.compile(openvino_core, config.model_location);\n'
+        '            rmcs::first_frame_trace::verify_inference_threads(openvino_model);\n        }\n'
         '        rmcs::first_frame_trace::report_compiled_model(openvino_model);')
     allocation='''        if (!cached_ready) {
             cached_input_tensor = ov::Tensor {
@@ -63,6 +65,8 @@ def generate_profile(base,generated,profile,*,header_source=None):
         anchor='            ScopedNs t(g_prof.'+accumulator+'_ns);'
         armor=once(armor,anchor,'            rmcs::first_frame_trace::Scope phase("'+phase+'");\n'+anchor)
     main='#include "first_frame_trace.hpp"\n'+main
+    runner='        Runner runner(std::filesystem::absolute(argv[1]),std::filesystem::absolute(config));'
+    main=once(main,runner,'        rmcs::first_frame_trace::configure_opencv_threads();\n'+runner)
     main=once(main,'        const auto control_ns=request["control_time_ns"].as<std::int64_t>();',
         '        rmcs::first_frame_trace::FirstTick diagnostic_tick;\n'
         '        const auto control_ns=request["control_time_ns"].as<std::int64_t>();')

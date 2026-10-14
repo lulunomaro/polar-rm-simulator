@@ -1,0 +1,40 @@
+{
+  "schema": "polar.pb-aim-https-retry-pure-validation.v1",
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_pb_aim_system_dependencies.py",
+    "tests/test_build_pb_aim_plugins.py",
+    "-q"
+  ],
+  "pid": 64084,
+  "exit_code": 0,
+  "reaped": true,
+  "wall_seconds": 2.5704072000007727,
+  "source_before": {
+    "tools/build_pb_aim_plugins.py": "68caed4510a1f56e0edb27f8164bee965168b75b20db3e4e8a8821821bd62a0d",
+    "tools/prepare_pb_aim_system_dependencies.py": "8a2e11bfd6b2a09666e2bde64800523e6725ca21daba7a3ab5ad945931a519e0",
+    "tests/test_build_pb_aim_plugins.py": "db8347e52fb72ff0284cb1e1d17dff7d2697158e6358544891d86899c885fe8d",
+    "tests/test_pb_aim_system_dependencies.py": "642574fdb36752919230e550f160230694b824e12750154a082d05d2716ea4a6"
+  },
+  "source_after": {
+    "tools/build_pb_aim_plugins.py": "68caed4510a1f56e0edb27f8164bee965168b75b20db3e4e8a8821821bd62a0d",
+    "tools/prepare_pb_aim_system_dependencies.py": "8a2e11bfd6b2a09666e2bde64800523e6725ca21daba7a3ab5ad945931a519e0",
+    "tests/test_build_pb_aim_plugins.py": "db8347e52fb72ff0284cb1e1d17dff7d2697158e6358544891d86899c885fe8d",
+    "tests/test_pb_aim_system_dependencies.py": "642574fdb36752919230e550f160230694b824e12750154a082d05d2716ea4a6"
+  },
+  "source_unchanged": true,
+  "scope": "Pure mocked HTTP and actual local-file cache tests; no real network/WSL/apt/ROS/build/NN",
+  "candidates": "HTTPS exact same host/path first, original HTTP second, HTTPS one final retry; at most3, signed SHA/size always required",
+  "partial_evidence": "Each failed attempt retains separate partial bytes/hash; never reused as cache; cache accepted only full signed SHA+size",
+  "planned_deps_argv": [
+    "/usr/bin/python3",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/prepare_pb_aim_system_dependencies.py",
+    "--out",
+    "/root/polar-pb-aim-system-deps-20261014-02",
+    "--cache",
+    "/root/polar-pb-aim-system-deps-20261014-01/debs",
+    "--run"
+  ]
+}

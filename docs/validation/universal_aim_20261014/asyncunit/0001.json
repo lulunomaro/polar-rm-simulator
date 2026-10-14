@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_wsl_aim_async.py",
+    "-q"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "qualification": "Pure mocked OS/protocol tests; no actual child, WSL, NN, ROS or camera."
+}

@@ -109,6 +109,34 @@ def operator_state(value, control, *, session_id, allowed_robots=None):
                 }
     result['control'] = projected_control
 
+    # Display bounded original result status only for this owner's current live
+    # gimbal binding. Never expose raw status/error graphs or another owner's
+    # context, and never interpret a result as a physical consumption receipt.
+    aim_context={}
+    contexts=value.get('algorithm_status_context',{})
+    if type(contexts) is not dict:contexts={}
+    for rid in visible:
+        if 'gimbal' not in allowed[rid]:continue
+        binding=control.get('bindings',{}).get(rid,{}).get('aim',{})
+        lease=control.get('leases',{}).get(rid,{}).get('gimbal',{})
+        per_robot=contexts.get(rid,{})
+        if type(per_robot) is not dict:continue
+        raw=per_robot.get('aim',{})
+        if type(raw) is not dict or binding.get('owner')!=session_id:continue
+        keys=('episode','binding_epoch','adapter_id','status','observed_seq','wall_deadline','source_frame_id')
+        ctx=_scalars(raw,keys)
+        if set(ctx)!=set(keys) or raw.get('owner')!=session_id:continue
+        if (any(type(ctx[k]) is not int or ctx[k]<0 for k in ('episode','binding_epoch','observed_seq','source_frame_id'))
+            or type(ctx['adapter_id']) is not str or type(ctx['status']) is not str
+            or ctx['status'] not in ('no_target','pending_result','result_available')
+            or type(ctx['wall_deadline']) is not float or not math.isfinite(ctx['wall_deadline'])
+            or now>=ctx['wall_deadline'] or ctx['episode']!=value.get('episode')
+            or type(raw.get('lease_epoch')) is not int or raw['lease_epoch']!=lease.get('epoch')
+            or type(binding.get('epoch')) is not int or ctx['binding_epoch']!=binding['epoch']
+            or ctx['adapter_id']!=binding.get('adapter_id')):continue
+        aim_context[rid]={'aim':ctx}
+    if aim_context:result['algorithm_status_context']=aim_context
+
     # OfflineRuntime inherits this projection. Publish only scheduler/lifecycle
     # metadata needed by the client's renewal/cleanup loop, never its full
     # truth cache or native exception text (which may contain private paths).

@@ -1,0 +1,191 @@
+{
+  "schema": "polar.pb-aim-owned-build.v1",
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "mount_sha256": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+  "source_copy_sha256": "90add16dd42bb4d9f9361a7fa24ff8baec5d19bbcd7e796b2df9c24dea33af44",
+  "build_tool_sha256": "68284252fdb8aa1cc1dc0ea5dfcb3e25ace64b7c20eccedcbeca9ba367f0b274",
+  "cleanup_helper_sha256": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+  "environment": {
+    "AMENT_PREFIX_PATH": "/root/polar-pb-aim-system-deps-20261014-02/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "1",
+    "CMAKE_PREFIX_PATH": "/root/polar-pb-aim-system-deps-20261014-02/prefix/opt/ros/humble:/root/polar-pb-aim-system-deps-20261014-02/prefix/usr:/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+    "LD_LIBRARY_PATH": "/root/polar-pb-aim-system-deps-20261014-02/prefix/opt/ros/humble/lib:/root/polar-pb-aim-system-deps-20261014-02/prefix/usr/lib/x86_64-linux-gnu:/root/polar-pb-aim-system-deps-20261014-02/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+    "MAKEFLAGS": "-j1",
+    "PATH": "/root/polar-humble-ext4-20261014-01/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/PowerShell/7:/mnt/c/Users/lulu/.codex/tmp/arg0/codex-arg07sohrL:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/libheif/libheif/bin:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/jxrlib/jxrlib/bin:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/poppler/Library/bin:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/Eclipse Adoptium/jdk-21.0.11.10-hotspot/bin:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/mnt/c/Program Files (x86)/Microsoft SQL Server/160/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/160/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/160/DTS/Binn/:/mnt/c/Program Files (x86)/Windows Kits/8.1/Windows Performance Toolkit/:/mnt/c/MinGW/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/lulu/AppData/Local/Programs/Python/Python314/Scripts:/mnt/c/Users/lulu/.local/bin:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/serialplot/bin:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Qoder CN IDE/bin:/mnt/f/matlab/runtime/win64:/mnt/f/matlab/bin:/mnt/c/Program Files/PowerShell/7/:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin/:/mnt/c/Program Files/IVI Foundation/VISA/Win64/Bin/:/mnt/c/Program Files (x86)/IVI Foundation/VISA/WinNT/Bin:/mnt/c/Users/lulu/AppData/Local/Programs/OpenAI/Codex/bin:/mnt/c/Users/lulu/.cargo/bin:/mnt/c/Users/lulu/.kimi-code/bin:/mnt/c/Users/lulu/.grok/bin:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell:/mnt/c/Users/lulu/AppData/Local/Microsoft/WindowsApps:/mnt/f/Microsoft VS Code/bin:/mnt/c/Users/lulu/AppData/Local/Programs/Ollama:/mnt/c/Users/lulu/AppData/Local/Python/bin:/mnt/c/Users/lulu/AppData/Roaming/npm:/mnt/c/Users/lulu/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/lulu/AppData/Local/Programs/Qoder IDE/bin:/mnt/c/Users/lulu/AppData/Local/Programs/FlowUs/bin:/mnt/c/Users/lulu/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-9.0-full_build/bin:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin:/mnt/c/Users/lulu/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/git/cmd:/mnt/c/Users/lulu/AppData/Local/OpenAI/Codex/bin/77fbd4d52e601e0a:/mnt/c/Users/lulu/AppData/Local/OpenAI/Codex/bin/9614f1d9b40d9c4f",
+    "PKG_CONFIG_PATH": "/root/polar-pb-aim-system-deps-20261014-02/prefix/usr/lib/x86_64-linux-gnu/pkgconfig:/root/polar-pb-aim-system-deps-20261014-02/prefix/usr/share/pkgconfig:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "ROS_DISTRO": "humble",
+    "ROS_PYTHON_VERSION": "3",
+    "ROS_VERSION": "2",
+    "VIRTUAL_ENV": "/root/polar-humble-ext4-20261014-01/venv"
+  },
+  "interpreter": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+  "commands": [
+    {
+      "argv": [
+        "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "/root/polar-pb-aim-preflight-20261014-03/preflight/python_probe.py"
+      ],
+      "pid": 381,
+      "exit_code": 0,
+      "elapsed_seconds": 0.7696945920000076,
+      "timed_out": false,
+      "error": null,
+      "cleanup": {
+        "run_id": "4cd386a861df4c8e9f530aa58bde6080",
+        "supervisor_pid": 313,
+        "boot_id": "f6d80d9c-91bf-437a-8c75-95c06ac6ccc9",
+        "pid": 381,
+        "pgid": 381,
+        "leader_start_ticks": 6719,
+        "clean": true,
+        "reaped": true,
+        "group_empty": true,
+        "remaining_members": [],
+        "errors": [],
+        "killed": false,
+        "returncode": 0,
+        "reaped_descendants": [],
+        "cleanup_elapsed_s": 0.003704083000002356
+      },
+      "raw_log": "/root/polar-pb-aim-preflight-20261014-03/python_preflight.log",
+      "log_sha256": "3d4ec37a93cabfdb7eabd3494e158b61142509696f12e706aa8a9cccb5efef30"
+    },
+    {
+      "argv": [
+        "/usr/bin/cmake",
+        "-S",
+        "/root/polar-pb-aim-preflight-20261014-03/preflight",
+        "-B",
+        "/root/polar-pb-aim-preflight-20261014-03/preflight/build",
+        "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "-DCMAKE_C_COMPILER=/usr/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++"
+      ],
+      "pid": 413,
+      "exit_code": 1,
+      "elapsed_seconds": 4.278872406999994,
+      "timed_out": false,
+      "error": null,
+      "cleanup": {
+        "run_id": "f577983ff7f54e4cb1bcc8d242589642",
+        "supervisor_pid": 313,
+        "boot_id": "f6d80d9c-91bf-437a-8c75-95c06ac6ccc9",
+        "pid": 413,
+        "pgid": 413,
+        "leader_start_ticks": 6795,
+        "clean": true,
+        "reaped": true,
+        "group_empty": true,
+        "remaining_members": [],
+        "errors": [],
+        "killed": false,
+        "returncode": 1,
+        "reaped_descendants": [],
+        "cleanup_elapsed_s": 0.002997226000005071
+      },
+      "raw_log": "/root/polar-pb-aim-preflight-20261014-03/cmake_preflight.log",
+      "log_sha256": "750ffcb4e653827ec8f9db1f33a7e55d46483e834d4ca6a57b68b62801669c7d"
+    }
+  ],
+  "success": false,
+  "build_executed": false,
+  "model_loaded": false,
+  "nodes_started": false,
+  "hardware_started": false,
+  "physics_steps": 0,
+  "inference_calls": 0,
+  "extra_prefix": {
+    "path": "/root/polar-pb-aim-system-deps-20261014-02/DEPENDENCY_PREFIX.json",
+    "sha256": "c29618cb4fde672d698357e932e121a879efd7a1037b3f1defca0e53b861dcc6",
+    "prefix": "/root/polar-pb-aim-system-deps-20261014-02/prefix",
+    "packages": [
+      "ros-humble-ament-cmake",
+      "ros-humble-ament-cmake-auto",
+      "ros-humble-angles",
+      "ros-humble-rosidl-default-runtime",
+      "ros-humble-std-msgs",
+      "ros-humble-geometry-msgs",
+      "ros-humble-sensor-msgs",
+      "ros-humble-cv-bridge",
+      "ros-humble-rclcpp",
+      "ros-humble-message-filters",
+      "ros-humble-image-transport",
+      "ros-humble-compressed-depth-image-transport",
+      "ros-humble-compressed-image-transport",
+      "ros-humble-eigen3-cmake-module",
+      "ros-humble-example-interfaces",
+      "ros-humble-theora-image-transport",
+      "ros-humble-image-transport-plugins",
+      "ros-humble-rclcpp-components",
+      "ros-humble-rosidl-default-generators",
+      "ros-humble-std-srvs",
+      "ros-humble-tf2-ros",
+      "ros-humble-tf2-geometry-msgs",
+      "ros-humble-vision-opencv",
+      "ros-humble-visualization-msgs",
+      "libopencv-dev",
+      "nlohmann-json3-dev",
+      "libeigen3-dev"
+    ],
+    "verification": "Exact complete prefix regular-file bytes and symlink targets"
+  },
+  "owned_python_pth": {
+    "path": "/root/polar-humble-ext4-20261014-01/venv/lib/python3.10/site-packages/owned_humble.pth",
+    "sha256": "aadc51d8ccebdda01e32b3777eebe35fb9e6cca5322feb728521fd255c3c46dd"
+  },
+  "cmake_preflight_packages": [
+    "OpenCV",
+    "ament_cmake",
+    "ament_cmake_auto",
+    "angles",
+    "cv_bridge",
+    "eigen3_cmake_module",
+    "example_interfaces",
+    "geometry_msgs",
+    "image_transport",
+    "image_transport_plugins",
+    "message_filters",
+    "nlohmann_json",
+    "rclcpp",
+    "rclcpp_components",
+    "rosidl_default_generators",
+    "sensor_msgs",
+    "std_msgs",
+    "std_srvs",
+    "tf2_geometry_msgs",
+    "tf2_ros",
+    "vision_opencv",
+    "visualization_msgs",
+    "Eigen3"
+  ],
+  "error": "ValueError:owned_command_failed:cmake_preflight.log",
+  "source_and_refs_unchanged": true,
+  "compiler_identity": {
+    "/usr/bin/gcc": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-11",
+      "sha256": "821af3c74506283c179ca413bb33e6b528805a4dd8a5c09df125e5ad560a9e89"
+    },
+    "/usr/bin/g++": {
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-g++-11",
+      "sha256": "2360901d864cf10bfd6296e261cb2c14053552a80377761ab07146ec9ec9a2c0"
+    },
+    "/usr/bin/cmake": {
+      "resolved_path": "/usr/bin/cmake",
+      "sha256": "fd22547781b64bb2db04370970b93db1f3fada1e41e60873b015ee0747009fc0"
+    },
+    "/usr/bin/colcon": {
+      "resolved_path": "/usr/bin/colcon",
+      "sha256": "3525649cc2b3d429fb34062a3d2e6ee2dc175ff84017db734f828ff6ebcd4777"
+    },
+    "/root/polar-humble-ext4-20261014-01/venv/bin/python": {
+      "resolved_path": "/usr/bin/python3.10",
+      "sha256": "7d51cd6b48b521277f5caa4610a82126e315fa2be4df069823a8b1eeb5bd4a86"
+    }
+  },
+  "build_metadata_sha256": {
+    "preflight/build/CMakeCache.txt": "723899c2708286efdf965c7d59ffe01d7723040ee66a749fa581587cd6cf14a8",
+    "preflight/build/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake": "035353d234bd03c6d6611c1e0cbedcc91649fec6e149b02f963489128bc9ba31"
+  }
+}

@@ -46,20 +46,29 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
     scope='Bounded public-static-scene live diagnostic only; not full-match, aim accuracy, GUI or hardware qualification')
 
 
-def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked'):
-    if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2'):raise ValueError('Explicit reviewed transport required')
+def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None):
+    if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    if host_opencv_threads is not None:
+        if type(host_opencv_threads) is not int or not 1<=host_opencv_threads<=32:
+            raise ValueError('Explicit host OpenCV threads must be an integer within 1..32')
+        plan['configuration']['host_opencv_threads']=host_opencv_threads
+        plan['criteria']['host_opencv_setting_unchanged']=True
     plan['configuration']['native_transport']=transport
+    if transport=='wsl_async_bgr_v3':
+        plan['criteria']['original_async_transactions_accounted']=True
+        plan['measurement']['logging']+='; pending/late-discard are separate, never counted as timely NN or actuation'
+        plan['scope']+='; async qualification covers timely accepted samples, not an all-inferences-under-80ms claim'
     if raw_base64_codec!='stdlib_chunked':
         plan['configuration']['raw_base64_codec']=raw_base64_codec
         plan['criteria']['exact_raw_codec_identity']=True
     if private_native_pixels:
         plan['configuration'].update(private_native_pixels=True,
             input_publication='sealed_actual_rgb_before_public_base64')
-        if transport=='wsl_stdio_bgr_v2':
+        if transport in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3'):
             plan['configuration']['rgb_trace_strategy']='archived_bgr_postclose_exact_channel_swap'
             plan['criteria']['postclose_actual_pixel_audit']=True
         plan['measurement']['stages']+=['exposure_to_private_pixels','private_pixels_to_adapter_enqueue']
@@ -101,7 +110,7 @@ def collect_transport_evidence(native_root,process):
     if len(candidates)!=1:return {},collection
     collection['selected_directory']=str(candidates[0]);evidence={}
     for name in ('WORKER_STARTUP.json','STARTUP_PHASES.json','PRE_NATIVE_EXIT.json',
-        'OWNED_CHILD.json','STARTUP.json','CLEANUP.json','HOST_TRACE.json','SUPERVISOR_ERROR.json'):
+        'OWNED_CHILD.json','STARTUP.json','CLEANUP.json','HOST_TRACE.json','SUPERVISOR_ERROR.json','FINAL_IO.json','NATIVE_EVENTS.json'):
         path=candidates[0]/name
         if path.is_file():evidence[name]=json.loads(path.read_text(encoding='utf-8'))
     return evidence,collection
@@ -154,6 +163,10 @@ def classify(measurements,*,plan=None):
         checks['raw_codec_identity_unchanged']=m.get('raw_codec_identity_unchanged') is True
     if c.get('postclose_actual_pixel_audit'):
         checks['postclose_actual_pixel_audit']=m.get('postclose_actual_pixel_audit') is True
+    if c.get('host_opencv_setting_unchanged'):
+        checks['host_opencv_setting_unchanged']=m.get('host_opencv_setting_unchanged') is True
+    if c.get('original_async_transactions_accounted'):
+        checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
     return dict(checks=checks,live_static_chain_qualified=all(checks.values()),
         full_match_qualified=False,hardware_qualified=False,visible_qt_qualified=False,
         rejected_or_failed_criteria=[k for k,v in checks.items() if not v])
@@ -286,9 +299,86 @@ def stage_measurements(events, raw_frames, consumed_frames,*,private_native_pixe
         actuator_sim_ages_s=[x['consume_sim_time']-x['budget']['capture_sim_time'] for x in consumed_frames.values()])
 
 
-def fault_and_evidence_measurements(events, counts, *, writer_required):
+def async_transaction_measurements(events,transport_evidence):
+    """Account original transactions without treating pending or late as results.
+
+    This is an additional v3 audit. Linux elapsed values never grant host
+    authority. Actual fresh native_result/physical receipt counts still supply
+    the unchanged minimum sample and 80ms qualification checks.
+    """
+    from rm_match.platform_v2.contracts import IDENTITY
+    queued={};terminal={};started={};accepted={};valid=True
+    dispositions=Counter()
+    def key(row):return row.get('request_id')
+    def matches(row,request):
+        return (type(row.get('source_context')) is dict
+            and all(type(row['source_context'].get(k)) is type(request.get(k))
+                and row['source_context'].get(k)==request.get(k) for k in IDENTITY)
+            and all(type(row.get(k)) is type(request.get(k)) and row.get(k)==request.get(k)
+                for k in ('frame_id','exposure_timestamp_ns','control_time_ns','raw_bgr_sha256')))
+    for row in events:
+        event=row['event'];serial=key(row)
+        if event=='async_transport_request':
+            if type(serial) is not int or serial in queued:valid=False
+            queued[serial]=row
+        elif event in ('async_native_started','async_native_stdout','async_late_discard','async_after_pending_discard',
+                       'async_discarded_before_native','async_discarded_before_write','async_result_accepted80'):
+            request=queued.get(serial)
+            if request is None or not matches(row,request):valid=False;continue
+            if event=='async_native_started':
+                if serial in started or row.get('native_stdin_complete') is not True:valid=False
+                started[serial]=row
+            elif event=='async_result_accepted80':
+                if serial in accepted or terminal.get(serial)!='async_native_stdout':valid=False
+                accepted[serial]=row
+                if (type(row.get('wall_time')) not in (float,int)
+                    or not row['wall_time']<request['source_context']['wall_deadline']):valid=False
+            else:
+                if serial in terminal and not (terminal[serial]=='async_native_stdout'
+                    and event=='async_late_discard' and serial not in accepted):valid=False
+                terminal[serial]=event;dispositions[event]+=1
+                if event in ('async_native_stdout','async_late_discard','async_after_pending_discard') and serial not in started:valid=False
+    journal=transport_evidence.get('NATIVE_EVENTS.json',{})
+    cleanup=transport_evidence.get('CLEANUP.json',{})
+    cancelled=0
+    for row in journal.get('events',[]):
+        if row.get('event')!='native_cancelled':continue
+        serial=row.get('id');request=queued.get(serial)
+        if (request is None or serial in terminal or cleanup.get('clean') is not True
+            or cleanup.get('reason') not in ('host_cancel','host_eof')
+            or row.get('source_context')!=request.get('source_context')
+            or row.get('frame_id')!=request.get('frame_id')
+            or row.get('control_time_ns')!=request.get('control_time_ns')
+            or row.get('exposure_timestamp_ns')!=request.get('exposure_timestamp_ns')
+            or row.get('image_sha256')!=request.get('raw_bgr_sha256')):valid=False;continue
+        terminal[serial]='owned_native_cancelled_at_close';cancelled+=1
+    real_results=[row for row in events if row['event']=='native_result']
+    if len(real_results)!=len(accepted):valid=False
+    for row in real_results:
+        candidates=[a for a in accepted.values() if a['frame_id']==row['frame_id']]
+        response=row.get('response');original=None if len(candidates)!=1 else candidates[0].get('response')
+        same_response=response==original
+        if type(response) is dict and type(original) is dict:
+            # Native transports add these two wrapper fields after validating
+            # actual stdout. Neither may change the original computation.
+            same_response=(response==dict(original,episode=candidates[0]['episode'],should_control=original.get('tracking'))
+                or response==original)
+        if (len(candidates)!=1 or not same_response
+            or any(type(candidates[0].get(k)) is not type(row.get(k)) or candidates[0].get(k)!=row.get(k)
+                for k in ('robot_id','episode','binding_epoch','observed_seq','wall_deadline'))):valid=False
+    incomplete=len(set(queued)-set(terminal))
+    return dict(original_async_transactions_accounted=bool(queued) and valid and incomplete==0,
+        async_queued_transactions=len(queued),async_actual_complete_stdin=len(started),
+        async_timely_accepted_results=len(accepted),async_owned_cancelled_at_close=cancelled,
+        async_terminal_dispositions=dict(dispositions),async_incomplete_transactions=incomplete,
+        async_pending_statuses=sum(row['event']=='native_pending_status' for row in events),
+        scope='Pending is no command; late actual stdout is discarded on its original identity, never a timely NN sample')
+
+
+def fault_and_evidence_measurements(events, counts, *, writer_required,async_measurements=None):
     errors=sum(x['event']=='adapter_result' and bool(x.get('error')) for x in events)
     incomplete=counts.get('native_request',0)-counts.get('native_result',0)
+    if async_measurements is not None:incomplete=async_measurements['async_incomplete_transactions']
     statuses=[x.get('status') for x in events if x['event']=='native_evidence_closed']
     evidence_clean=(not writer_required and not statuses) or (bool(statuses) and all(
         type(s) is dict and s.get('clean') is True and s.get('written')==s.get('submitted')
@@ -312,7 +402,9 @@ def run(a):
     from rm_match.match_model import SPAWNS
     import mujoco
     out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
-    plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec)
+    host_threads=getattr(a,'host_opencv_threads',None)
+    plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
+        host_opencv_threads=host_threads)
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
     sources={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
@@ -322,6 +414,11 @@ def run(a):
         for rel in ('tools/audit_live_native_pixels.py','tools/diagnose_native_saved_compute.py'):
             sources[rel]=hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
     write('EXECUTED_SOURCE.json',sources);write('PLAN.json',plan)
+    host_opencv=None
+    if host_threads is not None:
+        from rm_match.platform_v2.host_opencv import configure_opencv_threads
+        host_opencv=configure_opencv_threads(host_threads)
+        write('HOST_OPENCV_STARTUP.json',host_opencv)
     identity=check_client(a.client_root)
     write('CLIENT_IDENTITY.json',identity)
     sys.path.insert(0,str(a.client_root.resolve()))
@@ -334,7 +431,7 @@ def run(a):
         sim.data.qpos[sim.qindices[rid][1]]=y-SPAWNS[rid][1]
     sim.data.qvel[:]=0;mujoco.mj_forward(sim.model,sim.data)
     write('PUBLIC_INITIAL_SCENE.json',dict(origin='Explicit public static test only; never native DTO',qpos=sim.data.qpos.tolist()))
-    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[]
+    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[];authority_stages={}
     def trace(row):
         event=row['event'];counts[event]+=1
         now=time.perf_counter()
@@ -391,6 +488,19 @@ def run(a):
             return super().close()
     runtime=TimedRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace,
         enable_native_pixels=a.private_native_pixels)
+    if getattr(a,'profile_authority',False):
+        # Local QPC stage timers only. No suspension, alternate clock or change
+        # to original scheduling/80ms/150ms gates; diagnostic overhead is explicit.
+        for obj,name,label in ((runtime,'_collect','collect'),(runtime,'_schedule','schedule'),
+            (runtime,'_targets','targets'),(backend,'_step','backend_step'),
+            (backend,'display_snapshot','display_snapshot'),(runtime.control,'snapshot','control_snapshot'),
+            (camera,'capture_from_authority','camera_authority_capture')):
+            original=getattr(obj,name);samples=authority_stages.setdefault(label,[])
+            def timed(*args,_original=original,_samples=samples,**kwargs):
+                start=time.perf_counter()
+                try:return _original(*args,**kwargs)
+                finally:_samples.append(time.perf_counter()-start)
+            setattr(obj,name,timed)
     server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=AdmissionPolicy.from_manifest(out/'admission.json')),runtime)
     http=threading.Thread(target=server.serve_forever,daemon=True)
     client=None;physics=None;native=None;native_process=None;sdk_events=[];timing={};sdk_admitted=False;window_acked=False
@@ -486,12 +596,22 @@ def run(a):
         and 0< b['sim_deadline']-b['capture_sim_time']<=.08+1e-9 for b in budgets)
     transport_evidence,evidence_collection=collect_transport_evidence(out/'native',native_process)
     actual_transport=(transport_evidence.get('STARTUP.json') or {}).get('transport')
+    async_measurements=(async_transaction_measurements(events,transport_evidence)
+        if a.native_transport=='wsl_async_bgr_v3' else None)
     pixel_audit=None
     if plan['criteria'].get('postclose_actual_pixel_audit'):
         from tools.audit_live_native_pixels import audit_saved_native_pixels
         pixel_audit=audit_saved_native_pixels(out)
         write('POST_CLOSE_PIXEL_AUDIT.json',pixel_audit)
+    host_unchanged=True
+    if host_opencv is not None:
+        import cv2
+        effective=cv2.getNumThreads()
+        host_unchanged=type(effective) is int and effective==host_opencv['effective_threads']
+        write('HOST_OPENCV_FINAL.json',dict(effective_threads=effective,unchanged=host_unchanged,
+            scope='Host API query after teardown; no Linux/C++ thread change'))
     measured=dict(configuration=plan['configuration'],duration_s=elapsed,
+        host_opencv_setting_unchanged=host_unchanged,
         physics_rtf=durations['physics_rtf'],run_durations=durations,raw_frames=len(raw),
         native_results=counts['native_result'],distinct_native_actuated_frames=len(consumed),
         source_unchanged=source_unchanged,sdk_admission=sdk_admitted,window_acknowledged=window_acked,
@@ -501,8 +621,9 @@ def run(a):
         postclose_actual_pixel_audit=pixel_audit is not None and pixel_audit.get('clean') is True,
         fire_true=counts['fire_true'],clean_shutdown=clean,errors=errors,
         **fault_and_evidence_measurements(events,counts,
-            writer_required=getattr(native,'_evidence_required',False)),
+            writer_required=getattr(native,'_evidence_required',False),async_measurements=async_measurements),
         **stage_measurements(events,raw,consumed,private_native_pixels=a.private_native_pixels,pixel_audit=pixel_audit))
+    if async_measurements is not None:measured.update(async_measurements)
     rejects=Counter()
     for event in events:
         if event['event']=='adapter_result':
@@ -526,11 +647,15 @@ def run(a):
         native_transport_evidence_collection=evidence_collection,
         image_preparation=image_stage_summary(events),
         raw_codec_identity=codec_identity,
+        host_opencv_startup=host_opencv,
         pixel_audit=pixel_audit,
         runtime_step_wall=distribution(step_durations),
+        authority_stage_timing=dict(enabled=bool(getattr(a,'profile_authority',False)),
+            clock='host_perf_counter',stages={k:distribution(v) for k,v in authority_stages.items()},
+            scope='Optional diagnostic timers add overhead; no time or control-window substitution'),
         native_identity=None if native_process is None else native_process.checked.metadata,
         native_spec=None if native_process is None else native_process.checked.linux_spec,
-        scope=PLAN['scope'])
+        scope=plan['scope'])
     write('RESULT.json',report)
     print(json.dumps(report['classification'],indent=2))
     return 0 if report['classification']['live_static_chain_qualified'] else 2
@@ -540,17 +665,21 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--linux-native-spec','--native-spec',dest='linux_native_spec',type=Path)
     p.add_argument('--distribution',default='Ubuntu')
-    p.add_argument('--native-transport',choices=('wsl_stdio_v1','wsl_stdio_bgr_v2'),default='wsl_stdio_v1')
+    p.add_argument('--native-transport',choices=('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'),default='wsl_stdio_v1')
     p.add_argument('--private-native-pixels',action='store_true',help='Explicit experimental own-native input before public base64 completion')
     p.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked')
+    p.add_argument('--host-opencv-threads',type=int,help='Explicit verified host camera OpenCV thread option, 1..32')
+    p.add_argument('--profile-authority',action='store_true',help='Additional local stage timers with explicit diagnostic overhead')
     p.add_argument('--client-root',type=Path)
     p.add_argument('--out',type=Path)
     p.add_argument('--seconds',type=float,default=10.)
     p.add_argument('--run',action='store_true')
     a=p.parse_args(argv)
+    if a.host_opencv_threads is not None and not 1<=a.host_opencv_threads<=32:p.error('--host-opencv-threads must be within 1..32')
     if not 10<=a.seconds<=20:p.error('Actual run must be bounded to 10..20 wall seconds')
     if not a.run:
-        print(json.dumps(build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec),indent=2));return 0
+        print(json.dumps(build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
+            host_opencv_threads=a.host_opencv_threads),indent=2));return 0
     for key in ('linux_native_spec','client_root','out'):
         if getattr(a,key) is None:p.error('--'+key.replace('_','-')+' is required with --run')
         setattr(a,key,getattr(a,key).resolve())
@@ -566,7 +695,8 @@ def main(argv=None):
             state='AFTER_STARTUP_FAILURE' if admitted else 'SETUP_FAILED',
             startup_admitted=admitted,runtime_evidence_available=(a.out/'RUNTIME_OBSERVATION.json').exists(),
             errors=[type(exc).__name__+':'+str(exc)],live_static_chain_qualified=False,
-            cleanup_qualified=False,plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec))
+            cleanup_qualified=False,plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
+                host_opencv_threads=a.host_opencv_threads))
         (a.out/'RESULT.json').write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(value,indent=2));return 2
 

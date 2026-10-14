@@ -8,6 +8,10 @@ PREFIX = '[RMCS-COMPILED-MODEL] '
 SCHEMA = 'rmcs.compiled-model-properties.v1'
 MAX_REPORT_BYTES = 4096
 MAX_STDERR_BYTES = 16 * 1024 * 1024
+OPENCV_PREFIX = '[RMCS-OPENCV-THREADS] '
+OPENCV_ENV = 'RMCS_DIAGNOSTIC_OPENCV_THREADS'
+INFERENCE_PREFIX = '[RMCS-INFERENCE-THREADS] '
+INFERENCE_ENV = 'RMCS_DIAGNOSTIC_OV_INFERENCE_THREADS'
 PROPERTIES = ('execution_devices', 'inference_num_threads', 'num_streams',
               'performance_mode', 'inference_precision', 'enable_cpu_pinning', 'scheduling_core_type')
 FIELDS = {'schema', 'profile', 'startup', 'native_ticks', 'inference_calls',
@@ -119,4 +123,98 @@ def parse_native_model_properties(stderr, *, expected_profile=None):
                                                and core['num_streams']['value'] > 0)
     except (ValueError, TypeError, UnicodeError, RecursionError) as exc:
         result['errors'].append(str(exc))
+    return result
+
+
+def parse_native_opencv_threads(stderr, *, expected_profile=None, expected_threads=None):
+    """Verify an explicit diagnostic API action, separate from model properties."""
+    result = dict(schema='polar.native-opencv-thread-api-report.v1', available=False,
+                  valid=False, record=None, errors=[])
+    try:
+        if type(stderr) is str: stderr = stderr.encode('utf-8')
+        if type(stderr) is not bytes or len(stderr) > MAX_STDERR_BYTES:
+            raise ValueError('stderr_type_or_bound')
+        lines = [line for line in stderr.splitlines(keepends=True) if line.startswith(b'[RMCS-OPENCV-THREADS]')]
+        result['available'] = bool(lines)
+        if len(lines) != 1: raise ValueError('missing_api_report' if not lines else 'duplicate_api_report')
+        if len(lines[0]) > 768 or not lines[0].endswith(b'\n'): raise ValueError('api_report_bound_or_truncated')
+        text = lines[0].decode('utf-8', errors='strict')
+        if not text.startswith(OPENCV_PREFIX): raise ValueError('malformed_api_report_prefix')
+        row = _json(text[len(OPENCV_PREFIX):])
+        fields = {'schema','profile','startup','native_ticks','inference_calls','clock_domain',
+                  'linux_steady_ns','requested','action','before_threads','after_threads','error'}
+        if type(row) is not dict or set(row) != fields: raise ValueError('api_report_fields')
+        result['record'] = row
+        if row['schema'] != 'rmcs.opencv-thread-api.v1' or not _text(row['profile']): raise ValueError('api_schema_or_profile')
+        if expected_profile is not None and (type(expected_profile) is not str or row['profile'] != expected_profile):
+            raise ValueError('api_profile_mismatch')
+        if (row['startup'] is not True or type(row['native_ticks']) is not int or row['native_ticks'] != 0
+            or type(row['inference_calls']) is not int or row['inference_calls'] != 0
+            or row['clock_domain'] != 'linux_steady_diagnostic_only'
+            or type(row['linux_steady_ns']) is not int or row['linux_steady_ns'] < 0):
+            raise ValueError('api_startup_or_clock')
+        if row['error'] is not None:
+            if row['error'] not in {'invalid_diagnostic_opencv_threads','opencv_thread_api_not_effective',
+                                    'opencv_thread_api_query_or_set_failed'}:
+                raise ValueError('api_error_reason')
+            raise ValueError(row['error'])
+        if any(type(row[k]) is not int or not 1 <= row[k] <= 65536 for k in ('before_threads','after_threads')):
+            raise ValueError('api_thread_type_or_bound')
+        if row['requested'] == 'original':
+            if row['action'] != 'none' or row['after_threads'] != row['before_threads']:
+                raise ValueError('api_original_setting_changed')
+        elif row['requested'] == '1':
+            if row['action'] != 'set_num_threads' or row['after_threads'] != 1:
+                raise ValueError('api_single_thread_not_effective')
+        else: raise ValueError('api_requested_enum')
+        if expected_threads is not None:
+            if type(expected_threads) is not int or expected_threads not in (1,32): raise ValueError('api_expected_threads_enum')
+            expected_request = '1' if expected_threads == 1 else 'original'
+            if row['requested'] != expected_request or row['after_threads'] != expected_threads:
+                raise ValueError('api_requested_or_effective_mismatch')
+        result['valid'] = True
+    except (ValueError, TypeError, UnicodeError, RecursionError) as exc:
+        result['errors'].append(str(exc))
+    return result
+
+
+def parse_native_inference_threads(stderr, *, expected_profile=None, expected_threads=None):
+    """Strict startup API evidence, separate from the actual model property report."""
+    result=dict(schema='polar.native-inference-thread-api-report.v1',available=False,valid=False,record=None,errors=[])
+    try:
+        if type(stderr) is str:stderr=stderr.encode('utf-8')
+        if type(stderr) is not bytes or len(stderr)>MAX_STDERR_BYTES:raise ValueError('stderr_type_or_bound')
+        lines=[line for line in stderr.splitlines(keepends=True) if line.startswith(b'[RMCS-INFERENCE-THREADS]')]
+        result['available']=bool(lines)
+        if len(lines)!=1:raise ValueError('missing_inference_api_report' if not lines else 'duplicate_inference_api_report')
+        if len(lines[0])>768 or not lines[0].endswith(b'\n'):raise ValueError('inference_api_bound_or_truncated')
+        text=lines[0].decode('utf-8',errors='strict')
+        if not text.startswith(INFERENCE_PREFIX):raise ValueError('inference_api_prefix')
+        row=_json(text[len(INFERENCE_PREFIX):])
+        fields={'schema','profile','startup','native_ticks','inference_calls','clock_domain','linux_steady_ns',
+                'requested','action','effective_threads','other_properties_unchanged','error'}
+        if type(row) is not dict or set(row)!=fields:raise ValueError('inference_api_fields')
+        result['record']=row
+        if row['schema']!='rmcs.inference-thread-api.v1' or not _text(row['profile']):raise ValueError('inference_api_schema_or_profile')
+        if expected_profile is not None and (type(expected_profile) is not str or row['profile']!=expected_profile):
+            raise ValueError('inference_api_profile_mismatch')
+        if (row['startup'] is not True or type(row['native_ticks']) is not int or row['native_ticks']!=0
+            or type(row['inference_calls']) is not int or row['inference_calls']!=0
+            or row['clock_domain']!='linux_steady_diagnostic_only'
+            or type(row['linux_steady_ns']) is not int or row['linux_steady_ns']<0):raise ValueError('inference_api_startup_or_clock')
+        if row['error'] is not None:
+            if type(row['error']) is not str or row['error'] not in {'inference_thread_api_not_effective',
+                'inference_thread_api_other_property_changed','inference_thread_api_query_failed'}:
+                raise ValueError('inference_api_error_reason')
+            raise ValueError(row['error'])
+        if row['other_properties_unchanged'] is not True:raise ValueError('inference_api_other_properties_unproved')
+        if type(row['effective_threads']) is not int:raise ValueError('inference_api_thread_type')
+        request,action,count=(row['requested'],row['action'],row['effective_threads'])
+        if (request,action,count) not in (('original','none',16),('4','core_set_property',4)):
+            raise ValueError('inference_api_setting_not_effective')
+        if expected_threads is not None:
+            if type(expected_threads) is not int or expected_threads not in (4,16) or count!=expected_threads:
+                raise ValueError('inference_api_expected_mismatch')
+        result['valid']=True
+    except (ValueError,TypeError,UnicodeError,RecursionError) as exc:result['errors'].append(str(exc))
     return result

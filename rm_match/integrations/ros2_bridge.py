@@ -18,6 +18,7 @@ from ..platform_v2.contracts import (ContractError,IDENTITY,exact,integer,string
 
 JSONL_SCHEMA='polar.sim.adapter.jsonl.v1'
 ENVELOPE_SCHEMA='polar.sim.ros2.envelope.v1'
+AIM_STATUS_SCHEMA='polar.sim.aim-status.v1'
 MAX_REQUEST=12*1024*1024
 MAX_RESPONSE=64*1024
 
@@ -109,12 +110,18 @@ class EnvelopeBridge:
         if self.clock()>=self._deadline:
             self._pending=None;raise BridgeError('ros2_response_timeout')
         envelope=parse_json(payload,MAX_RESPONSE)
-        exact(envelope,('schema','type','adapter_id','action'),'ros2_action_envelope')
-        for key,wanted in (('schema',ENVELOPE_SCHEMA),('type','action'),('adapter_id',self.settings.adapter_id)):
+        response_type=envelope.get('type') if type(envelope) is dict else None
+        status=response_type=='status' and self.settings.kind=='aim'
+        field='status' if status else 'action'
+        exact(envelope,('schema','type','adapter_id',field),'ros2_action_envelope')
+        for key,wanted in (('schema',ENVELOPE_SCHEMA),('type','status' if status else 'action'),('adapter_id',self.settings.adapter_id)):
             if type(envelope[key]) is not str or envelope[key]!=wanted:raise BridgeError('ros2_action_route_mismatch')
-        action=validate_action(envelope['action'],self._pending,self.capabilities)
+        if status:
+            from ..platform_v2.aim_contracts import validate_aim_status
+            action=validate_aim_status(envelope['status'],self._pending)
+        else:action=validate_action(envelope['action'],self._pending,self.capabilities)
         if any(type(action[k]) is not type(self._pending[k]) or action[k]!=self._pending[k] for k in IDENTITY):raise BridgeError('ros2_action_identity_mismatch')
-        if self.settings.kind=='aim' and action['command']['fire_permission']:raise BridgeError('ros2_automatic_fire_forbidden')
+        if not status and self.settings.kind=='aim' and action['command']['fire_permission']:raise BridgeError('ros2_automatic_fire_forbidden')
         if self.clock()>=self._deadline:
             self._pending=None;raise BridgeError('ros2_response_timeout')
         self._response=action;self._pending=None
@@ -153,7 +160,9 @@ def serve(core,transport,input_stream,output_stream):
             response=dict(schema=JSONL_SCHEMA,op=op,ok=True)
         elif op=='act':
             exact(request,('schema','op','observation'),'ros2_act_request')
-            response=dict(schema=JSONL_SCHEMA,op=op,ok=True,action=core.exchange(request['observation'],transport))
+            value=core.exchange(request['observation'],transport)
+            field='status' if value.get('schema')==AIM_STATUS_SCHEMA else 'action'
+            response=dict(schema=JSONL_SCHEMA,op=op,ok=True,**{field:value})
         else:raise BridgeError('ros2_unknown_operation')
         output_stream.write(encode_json(response,MAX_RESPONSE-1)+b'\n');output_stream.flush()
 

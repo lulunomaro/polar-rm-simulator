@@ -54,12 +54,16 @@ class EvidenceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             writer=Writer(directory)
             try:
+                self.assertTrue(writer.can_submit())
                 writer.submit(1,RAW,SHA);self.assertTrue(entered.wait(1.))
+                self.assertTrue(writer.can_submit())
                 second=bytes([54])*FRAME_BYTES;second_sha=hashlib.sha256(second).hexdigest()
                 writer.submit(2,second,second_sha);start=time.perf_counter()
+                self.assertFalse(writer.can_submit())
                 with self.assertRaises(NativeEvidenceBusy):writer.submit(3,RAW,SHA)
                 self.assertLess(time.perf_counter()-start,.1)
                 writer.request_stop()
+                with self.assertRaisesRegex(NativeEvidenceError,'stopped'):writer.can_submit()
                 with self.assertRaisesRegex(NativeEvidenceError,'stopped'):writer.submit(3,RAW,SHA)
                 release.set();status=writer.close(1.)
                 self.assertTrue(status['clean']);self.assertEqual(status['submitted'],2);self.assertEqual(status['written'],2)

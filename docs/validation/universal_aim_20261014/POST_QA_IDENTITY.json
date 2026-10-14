@@ -1,0 +1,49 @@
+{
+  "archive_manifest_sha256": "d98dd4ffcde74b391133d69854cfb7f545f1dcda091a796c206c02549afed7c8",
+  "archive_payloads": 2010,
+  "only_documentation_git_attributes_or_equivalent_json": true,
+  "post_qa_changes": [
+    {
+      "current_sha256": "7dadd2f00b88229e2ba9988fba2359297e8c41aeccb9ed5d156c0f4f58ad51e1",
+      "path": ".gitattributes",
+      "qa_sha256": "885f0b9fb68f950b97cc32d7f28b1aac3b12471ee271149c24f2d953a4d37315"
+    },
+    {
+      "current_sha256": "9098ea4fa8be80017d25630a4770423c81c3369384f4ca830754ee7753cb8211",
+      "path": "docs/AIM_PLUGIN_COMPATIBILITY.md",
+      "qa_sha256": "31f0c50c8809c5a9e9eb0d88db3978a80e98d13647c0409b346705928539e4e4"
+    },
+    {
+      "current_sha256": "1b76693fbb0e8a019acfd3ce49d4280c534325b9ea9e31a0a8474b544bf4bf1c",
+      "path": "docs/IMPLEMENTATION_PROGRESS.md",
+      "qa_sha256": "9434929bd2f3739b9749ff8f19d39b5b33f04ba00762f1b97d2cd909a3a7e5ac"
+    },
+    {
+      "current_sha256": "0d990c79ecf1bc1b0f9de8135e17a6508eb8e856708cfa7b7a1832e62b10c582",
+      "path": "docs/PB2025_AIM_ADAPTER_SOURCE.md",
+      "qa_sha256": "a8715fd6d58cb66c7d585ed81cdc0114a84f06687bc7e3b5511955af15a4decb"
+    },
+    {
+      "current_sha256": "cea94898926e124b0ec9a5e7dd07fcb1236fdce6f202f6030cf6b485a775d0c7",
+      "path": "docs/validation/universal_aim_20261014/INDEX.tsv",
+      "qa_sha256": "dd183ab6e8c5f9f7d9ac80f864dca074f426a120ea7f0b693812b3dd1aaa9bce"
+    },
+    {
+      "current_sha256": "d98dd4ffcde74b391133d69854cfb7f545f1dcda091a796c206c02549afed7c8",
+      "path": "docs/validation/universal_aim_20261014/PRESERVATION_MANIFEST.json",
+      "qa_sha256": "f59dbc9f34572b6d131804c743c50cacbed6d4f3a5cdfd26814d42dc711d191d"
+    },
+    {
+      "current_sha256": "cb31ba24b9d80d8d631d0fbd483da8598efcdc48efc09c2c4e4360fb9ee3d74e",
+      "path": "docs/validation/universal_aim_20261014/README.md",
+      "qa_sha256": "badf7ed61bbc7f2c4b540cdf599e74a260cd9bcea038d04f2e11f7a6d8a11cbc"
+    },
+    {
+      "current_sha256": "d32b64074e61ad3150b88bd643e49d3b2638d0b9d03907ad4f364d227110b4bb",
+      "path": "examples/aim_plugins.json",
+      "qa_sha256": "64a32b199defdc3599e688deaf35d5022ecd02f24d42a15bb1f509f826cd838c"
+    }
+  ],
+  "qa_manifest_sha256": "33438e96318b7b4d70fb27f2d62929f25a8817e372caae78f37c8dd44d488231",
+  "tested_program_files_unchanged": 502
+}

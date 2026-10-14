@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "C:/Windows/System32/wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--",
+    "/usr/bin/python3",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/build_pb_aim_plugins.py",
+    "--out",
+    "/root/polar-pb-aim-preflight-20261014-02",
+    "--extra-prefix-manifest",
+    "/root/polar-pb-aim-system-deps-20261014-02/DEPENDENCY_PREFIX.json",
+    "--extra-prefix-sha256",
+    "c29618cb4fde672d698357e932e121a879efd7a1037b3f1defca0e53b861dcc6",
+    "--preflight-only"
+  ],
+  "pid": 8292,
+  "driver_pid": 52096,
+  "returncode": 1,
+  "reaped": true,
+  "elapsed_s": 4.494713000000047
+}

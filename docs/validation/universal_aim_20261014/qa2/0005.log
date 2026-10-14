@@ -1,0 +1,51 @@
+.................................................... [  3%]
+...............................................ss....................... [  7%]
+........................................s............................. [ 11%]
+............................s................ss....................... [ 15%]
+........s....................................................................s......... [ 20%]
+............................................. [ 23%]
+................................................................ [ 27%]
+........sssssssss................................................s.............s. [ 32%]
+...................s..s. [ 33%]
+...s...............s...................s...........ss....s.................................. [ 38%]
+.........................sssssss........................................................................................................s............... [ 47%]
+........................................................................ [ 52%]
+........................................................................ [ 56%]
+....................................s........ss......................... [ 60%]
+..................................... [ 62%]
+...............s......................................................................... [ 68%]
+......................................................................................................... [ 74%]
+.................................................................... [ 78%]
+......................................... [ 80%]
+...................................................... [ 84%]
+................................................................................. [ 88%]
+.............................................................................................. [ 94%]
+.............................................................. [ 98%]
+...............................                                          [100%]
+============================== warnings summary ===============================
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_camera.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_native_timing.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:28
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:28: PytestCollectionWarning: cannot collect test class 'TestAdapter' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestAdapter:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_runtime.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_server.py)
+    class TestRegistry:
+
+rm_match\platform_v2\test_runtime.py:52
+  C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\test_runtime.py:52: PytestCollectionWarning: cannot collect test class 'TestRegistry' because it has a __init__ constructor (from: rm_match/platform_v2/test_spin_feedback.py)
+    class TestRegistry:
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+1648 passed, 39 skipped, 6 warnings, 1008 subtests passed in 128.12s (0:02:08)

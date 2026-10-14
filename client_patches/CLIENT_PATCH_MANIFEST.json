@@ -2,7 +2,7 @@
   "schema": "polar.sim.own_client_patch.v1",
   "base_commit": "0cedf99b70b1beec99865b9980af6789e6c53d99",
   "patch_file": "operator_state_v1.patch",
-  "patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+  "patch_sha256": "a889f79c20ff850c2531ed52f0bb3b8b55facf4f201efa5ccf45149bb7b1a331",
   "source_hash_scope": "UTF-8 file bytes with CRLF normalized to LF; checkout hashes recorded separately",
   "files": {
     "rm_client/sim_operator_runtime.py": {
@@ -28,9 +28,9 @@
     },
     "rm_client/sim_platform_transport.py": {
       "before_sha256": "60e75908172c4dcf431d121ffb9fd215bc59922048020e38cfa46b8746662161",
-      "after_sha256": "a1c3ae2795f56d8841fcfe83794078cc6097c4f66d0e32210ac4ec03076387ca",
+      "after_sha256": "eb6d00b54993ef23ff925006eb61fcbd9c801dd114e0562055c0680e98a5f280",
       "before_checkout_sha256": "e89e762c710325d347a8814b124437f33f3b70c8e5a7aff7d3eba70fe221c464",
-      "after_checkout_sha256": "f88da5f4cbceef176bc0748e869af85d276bfb8723f3ad09e7b1e68a72a6db51",
+      "after_checkout_sha256": "b8cd937fa72f9db95eaea80b2a96b94a0fd3d735f3811afe99b78262ec4bcfa3",
       "reason": "Limited operator state/camera projection, memory admission and strict offline clock lifecycle support"
     },
     "rm_client/ui/minecraft_hud.py": {
@@ -158,9 +158,30 @@
       "before_checkout_sha256": null,
       "after_checkout_sha256": "4c2cafc539a26e8d663c421c390b9fc8c44cb589a3324a904d1158e7164877cf",
       "reason": "Admission-aware tools/fixtures and actual Qt/privacy/clock/guard regression"
+    },
+    "rm_client/sim_platform_adapters.py": {
+      "before_sha256": "1ed09f294d1e72fd118602919b866faac729eae6332cdd14d5f0e4ae5cf2ba97",
+      "after_sha256": "6d763197727bbdfa9687e72c1e1b2025331b58d6d1df11ff1eab12826a4e2161",
+      "before_checkout_sha256": "1ed09f294d1e72fd118602919b866faac729eae6332cdd14d5f0e4ae5cf2ba97",
+      "after_checkout_sha256": "03a8bccc69e03482ccd3afe6e0688aa72fac1ea2c575d41a7fe118c5bf1594db",
+      "reason": "Generic reviewed aim-plugin discovery and typed own source status; declared interface only"
+    },
+    "tests/test_aim_plugin_discovery.py": {
+      "before_sha256": null,
+      "after_sha256": "29b913d20cb87ce9d10ea95a1461623751cd17d0b4e747a677bbbf7c950b2325",
+      "before_checkout_sha256": null,
+      "after_checkout_sha256": "29b913d20cb87ce9d10ea95a1461623751cd17d0b4e747a677bbbf7c950b2325",
+      "reason": "Generic reviewed aim-plugin discovery and typed own source status; declared interface only"
+    },
+    "tests/test_aim_status_display.py": {
+      "before_sha256": null,
+      "after_sha256": "9f350aadc1db9da7749abf84396f84b75b5af047ce850a77d49a16bbca41640c",
+      "before_checkout_sha256": null,
+      "after_checkout_sha256": "9f350aadc1db9da7749abf84396f84b75b5af047ce850a77d49a16bbca41640c",
+      "reason": "Generic reviewed aim-plugin discovery and typed own source status; declared interface only"
     }
   },
-  "reason": "Own Qt client compatibility with operator_limited_display / operator_camera_display_v1 and admission, without world-position metadata or opponent dynamic HUD; preserve explicit claim/HUD/arm/window/focus/fire guards",
+  "reason": "Limited operator/admission/offline compatibility plus reviewed generic camera aim-plugin discovery and source-bound status",
   "qualification": "Own client at pinned base with reviewed patch, not original byte-exact client",
   "validation": {
     "actual_qt_and_corresponding_regressions_passed": 282,
@@ -178,8 +199,11 @@
     "fire_outputs_true": 0,
     "strict_offline_clock_focused_tests_passed": 5,
     "strict_offline_clock_and_transport_tests_passed": 43,
-    "actual_qt_regression_log": "artifacts/plan-start/client-qt-offline-clock-regressions.log"
+    "actual_qt_regression_log": "artifacts/plan-start/client-qt-offline-clock-regressions.log",
+    "historical_validation_patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee",
+    "current_aim_plugin_pure_client_tests": 9,
+    "current_plugin_actual_detector_gui_DDS_qualified": false
   },
   "apply_command": "python tools/apply_client_patch.py --client-root PATH --run",
-  "previous_patch_sha256": "52fe289ea953e39110d00e4b58d63ddff20eee2c9155c30b3d4139ffc7d6bc19"
+  "previous_patch_sha256": "91e3653df439289e25d64eb334f9c6f6a73e0c4aa8e3615ce968010e3b1860ee"
 }

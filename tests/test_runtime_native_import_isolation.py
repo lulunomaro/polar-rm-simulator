@@ -102,5 +102,21 @@ print(json.dumps({'fresh_process':True,'navigation_runtime_cases':3,'actual_json
             AdapterSlot._cancel_native(instance)
         cancel.assert_called_once_with(instance)
 
+    def test_exact_reviewed_json_types_cancel_without_running_subclass_hooks(self):
+        from rm_match.deployment.json_adapter import JsonLineAdapter
+        from rm_match.deployment.aim_plugin import AimPluginAdapter
+        from rm_match.deployment.wsl_jsonl import WslAimPluginAdapter
+        from rm_match.platform_v2.runtime import AdapterSlot
+        for cls in (JsonLineAdapter,AimPluginAdapter,WslAimPluginAdapter):
+            instance=object.__new__(cls)
+            with self.subTest(cls=cls.__name__),patch.object(JsonLineAdapter,'cancel') as cancel:
+                AdapterSlot._cancel_native(instance)
+                cancel.assert_called_once_with(instance)
+        class ArbitraryJsonSubclass(JsonLineAdapter):
+            def cancel(self):raise AssertionError('arbitrary hook must not run')
+        with patch.object(JsonLineAdapter,'cancel') as cancel:
+            AdapterSlot._cancel_native(object.__new__(ArbitraryJsonSubclass))
+            cancel.assert_not_called()
+
 
 if __name__=='__main__':unittest.main()

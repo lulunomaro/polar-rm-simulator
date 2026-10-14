@@ -1,0 +1,72 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ros-humble-compressed-depth-image-transport
+  ros-humble-compressed-image-transport ros-humble-theora-image-transport
+The following NEW packages will be installed:
+  nlohmann-json3-dev ros-humble-compressed-depth-image-transport
+  ros-humble-compressed-image-transport ros-humble-image-transport-plugins
+  ros-humble-theora-image-transport ros-humble-vision-opencv
+The following packages will be upgraded:
+  ros-humble-cv-bridge ros-humble-example-interfaces ros-humble-geometry-msgs
+  ros-humble-image-transport ros-humble-message-filters ros-humble-rclcpp
+  ros-humble-rclcpp-components ros-humble-rosidl-default-generators
+  ros-humble-rosidl-default-runtime ros-humble-sensor-msgs ros-humble-std-msgs
+  ros-humble-std-srvs ros-humble-tf2-geometry-msgs ros-humble-tf2-ros
+  ros-humble-visualization-msgs
+15 upgraded, 6 newly installed, 6 reinstalled, 0 to remove and 217 not upgraded.
+Inst libopencv-dev [4.5.4+dfsg-9ubuntu4] (4.5.4+dfsg-9ubuntu4 Ubuntu:22.04/jammy [amd64])
+Inst nlohmann-json3-dev (3.10.5-2 Ubuntu:22.04/jammy [all])
+Inst ros-humble-ament-cmake [1.3.14-1jammy.20260226.035055] (1.3.14-1jammy.20260226.035055 ROS jammy:jammy [amd64])
+Inst ros-humble-ament-cmake-auto [1.3.14-1jammy.20260304.074922] (1.3.14-1jammy.20260304.074922 ROS jammy:jammy [amd64])
+Inst ros-humble-angles [1.15.0-1jammy.20260304.075013] (1.15.0-1jammy.20260304.075013 ROS jammy:jammy [amd64])
+Inst ros-humble-rosidl-default-runtime [1.2.1-1jammy.20260718.000013] (1.2.1-1jammy.20260907.201130 ROS jammy:jammy [amd64])
+Inst ros-humble-std-msgs [4.9.2-1jammy.20260718.010840] (4.9.2-1jammy.20260907.205027 ROS jammy:jammy [amd64])
+Inst ros-humble-geometry-msgs [4.9.2-1jammy.20260718.012617] (4.9.2-1jammy.20260907.210358 ROS jammy:jammy [amd64])
+Inst ros-humble-sensor-msgs [4.9.2-1jammy.20260718.014433] (4.9.2-1jammy.20260907.212033 ROS jammy:jammy [amd64])
+Inst ros-humble-cv-bridge [3.2.1-1jammy.20260718.023548] (3.2.1-1jammy.20260907.220118 ROS jammy:jammy [amd64])
+Inst ros-humble-rclcpp [16.0.19-1jammy.20260724.021311] (16.0.21-1jammy.20260907.213403 ROS jammy:jammy [amd64])
+Inst ros-humble-message-filters [4.3.19-1jammy.20260726.111837] (4.3.20-1jammy.20260907.223809 ROS jammy:jammy [amd64])
+Inst ros-humble-image-transport [3.1.13-1jammy.20260726.121656] (3.1.13-1jammy.20260907.224758 ROS jammy:jammy [amd64])
+Inst ros-humble-compressed-depth-image-transport (2.5.5-1jammy.20260908.002700 ROS jammy:jammy [amd64])
+Inst ros-humble-compressed-image-transport (2.5.5-1jammy.20260908.002726 ROS jammy:jammy [amd64])
+Inst ros-humble-eigen3-cmake-module [0.1.1-4jammy.20260304.195907] (0.1.1-4jammy.20260304.195907 ROS jammy:jammy [amd64])
+Inst ros-humble-example-interfaces [0.9.3-2jammy.20260718.011806] (0.9.3-2jammy.20260907.205601 ROS jammy:jammy [amd64])
+Inst ros-humble-theora-image-transport (2.5.5-1jammy.20260907.230003 ROS jammy:jammy [amd64])
+Inst ros-humble-image-transport-plugins (2.5.5-1jammy.20260908.011646 ROS jammy:jammy [amd64])
+Inst ros-humble-rclcpp-components [16.0.19-1jammy.20260726.112306] (16.0.21-1jammy.20260907.223024 ROS jammy:jammy [amd64])
+Inst ros-humble-rosidl-default-generators [1.2.1-1jammy.20260718.000113] (1.2.1-1jammy.20260907.201146 ROS jammy:jammy [amd64])
+Inst ros-humble-std-srvs [4.9.2-1jammy.20260718.011109] (4.9.2-1jammy.20260907.204811 ROS jammy:jammy [amd64])
+Inst ros-humble-tf2-ros [0.25.22-1jammy.20260804.155840] (0.25.24-1jammy.20260915.204410 ROS jammy:jammy [amd64])
+Inst ros-humble-tf2-geometry-msgs [0.25.22-1jammy.20260804.194827] (0.25.24-1jammy.20260915.205448 ROS jammy:jammy [amd64])
+Inst ros-humble-vision-opencv (3.2.1-1jammy.20260907.222402 ROS jammy:jammy [amd64])
+Inst ros-humble-visualization-msgs [4.9.2-1jammy.20260718.020205] (4.9.2-1jammy.20260907.213259 ROS jammy:jammy [amd64])
+Inst libeigen3-dev [3.4.0-2ubuntu2] (3.4.0-2ubuntu2 Ubuntu:22.04/jammy [all])
+Conf libopencv-dev (4.5.4+dfsg-9ubuntu4 Ubuntu:22.04/jammy [amd64])
+Conf nlohmann-json3-dev (3.10.5-2 Ubuntu:22.04/jammy [all])
+Conf ros-humble-ament-cmake (1.3.14-1jammy.20260226.035055 ROS jammy:jammy [amd64])
+Conf ros-humble-ament-cmake-auto (1.3.14-1jammy.20260304.074922 ROS jammy:jammy [amd64])
+Conf ros-humble-angles (1.15.0-1jammy.20260304.075013 ROS jammy:jammy [amd64])
+Conf ros-humble-rosidl-default-runtime (1.2.1-1jammy.20260907.201130 ROS jammy:jammy [amd64])
+Conf ros-humble-std-msgs (4.9.2-1jammy.20260907.205027 ROS jammy:jammy [amd64])
+Conf ros-humble-geometry-msgs (4.9.2-1jammy.20260907.210358 ROS jammy:jammy [amd64])
+Conf ros-humble-sensor-msgs (4.9.2-1jammy.20260907.212033 ROS jammy:jammy [amd64])
+Conf ros-humble-cv-bridge (3.2.1-1jammy.20260907.220118 ROS jammy:jammy [amd64])
+Conf ros-humble-rclcpp (16.0.21-1jammy.20260907.213403 ROS jammy:jammy [amd64])
+Conf ros-humble-message-filters (4.3.20-1jammy.20260907.223809 ROS jammy:jammy [amd64])
+Conf ros-humble-image-transport (3.1.13-1jammy.20260907.224758 ROS jammy:jammy [amd64])
+Conf ros-humble-compressed-depth-image-transport (2.5.5-1jammy.20260908.002700 ROS jammy:jammy [amd64])
+Conf ros-humble-compressed-image-transport (2.5.5-1jammy.20260908.002726 ROS jammy:jammy [amd64])
+Conf ros-humble-eigen3-cmake-module (0.1.1-4jammy.20260304.195907 ROS jammy:jammy [amd64])
+Conf ros-humble-example-interfaces (0.9.3-2jammy.20260907.205601 ROS jammy:jammy [amd64])
+Conf ros-humble-theora-image-transport (2.5.5-1jammy.20260907.230003 ROS jammy:jammy [amd64])
+Conf ros-humble-image-transport-plugins (2.5.5-1jammy.20260908.011646 ROS jammy:jammy [amd64])
+Conf ros-humble-rclcpp-components (16.0.21-1jammy.20260907.223024 ROS jammy:jammy [amd64])
+Conf ros-humble-rosidl-default-generators (1.2.1-1jammy.20260907.201146 ROS jammy:jammy [amd64])
+Conf ros-humble-std-srvs (4.9.2-1jammy.20260907.204811 ROS jammy:jammy [amd64])
+Conf ros-humble-tf2-ros (0.25.24-1jammy.20260915.204410 ROS jammy:jammy [amd64])
+Conf ros-humble-tf2-geometry-msgs (0.25.24-1jammy.20260915.205448 ROS jammy:jammy [amd64])
+Conf ros-humble-vision-opencv (3.2.1-1jammy.20260907.222402 ROS jammy:jammy [amd64])
+Conf ros-humble-visualization-msgs (4.9.2-1jammy.20260907.213259 ROS jammy:jammy [amd64])
+Conf libeigen3-dev (3.4.0-2ubuntu2 Ubuntu:22.04/jammy [all])

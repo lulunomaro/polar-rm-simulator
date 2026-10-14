@@ -224,6 +224,7 @@ def validate_linux_spec(path, expected_sha):
     inputs=build['input_identity']
     if inputs.get('algorithm_identity')!=spec['source_identity'] or inputs.get('corner_refinement')!=revision or inputs.get('additional_source_files')!=extra:
         raise ValueError('Linux source lineage mismatch')
+    profile.validate_inference_build_metadata(spec,build,build_root=root)
     for rel,digest in inputs['source_files'].items():
         if profile.digest(profile.RUNTIME_ROOT/rel)!=digest: raise ValueError('Linux recovered source mismatch')
     for rel,digest in inputs['generated_sha256'].items():

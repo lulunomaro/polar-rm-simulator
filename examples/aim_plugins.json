@@ -1,0 +1,122 @@
+{
+  "schema": "polar.sim.aim-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_calibrated_camera_aim",
+      "label": "Reviewed external camera aim wrapper; explicit local implementation required",
+      "command": [
+        "{python}",
+        "-u",
+        "reviewed_aim_wrapper.py"
+      ],
+      "cwd": "..",
+      "supported_robots": [
+        "red_sentry"
+      ],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.aim-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.observation.v2",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.aim-status.v1",
+        "sensor_profile": "calibrated_camera_capture_own_v1",
+        "pipeline_level": "direct_gimbal_v1",
+        "source_association": "exact_capture_context_v1",
+        "image_encodings": [
+          "rgb8",
+          "bgr8"
+        ],
+        "output_modes": [
+          "gimbal_target"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1"
+      }
+    },
+    {
+      "adapter_id": "custom_ros2_calibrated_aim",
+      "label": "ROS 2 calibrated camera aim peer; external real algorithm required",
+      "command": [
+        "{python}",
+        "-u",
+        "-m",
+        "rm_match.integrations.ros2_bridge",
+        "--adapter-id",
+        "custom_ros2_calibrated_aim",
+        "--kind",
+        "aim",
+        "--node-name",
+        "polar_calibrated_aim_bridge",
+        "--observation-topic",
+        "/polar/calibrated_aim/observation",
+        "--action-topic",
+        "/polar/calibrated_aim/response",
+        "--domain-id",
+        "78",
+        "--response-timeout",
+        "0.08"
+      ],
+      "cwd": "..",
+      "supported_robots": [
+        "red_sentry"
+      ],
+      "transport": "ros2_envelope_v1",
+      "capabilities": {
+        "schema": "polar.sim.aim-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.observation.v2",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.aim-status.v1",
+        "sensor_profile": "calibrated_camera_capture_own_v1",
+        "pipeline_level": "direct_gimbal_v1",
+        "source_association": "exact_capture_context_v1",
+        "image_encodings": [
+          "rgb8",
+          "bgr8"
+        ],
+        "output_modes": [
+          "gimbal_target"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1"
+      }
+    },
+    {
+      "adapter_id": "custom_wsl_calibrated_camera_aim",
+      "label": "WSL canonical JSONL peer; replace local paths, explicit prepare required",
+      "command": [
+        "/opt/polar-reviewed/venv/bin/python",
+        "-u",
+        "-m",
+        "reviewed_aim_wrapper"
+      ],
+      "cwd": "/opt/polar-reviewed/workspace",
+      "supported_robots": [
+        "red_sentry"
+      ],
+      "transport": "wsl_jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.aim-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.observation.v2",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.aim-status.v1",
+        "sensor_profile": "calibrated_camera_capture_own_v1",
+        "pipeline_level": "direct_gimbal_v1",
+        "source_association": "exact_capture_context_v1",
+        "image_encodings": [
+          "rgb8",
+          "bgr8"
+        ],
+        "output_modes": [
+          "gimbal_target"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1"
+      },
+      "wsl": {
+        "distribution": "Ubuntu-22.04",
+        "python": "/opt/polar-reviewed/venv/bin/python",
+        "process_env": {}
+      }
+    }
+  ]
+}

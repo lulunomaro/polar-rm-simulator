@@ -1,0 +1,532 @@
+{
+  "001-BUILD_RESULT.json": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/BUILD_RESULT.json",
+    "sha256": "be410d26e3488f8dd39213bfcc53c28487fcbf624f46b5540f80d59aea17352d",
+    "bytes": 337423
+  },
+  "002-SOURCE_COPY.json": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/SOURCE_COPY.json",
+    "sha256": "90add16dd42bb4d9f9361a7fa24ff8baec5d19bbcd7e796b2df9c24dea33af44",
+    "bytes": 46342
+  },
+  "003-build.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/build.log",
+    "sha256": "46ac000a3959455c67cc33bf0f3c1fa421696c6f7641e486de64928ac24dbd04",
+    "bytes": 4049
+  },
+  "004-cmake_preflight.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/cmake_preflight.log",
+    "sha256": "e36f7435e9b04277d397aff313120270a0a68dadca18d2c52aa7325f650bd218",
+    "bytes": 3995
+  },
+  "005-ENVIRONMENT_COMPAT_FINAL.json": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/inputs/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "bytes": 1632
+  },
+  "006-MOUNTS.json": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/inputs/MOUNTS.json",
+    "sha256": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+    "bytes": 10320
+  },
+  "007-SYSTEM_OPENCV_AFTER.json": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/inputs/SYSTEM_OPENCV_AFTER.json",
+    "sha256": "afd5cfe85b5afd1cc64b7d64e2cd6729450254ebfa8c28231a19949c0a4edccf",
+    "bytes": 192205
+  },
+  "008-SYSTEM_OPENCV_BEFORE.json": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/inputs/SYSTEM_OPENCV_BEFORE.json",
+    "sha256": "afd5cfe85b5afd1cc64b7d64e2cd6729450254ebfa8c28231a19949c0a4edccf",
+    "bytes": 192205
+  },
+  "009-ldd-lib_armor_detector_opencv_armor_detector_opencv_node.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_armor_detector_opencv_armor_detector_opencv_node.log",
+    "sha256": "5804aa052ac53af85302948603c89e6f4ae7f8fe4b3ff01a0b0e85cc69eace3d",
+    "bytes": 2925
+  },
+  "010-ldd-lib_armor_tracker_armor_tracker_node.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_armor_tracker_armor_tracker_node.log",
+    "sha256": "c32d6e73682a04825ed3bc7d1eb9cb3199f9d70fd6e2848140d21d8a2db2a566",
+    "bytes": 2925
+  },
+  "011-ldd-lib_libarmor_detector_opencv.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libarmor_detector_opencv.so.log",
+    "sha256": "35844fb0eba37b8f1bfccc782fb22c819974bb2ab6104d30cc08fc27ea8455f4",
+    "bytes": 14663
+  },
+  "012-ldd-lib_libarmor_tracker.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libarmor_tracker.so.log",
+    "sha256": "c15e6d5317a049c74cf5cb3cd7ef5506858f0ba5c8bb7dd9c5ae56e0f2a36861",
+    "bytes": 4647
+  },
+  "013-ldd-lib_libauto_aim_interfaces__rosidl_generator_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_generator_c.so.log",
+    "sha256": "15df4b6ecc83a13af3cc27bddede8cca206687e7ce84ed6ec85f2db6b6e082df",
+    "bytes": 792
+  },
+  "014-ldd-lib_libauto_aim_interfaces__rosidl_generator_py.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_generator_py.so.log",
+    "sha256": "abcd969aac8fee8f7f5a1c12feac11a2f34fc985a8555608cdfa722b32ba9969",
+    "bytes": 1735
+  },
+  "015-ldd-lib_libauto_aim_interfaces__rosidl_typesupport_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_typesupport_c.so.log",
+    "sha256": "a93341d5af63c539434a3bf9d68f8ebff4ee58a810225d3a3fd3dd3e9ab36a65",
+    "bytes": 623
+  },
+  "016-ldd-lib_libauto_aim_interfaces__rosidl_typesupport_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_typesupport_cpp.so.log",
+    "sha256": "5c19ab8a6701c0558c0b79d9a1a5551307558baa24c216d02132de9cea54e991",
+    "bytes": 627
+  },
+  "017-ldd-lib_libauto_aim_interfaces__rosidl_typesupport_fastrtps_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_typesupport_fastrtps_c.so.log",
+    "sha256": "2ea90492cc4f94d53fc4cf30a3f877c86e832cf11e2724dd85ccba4cc82e9f2f",
+    "bytes": 1910
+  },
+  "018-ldd-lib_libauto_aim_interfaces__rosidl_typesupport_fastrtps_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_typesupport_fastrtps_cpp.so.log",
+    "sha256": "79c7a768c5feb0bbd0d14f1f80780f0578dbf8469c6c810bc541f9514bc736a7",
+    "bytes": 1287
+  },
+  "019-ldd-lib_libauto_aim_interfaces__rosidl_typesupport_introspection_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_typesupport_introspection_c.so.log",
+    "sha256": "901ae8f26801ad9b9e6ed42f4d369415ddd074e5ae00d9074abe8fba9d938d28",
+    "bytes": 1654
+  },
+  "020-ldd-lib_libauto_aim_interfaces__rosidl_typesupport_introspection_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libauto_aim_interfaces__rosidl_typesupport_introspection_cpp.so.log",
+    "sha256": "74ffff5dada5f64aef45b30d85d085b409a43e5e113e73ca631016012e176c80",
+    "bytes": 1250
+  },
+  "021-ldd-lib_libpb_rm_interfaces__rosidl_generator_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_generator_c.so.log",
+    "sha256": "bef8324c068f84191102b25c71f8155c55cd9815b70c476373da67646b6f973a",
+    "bytes": 792
+  },
+  "022-ldd-lib_libpb_rm_interfaces__rosidl_generator_py.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_generator_py.so.log",
+    "sha256": "339167eec2c204a96549cb0ba0d0e3613ed7b5f39fdc71488a4ecb52e1e99311",
+    "bytes": 1569
+  },
+  "023-ldd-lib_libpb_rm_interfaces__rosidl_typesupport_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_typesupport_c.so.log",
+    "sha256": "45daa510605681271a18020abe1307783cfe0a866aab7feeae14d46022e508cb",
+    "bytes": 623
+  },
+  "024-ldd-lib_libpb_rm_interfaces__rosidl_typesupport_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_typesupport_cpp.so.log",
+    "sha256": "92d8868fa6688cd9feb4766df5f8588e59da4946a1004405d4dde2dfd259e29c",
+    "bytes": 627
+  },
+  "025-ldd-lib_libpb_rm_interfaces__rosidl_typesupport_fastrtps_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_typesupport_fastrtps_c.so.log",
+    "sha256": "2a45a9f62a2e0889d9c1051b7dc0abb1a1bb32b43b9e8740cdaa3fab60529a12",
+    "bytes": 1744
+  },
+  "026-ldd-lib_libpb_rm_interfaces__rosidl_typesupport_fastrtps_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_typesupport_fastrtps_cpp.so.log",
+    "sha256": "4826af054e45cd06e4b0f299f797fd293533dc907f044692e844485ebe2aa0f3",
+    "bytes": 1287
+  },
+  "027-ldd-lib_libpb_rm_interfaces__rosidl_typesupport_introspection_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_typesupport_introspection_c.so.log",
+    "sha256": "a3b13d6855bc71cd8c633fa54c7c3becf7fdbc5485da73b39173929a83cabf88",
+    "bytes": 1648
+  },
+  "028-ldd-lib_libpb_rm_interfaces__rosidl_typesupport_introspection_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpb_rm_interfaces__rosidl_typesupport_introspection_cpp.so.log",
+    "sha256": "75dde856748f4cc5b29c62835a4d6b8c3ee6dae880cb4c79423d2323f281a658",
+    "bytes": 1250
+  },
+  "029-ldd-lib_libpolar_pb_aim_interfaces__rosidl_generator_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_generator_c.so.log",
+    "sha256": "f72fab93e96bc802117106fbb998e14507dbd9e826a4473e4dcd087b87c01cc7",
+    "bytes": 1128
+  },
+  "030-ldd-lib_libpolar_pb_aim_interfaces__rosidl_generator_py.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_generator_py.so.log",
+    "sha256": "c4e6bf4261019b8737f5c5e0a8fe58c28eb4e9ef6dd59ee05c1328bb2723ccbd",
+    "bytes": 2245
+  },
+  "031-ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_c.so.log",
+    "sha256": "52550febb5777de02c6282dd84a678bd0250c9589a0ffc4b98d11073413c61ab",
+    "bytes": 623
+  },
+  "032-ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_cpp.so.log",
+    "sha256": "fd08787c1824ea33a0aa133a786c8d2f7325c150b5307093c4fba17d5b85d979",
+    "bytes": 627
+  },
+  "033-ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_fastrtps_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_fastrtps_c.so.log",
+    "sha256": "a51aa32ada2a9cc241dd130eb11ab9a16fb9050745b5601176b2bd25ef1f469c",
+    "bytes": 2460
+  },
+  "034-ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_fastrtps_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_fastrtps_cpp.so.log",
+    "sha256": "c418d9b6028f389452229852a07b23ee33d5e36b2fa19dbab201131a5b45959a",
+    "bytes": 1675
+  },
+  "035-ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_introspection_c.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_introspection_c.so.log",
+    "sha256": "5c0b3fe3787c951254d685a69d3352cd45670354d7408e78fbeee7325328847c",
+    "bytes": 2398
+  },
+  "036-ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_introspection_cpp.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libpolar_pb_aim_interfaces__rosidl_typesupport_introspection_cpp.so.log",
+    "sha256": "e100ba32280910d21530f7e8294bd31ed621685171ce2b754860516e1eb6777d",
+    "bytes": 1658
+  },
+  "037-ldd-lib_libprojectile_motion.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_libprojectile_motion.so.log",
+    "sha256": "35fa72399da87cfc58535e86707c8e6a9ff03c44a6b3635a53fcbb6369d887cb",
+    "bytes": 4706
+  },
+  "038-ldd-lib_librmoss_projectile_motion.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_librmoss_projectile_motion.so.log",
+    "sha256": "1a457075bfc22a083be918640139f3266c40cc6f0300ce727046cf540b831b54",
+    "bytes": 374
+  },
+  "039-ldd-lib_projectile_motion_projectile_motion_node.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_projectile_motion_projectile_motion_node.log",
+    "sha256": "efa41b1724ffbdb76e1f76bea6631e943063aee7ac13a7c072ae3bccb3fd2446",
+    "bytes": 2925
+  },
+  "040-ldd-lib_python3.10_site-packages_auto_aim_interfaces_auto_aim_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_auto_aim_interfaces_auto_aim_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "99f7bd42a34a8c9fd26a621c4ac630f6d8dc22778eb19bc7c98ea17c5512d0cb",
+    "bytes": 2401
+  },
+  "041-ldd-lib_python3.10_site-packages_auto_aim_interfaces_auto_aim_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_auto_aim_interfaces_auto_aim_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "4412af4312166dd3d5cf056978f00c02e23c44e8d5d086ec51d7815a3f7917e5",
+    "bytes": 2401
+  },
+  "042-ldd-lib_python3.10_site-packages_auto_aim_interfaces_auto_aim_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_auto_aim_interfaces_auto_aim_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "42ea98b14a322d57a2d2081d99689251fca757e2df6dccc22d18bf9eb2374efa",
+    "bytes": 2401
+  },
+  "043-ldd-lib_python3.10_site-packages_auto_aim_interfaces_libauto_aim_interfaces__rosidl_generator_py.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_auto_aim_interfaces_libauto_aim_interfaces__rosidl_generator_py.so.log",
+    "sha256": "0e1761d3ec0b9002dd4b0fda9a59b5899c8076898b67e55b36db6ac944da28c7",
+    "bytes": 1735
+  },
+  "044-ldd-lib_python3.10_site-packages_pb_rm_interfaces_libpb_rm_interfaces__rosidl_generator_py.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_pb_rm_interfaces_libpb_rm_interfaces__rosidl_generator_py.so.log",
+    "sha256": "1721cb04ab04c560df44d572b58774b1d349d20b19fe9c54d06c4e4f4d8aa6e6",
+    "bytes": 1569
+  },
+  "045-ldd-lib_python3.10_site-packages_pb_rm_interfaces_pb_rm_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_pb_rm_interfaces_pb_rm_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "1d169cc5538aaa2f89b2672fce3abea6bab732a9f104b953cd0278bbf588507b",
+    "bytes": 2383
+  },
+  "046-ldd-lib_python3.10_site-packages_pb_rm_interfaces_pb_rm_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_pb_rm_interfaces_pb_rm_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "aa2021a8111dc2a8635dddda548f6893a867c9cb4b532837101d27e3bde167c3",
+    "bytes": 2383
+  },
+  "047-ldd-lib_python3.10_site-packages_pb_rm_interfaces_pb_rm_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_pb_rm_interfaces_pb_rm_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "d26cfd3b7916545b4ab10f2e7a8741315e54d626fe08140594e277dd2a167a3a",
+    "bytes": 2383
+  },
+  "048-ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_libpolar_pb_aim_interfaces__rosidl_generator_py.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_libpolar_pb_aim_interfaces__rosidl_generator_py.so.log",
+    "sha256": "0b0b7de5cecd35f39b4c8f2a5735176d6ed8a455bbc12f5d5c2c4e1808105a08",
+    "bytes": 2245
+  },
+  "049-ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_polar_pb_aim_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_polar_pb_aim_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "96b811bffe0e9ad992e2820783cb985d6cc73ee8954ec0ecbf9d71da0897adc7",
+    "bytes": 3101
+  },
+  "050-ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_polar_pb_aim_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_polar_pb_aim_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "927ebe1300a6da479914c3474f41ac9d867dea1b931c32188b64e55cb005cbf1",
+    "bytes": 3101
+  },
+  "051-ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_polar_pb_aim_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/ldd-lib_python3.10_site-packages_polar_pb_aim_interfaces_polar_pb_aim_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so.log",
+    "sha256": "13d409f069d5485da5524ce29ef08c4753491067bd2e58b7f73dfaa35b50693c",
+    "bytes": 3101
+  },
+  "052-opencv-ldd-459.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-459.log",
+    "sha256": "9a93ee9c7b3fbc8e2d88d59c9dd1244ed5de6b94b087c40d36257603db35d2fb",
+    "bytes": 704
+  },
+  "053-opencv-ldd-463.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-463.log",
+    "sha256": "2dba0f22d87654034933ac5d895ddad92c2adb318cf8ddc87710f0fa654cdb6d",
+    "bytes": 1003
+  },
+  "054-opencv-ldd-467.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-467.log",
+    "sha256": "0735e5a651503056fa934bb37db3df4e46b00236b73f86c3ad8bf420a317b09d",
+    "bytes": 878
+  },
+  "055-opencv-ldd-471.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-471.log",
+    "sha256": "9238a7d1874e5529479795a40589fc0986dff53ddbd5e3d8147bf02b09d60b97",
+    "bytes": 1272
+  },
+  "056-opencv-ldd-475.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-475.log",
+    "sha256": "50e5b125835a45adc8d9aa753527df089b84c50ca43d4c92de82980ce5b2f5c7",
+    "bytes": 605
+  },
+  "057-opencv-ldd-479.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-479.log",
+    "sha256": "65ff78e6e5db40023baac58602e44b5cb486ca0deb42a7209c79431e7eb01678",
+    "bytes": 904
+  },
+  "058-opencv-ldd-483.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-483.log",
+    "sha256": "6e4b22fa9726932ee749f0c5b9acdef44612bcff6f6a930d739232e5159e848a",
+    "bytes": 14798
+  },
+  "059-opencv-ldd-487.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-487.log",
+    "sha256": "65522a9d3fe5792d65b7761563195e75d2a00c87f4a8092a53262b1d86d54a7a",
+    "bytes": 512
+  },
+  "060-opencv-ldd-491.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-491.log",
+    "sha256": "75a5c7cb26f44eb9fe13f0927cf588434f3b82a8495896819c4b1bd2f5929553",
+    "bytes": 10258
+  },
+  "061-opencv-ldd-495.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-495.log",
+    "sha256": "34a42b84e9697afde7a6c1ee989d47f866fab4cf9f5ea1d33b4947c1682a2e59",
+    "bytes": 787
+  },
+  "062-opencv-ldd-499.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-499.log",
+    "sha256": "a44ef197191ff40ea612c699eaa613ecb4329a1f9f431314aad1bca0204fcdc4",
+    "bytes": 605
+  },
+  "063-opencv-ldd-503.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-503.log",
+    "sha256": "5a3caca647062000e8d3783d8e4e56b640642e909443865c73c43636418dcecb",
+    "bytes": 878
+  },
+  "064-opencv-ldd-507.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-507.log",
+    "sha256": "4fcedfcfd9ec4aa4f491c5bafc2f7d2cd75621bc3185027f0bdaebac88bec15b",
+    "bytes": 704
+  },
+  "065-opencv-ldd-511.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-511.log",
+    "sha256": "65b5203a3395ece2d5eb066c57058d425fec9357ba0a9a3df1ee6404e57f9d32",
+    "bytes": 1280
+  },
+  "066-opencv-ldd-515.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-515.log",
+    "sha256": "17f13f1e89fc9c4c44c41db9e2749809b01ad14ea03cedb9c3c45e733be9b48d",
+    "bytes": 799
+  },
+  "067-opencv-ldd-519.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-519.log",
+    "sha256": "c3a6f1d94602c4e8166a3fe32e70060c371c20dec295691d33882095dbb3278a",
+    "bytes": 605
+  },
+  "068-opencv-ldd-523.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-523.log",
+    "sha256": "7aef0ff5d144a87edcf8283cf22eaaf4610968dcbec04da4bcb9856a1d7911e1",
+    "bytes": 1352
+  },
+  "069-opencv-ldd-527.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-527.log",
+    "sha256": "aa02f4f91f660535187deb19ddfd2bfbfe866248957fd381d84b6d688d8622a1",
+    "bytes": 605
+  },
+  "070-opencv-ldd-531.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-531.log",
+    "sha256": "4ea03bb51aeca94ee636b3cd1920fc5ea45b3a1c7a831e95285ae54160a07279",
+    "bytes": 3089
+  },
+  "071-opencv-ldd-535.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-535.log",
+    "sha256": "4f1dcb56c28e97987dbb9d1d8d70aa1f99a3b0dd8956e169df97685c7dce0f12",
+    "bytes": 704
+  },
+  "072-opencv-ldd-539.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-539.log",
+    "sha256": "51438f9ec3d4a5f7aed578b1eec03f34e03ebe621c516f927e3735694b795a3d",
+    "bytes": 14400
+  },
+  "073-opencv-ldd-543.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-543.log",
+    "sha256": "f2c1e40674a402f920ddd95457769f31d4ca1ad33ded2dc0049eaedfc7c831f8",
+    "bytes": 704
+  },
+  "074-opencv-ldd-547.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-547.log",
+    "sha256": "4bbb3d1866fe2cf9907dfbd1dff2ecf85cadec1e508eb243e327f7d6390ec6fb",
+    "bytes": 10155
+  },
+  "075-opencv-ldd-551.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-551.log",
+    "sha256": "2e350f710794161b0ba370ae343018d5f0851d043a6930d826c3cc5138f96fc3",
+    "bytes": 605
+  },
+  "076-opencv-ldd-555.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-555.log",
+    "sha256": "cdab648864283bf0568ebfe4afc8994567dbb420bdb5a200f4d5479c86e22823",
+    "bytes": 704
+  },
+  "077-opencv-ldd-559.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-559.log",
+    "sha256": "c3c8b85bb27b2dfbd773c1b5f428361757a2ba038d35afd89b5e2b209849ca40",
+    "bytes": 704
+  },
+  "078-opencv-ldd-563.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-563.log",
+    "sha256": "dcd88f5678020d21caa06f2b8408098f60e0fe652fbf4cb89d4be22a0afd6983",
+    "bytes": 1177
+  },
+  "079-opencv-ldd-567.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-567.log",
+    "sha256": "955a233ac794dd975cd63cc4c517acbbb492c4383b94a6844fa20ace39e95550",
+    "bytes": 605
+  },
+  "080-opencv-ldd-571.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-571.log",
+    "sha256": "cf6a0f0e494ab38fb06dd8dbecdcd33fcda34d7d2d02046c41c8e326c3e505f8",
+    "bytes": 1177
+  },
+  "081-opencv-ldd-575.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-575.log",
+    "sha256": "b57d51763a857cef47be044583297161376b7b74d22a4c67fab4319af65797ba",
+    "bytes": 10927
+  },
+  "082-opencv-ldd-579.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-579.log",
+    "sha256": "47cd7ed7df97fe0b1f79ac9fff2d849f98d5330bb6b63edf4726c4899a262ef6",
+    "bytes": 605
+  },
+  "083-opencv-ldd-583.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-583.log",
+    "sha256": "f244258531ad6f203102762ca2c7c795cbbaa8e1e49ff12855b57dc7e91155d3",
+    "bytes": 704
+  },
+  "084-opencv-ldd-587.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-587.log",
+    "sha256": "dcdf44ccf297102cc125cb0daa04a6db5c9a1d6c635038384525bd795accdb62",
+    "bytes": 704
+  },
+  "085-opencv-ldd-591.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-591.log",
+    "sha256": "029ded9faa0637aad601b2e2b253b9f9e69c19d8911610f8811c3d37cb37abcc",
+    "bytes": 793
+  },
+  "086-opencv-ldd-595.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-595.log",
+    "sha256": "43991ad4148733b7421ca3242ca5fa2a8257bae2378c2fee9dd814d0748fe734",
+    "bytes": 1003
+  },
+  "087-opencv-ldd-599.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-599.log",
+    "sha256": "05faa836031c553eb1d36a0f19372b8d6ca6f42f267356b01ab4a7e1b6f3122c",
+    "bytes": 704
+  },
+  "088-opencv-ldd-603.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-603.log",
+    "sha256": "0b8c9a2a921724711caa962290207af48456e2cb0be2854d8a6bdbb0111c96ba",
+    "bytes": 1003
+  },
+  "089-opencv-ldd-607.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-607.log",
+    "sha256": "4291b9d8e6c48cf4ca8bc8863c06360e6362c916dd862ceacd0f278eaf80e94d",
+    "bytes": 704
+  },
+  "090-opencv-ldd-611.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-611.log",
+    "sha256": "52714fa5c69e0394164239b4d23c29423ffbcba9e23422093a2d7d4676f95e96",
+    "bytes": 1003
+  },
+  "091-opencv-ldd-615.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-615.log",
+    "sha256": "cb063cde3e437e66090f04f9e20f2e716fd3d48ca7bdbf3062fcf6f4fc5e025f",
+    "bytes": 1272
+  },
+  "092-opencv-ldd-619.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-619.log",
+    "sha256": "06af1c81eb353851a714986956fdfbdf83bcdb148b7bc24ae629968a3439e014",
+    "bytes": 1003
+  },
+  "093-opencv-ldd-623.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-623.log",
+    "sha256": "7a22f1e06e2be7260ccdf296a4754de4f82e15a219af607ac15d4ebede37a623",
+    "bytes": 1120
+  },
+  "094-opencv-ldd-627.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-627.log",
+    "sha256": "eaa7aab726f189e4090b241751d924354471c19bf077868eeb65d627c289b78a",
+    "bytes": 18996
+  },
+  "095-opencv-ldd-631.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-631.log",
+    "sha256": "bb23d5118c9e3a58b6a7dccd077940d13012b01ae10636d9b14b32e7437d8ae8",
+    "bytes": 700
+  },
+  "096-opencv-ldd-635.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-635.log",
+    "sha256": "da98e5a321023e85ebff8c575dce822384e2d03ac13c629a904e69488c0db50b",
+    "bytes": 2625
+  },
+  "097-opencv-ldd-639.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-639.log",
+    "sha256": "a59734647d812d72d9f267e6c14fa4800f8872f8e15e86e62e7a5b3b2136f9e6",
+    "bytes": 1272
+  },
+  "098-opencv-ldd-643.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-643.log",
+    "sha256": "caebec7a3e9e5cb4cf67d5bed3889595bbb32285cb73f9d4860a226b95b2e31c",
+    "bytes": 1177
+  },
+  "099-opencv-ldd-647.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-647.log",
+    "sha256": "333dfb21e55dd9b30f7925c4657cf9e5f4fdf4a9a22a2f3aac3ffc7f26b3666d",
+    "bytes": 18129
+  },
+  "100-opencv-ldd-651.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-651.log",
+    "sha256": "191df9c79be85fff3900e7ab2b73449095af33a25925c34abae08d5a1af763bf",
+    "bytes": 18891
+  },
+  "101-opencv-ldd-655.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-655.log",
+    "sha256": "f5cfdb971c0df514933e8ae23752342ac3cb63d104f6453be97bf02c019a0541",
+    "bytes": 8072
+  },
+  "102-opencv-ldd-659.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-659.log",
+    "sha256": "446a7dba5617eed5d4986723f932ed8d0a211a879f2b6109aba847f06fce1cc4",
+    "bytes": 878
+  },
+  "103-opencv-ldd-663.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-663.log",
+    "sha256": "48fc1389f336eced03d50c62b4b913f9b4e1053e4bc5b0dba78c3dfefde67890",
+    "bytes": 10826
+  },
+  "104-opencv-ldd-667.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-667.log",
+    "sha256": "c244de4904f14a3a2cb594a3d03ea153f577e03d8bba47915efeef6d5faf0e27",
+    "bytes": 10834
+  },
+  "105-opencv-ldd-671.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/opencv-ldd-671.log",
+    "sha256": "7bc2856b9c67b23c5e0bad33c8ba14ef751de99e84a0caf0ead560f89f9354ce",
+    "bytes": 704
+  },
+  "106-python_preflight.log": {
+    "origin": "/root/polar-pb-aim-build-20261014-01/python_preflight.log",
+    "sha256": "68114ce33fa5dfcacaf8599fa19463ac06a1fcd45db8e24e9bb0d80de411ed99",
+    "bytes": 2950
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "schema": "polar.pb-aim-build-plan.v1",
+  "packages": {
+    "armor_detector_opencv": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\src\\armor_detector_opencv",
+      "dependencies": [
+        "ament_cmake",
+        "auto_aim_interfaces",
+        "cv_bridge",
+        "geometry_msgs",
+        "image_transport",
+        "image_transport_plugins",
+        "message_filters",
+        "polar_pb_aim_interfaces",
+        "rclcpp",
+        "rclcpp_components",
+        "sensor_msgs",
+        "std_msgs",
+        "tf2_geometry_msgs",
+        "vision_opencv",
+        "visualization_msgs"
+      ]
+    },
+    "armor_tracker": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\src\\armor_tracker",
+      "dependencies": [
+        "ament_cmake",
+        "angles",
+        "auto_aim_interfaces",
+        "eigen",
+        "geometry_msgs",
+        "message_filters",
+        "polar_pb_aim_interfaces",
+        "rclcpp",
+        "rclcpp_components",
+        "std_msgs",
+        "std_srvs",
+        "tf2_geometry_msgs",
+        "visualization_msgs"
+      ]
+    },
+    "polar_pb_aim_interfaces": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\src\\polar_pb_aim_interfaces",
+      "dependencies": [
+        "ament_cmake",
+        "auto_aim_interfaces",
+        "rosidl_default_generators",
+        "rosidl_default_runtime",
+        "sensor_msgs",
+        "std_msgs"
+      ]
+    },
+    "projectile_motion": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\src\\projectile_motion",
+      "dependencies": [
+        "ament_cmake",
+        "auto_aim_interfaces",
+        "example_interfaces",
+        "message_filters",
+        "pb_rm_interfaces",
+        "polar_pb_aim_interfaces",
+        "rclcpp",
+        "rclcpp_components",
+        "rmoss_projectile_motion",
+        "sensor_msgs",
+        "std_msgs",
+        "tf2_geometry_msgs",
+        "tf2_ros",
+        "visualization_msgs"
+      ]
+    },
+    "auto_aim_interfaces": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependency-compat-20261014-03\\src\\auto_aim_interfaces",
+      "dependencies": [
+        "ament_cmake",
+        "geometry_msgs",
+        "rosidl_default_generators",
+        "rosidl_default_runtime",
+        "std_msgs"
+      ]
+    },
+    "pb_rm_interfaces": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependency-compat-20261014-03\\src\\pb_rm_interfaces",
+      "dependencies": [
+        "ament_cmake",
+        "geometry_msgs",
+        "rosidl_default_generators",
+        "rosidl_default_runtime",
+        "std_msgs"
+      ]
+    },
+    "rmoss_projectile_motion": {
+      "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependency-compat-20261014-03\\src\\rmoss_projectile_motion",
+      "dependencies": [
+        "ament_cmake",
+        "eigen",
+        "eigen3_cmake_module",
+        "geometry_msgs",
+        "rclcpp"
+      ]
+    }
+  },
+  "system_dependencies": [
+    "ament_cmake",
+    "angles",
+    "cv_bridge",
+    "eigen",
+    "eigen3_cmake_module",
+    "example_interfaces",
+    "geometry_msgs",
+    "image_transport",
+    "image_transport_plugins",
+    "message_filters",
+    "rclcpp",
+    "rclcpp_components",
+    "rosidl_default_generators",
+    "rosidl_default_runtime",
+    "sensor_msgs",
+    "std_msgs",
+    "std_srvs",
+    "tf2_geometry_msgs",
+    "tf2_ros",
+    "vision_opencv",
+    "visualization_msgs"
+  ],
+  "executed": false,
+  "scope": "Reviewed source build plan only; no ROS/WSL/colcon or model execution",
+  "colcon_argv": [
+    "colcon",
+    "--log-base",
+    "<fresh-build>/log",
+    "build",
+    "--base-paths",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-source-20261014-03\\src",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb2025-aim-dependency-compat-20261014-03\\src",
+    "--build-base",
+    "<fresh-build>/build",
+    "--install-base",
+    "<fresh-build>/install",
+    "--executor",
+    "sequential",
+    "--packages-up-to",
+    "armor_detector_opencv",
+    "armor_tracker",
+    "projectile_motion",
+    "--cmake-args",
+    "-DBUILD_TESTING=OFF",
+    "-DCMAKE_BUILD_TYPE=Release"
+  ],
+  "required_model_location": "<install>/armor_detector_opencv/share/armor_detector_opencv/model/mlp.onnx",
+  "entry": [
+    "python",
+    "-m",
+    "rm_match.integrations.pb_aim_engine",
+    "--stack-ref",
+    "<Linux STACK.json>",
+    "--stack-sha256",
+    "<actual SHA>"
+  ]
+}

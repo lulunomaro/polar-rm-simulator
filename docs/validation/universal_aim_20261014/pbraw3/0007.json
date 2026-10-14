@@ -1,0 +1,32 @@
+{
+  "001-BUILD_RESULT.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-03/BUILD_RESULT.json",
+    "sha256": "83edf4b6bc0c1c3dfc7b9bdd8b081f3a7b0917e6951ac6f060a202d0eb60f24d",
+    "bytes": 11215
+  },
+  "002-SOURCE_COPY.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-03/SOURCE_COPY.json",
+    "sha256": "90add16dd42bb4d9f9361a7fa24ff8baec5d19bbcd7e796b2df9c24dea33af44",
+    "bytes": 46342
+  },
+  "003-cmake_preflight.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-03/cmake_preflight.log",
+    "sha256": "750ffcb4e653827ec8f9db1f33a7e55d46483e834d4ca6a57b68b62801669c7d",
+    "bytes": 1932
+  },
+  "004-ENVIRONMENT_COMPAT_FINAL.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-03/inputs/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "bytes": 1632
+  },
+  "005-MOUNTS.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-03/inputs/MOUNTS.json",
+    "sha256": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+    "bytes": 10320
+  },
+  "006-python_preflight.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-03/python_preflight.log",
+    "sha256": "3d4ec37a93cabfdb7eabd3494e158b61142509696f12e706aa8a9cccb5efef30",
+    "bytes": 2962
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_wsl_jsonl.py",
+    "tests/test_wsl_jsonl_owned_tree.py",
+    "tests/test_wsl_jsonl_actual.py",
+    "tests/test_aim_jsonl_peer.py",
+    "tests/test_aim_plugin.py",
+    "tests/test_aim_camera_codec.py",
+    "tests/test_ros2_aim_status.py",
+    "tests/test_json_owned_process.py",
+    "tests/test_deployment.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\aim-wsl-jsonl-interface-20261014-02\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "explicit_actual_wsl_opt_in": false
+}

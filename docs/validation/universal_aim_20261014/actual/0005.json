@@ -1,0 +1,33 @@
+{
+  "out": "artifacts/wsl-jsonl-actual-20261014-01",
+  "sources": [
+    "rm_match/deployment/wsl_jsonl.py",
+    "rm_match/deployment/wsl_jsonl_worker.py",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py",
+    "rm_match/deployment/json_adapter.py",
+    "rm_match/deployment/json_owned_process.py",
+    "rm_match/deployment/windows_owned_job.py",
+    "rm_match/deployment/aim_plugin.py",
+    "rm_match/integrations/aim_jsonl_peer.py",
+    "rm_match/integrations/owned_linux_group.py",
+    "tests/test_wsl_jsonl_actual.py"
+  ],
+  "scope": "Actual harmless Windows→WSL process preparation/reset and nested-session cleanup only. No images, detector, ROS, NN or physical simulation.",
+  "commands": [
+    {
+      "argv": [
+        "C:/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/.venv-sim/Scripts/python.exe",
+        "-m",
+        "pytest",
+        "tests/test_wsl_jsonl_actual.py",
+        "-q",
+        "--junitxml=artifacts/wsl-jsonl-actual-20261014-01/pytest.xml"
+      ],
+      "env": {
+        "POLAR_RUN_WSL_JSONL_ACTUAL": "1",
+        "POLAR_WSL_JSONL_TEST_PYTHON": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "POLAR_WSL_JSONL_TEST_DISTRO": "Ubuntu-22.04"
+      }
+    }
+  ]
+}

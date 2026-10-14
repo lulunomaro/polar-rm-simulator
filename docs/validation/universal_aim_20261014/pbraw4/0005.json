@@ -1,0 +1,464 @@
+{
+  "schema": "polar.sim.aim-mount-calibration.v2",
+  "origin": "static_simulation_model_design_not_hardware_calibration",
+  "source_sha256": {
+    "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+    "rm_match/match_model.py": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+    "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641"
+  },
+  "robots": {
+    "red_hero": {
+      "parent_frame": "gimbal_link",
+      "child_frame": "shooter_link",
+      "translation_m": [
+        0.38,
+        0.0,
+        0.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_site": "red_hero__muzzle",
+      "source_body": "red_hero__pitch",
+      "pitch_positive": "up",
+      "pitch_joint_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "kinematics": {
+        "origin_frame": "gimbal_aim_origin",
+        "origin_definition": "chassis_fixed_frame_at_zero_yaw_joint_origin",
+        "yaw_frame": "gimbal_yaw",
+        "pitch_frame": "gimbal_link",
+        "chassis_to_origin_translation_m": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "chassis_to_origin_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "origin_to_yaw_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_to_yaw_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_to_pitch_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw_to_pitch_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "pitch_joint_pivot_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_yaw_body": "red_hero__yaw",
+        "source_yaw_joint": "red_hero__gimbal_yaw",
+        "source_pitch_joint": "red_hero__gimbal_pitch"
+      }
+    },
+    "red_infantry": {
+      "parent_frame": "gimbal_link",
+      "child_frame": "shooter_link",
+      "translation_m": [
+        0.38,
+        0.0,
+        0.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_site": "red_infantry__muzzle",
+      "source_body": "red_infantry__pitch",
+      "pitch_positive": "up",
+      "pitch_joint_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "kinematics": {
+        "origin_frame": "gimbal_aim_origin",
+        "origin_definition": "chassis_fixed_frame_at_zero_yaw_joint_origin",
+        "yaw_frame": "gimbal_yaw",
+        "pitch_frame": "gimbal_link",
+        "chassis_to_origin_translation_m": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "chassis_to_origin_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "origin_to_yaw_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_to_yaw_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_to_pitch_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw_to_pitch_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "pitch_joint_pivot_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_yaw_body": "red_infantry__yaw",
+        "source_yaw_joint": "red_infantry__gimbal_yaw",
+        "source_pitch_joint": "red_infantry__gimbal_pitch"
+      }
+    },
+    "red_sentry": {
+      "parent_frame": "gimbal_link",
+      "child_frame": "shooter_link",
+      "translation_m": [
+        0.38,
+        0.0,
+        0.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_site": "red_sentry__muzzle",
+      "source_body": "red_sentry__pitch",
+      "pitch_positive": "up",
+      "pitch_joint_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "kinematics": {
+        "origin_frame": "gimbal_aim_origin",
+        "origin_definition": "chassis_fixed_frame_at_zero_yaw_joint_origin",
+        "yaw_frame": "gimbal_yaw",
+        "pitch_frame": "gimbal_link",
+        "chassis_to_origin_translation_m": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "chassis_to_origin_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "origin_to_yaw_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_to_yaw_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_to_pitch_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw_to_pitch_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "pitch_joint_pivot_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_yaw_body": "red_sentry__yaw",
+        "source_yaw_joint": "red_sentry__gimbal_yaw",
+        "source_pitch_joint": "red_sentry__gimbal_pitch"
+      }
+    },
+    "blue_hero": {
+      "parent_frame": "gimbal_link",
+      "child_frame": "shooter_link",
+      "translation_m": [
+        0.38,
+        0.0,
+        0.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_site": "blue_hero__muzzle",
+      "source_body": "blue_hero__pitch",
+      "pitch_positive": "up",
+      "pitch_joint_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "kinematics": {
+        "origin_frame": "gimbal_aim_origin",
+        "origin_definition": "chassis_fixed_frame_at_zero_yaw_joint_origin",
+        "yaw_frame": "gimbal_yaw",
+        "pitch_frame": "gimbal_link",
+        "chassis_to_origin_translation_m": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "chassis_to_origin_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "origin_to_yaw_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_to_yaw_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_to_pitch_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw_to_pitch_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "pitch_joint_pivot_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_yaw_body": "blue_hero__yaw",
+        "source_yaw_joint": "blue_hero__gimbal_yaw",
+        "source_pitch_joint": "blue_hero__gimbal_pitch"
+      }
+    },
+    "blue_infantry": {
+      "parent_frame": "gimbal_link",
+      "child_frame": "shooter_link",
+      "translation_m": [
+        0.38,
+        0.0,
+        0.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_site": "blue_infantry__muzzle",
+      "source_body": "blue_infantry__pitch",
+      "pitch_positive": "up",
+      "pitch_joint_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "kinematics": {
+        "origin_frame": "gimbal_aim_origin",
+        "origin_definition": "chassis_fixed_frame_at_zero_yaw_joint_origin",
+        "yaw_frame": "gimbal_yaw",
+        "pitch_frame": "gimbal_link",
+        "chassis_to_origin_translation_m": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "chassis_to_origin_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "origin_to_yaw_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_to_yaw_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_to_pitch_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw_to_pitch_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "pitch_joint_pivot_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_yaw_body": "blue_infantry__yaw",
+        "source_yaw_joint": "blue_infantry__gimbal_yaw",
+        "source_pitch_joint": "blue_infantry__gimbal_pitch"
+      }
+    },
+    "blue_sentry": {
+      "parent_frame": "gimbal_link",
+      "child_frame": "shooter_link",
+      "translation_m": [
+        0.38,
+        0.0,
+        0.0
+      ],
+      "rotation_xyzw": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_site": "blue_sentry__muzzle",
+      "source_body": "blue_sentry__pitch",
+      "pitch_positive": "up",
+      "pitch_joint_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "kinematics": {
+        "origin_frame": "gimbal_aim_origin",
+        "origin_definition": "chassis_fixed_frame_at_zero_yaw_joint_origin",
+        "yaw_frame": "gimbal_yaw",
+        "pitch_frame": "gimbal_link",
+        "chassis_to_origin_translation_m": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "chassis_to_origin_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "origin_to_yaw_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_to_yaw_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_to_pitch_translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "yaw_to_pitch_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "yaw_joint_axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "pitch_joint_pivot_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_yaw_body": "blue_sentry__yaw",
+        "source_yaw_joint": "blue_sentry__gimbal_yaw",
+        "source_pitch_joint": "blue_sentry__gimbal_pitch"
+      }
+    }
+  },
+  "physics_steps": 0,
+  "NN": 0,
+  "renderer": false
+}

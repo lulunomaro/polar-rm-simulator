@@ -1,0 +1,312 @@
+{
+  "001-BUILD_RESULT.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/BUILD_RESULT.json",
+    "sha256": "e0d8111d41e58e04d4ad4d7620e47c3e6d05a0b8e40463faec4f06493ba1e826",
+    "bytes": 262776
+  },
+  "002-SOURCE_COPY.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/SOURCE_COPY.json",
+    "sha256": "90add16dd42bb4d9f9361a7fa24ff8baec5d19bbcd7e796b2df9c24dea33af44",
+    "bytes": 46342
+  },
+  "003-cmake_preflight.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/cmake_preflight.log",
+    "sha256": "9681226d03aa88625e6b22290d4948e1b9fb135510d719dc5a40ff30bb7745d8",
+    "bytes": 3999
+  },
+  "004-ENVIRONMENT_COMPAT_FINAL.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/inputs/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "bytes": 1632
+  },
+  "005-MOUNTS.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/inputs/MOUNTS.json",
+    "sha256": "296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62",
+    "bytes": 10320
+  },
+  "006-SYSTEM_OPENCV_AFTER.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/inputs/SYSTEM_OPENCV_AFTER.json",
+    "sha256": "afd5cfe85b5afd1cc64b7d64e2cd6729450254ebfa8c28231a19949c0a4edccf",
+    "bytes": 192205
+  },
+  "007-SYSTEM_OPENCV_BEFORE.json": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/inputs/SYSTEM_OPENCV_BEFORE.json",
+    "sha256": "afd5cfe85b5afd1cc64b7d64e2cd6729450254ebfa8c28231a19949c0a4edccf",
+    "bytes": 192205
+  },
+  "008-opencv-ldd-459.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-459.log",
+    "sha256": "b591973dad47851575aa631b5f86d6d889af8adfdf91816cd3535f464f8dd127",
+    "bytes": 704
+  },
+  "009-opencv-ldd-463.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-463.log",
+    "sha256": "e0a0e396a42f1574e585b10cf5bc6ce8a47d6e672c60a52371ad59c841a75edc",
+    "bytes": 1003
+  },
+  "010-opencv-ldd-467.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-467.log",
+    "sha256": "fb0eea4b45a93dcfae8d86ab9c696bac5b967e604838b691c0818d93c1b68180",
+    "bytes": 878
+  },
+  "011-opencv-ldd-471.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-471.log",
+    "sha256": "50c62d797868d73ad78535e1e3bedd394660321b4f392a1c7d74dc7b6eef46ab",
+    "bytes": 1272
+  },
+  "012-opencv-ldd-475.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-475.log",
+    "sha256": "1c7b832c7b9bc7b7c10ed2dbfdfc7a19ccc8683db9a110e8a220613eb34c6f50",
+    "bytes": 605
+  },
+  "013-opencv-ldd-479.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-479.log",
+    "sha256": "f1470b7b060356a8ec410532579689df9769f797c9e30bcd338c9d7397d8872d",
+    "bytes": 904
+  },
+  "014-opencv-ldd-483.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-483.log",
+    "sha256": "46c16c5e9bb95682750cc0d866c43841a42a88c9fb204f1d5ce21a4d9979eb6d",
+    "bytes": 14798
+  },
+  "015-opencv-ldd-487.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-487.log",
+    "sha256": "5cf7189aaaad4d3f8ada7e4ad28f4408c56558d039cf43c6998c0a71f4142a17",
+    "bytes": 512
+  },
+  "016-opencv-ldd-491.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-491.log",
+    "sha256": "4fe04383b8b1557790caebe96cb87bca2e4acd757fdce2a1c655e528e6577689",
+    "bytes": 10258
+  },
+  "017-opencv-ldd-495.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-495.log",
+    "sha256": "a5433e800b8e15c54cb48c82d860963d193a21030b1de3ba7b67a6deb1f0940d",
+    "bytes": 787
+  },
+  "018-opencv-ldd-499.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-499.log",
+    "sha256": "137e7adf69d8a9f8269a82a3e376c007c11a457fcc060bfbfa74d005120e8600",
+    "bytes": 605
+  },
+  "019-opencv-ldd-503.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-503.log",
+    "sha256": "27fd544e39a2892a1814d45370ca6ea6b34c2a7939eb0713b997dd0faffe7834",
+    "bytes": 878
+  },
+  "020-opencv-ldd-507.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-507.log",
+    "sha256": "73d2496257d2fe6574d334224e83509e978ec87657f9b64dab8751420a703c61",
+    "bytes": 704
+  },
+  "021-opencv-ldd-511.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-511.log",
+    "sha256": "2055f6032ccf65595751cc8a434e9aac70005a09806e5bea61433f3765ea1ca7",
+    "bytes": 1280
+  },
+  "022-opencv-ldd-515.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-515.log",
+    "sha256": "6ddad64b0c40cd1521e75eb304fd771e898531a588339cdcf11892ad7fd906f9",
+    "bytes": 799
+  },
+  "023-opencv-ldd-519.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-519.log",
+    "sha256": "3ea9a818a54fd6832530c0744cf71c91b879db3715b4375ebbc780390bcef5bd",
+    "bytes": 605
+  },
+  "024-opencv-ldd-523.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-523.log",
+    "sha256": "cdf983d582dad61ebfb42d0f0973d48e72a86a27dccc98698647a3ae3320b5eb",
+    "bytes": 1352
+  },
+  "025-opencv-ldd-527.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-527.log",
+    "sha256": "3ba0eceadd8e9a8a072ad4bf503140c310ac6b24bd4e71c454e41d2bca3452a8",
+    "bytes": 605
+  },
+  "026-opencv-ldd-531.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-531.log",
+    "sha256": "d2e0d20b40780536880c5044176bbfcbcc206d71fe153b2ab1948b9fce9410d8",
+    "bytes": 3089
+  },
+  "027-opencv-ldd-535.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-535.log",
+    "sha256": "bc92eff83e4ccf68179a47db836c42e0b40513ebcae848e0a8eac482ca19d0fb",
+    "bytes": 704
+  },
+  "028-opencv-ldd-539.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-539.log",
+    "sha256": "dc117ac02693861b1d6af8f140d4fa1ad6270a7fa2262250ee61ee1c45633a06",
+    "bytes": 14400
+  },
+  "029-opencv-ldd-543.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-543.log",
+    "sha256": "a19c76ca10efd0ed618d68d0f2c0295251dac1f061e24c5bfb9a3e43283ac4cc",
+    "bytes": 704
+  },
+  "030-opencv-ldd-547.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-547.log",
+    "sha256": "c259249465fa661a1151f75cd244d22019b431cc2b0170abb797865beb701d50",
+    "bytes": 10155
+  },
+  "031-opencv-ldd-551.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-551.log",
+    "sha256": "684d014f4aa4da6dd73879526661567f33e8eb0ec36debd22e1244aa38d76221",
+    "bytes": 605
+  },
+  "032-opencv-ldd-555.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-555.log",
+    "sha256": "4313c00d5de9eb5983b7344672d3cfd3c31bc37e051a4368a0d7856c4535cb4c",
+    "bytes": 704
+  },
+  "033-opencv-ldd-559.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-559.log",
+    "sha256": "b8c6e0c00616bcbbfb49ac555c59fe1bbe34ab348fd35f607c2bfed9cf18da89",
+    "bytes": 704
+  },
+  "034-opencv-ldd-563.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-563.log",
+    "sha256": "385327152345afac1a6dd9fddbb7727415ba4096ec1ef45e02e5408735b46aad",
+    "bytes": 1177
+  },
+  "035-opencv-ldd-567.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-567.log",
+    "sha256": "879736047bb61f4ed9d67b55e91123677e9c97516c9684adb9e1717cf6e90eb9",
+    "bytes": 605
+  },
+  "036-opencv-ldd-571.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-571.log",
+    "sha256": "ba3c2f740591ccae04c615b3823f1a8a2084c2f0d6f76d243894af13a7441f3e",
+    "bytes": 1177
+  },
+  "037-opencv-ldd-575.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-575.log",
+    "sha256": "be143048f00b336388288b1f64d7846ff9389a6c21d8a7cbf616743d7ed67e94",
+    "bytes": 10927
+  },
+  "038-opencv-ldd-579.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-579.log",
+    "sha256": "dda2d4986256d9833537071cea8fcf83b4d7d9b8a0fb2f3b40697d550f1a62dc",
+    "bytes": 605
+  },
+  "039-opencv-ldd-583.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-583.log",
+    "sha256": "b3d94b1e91a37dd831585f89aa8f6f4d30a9fe617badc2c52cdc7d3a9781a431",
+    "bytes": 704
+  },
+  "040-opencv-ldd-587.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-587.log",
+    "sha256": "28fdc57754040ee31e35fb0707961b5cc1cae377bd962cab1269dff424beb033",
+    "bytes": 704
+  },
+  "041-opencv-ldd-591.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-591.log",
+    "sha256": "86cb3abb8d45a5b0d46596090e383aa39852a72f680d8779c91ab01a6a5a9c05",
+    "bytes": 793
+  },
+  "042-opencv-ldd-595.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-595.log",
+    "sha256": "6a5aab1d389bb133005bab8b05392d3762cd8425c5d2ff48901167cf581047c3",
+    "bytes": 1003
+  },
+  "043-opencv-ldd-599.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-599.log",
+    "sha256": "539a5329ffa8bc634765d099b8b97bf3f8b6f24448537c6b497fde2fffc12da5",
+    "bytes": 704
+  },
+  "044-opencv-ldd-603.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-603.log",
+    "sha256": "e309ce2dd7ec6da01d02898e6554e68f930dcdbd1fa0b715b8b016eef11cd32c",
+    "bytes": 1003
+  },
+  "045-opencv-ldd-607.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-607.log",
+    "sha256": "26d941925087f50049bf2fc9763ec78a1c4f3e84cc693021f5d131cd0a29de36",
+    "bytes": 704
+  },
+  "046-opencv-ldd-611.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-611.log",
+    "sha256": "09482214b64ce23386b1faba9f423f2a3a459f3898e70ee95aa3cb40a7846f7c",
+    "bytes": 1003
+  },
+  "047-opencv-ldd-615.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-615.log",
+    "sha256": "dd48d1332b2b130807a3d5d339efd4011560c366f9f4c4188ab97aba3d597372",
+    "bytes": 1272
+  },
+  "048-opencv-ldd-619.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-619.log",
+    "sha256": "074524e1c636d8a7b004074d4a119532945e28f66ea2874d7fe068841d56f750",
+    "bytes": 1003
+  },
+  "049-opencv-ldd-623.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-623.log",
+    "sha256": "7b14c38987419502afcf786824b3d5b36084d70a99ba13905bd86a44fd36eef6",
+    "bytes": 1120
+  },
+  "050-opencv-ldd-627.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-627.log",
+    "sha256": "a9e2b2807db322a27d5d604b59e492dedd8a6ad9bf71cfc8318e09ab8964b93a",
+    "bytes": 18996
+  },
+  "051-opencv-ldd-631.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-631.log",
+    "sha256": "9914b080e9248148ef9ac2dddd968cb5fe3cc1352a2ef313ea8caa97648f14ac",
+    "bytes": 700
+  },
+  "052-opencv-ldd-635.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-635.log",
+    "sha256": "1287f4d9e02aea14fef49b66dd3f34b873ad743d885804a5d15378b6353fd50b",
+    "bytes": 2625
+  },
+  "053-opencv-ldd-639.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-639.log",
+    "sha256": "c4972f0b81e8d24f777cea755876f33e7d40c4f3e578672d65e801646c903283",
+    "bytes": 1272
+  },
+  "054-opencv-ldd-643.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-643.log",
+    "sha256": "ceb40859e88aca11b2a91d7e1774414da6001764754dd2a1f0447e54798bbca5",
+    "bytes": 1177
+  },
+  "055-opencv-ldd-647.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-647.log",
+    "sha256": "9079c467c052cd718f59344a8fb9174ef10a4053f31d7edd268b3759c75a062c",
+    "bytes": 18129
+  },
+  "056-opencv-ldd-651.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-651.log",
+    "sha256": "3b97b6dbbd1b207adbfcd56d50f996e64347dc3c909d53c576a905299979b2ca",
+    "bytes": 18891
+  },
+  "057-opencv-ldd-655.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-655.log",
+    "sha256": "38d69970e18cadb473a9dfd6cab2030aacc829db01433449df8c497445c3a17c",
+    "bytes": 8072
+  },
+  "058-opencv-ldd-659.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-659.log",
+    "sha256": "fc9ec71cee342e84fd87d6a5b0b65af519123c50a0deca9eb963e55e4cb006f6",
+    "bytes": 878
+  },
+  "059-opencv-ldd-663.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-663.log",
+    "sha256": "08e2bfa900d25c3adad13b108c9a40519a6150a5f212d210b8d804fea5390b39",
+    "bytes": 10826
+  },
+  "060-opencv-ldd-667.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-667.log",
+    "sha256": "4c8c61008253f293a7101aa90904b002787bd05e5f700860f6991def3683a122",
+    "bytes": 10834
+  },
+  "061-opencv-ldd-671.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/opencv-ldd-671.log",
+    "sha256": "fd2aa9bcaae3a881b4f0e33211e4f54ea333eae0559a0db6ba7bd8a856b6beb0",
+    "bytes": 704
+  },
+  "062-python_preflight.log": {
+    "origin": "/root/polar-pb-aim-preflight-20261014-04/python_preflight.log",
+    "sha256": "1d5d5c885abe747aeccbfc94bdbfcf19cd240ea8a72a0c5ad0ff2a64fa7b6434",
+    "bytes": 2962
+  }
+}

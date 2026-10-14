@@ -1,0 +1,9 @@
+{
+  "kind": "structured_observation_not_raw_stdout",
+  "command": ".venv-sim/Scripts/python.exe -m pytest tests/test_wsl_aim_async.py -q",
+  "returncode": 1,
+  "passed": 35,
+  "failed": 1,
+  "error": "Windows mock boot-id path str used backslashes; actual fixture did not read Linux boot id. Fixed fixture via Path.as_posix; no production relaxation.",
+  "raw_stdout_saved": false
+}

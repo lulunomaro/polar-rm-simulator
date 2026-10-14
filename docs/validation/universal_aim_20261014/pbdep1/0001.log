@@ -1,0 +1,47 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ros-humble-compressed-depth-image-transport
+  ros-humble-compressed-image-transport ros-humble-theora-image-transport
+The following NEW packages will be installed:
+  nlohmann-json3-dev ros-humble-compressed-depth-image-transport
+  ros-humble-compressed-image-transport ros-humble-image-transport-plugins
+  ros-humble-theora-image-transport ros-humble-vision-opencv
+The following packages will be upgraded:
+  ros-humble-cv-bridge ros-humble-example-interfaces ros-humble-geometry-msgs
+  ros-humble-image-transport ros-humble-message-filters ros-humble-rclcpp
+  ros-humble-rclcpp-components ros-humble-rosidl-default-generators
+  ros-humble-rosidl-default-runtime ros-humble-sensor-msgs ros-humble-std-msgs
+  ros-humble-std-srvs ros-humble-tf2-geometry-msgs ros-humble-tf2-ros
+  ros-humble-visualization-msgs
+15 upgraded, 6 newly installed, 6 reinstalled, 0 to remove and 217 not upgraded.
+Need to get 4755 kB of archives.
+After this operation, 3825 kB of additional disk space will be used.
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-ament-cmake/ros-humble-ament-cmake_1.3.14-1jammy.20260226.035055_amd64.deb' ros-humble-ament-cmake_1.3.14-1jammy.20260226.035055_amd64.deb 7694 MD5Sum:b7e335eefe73ebf66f7ed02968750b6d
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-ament-cmake-auto/ros-humble-ament-cmake-auto_1.3.14-1jammy.20260304.074922_amd64.deb' ros-humble-ament-cmake-auto_1.3.14-1jammy.20260304.074922_amd64.deb 11268 MD5Sum:6c69d9acd1d3e9b15760615f604e2f19
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-angles/ros-humble-angles_1.15.0-1jammy.20260304.075013_amd64.deb' ros-humble-angles_1.15.0-1jammy.20260304.075013_amd64.deb 14264 MD5Sum:13738a1fd026779d7ce36151d30cf262
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-rosidl-default-runtime/ros-humble-rosidl-default-runtime_1.2.1-1jammy.20260907.201130_amd64.deb' ros-humble-rosidl-default-runtime_1.2.1-1jammy.20260907.201130_amd64.deb 6510 MD5Sum:f2698d20422f2c9c6ff2182149bfcf48
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-std-msgs/ros-humble-std-msgs_4.9.2-1jammy.20260907.205027_amd64.deb' ros-humble-std-msgs_4.9.2-1jammy.20260907.205027_amd64.deb 199636 MD5Sum:2b0f09ecd05dc2b81b274c143846f16a
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-geometry-msgs/ros-humble-geometry-msgs_4.9.2-1jammy.20260907.210358_amd64.deb' ros-humble-geometry-msgs_4.9.2-1jammy.20260907.210358_amd64.deb 224232 MD5Sum:17a600167c01379f181896c650e13df0
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-sensor-msgs/ros-humble-sensor-msgs_4.9.2-1jammy.20260907.212033_amd64.deb' ros-humble-sensor-msgs_4.9.2-1jammy.20260907.212033_amd64.deb 316242 MD5Sum:a7e1f85f88d601d45d59a693cae9fc36
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-cv-bridge/ros-humble-cv-bridge_3.2.1-1jammy.20260907.220118_amd64.deb' ros-humble-cv-bridge_3.2.1-1jammy.20260907.220118_amd64.deb 109916 MD5Sum:5fa4564d3debaf32b197c2a5cbb60ddd
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-rclcpp/ros-humble-rclcpp_16.0.21-1jammy.20260907.213403_amd64.deb' ros-humble-rclcpp_16.0.21-1jammy.20260907.213403_amd64.deb 647774 MD5Sum:97fe3033e9dc079e7c43ff5d20ebb687
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-message-filters/ros-humble-message-filters_4.3.20-1jammy.20260907.223809_amd64.deb' ros-humble-message-filters_4.3.20-1jammy.20260907.223809_amd64.deb 48582 MD5Sum:2c429d285668fb84a7112337fe2ddf0a
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-image-transport/ros-humble-image-transport_3.1.13-1jammy.20260907.224758_amd64.deb' ros-humble-image-transport_3.1.13-1jammy.20260907.224758_amd64.deb 403196 MD5Sum:51f56d52e5d87564478d5e390b5d2d8c
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-compressed-depth-image-transport/ros-humble-compressed-depth-image-transport_2.5.5-1jammy.20260908.002700_amd64.deb' ros-humble-compressed-depth-image-transport_2.5.5-1jammy.20260908.002700_amd64.deb 120974 MD5Sum:ee8dac03781854e95a5e220b58050f08
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-compressed-image-transport/ros-humble-compressed-image-transport_2.5.5-1jammy.20260908.002726_amd64.deb' ros-humble-compressed-image-transport_2.5.5-1jammy.20260908.002726_amd64.deb 129726 MD5Sum:220a2d74832057f1fb4283ddcb1f5092
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-eigen3-cmake-module/ros-humble-eigen3-cmake-module_0.1.1-4jammy.20260304.195907_amd64.deb' ros-humble-eigen3-cmake-module_0.1.1-4jammy.20260304.195907_amd64.deb 5958 MD5Sum:84492f20795498c5d53f18a15bc63cb6
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-example-interfaces/ros-humble-example-interfaces_0.9.3-2jammy.20260907.205601_amd64.deb' ros-humble-example-interfaces_0.9.3-2jammy.20260907.205601_amd64.deb 269772 MD5Sum:be306e964966bd81beb0330471279e76
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-theora-image-transport/ros-humble-theora-image-transport_2.5.5-1jammy.20260907.230003_amd64.deb' ros-humble-theora-image-transport_2.5.5-1jammy.20260907.230003_amd64.deb 213768 MD5Sum:a83d8cc43b61d2fcae668fd9362f2f05
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-image-transport-plugins/ros-humble-image-transport-plugins_2.5.5-1jammy.20260908.011646_amd64.deb' ros-humble-image-transport-plugins_2.5.5-1jammy.20260908.011646_amd64.deb 6664 MD5Sum:bc78daf9516e6cc0d89a235d8c2991b7
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-rclcpp-components/ros-humble-rclcpp-components_16.0.21-1jammy.20260907.223024_amd64.deb' ros-humble-rclcpp-components_16.0.21-1jammy.20260907.223024_amd64.deb 86336 MD5Sum:8da734619cf7d09d370873da452f70ba
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-rosidl-default-generators/ros-humble-rosidl-default-generators_1.2.1-1jammy.20260907.201146_amd64.deb' ros-humble-rosidl-default-generators_1.2.1-1jammy.20260907.201146_amd64.deb 7092 MD5Sum:ec00e17f2afeaa55bbe1d11b1eaad74e
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-std-srvs/ros-humble-std-srvs_4.9.2-1jammy.20260907.204811_amd64.deb' ros-humble-std-srvs_4.9.2-1jammy.20260907.204811_amd64.deb 64512 MD5Sum:26780321a4a941bdbd2f7fabf4f6f809
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-tf2-ros/ros-humble-tf2-ros_0.25.24-1jammy.20260915.204410_amd64.deb' ros-humble-tf2-ros_0.25.24-1jammy.20260915.204410_amd64.deb 313806 MD5Sum:efb8d16cf61823df4952084682a64605
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-tf2-geometry-msgs/ros-humble-tf2-geometry-msgs_0.25.24-1jammy.20260915.205448_amd64.deb' ros-humble-tf2-geometry-msgs_0.25.24-1jammy.20260915.205448_amd64.deb 21520 MD5Sum:3d1d44ac9414a5fa5eaf26db27480680
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-vision-opencv/ros-humble-vision-opencv_3.2.1-1jammy.20260907.222402_amd64.deb' ros-humble-vision-opencv_3.2.1-1jammy.20260907.222402_amd64.deb 6402 MD5Sum:2e827f55d7399d0fd20f7f1f48e9819d
+'http://packages.ros.org/ros2/ubuntu/pool/main/r/ros-humble-visualization-msgs/ros-humble-visualization-msgs_4.9.2-1jammy.20260907.213259_amd64.deb' ros-humble-visualization-msgs_4.9.2-1jammy.20260907.213259_amd64.deb 204768 MD5Sum:feed311f1ab079bd36b4fc76ecc05aee
+'http://archive.ubuntu.com/ubuntu/pool/universe/o/opencv/libopencv-dev_4.5.4%2bdfsg-9ubuntu4_amd64.deb' libopencv-dev_4.5.4+dfsg-9ubuntu4_amd64.deb 91816 MD5Sum:a47069272ce3b6b5ef953aebcf9b30e6
+'http://archive.ubuntu.com/ubuntu/pool/universe/n/nlohmann-json3/nlohmann-json3-dev_3.10.5-2_all.deb' nlohmann-json3-dev_3.10.5-2_all.deb 166536 MD5Sum:4b5f409343d46c57ec9ff17de2beb957
+'http://archive.ubuntu.com/ubuntu/pool/universe/e/eigen3/libeigen3-dev_3.4.0-2ubuntu2_all.deb' libeigen3-dev_3.4.0-2ubuntu2_all.deb 1055832 MD5Sum:fd59c2d584ecdb562240a6dfcc438da9

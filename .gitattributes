@@ -1,15 +1,15 @@
 # Hash-pinned source artifacts must retain Git's LF bytes on Windows clones.
 * text=auto eol=lf
 # This manifest is also captured literally by source/evidence SHA checks.
-DEVELOPMENT_CHANGES.json -text diff
+DEVELOPMENT_CHANGES.json -text diff -whitespace
 *.onnx binary
 *.gz binary
 *.png binary
 *.jpg binary
 # Preserve the literal bytes already bound by development evidence manifests.
 operator_native/runtime/overlays/*.cpp -text diff
-client_patches/*.patch -text diff
-client_patches/*.json -text diff
+client_patches/*.patch -text diff -whitespace
+client_patches/*.json -text diff -whitespace
 docs/validation/**/*.json -text diff
 docs/validation/**/*.jsonl -text diff
 docs/validation/**/*.md -text diff

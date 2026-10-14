@@ -23,6 +23,22 @@ CHUNK=65536
 STDOUT_PREFIX_LIMIT=4096
 
 
+def _read_payload_into(fd,payload,received):
+    """Linux readv fills the owned buffer without per-chunk allocation/copy.
+
+    A one-byte overflow iovec preserves the original extra-byte rejection at
+    the image boundary. Count, EOF, SHA and deadline handling remain caller-owned.
+    """
+    remaining=len(payload)-received
+    if remaining<=0:raise ValueError('No remaining image receive capacity')
+    overflow=bytearray(1)
+    with memoryview(payload) as view:
+        count=os.readv(fd,[view[received:],overflow])
+    if type(count) is not int or not 0<=count<=remaining+1:
+        raise OSError('Invalid bounded image readv count')
+    return count
+
+
 class _NativeStdoutObservation:
     """Bounded per-request supervisor observations, never child compute proof."""
     def __init__(self):self.reset()
@@ -64,7 +80,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         nonlocal stopped
         stopped=True
     signal.signal(signal.SIGTERM,stop_signal);signal.signal(signal.SIGINT,stop_signal)
-    child=None;errorlog=None;tmp=None;reason='startup_failure';killed=False
+    child=None;errorlog=None;tmp=None;reason='startup_failure';killed=False;ready=False
     startup=time.monotonic();header=bytearray();header_start=None;native_buffer=bytearray();pending=None
     payload=None;received=0;image_start=None;writebuf=b'';stages={}
     native_stdin_bytes=0;native_stdin_complete=False;native_stdin_started=None
@@ -127,10 +143,19 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                 # remaining budget after select. Never read a late result.
                 if active_deadline is not None and time.monotonic()>=active_deadline:
                     reason='startup_timeout' if not ready else 'control_timeout';raise TimeoutError(reason)
-                chunk=os.read(fd,CHUNK)
+                direct_payload=fd==0 and payload is not None
+                if direct_payload:
+                    count=_read_payload_into(fd,payload,received)
+                    if count==0:reason='host_eof';return 0
+                    if count>MAX_IMAGE-received:
+                        received=MAX_IMAGE
+                        raise ValueError('extra bytes in single pipe transaction')
+                    received+=count
+                    chunk=None
+                else:chunk=os.read(fd,CHUNK)
                 if fd!=0:
                     stdout_observation.observed_read(chunk,time.monotonic(),native_stdin_finished)
-                if not chunk:
+                if not direct_payload and not chunk:
                     if fd==0:reason='host_eof';return 0
                     reason='native_eof';raise RuntimeError('owned native stdout closed')
                 if fd!=0:
@@ -153,7 +178,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                         received=0;native_stdin_bytes=0;native_stdin_complete=False
                         native_stdin_started=None;native_stdin_finished=None;native_stdin_expected=0
                     continue
-                view=memoryview(chunk)
+                view=None if direct_payload else memoryview(chunk)
                 if payload is None:
                     if pending is not None or not ready:raise ValueError('unexpected concurrent pipe request')
                     if header_start is None:
@@ -185,8 +210,9 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                     image_start=header_start;header_start=None;active_deadline=image_start+budget
                     payload=bytearray(MAX_IMAGE);received=0
                     view=view[newline+1:]
-                if len(view)>MAX_IMAGE-received:raise ValueError('extra bytes in single pipe transaction')
-                payload[received:received+len(view)]=view;received+=len(view)
+                if not direct_payload:
+                    if len(view)>MAX_IMAGE-received:raise ValueError('extra bytes in single pipe transaction')
+                    payload[received:received+len(view)]=view;received+=len(view)
                 if received!=MAX_IMAGE:continue
                 completed=time.monotonic();stages['pipe_receive_s']=completed-image_start
                 digest=hashlib.sha256(payload).hexdigest();hashed=time.monotonic();stages['payload_sha256_s']=hashed-completed
@@ -215,6 +241,18 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         except (OSError,BrokenPipeError):pass
         return 2
     finally:
+        final_now=time.monotonic()
+        final_stages=dict(stages)
+        if native_stdin_complete and native_stdin_finished is not None:
+            final_stages['native_result_wait_s']=final_now-native_stdin_finished
+        final_io=dict(transport=TRANSPORT,spec_sha256=spec_sha,reason=reason,
+            observed_linux_monotonic=final_now,clock_domain='linux_local_diagnostic_only',
+            ready=ready if child is not None else False,
+            host_transaction_inflight=type(pending) is dict,
+            request_id=pending.get('id') if type(pending) is dict else None,
+            received_bgr_bytes=received,native_stdin_bytes_written=native_stdin_bytes,
+            native_stdin_expected_bytes=native_stdin_expected,native_stdin_complete=native_stdin_complete,
+            linux_stages_s=final_stages,**stdout_observation.snapshot(native_buffer))
         if child is not None:
             result=owner.cleanup()
             for stream in (child.stdin,child.stdout):stream.close()
@@ -223,6 +261,9 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         if child is not None:
             import resource
             usage=resource.getrusage(resource.RUSAGE_CHILDREN)
+            # Cancellation is a normal loop exit and previously had no partial
+            # I/O proof. Write the captured snapshot only after child cleanup.
+            _record(out,'FINAL_IO.json',final_io)
             _record(out,'CLEANUP.json',dict(result,transport=TRANSPORT,spec_sha256=spec_sha,reason=reason,
                 tmpfs_directory=tmp_path,tmpfs_removed=not Path(tmp_path).exists(),
                 native_lifetime_cpu=dict(user_s=usage.ru_utime,system_s=usage.ru_stime,max_rss_kib=usage.ru_maxrss,

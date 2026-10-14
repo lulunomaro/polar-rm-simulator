@@ -53,24 +53,24 @@ class _LinuxAdapterGroup(LinuxOwnedProcessGroup):
             returncode=child.returncode,reaped_descendants=reaped,cleanup_elapsed_s=time.perf_counter()-started)
 
 class OwnedJsonProcess:
-    def __init__(self,command,*,cwd,env,stop_event):
+    def __init__(self,command,*,cwd,env,stop_event,linux_owner_factory=None,stderr=None):
         self.owner=None;self.child=None;self.status=None
         if stop_event.is_set():
             raise OwnedJsonLaunchFailure(RuntimeError('JSON process cancelled before launch'),
                 dict(clean=True,reaped=False,not_spawned=True,group_empty=True,errors=[]))
         if sys.platform=='win32':
             from .windows_owned_job import WindowsOwnedJobProcess
-            self.child=WindowsOwnedJobProcess(command,cwd=cwd,env=env,stop_event=stop_event)
+            self.child=WindowsOwnedJobProcess(command,cwd=cwd,env=env,stop_event=stop_event,stderr=stderr)
             self.owner=self.child
         elif sys.platform=='linux':
-            try:self.owner=_LinuxAdapterGroup()
+            try:self.owner=(_LinuxAdapterGroup if linux_owner_factory is None else linux_owner_factory)()
             except Exception as exc:
                 raise OwnedJsonLaunchFailure(exc,
                     dict(clean=True,reaped=False,not_spawned=True,group_empty=True,errors=[])) from exc
             try:
                 if stop_event.is_set():raise RuntimeError('JSON process cancelled before launch')
                 self.child=subprocess.Popen(command,cwd=cwd,env=env,stdin=subprocess.PIPE,
-                    stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,bufsize=0,shell=False,start_new_session=True)
+                    stdout=subprocess.PIPE,stderr=subprocess.DEVNULL if stderr is None else stderr,bufsize=0,shell=False,start_new_session=True)
                 self.owner.attach(self.child)
                 if stop_event.is_set():raise RuntimeError('JSON process cancelled during launch')
             except BaseException as exc:

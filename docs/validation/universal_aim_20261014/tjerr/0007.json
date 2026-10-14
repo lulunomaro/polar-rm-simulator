@@ -1,0 +1,43 @@
+{
+  "steps": [
+    {
+      "argv": [
+        "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+        "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\tongji_prepare_reset01_20261014.py"
+      ],
+      "pid": 31124,
+      "driver_pid": 61584,
+      "returncode": 2,
+      "reaped": true,
+      "elapsed_s": 4.45757329999833
+    }
+  ],
+  "all_expected_exit_codes": false,
+  "source_before": {
+    "adapters/native/tongji/jsonl_wrapper.py": "425aaa86363ecb729ce8dd46e28b81c5f0c377d96ff9114ce7bda47ead289e6d",
+    "rm_match/deployment/wsl_jsonl.py": "b9651b7a49c6daa91aba3c4a19319e10b5a5468c315aef0fa74411f4c4567f50",
+    "rm_match/deployment/wsl_jsonl_worker.py": "456a915cdfbb8e4215099e7486552e021a99487cf3980360282fceb8a438336c",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+    "rm_match/deployment/json_adapter.py": "9394006b8aa03490567370c847a328124a0c63482437ae95513e20ac8d0f13fb",
+    "rm_match/deployment/json_owned_process.py": "ccc771d5b9722f3ea6537bc63d576427bad660a2ac5e499924bef1d420a969cd",
+    "rm_match/deployment/windows_owned_job.py": "f45be9e1a9894ca93202693600821ba8b32a9df2e4a73816d3497da721faa964",
+    "rm_match/deployment/aim_plugin.py": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "artifacts/tongji_prepare_reset01_20261014.py": "e69b828b59354716a63cc34b3ba6527bfdb05332ca7d0dd7ce6e0f3553994756"
+  },
+  "source_after": {
+    "adapters/native/tongji/jsonl_wrapper.py": "425aaa86363ecb729ce8dd46e28b81c5f0c377d96ff9114ce7bda47ead289e6d",
+    "rm_match/deployment/wsl_jsonl.py": "b9651b7a49c6daa91aba3c4a19319e10b5a5468c315aef0fa74411f4c4567f50",
+    "rm_match/deployment/wsl_jsonl_worker.py": "456a915cdfbb8e4215099e7486552e021a99487cf3980360282fceb8a438336c",
+    "rm_match/deployment/wsl_jsonl_owned_tree.py": "193acef2530c633ff0daf108f84d2300b7dadfd7789562fe836a033a2afebe48",
+    "rm_match/deployment/json_adapter.py": "9394006b8aa03490567370c847a328124a0c63482437ae95513e20ac8d0f13fb",
+    "rm_match/deployment/json_owned_process.py": "ccc771d5b9722f3ea6537bc63d576427bad660a2ac5e499924bef1d420a969cd",
+    "rm_match/deployment/windows_owned_job.py": "f45be9e1a9894ca93202693600821ba8b32a9df2e4a73816d3497da721faa964",
+    "rm_match/deployment/aim_plugin.py": "34d398e4176f1d38a4400dff6b738a0a5dc515f937054023d4983ad80299e420",
+    "rm_match/integrations/aim_jsonl_peer.py": "e8733feee1132939582443f504ff650002a3e6bf2f3bd83bfe84a5583f2179a5",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "artifacts/tongji_prepare_reset01_20261014.py": "e69b828b59354716a63cc34b3ba6527bfdb05332ca7d0dd7ce6e0f3553994756"
+  },
+  "source_unchanged": true
+}

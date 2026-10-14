@@ -1,0 +1,125 @@
+{
+  "scope": "Isolated postrun actual receipt/feedback read; no truth enters algorithm, no steady performance claim",
+  "samples": [
+    {
+      "phase": "actuator",
+      "consume_wall": 28180.1946861,
+      "consume_sim_time": 3.2799999999998604,
+      "budget": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "frame_id": 90,
+        "capture_wall": 28180.1207442,
+        "capture_sim_time": 3.219999999999867,
+        "wall_deadline": 28180.200744200003,
+        "sim_deadline": 3.299999999999867
+      },
+      "target": {
+        "motion": null,
+        "gimbal": {
+          "frame": "base_link",
+          "yaw_rad": 2.7562864914073326e-05,
+          "pitch_rad": -0.13591544194436941,
+          "active": true,
+          "confidence": null,
+          "fire_permission": false
+        },
+        "fire": false
+      },
+      "actual_qpos": [
+        1.7500000101100697,
+        -0.649999999891961,
+        7.102703057152307e-10,
+        1.0965778290296745e-07,
+        -0.024191021220387472
+      ],
+      "actual_actuator_ctrl": [
+        0.0,
+        0.0,
+        0.0,
+        2.7562864914073326e-05,
+        -0.13591544194436941
+      ]
+    },
+    {
+      "phase": "actuator",
+      "consume_wall": 28180.3999314,
+      "consume_sim_time": 3.419999999999845,
+      "budget": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "frame_id": 93,
+        "capture_wall": 28180.3261958,
+        "capture_sim_time": 3.3679999999998507,
+        "wall_deadline": 28180.406195800002,
+        "sim_deadline": 3.4479999999998507
+      },
+      "target": {
+        "motion": null,
+        "gimbal": {
+          "frame": "base_link",
+          "yaw_rad": -0.0002542661511401897,
+          "pitch_rad": -0.13596631889645316,
+          "active": true,
+          "confidence": null,
+          "fire_permission": false
+        },
+        "fire": false
+      },
+      "actual_qpos": [
+        1.7500000347343523,
+        -0.6500000013234474,
+        -9.93875810496967e-09,
+        -1.9454845260524866e-07,
+        -0.04401604027284265
+      ],
+      "actual_actuator_ctrl": [
+        0.0,
+        0.0,
+        0.0,
+        -0.0002542661511401897,
+        -0.13596631889645316
+      ]
+    },
+    {
+      "phase": "actuator",
+      "consume_wall": 28180.6671693,
+      "consume_sim_time": 3.627999999999822,
+      "budget": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "frame_id": 97,
+        "capture_wall": 28180.5945918,
+        "capture_sim_time": 3.5759999999998278,
+        "wall_deadline": 28180.6745918,
+        "sim_deadline": 3.655999999999828
+      },
+      "target": {
+        "motion": null,
+        "gimbal": {
+          "frame": "base_link",
+          "yaw_rad": -6.197157617098674e-05,
+          "pitch_rad": -0.13625297216949278,
+          "active": true,
+          "confidence": null,
+          "fire_permission": false
+        },
+        "fire": false
+      },
+      "actual_qpos": [
+        1.750000083016323,
+        -0.6500000002150405,
+        -1.6877336428978788e-09,
+        -3.2661340643792093e-06,
+        -0.06500306291853869
+      ],
+      "actual_actuator_ctrl": [
+        0.0,
+        0.0,
+        0.0,
+        -6.197157617098674e-05,
+        -0.13625297216949278
+      ]
+    }
+  ]
+}

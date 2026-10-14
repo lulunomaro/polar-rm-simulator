@@ -1,0 +1,20 @@
+{
+  "schema": "polar.native-inference-thread-api-report.v1",
+  "available": true,
+  "valid": true,
+  "record": {
+    "schema": "rmcs.inference-thread-api.v1",
+    "profile": "first-frame-trace",
+    "startup": true,
+    "native_ticks": 0,
+    "inference_calls": 0,
+    "clock_domain": "linux_steady_diagnostic_only",
+    "linux_steady_ns": 46009176805,
+    "requested": "4",
+    "action": "core_set_property",
+    "effective_threads": 4,
+    "other_properties_unchanged": true,
+    "error": null
+  },
+  "errors": []
+}

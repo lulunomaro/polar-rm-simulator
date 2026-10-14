@@ -1,0 +1,28 @@
+{
+  "out": "artifacts/pb-aim-extra-prefix-preflight-driver-20261014-02",
+  "sources": [
+    "tools/build_pb_aim_plugins.py",
+    "tools/prepare_pb_aim_system_dependencies.py",
+    "rm_match/integrations/owned_linux_group.py"
+  ],
+  "scope": "Actual fresh Humble ext4 preflight with SHA-checked extra dependency prefix; no model/nodes/NN/physics",
+  "commands": [
+    {
+      "argv": [
+        "C:/Windows/System32/wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/usr/bin/python3",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/build_pb_aim_plugins.py",
+        "--out",
+        "/root/polar-pb-aim-preflight-20261014-02",
+        "--extra-prefix-manifest",
+        "/root/polar-pb-aim-system-deps-20261014-02/DEPENDENCY_PREFIX.json",
+        "--extra-prefix-sha256",
+        "c29618cb4fde672d698357e932e121a879efd7a1037b3f1defca0e53b861dcc6",
+        "--preflight-only"
+      ]
+    }
+  ]
+}

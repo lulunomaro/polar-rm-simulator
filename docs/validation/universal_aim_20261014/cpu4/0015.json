@@ -1,0 +1,97 @@
+{
+  "id": "t2_sim_operator_portable_local",
+  "operator_identity": "rmcs-sim-operator-fov-v1",
+  "runner_identity": "rmcs-sim-operator-fov-v1",
+  "binary": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-production-cpu4-build-20261014/bin/rmcs_sim_operator_fov",
+  "executor_yaml": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-production-cpu4-build-20261014/configs/simulation_executor.yaml",
+  "autoaim_config": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/native-production-cpu4-build-20261014/configs/simulation_autoaim.yaml",
+  "model_share": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/models",
+  "model_sha256": "b53470b42a5778aca8f3382ebe3c623482599cbf8ebad2e9a0dcc0c7f42c9255",
+  "sha256": {
+    "binary": "67819b6812c2c4a87e2b411eed49c1e01cfb67212efdd2f2e0abd2aa3a963dec",
+    "executor_yaml": "c3a08938bce9b0347ae255f90964897cbf144dc872ad86bc5bcb6794e82d17dd",
+    "autoaim_config": "e5c0f63de6a1f8f88b99524461f37fc1fddad34461b9f0f888969f7650ee7ac3",
+    "runtime_mode": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1"
+  },
+  "frozen_build": {
+    "binary_sha256": "67819b6812c2c4a87e2b411eed49c1e01cfb67212efdd2f2e0abd2aa3a963dec",
+    "manifest_sha256": "e6ebadbc55b62122860d474f16eb590037a5c8c2143c1c809c84187d8c82d6b7",
+    "elf": {
+      "class": "ELF64",
+      "endianness": "little",
+      "machine": "EM_X86_64",
+      "elf_type": 3,
+      "program_headers": 14
+    },
+    "scope": "New local clean build; no historical binary equivalence",
+    "inference_profile": {
+      "schema": "rmcs.production-inference-profile.v1",
+      "id": "cpu-inference-threads-v1",
+      "inference_threads": 4,
+      "device": "CPU",
+      "patch_sha256": "c447e349696f353b9a8a4ae76f0cd7a81225a2594914d99a9252d6da04ef3a86",
+      "generator_source_path": "overlays/prepare_inference_threads.py",
+      "generator_sha256": "afc455e6f515f404e4e4873034ebe0e3afc44e15eba2b9d3cc759c98c1efff2f",
+      "header_source_path": "overlays/production_inference_threads.hpp",
+      "header_sha256": "effcfd1cd3034d7acc2582332453c1bb0e1693a3ee5dff1ff120868036cb5bd4",
+      "inference_during_setup": false,
+      "diagnostic_only": false
+    }
+  },
+  "runtime_mode_contents": "multi_ekf\n",
+  "runtime_mode_sha256": "852a0ea1e8382760798af7c834cf2d2aaca86ef3a339ffd09aa03aca8263cbe1",
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "source_identity": {
+    "base_commit": "079a7fe29966fe467630f0c4ab8c3ed075edaad9",
+    "patch_sha256": "7cd83a6aebf54b414c1eb51180940baf0eca5c6b038533dde16a7d7b0069015d",
+    "changed_files": [
+      "src/module/tracker/association_transaction.hpp",
+      "src/module/tracker/model/robot.cpp"
+    ],
+    "runtime_identity": "rmcs-sync-rebuild-v2",
+    "operator_identity_after_separate_existing_delta": "rmcs-sim-operator-fov-v1",
+    "original_upstream_commit": "4f4340956a989b0d3ecd4fbd94b1e72a301293cd",
+    "is_original_upstream": false,
+    "is_baseline_40f7": false,
+    "tracker_patch_sha256": "ea1235cfd11018bde08b40a43f3aba072a0870a8906f40ff35255cfdd16e4c7d",
+    "vision_frontend": {
+      "id": "image_contour_corners_v3",
+      "source_path": "overlays/corners_contour_v3.cpp",
+      "source_sha256": "0a90e0089a2531a476091d75c3085a6d26a843feba7c0f5cd429ea2928aa812c"
+    },
+    "patch_identity_format": "rmcs-own-source-inference-composition.v1",
+    "runtime_inference_profile": {
+      "schema": "rmcs.production-inference-profile.v1",
+      "id": "cpu-inference-threads-v1",
+      "inference_threads": 4,
+      "device": "CPU",
+      "patch_sha256": "c447e349696f353b9a8a4ae76f0cd7a81225a2594914d99a9252d6da04ef3a86",
+      "generator_source_path": "overlays/prepare_inference_threads.py",
+      "generator_sha256": "afc455e6f515f404e4e4873034ebe0e3afc44e15eba2b9d3cc759c98c1efff2f",
+      "header_source_path": "overlays/production_inference_threads.hpp",
+      "header_sha256": "effcfd1cd3034d7acc2582332453c1bb0e1693a3ee5dff1ff120868036cb5bd4",
+      "inference_during_setup": false,
+      "diagnostic_only": false
+    },
+    "inference_base_patch_sha256": "3ced3a3e41b4e6b6567f2b3b94f218817a043588fb0691b175ab55d5e3edbdf7"
+  },
+  "qualification": "Built only; no inference, MuJoCo closed-loop, live, or hardware qualification",
+  "algorithm_description": "Recovered 079a7fe plus T2 tracker changes; explicit frontend contour-v3; operator FOV adapter; simulation-only stationary red sentry; no automatic fire authority; production CPU inference threads 4",
+  "inference_profile": {
+    "schema": "rmcs.production-inference-profile.v1",
+    "id": "cpu-inference-threads-v1",
+    "inference_threads": 4,
+    "device": "CPU",
+    "patch_sha256": "c447e349696f353b9a8a4ae76f0cd7a81225a2594914d99a9252d6da04ef3a86",
+    "generator_source_path": "overlays/prepare_inference_threads.py",
+    "generator_sha256": "afc455e6f515f404e4e4873034ebe0e3afc44e15eba2b9d3cc759c98c1efff2f",
+    "header_source_path": "overlays/production_inference_threads.hpp",
+    "header_sha256": "effcfd1cd3034d7acc2582332453c1bb0e1693a3ee5dff1ff120868036cb5bd4",
+    "inference_during_setup": false,
+    "diagnostic_only": false
+  }
+}

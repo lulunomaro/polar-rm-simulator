@@ -1,0 +1,109 @@
+{
+  "act_calls": 0,
+  "claimed": true,
+  "cleanup": {
+    "clean": true,
+    "errors": [],
+    "io_thread_stopped": true,
+    "ownership": {
+      "clean": true,
+      "errors": [],
+      "group_empty": true,
+      "host_stderr_closed": true,
+      "linux": {
+        "clean": true,
+        "error_type": null,
+        "event": "cleanup",
+        "hello": {
+          "algorithm_ready": false,
+          "boot_id": "11b69436-7c3c-4dcd-bfda-451f3d827738",
+          "event": "hello",
+          "peer_identity": {
+            "boot_id": "11b69436-7c3c-4dcd-bfda-451f3d827738",
+            "leader_start_ticks": 396,
+            "pgid": 438,
+            "pid": 438,
+            "run_id": "d4e750c13b004a71b35b417bf6478fdd",
+            "supervisor_pid": 330
+          },
+          "run_id": "d8d086521eb24a56b1d0d040ea4b9530",
+          "spec_sha256": "3cc257226f9cd5e593cc912a14f19ce14030bb0ef6947bed6814c1428fce92ed",
+          "worker_pid": 330,
+          "worker_start_ticks": 257
+        },
+        "io_thread_stopped": true,
+        "ownership": {
+          "boot_id": "11b69436-7c3c-4dcd-bfda-451f3d827738",
+          "clean": true,
+          "cleanup_elapsed_s": 1.1870016019999987,
+          "errors": [],
+          "group_empty": true,
+          "killed": true,
+          "leader_start_ticks": 396,
+          "observed_births": {
+            "438": 396,
+            "440": 924,
+            "441": 924,
+            "442": 924
+          },
+          "owned_scope": "birth_bound_descendants_including_nested_sessions",
+          "pgid": 438,
+          "pid": 438,
+          "reaped": true,
+          "reaped_descendants": [
+            {
+              "pid": 440,
+              "start_ticks": 924,
+              "status": 0
+            },
+            {
+              "pid": 441,
+              "start_ticks": 924,
+              "status": 0
+            },
+            {
+              "pid": 442,
+              "start_ticks": 924,
+              "status": 0
+            }
+          ],
+          "remaining_members": [],
+          "run_id": "d4e750c13b004a71b35b417bf6478fdd",
+          "supervisor_pid": 330
+        },
+        "run_id": "d8d086521eb24a56b1d0d040ea4b9530",
+        "spec_sha256": "3cc257226f9cd5e593cc912a14f19ce14030bb0ef6947bed6814c1428fce92ed"
+      },
+      "reaped": true,
+      "resource_budget_s": 1.5,
+      "run_id": "d8d086521eb24a56b1d0d040ea4b9530",
+      "stderr_log": "supervisor.stderr.log",
+      "transport": "wsl_jsonl_v1",
+      "windows": {
+        "active_processes": 0,
+        "clean": true,
+        "errors": [],
+        "group_empty": true,
+        "ownership": "suspended_before_execute_job_kill_on_close",
+        "pid": 65092,
+        "reaped": true,
+        "returncode": 1
+      }
+    },
+    "resource_budget_s": 1.5
+  },
+  "context": {
+    "binding_epoch": 1,
+    "episode": 0,
+    "robot_id": "blue_hero"
+  },
+  "image_captures": 0,
+  "inference_calls": 0,
+  "manifest_sha256": "ecfabaab336fa62176f7a4d57a2b5a7b5b1edc15503e05a205ddcfbced826dbe",
+  "prepare_seconds": 10.179064500000095,
+  "prepared": true,
+  "qualification": "Actual resource/reset only, no SDK lease or realtime acceptance",
+  "reset_seconds": 0.052627199998823926,
+  "success": true,
+  "unclaimed_cleanup": {}
+}
