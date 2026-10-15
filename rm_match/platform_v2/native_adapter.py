@@ -212,7 +212,12 @@ class NativeSourceAdapter(BaseAdapter):
         if inline:
             writer=self._evidence_writer
             if writer is None:raise ContractError('native_evidence_not_prepared')
-            receipt=writer.submit(cam['frame_id'],image_bytes,image['sha256'])
+            if getattr(self,'_phase_probe',None) is None:
+                receipt=writer.submit(cam['frame_id'],image_bytes,image['sha256'])
+            else:
+                from .contracts import IDENTITY
+                receipt=writer.submit(cam['frame_id'],image_bytes,image['sha256'],
+                    source_context={k:o[k] for k in IDENTITY})
             if self.trace:self.trace(dict(event='native_evidence_accepted',wall_time=time.perf_counter(),wall_clock='host_perf_counter',receipt=receipt,sha256=image['sha256']))
         captured=replace(raw,sim_time=cam['capture_sim_time'],own_qpos=tuple(cam['own_qpos_at_capture']),own_qvel=tuple(cam['own_qvel_at_capture']),odom_xyyaw=tuple(cam['own_odom_at_capture']),odom_vxyw=tuple(cam['own_odom_velocity_at_capture']))
         frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=robot.referee_id,own_team=robot.team,image=image,camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))

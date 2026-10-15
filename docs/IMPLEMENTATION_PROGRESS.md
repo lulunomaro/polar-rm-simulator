@@ -1,6 +1,6 @@
 # 按计划实施的进度与证据
 
-更新至 2026-10-15（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
+更新至 2026-10-16（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
 work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 历史 cf6a6e4 证据、原帧、原模型及失败实验均保留。当前无 M0–M5 完整签收。
 
@@ -8,7 +8,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与历史静态OFFLINE24/三次live链局部通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
-| T03 | 三次静态native仍FAIL，最新RTF0.821310；新增六车active-v1合成图像ABBA及独立profile，差异不足解释实际退化；原80/150ms与原ELF/模型保持 | 实际图像/异步线程耗时仍待同源wall/thread-CPU计时定位；未重跑NN，不继承旧静态资格 |
+| T03 | 仍FAIL：新增有界同源wall/thread-CPU诊断，存证读回改1MiB并保持完整SHA；两次诊断与修复后默认运行均无及时动作，原80/150ms/ELF/模型保持 | 默认run03报binding_mismatch在3.76s提前停，RTF0.706906不构成10s通过；曝光到原生输入仍大量超期，须继续定位 |
 | T04 | 进行中：第六Qt新增严格aim v2选择/原授权绑定；513项/395subtests客户端回归通过；旧五版保持各自身份，既有第五版手控/PB导航5秒/30秒局部SIL保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 新增显式通用aim v2源方向参考，原source/budget锁定后按当前本车yaw转换；真实MuJoCo合成指令机械正/负对照通过，修复最终Command未应用新角度 | 不补平移/目标预测/弹道；T2原生移动profile、29TU新构建、多车同时真实自瞄未验；原静止scope证据按原源保留 |
 | T06 | 新增真实Slot暂停在途结果复活修复、fault与取消负例、绝对截止边界回归；全部失败和来源保留 | 系统运动/遮挡/丢失/射击/断线完整闭环矩阵仍待完成；合成/单位与无害进程不替NN实时验证 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 本轮第六Qt检查点四阶段通过：3332pass/45skip/1024subtests，484程序/测试/补丁输入不变；第六Qt32模块513pass/395subtests；全部原失败保留 | 质量通过不替实时性能、移动自瞄、多车/比赛、发布或M0–M5验收 |
+| T17 | 本轮取证/读回优化四阶段QA通过：3399pass/45skip/1024subtests，490程序/测试/补丁输入不变；第六Qt历史513pass/395subtests保留原身份 | 质量通过不替实时性能、移动自瞄、多车/比赛、发布或M0–M5验收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -34,7 +34,43 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
-## 第六Qt兼容与显式部署选择（2026-10-15，本轮最新）
+## 原生实时诊断与存证读回优化（2026-10-16，本轮最新）
+
+新增显式 `--profile-phases`，默认关闭；固定容量、原source6/request/frame/pixel SHA及原deadline，
+只采有限标量wall/thread CPU/线程号/队列占用，关停后输出，不新复制图像、不减少实际校验。
+同一probe在prepare前进入registry、async传输和writer；helper随启用路径进入源码pin。
+默认无新probe时钟/锁/hash；原图像80ms、SDK150ms、owned取消/清理和人工火控保持。
+whole authority step全采，详细阶段固定每50step；首次全详细采样140149条，有诊断开销且原失败保留，
+后继记录8668条也仍未通过，不将减少条数当性能因果证明。
+
+本机CPU记账正增量实测15.625ms，ns单位不意味着细粒度精度；短阶段CPU0和负wall-minus-CPU原样保留，
+不能解释成GIL等待或零工作。跨线程队列只做同域wall关联，同线程/原身份才比较CPU；重叠阶段不可相加。
+独立审查确认run01的binding_mismatch属于原activation期限到达后的sticky撤绑定，不是lease过期或需要重试的控制漏洞。
+
+实测writer文件读回SHA长等待后，将固定分块64KiB改为1MiB，完整磁盘读回、size、原BGR/JSON和两次SHA均保留，
+每4,665,600字节文件循环72→5、临时块上界1MiB。离线同一真实BGR暖缓存ABBA+合成Python争用线程，
+每组3帧64KiB为4.7753/4.9551s，1MiB为0.5749/0.5347s，12个SHA全部相同；不是live或GIL因果结论。
+
+| 本轮实际静态运行 | diag01，优化前/全详细 | diag02，优化前/stride50 | default03，1MiB/无额外计时 |
+| --- | --- | --- | --- |
+| 实际运行+清理wall秒 | 8.1634（提前停） | 10.1191 | 3.7627（提前停） |
+| physics RTF | 0.642759 | 0.521594 | 0.706906 |
+| raw /及时结果/独立帧消费 | 109 /0 /0 | 137 /0 /0 | 54 /0 /0 |
+| SDK/runtime error | binding_mismatch | 无 | binding_mismatch |
+| source/原预算/完整请求归账/owned清理 | 保持/通过/通过/clean | 保持/通过/通过/clean | 保持/通过/通过/clean |
+| 总判定 | FAIL | FAIL | FAIL |
+
+default03仅12笔queued（11笔原生前丢弃、1笔实际stdout迟到），未冒充及时NN或动作；
+两个提前停的RTF不能当成完整10s稳定性，也不与旧源直接因果比较。旧全部失败原样保留，停止重复同条件NN。
+下一步按完整曝光/准备/上传/响应与SDK续授权链隔离瓶颈，保持原门限，不修掉正确的过期撤权。
+本轮无新模型、ELF构建、PnP矩阵、移动自瞄、第三方算法全链或比赛验收，T01–T18与M0–M5其它缺口不变。
+
+最终QA01四阶段通过：3399pass/45skip/6既有warnings/1024subtests，pytest164.41s，driver222.722753s/exit0/reaped；
+490程序/测试/补丁输入逐SHA保持。优化后focused03通过312项/46subtests；原源focused01与02及agent专项证据独立保存。
+实际default03在此最终QA后执行且相同最终程序输入不变。本文结果段和归档在QA后补写。
+复现、原始失败和源码见[固定证据](validation/native_phase_20261016/README.md)，计时范围见[诊断说明](NATIVE_PHASE_DIAGNOSTICS.md)。
+
+## 第六Qt兼容与显式部署选择（2026-10-15，历史检查点）
 
 第六完整补丁从固定client BASE独立生成，包含第五版所有改动并严格支持
 `camera_gimbal_v2` / `2.0.0` / `camera+odometry` / 原source-base惯性yaw参考。

@@ -20,6 +20,7 @@ import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+PHASE_DETAIL_STRIDE=50
 PLAN = dict(schema='polar.wsl.native.live-plan.v1',
     configuration=dict(robot_count=6, timestep_s=.002, resolution=[1440,1080],
         total_fps=15, active_views=1, real_time_factor_limit=1.,
@@ -47,7 +48,7 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
-        host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None):
+        host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
@@ -97,6 +98,13 @@ def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_
             plan['criteria']['postclose_actual_pixel_audit']=True
         plan['measurement']['stages']+=['exposure_to_private_pixels','private_pixels_to_adapter_enqueue']
         plan['measurement']['logging']+='; actual private cache publish timestamp, public encoding measured separately'
+    if type(profile_phases) is not bool:raise ValueError('Explicit phase profiling must be boolean')
+    if profile_phases:
+        if transport!='wsl_async_bgr_v3':raise ValueError('Phase profiling requires async native transport')
+        plan['configuration'].update(host_phase_timing='bounded_wall_thread_cpu_v1',host_phase_capacity=262144,
+            authority_phase_detail_stride=PHASE_DETAIL_STRIDE)
+        plan['criteria']['host_phase_trace_complete']=True
+        plan['scope']+='; opt-in bounded thread/wall phase instrumentation adds diagnostic overhead'
     return plan
 
 
@@ -218,6 +226,8 @@ def classify(measurements,*,plan=None):
         checks['raw_codec_identity_unchanged']=m.get('raw_codec_identity_unchanged') is True
     if c.get('postclose_actual_pixel_audit'):
         checks['postclose_actual_pixel_audit']=m.get('postclose_actual_pixel_audit') is True
+    if c.get('host_phase_trace_complete'):
+        checks['host_phase_trace_complete']=m.get('host_phase_trace_complete') is True
     if c.get('host_opencv_setting_unchanged'):
         checks['host_opencv_setting_unchanged']=m.get('host_opencv_setting_unchanged') is True
     if c.get('original_async_transactions_accounted'):
@@ -605,7 +615,12 @@ def _run(a,affinity,scheduling):
     host_threads=getattr(a,'host_opencv_threads',None)
     plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
         host_opencv_threads=host_threads,host_python_switch_interval_ms=getattr(a,'host_python_switch_interval_ms',None),
-        authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None))
+        authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None),
+        profile_phases=getattr(a,'profile_phases',False))
+    phase_probe=None
+    if getattr(a,'profile_phases',False):
+        from rm_match.integrations.phase_timing import NumericPhaseProbe
+        phase_probe=NumericPhaseProbe(capacity=plan['configuration']['host_phase_capacity'])
     actor_id=getattr(a,'robot_id','red_sentry')
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
@@ -621,6 +636,8 @@ def _run(a,affinity,scheduling):
     if plan['criteria'].get('postclose_actual_pixel_audit'):
         for rel in ('tools/audit_live_native_pixels.py','tools/diagnose_native_saved_compute.py'):
             sources[rel]=hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
+    if phase_probe is not None:
+        sources['tools/native_phase_report.py']=hashlib.sha256((ROOT/'tools/native_phase_report.py').read_bytes()).hexdigest()
     write('EXECUTED_SOURCE.json',sources);write('PLAN.json',plan)
     host_opencv=None
     if host_threads is not None:
@@ -701,20 +718,25 @@ def _run(a,affinity,scheduling):
         raw_base64_codec=a.raw_base64_codec)
     codec_identity=camera._raw_encoder_metadata
     write('RAW_CODEC_IDENTITY.json',codec_identity)
+    probe_options={} if phase_probe is None else {'phase_probe':phase_probe}
     registry=own_wsl_registry(a.linux_native_spec,out/'native',repo_root=ROOT,
-        distribution=a.distribution,native_trace=trace,transport=a.native_transport,native_robot_scope=getattr(a,'native_robot_scope',None))
+        distribution=a.distribution,native_trace=trace,transport=a.native_transport,native_robot_scope=getattr(a,'native_robot_scope',None),**probe_options)
     class TimedRuntime(PlatformRuntime):
         def step_once(self):
             started=time.perf_counter()
+            index=self.steps
+            if phase_probe is not None:phase_probe.mark('authority_step_start',detail=index)
             try:return super().step_once()
-            finally:step_durations.append(time.perf_counter()-started)
+            finally:
+                if phase_probe is not None:phase_probe.mark('authority_step_end',detail=index)
+                step_durations.append(time.perf_counter()-started)
         def close(self):
             if self._authority==threading.get_ident() and 'start' in timing and 'physics_end' not in timing:
                 timing['physics_end']=time.perf_counter()
             return super().close()
     runtime=TimedRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace,
         enable_native_pixels=a.private_native_pixels)
-    if getattr(a,'profile_authority',False):
+    if getattr(a,'profile_authority',False) or phase_probe is not None:
         # Local QPC stage timers only. No suspension, alternate clock or change
         # to original scheduling/80ms/150ms gates; diagnostic overhead is explicit.
         for obj,name,label in ((runtime,'_collect','collect'),(runtime,'_schedule','schedule'),
@@ -726,6 +748,14 @@ def _run(a,affinity,scheduling):
                 start=time.perf_counter()
                 try:return _original(*args,**kwargs)
                 finally:_samples.append(time.perf_counter()-start)
+            if phase_probe is not None:
+                def timed_phases(*args,_original=timed,_label=label,**kwargs):
+                    index=runtime.steps
+                    if index % PHASE_DETAIL_STRIDE:return _original(*args,**kwargs)
+                    phase_probe.mark('authority_'+_label+'_start',detail=index)
+                    try:return _original(*args,**kwargs)
+                    finally:phase_probe.mark('authority_'+_label+'_end',detail=index)
+                timed=timed_phases
             setattr(obj,name,timed)
     server=PlatformHTTPServer(TransportConfig(port=0,admission_policy=AdmissionPolicy.from_manifest(out/'admission.json')),runtime)
     http=threading.Thread(target=server.serve_forever,daemon=True)
@@ -814,6 +844,20 @@ def _run(a,affinity,scheduling):
     durations=run_durations(timing,sim.time);elapsed=durations['run_and_cleanup_wall_s']
     clean=(camera_closed and not http.is_alive() and (physics is None or not physics.is_alive())
         and getattr(runtime,'shutdown_status',{}).get('clean') is True)
+    phase_snapshot=phase_summary=None
+    if phase_probe is not None:
+        from tools.native_phase_report import summarize
+        phase_snapshot=phase_probe.snapshot()
+        phase_snapshot['captured_after_clean_shutdown']=clean
+        phase_snapshot['sampling']=dict(authority_step='every_step',authority_details_step_stride=PHASE_DETAIL_STRIDE,
+            transport_and_evidence='all_original_phase_calls')
+        info=time.get_clock_info('thread_time')
+        phase_snapshot['reported_thread_cpu_clock']=dict(implementation=info.implementation,resolution_s=info.resolution,
+            note='API resolution is not measured accounting granularity; short zero CPU deltas do not prove zero work')
+        write('PHASE_TIMING.json',phase_snapshot)
+        phase_summary=summarize(phase_snapshot)
+        phase_summary['captured_after_clean_shutdown']=clean
+        write('PHASE_SUMMARY.json',phase_summary)
     source_unchanged=all((ROOT/p).is_file() and hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
     try:
         final_identity=selected_client_identity(a)
@@ -857,6 +901,7 @@ def _run(a,affinity,scheduling):
         raw_codec_identity_unchanged=codec_unchanged,
         postclose_actual_pixel_audit=pixel_audit is not None and pixel_audit.get('clean') is True,
         fire_true=counts['fire_true'],clean_shutdown=clean,errors=errors,
+        host_phase_trace_complete=phase_snapshot is not None and phase_snapshot['complete'] is True and clean,
         **fault_and_evidence_measurements(events,counts,
             writer_required=getattr(native,'_evidence_required',False),async_measurements=async_measurements),
         **stage_measurements(events,raw,consumed,private_native_pixels=a.private_native_pixels,pixel_audit=pixel_audit))
@@ -888,7 +933,8 @@ def _run(a,affinity,scheduling):
         host_scheduling=scheduling,
         pixel_audit=pixel_audit,
         runtime_step_wall=distribution(step_durations),
-        authority_stage_timing=dict(enabled=bool(getattr(a,'profile_authority',False)),
+        host_phase_timing=phase_summary,
+        authority_stage_timing=dict(enabled=bool(getattr(a,'profile_authority',False) or phase_probe is not None),
             clock='host_perf_counter',stages={k:distribution(v) for k,v in authority_stages.items()},
             scope='Optional diagnostic timers add overhead; no time or control-window substitution'),
         native_identity=None if native_process is None else native_process.checked.metadata,
@@ -914,6 +960,7 @@ def main(argv=None):
     p.add_argument('--authority-affinity-mask',type=parse_affinity_mask,
         help='Explicit Windows authority-thread mask, base-0 integer; restored after runtime.run')
     p.add_argument('--profile-authority',action='store_true',help='Additional local stage timers with explicit diagnostic overhead')
+    p.add_argument('--profile-phases',action='store_true',help='Opt-in bounded same-source wall/thread-CPU samples, persisted after teardown; async native only')
     p.add_argument('--client-root',type=Path)
     p.add_argument('--client-patch-manifest',type=Path,
         help='Explicit reviewed patch for this exact client checkout; no automatic version fallback')
@@ -929,7 +976,8 @@ def main(argv=None):
     try:
         selected_plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
-            authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope)
+            authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
+            profile_phases=a.profile_phases)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection

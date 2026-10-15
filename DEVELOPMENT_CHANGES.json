@@ -187,9 +187,9 @@
     {
       "path": "rm_match/platform_v2/native_adapter.py",
       "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
-      "current_sha256": "27d3f4818403f0ebf10c26d51b10f2a0026c37c8562a665aae729517b95349e1",
-      "task": "T03 ,T05",
-      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget; v3 response that expires between the reader and source slot remains original evidence and no-command pending status, never a timely native_result or angles; receipt time is a fresh real sample and delivery/consumption guards remain independent; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates"
+      "current_sha256": "e0c1504edaeab4c940d546a05066dc47f40e61135fb515cc23113bafa8c5a579",
+      "task": "T03,T05,T17",
+      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget; v3 response that expires between the reader and source slot remains original evidence and no-command pending status, never a timely native_result or angles; receipt time is a fresh real sample and delivery/consumption guards remain independent; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates; Explicit local opt-in phase probe passes original six scalar source fields only to evidence timing; default submit signature, image bytes/hash work, deadlines and cleanup are unchanged"
     },
     {
       "path": "rm_match/platform_v2/offline_runtime.py",

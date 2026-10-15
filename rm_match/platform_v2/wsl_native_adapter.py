@@ -31,7 +31,7 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
             circle_radius_x_norm=finite(config.get('circle_radius_x_norm',.25),'circle_x',1e-6,2),
             circle_radius_y_norm=finite(config.get('circle_radius_y_norm',.25),'circle_y',1e-6,2))
 
-    def __init__(self,config,*,checked,out,distribution='Ubuntu',trace=None,robot_scope=None):
+    def __init__(self,config,*,checked,out,distribution='Ubuntu',trace=None,robot_scope=None,phase_probe=None):
         from .native_robot_scope import load_native_robot_scope
         robot_scope=load_native_robot_scope(robot_scope)
         self.normalized_fov(config)
@@ -42,6 +42,8 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
         self.distribution=distribution
         self.transport=checked.metadata['transport']
         if self.transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ContractError('wsl_transport_not_authorized')
+        if phase_probe is not None and self.transport!='wsl_async_bgr_v3':raise ContractError('phase_probe_requires_async_transport')
+        self._phase_probe=phase_probe
         self._evidence_required=self.transport in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3')
         if self.transport=='wsl_async_bgr_v3':
             # Definition-only import during setup, before physics or captures.
@@ -112,7 +114,9 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
         (self.directory/'tracking_mode').write_text(self.spec['runtime_mode_contents'],newline='\n')
         if self.transport in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3'):
             from .native_evidence import ActualFrameEvidenceWriter
-            evidence=ActualFrameEvidenceWriter(self.directory/'actual_frames')
+            probe=getattr(self,'_phase_probe',None)
+            evidence=(ActualFrameEvidenceWriter(self.directory/'actual_frames') if probe is None else
+                      ActualFrameEvidenceWriter(self.directory/'actual_frames',phase_probe=probe))
             with self._lifecycle_lock:
                 cancelled=self._cancelled.is_set()
                 if not cancelled:self._evidence_writer=evidence
@@ -121,6 +125,7 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
                 raise ContractError('native_adapter_cancelled')
         process_kwargs={}
         if self.transport=='wsl_async_bgr_v3':process_kwargs['trace_event']=self.trace
+        if getattr(self,'_phase_probe',None) is not None:process_kwargs['phase_probe']=self._phase_probe
         process=process_type(self.linux_spec_path,self.directory,self.fov,
             distribution=self.distribution,timeout=.08,startup_timeout=15.,
             registered_spec_sha=self.checked_wsl.linux_spec_sha256,**process_kwargs)

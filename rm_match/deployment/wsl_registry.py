@@ -14,10 +14,11 @@ from ..platform_v2.native_robot_scope import load_native_robot_scope
 
 
 class WslRegistry(Registry):
-    def __init__(self,checked,out,distribution,trace,native_robot_scope=None):
+    def __init__(self,checked,out,distribution,trace,native_robot_scope=None,*,phase_probe=None):
         super().__init__();self.checked=checked;self.out=out
         self.robot_scope=load_native_robot_scope(native_robot_scope)
         self.distribution=distribution;self.trace=trace
+        self.phase_probe=phase_probe
         self._lock=threading.Lock();self._prepared=None;self.native_instance=None
         self._closed=False;self._preparing=False;self._preparing_instance=None
         capabilities={}
@@ -32,8 +33,10 @@ class WslRegistry(Registry):
 
     def _new(self,config):
         self.robot_scope.verify_unchanged()
+        probe=getattr(self,'phase_probe',None)
+        options={} if probe is None else {'phase_probe':probe}
         return WslNativeSourceAdapter(config,checked=self.checked,out=self.out,
-            distribution=self.distribution,trace=self.trace,robot_scope=self.robot_scope)
+            distribution=self.distribution,trace=self.trace,robot_scope=self.robot_scope,**options)
 
     def prepare_native(self,config=None):
         # The local caller performs this before starting its physics clock.
@@ -104,9 +107,10 @@ class WslRegistry(Registry):
             finally:instance.close()
 
 
-def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu',native_trace=None,transport='wsl_stdio_v1',native_robot_scope=None):
+def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu',native_trace=None,transport='wsl_stdio_v1',native_robot_scope=None,phase_probe=None):
     scope=load_native_robot_scope(native_robot_scope)
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ContractError('wsl_transport_not_authorized')
+    if phase_probe is not None and transport!='wsl_async_bgr_v3':raise ContractError('phase_probe_requires_async_transport')
     checked=validate_wsl_spec(linux_spec_path,repo_root=repo_root,
         shared_out=native_out,distribution=distribution)
     if transport in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3'):
@@ -115,6 +119,7 @@ def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu
         sources={};identities=dict(checked._identities);metadata=deepcopy(checked.metadata)
         paths=['rm_match/integrations/wsl_operator_pipe.py','rm_match/integrations/wsl_operator_pipe_worker.py']
         if transport=='wsl_async_bgr_v3':paths+=['rm_match/integrations/wsl_aim_async.py','rm_match/integrations/wsl_aim_async_worker.py']
+        if phase_probe is not None:paths+=['rm_match/integrations/phase_timing.py']
         for rel in paths:
             selected=_host_path(Path(repo_root)/rel)
             if not selected.is_relative_to(checked._repo_root):raise ContractError('wsl_transport_source_outside_repository')
@@ -128,4 +133,5 @@ def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu
                 qualification='Explicit async transport; pending is not inference or actuation; live qualification requires actual fresh samples')
         checked=replace(checked,metadata=metadata,_identities=identities)
         checked.verify_unchanged()
-    return WslRegistry(checked,native_out,distribution,native_trace,native_robot_scope=scope)
+    options={} if phase_probe is None else {'phase_probe':phase_probe}
+    return WslRegistry(checked,native_out,distribution,native_trace,native_robot_scope=scope,**options)

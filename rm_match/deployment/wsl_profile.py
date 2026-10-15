@@ -211,8 +211,9 @@ def validate_wsl_spec(spec_path,*,repo_root,shared_out,distribution=DISTRIBUTION
     return checked
 
 
-def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution=DISTRIBUTION,native_trace=None,transport=TRANSPORT,native_robot_scope=None):
+def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution=DISTRIBUTION,native_trace=None,transport=TRANSPORT,native_robot_scope=None,phase_probe=None):
     """Explicit opt-in entry point; never selects Windows-native implicitly."""
     from .wsl_registry import own_wsl_registry as make_registry
+    options={} if phase_probe is None else {'phase_probe':phase_probe}
     return make_registry(linux_spec_path,native_out,repo_root=repo_root,
-        distribution=distribution,native_trace=native_trace,transport=transport,native_robot_scope=native_robot_scope)
+        distribution=distribution,native_trace=native_trace,transport=transport,native_robot_scope=native_robot_scope,**options)

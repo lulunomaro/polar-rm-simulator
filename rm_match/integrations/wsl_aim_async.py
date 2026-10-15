@@ -37,14 +37,22 @@ class NativeAimPending:
 
 
 class WslAsyncAimProcess(WslPipeOperatorProcess):
-    def __init__(self,*args,trace_event=None,**kwargs):
+    _phase_probe=None
+
+    def __init__(self,*args,trace_event=None,phase_probe=None,**kwargs):
         if trace_event is not None and not callable(trace_event):raise ValueError('async_local_trace_callable_required')
+        if phase_probe is not None:
+            from .phase_timing import NumericPhaseProbe
+            if not isinstance(phase_probe,NumericPhaseProbe):raise ValueError('async_phase_probe_required')
+        self._phase_probe=phase_probe
         self._trace_event=trace_event;self._async_lock=threading.RLock();self._async_wake=threading.Event()
         self._inflight=None;self._fault=None;self._last_frame=-1;self._last_seq=-1;self._generation=None
         super().__init__(*args,**kwargs)
         from ..deployment.profile import digest
         metadata=copy.deepcopy(self.checked.metadata);identities=dict(self.checked._identities)
-        for rel in ('rm_match/integrations/wsl_aim_async.py','rm_match/integrations/wsl_aim_async_worker.py'):
+        source_files=('rm_match/integrations/wsl_aim_async.py','rm_match/integrations/wsl_aim_async_worker.py')
+        if phase_probe is not None:source_files+=('rm_match/integrations/phase_timing.py',)
+        for rel in source_files:
             selected=checked_host_path(self.repo_root/rel);sha=digest(selected)
             identities[str(selected)]=sha;metadata['transport_source_sha256'][rel]=sha
         metadata.update(transport=TRANSPORT,image_transport='exact_inline_bgr_one_original_async_compute',
@@ -101,6 +109,14 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             capture_sim_time=f['capture_time_s'],exposure_timestamp_ns=f['exposure_timestamp_ns'],
             control_time_ns=h['packet']['control_time_ns'],raw_bgr_sha256=f['image']['sha256'],bgr_bytes=IMAGE_BYTES)
 
+    def _phase_mark(self,phase,slot,*,sample=None,detail=None,bytes_count=None,queue_depth=None):
+        # Callers branch before invoking this helper. No full payload/image is
+        # retained; the source, frame and pre-existing image hash are original.
+        h=slot['header'];f=h['packet']['frame']
+        self._phase_probe.mark(phase,source=h['source_context'],request_id=h['id'],
+            frame_id=f['frame_id'],pixel_sha256=f['image']['sha256'],original_deadline=slot['deadline'],
+            bytes_count=bytes_count,queue_depth=queue_depth,detail=detail,sample=sample)
+
     def _set_fault(self,error):
         with self._async_lock:
             if self._fault is None:
@@ -110,7 +126,9 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                 except Exception:pass
         self._broken.set();self._async_wake.set();self.request_stop()
 
-    def _handle_message(self,message):
+    def _handle_message(self,message,*,_phase_entry=None):
+        probe=self._phase_probe
+        if probe is not None and _phase_entry is None:_phase_entry=probe.sample()
         if type(message) is not dict:raise ValueError('async_supervisor_message')
         if message.get('event')=='ready':
             self._incoming.put_nowait(message);return
@@ -137,6 +155,9 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                     or message['native_stdin_bytes_written']!=message['native_stdin_expected_bytes']):
                     raise ValueError('async_native_stdin_not_complete')
                 slot['started']=True
+                if probe is not None:
+                    self._phase_mark('async_reader_entry',slot,sample=_phase_entry,detail=event)
+                    self._phase_mark('async_reader_validated',slot,detail=event)
                 self._record('async_native_started',native_stdin_complete=True,
                     native_stdin_bytes_written=message['native_stdin_bytes_written'],native_stdin_expected_bytes=message['native_stdin_expected_bytes'],**fields)
             elif event=='result':
@@ -145,9 +166,13 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                 if type(elapsed) not in (int,float) or not math.isfinite(elapsed) or not 0<=elapsed<WATCHDOG_S:
                     raise ValueError('async_native_elapsed_bound')
                 response=checked_response(message.get('response'),h)
+                if probe is not None:
+                    self._phase_mark('async_reader_entry',slot,sample=_phase_entry,detail=event)
+                    self._phase_mark('async_reader_validated',slot,detail=event)
                 now=time.perf_counter();late=now>=slot['deadline']
                 if slot['abandoned'] or late:
                     disposition='late_discard' if late else 'after_pending_discard'
+                    if probe is not None:self._phase_mark('async_reader_late_boundary',slot,detail=disposition)
                     self._record('async_'+disposition,response=response,original_host_deadline=slot['deadline'],
                         receive_host_age_s=now-slot['host_started'],linux_elapsed_s=message.get('native_elapsed_linux_s'),
                         linux_clock_domain=message.get('clock_domain'),**fields)
@@ -159,6 +184,9 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                         linux_elapsed_s=message.get('native_elapsed_linux_s'),linux_clock_domain=message.get('clock_domain'),**fields)
             elif event=='discarded_before_native':
                 if slot['started'] or slot['terminal'] is not None:raise ValueError('async_invalid_precompute_discard')
+                if probe is not None:
+                    self._phase_mark('async_reader_entry',slot,sample=_phase_entry,detail=event)
+                    self._phase_mark('async_reader_validated',slot,detail=event)
                 self._record('async_discarded_before_native',reason=message.get('reason'),**fields)
                 if slot['abandoned']:self._inflight=None
                 else:slot['terminal']=dict(kind='discarded_before_native')
@@ -174,7 +202,10 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                 buffer.extend(chunk)
                 while b'\n' in buffer:
                     line,_,tail=buffer.partition(b'\n');buffer=bytearray(tail)
-                    self._handle_message(parse_json(line))
+                    if self._phase_probe is None:self._handle_message(parse_json(line))
+                    else:
+                        entry=self._phase_probe.sample()
+                        self._handle_message(parse_json(line),_phase_entry=entry)
                 if len(buffer)>MAX_LINE:raise ValueError('async_supervisor_stdout_bound')
         except Exception as error:
             if not self._stop.is_set():self._set_fault(error)
@@ -185,12 +216,19 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             while not self._stop.is_set():
                 try:header,payload,deadline,serial=self._outgoing.get(timeout=.02)
                 except queue.Empty:continue
+                if self._phase_probe is not None:
+                    dequeued=self._phase_probe.sample()
+                    with self._async_lock:
+                        slot=self._inflight
+                        if slot is None or slot['header']['id']!=serial:raise ValueError('async_writer_identity')
+                        self._phase_mark('async_queue_get',slot,sample=dequeued,bytes_count=len(header)+len(payload),queue_depth=self._outgoing.qsize())
                 if type(header) is not bytes or len(header)>MAX_LINE or type(payload) is not bytes or len(payload)!=IMAGE_BYTES:
                     raise ValueError('async_invalid_binary_transaction')
                 if time.perf_counter()>=deadline:
                     with self._async_lock:
                         slot=self._inflight
                         if slot is None or slot['header']['id']!=serial:raise ValueError('async_writer_identity')
+                        if self._phase_probe is not None:self._phase_mark('async_write_late_boundary',slot,detail='before_write')
                         self._record('async_discarded_before_write',**self._source_fields(slot))
                         if slot['abandoned']:self._inflight=None
                         else:slot['terminal']=dict(kind='discarded_before_native')
@@ -205,12 +243,16 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                         if slot is None or slot['header']['id']!=serial:raise ValueError('async_writer_identity')
                         slot['transport_write_attempted']=True;slot['transport_write_in_progress']=True
                         writing_slot=slot
+                    if self._phase_probe is not None:self._phase_mark('async_write_start',slot,bytes_count=len(view))
                     count=child.stdin.write(view)
                     if type(count) is not int or not 0<count<=len(view):raise BrokenPipeError('async_binary_write_failed')
+                    if self._phase_probe is not None:self._phase_mark('async_write_end',slot,bytes_count=count)
                     with self._async_lock:
                         slot['transport_bytes_written']+=count;slot['transport_write_in_progress']=False
                     view=view[count:]
         except Exception as error:
+            if self._phase_probe is not None and writing_slot is not None:
+                self._phase_mark('async_write_error',writing_slot,detail='write_failed',bytes_count=writing_slot['transport_bytes_written'])
             with self._async_lock:
                 slot=self._inflight
                 pipe_closed=(isinstance(error,OSError)
@@ -265,7 +307,11 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
         except BaseException as error:
             self._record('startup_failed',error_type=type(error).__name__,error=str(error));self.request_stop();self.close();raise
 
-    def _pending(self,source,reason,serial=None,submitted=False):
+    def _pending(self,source,reason,serial=None,submitted=False,*,phase_slot=None,phase_deadline=None):
+        if self._phase_probe is not None:
+            if phase_slot is not None:self._phase_mark('async_caller_return',phase_slot,detail=reason)
+            else:self._phase_probe.mark('async_caller_return',source=source,request_id=serial,
+                original_deadline=phase_deadline,detail=reason)
         return NativeAimPending(reason,serial,submitted,json.dumps(source,allow_nan=False,separators=(',',':')).encode())
 
     def control(self,packet,*,source_context=None):
@@ -277,10 +323,10 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             if not same_identity({'wall_deadline':packet.get('host_deadline')},{'wall_deadline':source['wall_deadline']}):
                 raise ValueError('async_original_authority_mismatch')
             host_started=time.perf_counter();deadline=min(host_started+self.timeout,source['wall_deadline'])
-            if host_started>=deadline-RETURN_MARGIN_S:return self._pending(source,'original_deadline_no_budget')
+            if host_started>=deadline-RETURN_MARGIN_S:return self._pending(source,'original_deadline_no_budget',phase_deadline=deadline)
             with self._async_lock:
                 if self._fault is not None:raise RuntimeError(self._fault)
-                if self._inflight is not None:return self._pending(source,'native_compute_inflight')
+                if self._inflight is not None:return self._pending(source,'native_compute_inflight',phase_deadline=deadline)
             frame=copy.deepcopy(packet['frame']);image=frame['image']
             if 'image_bytes' in packet:
                 raw=packet['image_bytes']
@@ -296,7 +342,7 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             elif len(raw)!=IMAGE_BYTES or hashlib.sha256(raw).hexdigest()!=image['sha256']:
                 raise ValueError('async_image_sha_mismatch')
             ns=packet['control_time_ns'];remaining=deadline-time.perf_counter()
-            if remaining<=RETURN_MARGIN_S:return self._pending(source,'original_deadline_no_budget')
+            if remaining<=RETURN_MARGIN_S:return self._pending(source,'original_deadline_no_budget',phase_deadline=deadline)
             self._serial+=1;serial=self._serial
             header=checked_header(dict(schema=SCHEMA,event='control',id=serial,image_bytes=IMAGE_BYTES,
                 timeout_s=min(remaining,self.timeout),packet=dict(control_time_ns=ns,time_s=ns/1e9,frame=frame,operator_fov=self.fov),
@@ -312,7 +358,10 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                     transport_expected_bytes=len(encoded)+len(raw))
                 self._generation=generation;self._last_frame=frame['frame_id'];self._last_seq=source['observed_seq']
                 self._async_wake.clear();self._record('async_transport_request',original_host_deadline=deadline,**self._source_fields(self._inflight))
+            if self._phase_probe is not None:
+                self._phase_mark('async_queue_put',self._inflight,bytes_count=len(encoded)+len(raw),queue_depth=self._outgoing.qsize())
             self._outgoing.put_nowait((encoded,raw,deadline,serial))
+            if self._phase_probe is not None:self._phase_mark('async_queue_put_end',self._inflight,queue_depth=self._outgoing.qsize())
             while True:
                 with self._async_lock:
                     if self._fault is not None or self._broken.is_set():raise RuntimeError('async_compute_fault:'+str(self._fault))
@@ -324,18 +373,21 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                         # for the independent Linux stdout/cancellation proof.
                         slot['abandoned']=True
                         self._record('async_control_cancelled',reason='owned_stop_requested',**self._source_fields(slot))
-                        return self._pending(source,'owned_stop_requested',serial,slot['started'])
+                        return self._pending(source,'owned_stop_requested',serial,slot['started'],phase_slot=slot)
                     terminal=slot['terminal'];now=time.perf_counter()
                     if terminal is not None:
                         self._inflight=None
                         if terminal['kind']=='result' and now<deadline:
                             self._record('async_result_accepted80',original_host_deadline=deadline,response=terminal['response'],**self._source_fields(slot))
+                            if self._phase_probe is not None:self._phase_mark('async_caller_return',slot,detail='accepted')
                             return dict(terminal['response'],episode=source['episode'],should_control=terminal['response']['tracking'])
+                        if self._phase_probe is not None:self._phase_mark('async_caller_late_boundary',slot,detail=terminal['kind'])
                         if terminal['kind']=='result':self._record('async_late_discard',response=terminal['response'],**self._source_fields(slot))
-                        return self._pending(source,'original_deadline_expired' if terminal['kind'] in ('result','late_discard') else 'discarded_before_native',serial,slot['started'])
+                        return self._pending(source,'original_deadline_expired' if terminal['kind'] in ('result','late_discard') else 'discarded_before_native',serial,slot['started'],phase_slot=slot)
                     if now>=deadline-RETURN_MARGIN_S:
+                        if self._phase_probe is not None:self._phase_mark('async_caller_late_boundary',slot,detail='return_margin')
                         slot['abandoned']=True;self._record('async_pending',original_host_deadline=deadline,**self._source_fields(slot))
-                        return self._pending(source,'response_not_available_before_original_deadline',serial,slot['started'])
+                        return self._pending(source,'response_not_available_before_original_deadline',serial,slot['started'],phase_slot=slot)
                     self._async_wake.clear()
                 self._async_wake.wait(min(.005,max(0.,deadline-RETURN_MARGIN_S-time.perf_counter())))
         except BaseException as error:
