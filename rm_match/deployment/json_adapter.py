@@ -167,12 +167,15 @@ class JsonLineAdapter(BaseAdapter):
             self.close()
             raise thread_start_error
 
+    def _exchange_deadline(self, packet, deadline):
+        if packet['op'] == 'act':
+            return min(deadline, packet['observation']['wall_deadline'])
+        return deadline
+
     def _exchange(self, packet, *, timeout):
         if self.failed or self._cancelled.is_set() or self.process is None or timeout <= 0:
             raise ContractError('custom_adapter_unavailable_or_expired')
-        deadline = self.clock() + timeout
-        if packet['op'] == 'act':
-            deadline = min(deadline, packet['observation']['wall_deadline'])
+        deadline = self._exchange_deadline(packet, self.clock() + timeout)
         raw = (json.dumps(dict(schema=SCHEMA, **packet), allow_nan=False, separators=(',', ':')) + '\n').encode()
         if len(raw) > MAX_REQUEST:
             raise ContractError('custom_request_oversized')

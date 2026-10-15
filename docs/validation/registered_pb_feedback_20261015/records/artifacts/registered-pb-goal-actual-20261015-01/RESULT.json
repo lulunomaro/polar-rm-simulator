@@ -1,0 +1,89 @@
+{
+  "passed": false,
+  "checks": {
+    "original_2ms_timestep": false,
+    "actual_physics_steps": false,
+    "real_navigation_and_decision_resource_prepare_acks": false,
+    "actual_prepared_pipeline_sdk_handover": false,
+    "original_observe_decision_v2_staged_act_route": false,
+    "exact_native_LIO_TF_estimate_inputs": false,
+    "goal_origin_is_original_estimated_map_x_plus_1m": false,
+    "original_linux_50ms_stage_without_republication": false,
+    "accepted_native_uuid_sdk_sensor_physical_join": false,
+    "actual_goal_succeeded_stop_and_feedback_driven_final_hold": false,
+    "original_150ms_controlled_sdk_span": false,
+    "actual_lifecycle_clean": false,
+    "actual_peer_cleanup_clean": false,
+    "all_host_resources_within_shared_1_5s": false,
+    "no_actual_adapter_fault": true,
+    "errors_empty": false
+  },
+  "errors": [
+    "EOFError"
+  ],
+  "steps": 0,
+  "controlled_sdk_span_s": null,
+  "physical": {
+    "passed": false,
+    "errors": [
+      "navigation:no_qualified_consumption",
+      "lifecycle:goal_lifecycle_schema"
+    ],
+    "per_goal": {},
+    "actual_controller_results": 0,
+    "consumed_steps": 0,
+    "nonzero_consumed_steps": 0,
+    "navigation_audit": {
+      "consumed_steps": 0,
+      "nonzero_consumed_steps": 0,
+      "actual_sensor_requests": 0,
+      "actual_controller_results": 0,
+      "actual_localizations": 0,
+      "errors": [],
+      "passed": false
+    },
+    "qualification": "recorded FollowPath UUID/source/action/physical receipt join; no encoder stop or current-goal inference"
+  },
+  "route": {
+    "passed": false,
+    "errors": [
+      "actual_peer_exchange_failed:EOFError"
+    ],
+    "observations": 0,
+    "decision_intents": 0,
+    "navigation_results": 0,
+    "available_estimates": 0,
+    "actions": 0,
+    "statuses": 0,
+    "shutdown_aborted_transactions": 0
+  },
+  "stages": {
+    "passed": false,
+    "errors": [],
+    "original_stages": 0,
+    "qualified_action_stages": 0,
+    "withheld_native_actions": 0
+  },
+  "estimates": {
+    "passed": false,
+    "errors": [],
+    "delivered_available_estimates": 0,
+    "exact_lio_TF_joins": 0
+  },
+  "estimated_goal_origins": {
+    "passed": false,
+    "errors": [],
+    "exact_estimated_goal_origins": 0,
+    "scope": "explicit_synthetic_map_x_plus_1m_policy_only_not_general_navigation_goal_constraint"
+  },
+  "qualification": "registered_real_PB_navigation_synthetic_decision_not_match_or_RTF",
+  "limitations": [
+    "actual PB navigation and explicit synthetic high-level policy only; not PB competition decision tree",
+    "one registered goal only; cancellation, replacement and a second goal remain unqualified in this route",
+    "no camera, aiming, neural model, firing, Qt, RTF, complete 3v3/7v7 or cross-machine DDS acceptance",
+    "raw TF/LIO source joins and binary pins show this producer route, not ground-truth localization accuracy"
+  ],
+  "source_unchanged": true,
+  "elapsed_s": 13.621025000000373,
+  "exit_code": 2
+}

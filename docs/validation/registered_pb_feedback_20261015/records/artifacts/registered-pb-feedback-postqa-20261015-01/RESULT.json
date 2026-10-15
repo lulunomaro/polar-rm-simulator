@@ -1,0 +1,24 @@
+{
+  "qa_status": "checks_passed_not_milestone_acceptance",
+  "qa_source_unchanged_during_checks": true,
+  "program_test_provenance_files_still_unchanged": 452,
+  "documentation_result_notes_only": {
+    "docs/COOP_PLAYABLE_PATH.md": {
+      "qa_sha256": "c6873836308231e9650b72197bd950a8f7d999a2fd716acdcfd70b56d3a78922",
+      "current_sha256": "33b889c0ed397bc2a5fdddc64be7dee0b790edb24af6b63dd38886d75f8b9950"
+    },
+    "docs/IMPLEMENTATION_PROGRESS.md": {
+      "qa_sha256": "3312d79ab67112ea41f461f57133d96e14e6467383aa38f3057bfe024609b442",
+      "current_sha256": "16b9c88c4d52c1c0d872c2bf835e62a2ff5e4f5a4138abffd434404919774217"
+    },
+    "docs/NAVIGATION_FEEDBACK_PROTOCOL.md": {
+      "qa_sha256": "fc405b92b4dcab01601d4a8a9d35b29d692d077e9e31ec6de92f266c6f6c63ca",
+      "current_sha256": "b6e5b7d0a7e055e2b78e073752867a2f6dc7940173f452f502f44cc1541d69a7"
+    },
+    "docs/UNIVERSAL_PLUGIN_INTERFACES.md": {
+      "qa_sha256": "bbe1e3c80d66f0f0564bb706038725ae0ace89c15ef09be40d19f731bf2fa62d",
+      "current_sha256": "0ee33ec38898338a45ac296c0c069d20f94eee1ac6a51cfa4a16e9dc88a9b8d0"
+    }
+  },
+  "scope": "Post-QA result prose only; no executed code changed"
+}

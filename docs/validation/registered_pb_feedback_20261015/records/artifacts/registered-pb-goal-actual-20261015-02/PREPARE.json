@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "peers": [
+    {
+      "peer": "navigation",
+      "prepared": true,
+      "process_identity": null,
+      "ownership_hello": {
+        "event": "hello",
+        "run_id": "18858837fa504531bfdf313714d38f81",
+        "spec_sha256": "dfc83f09b3cd18470677f04f790444ae8685baa3648854afdbddf7b553680f13",
+        "worker_pid": 331,
+        "worker_start_ticks": 257,
+        "boot_id": "9eee79db-76c9-43c4-80f4-d30af9667d1d",
+        "peer_identity": {
+          "run_id": "0dde1ff47e5d4cd4acb1c89236f76ccd",
+          "supervisor_pid": 331,
+          "boot_id": "9eee79db-76c9-43c4-80f4-d30af9667d1d",
+          "pid": 439,
+          "pgid": 439,
+          "leader_start_ticks": 370
+        },
+        "algorithm_ready": false
+      },
+      "capabilities": {
+        "schema": "polar.sim.navigation-plugin.capabilities.v3",
+        "observation_schema": "polar.sim.navigation-observation.v1",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.navigation-status.v1",
+        "sensor_profile": "pointcloud_imu_v1",
+        "source_association": "exact_capture_and_active_goal_v1",
+        "output_modes": [
+          "velocity_body"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "goal_input_modes": [
+          "decision_intent_v1"
+        ],
+        "goal_result_schema": "polar.sim.navigation-goal-result.v1",
+        "feedback_schema": "polar.sim.navigation-feedback.v1",
+        "feedback_mode": "staged_scan_v1"
+      },
+      "sensor_frames": 0,
+      "policy_calls": 0
+    },
+    {
+      "peer": "decision",
+      "prepared": true,
+      "process_identity": 21188,
+      "ownership_hello": null,
+      "capabilities": {
+        "schema": "polar.sim.decision-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.decision-observation.v2",
+        "intent_schema": "polar.sim.decision-intent.v1",
+        "sensor_profile": "own_referee_navigation_v2",
+        "output_modes": [
+          "navigation_intent"
+        ],
+        "source_association": "exact_observation_and_navigation_feedback_v1",
+        "fire_authority": "none",
+        "ui_config_contract": "empty_v1"
+      },
+      "sensor_frames": 0,
+      "policy_calls": 0
+    }
+  ],
+  "elapsed_s": 11.828344499997911,
+  "physics_steps": 0,
+  "sensor_frames": 0,
+  "algorithm_data_warmup": false
+}

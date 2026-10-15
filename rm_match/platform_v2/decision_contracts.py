@@ -13,16 +13,25 @@ from .contracts import (ContractError, IDENTITY, boolean, exact, finite, identit
 from .navigation_contracts import validate_navigation_observation
 
 DECISION_OBSERVATION_SCHEMA = 'polar.sim.decision-observation.v1'
+DECISION_NAVIGATION_OBSERVATION_SCHEMA = 'polar.sim.decision-observation.v2'
+DECISION_OBSERVATION_V2_SCHEMA = DECISION_NAVIGATION_OBSERVATION_SCHEMA
+DECISION_PROFILE_V1 = 'own_referee_v1'
+DECISION_PROFILE_V2 = 'own_referee_navigation_v2'
 DECISION_INTENT_SCHEMA = 'polar.sim.decision-intent.v1'
 UNAVAILABLE_REASON = 'not_provided_in_own_referee_v1'
 
 
-def validate_decision_observation(value):
+def validate_decision_observation(value, *, profile=None):
     value = copy.deepcopy(value)
     exact(value, ('schema', *IDENTITY, 'own', 'referee', 'navigation', 'perception'),
           'decision_observation')
-    if type(value['schema']) is not str or value['schema'] != DECISION_OBSERVATION_SCHEMA:
+    if (type(value['schema']) is not str or value['schema'] not in
+            (DECISION_OBSERVATION_SCHEMA, DECISION_NAVIGATION_OBSERVATION_SCHEMA)):
         raise ContractError('unsupported_decision_observation')
+    if profile is not None:
+        expected = decision_observation_schema(profile)
+        if value['schema'] != expected:
+            raise ContractError('decision_observation_profile_mismatch')
     identity(value)
     own = value['own']
     exact(own, ('team', 'role', 'hp', 'ammo', 'heat', 'alive'), 'decision_own')
@@ -38,24 +47,47 @@ def validate_decision_observation(value):
         raise ContractError('invalid_decision_phase')
     finite(referee['remaining_seconds'], 'decision_remaining_seconds', 0)
     boolean(referee['emergency_stop'], 'decision_emergency_stop')
-    for name in ('navigation', 'perception'):
+    names = ('navigation', 'perception') if value['schema'] == DECISION_OBSERVATION_SCHEMA else ('perception',)
+    for name in names:
         exact(value[name], ('available', 'reason'), 'decision_' + name)
         if (value[name]['available'] is not False or
                 type(value[name]['reason']) is not str or
                 value[name]['reason'] != UNAVAILABLE_REASON):
             raise ContractError('unsupported_decision_' + name + '_profile')
+    if value['schema'] == DECISION_NAVIGATION_OBSERVATION_SCHEMA:
+        from .navigation_feedback_contracts import validate_navigation_feedback
+        feedback = validate_navigation_feedback(value['navigation'])
+        if any(type(feedback['source'][name]) is not type(value[name]) or
+               feedback['source'][name] != value[name] for name in IDENTITY):
+            raise ContractError('decision_navigation_feedback_identity')
     return value
 
 
-def build_decision_observation(navigation_observation):
+def decision_observation_schema(profile):
+    if type(profile) is not str or profile not in (DECISION_PROFILE_V1, DECISION_PROFILE_V2):
+        raise ContractError('unsupported_decision_observation_profile')
+    return (DECISION_OBSERVATION_SCHEMA if profile == DECISION_PROFILE_V1
+            else DECISION_NAVIGATION_OBSERVATION_SCHEMA)
+
+
+def build_decision_observation(navigation_observation, feedback=None, *, profile=DECISION_PROFILE_V1):
     """Project a validated own-only sensor DTO, never its ideal odometry."""
     original = validate_navigation_observation(navigation_observation)
     unavailable = dict(available=False, reason=UNAVAILABLE_REASON)
+    schema = decision_observation_schema(profile)
+    navigation = copy.deepcopy(unavailable)
+    if profile == DECISION_PROFILE_V1:
+        if feedback is not None:
+            raise ContractError('decision_v1_navigation_feedback_unsupported')
+    else:
+        from .navigation_feedback_contracts import unavailable_navigation_feedback, validate_navigation_feedback
+        navigation = (unavailable_navigation_feedback(original) if feedback is None
+                      else validate_navigation_feedback(feedback, original))
     return validate_decision_observation(dict(
-        schema=DECISION_OBSERVATION_SCHEMA,
+        schema=schema,
         **{name: original[name] for name in IDENTITY},
         own=copy.deepcopy(original['own']), referee=copy.deepcopy(original['referee']),
-        navigation=copy.deepcopy(unavailable), perception=copy.deepcopy(unavailable)))
+        navigation=navigation, perception=copy.deepcopy(unavailable)), profile=profile)
 
 
 def _decision_intent_header(value):

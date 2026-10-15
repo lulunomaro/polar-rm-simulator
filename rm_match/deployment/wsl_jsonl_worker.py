@@ -23,6 +23,7 @@ from ..integrations.owned_linux_group import _stat
 
 PREFIX=b'@polar-wsl-jsonl:'
 STOP_POLL_INTERVAL_S=.005
+OPERATIONS=('prepare','reset','observe','act')
 
 def strict_json(raw):
     def pairs(rows):
@@ -186,7 +187,7 @@ def run(spec_path,expected_sha):
                     if len(reply)>MAX_RESPONSE or not reply.endswith(b'\n'):raise ValueError('peer response oversized/partial')
                     request_metrics['response_received_wall']=time.monotonic()
                     value=strict_json(reply)
-                    if type(value) is not dict or value.get('schema')!=SCHEMA or value.get('op') not in ('prepare','reset','act'):
+                    if type(value) is not dict or value.get('schema')!=SCHEMA or value.get('op') not in OPERATIONS:
                         raise ValueError('peer stdout is not canonical JSONL')
                     results.put_nowait(reply)
             except BaseException as exc:
@@ -222,7 +223,7 @@ def run(spec_path,expected_sha):
                 line=framer.feed(part,pending=pending)
                 if line is not None:
                     request=strict_json(line)
-                    if type(request) is not dict or request.get('schema')!=SCHEMA or request.get('op') not in ('prepare','reset','act'):
+                    if type(request) is not dict or request.get('schema')!=SCHEMA or request.get('op') not in OPERATIONS:
                         raise ValueError('host JSONL operation rejected')
                     if stop.is_set():break
                     current_metrics=metrics['last_request'];current_metrics['queued_wall']=time.monotonic()

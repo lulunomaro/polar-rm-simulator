@@ -12,9 +12,9 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 通用graph/SDK/JSONL/ROS 2及goal库保持；新增显式active-goal插件版本，校验当前intent/目标UUID/原scan与操作历史连续性；先前真实PB两目标25/438非零物理消费步证据保持 | 新通用版本的实际PB完整注册组合、决策定位反馈仍待连接；旧PB v1仍无UUID；decision v1 navigation/perception仍unavailable；第二套完整自瞄/多车/自动火未验收 |
+| T07 | 通用graph/SDK/JSONL/ROS 2及goal库保持；navigation capabilities v3的observe→decision v2→同scan compact act真实注册PB单目标通过，actual03有138份精确LIO/TF估计、580非零消费步、14/14最终emit门通过 | PB比赛树、注册路径取消/替换/第二目标与多车未验；旧v1/v2兼容，decision v1及v2 perception保持unavailable |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 局部SIL通过：原30秒/v1记录保持；新显式静止扫描累积配置下15秒原90请求/88LIO/27带真实UUID控制器结果、463非零消费步；取消后第二目标到达，初始地图越界失败保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、长期扫描累积开销及完整任务未验收；NavigateToPose后端仅单元证据 |
+| T09 | 局部SIL证据：先前两目标/463步保持；本轮最终源注册单目标149扫描/147LIO/15原生UUID结果/580非零消费步，估计反馈驱动synthetic决策终态后hold | 该链无自瞄/Qt/比赛树；MID360标定、定位精度/恢复及完整任务未验收；NavigateToPose后端仅单元证据 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup13四步骤0/source unchanged：2550pass/41明确skip/1024subtests；新增通用active-goal协议SIL第三轮20检查通过、共享清理预算内退出；先前真实PB UUID→两目标463物理步/原第五客户端及历史失败保持 | 质量/两车局部SIL不替许可/发布或完整比赛；真实PB新通用注册、DDS新profile、反馈/自瞄移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | 最终QA14四步骤通过：2788pass/41明确skip/1024subtests，452程序/测试/来源文件前后不变；actual03共17根检查通过，旧02和失败保留 | 局部SIL不替完整运动/比赛/发布矩阵，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -34,7 +34,64 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
-## 通用当前目标授权插件（2026-10-15，后续增量）
+## 估计导航反馈与真实PB通用注册（2026-10-15，本轮增量）
+
+新增[导航反馈协议](NAVIGATION_FEEDBACK_PROTOCOL.md)：navigation capabilities v3显式协商staged_scan_v1，
+先发送本次原始点云/IMU执行observe，再将完整原反馈嵌入decision observation v2，最后以同一原六身份和intent执行compact act。
+act不重新发送传感器、不重复发布ROS bundle、不刷新capture或deadline；Linux原50ms stage从首次发布贯穿决策与取动作，
+最终Linux50ms门截至响应encode完成后、write前；Windows原150ms SDK授权包含实际I/O。
+跨域wall_deadline只回显；Linux局部资源与stage使用自身clock，不减Windows时钟。
+原navigation v1/v2、decision v1严格形状不变，v2决策的perception仍unavailable。
+
+真实PB生产者以原扫描定位事件的stamp查TFBuffer中map→base_link估计，返回stamp必须精确相等且在原扫描窗口内。
+原Point-LIO/loam/SLAM链和producer/二进制SHA分别记录；schema只验证声明关系，实际来源由owned生产者与原ROS审计证明。
+取不到估计或Nav2尚未ACTIVE时明确unavailable，不用真值/旧pose补齐。
+goal_status仅保留实际当前selection及last8历史摘要，origin与续授权分开；终态不重贴当前source，cancel ACK也不等于stop。
+
+| 本轮注册实际 | 事实与结果 |
+| --- | --- |
+| attempt01 | 被选venv解释器的正常symlink被通用无别名检查误拒，peer退出/宿主EOF，0物理步/0扫描/0目标；原失败不改写 |
+| attempt02（旧程序） | 显式采用已固定ENV中的venv执行路径并保留其prefix语义，源/配置/输出仍严格无别名；当次16根检查全部通过，7534个2ms物理步，受控SDK跨度15.0125695秒 |
+| attempt03（最终源） | 补齐source之后与encode后/write前同一原50ms门，17根检查通过；7522个2ms物理步、SDK受控15.0054443秒、138精确估计、580非零消费步 |
+
+attempt02有149原observe/149意图/149结果，138份可用估计均与原LIO/原stamp TF精确关联；
+动作21份、状态128份，147定位、23原生controller v2结果。唯一目标UUID
+`c2239986a4db479fba6fb3ad28502ce2`的origin为seq13，续授权到seq71未改写origin，
+由估计map x方向+1m的synthetic策略发起，真实succeeded/terminal/stop反馈随后驱动hold。
+原UUID/source/action/SDK/物理审计闭合482个非零消费步；23个controller结果不能全称为实际执行动作。
+149原stage中21个授权action stage，另1个原生action被抑制；没有以迟结果补新source或把status当零速度消费。
+
+资源prepare用11.8283445秒完成真实peer ACK，此阶段0物理步/0传感器帧/0策略调用，无投样预热，
+绑定仍真实reset与完整capabilities协商。内部29.8839658秒、独立driver30.207167秒/exit0/reaped/source unchanged，
+driver核对220份程序源；runtime join .6848829秒，Windows Job真实1→0、无forced、所有peer/HTTP/线程在原共享host1.5秒内clean，Linux1.3秒保持。
+证据入口为[actual02 RESULT](../artifacts/registered-pb-goal-actual-20261015-02/RESULT.json)、
+[driver](../artifacts/registered-pb-goal-driver-20261015-02/RESULT.json)与
+[peer原件索引](../artifacts/registered-pb-goal-actual-20261015-02/PEER_EVIDENCE_INDEX.json)。
+当次02没有被重标为补强后源身份。最终03见[RESULT](../artifacts/registered-pb-goal-actual-20261015-03/RESULT.json)、
+[driver](../artifacts/registered-pb-goal-driver-20261015-03/RESULT.json)和[peer原件](../artifacts/registered-pb-goal-actual-20261015-03/PEER_EVIDENCE_INDEX.json)：
+149原observe/149意图，148份实际返回（14 action/134 status）；1笔事务在control-stop后中止，不能称149完整返回。
+138份估计全部精确匹配原LIO/TF，147定位、15原生controller结果；唯一目标
+`c3fd85680bf54d459868d1c6ede6c6ff`的origin seq13和续授权seq35分开保存，真实succeeded/terminal/stop后feedback驱动final hold。
+580非零消费步逐UUID/source/action/SDK回执闭合；14份public action均有对应同deadline最终encode后/write前门，
+无缺失或多余gate；不把该门记录称write完成时刻。另1个原生action被抑制，保留原记录。
+资源prepare11.8818648秒/0物理0扫描0策略；内部29.9700689秒/driver30.3152588秒，220程序源不变/exit0/reaped/无forced。
+runtime join .7700017秒，peer内部收尾 .428730679秒（Linux本地计时，不与Windows相减），
+外层Job实际1→0、总外层清理 .0052197秒；原host共享1.5秒/Linux1.3秒保持，全资源clean。
+最终QA14四步骤全部退出0：2788项通过、41项明确跳过、1024子测试通过，6条既有collection warnings。
+driver耗时186.8611387秒，已reap，452份程序/测试/来源文件SHA前后一致；quality记录12084份输入在检查期间未变。
+本段QA结果为检查完成后补写，程序未再改动；不会把新增文档文字重标为QA期间原字节。
+最终14份编码后门另经独立raw复核，最大41.657967ms、最小余期8.342033ms；
+580份物理消费全部匹配实际公开action、原UUID/扫描/SDK，status与关闭中断源均未消费。
+本地检查原件见[QA14](../artifacts/quality-aim-followup-20261014-14/manifest.json)，
+可校验交付副本见[永久证据](validation/registered_pb_feedback_20261015/README.md)。
+当前peer各诊断journal上限8192条，10Hz多事件STAGES约136秒可能触顶且明确失败，不是分钟级完整比赛入口。
+
+这是本机Windows→WSL的真实PB导航加synthetic高层决策注册单目标局部通过：
+不证明PB比赛树、该注册路径取消/替换/第二目标、定位精度/真实光学标定、RTF、相机/自瞄/射击、Qt/可见桌面、跨机DDS或完整3v3/7v7。
+T01冻结条件、T04/T05移动自瞄与角色扩展、T06矩阵、T08车辆策略、T10/T11规则/资产、T12/T14整局、
+T13两机、T15整场复演、T16换机/发布、T18硬件仍按上表，M0–M5均未签收。
+
+## 通用当前目标授权插件（2026-10-15，先前检查点）
 
 新增[active-goal插件版本](ACTIVE_GOAL_NAVIGATION_PLUGIN.md)，本地manifest显式声明capabilities.v2和
 navigation-goal-result.v1；保留旧capabilities.v1的严格契约。新结果同时保存本次原intent/六身份、当前操作receipt、
@@ -60,7 +117,7 @@ runtime join .0541796s，外层总清理 .005654s，Job1→0→final0、reader�
 435份程序/测试/来源文件前后相同；结论为checks_passed_not_milestone_acceptance。
 本段QA结果文字在检查完成后填写，不宣称检查测试过事后报告文字。代码与所有原失败/执行源见
 [永久证据](validation/active_goal_plugins_20261015/README.md)。真实PB原生UUID hook已另有下节所述先前证据，
-但新通用版本的PB资源所有者、实际注册组合、决策估计反馈及完整比赛仍待验证；协议fixture不能替代队伍算法。
+当时新通用版本的PB资源所有者、实际注册组合、决策估计反馈仍待验证；本轮后续单目标进展见上节，协议fixture本身不能替代队伍算法。
 当前无新增自瞄图像、移动瞄准、自动火、完整3v3、LAN、RTF或M0–M5验收。
 
 ## 真实目标 UUID、速度与物理消费关联（2026-10-15，先前检查点）
@@ -111,8 +168,8 @@ ComputePathToPose→FollowPath。核心只接收原decision-intent.v1，调用�
 新目标替换先取消旧目标，只有真实终态及stop证明才启动后继；cancel ACK本身不算终态。
 原goal intent/UUID保持历史身份，后来新采样只更新authorization，不把旧成功重新标成当前帧。
 host模式检查原期限；Linux opaque模式不比较Windows时钟，原传感器/控制器/SDK期限仍独立约束实际运动。
-它还不是已注册的通用goal-aware速度插件，PB当前controller来源只有scan六身份，尚无goal UUID关联；
-decision v1导航/感知仍unavailable，未接真实PB比赛树或提供导航估计反馈。
+该先前goal-only第04轮当时还不是已注册的通用goal-aware速度插件，使用旧scan controller来源，未关联goal UUID；
+当时也未接真实PB比赛树或导航估计反馈。后续UUID与注册反馈增量见上节，decision v1导航/感知仍保持unavailable。
 
 | fresh实际探针 | 结果与保留失败 |
 | --- | --- |

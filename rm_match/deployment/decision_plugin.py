@@ -18,6 +18,7 @@ from .profile import digest, read_json_snapshot
 from ..platform_v2.contracts import ContractError, exact, identity
 from ..platform_v2.decision_contracts import (
     DECISION_INTENT_SCHEMA, DECISION_OBSERVATION_SCHEMA,
+    DECISION_NAVIGATION_OBSERVATION_SCHEMA, DECISION_PROFILE_V1, DECISION_PROFILE_V2,
     validate_decision_intent, validate_decision_observation)
 
 MANIFEST_SCHEMA = 'polar.sim.decision-plugins.v1'
@@ -27,14 +28,33 @@ CAPABILITIES = dict(
     intent_schema=DECISION_INTENT_SCHEMA, sensor_profile='own_referee_v1',
     output_modes=['navigation_intent'], source_association='exact_observation_context_v1',
     fire_authority='none', ui_config_contract='empty_v1')
+NAVIGATION_CAPABILITY_SCHEMA = 'polar.sim.decision-plugin.capabilities.v2'
+NAVIGATION_CAPABILITIES = dict(copy.deepcopy(CAPABILITIES), schema=NAVIGATION_CAPABILITY_SCHEMA,
+    observation_schema=DECISION_NAVIGATION_OBSERVATION_SCHEMA, sensor_profile=DECISION_PROFILE_V2,
+    source_association='exact_observation_and_navigation_feedback_v1')
+CAPABILITIES_V2 = NAVIGATION_CAPABILITIES
 
 
 def validate_capabilities(value):
-    exact(value, CAPABILITIES, 'decision_plugin_capabilities')
-    for name, wanted in CAPABILITIES.items():
+    v2 = type(value) is dict and value.get('schema') == NAVIGATION_CAPABILITY_SCHEMA
+    expected = NAVIGATION_CAPABILITIES if v2 else CAPABILITIES
+    exact(value, expected, 'decision_plugin_capabilities')
+    for name, wanted in expected.items():
         if type(value[name]) is not type(wanted) or value[name] != wanted:
             raise ContractError('unsupported_decision_plugin_capability_' + name)
+        if v2 and type(wanted) is list and any(type(item) is not str for item in value[name]):
+            raise ContractError('unsupported_decision_plugin_capability_' + name)
     return copy.deepcopy(value)
+
+
+def capabilities_for_profile(profile=DECISION_PROFILE_V1):
+    if type(profile) is not str or profile not in (DECISION_PROFILE_V1, DECISION_PROFILE_V2):
+        raise ContractError('unsupported_decision_plugin_profile')
+    return copy.deepcopy(CAPABILITIES if profile == DECISION_PROFILE_V1 else NAVIGATION_CAPABILITIES)
+
+
+def decision_profile(capabilities):
+    return validate_capabilities(capabilities)['sensor_profile']
 
 
 def load_decision_plugins(path):
@@ -114,6 +134,7 @@ class DecisionPluginAdapter(JsonLineAdapter):
         self._reset_completed = False
         self._last_seq = -1
         self._last_sim_time = -1.
+        self._feedback_history = None
 
     def _open_owned_process(self):
         if digest(self.manifest) != self.manifest_sha:
@@ -143,6 +164,9 @@ class DecisionPluginAdapter(JsonLineAdapter):
             super().reset(context, deadline=deadline)
         self._negotiated = True
         self._reset_completed = True
+        if decision_profile(self.descriptor['capabilities']) == DECISION_PROFILE_V2:
+            from ..platform_v2.navigation_feedback_contracts import NavigationFeedbackHistory
+            self._feedback_history = NavigationFeedbackHistory()
 
     def _validate_response(self, result, packet):
         field = 'intent' if packet['op'] == 'act' else 'capabilities'
@@ -161,12 +185,18 @@ class DecisionPluginAdapter(JsonLineAdapter):
     def checked(self, observation):
         if not self._negotiated or not self._reset_completed:
             raise ContractError('decision_plugin_reset_negotiation_required')
-        value = validate_decision_observation(observation)
+        profile = decision_profile(self.descriptor['capabilities'])
+        value = validate_decision_observation(observation, profile=profile)
         if any(type(value[name]) is not type(wanted) or value[name] != wanted
                for name, wanted in self.context.items()):
             raise ContractError('decision_plugin_context_mismatch')
         if value['observed_seq'] <= self._last_seq or value['sim_time'] < self._last_sim_time:
             raise ContractError('decision_plugin_replayed_observation')
+        if profile == DECISION_PROFILE_V2:
+            if self._feedback_history is None:
+                from ..platform_v2.navigation_feedback_contracts import NavigationFeedbackHistory
+                self._feedback_history = NavigationFeedbackHistory()
+            self._feedback_history.check(value['navigation'])
         return value
 
     def act(self, observation):

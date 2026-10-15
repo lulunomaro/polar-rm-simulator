@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_registered_pb_goal_sil.py", line 489, in run
+    try:pools=prepare_robotio_resources(args.manifest,repo_root=ROOT,shared_root=out/'resources')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_plugin.py", line 230, in prepare_robotio_resources
+    pools[category]=PreparedWslPlugins(selected,manifest=graph['paths'][category],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 122, in __init__
+    for instance in self.instances.values(): instance.prepare(startup_timeout=startup_timeout)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\robotio_wsl.py", line 51, in prepare
+    self._exchange(dict(op='prepare', config={}), timeout=limit-self.clock())
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_registered_pb_goal_sil.py", line 487, in prepare_exchange
+    return exchanged(lambda p,**kw:original(peer,p,**kw),'navigation',packet,**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_registered_pb_goal_sil.py", line 460, in exchanged
+    try:response=original(packet,**kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_registered_pb_goal_sil.py", line 487, in <lambda>
+    return exchanged(lambda p,**kw:original(peer,p,**kw),'navigation',packet,**kwargs)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 196, in _exchange
+    raise result
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\json_adapter.py", line 144, in io_loop
+    row = child.stdout.readline(MAX_RESPONSE + 1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_jsonl.py", line 172, in readline
+    if isinstance(row,BaseException):raise row
+                                     ^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\deployment\wsl_jsonl.py", line 214, in _read
+    if not part:raise EOFError('WSL JSONL supervisor stdout closed')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError: WSL JSONL supervisor stdout closed

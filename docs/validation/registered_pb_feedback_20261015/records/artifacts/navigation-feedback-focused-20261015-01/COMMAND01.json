@@ -1,0 +1,10 @@
+[
+  "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "-m",
+  "pytest",
+  "tests/test_navigation_feedback_contracts.py",
+  "tests/test_decision_navigation_v2.py",
+  "tests/test_decision_plugin.py",
+  "-q",
+  "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\navigation-feedback-focused-20261015-01\\junit01.xml"
+]

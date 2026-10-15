@@ -1,0 +1,54 @@
+{
+  "schema": "polar.sim.navigation-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_pb_goal_navigation",
+      "label": "PB real navigation with source-bound estimated feedback",
+      "command": [
+        "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "-u",
+        "-m",
+        "rm_match.integrations.pb_goal_plugin_peer",
+        "--spec",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/registered-pb-goal-prep-20261015-03/PEER_SPEC.json",
+        "--sha256",
+        "46fd7d182eef85ae8e927798541244ddf880d50fff0eb5979906c86c45136894"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "supported_robots": [
+        "red_sentry"
+      ],
+      "transport": "wsl_jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.navigation-plugin.capabilities.v3",
+        "observation_schema": "polar.sim.navigation-observation.v1",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.navigation-status.v1",
+        "sensor_profile": "pointcloud_imu_v1",
+        "source_association": "exact_capture_and_active_goal_v1",
+        "output_modes": [
+          "velocity_body"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "goal_input_modes": [
+          "decision_intent_v1"
+        ],
+        "goal_result_schema": "polar.sim.navigation-goal-result.v1",
+        "feedback_schema": "polar.sim.navigation-feedback.v1",
+        "feedback_mode": "staged_scan_v1"
+      },
+      "wsl": {
+        "distribution": "Ubuntu-22.04",
+        "python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "process_env": {
+          "CMAKE_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+          "AMENT_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+          "LD_LIBRARY_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+          "PKG_CONFIG_PATH": "/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      }
+    }
+  ]
+}

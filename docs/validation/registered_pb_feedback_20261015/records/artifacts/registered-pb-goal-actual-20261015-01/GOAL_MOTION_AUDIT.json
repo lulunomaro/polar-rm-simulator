@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "errors": [
+    "navigation:no_qualified_consumption",
+    "lifecycle:goal_lifecycle_schema"
+  ],
+  "per_goal": {},
+  "actual_controller_results": 0,
+  "consumed_steps": 0,
+  "nonzero_consumed_steps": 0,
+  "navigation_audit": {
+    "consumed_steps": 0,
+    "nonzero_consumed_steps": 0,
+    "actual_sensor_requests": 0,
+    "actual_controller_results": 0,
+    "actual_localizations": 0,
+    "errors": [],
+    "passed": false
+  },
+  "qualification": "recorded FollowPath UUID/source/action/physical receipt join; no encoder stop or current-goal inference"
+}

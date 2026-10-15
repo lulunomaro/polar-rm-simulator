@@ -1,0 +1,13 @@
+{
+  "runtime": null,
+  "pipeline": null,
+  "peers": {},
+  "pools": {},
+  "sdk_stopped": true,
+  "http_stopped": true,
+  "http_workers_idle": true,
+  "shared_host_budget_s": 1.5,
+  "cleanup_elapsed_s": 1.679999695625156e-05,
+  "shared_host_started_wall": 111725.1122529,
+  "finished_within_shared_host_budget": true
+}

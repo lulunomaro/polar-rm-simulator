@@ -9,10 +9,19 @@
 安装与本地 graph 启动配置见[客户端通用接口](CLIENT_ROBOTIO_INTERFACE.md)；旧默认补丁保持原范围。
 下述场景缺口用于安排验证，不能将单个队伍的专用实现或协议 fixture 宣称为通用目标已完成。
 
-当前后续增量是[显式active-goal插件](ACTIVE_GOAL_NAVIGATION_PLUGIN.md)：不同队伍可用同一版本化
-JSONL/ROS2结果封装，按当前决策目标与原计算UUID授权速度。两独立策略的低率MuJoCo协议SIL第二轮
-已闭合原intent/selection/UUID→SDK→实际消费及hold无动作，首轮外层清理失败保留。
-这补齐通用插件路由；真实PB的这一新注册组合、决策估计反馈、完整自瞄与六车比赛仍待连接验证。
+当前增量是[有源导航反馈](NAVIGATION_FEEDBACK_PROTOCOL.md)：navigation capabilities v3的observe→decision v2→同scan compact act，
+保留[active-goal插件](ACTIVE_GOAL_NAVIGATION_PLUGIN.md)的当前目标/原计算UUID授权及旧v1/v2兼容。
+真实PB注册旧程序actual02有149扫描事务、138份原LIO/精确TF估计、一个估计map-x+1m目标、23原生UUID结果和482非零物理消费步，
+成功终态反馈使synthetic策略随后hold；当次16检查通过、原预算内clean。
+补强后的最终源actual03已通过17根检查：7522个2ms步、SDK受控15.0054443秒；149 observe/149意图、
+148实际返回（14 action/134 status），另1笔在control-stop后中止；138精确估计、147LIO、15原生UUID结果、580非零消费步。
+单目标真实成功/terminal/stop后feedback驱动hold，14/14动作在encode完成后、write前通过同一原50ms门，host150ms仍包含实际I/O。
+资源准备0物理/0扫描/0策略，无forced、原资源预算内clean、220程序源不变；02不重标最终源身份。
+最终QA14四步骤通过：2788pass/41明确skip/1024subtests、452程序/测试/来源文件不变（本句QA后补记）。
+实跑及失败的校验副本见[永久证据](validation/registered_pb_feedback_20261015/README.md)。
+该策略不是PB比赛树，注册路径取消/替换/第二目标、多车、自瞄与六车整局仍待验证。
+当前peer各诊断journal上限8192条，按10Hz扫描及每stage多条记录，STAGES约136秒即可能明确失败；
+不能直接把此诊断入口当分钟级完整比赛服务。以下旧联合探针/协议SIL为各自历史来源，范围保持，不移用其资格。
 
 ## 手控步兵与真实导航哨兵同场验证（2026-10-15）
 
@@ -43,12 +52,13 @@ JSONL/ROS2结果封装，按当前决策目标与原计算UUID授权速度。两
 ```
 
 这是实际原窗口的离屏事件验证，尚非可见桌面人工开局入口、比赛树、自瞄/自动火、LAN或六车完整3v3。
-该次PB目标源为独立单目标wrapper；新增通用goal-only生命周期及取消/重开验证见下节，决策估计/裁判反馈仍待实现。
+该次PB目标源为独立单目标wrapper；下节是后续独立goal-only取消/重开验证。该历史轮没有本次同scan决策反馈，
+新注册估计反馈进展见顶部；不能将旧轮重标为新协议执行。
 代码、失败、原采样/回执、画面和退出证明见[永久证据](validation/qt_pb_coop_20261015/README.md)。
 
 ## 新增目标取消、重开与同场手控验证
 
-[通用目标生命周期 v1](NAVIGATION_GOAL_LIFECYCLE.md) 现为独立可复用库，尚未注册为通用速度插件。
+[通用目标生命周期 v1](NAVIGATION_GOAL_LIFECYCLE.md)在该历史轮是独立可复用库，当时尚未注册为通用速度插件。
 新实际第04轮在真实 PB `compute_path_then_follow` 路径运行 synthetic 高层 goal/hold 策略，
 原 Qt 手动步兵与导航哨兵的 GO 区间为15.0248667秒：239/239手动批全部匹配、4779消费步，
 95实际传感器请求、93原LIO来源、26控制器结果、448导航非零步，376个同一物理步两车同时非零。
@@ -71,7 +81,8 @@ origin seq16/19分别保留，后续seq17/42只是续授权，不重标旧目标
 这是显式v2 profile与stationary_scan_accumulation_v1建图配置，旧默认和旧实验不改变。
 01在配置字段校验前置失败，02实际地图边界长期未就绪而TimeoutError，原件保留；03没有填地图/夹起点或改TF。
 runtime/external分别0.5917298/0.3981158秒完成，共享host1.5秒/Linux1.3秒保持、全部clean、source unchanged、无强制终止。
-这补上有限场景的目标UUID到实际速度消费证明；仍未注册通用goal-aware速度插件、未接PB比赛树/decision定位反馈，
+这补上该有限历史场景的目标UUID到实际速度消费证明；该轮尚未注册通用goal-aware速度插件或接decision定位反馈，
+后续注册进展见顶部；PB比赛树仍未接，
 也不把取消目标终态当编码器零速、移动自瞄或整场3v3完成。复现配置与范围见上述新文档。
 
 ## 启动手动入口

@@ -1,0 +1,59 @@
+{
+  "independent_review_scope": "raw read-only cross-check; no existing production audit functions executed; no ROS, simulator, test or build launched",
+  "trace_rows": 8586,
+  "observe": 149,
+  "decision": 149,
+  "act": 149,
+  "exact_decision_projections": 149,
+  "exact_raw_LIO_TF_estimates": 138,
+  "public_actions": 21,
+  "public_statuses": 128,
+  "physical_receipts": 482,
+  "physical_exact_public_action_matches": 482,
+  "physical_nonzero_steps": 482,
+  "physical_public_status_sources": 0,
+  "physical_distinct_source_actions": 21,
+  "physical_goal_uuids": [
+    "c2239986a4db479fba6fb3ad28502ce2"
+  ],
+  "max_public_raw_source_exit_age_s": 0.04994717000000293,
+  "min_original_host_response_slack_s": 0.019656999997096136,
+  "max_physical_capture_wall_age_s": 0.11626169999362901,
+  "max_physical_capture_sim_age_s": 0.10999999999949406,
+  "min_physical_wall_authority_slack_s": 7.569999434053898E-05,
+  "late_available_feedbacks": 0,
+  "point_count_min": 559.0,
+  "point_count_max": 805.0,
+  "goal_estimated_offset_xy_m": [
+    0.9999999999999999,
+    0.0
+  ],
+  "first_actual_succeeded_feedback_source": {
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 72,
+    "sim_time": 7.2,
+    "wall_deadline": 112079.09398949999
+  },
+  "first_feedback_terminal_hold_source": {
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 72,
+    "sim_time": 7.2,
+    "wall_deadline": 112079.09398949999
+  },
+  "source_snapshot_files": 229,
+  "literal_snapshot_mismatches": [],
+  "working_sources_changed_after_old_run": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\navigation_jsonl_peer.py",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\pb_goal_plugin_peer.py",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_registered_pb_goal_sil.py"
+  ],
+  "peer_evidence_files": 21,
+  "peer_evidence_mismatches": [],
+  "driver_source_before_after_identical": true,
+  "raw_join_problems": [],
+  "evidence_limitation": "stage_act_exit precedes GoalCompute, peer recording and JSONL serialization/write; final public emission timing has no Linux-local tail receipt in attempt02"
+}

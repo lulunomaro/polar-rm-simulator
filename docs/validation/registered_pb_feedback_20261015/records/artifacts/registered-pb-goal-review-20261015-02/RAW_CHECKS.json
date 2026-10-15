@@ -1,0 +1,97 @@
+{
+  "independent_review_scope": "raw read-only cross-check; no existing production audit functions executed; no ROS, simulator, test or build launched",
+  "trace_rows": 8571,
+  "observe": 149,
+  "decision": 149,
+  "act": 148,
+  "exact_decision_projections": 149,
+  "exact_raw_LIO_TF_estimates": 138,
+  "public_actions": 14,
+  "public_statuses": 134,
+  "shutdown_aborted_sources": 1,
+  "shutdown_aborted_receipts": [
+    {
+      "event": "peer_exchange_failed",
+      "peer": "navigation",
+      "packet": {
+        "op": "act",
+        "intent": {
+          "schema": "polar.sim.decision-intent.v1",
+          "robot_id": "red_sentry",
+          "episode": 0,
+          "binding_epoch": 1,
+          "observed_seq": 150,
+          "sim_time": 15.000000000000002,
+          "wall_deadline": 112955.1824027,
+          "kind": "decision",
+          "mode": "navigation_intent",
+          "command": {
+            "behavior": "hold",
+            "reason": "synthetic_estimated_goal_completed"
+          }
+        },
+        "source": {
+          "robot_id": "red_sentry",
+          "episode": 0,
+          "binding_epoch": 1,
+          "observed_seq": 150,
+          "sim_time": 15.000000000000002,
+          "wall_deadline": 112955.1824027
+        }
+      },
+      "started_wall": 112955.0714181,
+      "completed_wall": 112955.8504431,
+      "error_type": "RuntimeError",
+      "record_index": 8570
+    }
+  ],
+  "final_emit_gate_records": 14,
+  "final_emit_exact_source_scan_DTO_matches": 14,
+  "final_emit_raw_encoded_SHA_matches": 14,
+  "final_emit_max_original_stage_age_s": 0.041657967000000795,
+  "final_emit_min_original_stage_slack_s": 0.008342032999999915,
+  "physical_receipts": 580,
+  "physical_exact_public_action_matches": 580,
+  "physical_nonzero_steps": 580,
+  "physical_public_status_sources": 0,
+  "physical_distinct_source_actions": 14,
+  "physical_goal_uuids": [
+    "c3fd85680bf54d459868d1c6ede6c6ff"
+  ],
+  "max_public_raw_source_exit_age_s": 0.03868829800000029,
+  "min_original_host_response_slack_s": 0.0073302999953739345,
+  "max_physical_capture_wall_age_s": 0.14548749999084976,
+  "max_physical_capture_sim_age_s": 0.13799999999996393,
+  "min_physical_wall_authority_slack_s": 1.5999976312741637E-06,
+  "late_available_feedbacks": 0,
+  "point_count_min": 561.0,
+  "point_count_max": 807.0,
+  "goal_estimated_offset_xy_m": [
+    0.9999999999999999,
+    0.0
+  ],
+  "first_actual_succeeded_feedback_source": {
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 36,
+    "sim_time": 3.6,
+    "wall_deadline": 112943.7793597
+  },
+  "first_feedback_terminal_hold_source": {
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1,
+    "observed_seq": 36,
+    "sim_time": 3.6,
+    "wall_deadline": 112943.7793597
+  },
+  "source_snapshot_files": 229,
+  "literal_snapshot_mismatches": [],
+  "working_sources_changed_after_old_run": [],
+  "peer_evidence_files": 23,
+  "peer_evidence_mismatches": [],
+  "driver_source_before_after_identical": true,
+  "raw_join_problems": [],
+  "evidence_limitation": "final gate is after encoding immediately before write; it is not a completed pipe-write timestamp, and no host/Linux clock conversion is inferred"
+}

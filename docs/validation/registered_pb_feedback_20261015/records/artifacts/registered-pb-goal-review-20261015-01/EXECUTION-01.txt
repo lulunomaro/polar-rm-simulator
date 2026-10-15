@@ -1,0 +1,4 @@
+Read-only PowerShell raw cross-check failed at inspect.ps1 line 157 because array comma/operator precedence parsed an Object[] subtraction.
+Exit code: 1. Elapsed: 3.8165201 s. No ROS, simulator, test or build was launched.
+No attempt02 input or frozen production/harness/test source was modified.
+The helper's array arithmetic was parenthesized before the successful subsequent read-only execution.

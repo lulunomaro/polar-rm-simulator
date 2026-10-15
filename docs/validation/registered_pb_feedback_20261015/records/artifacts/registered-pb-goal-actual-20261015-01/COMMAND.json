@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_registered_pb_goal_sil.py",
+    "--run",
+    "--manifest",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\registered-pb-goal-prep-20261015-01\\robotio.json",
+    "--pipeline-id",
+    "custom_pb_goal_pipeline",
+    "--peer-evidence-dir",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\registered-pb-goal-prep-20261015-01\\peer-evidence",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\registered-pb-goal-actual-20261015-01",
+    "--seconds",
+    "15",
+    "--max-wall-seconds",
+    "30"
+  ],
+  "manifest": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\registered-pb-goal-prep-20261015-01\\robotio.json",
+  "pipeline_id": "custom_pb_goal_pipeline",
+  "peer_evidence_dir": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\registered-pb-goal-prep-20261015-01\\peer-evidence",
+  "seconds": 15.0,
+  "max_wall_seconds": 30.0,
+  "unchanged_budgets": {
+    "sdk_s": 0.15,
+    "pb_navigation_s": 0.05,
+    "camera_s": 0.08
+  },
+  "scope": "registered real PB navigation plus explicit synthetic high-level estimated-feedback policy"
+}

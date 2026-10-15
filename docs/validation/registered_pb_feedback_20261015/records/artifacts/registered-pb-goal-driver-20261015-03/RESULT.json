@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "returncode": 0,
+  "reaped": true,
+  "elapsed_s": 30.3152587999939,
+  "source_unchanged": true,
+  "source_files": 220,
+  "forced_cleanup": false,
+  "job_empty": true,
+  "reader_stopped": true,
+  "handles_released": true,
+  "errors": [],
+  "outer_cleanup_elapsed_s": 0.005219700004090555,
+  "job_observations": [
+    {
+      "elapsed_s": 4.120000812690705e-05,
+      "active_processes": 1
+    },
+    {
+      "elapsed_s": 0.0051054000068688765,
+      "active_processes": 0
+    }
+  ],
+  "actual_result": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\registered-pb-goal-actual-20261015-03\\RESULT.json"
+}

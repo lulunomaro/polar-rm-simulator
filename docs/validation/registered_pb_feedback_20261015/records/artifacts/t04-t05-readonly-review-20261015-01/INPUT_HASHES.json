@@ -1,0 +1,22 @@
+{
+  "rm_match/platform_v2/native_adapter.py": "43640c0154d421e761ce2eb11944d88b87e6a0797027fe52167dc734dd63b4af",
+  "rm_match/platform_v2/wsl_native_adapter.py": "203f2f6174d5fc477c634e4478ec6af4aeb9d9b4ef64ed40648f4e72c04e7a9d",
+  "rm_match/platform_v2/runtime.py": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
+  "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+  "rm_match/platform_v2/backend.py": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
+  "rm_match/platform_v2/camera.py": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+  "rm_match/platform_v2/native_observation.py": "324cee8d6bcb50818d634eba7f4c75dd0ea15d0076ee4073bde2c7285ccc536f",
+  "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+  "rm_match/deployment/wsl_registry.py": "1c6244288d1f51241bbde3783fba85712c7b0b38c634b7ebf13465598a65d17b",
+  "rm_match/integrations/rmcs_contract.py": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf",
+  "operator_native/runtime/main.cpp": "f4b27666761c582ea0a568731d0475a7806b48ee34bc5f5e92aa7175886c2b7b",
+  "rm_match/harness.xml": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c",
+  "rm_match/match_model.py": "d58b2bc7fea733f7837b9dc83a6d2439d27de1c964a8793dbefcae0923a73f77",
+  "tools/smoke_wsl_native_live.py": "da2e220199cab3d5091d73f7d00e06af16bb87a0e19795aedcd4111aec3dd14a",
+  "rm_match/platform_v2/__main__.py": "8132936aa53b0d23254f88c0d2735650554fda66657abedb5920f677318ba2e4",
+  "artifacts/native-production-cpu4-build-20261014/operator_source.local.json": "8dd41a6905a1bb49e69b28a5c4f432d8b6c0fd9ab9b9b042f3a03fbffaba8e49",
+  "artifacts/aim-live-20261014-formal-scheduling-01/RESULT.json": "bf0294cf93e131d25663d8607b1ed6506e374413b8e98840a2193912f5182cf6",
+  "artifacts/aim-formal-scheduling-driver-20261014-formal-scheduling-01/COMMAND.json": "f0ccd4bfa635599ab1156b6dda6b2b8858d79deabe7270f741e5f58dac13b9c5",
+  "artifacts/t05-moving-t2-candidate-20261014-01/README.md": "74ea49f64380bc4193d0a1b64b1d4b46944f779f324b9565ae09918a6fc36834",
+  "artifacts/t05-moving-t2-candidate-20261014-01/TEST_DESIGN.md": "8d8cb3d4b5b3b569cbd7aaa2845ec4468124960a9e64439322d0f5da64ac73cd"
+}

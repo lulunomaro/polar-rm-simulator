@@ -1,6 +1,7 @@
 """Actual ROS 2 Humble/Livox messages; optional dependencies fail explicitly."""
 from __future__ import annotations
 import os
+import math
 import time
 from .ros2_bridge import BridgeError
 from .pb_navigation_phases import PHASES
@@ -132,7 +133,9 @@ class HumbleNavigationTransport:
                 PHASES.mark('graph_timeout');raise BridgeError('pb_navigation_graph_unavailable')
             self.spin_once(min(.01,remaining))
 
-    def close(self):
+    def close(self, *, deadline=None):
+        if deadline is not None and (type(deadline) not in (float,int) or not math.isfinite(deadline)):
+            raise BridgeError('pb_cleanup_deadline')
         if self._closed:
             if self._close_error:raise BridgeError('pb_shutdown_incomplete')
             return
@@ -140,7 +143,8 @@ class HumbleNavigationTransport:
         PHASES.mark('transport_cleanup_begin')
         if self.executor is not None:
             try:
-                if not self.executor.shutdown(timeout_sec=.15):errors.append('executor')
+                budget=.15 if deadline is None else min(.15,max(0.,deadline-time.perf_counter()))
+                if not self.executor.shutdown(timeout_sec=budget):errors.append('executor')
             except Exception:errors.append('executor')
         if self.node is not None:
             try:self.node.destroy_node()
@@ -148,6 +152,7 @@ class HumbleNavigationTransport:
         if self.context is not None and self._rclpy is not None:
             try:self._rclpy.try_shutdown(context=self.context)
             except Exception:errors.append('context')
+        if deadline is not None and time.perf_counter()>=deadline:errors.append('shared_cleanup_deadline_exceeded')
         if errors:
             PHASES.mark('transport_cleanup_failed');self._close_error=True;raise BridgeError('pb_shutdown_incomplete')
         PHASES.mark('transport_cleanup_end')

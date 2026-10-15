@@ -1,0 +1,39 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\staged-protocol-focused-20261015-03\\JUNIT.xml",
+    "tests/test_staged_navigation_plugin.py",
+    "tests/test_navigation_feedback_pipeline.py",
+    "tests/test_pb_shared_cleanup_deadline.py",
+    "tests/test_navigation_plugin.py",
+    "tests/test_robotio_plugin.py",
+    "tests/test_robotio_ros2_bridge.py",
+    "tests/test_robotio_registration_races.py",
+    "tests/test_robotio_wsl.py",
+    "tests/test_active_goal_navigation_plugin.py",
+    "tests/test_active_goal_ros2_bridge.py",
+    "tests/test_pb_navigation_stack.py",
+    "tests/test_pb_navigation_transport.py"
+  ],
+  "source_before": {
+    "rm_match/deployment/navigation_plugin.py": "e2bf11f9d413fbc2a71ac7bf64103455b7e8cc82c37309a3f0f2b950bac95e0b",
+    "rm_match/deployment/robotio_plugin.py": "bf9b10e290f407b4dadba7fe5358d319d66180456b2d470ac29f2aeaa1e02c22",
+    "rm_match/deployment/json_adapter.py": "20dea7f6293b4293e1fb0a81cf2920ef50d3bfd802b24df2726eb2487722002a",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/integrations/navigation_jsonl_peer.py": "9e0dcf2c3a46f1ffe3fb5c5a06521ea8262931f1b1baa84578cca3c5cce14a1c",
+    "rm_match/integrations/decision_jsonl_peer.py": "f2a1934583a6d87c54b4a9d1858c4cc0af421ec95835311b1484413878137439",
+    "rm_match/integrations/robotio_ros2_bridge.py": "91304667f5afb0eb2e262333d8c6591c8dcb06a9a6b09663a43b0472ab249cd4",
+    "rm_match/integrations/pb_navigation_transport.py": "99652dca9d8a8e2229da495f6d9e814365fe30df49ab4eeb23bf70c10a817bdd",
+    "tools/pb_navigation_stack.py": "892db7b4ede2f5ba7f3e34ac86897b6af64e070dc2cf51cc25a674be1a9baab7",
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "tests/test_staged_navigation_plugin.py": "4e4b65d15f79465a5e5345614bea40f1185c6d2afdb2dad95785f0bc19dceaec",
+    "tests/test_navigation_feedback_pipeline.py": "91642c202f6720b6b4630bad4c01376a008d0023edc03f3dfe0ce94dc47458a5",
+    "tests/test_pb_shared_cleanup_deadline.py": "2f644045c90a87219cbd13acab5b57fa2d746360ae55d835dc62589b878525a1",
+    "tests/fixtures/staged_navigation_feedback_fixture.py": "a4d58688fa9662820c9d95770aab52bf69ceae4e52ad59b50d14e262b8f42ae6",
+    "tests/fixtures/decision_navigation_feedback_v2.py": "e31a2463a4761d8c106e8fc9d5ef7909b8193ae0ed27f847fe03e56283b00e44"
+  }
+}

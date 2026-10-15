@@ -487,17 +487,23 @@ class PBNavigationStack:
             except (OSError, ValueError, IndexError): pass
         return members
 
-    def stop(self, grace_s=1.5):
+    def stop(self, grace_s=1.5, *, deadline=None):
+        if deadline is not None and (type(deadline) not in (float,int) or not math.isfinite(deadline)):
+            raise ValueError('stack_cleanup_deadline')
         if not self._stop_lock.acquire(blocking=False):
             budget=grace_s+1.0+.15
             end=getattr(self,'_stop_deadline',time.perf_counter()+budget)
+            if deadline is not None:end=min(end,deadline)
             if not self._stop_complete.wait(timeout=max(0.,min(budget,end-time.perf_counter()))):
                 return {'schema':'polar.pb-stack-cleanup.v1','clean':False,'errors':['shutdown_in_progress'],'processes':[]}
             return copy.deepcopy(self.cleanup)
         try:
             if self._stop_complete.is_set():return copy.deepcopy(self.cleanup)
             self._stop_deadline=time.perf_counter()+grace_s+1.0+.15
-            try:self.cleanup=self._stop_owned(grace_s)
+            if deadline is not None:self._stop_deadline=min(self._stop_deadline,deadline)
+            try:
+                self.cleanup=(self._stop_owned(grace_s) if deadline is None
+                    else self._stop_owned(grace_s,deadline=self._stop_deadline))
             except BaseException as error:
                 self.cleanup={'schema':'polar.pb-stack-cleanup.v1','clean':False,'errors':['shutdown_exception:'+type(error).__name__],
                     'processes':[{'node':n,'pid':p.pid,'returncode':p.poll()} for n,p in self.processes.items()]}
@@ -506,16 +512,18 @@ class PBNavigationStack:
             return copy.deepcopy(self.cleanup)
         finally:self._stop_lock.release()
 
-    def _stop_owned(self, grace_s):
+    def _stop_owned(self, grace_s, *, deadline=None):
         self.closed = True; started = time.perf_counter(); errors=[]
+        shared_deadline=deadline
         for process in self.processes.values():
             try: os.killpg(process.pid, signal.SIGTERM)
             except ProcessLookupError: pass
             except Exception as error: errors.append(type(error).__name__)
         deadline = started + grace_s
+        if shared_deadline is not None:deadline=min(deadline,shared_deadline)
         while time.perf_counter() < deadline and any(self._members(p.pid) for p in self.processes.values()):
             for p in self.processes.values(): p.poll()
-            time.sleep(.02)
+            time.sleep(.02 if shared_deadline is None else min(.02,max(0.,deadline-time.perf_counter())))
         for process in self.processes.values():
             if self._members(process.pid):
                 try: os.killpg(process.pid, signal.SIGKILL)
@@ -523,13 +531,15 @@ class PBNavigationStack:
                 except Exception as error: errors.append(type(error).__name__)
         rows=[]
         reap_deadline=time.perf_counter()+1.0
+        if shared_deadline is not None:reap_deadline=min(reap_deadline,shared_deadline)
         for name, process in self.processes.items():
             try: process.wait(timeout=max(0.,reap_deadline-time.perf_counter()))
             except subprocess.TimeoutExpired: errors.append('process_unreaped:' + name)
             rows.append({'node':name,'pid':process.pid,'returncode':process.poll(),'remaining_members':self._members(process.pid)})
         if self.executor is not None:
             try:
-                if self.executor.shutdown(timeout_sec=.15) is False:errors.append('executor_shutdown_incomplete')
+                budget=.15 if shared_deadline is None else min(.15,max(0.,shared_deadline-time.perf_counter()))
+                if self.executor.shutdown(timeout_sec=budget) is False:errors.append('executor_shutdown_incomplete')
             except Exception as error:errors.append('executor_close:'+type(error).__name__)
             if self.node is not None:
                 try:self.executor.remove_node(self.node)
@@ -552,6 +562,7 @@ class PBNavigationStack:
                 valid=False;assets_after[name]={'path':asset.get('path'),'unchanged':False,'error':type(error).__name__}
             assets_unchanged=assets_unchanged and valid
         if not assets_unchanged:errors.append('algorithm_assets_changed')
+        if shared_deadline is not None and time.perf_counter()>=shared_deadline:errors.append('shared_cleanup_deadline_exceeded')
         clean = not errors and all(r['returncode'] is not None and not r['remaining_members'] for r in rows)
         result = dict(schema='polar.pb-stack-cleanup.v1',clean=clean,errors=errors,processes=rows,
             elapsed_s=time.perf_counter()-started,prior_state=self.state,assets_after=assets_after,assets_unchanged=assets_unchanged)

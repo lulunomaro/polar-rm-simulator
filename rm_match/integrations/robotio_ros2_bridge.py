@@ -26,6 +26,7 @@ class RobotIOSettings:
     response_timeout:float=.05
     goal_input:bool=False
     goal_result_profile:str='none'
+    decision_profile:str='own_referee_v1'
     def __post_init__(self):
         BridgeSettings(self.adapter_id,'navigation',self.node_name,self.observation_topic,self.action_topic,self.domain_id,self.response_timeout)
         if self.kind not in ('navigation','decision') or type(self.kind) is not str or type(self.goal_input) is not bool:
@@ -35,6 +36,9 @@ class RobotIOSettings:
             or self.goal_result_profile=='active_goal_v1' and (self.kind!='navigation' or not self.goal_input)):
             raise BridgeError('robotio_ros2_goal_result_profile')
         if self.response_timeout>(.05 if self.kind=='navigation' else .15):raise BridgeError('robotio_ros2_original_budget')
+        if (type(self.decision_profile) is not str or self.decision_profile not in ('own_referee_v1','own_referee_navigation_v2')
+            or self.kind!='decision' and self.decision_profile!='own_referee_v1'):
+            raise BridgeError('robotio_ros2_decision_profile')
 
 class RobotIOEnvelopeBridge:
     def __init__(self,settings,*,clock=time.monotonic):
@@ -49,8 +53,8 @@ class RobotIOEnvelopeBridge:
             selected=GOAL_CAPABILITIES if settings.goal_result_profile=='active_goal_v1' else CAPABILITIES
             self.capabilities=dict(copy.deepcopy(selected),goal_input_modes=['decision_intent_v1'] if settings.goal_input else [])
         else:
-            from ..deployment.decision_plugin import CAPABILITIES
-            self.capabilities=copy.deepcopy(CAPABILITIES)
+            from ..deployment.decision_plugin import capabilities_for_profile
+            self.capabilities=capabilities_for_profile(settings.decision_profile)
     def reset(self,context,config):
         if self._closed or self.context is not None:raise BridgeError('robotio_ros2_reset_once')
         exact(config,(),'robotio_ros2_binding_config');exact(context,('episode','robot_id','binding_epoch'),'robotio_ros2_context')
@@ -83,7 +87,7 @@ class RobotIOEnvelopeBridge:
             elif intent is not None:raise BridgeError('robotio_ros2_goal_input_unsupported')
         else:
             from ..platform_v2.decision_contracts import validate_decision_observation
-            o=validate_decision_observation(observation)
+            o=validate_decision_observation(observation,profile=self.settings.decision_profile)
             if intent is not None:raise BridgeError('robotio_ros2_decision_intent_input')
         if any(type(o[k]) is not type(v) or o[k]!=v for k,v in self.context.items()) or o['observed_seq']<=self._seq:
             raise BridgeError('robotio_ros2_observation_context_or_sequence')
@@ -165,6 +169,7 @@ def main(argv=None):
     p.add_argument('--domain-id',type=int,required=True);p.add_argument('--response-timeout',type=float,default=.05)
     p.add_argument('--goal-input',action='store_true')
     p.add_argument('--goal-result-profile',choices=('none','active_goal_v1'),default='none')
+    p.add_argument('--decision-profile',choices=('own_referee_v1','own_referee_navigation_v2'),default='own_referee_v1')
     settings=RobotIOSettings(**vars(p.parse_args(argv)))
     sys.stdout.flush();protocol=os.fdopen(os.dup(sys.stdout.fileno()),'wb',buffering=0);os.dup2(sys.stderr.fileno(),sys.stdout.fileno())
     core=RobotIOEnvelopeBridge(settings);transport=None;code=0

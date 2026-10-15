@@ -1,0 +1,41 @@
+{
+  "returncode": 1,
+  "reaped": true,
+  "elapsed_s": 8.31139780000376,
+  "source_before": {
+    "rm_match/deployment/navigation_plugin.py": "0d001cd7c99c0ce70dc31165aa17c5da65ee1db63af568f450962e0f4202d7de",
+    "rm_match/deployment/robotio_plugin.py": "bf9b10e290f407b4dadba7fe5358d319d66180456b2d470ac29f2aeaa1e02c22",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/integrations/navigation_jsonl_peer.py": "116fdc183275778878b9e511ab2db3984a75a9ea480706329d7fa3243a5a4e1b",
+    "rm_match/integrations/decision_jsonl_peer.py": "f2a1934583a6d87c54b4a9d1858c4cc0af421ec95835311b1484413878137439",
+    "rm_match/integrations/robotio_ros2_bridge.py": "91304667f5afb0eb2e262333d8c6591c8dcb06a9a6b09663a43b0472ab249cd4",
+    "rm_match/integrations/pb_navigation_transport.py": "99652dca9d8a8e2229da495f6d9e814365fe30df49ab4eeb23bf70c10a817bdd",
+    "tools/pb_navigation_stack.py": "892db7b4ede2f5ba7f3e34ac86897b6af64e070dc2cf51cc25a674be1a9baab7",
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "tests/test_staged_navigation_plugin.py": "8945a0fd41383ac110d690cb97bddb863b8f52f843b2358268e4f12eb69d13f0",
+    "tests/test_navigation_feedback_pipeline.py": "91642c202f6720b6b4630bad4c01376a008d0023edc03f3dfe0ce94dc47458a5",
+    "tests/test_pb_shared_cleanup_deadline.py": "e96edb2cdcce2c5097d89a6fe277a40b54f22efa0b554a74f5342cfbb42755ca",
+    "tests/fixtures/staged_navigation_feedback_fixture.py": "a4d58688fa9662820c9d95770aab52bf69ceae4e52ad59b50d14e262b8f42ae6",
+    "tests/fixtures/decision_navigation_feedback_v2.py": "e31a2463a4761d8c106e8fc9d5ef7909b8193ae0ed27f847fe03e56283b00e44"
+  },
+  "source_after": {
+    "rm_match/deployment/navigation_plugin.py": "0d001cd7c99c0ce70dc31165aa17c5da65ee1db63af568f450962e0f4202d7de",
+    "rm_match/deployment/robotio_plugin.py": "bf9b10e290f407b4dadba7fe5358d319d66180456b2d470ac29f2aeaa1e02c22",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/integrations/navigation_jsonl_peer.py": "116fdc183275778878b9e511ab2db3984a75a9ea480706329d7fa3243a5a4e1b",
+    "rm_match/integrations/decision_jsonl_peer.py": "f2a1934583a6d87c54b4a9d1858c4cc0af421ec95835311b1484413878137439",
+    "rm_match/integrations/robotio_ros2_bridge.py": "91304667f5afb0eb2e262333d8c6591c8dcb06a9a6b09663a43b0472ab249cd4",
+    "rm_match/integrations/pb_navigation_transport.py": "99652dca9d8a8e2229da495f6d9e814365fe30df49ab4eeb23bf70c10a817bdd",
+    "tools/pb_navigation_stack.py": "892db7b4ede2f5ba7f3e34ac86897b6af64e070dc2cf51cc25a674be1a9baab7",
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "tests/test_staged_navigation_plugin.py": "8945a0fd41383ac110d690cb97bddb863b8f52f843b2358268e4f12eb69d13f0",
+    "tests/test_navigation_feedback_pipeline.py": "91642c202f6720b6b4630bad4c01376a008d0023edc03f3dfe0ce94dc47458a5",
+    "tests/test_pb_shared_cleanup_deadline.py": "e96edb2cdcce2c5097d89a6fe277a40b54f22efa0b554a74f5342cfbb42755ca",
+    "tests/fixtures/staged_navigation_feedback_fixture.py": "a4d58688fa9662820c9d95770aab52bf69ceae4e52ad59b50d14e262b8f42ae6",
+    "tests/fixtures/decision_navigation_feedback_v2.py": "e31a2463a4761d8c106e8fc9d5ef7909b8193ae0ed27f847fe03e56283b00e44"
+  },
+  "source_unchanged": true,
+  "scope": "unit/synthetic/owned JSONL protocol checks, no actual ROS or team algorithm acceptance"
+}

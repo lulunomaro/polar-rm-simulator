@@ -14,7 +14,7 @@
 | 组件 | Manifest schema | 输入与能力 | 输出 |
 | --- | --- | --- | --- |
 | navigation | `polar.sim.navigation-plugins.v1` | `polar.sim.navigation-observation.v1`；`pointcloud_imu_v1` 点云/IMU、本车状态、裁判数据；不含理想位姿/里程计 | `polar.sim.action.v2` 的 `velocity_body`，或有原身份的 `pending_localization` / `no_associated_command` 状态 |
-| decision | `polar.sim.decision-plugins.v1` | `polar.sim.decision-observation.v1`；`own_referee_v1` 本车 team/role/hp/ammo/heat/alive 和 phase/remaining_seconds/emergency_stop | `polar.sim.decision-intent.v1` 的 `navigation_intent`；没有执行器权限 |
+| decision | `polar.sim.decision-plugins.v1` | 默认observation.v1/own_referee_v1；显式capabilities.v2可用observation.v2/own_referee_navigation_v2，保留本次原scan的完整估计反馈 | 仍为 `polar.sim.decision-intent.v1` 的 `navigation_intent`；没有执行器权限 |
 | aim | `polar.sim.aim-plugins.v1` | `polar.sim.observation.v2`；`calibrated_camera_capture_own_v1` 工业相机原始 RGB/BGR 图像、标定和曝光时本车云台状态 | `gimbal_target` yaw/pitch，或 `no_target` / `pending_result`；`fire_authority=manual_only` |
 
 决策 v1 的 `navigation` 与 `perception` 都必须为：
@@ -24,7 +24,8 @@
 ```
 
 此版本没有导航定位结果或视觉目标输入。不能填入理想 odometry、场上机器人列表、敌方位置、模拟器真值 Target。
-后续增加估计结果需要新的明确协议版本和实际来源验证，不能在现有字段里藏数据。
+显式decision v2现可接收[有源估计导航反馈](NAVIGATION_FEEDBACK_PROTOCOL.md)，不修改v1的精确字段；
+v2的perception仍保持上述unavailable，不能在现有字段里藏敌方坐标。
 
 决策 command 是严格联合类型：
 
@@ -267,5 +268,28 @@ finally:
 包括零速度在内的action只允许当前navigate授权；hold/cancel只返回status，不伪造停止动作。
 每binding历史拒绝原source/授权倒放、同seq改响应和UUID复用；None selection不宣称旧目标终结。
 旧v1及此前独立PB真实v2探针保持原范围。新profile注册、JSONL实际子进程、受控ROS包络和两车synthetic协议SIL
-已有独立证据；新profile真实DDS/WSL队伍算法组合仍待验证，不能称PB已注册通用profile或decision定位反馈已完成。
+已有独立证据；当时的新profile真实DDS/WSL队伍算法组合尚未验证，后续本机PB注册进展见下节，不能用旧fixture替代真实队伍算法。
 接口、回调来源责任、失败/复跑和示例见新文档。
+
+## 显式估计反馈与同scan决策
+
+[导航反馈协议](NAVIGATION_FEEDBACK_PROTOCOL.md)使用navigation capabilities v3：
+`observe(original NAV)`→decision v2嵌入完整原feedback→`act(source, intent)`。
+compact act只引用已stage的同一完整typed六身份，不重传/重发布点云IMU；原host150ms和Linux50ms不重置。
+最终Linux门截至encode完成后、write前，host150ms继续包含实际I/O，不宣称50ms硬实时传输。
+旧navigation v1/v2和decision v1继续原严格行为，不能向旧能力偷偷塞新字段。
+schema校验声明关系；真实Point-LIO上下文、同stamp TF估计、producer/算法ELF pin与owned审计承担实际来源责任。
+目标历史保留origin/后续authorization，None selection不证明目标终结，cancel ACK不等于stop。
+
+本机真实PB注册旧源actual02有149个原扫描事务、138个精确LIO/TF估计、一个估计map x+1m目标、
+23原生UUID控制器结果和482非零物理消费步，成功终态反馈使synthetic策略随后hold；16当次检查通过。
+准备0物理/0传感器/0策略调用，回收在原资源预算内clean。
+02后的最终同50ms门补强已由新源actual03验证：17根检查通过，149 observe/149意图、148实际返回（14 action/134 status），
+另1笔control-stop后中止；138份精确估计、147LIO、15原生UUID结果、580非零物理消费步。
+同一实际goal origin seq13、续授权seq35分开，成功终态后真实反馈驱动hold；14/14最终encoded action门均在原deadline内，
+host150ms包含I/O，所有owned资源在原预算内clean。02保留旧源身份。
+最终QA14四步骤通过，2788pass/41明确skip/1024subtests、452程序/测试/来源文件不变；此句为QA后结果补记。
+原件和失败均保存于[可校验交付档案](validation/registered_pb_feedback_20261015/README.md)。
+该策略不是PB比赛树，注册路径取消/替换/第二目标、
+多车、自瞄、射击、Qt/可见桌面、RTF、跨机DDS和完整比赛仍未资格。
+当前PB诊断journal各限8192条，10Hz多事件STAGES约136秒可能触顶并明确失败，不能直接作为分钟级比赛入口。

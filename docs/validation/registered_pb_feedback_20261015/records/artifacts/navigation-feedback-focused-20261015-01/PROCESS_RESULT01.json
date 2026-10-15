@@ -1,0 +1,25 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed": 4.026876300005824,
+  "before": {
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/integrations/decision_jsonl_peer.py": "c0e571469bd27341a4b9464d58177f237a472b22299a5823dfa1a13fd409b55f",
+    "tests/test_navigation_feedback_contracts.py": "d25c6a4ca56fcf173540470e468fbbc4f350f64a6dd281aafae48bf2285548e4",
+    "tests/test_decision_navigation_v2.py": "c0da8d2d075c5e031b3748344f1e641b110c5b5bd87ba5c088e147d6a57e610a",
+    "tests/fixtures/decision_navigation_feedback_v2.py": "e31a2463a4761d8c106e8fc9d5ef7909b8193ae0ed27f847fe03e56283b00e44"
+  },
+  "after": {
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/integrations/decision_jsonl_peer.py": "c0e571469bd27341a4b9464d58177f237a472b22299a5823dfa1a13fd409b55f",
+    "tests/test_navigation_feedback_contracts.py": "d25c6a4ca56fcf173540470e468fbbc4f350f64a6dd281aafae48bf2285548e4",
+    "tests/test_decision_navigation_v2.py": "c0da8d2d075c5e031b3748344f1e641b110c5b5bd87ba5c088e147d6a57e610a",
+    "tests/fixtures/decision_navigation_feedback_v2.py": "e31a2463a4761d8c106e8fc9d5ef7909b8193ae0ed27f847fe03e56283b00e44"
+  },
+  "source_unchanged": true,
+  "scope": "declared estimate/feedback/v2 decision and harmless owned JSONL fixture; no actual ROS/WSL/SIL/SLAM/NN/GUI"
+}

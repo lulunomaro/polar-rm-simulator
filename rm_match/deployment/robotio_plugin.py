@@ -59,13 +59,26 @@ def load_robotio_plugins(path):
             if not set(robots)<=set(item[1]['supported_robots']):raise ContractError('robotio_pipeline_scope_exceeds_component')
         navigation=ids[row['navigation_plugin_id']][1]
         if navigation['capabilities']['goal_input_modes']!=['decision_intent_v1']:raise ContractError('robotio_pipeline_requires_goal_navigation')
+        from .decision_plugin import decision_profile
+        from .navigation_plugin import uses_navigation_feedback
+        decision=ids[row['decision_plugin_id']][1]
+        if (decision_profile(decision['capabilities'])=='own_referee_navigation_v2'
+            and not uses_navigation_feedback(navigation['capabilities'])):
+            raise ContractError('robotio_pipeline_requires_navigation_feedback')
         ids[aid]=('pipeline',row)
     return dict(path=path,sha=sha,rows=rows,paths=paths,hashes=hashes,pipelines=copy.deepcopy(pipelines))
 
 class DecisionNavigationAdapter(BaseAdapter):
     """Separate reviewed decision and navigation peers, one binding/deadline."""
-    def __init__(self,config,*,make_decision,make_navigation,hashes,clock=time.perf_counter):
+    def __init__(self,config,*,make_decision,make_navigation,hashes,clock=time.perf_counter,
+                 decision_profile='own_referee_v1',navigation_feedback=False):
         exact(config,(),'robotio_pipeline_binding_config')
+        if (type(decision_profile) is not str or decision_profile not in ('own_referee_v1','own_referee_navigation_v2')
+            or type(navigation_feedback) is not bool):
+            raise ContractError('robotio_pipeline_feedback_profile')
+        if decision_profile=='own_referee_navigation_v2' and not navigation_feedback:
+            raise ContractError('robotio_pipeline_requires_navigation_feedback')
+        self.decision_profile=decision_profile;self.navigation_feedback=navigation_feedback
         self.clock=clock;self.hashes=dict(hashes);self._failed=False;self._cancelled=False
         self.decision=self.navigation=None;self._last_seq=-1;self.shutdown_status=None
         self._budget=SharedCleanupBudget()
@@ -93,7 +106,11 @@ class DecisionNavigationAdapter(BaseAdapter):
         if o['observed_seq']<=self._last_seq:raise ContractError('robotio_pipeline_replayed_observation')
         if self.clock()>=o['wall_deadline']:raise ContractError('robotio_pipeline_expired')
         try:
-            decision_o=build_decision_observation(o)
+            feedback=self.navigation.observe(o) if self.navigation_feedback else None
+            if self._cancelled or self.clock()>=o['wall_deadline']:raise ContractError('robotio_pipeline_feedback_expired')
+            decision_o=build_decision_observation(o,
+                feedback if self.decision_profile=='own_referee_navigation_v2' else None,
+                profile=self.decision_profile)
             intent=validate_decision_intent(self.decision.act(decision_o),decision_o)
             if self._cancelled or self.clock()>=o['wall_deadline']:raise ContractError('robotio_pipeline_intent_expired')
             # Both children receive the SAME original identity and deadline.
@@ -120,8 +137,8 @@ class DecisionNavigationAdapter(BaseAdapter):
         if errors:raise RuntimeError('RobotIO pipeline cleanup unproved: '+','.join(errors))
 
 def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepared=None):
-    from .navigation_plugin import register_navigation_plugins
-    from .decision_plugin import DecisionPluginAdapter
+    from .navigation_plugin import register_navigation_plugins,uses_navigation_feedback
+    from .decision_plugin import DecisionPluginAdapter,decision_profile
     from .aim_plugin import register_aim_plugins
     if not isinstance(registry,Registry):raise ContractError('robotio_registration_requires_local_registry')
     graph=load_robotio_plugins(path);wsl_prepared={} if wsl_prepared is None else wsl_prepared
@@ -162,9 +179,12 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
         decision_factories[row['adapter_id']]=make
     for row in graph['pipelines']:
         nav=staged.get(row['navigation_plugin_id']);make_decision=decision_factories[row['decision_plugin_id']]
-        def factory(config,nav=nav,make_decision=make_decision):
-            return DecisionNavigationAdapter(config,make_decision=make_decision,make_navigation=lambda:nav.factory({}),hashes=graph['hashes'],clock=clock)
         dec_row=next(r for r in graph['rows']['decision'] if r['adapter_id']==row['decision_plugin_id'])
+        profile=decision_profile(dec_row['capabilities'])
+        feedback=uses_navigation_feedback(nav.descriptor['navigation_plugin_capabilities'])
+        def factory(config,nav=nav,make_decision=make_decision,profile=profile,feedback=feedback):
+            return DecisionNavigationAdapter(config,make_decision=make_decision,make_navigation=lambda:nav.factory({}),
+                hashes=graph['hashes'],clock=clock,decision_profile=profile,navigation_feedback=feedback)
         dec_ready=dec_row['transport']!='wsl_jsonl_v1' or (wsl_prepared.get('decision') is not None
             and wsl_prepared['decision'].sha==graph['hashes'][str(graph['paths']['decision'])]
             and row['decision_plugin_id'] in wsl_prepared['decision'].instances)

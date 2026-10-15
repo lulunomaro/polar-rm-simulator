@@ -29,14 +29,18 @@ GOAL_CAPABILITIES = dict(copy.deepcopy(CAPABILITIES), schema=GOAL_CAPABILITY_SCH
     source_association='exact_capture_and_active_goal_v1',
     goal_input_modes=['decision_intent_v1'],
     goal_result_schema='polar.sim.navigation-goal-result.v1')
+FEEDBACK_CAPABILITY_SCHEMA = 'polar.sim.navigation-plugin.capabilities.v3'
+FEEDBACK_CAPABILITIES = dict(copy.deepcopy(GOAL_CAPABILITIES), schema=FEEDBACK_CAPABILITY_SCHEMA,
+    feedback_schema='polar.sim.navigation-feedback.v1', feedback_mode='staged_scan_v1')
 
 
 def validate_capabilities(value):
     goal_profile = type(value) is dict and value.get('schema') == GOAL_CAPABILITY_SCHEMA
-    expected = GOAL_CAPABILITIES if goal_profile else CAPABILITIES
+    feedback_profile = type(value) is dict and value.get('schema') == FEEDBACK_CAPABILITY_SCHEMA
+    expected = FEEDBACK_CAPABILITIES if feedback_profile else GOAL_CAPABILITIES if goal_profile else CAPABILITIES
     exact(value, expected, 'navigation_plugin_capabilities')
     for key, wanted in expected.items():
-        if key == 'goal_input_modes' and not goal_profile:
+        if key == 'goal_input_modes' and not goal_profile and not feedback_profile:
             if type(value[key]) is not list or value[key] not in ([], ['decision_intent_v1']):
                 raise ContractError('unsupported_navigation_plugin_goal_input')
         elif type(value[key]) is not type(wanted) or value[key] != wanted:
@@ -45,7 +49,20 @@ def validate_capabilities(value):
 
 
 def uses_goal_result(capabilities):
-    return capabilities['schema'] == GOAL_CAPABILITY_SCHEMA
+    return capabilities['schema'] in (GOAL_CAPABILITY_SCHEMA, FEEDBACK_CAPABILITY_SCHEMA)
+
+
+def uses_navigation_feedback(capabilities):
+    return capabilities['schema'] == FEEDBACK_CAPABILITY_SCHEMA
+
+
+def same_typed_tree(left, right):
+    if type(left) is not type(right): return False
+    if type(left) is dict:
+        return left.keys() == right.keys() and all(same_typed_tree(left[k], right[k]) for k in left)
+    if type(left) is list:
+        return len(left) == len(right) and all(same_typed_tree(a, b) for a, b in zip(left, right))
+    return left == right
 
 
 def navigation_status_for(observation, status='no_associated_command'):
@@ -140,12 +157,27 @@ class NavigationPluginAdapter(JsonLineAdapter):
         from ..platform_v2.goal_navigation_contracts import GoalNavigationResultHistory
         self._goal_history = GoalNavigationResultHistory()
         self.last_goal_result = None
+        self._staged_observation = None
+        self.last_navigation_feedback = None
+        self._feedback_history = None
+        self._feedback_last_seq = -1
+        self._feedback_last_sim = -1.
         kwargs = {} if deadline is None else {'deadline': deadline}
         return super().reset(context, **kwargs)
 
     def close(self, *, deadline=None):
         kwargs = {} if deadline is None else {'deadline': deadline}
         return super().close(**kwargs)
+
+    def _exchange_deadline(self, packet, deadline):
+        if packet['op']=='observe':
+            return min(deadline,packet['observation']['wall_deadline'])
+        if packet['op']=='act' and uses_navigation_feedback(self.registration['capabilities']):
+            o=getattr(self,'_staged_observation',None)
+            if o is None or not same_typed_tree(packet.get('source'),{k:o[k] for k in IDENTITY}):
+                raise ContractError('navigation_plugin_staged_source_mismatch')
+            return min(deadline,o['wall_deadline'])
+        return super()._exchange_deadline(packet,deadline)
 
     def _validate_response(self, result, packet):
         if packet['op'] == 'reset':
@@ -154,6 +186,16 @@ class NavigationPluginAdapter(JsonLineAdapter):
                 raise ContractError('navigation_plugin_reset_identity')
             if validate_capabilities(result['capabilities']) != self.registration['capabilities']:
                 raise ContractError('navigation_plugin_capabilities_mismatch')
+            return
+        if packet['op'] == 'observe':
+            if not uses_navigation_feedback(self.registration['capabilities']):
+                raise ContractError('navigation_plugin_feedback_unsupported')
+            exact(result, ('schema', 'op', 'ok', 'feedback'), 'navigation_plugin_feedback_response')
+            if (type(result['schema']) is not str or result['schema'] != JSONL_SCHEMA
+                or type(result['op']) is not str or result['op'] != 'observe' or result['ok'] is not True):
+                raise ContractError('navigation_plugin_feedback_response_identity')
+            from ..platform_v2.navigation_feedback_contracts import validate_navigation_feedback
+            validate_navigation_feedback(result['feedback'], packet['observation'])
             return
         if packet['op'] != 'act': return super()._validate_response(result, packet)
         if type(result) is not dict: raise ContractError('invalid_navigation_plugin_response')
@@ -164,13 +206,45 @@ class NavigationPluginAdapter(JsonLineAdapter):
             raise ContractError('navigation_plugin_response_identity')
         if goal_profile:
             from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result
-            validate_goal_navigation_result(result['result'], packet['observation'], packet.get('intent'))
+            if uses_navigation_feedback(self.registration['capabilities']):
+                o = getattr(self, '_staged_observation', None)
+                if o is None or not same_typed_tree(packet.get('source'), {k:o[k] for k in IDENTITY}):
+                    raise ContractError('navigation_plugin_staged_source_mismatch')
+            else: o = packet['observation']
+            validate_goal_navigation_result(result['result'], o, packet.get('intent'))
             return
         expected, _ = validate_result_for_intent(result[field], packet['observation'], packet.get('intent'))
         if field != expected: raise ContractError('navigation_plugin_response_kind')
 
     def act(self, observation):
         return self._act(observation, None)
+
+    def observe(self, observation):
+        """One real sensor stage; its original local deadline survives decision."""
+        if not uses_navigation_feedback(self.registration['capabilities']):
+            raise ContractError('navigation_plugin_feedback_unsupported')
+        self.last_goal_result = None
+        self.last_navigation_feedback = None
+        self._staged_observation = None
+        o = self.checked(observation)
+        if o['schema'] != NAV_SCHEMA: raise ContractError('navigation_plugin_observation_profile')
+        require_sensors(o, ['pointcloud', 'imu'])
+        if (o['observed_seq'] <= getattr(self, '_feedback_last_seq', -1)
+            or o['sim_time'] < getattr(self, '_feedback_last_sim', -1.)):
+            raise ContractError('navigation_plugin_feedback_replayed')
+        packet = dict(op='observe', observation=o)
+        response = self._exchange(packet, timeout=min(.25, o['wall_deadline']-self.clock()))
+        self._validate_response(response, packet)
+        from ..platform_v2.navigation_feedback_contracts import validate_navigation_feedback, NavigationFeedbackHistory
+        feedback = validate_navigation_feedback(response['feedback'], o)
+        if getattr(self, '_feedback_history', None) is None:
+            self._feedback_history = NavigationFeedbackHistory()
+        self._feedback_history.check(feedback)
+        self._staged_observation = copy.deepcopy(o)
+        self._feedback_last_seq = o['observed_seq']
+        self._feedback_last_sim = o['sim_time']
+        self.last_navigation_feedback = copy.deepcopy(feedback)
+        return feedback
 
     def act_with_intent(self, observation, intent):
         if self.registration['capabilities']['goal_input_modes'] != ['decision_intent_v1']:
@@ -181,13 +255,33 @@ class NavigationPluginAdapter(JsonLineAdapter):
     def _act(self, observation, intent):
         # This receipt describes only this request; history remains separate.
         self.last_goal_result = None
-        o = self.checked(observation)
+        staged = uses_navigation_feedback(self.registration['capabilities'])
+        if staged and intent is None:
+            self._staged_observation = None
+            return navigation_status_for(self.checked(observation))
+        if staged:
+            original = getattr(self, '_staged_observation', None)
+            if original is None or not same_typed_tree(observation, original):
+                raise ContractError('navigation_plugin_staged_observation_required')
+            o = copy.deepcopy(original)
+        else: o = self.checked(observation)
         if o['schema'] != NAV_SCHEMA: raise ContractError('navigation_plugin_observation_profile')
         require_sensors(o, ['pointcloud', 'imu'])
         packet = dict(op='act', observation=o)
         if self.registration['capabilities']['goal_input_modes']:
-            if intent is None: return navigation_status_for(o)
+            if intent is None:
+                if staged: self._staged_observation = None
+                return navigation_status_for(o)
             packet['intent'] = validate_intent(intent, o)
+        if staged:
+            packet.pop('observation')
+            packet['source'] = {k:o[k] for k in IDENTITY}
+        try:
+            return self._exchange_result(packet, o)
+        finally:
+            if staged: self._staged_observation = None
+
+    def _exchange_result(self, packet, o):
         response = self._exchange(packet, timeout=min(.25, o['wall_deadline'] - self.clock()))
         if uses_goal_result(self.registration['capabilities']):
             # Repeat the boundary check after custom transports, then record

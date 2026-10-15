@@ -10,22 +10,24 @@ import os
 import sys
 from .ros2_bridge import parse_json, encode_json, MAX_REQUEST, MAX_RESPONSE, JSONL_SCHEMA
 from ..deployment.navigation_plugin import (
-    CAPABILITIES, GOAL_CAPABILITIES, validate_capabilities, validate_intent,
-    validate_result_for_intent, navigation_status_for)
-from ..platform_v2.contracts import ContractError, exact, identity
+    CAPABILITIES, GOAL_CAPABILITIES, FEEDBACK_CAPABILITIES, validate_capabilities, validate_intent,
+    validate_result_for_intent, navigation_status_for, same_typed_tree)
+from ..platform_v2.contracts import ContractError, IDENTITY, exact, identity
 from ..platform_v2.navigation_contracts import validate_navigation_observation
 
 
 def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_modes=(), goal_result_profile='none'):
-    if type(goal_result_profile) is not str or goal_result_profile not in ('none', 'active_goal_v1'):
+    if type(goal_result_profile) is not str or goal_result_profile not in ('none', 'active_goal_v1', 'staged_scan_v1'):
         raise ContractError('navigation_peer_goal_result_profile')
-    goal_profile = goal_result_profile == 'active_goal_v1'
-    capabilities = copy.deepcopy(GOAL_CAPABILITIES if goal_profile else CAPABILITIES)
+    staged_profile = goal_result_profile == 'staged_scan_v1'
+    goal_profile = goal_result_profile in ('active_goal_v1', 'staged_scan_v1')
+    capabilities = copy.deepcopy(FEEDBACK_CAPABILITIES if staged_profile else GOAL_CAPABILITIES if goal_profile else CAPABILITIES)
     capabilities['goal_input_modes'] = list(goal_input_modes)
     capabilities = validate_capabilities(capabilities)
     from ..platform_v2.goal_navigation_contracts import GoalNavigationResultHistory
     goal_history = GoalNavigationResultHistory()
     context = None; last_seq = -1; prepared = False
+    staged_observation = None; last_observed_seq = -1; last_observed_sim = -1.; feedback_history = None
     while True:
         raw = input_stream.readline(MAX_REQUEST + 1)
         if not raw: return
@@ -54,12 +56,41 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
                 reset(dict(next_context))
             context = next_context
             response = dict(schema=JSONL_SCHEMA, op=op, ok=True, capabilities=copy.deepcopy(capabilities))
-        elif op == 'act':
-            has_intent = 'intent' in request
-            fields = ('schema', 'op', 'observation', 'intent') if has_intent else ('schema', 'op', 'observation')
-            exact(request, fields, 'navigation_peer_act')
+        elif op == 'observe':
+            if not staged_profile: raise ContractError('navigation_peer_feedback_unsupported')
+            exact(request, ('schema', 'op', 'observation'), 'navigation_peer_observe')
             if context is None: raise ContractError('navigation_peer_reset_required')
             o = validate_navigation_observation(request['observation'])
+            if any(type(o[k]) is not type(v) or o[k] != v for k, v in context.items()):
+                raise ContractError('navigation_peer_generation')
+            if o['observed_seq'] <= max(last_seq, last_observed_seq) or o['sim_time'] < last_observed_sim:
+                raise ContractError('navigation_peer_replayed_observation')
+            observe = getattr(compute, 'observe', None)
+            if not callable(observe): raise ContractError('navigation_peer_observe_callback_required')
+            staged_observation = None
+            callback_input = copy.deepcopy(o)
+            value = observe(callback_input)
+            if not same_typed_tree(callback_input, o): raise ContractError('navigation_peer_observe_mutated_input')
+            from ..platform_v2.navigation_feedback_contracts import validate_navigation_feedback, NavigationFeedbackHistory
+            value = validate_navigation_feedback(value, o)
+            if feedback_history is None: feedback_history = NavigationFeedbackHistory()
+            feedback_history.check(value)
+            staged_observation = copy.deepcopy(o)
+            last_observed_seq = o['observed_seq']; last_observed_sim = o['sim_time']
+            response = dict(schema=JSONL_SCHEMA, op=op, ok=True, feedback=value)
+        elif op == 'act':
+            has_intent = 'intent' in request
+            fields = (('schema', 'op', 'source', 'intent') if staged_profile else
+                ('schema', 'op', 'observation', 'intent') if has_intent else ('schema', 'op', 'observation'))
+            exact(request, fields, 'navigation_peer_act')
+            if context is None: raise ContractError('navigation_peer_reset_required')
+            if staged_profile:
+                if staged_observation is None: raise ContractError('navigation_peer_staged_observation_required')
+                exact(request['source'], IDENTITY, 'navigation_peer_act_source'); identity(request['source'])
+                if not same_typed_tree(request['source'], {k:staged_observation[k] for k in IDENTITY}):
+                    raise ContractError('navigation_peer_staged_source_mismatch')
+                o = staged_observation; staged_observation = None
+            else: o = validate_navigation_observation(request['observation'])
             if any(type(o[k]) is not type(v) or o[k] != v for k, v in context.items()):
                 raise ContractError('navigation_peer_generation')
             if o['observed_seq'] <= last_seq: raise ContractError('navigation_peer_replayed_observation')
@@ -82,7 +113,15 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
             last_seq = o['observed_seq']
             response = dict(schema=JSONL_SCHEMA, op=op, ok=True, **{field: value})
         else: raise ContractError('navigation_peer_operation')
-        output_stream.write(encode_json(response, MAX_RESPONSE - 1) + b'\n')
+        encoded = encode_json(response, MAX_RESPONSE - 1) + b'\n'
+        # A staged producer may own a stricter local computation budget than
+        # the foreign host deadline. Check after validation/history/encoding,
+        # immediately before writing; the host still bounds actual I/O.
+        before_emit = getattr(compute, 'before_emit', None) if staged_profile else None
+        if before_emit is not None:
+            if not callable(before_emit): raise ContractError('navigation_peer_emit_guard_callable_required')
+            before_emit(response, encoded)
+        output_stream.write(encoded)
         output_stream.flush()
 
 
