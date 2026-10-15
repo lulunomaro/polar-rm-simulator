@@ -1,0 +1,13 @@
+{
+  "schema": "polar.sim.pb-wsl-navigation-manifest.v1",
+  "config_ref": {
+    "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-velocity-config-20261015-01\\STACK_CONFIG.json",
+    "sha256": "fcc973501ec24a371d1af71980ec5738ba293da66d09bfb4bc9162508159621a"
+  },
+  "environment_ref": {
+    "path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-humble-ext4-runtime-20261014\\ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "out": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-velocity-coop-actual-20261015-02\\session",
+  "diagnostics": true
+}

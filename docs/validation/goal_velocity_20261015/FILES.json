@@ -1,0 +1,2544 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 58,
+      "sha256": "0a3d105e82925cf43143a9600eaabb67b626e2d74eaa518af90d8eff7924dba4"
+    },
+    {
+      "path": "PRESERVATION_MANIFEST.json",
+      "bytes": 251315,
+      "sha256": "d6d993385ebadc2afcb5442a9331ebc8aaa65729de487d4329c98e72e759f038"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9622,
+      "sha256": "b3db7c390121b3a7b5c974a2e2db04391d9d9887387488f1d7e95c9596a75a01"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-12/COMMAND.json.gz",
+      "bytes": 20706,
+      "sha256": "f3c06862027f1ee1daea3fc2e3451f1f5692feff6044bc06f9ef1b951231880d"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-12/driver.py",
+      "bytes": 2009,
+      "sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-12/PID.json",
+      "bytes": 36,
+      "sha256": "2a0127e2e63fffb57ea3e3ecdbaa3a7b7782308aa6bf9ebbf051691a49f80573"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-12/RESULT.json.gz",
+      "bytes": 40337,
+      "sha256": "52d0e5f920e0bf0466f2437475c6edf685a452bdf1b1e1b798617291478b0111"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-12/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-12/stdout.log",
+      "bytes": 96,
+      "sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641"
+    },
+    {
+      "path": "records/artifacts/create_goal_velocity_coop_probe_20261015.py",
+      "bytes": 2244,
+      "sha256": "dae069c8047bc892eafaca6fb368a85822f9d9f75a40a9336798b49064f88287"
+    },
+    {
+      "path": "records/artifacts/create_goal_velocity_driver_20261015.py",
+      "bytes": 1126,
+      "sha256": "90f94f78ba6277d1eca645863fe374dd0fd08482d59fff8e01676b740315ebfb"
+    },
+    {
+      "path": "records/artifacts/fetch_nav2_goal_controller_20261015.py",
+      "bytes": 1184,
+      "sha256": "5a3c59595e3a5f4c09268eaa9b977810752f09c9a7e6dd7ecf58172687479b43"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/diagnose-02.py.gz",
+      "bytes": 3273,
+      "sha256": "c4a579246f134b85bb0708c01e356efbc3ca14d94a0e19017d413ccdeff9766f"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/diagnose.py.gz",
+      "bytes": 3260,
+      "sha256": "092930c1f8d37f2ddf9982ab23e23098bc9de949e705145807bc623412d68992"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/EXECUTION-02.json",
+      "bytes": 932,
+      "sha256": "a89c2088a3b51da45c0250136d0b274d9d88be2da71b6792fd02e69c9219fda4"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/EXECUTION.json",
+      "bytes": 1237,
+      "sha256": "fa9101061e63fbb153e3fef0f62cd30e505a9f167bc61623d83c67989300f306"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/FILES.json",
+      "bytes": 1468,
+      "sha256": "5ed252581512e284518f95ccdebaf4b1b2da517af81ddd00c2091232684771fa"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/LICENSE_COPY.json",
+      "bytes": 520,
+      "sha256": "52f103999a6bf2efe2de9888e6c84815bdfdd9c9be5603a010918b346042cbdd"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/REPORT.json.gz",
+      "bytes": 8298,
+      "sha256": "66dd5acba9f6866f35fd8c5b28d7822c3e8ef81365ba854f110ca07be5ffb9e5"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/stderr-02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/stderr.log",
+      "bytes": 1742,
+      "sha256": "1e7bcf494bd2581d0cb6835c1e4784684150dacc760fce77b23a174fe94a883f"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/stdout-02.log",
+      "bytes": 1673,
+      "sha256": "14103047c155f7295abce52358667c067490669850f15c2e9f2c578105f535d6"
+    },
+    {
+      "path": "records/artifacts/goal-map-diagnosis-20261015-01/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/COMMAND.json",
+      "bytes": 489,
+      "sha256": "fe171ea13410f87ab421a42a87abe5ef59223fa9a9ec46561daf1bb1a39d9c27"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/driver.py",
+      "bytes": 1774,
+      "sha256": "d27457bfaf68e926c02b833e68d2a8281712cbfca45d184380c78980c6d1f80c"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/pytest.xml.gz",
+      "bytes": 1605,
+      "sha256": "bd9f590cbe31fe975d239a0cc493d13b3b717d429566397a655ed308c30d45d9"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/RESULT.json",
+      "bytes": 1803,
+      "sha256": "1a7810edf2e26b113cd44f42aa121af8ab5d895cb63709950e13476035821022"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/tests/test_pb_goal_stack_profile.py",
+      "bytes": 3757,
+      "sha256": "7fbfa5c365b29b943ccf8304055bbf18388df95b372f05e9c6f106473f00b019"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/tests/test_pb_navigation_stack.py.gz",
+      "bytes": 4503,
+      "sha256": "592a4ffa0b8514f35bb0fd8a83c4bf7753921e09d0ab3556d4caee5c93ee3644"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/tests/test_pb_wsl_navigation_stdio.py.gz",
+      "bytes": 3755,
+      "sha256": "96c0a046edabcc5c89785cbb17fd65f755e6ca0fa503c3c2549c84379577c5a2"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/tests/test_pb_wsl_navigation_worker.py",
+      "bytes": 3215,
+      "sha256": "1a6b71b88edde62b0ae42d858bc770bb32ca2ca849b43c0f1942340765fba907"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/tools/pb_navigation_stack.py.gz",
+      "bytes": 10493,
+      "sha256": "8d636b8c3307ecdfa74b49cb0265506205e2e9a36e05f2e87b474d67316d2d11"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/source/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-01/stdout.log",
+      "bytes": 115,
+      "sha256": "1a6b2ade33ec24e5e66e584e5cae612daf041effe258f5b978352d08ff6a3eec"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/COMMAND.json",
+      "bytes": 489,
+      "sha256": "3640f83417d2f62bb5b9330d3a8e3b1dc87ff2b3b995f31ad2aed271f140f458"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/driver.py",
+      "bytes": 1774,
+      "sha256": "f23916dd3036ecb6970771aafb9fd9cc0628cc1820cacbe76fa13d6e58e311c6"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/pytest.xml.gz",
+      "bytes": 1600,
+      "sha256": "10dd75afa2fcbcb2c3abd13a9bd46821f2ae978c46a55eb0df7aa6836ef839ac"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/RESULT.json",
+      "bytes": 1802,
+      "sha256": "161e4ae604e71abb1963860741c740d5adaadbd2471b0a105e6317eb161a9d9c"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/tests/test_pb_goal_stack_profile.py.gz",
+      "bytes": 1500,
+      "sha256": "bc92c023c4ae5d05b456be1a51292c3d0f64863bac39d597845f64ead6d8b2ab"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/tests/test_pb_navigation_stack.py.gz",
+      "bytes": 4503,
+      "sha256": "592a4ffa0b8514f35bb0fd8a83c4bf7753921e09d0ab3556d4caee5c93ee3644"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/tests/test_pb_wsl_navigation_stdio.py.gz",
+      "bytes": 3755,
+      "sha256": "96c0a046edabcc5c89785cbb17fd65f755e6ca0fa503c3c2549c84379577c5a2"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/tests/test_pb_wsl_navigation_worker.py",
+      "bytes": 3215,
+      "sha256": "1a6b71b88edde62b0ae42d858bc770bb32ca2ca849b43c0f1942340765fba907"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/tools/pb_navigation_stack.py.gz",
+      "bytes": 10635,
+      "sha256": "de7f31cbf4ef961f751a93ceda3755aba5c5e4f7cab64cc8dd3b26f1b88d461e"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/source/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-uuid-stack-focused-20261015-02/stdout.log",
+      "bytes": 115,
+      "sha256": "70ea2263b2ed53b4bd360908c8783c59ea82da3761922872d803c80a562e4b7f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-config-20261015-01/CONFIG_PROOF.json",
+      "bytes": 723,
+      "sha256": "d81b8733439ea7ddc1b932e7d9949d8b443b19380834cdead1ff532c6f3273fb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-config-20261015-01/STACK_CONFIG.json.gz",
+      "bytes": 2860,
+      "sha256": "5e496419fd0ccd9cffaa7e57222425e07a653e5ad92b0939a4b895d9e28f44c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-config-20261015-02/CONFIG_PROOF.json",
+      "bytes": 688,
+      "sha256": "283524d8a9e5728e7c560322ec5d751d1d27d2e6c52677090578af0962468921"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-config-20261015-02/STACK_CONFIG.json.gz",
+      "bytes": 2885,
+      "sha256": "525fb35f3c258aca6c60bce38ebbedc9cfb5510c160092b182a9d561c0b66f82"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/AUDIT.json",
+      "bytes": 295,
+      "sha256": "a3e12e86e063d91a0fab4b3c27485aac37cb9b38e088fb21a14d44bff1696284"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/CLEANUP.json",
+      "bytes": 371,
+      "sha256": "d7500539acc56f0574ead01d4a24d575c96b88707ff029a730049d6c0784ee22"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/CLIENT_PATCH_MANIFEST.json.gz",
+      "bytes": 5768,
+      "sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/sim_operator_runtime.py.gz",
+      "bytes": 5827,
+      "sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/sim_platform_client.py.gz",
+      "bytes": 5637,
+      "sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/sim_platform_handoff.py.gz",
+      "bytes": 1997,
+      "sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/sim_platform_input.py",
+      "bytes": 2538,
+      "sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/sim_platform_runtime.py.gz",
+      "bytes": 3442,
+      "sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 14618,
+      "sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "bytes": 5251,
+      "sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "bytes": 3367,
+      "sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/COMMAND.json",
+      "bytes": 1802,
+      "sha256": "4bdc03a50803057c24cefcc81246ad6e4018014b609d4e2d27bd469172cf4e87"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/ENVIRONMENT_COMPAT_FINAL.json",
+      "bytes": 1632,
+      "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/FAILURE.log",
+      "bytes": 2034,
+      "sha256": "f73917c273f08a4b6ab8e379648eb85a2ed94d320459cf85c36c5c3b7a1943c6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/GOAL_MOTION_AUDIT.json",
+      "bytes": 579,
+      "sha256": "fdb45f6e69bab3ed82f9ac5ef6b15ad6b4138ac59805732823f7742785a85df7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/HOST_SCHEDULING.json",
+      "bytes": 504,
+      "sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/NAV_AUDIT.json",
+      "bytes": 186,
+      "sha256": "c8e17426c6902e7ea4a8779232f030d5b5ab3375f794d5ea0fa81b8e8866cd47"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/OVERLAP.json",
+      "bytes": 252,
+      "sha256": "a76acf39e2d693d2eff911670917b115c0e9895a2005d3f546fbb962676c0b30"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/PB_MANIFEST.json",
+      "bytes": 744,
+      "sha256": "53f16727eedc12c36d04d94dec100b81ca8d73d277262d0190a92f75b21425aa"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/PB_RESULT.json",
+      "bytes": 49,
+      "sha256": "c55658b95995363de72cd0c2f6cf425b225e2dc156cfacb6f78245691c00e8f9"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/QT_STAGES.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/RESULT.json",
+      "bytes": 2982,
+      "sha256": "9335236354ce2bf3dd7f60b0ee21426de0411ec21feb41acfe707be9e61b8d6e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/CLEANUP.json",
+      "bytes": 383,
+      "sha256": "46b76255f9b008e5c3dedfd8b03b9ec05df7c3abe558f83811e3922d585510a1"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/HOST_RPC_PHASES.json",
+      "bytes": 103,
+      "sha256": "f8fd0fa5e1957133d9c86c0aedeba5a594015136b6484910a1be7e56401df895"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/LINUX_RPC_PHASES.json",
+      "bytes": 187,
+      "sha256": "5127953ed28bc544bc510030c9d2c1f4c31135a27182368a4b25464e9e6aa06c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/SESSION_SPEC.json",
+      "bytes": 2765,
+      "sha256": "ecc3e622ca6afacb48dcd5de24bca1300080b84fb581f8f92f9083f2a46f61c4"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/STOP",
+      "bytes": 131,
+      "sha256": "d81b60573c68df04e541b8e61e3a9fa6b695eaeafe3261e4c51624ef10a32ee9"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/supervisor_stderr.log",
+      "bytes": 760,
+      "sha256": "ddae2cefcf82083538a65dff99b6a6070a5c4dd12782bcd97a93c3e6498731a7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/session/WORKER_STARTED.json",
+      "bytes": 228,
+      "sha256": "d07a635220f747ce93d43b6bb82cea2faf8a3417199a1de05c901a8a1e4780a5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/deployment/profile.py.gz",
+      "bytes": 4412,
+      "sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/deployment/wsl_profile.py.gz",
+      "bytes": 4135,
+      "sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/harness.xml",
+      "bytes": 2412,
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/nav2_goal_backend.py.gz",
+      "bytes": 4381,
+      "sha256": "ed48ba4fd3f8670617336e4d9ad511974a486e05ab22627e21310f428308b59e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/owned_linux_group.py.gz",
+      "bytes": 1956,
+      "sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_controller_context.hpp.gz",
+      "bytes": 3334,
+      "sha256": "22b5a8362dcc97a22035f2e6f229438ca8f612121c6bda52197f81624e21e45d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_goal_controller_context.hpp.gz",
+      "bytes": 3654,
+      "sha256": "ffbe1789456107300992401ad7b5fe9c1d1ebadd47b88110c9c3a76daf048253"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_phases.py",
+      "bytes": 3964,
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "bytes": 2798,
+      "sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_request_context.hpp",
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "bytes": 1837,
+      "sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/integrations/ros2_bridge.py.gz",
+      "bytes": 3341,
+      "sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 5082,
+      "sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 6711,
+      "sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3349,
+      "sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/audit_navigation_goals.py.gz",
+      "bytes": 3815,
+      "sha256": "b412673f7fd6a7b29b5f0ad9af3c2e78d7b5d48c506de023dbcd83f7fbda12aa"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/audit_qt_manual.py.gz",
+      "bytes": 1952,
+      "sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/navigation_goal_session.py",
+      "bytes": 3728,
+      "sha256": "6bb60d1c107a8f1e13aaa8ce1042fc908ec6f2ca251c311d838f86f9e4f61588"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/pb_coop_cleanup.py.gz",
+      "bytes": 3199,
+      "sha256": "ffa6d55c413817df1dd478a2ea1d76884bdc67d3a947801f82cde4545539007e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/pb_external_goal_session.py.gz",
+      "bytes": 2719,
+      "sha256": "b51c65767150eac476a2d7dc7751b85920c1b717450dfea5879281f7becf5dd0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/pb_navigation_stack.py.gz",
+      "bytes": 10635,
+      "sha256": "de7f31cbf4ef961f751a93ceda3755aba5c5e4f7cab64cc8dd3b26f1b88d461e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/prepare_nav2_goal_controller_overlay.py.gz",
+      "bytes": 5415,
+      "sha256": "acd62225be1e097ec6cfaead76c8cea44e0513e4f2823b53a41f5c040f3c7aa3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_goal_velocity_coop_sil.py.gz",
+      "bytes": 8374,
+      "sha256": "99a68616ea55d85d24464e327efa529755765fc19b34c6ab0b9ce39aaa9cfafb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_navigation_goal_client.py.gz",
+      "bytes": 7298,
+      "sha256": "dc0acda1ddf4e5ba661a4bd12ce39627abb3fd411bf259f6a4365bb294d78dd6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_navigation_goal_supervisor.py.gz",
+      "bytes": 2246,
+      "sha256": "bceb36126a0c34308b8af4617bff852b198a07001539780e47b51befba41713f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_pb_external_goal_supervisor.py.gz",
+      "bytes": 2250,
+      "sha256": "195040923d4d8a45f8d783d78bbc686aa951761451f3055d9f09426441cc689d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_pb_external_navigation_goal.py.gz",
+      "bytes": 7051,
+      "sha256": "460227712f354b85a1424d1e8000c088e50425f9a7f781f660f63374e6c1d214"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/source/tools/qa_qt_manual_peer.py.gz",
+      "bytes": 11869,
+      "sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/SOURCE_MANIFEST.json.gz",
+      "bytes": 3700,
+      "sha256": "00694f767a3cdf80879e25fd4d105ac4085b66b4ef932aa27c6a0a176914a344"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/STACK_CONFIG.json.gz",
+      "bytes": 2860,
+      "sha256": "5e496419fd0ccd9cffaa7e57222425e07a653e5ad92b0939a4b895d9e28f44c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-01/TRACE.jsonl.gz",
+      "bytes": 20,
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/AUDIT.json",
+      "bytes": 311,
+      "sha256": "3711f184941cd92c3314d4bcb0eae74a9492269e8a5daa6bf63b7526cce62b7d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/CAMERA.json.gz",
+      "bytes": 1408,
+      "sha256": "e93a60b3e809ffe729e21b3fbb74ba6e83ee08b7be39efe4ca936833f6b4a554"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/CHILD_COMMAND.json",
+      "bytes": 982,
+      "sha256": "253a6ab522102de94919c72f08dbe343ad920f8af63acc6faa4ff6c810e3b3f9"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/CLEANUP.json",
+      "bytes": 2896,
+      "sha256": "6dbe936bdd58dead5523bf186bf8737eeb7acc9bb9dd4914e26d138c49caff0e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/CLIENT_PATCH_MANIFEST.json.gz",
+      "bytes": 5768,
+      "sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/sim_operator_runtime.py.gz",
+      "bytes": 5827,
+      "sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/sim_platform_client.py.gz",
+      "bytes": 5637,
+      "sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/sim_platform_handoff.py.gz",
+      "bytes": 1997,
+      "sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/sim_platform_input.py",
+      "bytes": 2538,
+      "sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/sim_platform_runtime.py.gz",
+      "bytes": 3442,
+      "sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 14618,
+      "sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "bytes": 5251,
+      "sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "bytes": 3367,
+      "sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/COMMAND.json",
+      "bytes": 1802,
+      "sha256": "9ea4fc8604d09d45ea7a4010f0e0327424123a4f79eb67de12ac2ffddb5701e2"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/ENVIRONMENT_COMPAT_FINAL.json",
+      "bytes": 1632,
+      "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/EVAL.json",
+      "bytes": 907,
+      "sha256": "ff77b80977c4910e16c86c647cb2c08c6a6cb37c108697b6420a18636a02decc"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/FAILURE.log",
+      "bytes": 384,
+      "sha256": "d2e94b04f5bee4320ba71ff90f0e52fbcc164ba1126a1c48ddc0a2b6cefd6a20"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/GOAL_MOTION_AUDIT.json",
+      "bytes": 660,
+      "sha256": "3b1a446c410987c1664a396129a238b7f06a69977c480d3044dde15e7a46dbe2"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/HOST_SCHEDULING.json",
+      "bytes": 504,
+      "sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/NAV_AUDIT.json",
+      "bytes": 242,
+      "sha256": "9e468acc82602e56453c704a95e0cac264e2ae0a3ac680794f187edcc390c1b9"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/NAV_SDK_FAILURE.log",
+      "bytes": 477,
+      "sha256": "db0270fd82c6fe6f706eecc5ce0cae06bbbd79bc7517cde1fde9eb330b63d303"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/OVERLAP.json",
+      "bytes": 270,
+      "sha256": "cec60bd132814a9c97459a5ae5f964224693fa27bbea7566f21cbb98705b15de"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/PB_MANIFEST.json",
+      "bytes": 744,
+      "sha256": "400b23ffa723fb3bb8f9f02d981e61b34191990779a7f6bfe4a3c25a42d041e5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/PB_RESULT.json.gz",
+      "bytes": 1808,
+      "sha256": "8c5ff2d95ae6093795962c102ce29688ad175333fb9ef0ae5bee89ec6c384069"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/CLEANUP.json",
+      "bytes": 300,
+      "sha256": "b1db4442946f7addd9ed7d578d6dff3734eec0315953f9a28ae6830194da3d61"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/client.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/client.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/EXTERNAL_EVENTS.jsonl",
+      "bytes": 3485,
+      "sha256": "a359d53c2f46396f991b7634ec22a21eab3d32b1ed060f1a8389639cad5f97f7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/EXTERNAL_SPEC.json",
+      "bytes": 2469,
+      "sha256": "e8eb9fd0c979dd82be7ce594f0ebae03893d650e5189cc944b5cac984eedf53f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/GOAL_REPORT.json",
+      "bytes": 1005,
+      "sha256": "d06e79780f5da7e7013c8b2d6d23f6f39d211850e493ea527aa0b960ab8acc88"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/READY.json",
+      "bytes": 2038,
+      "sha256": "41346e7e9bfee61f80f0f5c478f5ca5f0fa8382e398f32d8f684b06a39daf658"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/RESULT.json",
+      "bytes": 3637,
+      "sha256": "741e72a2b783c430bbdb32f24ada8b6dbb041cfee2fd837312c071959a93fe25"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/ROS_SOURCE.jsonl.gz",
+      "bytes": 3559,
+      "sha256": "d8f8b62e64b37e825bb2d5f55d09f3112fe2cf98b8d7fa91a34e6c8624c8f70c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/SPAWN.json",
+      "bytes": 647,
+      "sha256": "73892b734f4b137c7a4cd938970d75cab7f18fb492e5a79126e00905e6ec74b7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/STOP",
+      "bytes": 131,
+      "sha256": "91a8abca5ccde1f59ba1f4de3ef4352122495f94794938b1c498ecc502bc565a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/supervisor.stderr.log",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/SUPERVISOR_CLEANUP.json",
+      "bytes": 1168,
+      "sha256": "b96875ed024a690aa4f756fb0936a8f11e1b8e89789939021d37fcb5d1f872e6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/peer/SUPERVISOR_STARTED.json",
+      "bytes": 239,
+      "sha256": "14d1dae72947f7feb4baec42a486543d56a5e89506e9e6983a4002bf57f1d0e3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/PREPARE.json",
+      "bytes": 3396,
+      "sha256": "9320466910b7beed4b6f99d2868186d7ae22bcd904cddcd611055c6273b4479e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/qt/ACTUAL_QT_OFFSCREEN.png",
+      "bytes": 146037,
+      "sha256": "0b092d97db07c99edf95c3d76753fa23f0e1ee08e3c79e6957f6313779654758"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/qt/errors.log",
+      "bytes": 296,
+      "sha256": "94c55441db0d02e2bdf5777349274cc345323e37a8d5ad3d3ae1c1628ae05e71"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/qt/RESULT.json.gz",
+      "bytes": 13424,
+      "sha256": "d7d92701f37d54e8a2085a4c7293ec8e350312cffb8e31be6d41405ffbdcb1e1"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/qt/STAGES.json.gz",
+      "bytes": 33236,
+      "sha256": "b6a63086fdf40bb3341f4ec4115099b1f38cfd977b77397b4ee77865ef92783e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/qt/STATE_SNAPSHOTS.json.gz",
+      "bytes": 1151,
+      "sha256": "1a17e892ee3987af598ce4d0025d8bbc248f10683261117254156407a7ad89c0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/qt.stderr.log",
+      "bytes": 1390,
+      "sha256": "2d8e099b934e19acb885a5ae75e6027ff69ec6a6f2c053b413dee69a3c415a03"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/QT_STAGES.json",
+      "bytes": 1755,
+      "sha256": "278ae6ebaa204c4ffb26af60295a0c10e4a4f8c577f1bca13b9f22ab6b4f722b"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/RESULT.json",
+      "bytes": 3559,
+      "sha256": "478c4de75e80cbedbd27e320df3995a059fddf449665d894997bde52454b1f60"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/CLEANUP.json",
+      "bytes": 343,
+      "sha256": "e85302a11c0f856450398193e9b061895983d214892a7251bf1eac82cd8d856f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/HOST_RPC_PHASES.json.gz",
+      "bytes": 3988,
+      "sha256": "08c0dbf5bac3b713140a1e4ea63c597813b1ffa472db981b57b457ff7c150e60"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/LINUX_RPC_PHASES.json.gz",
+      "bytes": 2577,
+      "sha256": "ae58e9ac39433c054e91959525ce28b28cde8432a2e2559254ee501833e60387"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/PRODUCTION_GATE_STATUS.json",
+      "bytes": 386,
+      "sha256": "6e71558e83a066c0792515defac60f64a3038d0a195a4ea4af4ed2c4e3bc55aa"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/SESSION_SPEC.json",
+      "bytes": 2765,
+      "sha256": "50920babaa7af606e367476bf79c5f9f39a17ee5990161d97861302470e3a9e7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/bridge_manifest.json",
+      "bytes": 1641,
+      "sha256": "2e09010ddbea5b14dd8a3c731137c3d7b1d2918af5a958733846f3c1d90707f6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/CLEANUP.json.gz",
+      "bytes": 1342,
+      "sha256": "dbc30d8327d69fb332078cb149d7717f2fb5e546c4ec25d2e365df6655581d72"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/controller_server.log.gz",
+      "bytes": 3743,
+      "sha256": "90594219b2fecc055e96d4d25c2473685b01c4d791a681ab0baff1b240b4afc0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/loam_interface.log",
+      "bytes": 71,
+      "sha256": "96e965ac6c32bb154ecd864080a1de30908c2eb71e0453525c4feef396042e48"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/owned_parameters.yaml.gz",
+      "bytes": 3373,
+      "sha256": "508f51c57292a793d54123d211bdf83864e4b3395a237d80eabd3ba559c7a5a2"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/PLAN.json.gz",
+      "bytes": 6249,
+      "sha256": "e14249f05b61988f7ea2582d136dde9ddaa4e029f63558f1c5b1504df216258b"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/planner_server.log.gz",
+      "bytes": 1502,
+      "sha256": "f17499865368fbd8d465decd5a25ca50f05516286d74ff62a49a3d95c0d261f7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/point_lio.log",
+      "bytes": 783,
+      "sha256": "7f90e4bfe92b92e99ffc8e342cc713fcd9b4400efe7977ddda7bfe887dcf8d49"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/pointcloud_to_laserscan.log",
+      "bytes": 244,
+      "sha256": "f3e175b764b5dfa35bfaa1ab731c8043f85d9167a70742ef570af4c159d8ff20"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/sensor_scan_generation.log",
+      "bytes": 71,
+      "sha256": "56be1c60c4572d2a483e91586ab009756a55533ef8e8e86fa88f044ca6488992"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/slam_toolbox.log",
+      "bytes": 800,
+      "sha256": "6418a79bc413ea3df6a3542f1e0117ba21eeda96d7c8d60ef63283a6c7c3d5a1"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/supervisor.jsonl.gz",
+      "bytes": 1585,
+      "sha256": "fc1cf2e598b085faf79e490097c93bbc9be07ccd129c625b8af838b87251586b"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/terrain_analysis.log",
+      "bytes": 324,
+      "sha256": "784728eb4410ee55c4cbf170aa1bf6fd00c230f7b590f3d033d60df7cc86d3c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/stack/terrain_analysis_ext.log",
+      "bytes": 324,
+      "sha256": "30c69a11a6d6681bfed96109405ed765cff6cb3999e2a12315367fb4b1019467"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/STOP",
+      "bytes": 131,
+      "sha256": "1d08c42025c686ef6f2cca6b886d1f1164a02aca166bb5e382608cbe696f8aee"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/supervisor_stderr.log",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/session/WORKER_STARTED.json",
+      "bytes": 229,
+      "sha256": "c2dc01674d3eb2e1b17ad802176085ec9fa079433394e2188bb24239235e9a78"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/deployment/profile.py.gz",
+      "bytes": 4412,
+      "sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/deployment/wsl_profile.py.gz",
+      "bytes": 4135,
+      "sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/harness.xml",
+      "bytes": 2412,
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/nav2_goal_backend.py.gz",
+      "bytes": 4381,
+      "sha256": "ed48ba4fd3f8670617336e4d9ad511974a486e05ab22627e21310f428308b59e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/owned_linux_group.py.gz",
+      "bytes": 1956,
+      "sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_controller_context.hpp.gz",
+      "bytes": 3334,
+      "sha256": "22b5a8362dcc97a22035f2e6f229438ca8f612121c6bda52197f81624e21e45d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_goal_controller_context.hpp.gz",
+      "bytes": 3654,
+      "sha256": "ffbe1789456107300992401ad7b5fe9c1d1ebadd47b88110c9c3a76daf048253"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_phases.py",
+      "bytes": 3964,
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "bytes": 2798,
+      "sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_request_context.hpp",
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "bytes": 1837,
+      "sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/integrations/ros2_bridge.py.gz",
+      "bytes": 3341,
+      "sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 5082,
+      "sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 6711,
+      "sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3349,
+      "sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/audit_navigation_goals.py.gz",
+      "bytes": 3815,
+      "sha256": "b412673f7fd6a7b29b5f0ad9af3c2e78d7b5d48c506de023dbcd83f7fbda12aa"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/audit_qt_manual.py.gz",
+      "bytes": 1952,
+      "sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/navigation_goal_session.py",
+      "bytes": 3728,
+      "sha256": "6bb60d1c107a8f1e13aaa8ce1042fc908ec6f2ca251c311d838f86f9e4f61588"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/pb_coop_cleanup.py.gz",
+      "bytes": 3199,
+      "sha256": "ffa6d55c413817df1dd478a2ea1d76884bdc67d3a947801f82cde4545539007e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/pb_external_goal_session.py.gz",
+      "bytes": 2719,
+      "sha256": "b51c65767150eac476a2d7dc7751b85920c1b717450dfea5879281f7becf5dd0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/pb_navigation_stack.py.gz",
+      "bytes": 10659,
+      "sha256": "49434c361d76bbdfa32f9fdd8a7b3d91e0bc673725c15101acb2e5999ad3972a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/prepare_nav2_goal_controller_overlay.py.gz",
+      "bytes": 5415,
+      "sha256": "acd62225be1e097ec6cfaead76c8cea44e0513e4f2823b53a41f5c040f3c7aa3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_goal_velocity_coop_sil.py.gz",
+      "bytes": 8374,
+      "sha256": "99a68616ea55d85d24464e327efa529755765fc19b34c6ab0b9ce39aaa9cfafb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_navigation_goal_client.py.gz",
+      "bytes": 7298,
+      "sha256": "dc0acda1ddf4e5ba661a4bd12ce39627abb3fd411bf259f6a4365bb294d78dd6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_navigation_goal_supervisor.py.gz",
+      "bytes": 2246,
+      "sha256": "bceb36126a0c34308b8af4617bff852b198a07001539780e47b51befba41713f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_pb_external_goal_supervisor.py.gz",
+      "bytes": 2250,
+      "sha256": "195040923d4d8a45f8d783d78bbc686aa951761451f3055d9f09426441cc689d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_pb_external_navigation_goal.py.gz",
+      "bytes": 7051,
+      "sha256": "460227712f354b85a1424d1e8000c088e50425f9a7f781f660f63374e6c1d214"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/source/tools/qa_qt_manual_peer.py.gz",
+      "bytes": 11869,
+      "sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/SOURCE_MANIFEST.json.gz",
+      "bytes": 3698,
+      "sha256": "f8d8b0ba0550404c28b2ab11372940314d25b2981287fc6125e6929dbd7c4a12"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/STACK_CONFIG.json.gz",
+      "bytes": 2860,
+      "sha256": "5e496419fd0ccd9cffaa7e57222425e07a653e5ad92b0939a4b895d9e28f44c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-02/TRACE.jsonl.gz",
+      "bytes": 227357,
+      "sha256": "2c7c507417f95c44efd68ad8c6135b54a9a366d3efc8342739db895ef7b2ccea"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/AUDIT.json",
+      "bytes": 311,
+      "sha256": "5ccc27e913c9398f0e888131b5056e9a120285510b2d21d102fa12d21fe0ba99"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/CAMERA.json.gz",
+      "bytes": 1409,
+      "sha256": "42537dd7d0da6b0ce9369de2e317b3b842818cb086db763e6ec4eb3173d85dbc"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/CHILD_COMMAND.json",
+      "bytes": 982,
+      "sha256": "73779d06bf9852984832fedd6cff7d1c893067453c6499cb42f0eb6c5abbe149"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/CLEANUP.json",
+      "bytes": 4059,
+      "sha256": "4479bc15a6bd0190eac9d26b33eb174306ac0eadcfc52f84b1cb9967abc5bdce"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/CLIENT_PATCH_MANIFEST.json.gz",
+      "bytes": 5768,
+      "sha256": "bf80776836eb102691407b06bbf602514c13884b47aa88606b24dae89835d474"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/sim_operator_runtime.py.gz",
+      "bytes": 5827,
+      "sha256": "6c8381bebf94c478888f867258425b9477f2e4a80b62436152d52e7078e38452"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/sim_platform_client.py.gz",
+      "bytes": 5637,
+      "sha256": "3dba26f73d7af6221427461eabb804e412a78cddb52e71105ba6cbb839b3dea0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/sim_platform_handoff.py.gz",
+      "bytes": 1997,
+      "sha256": "751ae6a701c67343ee90e3f863ca607fdda8910c735f4e739e2d43f80acdb0ec"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/sim_platform_input.py",
+      "bytes": 2538,
+      "sha256": "f0d4f52ade612defb5132598963738bbb3a8e3f65944008a8b3531ae85d58dae"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/sim_platform_runtime.py.gz",
+      "bytes": 3442,
+      "sha256": "f9e4e22c69609219c44df45e24ba4dd93805af98f97791160a214b88669e1e5c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/sim_platform_transport.py.gz",
+      "bytes": 14618,
+      "sha256": "e62aec23b7082cb0be8ab251675610a75e654f1f3203feeef2b7c20f849ec705"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/ui/sim_operator_window.py.gz",
+      "bytes": 5251,
+      "sha256": "ca28d2526be1f46e31a1892e3e5ffc34601473b572279a584f08b6cbde38c35a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/client_source/rm_client/ui/sim_platform_window.py.gz",
+      "bytes": 3367,
+      "sha256": "4367fb5df77c3abecf2318871becb690bb3d9489d96ffe20778a89189c2736a7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/COMMAND.json",
+      "bytes": 1802,
+      "sha256": "4b09561021c862e788aa6bd5cd2f4551f864be318da77c1cf8ab6377313c7294"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/ENVIRONMENT_COMPAT_FINAL.json",
+      "bytes": 1632,
+      "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/EVAL.json",
+      "bytes": 906,
+      "sha256": "ab0af4c3b75a7003574afcfc36944756b1b12661fc68b9202b7ffaab99fd21d3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/GOAL_MOTION_AUDIT.json",
+      "bytes": 1219,
+      "sha256": "f995e544c7c6a72f06dcd48590a7cb9853a3dc66dd93fc7ce8d27b11e844ed23"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/HOST_SCHEDULING.json",
+      "bytes": 504,
+      "sha256": "61d6bd996f82efb40c001fb12f729e6e3164b073d0877ee43ff1013e1e70d020"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/NAV_AUDIT.json",
+      "bytes": 192,
+      "sha256": "a2e11a710cbc269d1574c6f1729bd3ab4ad4797eec8beb91100d64bb89bc1679"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/OVERLAP.json",
+      "bytes": 276,
+      "sha256": "17191198188628a60773a8592c5df2cd95b28b4329bb0c6a113b1048a528a247"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/PB_MANIFEST.json",
+      "bytes": 744,
+      "sha256": "873815ce923d92e4d0c8ecfead399448c3dfa923e321416324ea37ced6e10fe5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/PB_RESULT.json.gz",
+      "bytes": 5665,
+      "sha256": "c322f40b39eb25648f04493c4a237459c4ea9be21bc1f96b3b863a52e51db23e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/CLEANUP.json",
+      "bytes": 299,
+      "sha256": "a9896e2c80840d14e79e046fde9257bb2e317fb76669c1a74246b83fe496a779"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/client.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/client.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/EXTERNAL_EVENTS.jsonl.gz",
+      "bytes": 1799,
+      "sha256": "492fb462975cf75bc2944034e56a5cfc876f2770da09606dbbce0ee07a9ca18e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/EXTERNAL_SPEC.json",
+      "bytes": 2469,
+      "sha256": "b7f1d9db4f53aa369888bd7ed270bb08739cc7b682fa5280e01c557bb1bed994"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/GOAL_REPORT.json.gz",
+      "bytes": 2591,
+      "sha256": "3180fd4fc014afa88464e57556380bcf4b955992083c6ebb6cd4beebb70c8b6e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/READY.json",
+      "bytes": 2037,
+      "sha256": "e221f0504e41af129411062088275ee54f0cd6431e3df6a5453237d99b2881ec"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/RESULT.json.gz",
+      "bytes": 3842,
+      "sha256": "7ba2935a894c061f4bd62970021f1c0e2a2079f14d6a7b8d6f1d019335f64a47"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/ROS_SOURCE.jsonl.gz",
+      "bytes": 7367,
+      "sha256": "929beeeed206643c9d62bcb3a57b7340ec8b66433b3a7e9a92fc1df5611ccc3a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/SPAWN.json",
+      "bytes": 646,
+      "sha256": "35705eff3df1ce9c0457161a37585519a16b6476a16e8071cd5c50c0f7964903"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/STOP",
+      "bytes": 131,
+      "sha256": "7c6c9fc7514937329be75f30f5d6bec80194489db517fefce1f6cdc50787db87"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/supervisor.stderr.log",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/SUPERVISOR_CLEANUP.json",
+      "bytes": 1124,
+      "sha256": "ce047703ff5cb05d61fd6fc111b9204082812c233dcec0b7dd3261d6c31b118a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/peer/SUPERVISOR_STARTED.json",
+      "bytes": 238,
+      "sha256": "aea248a4523b4d9ac7d05797a4233c4a70769ddc95ed3200127c9729d7737d64"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/PREPARE.json",
+      "bytes": 3392,
+      "sha256": "3d3e209487971b8b61701830384bcfd07dbb5fe98fbda104f8a54bd79c20dc54"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/qt/ACTUAL_QT_OFFSCREEN.png",
+      "bytes": 145922,
+      "sha256": "8851e1565cbbfdc0d206577bebbb437e5bec767404a3c7f2c135dd33e0e8a95c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/qt/RESULT.json.gz",
+      "bytes": 13372,
+      "sha256": "7e29237c070210cfddaed6a80114499238117c8e496186c7ef1aca36a086b46f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/qt/STAGES.json.gz",
+      "bytes": 45395,
+      "sha256": "2d2227661feac99f4b98e2e490472e42a2f47917392d5a20645c13be149026a6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/qt/STATE_SNAPSHOTS.json.gz",
+      "bytes": 1248,
+      "sha256": "aa4941ddd338bf5144988f770e013aed63d4214d93945aade3ee4f3289e4e833"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/qt.stderr.log",
+      "bytes": 1390,
+      "sha256": "fe874f2bf48257553013dd3d757fc3a2042c913c051d1ba1b0e2a637b19ec907"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/QT_STAGES.json",
+      "bytes": 1755,
+      "sha256": "6e903240aa25a4d5de8fb34200b6f78f8808589c1105723e67e6b26a9f72b8b5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/RESULT.json.gz",
+      "bytes": 1985,
+      "sha256": "138f0b696c8fc865e8e82cbedb729c32b73dfcc167b961499999990d27593ccf"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/CLEANUP.json",
+      "bytes": 342,
+      "sha256": "090194287c118902eb78150e3558406664d9ea809cd11aa623d2343d53e6c888"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/HOST_RPC_PHASES.json.gz",
+      "bytes": 6235,
+      "sha256": "751cf3e5404295de147db1c93d958cfac25e159c6d9849e267b49cb5ed07b5e5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/LINUX_RPC_PHASES.json.gz",
+      "bytes": 3964,
+      "sha256": "485af56ca485d2fb38e1fb195de8bbcd9e38d6805a4efcbc007cd9df3d52b581"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/PRODUCTION_GATE_STATUS.json",
+      "bytes": 386,
+      "sha256": "0b751c3f0a263b838442bdd8444ca64f96edd450b17d6ac79bb85fb7ff45b3b9"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/SESSION_SPEC.json",
+      "bytes": 2765,
+      "sha256": "22dd6fa59d96fabd241aba76696cb010bb0bd0bd7b3b3fae4418c643fc274907"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/bridge_manifest.json",
+      "bytes": 1641,
+      "sha256": "8a0023dbde4ed74ea16a1b9bb9dd1707071ba867e4c155a84cb60de2ac6d4ba5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/CLEANUP.json.gz",
+      "bytes": 1342,
+      "sha256": "c9a5b55811166c116c53e8e1a59cbddf5f4509a26addcb22aa6e7af485e860ef"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/controller_server.log.gz",
+      "bytes": 6077,
+      "sha256": "b0951ecd6e8ba510f73abebdd0235d644443cd762fb345a792b0cbf1a1054a3f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/loam_interface.log",
+      "bytes": 71,
+      "sha256": "7112b26028aa9bc26ca9634b77409564aabf835b94fdb8733594f663f45cab3a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/owned_parameters.yaml.gz",
+      "bytes": 3374,
+      "sha256": "07dd4a1c43b2c655a36d1e8bcead5cba200e22c5d3de30750e3c0d0ee76fbd60"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/PLAN.json.gz",
+      "bytes": 6364,
+      "sha256": "7717e9360bc812960c2ff5390269448c7d187b0c89ab345b37d49445095b8df1"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/planner_server.log.gz",
+      "bytes": 1386,
+      "sha256": "74b9644ed478c3315648a2a79de30b77f8bc5e97362c8eda61e9ddecd2332742"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/point_lio.log",
+      "bytes": 783,
+      "sha256": "cc6285ed17f9c04a278c31452eb40a69e97db50a07a8979ec997516bd8301a7a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/pointcloud_to_laserscan.log",
+      "bytes": 244,
+      "sha256": "88d81156f2a80a9b95f4879e18806247e956b077458048b1d685488ec10b3de5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/sensor_scan_generation.log",
+      "bytes": 71,
+      "sha256": "64ed94d1e259de80ee25966fc74188a9fcb1077bbdc4ea1ba427f5d55c7fc312"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/slam_toolbox.log",
+      "bytes": 800,
+      "sha256": "6327a9873360348686038caad0e7939edcd289dd3f26e7ffb50f6f50bf3b2737"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/supervisor.jsonl.gz",
+      "bytes": 1576,
+      "sha256": "c0205f4a6ce0ba3bf16c1cf43cb412706cfedc8570666789b106a4ed2a26c8c2"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/terrain_analysis.log",
+      "bytes": 324,
+      "sha256": "826f00235063d930259700721bac4fd861c593f72905d4672d4240bd79ea6aac"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/stack/terrain_analysis_ext.log",
+      "bytes": 324,
+      "sha256": "96eb81dfdc0a7042aa3569dbac0295fcaa099482d2f540ddc742a0e665c99345"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/STOP",
+      "bytes": 131,
+      "sha256": "44e02aa95c63ed048076f9261d512500d835a7cedd93b2e99e36a64eab2f8347"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/supervisor_stderr.log",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/session/WORKER_STARTED.json",
+      "bytes": 228,
+      "sha256": "deb44cd7be7043891021da20cda3040c7a6ba60351081780d5370d6a4c499426"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/deployment/profile.py.gz",
+      "bytes": 4412,
+      "sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/deployment/wsl_profile.py.gz",
+      "bytes": 4135,
+      "sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/harness.xml",
+      "bytes": 2412,
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/nav2_goal_backend.py.gz",
+      "bytes": 4381,
+      "sha256": "ed48ba4fd3f8670617336e4d9ad511974a486e05ab22627e21310f428308b59e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/owned_linux_group.py.gz",
+      "bytes": 1956,
+      "sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_controller_context.hpp.gz",
+      "bytes": 3334,
+      "sha256": "22b5a8362dcc97a22035f2e6f229438ca8f612121c6bda52197f81624e21e45d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_goal_controller_context.hpp.gz",
+      "bytes": 3654,
+      "sha256": "ffbe1789456107300992401ad7b5fe9c1d1ebadd47b88110c9c3a76daf048253"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_phases.py",
+      "bytes": 3964,
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "bytes": 2798,
+      "sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_request_context.hpp",
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "bytes": 1837,
+      "sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/integrations/ros2_bridge.py.gz",
+      "bytes": 3341,
+      "sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 5082,
+      "sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 6711,
+      "sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3349,
+      "sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/audit_navigation_goals.py.gz",
+      "bytes": 3815,
+      "sha256": "b412673f7fd6a7b29b5f0ad9af3c2e78d7b5d48c506de023dbcd83f7fbda12aa"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/audit_qt_manual.py.gz",
+      "bytes": 1952,
+      "sha256": "c6353d77e90f11dceef384efde5ab544de8a85a9065c51d836af15f253b12d60"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/navigation_goal_session.py",
+      "bytes": 3728,
+      "sha256": "6bb60d1c107a8f1e13aaa8ce1042fc908ec6f2ca251c311d838f86f9e4f61588"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/pb_coop_cleanup.py.gz",
+      "bytes": 3199,
+      "sha256": "ffa6d55c413817df1dd478a2ea1d76884bdc67d3a947801f82cde4545539007e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/pb_external_goal_session.py.gz",
+      "bytes": 2719,
+      "sha256": "b51c65767150eac476a2d7dc7751b85920c1b717450dfea5879281f7becf5dd0"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/pb_navigation_stack.py.gz",
+      "bytes": 10962,
+      "sha256": "ce2751ac2b56b4ecf5558aeb4500a4cdfea78b92c780315c02681109b1fd25a3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/prepare_nav2_goal_controller_overlay.py.gz",
+      "bytes": 5415,
+      "sha256": "acd62225be1e097ec6cfaead76c8cea44e0513e4f2823b53a41f5c040f3c7aa3"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_goal_velocity_coop_sil.py.gz",
+      "bytes": 8374,
+      "sha256": "99a68616ea55d85d24464e327efa529755765fc19b34c6ab0b9ce39aaa9cfafb"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_navigation_goal_client.py.gz",
+      "bytes": 7413,
+      "sha256": "1c16c7763b0ccee609600b7fe2df3e6a759d8e8c202cd4f417bfe59b7538b0e4"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_navigation_goal_supervisor.py.gz",
+      "bytes": 2246,
+      "sha256": "bceb36126a0c34308b8af4617bff852b198a07001539780e47b51befba41713f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_pb_external_goal_supervisor.py.gz",
+      "bytes": 2250,
+      "sha256": "195040923d4d8a45f8d783d78bbc686aa951761451f3055d9f09426441cc689d"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_pb_external_navigation_goal.py.gz",
+      "bytes": 7051,
+      "sha256": "460227712f354b85a1424d1e8000c088e50425f9a7f781f660f63374e6c1d214"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/source/tools/qa_qt_manual_peer.py.gz",
+      "bytes": 11869,
+      "sha256": "29fa21bf419d30890e0e4c6ed94f72dd6f9016caa31d74d33255df496d87cea6"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/SOURCE_MANIFEST.json.gz",
+      "bytes": 3698,
+      "sha256": "3b8e64a2124b28e7a2f49c171e2a591afe76e2c9b9463dfeb5597f754ab5f1c9"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/STACK_CONFIG.json.gz",
+      "bytes": 2885,
+      "sha256": "525fb35f3c258aca6c60bce38ebbedc9cfb5510c160092b182a9d561c0b66f82"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-actual-20261015-03/TRACE.jsonl.gz",
+      "bytes": 308943,
+      "sha256": "1cfa7bda686c9d1f039f2e486d02b5b986bef8ea6127578677d3e30657d764b1"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-01/COMMAND.json",
+      "bytes": 3712,
+      "sha256": "df3839e31a41c07013959d9edb54b19b5f021220c735a3f2b81d54a31921ec70"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-01/driver.py",
+      "bytes": 3426,
+      "sha256": "ab7e1d9aa75a4837aed981ce5913f8c7ed710f008c3d2e5c239ce7df14ed631e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-01/PID.json",
+      "bytes": 36,
+      "sha256": "4a91b13de563c3b3d17463bd329eeae5b039896cefcb7a9e7f4a11a2593545df"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-01/RESULT.json.gz",
+      "bytes": 1592,
+      "sha256": "935f8885ea2209cb712ed2931f8e669f4309bf0887cf64696d48d4b3400650c1"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-01/stdout.log",
+      "bytes": 148,
+      "sha256": "48d3a11a6023478cb6b99324c5b3e6dff1ed554d4e8212e587de50250bafa345"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-02/COMMAND.json",
+      "bytes": 3712,
+      "sha256": "be11ab7c174e8a33bf4000b253cb312ecc0ab51edab05cd15a389954e5c029ae"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-02/driver.py",
+      "bytes": 3426,
+      "sha256": "ab7e1d9aa75a4837aed981ce5913f8c7ed710f008c3d2e5c239ce7df14ed631e"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-02/PID.json",
+      "bytes": 36,
+      "sha256": "f38c7e5a8b024e501b402f3c2339ac48dedb827625c46bf371931ece4eff2daa"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-02/RESULT.json.gz",
+      "bytes": 1593,
+      "sha256": "b415a83ca9d8f309a23b38e13caf4ef4ec772e3e219eb7cfc8095adf7ded9420"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-02/stdout.log",
+      "bytes": 148,
+      "sha256": "11a772410d1dbfd80d2aa0b9aef41c0af70ad4758cb8ab714f7822debd806bfd"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-03/COMMAND.json",
+      "bytes": 3712,
+      "sha256": "4c239b966fec03a06140439de6ebfd1ce7b00cd6f6bc6d79a320df6345edad4a"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-03/driver.py",
+      "bytes": 3426,
+      "sha256": "f97e3486841640cf1eeb183695a249bf231f0bc18feda4d518ee2e361d9b0da7"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-03/PID.json",
+      "bytes": 36,
+      "sha256": "33944b1338adda02446cb1b83d5b86fd2e9881c09d7989f7d9796f8937e66206"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-03/RESULT.json.gz",
+      "bytes": 1592,
+      "sha256": "cf1164d576dead3ecc5de9fde7f08ce82a2e237db8a9f3230d8b3b4d5dd8a610"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-03/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-velocity-coop-driver-20261015-03/stdout.log",
+      "bytes": 148,
+      "sha256": "be2a7fc981ebf7d893fd7fbd106b9e8b19ec93325c8b282fbe1ccc3cfdd5d388"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/build-0.log",
+      "bytes": 3833,
+      "sha256": "ec975be73859837f2a91c32a967c5535ef33de2907c529a023142b8c4076d9cf"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/build-1.log",
+      "bytes": 293,
+      "sha256": "498b8c447b48a55fda5978676e9cfe5244837a7e897a84761ccd9842bc23247e"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/build-2.log",
+      "bytes": 320,
+      "sha256": "ee432b9c0c51a71752c94b93fd7b4a2bea92d5ed73bdc8cc80fabd260043d302"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/BUILD_RESULT.json",
+      "bytes": 3532,
+      "sha256": "bca2f8f6f8f1e4959119e785a3e5099da21e5b2f515de9deca7e85f366b64014"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/cmake/CMakeCache.txt.gz",
+      "bytes": 5466,
+      "sha256": "7d9d95d5bc90078c1fc28dfa0f55363d70197b40b2e83f2dafa523a2b9b1f465"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/cmake/flags.make.gz",
+      "bytes": 914,
+      "sha256": "e0a87c998edb3289c7f8d7bae49291240685d188e4dc014765c0b3e3e69ac242"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/cmake/install_manifest.txt",
+      "bytes": 118,
+      "sha256": "9e15df739bf8cff93c4fbed2eb064f83f7fa3a9cefedc2057e51b6594583e497"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/cmake/link.txt.gz",
+      "bytes": 1795,
+      "sha256": "52a2305d52d781ec0cdfc637e505c620dea680dc168be442fb601c6813df65f1"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/COPY_IDENTITY.json",
+      "bytes": 3942,
+      "sha256": "4da847280366571462b2007e4d7d1eb34b1f5dade20b0033533ff4887538724e"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/inspection-0.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/inspection-0.stdout",
+      "bytes": 3664,
+      "sha256": "5d94b963a4546d4c4499fab364bc0e3ce1ce70e2f06fa738f57eccfa6957a539"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/inspection-1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/inspection-1.stdout.gz",
+      "bytes": 86829,
+      "sha256": "c765e96fc3f159d0ade397720b0ab16c72ae86e328f130db85d660333940de51"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/INSPECTION.json",
+      "bytes": 454,
+      "sha256": "dc158870cbca96c095bda03573871352f9a181402da940eccb93c6cb4a1e091e"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/loader.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/loader.stdout.gz",
+      "bytes": 955,
+      "sha256": "8785ed3ad795f751f5df109608f53d536cf56b66f2c8e49f59b36535f593adc4"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/CMakeLists.txt",
+      "bytes": 906,
+      "sha256": "60746f81f01a1300da9e06e8c827b4053cab0a404aeae464d0aaeedfb653e10d"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/include/polar_nav2_controller/controller_server.hpp.gz",
+      "bytes": 2969,
+      "sha256": "bf2946d004553e78daf78ddb3f4dde09fe3f31f0b0ab40d5029afe85faf75fbd"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/include/polar_nav2_controller/goal_action_server.hpp.gz",
+      "bytes": 5023,
+      "sha256": "9c5d284e52f5c580b9379cc2347cc148f673aed172a06216d9a9a3c33032aeeb"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/include/polar_nav2_controller/pb_goal_controller_context.hpp.gz",
+      "bytes": 3654,
+      "sha256": "ffbe1789456107300992401ad7b5fe9c1d1ebadd47b88110c9c3a76daf048253"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/include/polar_nav2_controller/pb_request_context.hpp",
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/SOURCE_IDENTITY.json",
+      "bytes": 2906,
+      "sha256": "a767ba51c563c1782a2680509fcdc78e45690e39acd171dbb28c2ad7aff06fb2"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/src/controller_server.cpp.gz",
+      "bytes": 5821,
+      "sha256": "97045519402d276ecba275e6e75b17867ef80243014c4a98783f265451b4bad6"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/src/main.cpp",
+      "bytes": 927,
+      "sha256": "f9890db4fb375752e4775a7387fe59e64fadd4403c9d935e3b1dab3d350187c0"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/UPSTREAM_CMakeLists.txt",
+      "bytes": 3189,
+      "sha256": "cc309424fc72f65d1ef79badf8a65288c20993b05f6d14298b062899ae46070d"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-build-20261015-01/src/UPSTREAM_PACKAGE.xml",
+      "bytes": 1082,
+      "sha256": "79a576e2b2faf6a368ed7b4e8c5e209f72bd2233f53afc5c2feb27c1e3634e8e"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/cpp/cpp-0.stderr",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/cpp/cpp-0.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/cpp/cpp-1.stderr",
+      "bytes": 132,
+      "sha256": "b280c454d6f559e56eb3f5ed39f3ba084b8d1744a3ff7fe016b21ff86dea1aca"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/cpp/cpp-1.stdout",
+      "bytes": 101,
+      "sha256": "6be11460edfeb6d803652d478d2728d76c12536b9b941af36574ef0bfb718813"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/cpp/cpp-commands.json",
+      "bytes": 802,
+      "sha256": "f85c1ce9f35f7138188660fae8f20908ebbd17fb81001e2d3ee9e2dfdd77cff9"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/cpp/goal_gate.cpp.gz",
+      "bytes": 1417,
+      "sha256": "f7aa8921b89b188c364974afce557de24fdcacc423637646b40652ca7e567493"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/pytest.xml",
+      "bytes": 2144,
+      "sha256": "979072edbb63a5b616184f54ef4547a52c16db0ba70894e0304b34daa7bceb87"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/RESULT.json",
+      "bytes": 2292,
+      "sha256": "982c773f483d5c43e5e801d216f76fb6652de26628f412d62e797dbaea0f7592"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-focused-20261015-01/stdout.log",
+      "bytes": 101,
+      "sha256": "96474d1bd661227e27ed84bf8e6e999228715c49be2487016cb0fa20ebea3746"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/LICENSE",
+      "bytes": 524,
+      "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/nav2_controller/CMakeLists.txt",
+      "bytes": 3189,
+      "sha256": "cc309424fc72f65d1ef79badf8a65288c20993b05f6d14298b062899ae46070d"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/nav2_controller/include/nav2_controller/controller_server.hpp.gz",
+      "bytes": 2918,
+      "sha256": "facbae7b3dbcc1ce8d6360933b995fa9705a988f85ba3c7cdd9a72775257a0e2"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/nav2_controller/package.xml",
+      "bytes": 1082,
+      "sha256": "79a576e2b2faf6a368ed7b4e8c5e209f72bd2233f53afc5c2feb27c1e3634e8e"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/nav2_controller/src/controller_server.cpp.gz",
+      "bytes": 5724,
+      "sha256": "515ca80adbd4108b3e0f976ad5a3c4cd95568c4ead58ec438109f008a799a382"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/nav2_controller/src/main.cpp",
+      "bytes": 915,
+      "sha256": "cdec7e6f5e7bdbe95eadac16371c9aaa74d78855b67812ebae9b4525e32ed3ea"
+    },
+    {
+      "path": "records/artifacts/nav2-goal-controller-source-20261015-01/UPSTREAM_SOURCE.json",
+      "bytes": 2128,
+      "sha256": "d6083f86fba987d63b1cd69de8871f97e38ceab679a7b4552ded84f82343c0ab"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/COMMAND01.json",
+      "bytes": 440,
+      "sha256": "45cbe40db18cdd857aedd7c6263584a1faaf01302ec5ec895ade7adedca8b912"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/COMMAND02.json",
+      "bytes": 440,
+      "sha256": "4d94ab07abbdd26b621b5e64b7ef9e583f92e1f980963b63fd302a35239d0e4a"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/FORMAT.json",
+      "bytes": 429,
+      "sha256": "1495acbb1771cea61ddfeb3db70122df16f8795a8d6cda1e82a518e6a4168eb7"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/junit01.xml.gz",
+      "bytes": 1654,
+      "sha256": "27be28384f5c5ec4fd0dd2542f914056bb4adc47f99c909e7e215cbdfb462b81"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/junit02.xml.gz",
+      "bytes": 1712,
+      "sha256": "02afdd91255c6b7dfa8dbdc15565df155e6789e8242faac15fa67f0f17813a65"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/PROCESS_RESULT01.json",
+      "bytes": 1630,
+      "sha256": "f8a3f0d8b35e1cc1cfffb4ef4eeb430d91b6f70a4fbd584725b23561ff4b425d"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/PROCESS_RESULT02.json",
+      "bytes": 1630,
+      "sha256": "b78c7ecc19ec628e3485f036f21ee5204d2e05a3e00ff806260ddc7953f31329"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/run01.py",
+      "bytes": 1775,
+      "sha256": "b454493185592a3a174d40f70dddca5f8b84b0915f340d09963784511e5892fb"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/run02.py",
+      "bytes": 1777,
+      "sha256": "fb5806cb2c49ccf64e7a58a8c6038959b1da003c3234b16af05038d3f0bd7081"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source01/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source01/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source01/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source01/tests/test_navigation_goal_consumption.py.gz",
+      "bytes": 2891,
+      "sha256": "60b29a177c4240e6241ab63333e54bdcd1f005aee46d7c3b6e237d863a87e848"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source01/tools/audit_navigation_goals.py.gz",
+      "bytes": 3791,
+      "sha256": "7f4929ae66e975ef30541d994443d305959d518005bd16098947f277bf5d99d2"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source01/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source02/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source02/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source02/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source02/tests/test_navigation_goal_consumption.py.gz",
+      "bytes": 2949,
+      "sha256": "41afbf52fbca784edfd07c0b3c02eb1480d85b52d68f7637dc93c05aa75ed5bf"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source02/tools/audit_navigation_goals.py.gz",
+      "bytes": 3815,
+      "sha256": "b412673f7fd6a7b29b5f0ad9af3c2e78d7b5d48c506de023dbcd83f7fbda12aa"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/source02/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/stderr01.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/stderr02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/stdout01.log",
+      "bytes": 158,
+      "sha256": "b648be8633846469cb4058b5565567c9d162353527cbb68cdf5b26749e8829d6"
+    },
+    {
+      "path": "records/artifacts/navigation-goal-consumption-focused-20261015-01/stdout02.log",
+      "bytes": 158,
+      "sha256": "4b31a93c8011906be871baac0fc863c6727b626d71b96168c4e5a2680dcd6a49"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/COMMAND01.json",
+      "bytes": 387,
+      "sha256": "99f8f597d69a2554d045ebcdc62c6838074c5650caecde003083636c86195095"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/FORMAT.json",
+      "bytes": 227,
+      "sha256": "f9ba1084f62326261e646d022ceb85a75c2ec454c8d0dc1f22ee5ab174461e6a"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/junit01.xml.gz",
+      "bytes": 1265,
+      "sha256": "b8a44c690b7744315e8869d590188b8c0e8afc5f0ebb0e4ace58add10be7baff"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/PROCESS_RESULT01.json",
+      "bytes": 1409,
+      "sha256": "941e4db4404f6bb09b20c5d1d3868f5899033c1f8ad4616290e132e717a54075"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/run01.py",
+      "bytes": 1887,
+      "sha256": "f5c54ca5a1cba7aa0c59167b9e2a7fedda2a50723c67ccea6e09f9b2dc455e5f"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/source01/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/source01/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/source01/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/source01/tests/test_pb_goal_navigation_bridge.py.gz",
+      "bytes": 2299,
+      "sha256": "d1233210a35f3259adecffd323955c3b5ee7fa18f9cd67f4e904513fc8db3729"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/source01/tests/test_pb_navigation_bridge.py.gz",
+      "bytes": 4166,
+      "sha256": "df7c7e4f2a206c736d2a813f3254638b462c3c5879a72051bc9d0f050cb47b78"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/stderr01.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/pb-goal-navigation-bridge-focused-20261015-01/stdout01.log",
+      "bytes": 170,
+      "sha256": "363698fd31f2a1128d62dc47ec62f05485d3e376da0d2a892d2bf2e891192f78"
+    },
+    {
+      "path": "records/artifacts/prepare_goal_velocity_actual_20261015.py",
+      "bytes": 2467,
+      "sha256": "fedb4ce685fe02e95842f3d31bb474444041852b23e74a4f3f4cec30ce8e2a38"
+    },
+    {
+      "path": "records/artifacts/prepare_stationary_goal_velocity_actual_20261015.py",
+      "bytes": 1388,
+      "sha256": "601939adbd8845b5e297e370ce126a86b8802ffe3266065bdf6ee44df56a0bbe"
+    },
+    {
+      "path": "records/artifacts/preserve_goal_velocity_20261015.py.gz",
+      "bytes": 2285,
+      "sha256": "932d9f2c0d52ff2adba55d6d664d7855b3efac6e262f60f6230c548ede73460a"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/acceptance_preset.log",
+      "bytes": 1166,
+      "sha256": "7145e6eed79438619c31da759ca0e63b461d51433e02e124e7569b4739a79e29"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/interface_static.log.gz",
+      "bytes": 3866,
+      "sha256": "a7b9d19793d246e6b3d24751c26ea1199af584e8e5c1399bf722a5d466e61628"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/manifest.json.gz",
+      "bytes": 440093,
+      "sha256": "aca8befb665089db146c85f49f98f6772594646d4b58c917f2774739a674b70f"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/preset.json",
+      "bytes": 1166,
+      "sha256": "7145e6eed79438619c31da759ca0e63b461d51433e02e124e7569b4739a79e29"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/pytest.log.gz",
+      "bytes": 625,
+      "sha256": "234500ee8f12f25018900ae0ff329f27635e70ef98bb83b6d4aa592c77b360a9"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/pytest.xml.gz",
+      "bytes": 52174,
+      "sha256": "2357137ea0b68e62a7301ab8e7a394127883df252c5ba318816c8ba398d96e25"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-12/source_provenance.log",
+      "bytes": 1627,
+      "sha256": "0549c78cd465859ad257ba4a96edaa9ac423b4d3da0c0de62ebfade7894d5385"
+    },
+    {
+      "path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "bytes": 2009,
+      "sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292"
+    },
+    {
+      "path": "records/artifacts/run_goal_uuid_focus_20261015.py",
+      "bytes": 1774,
+      "sha256": "d27457bfaf68e926c02b833e68d2a8281712cbfca45d184380c78980c6d1f80c"
+    },
+    {
+      "path": "records/artifacts/run_goal_uuid_focus_20261015_02.py",
+      "bytes": 1774,
+      "sha256": "f23916dd3036ecb6970771aafb9fd9cc0628cc1820cacbe76fa13d6e58e311c6"
+    },
+    {
+      "path": "records/artifacts/run_goal_velocity_coop_20261015.py",
+      "bytes": 3426,
+      "sha256": "ab7e1d9aa75a4837aed981ce5913f8c7ed710f008c3d2e5c239ce7df14ed631e"
+    },
+    {
+      "path": "records/artifacts/run_stationary_goal_velocity_coop_20261015.py",
+      "bytes": 3426,
+      "sha256": "f97e3486841640cf1eeb183695a249bf231f0bc18feda4d518ee2e361d9b0da7"
+    },
+    {
+      "path": "records/docs/COOP_PLAYABLE_PATH.md.gz",
+      "bytes": 6387,
+      "sha256": "21cac15a6cd1cee7567e1ab058a67dce5c7e904715273e76e4af0c02ebc5b974"
+    },
+    {
+      "path": "records/docs/IMPLEMENTATION_PROGRESS.md.gz",
+      "bytes": 37617,
+      "sha256": "4434301af5ae58769696ce6b5803f823931428a2206c52e9464e37edde4aa377"
+    },
+    {
+      "path": "records/docs/NAV2_GOAL_VELOCITY.md.gz",
+      "bytes": 4523,
+      "sha256": "6fb6e294662f7c24b95581f67eecb39d499bbb5fef5a264ed2340723b4a53e17"
+    },
+    {
+      "path": "records/docs/NAVIGATION_GOAL_LIFECYCLE.md.gz",
+      "bytes": 4877,
+      "sha256": "6fbba82d9c40748ec3ed7fe2374f01cb6ad883b71895418c2e67d0813ba857b0"
+    },
+    {
+      "path": "records/docs/UNIVERSAL_PLUGIN_INTERFACES.md.gz",
+      "bytes": 8826,
+      "sha256": "e3c879233d7b3acc5c87aa17d7c5ec326fd0b124aa4567a31da280e684a2cef9"
+    },
+    {
+      "path": "records/licenses/Apache-2.0.txt.gz",
+      "bytes": 3968,
+      "sha256": "8419a784c9341a81db70dc59d4559f8697db44f41b34cef3915776199233f5d0"
+    },
+    {
+      "path": "records/licenses/NAV2_GOAL_CONTROLLER_NOTICE.md",
+      "bytes": 2898,
+      "sha256": "ae3b4563b4fac56c9252fc4ae9a721f5c169ee558e9389a00fa8243d811089f9"
+    },
+    {
+      "path": "records/rm_match/integrations/pb_goal_controller_context.hpp.gz",
+      "bytes": 3654,
+      "sha256": "ffbe1789456107300992401ad7b5fe9c1d1ebadd47b88110c9c3a76daf048253"
+    },
+    {
+      "path": "records/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/tests/test_nav2_goal_controller_overlay.py.gz",
+      "bytes": 3987,
+      "sha256": "51835a181ad61b6f8faf66bbf083f4b9dca34d1f3d8fe6ea2ec334a85ffcf807"
+    },
+    {
+      "path": "records/tests/test_navigation_goal_consumption.py.gz",
+      "bytes": 2949,
+      "sha256": "41afbf52fbca784edfd07c0b3c02eb1480d85b52d68f7637dc93c05aa75ed5bf"
+    },
+    {
+      "path": "records/tests/test_pb_goal_navigation_bridge.py.gz",
+      "bytes": 2299,
+      "sha256": "d1233210a35f3259adecffd323955c3b5ee7fa18f9cd67f4e904513fc8db3729"
+    },
+    {
+      "path": "records/tests/test_pb_goal_stack_profile.py.gz",
+      "bytes": 2012,
+      "sha256": "f697e5b6ea2399b6be29b08cfa2d08abbf4b7d5f6519bcd8dcdaf7b8316505f6"
+    },
+    {
+      "path": "records/tools/audit_navigation_goals.py.gz",
+      "bytes": 3815,
+      "sha256": "b412673f7fd6a7b29b5f0ad9af3c2e78d7b5d48c506de023dbcd83f7fbda12aa"
+    },
+    {
+      "path": "records/tools/pb_navigation_stack.py.gz",
+      "bytes": 10962,
+      "sha256": "ce2751ac2b56b4ecf5558aeb4500a4cdfea78b92c780315c02681109b1fd25a3"
+    },
+    {
+      "path": "records/tools/prepare_nav2_goal_controller_overlay.py.gz",
+      "bytes": 5415,
+      "sha256": "acd62225be1e097ec6cfaead76c8cea44e0513e4f2823b53a41f5c040f3c7aa3"
+    },
+    {
+      "path": "records/tools/qa_goal_velocity_coop_sil.py.gz",
+      "bytes": 8374,
+      "sha256": "99a68616ea55d85d24464e327efa529755765fc19b34c6ab0b9ce39aaa9cfafb"
+    },
+    {
+      "path": "records/tools/qa_navigation_goal_client.py.gz",
+      "bytes": 7413,
+      "sha256": "1c16c7763b0ccee609600b7fe2df3e6a759d8e8c202cd4f417bfe59b7538b0e4"
+    },
+    {
+      "path": "records/tools/qa_pb_navigation_sil.py.gz",
+      "bytes": 10828,
+      "sha256": "dec0c87a31cdc913884efb36b393f7d58a2ee92408a2a4b2a135a726ede2078f"
+    },
+    {
+      "path": "verify_archives.py",
+      "bytes": 1321,
+      "sha256": "114af506d9d84a1eacdbeb367f23b0478bd8eaad32d0d0e26b3e2cab296b4323"
+    }
+  ]
+}

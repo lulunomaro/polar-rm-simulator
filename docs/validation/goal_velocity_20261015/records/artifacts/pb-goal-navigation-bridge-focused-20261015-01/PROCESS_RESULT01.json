@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed": 1.228450900001917,
+  "before": {
+    "tests/test_pb_goal_navigation_bridge.py": "d2048e9fdd42092651db3639bf4609b8774a3537f9711104fd35189c0b96ccab",
+    "tests/test_pb_navigation_bridge.py": "70f2c5f659e2727f9ee9d4a12189e2fca60cdced871cc38b97a5d141b4c634db",
+    "rm_match/integrations/pb_navigation_bridge.py": "7d09920d38a8e381264664b2cc0c532aff85c716e65675d7ae2961bc177070e5",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "after": {
+    "tests/test_pb_goal_navigation_bridge.py": "d2048e9fdd42092651db3639bf4609b8774a3537f9711104fd35189c0b96ccab",
+    "tests/test_pb_navigation_bridge.py": "70f2c5f659e2727f9ee9d4a12189e2fca60cdced871cc38b97a5d141b4c634db",
+    "rm_match/integrations/pb_navigation_bridge.py": "7d09920d38a8e381264664b2cc0c532aff85c716e65675d7ae2961bc177070e5",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "source_unchanged": true,
+  "scope": "Controlled clock/source envelope units plus original stdlib child fixture; no ROS/WSL/NN/GL"
+}

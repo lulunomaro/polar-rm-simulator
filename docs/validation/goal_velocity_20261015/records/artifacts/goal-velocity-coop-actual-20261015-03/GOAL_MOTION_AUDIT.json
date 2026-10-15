@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "errors": [],
+  "per_goal": {
+    "32b1248f593b45f88f6fcf1c3f37ed79": {
+      "origin_source": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 15,
+        "sim_time": 5.4,
+        "wall_deadline": 97598.375808
+      },
+      "controller_results": 2,
+      "consumed_steps": 25,
+      "nonzero_consumed_steps": 25
+    },
+    "4d4b00dd4aa94040a9b9367488979a98": {
+      "origin_source": {
+        "robot_id": "red_sentry",
+        "episode": 0,
+        "binding_epoch": 1,
+        "observed_seq": 18,
+        "sim_time": 5.7,
+        "wall_deadline": 97598.84145539999
+      },
+      "controller_results": 25,
+      "consumed_steps": 438,
+      "nonzero_consumed_steps": 438
+    }
+  },
+  "actual_controller_results": 27,
+  "consumed_steps": 463,
+  "nonzero_consumed_steps": 463,
+  "navigation_audit": {
+    "consumed_steps": 463,
+    "nonzero_consumed_steps": 463,
+    "actual_sensor_requests": 90,
+    "actual_controller_results": 27,
+    "actual_localizations": 88,
+    "errors": [],
+    "passed": true
+  },
+  "qualification": "recorded FollowPath UUID/source/action/physical receipt join; no encoder stop or current-goal inference"
+}

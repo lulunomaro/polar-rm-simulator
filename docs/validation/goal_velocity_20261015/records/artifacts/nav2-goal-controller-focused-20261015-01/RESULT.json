@@ -1,0 +1,40 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_nav2_goal_controller_overlay.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\nav2-goal-controller-focused-20261015-01\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 5.21099759999197,
+  "source_before": {
+    "rm_match/integrations/pb_goal_controller_context.hpp": "9fba560f2612307404d11ea4ea9259cee6a5152f229ab4fa26d71ce35876d494",
+    "tools/prepare_nav2_goal_controller_overlay.py": "d3c29631bf918b2822ce2c81ad4aa239090ff8e3a7913349ab8e04979af01a88",
+    "tests/test_nav2_goal_controller_overlay.py": "757184eb5dcf94e05f906d67d3d8631a151aeae120ac301453fd99c8cc234580"
+  },
+  "source_after": {
+    "rm_match/integrations/pb_goal_controller_context.hpp": "9fba560f2612307404d11ea4ea9259cee6a5152f229ab4fa26d71ce35876d494",
+    "tools/prepare_nav2_goal_controller_overlay.py": "d3c29631bf918b2822ce2c81ad4aa239090ff8e3a7913349ab8e04979af01a88",
+    "tests/test_nav2_goal_controller_overlay.py": "757184eb5dcf94e05f906d67d3d8631a151aeae120ac301453fd99c8cc234580"
+  },
+  "source_unchanged": true,
+  "original_assets_before": {
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "artifacts/pb-navigation-sil-config-20261014-04.json": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+  },
+  "original_assets_after": {
+    "rm_match/integrations/pb_controller_context.hpp": "2bbaa56525e2ff7604ea5f2ec8cf50aa8c94642a52431266fe49565028ab534c",
+    "rm_match/integrations/pb_request_context.hpp": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+    "artifacts/pb-navigation-sil-config-20261014-04.json": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26"
+  },
+  "original_assets_unchanged": true,
+  "scope": "owned_source_generation_and_actual_Cpp_gate_unit_no_ROS_nodes_GL_or_algorithm",
+  "started_ros": false
+}

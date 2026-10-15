@@ -1,0 +1,110 @@
+{
+  "schema": "polar.nav2.goal-controller-build-copy.v1",
+  "source_linux": "/root/polar-nav2-goal-controller-build-20261015-01",
+  "files": {
+    "build-0.log": {
+      "bytes": 3833,
+      "sha256": "ec975be73859837f2a91c32a967c5535ef33de2907c529a023142b8c4076d9cf"
+    },
+    "build-1.log": {
+      "bytes": 293,
+      "sha256": "498b8c447b48a55fda5978676e9cfe5244837a7e897a84761ccd9842bc23247e"
+    },
+    "build-2.log": {
+      "bytes": 320,
+      "sha256": "ee432b9c0c51a71752c94b93fd7b4a2bea92d5ed73bdc8cc80fabd260043d302"
+    },
+    "BUILD_RESULT.json": {
+      "bytes": 3532,
+      "sha256": "bca2f8f6f8f1e4959119e785a3e5099da21e5b2f515de9deca7e85f366b64014"
+    },
+    "inspection-0.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "inspection-0.stdout": {
+      "bytes": 3664,
+      "sha256": "5d94b963a4546d4c4499fab364bc0e3ce1ce70e2f06fa738f57eccfa6957a539"
+    },
+    "inspection-1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "inspection-1.stdout": {
+      "bytes": 4932391,
+      "sha256": "129ae794bfb4a382c0ea4e522bf07cfdc696d857ad76be302af1ef696e5c28e8"
+    },
+    "INSPECTION.json": {
+      "bytes": 454,
+      "sha256": "dc158870cbca96c095bda03573871352f9a181402da940eccb93c6cb4a1e091e"
+    },
+    "loader.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "loader.stdout": {
+      "bytes": 5814,
+      "sha256": "cdc0cf92c12569f3ba417452cc7a917e7028717844dea94f921102175ebb63f8"
+    },
+    "cmake/CMakeCache.txt": {
+      "bytes": 36007,
+      "sha256": "45219bb44be7305dbf28d9c988397ab21090d6a2d97c29ab45a977f365b9e289"
+    },
+    "cmake/flags.make": {
+      "bytes": 4318,
+      "sha256": "970d35e82aea6426f1ac39c3c3f146bd848c88d7e4d7c97d4288913a2f0dcb1d"
+    },
+    "cmake/install_manifest.txt": {
+      "bytes": 118,
+      "sha256": "9e15df739bf8cff93c4fbed2eb064f83f7fa3a9cefedc2057e51b6594583e497"
+    },
+    "cmake/link.txt": {
+      "bytes": 35615,
+      "sha256": "d95fd80f468a62c93323cad654b238c556bf9c9b71abb70d39ab1ad288ab9e91"
+    },
+    "executable/polar_goal_controller_server": {
+      "bytes": 2310624,
+      "sha256": "09e70405510db579cacbf00d456391d89fdf6ce041fbc860fbc04f562993e53f"
+    },
+    "src/CMakeLists.txt": {
+      "bytes": 906,
+      "sha256": "60746f81f01a1300da9e06e8c827b4053cab0a404aeae464d0aaeedfb653e10d"
+    },
+    "src/SOURCE_IDENTITY.json": {
+      "bytes": 2906,
+      "sha256": "a767ba51c563c1782a2680509fcdc78e45690e39acd171dbb28c2ad7aff06fb2"
+    },
+    "src/UPSTREAM_CMakeLists.txt": {
+      "bytes": 3189,
+      "sha256": "cc309424fc72f65d1ef79badf8a65288c20993b05f6d14298b062899ae46070d"
+    },
+    "src/UPSTREAM_PACKAGE.xml": {
+      "bytes": 1082,
+      "sha256": "79a576e2b2faf6a368ed7b4e8c5e209f72bd2233f53afc5c2feb27c1e3634e8e"
+    },
+    "src/include/polar_nav2_controller/controller_server.hpp": {
+      "bytes": 10030,
+      "sha256": "1ead498d799474d170d3663ea637efd930a7d17b695481ebeb516fe0db0063db"
+    },
+    "src/include/polar_nav2_controller/goal_action_server.hpp": {
+      "bytes": 21688,
+      "sha256": "065ca6cb1011ed830f6250d7533a2ac07c4924aed1cc81afd4b45761c364568a"
+    },
+    "src/include/polar_nav2_controller/pb_goal_controller_context.hpp": {
+      "bytes": 12596,
+      "sha256": "9fba560f2612307404d11ea4ea9259cee6a5152f229ab4fa26d71ce35876d494"
+    },
+    "src/include/polar_nav2_controller/pb_request_context.hpp": {
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "src/src/controller_server.cpp": {
+      "bytes": 23906,
+      "sha256": "f171a7df15d94b74c86c20ba5bcb719a7b290674e8dcadae032d6ee2e952cbf4"
+    },
+    "src/src/main.cpp": {
+      "bytes": 927,
+      "sha256": "f9890db4fb375752e4775a7387fe59e64fadd4403c9d935e3b1dab3d350187c0"
+    }
+  }
+}

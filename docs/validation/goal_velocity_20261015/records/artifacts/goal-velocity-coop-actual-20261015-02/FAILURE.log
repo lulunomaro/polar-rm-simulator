@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_goal_velocity_coop_sil.py", line 162, in run
+    if qt_ready is None or qt_finished is None:raise RuntimeError('manual_run_incomplete')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: manual_run_incomplete

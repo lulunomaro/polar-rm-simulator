@@ -1,0 +1,25 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 1.783436800003983,
+  "source_before": {
+    "tools/pb_navigation_stack.py": "4b9782d83c81cad86f433b41758b35a5e2c56ea3f0e2d724077efd5924eb0bb5",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "375f532a6bcb079ea0c5e80b64b9249ad33874cb0597e2d0ae53fed64df31d42",
+    "tools/qa_pb_navigation_sil.py": "5a1e09675c437f3d4bb4387238a32abe11287222e77cba0add82bcbb9268ef26",
+    "tests/test_pb_goal_stack_profile.py": "fa8e2d7f49e83c05ed17d3fcfa67a088d0e25be3a6ca3d15e7dc545bbbe4a27e",
+    "tests/test_pb_navigation_stack.py": "990dea5fbc78b08e9c0ff2971bf8360a856345ae72839fcaf4dc947a1508b666",
+    "tests/test_pb_wsl_navigation_worker.py": "1a6b71b88edde62b0ae42d858bc770bb32ca2ca849b43c0f1942340765fba907",
+    "tests/test_pb_wsl_navigation_stdio.py": "c9ac298e097192e793f655d12faa07b20817a8651227c5378cb819a7daa3484b"
+  },
+  "source_after": {
+    "tools/pb_navigation_stack.py": "4b9782d83c81cad86f433b41758b35a5e2c56ea3f0e2d724077efd5924eb0bb5",
+    "rm_match/integrations/pb_wsl_navigation_worker.py": "375f532a6bcb079ea0c5e80b64b9249ad33874cb0597e2d0ae53fed64df31d42",
+    "tools/qa_pb_navigation_sil.py": "5a1e09675c437f3d4bb4387238a32abe11287222e77cba0add82bcbb9268ef26",
+    "tests/test_pb_goal_stack_profile.py": "fa8e2d7f49e83c05ed17d3fcfa67a088d0e25be3a6ca3d15e7dc545bbbe4a27e",
+    "tests/test_pb_navigation_stack.py": "990dea5fbc78b08e9c0ff2971bf8360a856345ae72839fcaf4dc947a1508b666",
+    "tests/test_pb_wsl_navigation_worker.py": "1a6b71b88edde62b0ae42d858bc770bb32ca2ca849b43c0f1942340765fba907",
+    "tests/test_pb_wsl_navigation_stdio.py": "c9ac298e097192e793f655d12faa07b20817a8651227c5378cb819a7daa3484b"
+  },
+  "source_unchanged": true,
+  "scope": "host unit/controlled worker process tests; skips explicit, no native ROS/GL"
+}

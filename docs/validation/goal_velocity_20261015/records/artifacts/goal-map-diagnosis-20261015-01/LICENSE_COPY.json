@@ -1,0 +1,11 @@
+{
+  "source": "/usr/share/common-licenses/Apache-2.0",
+  "destination": "licenses/Apache-2.0.txt",
+  "copy_method": "WSL Ubuntu-22.04 /usr/bin/python3 -I -B -S; Path.read_bytes/write_bytes; no text conversion",
+  "observed_source_bytes": 11358,
+  "observed_source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "destination_bytes": 11358,
+  "destination_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "literal_copy_verified": true,
+  "original_LF": true
+}

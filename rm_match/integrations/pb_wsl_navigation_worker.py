@@ -219,10 +219,17 @@ def session_worker(spec,out,*,stack_factory=None,transport_factory=None):
         stack=(stack_factory or OwnedStack)(config,out/'stack',namespace=spec['namespace'],
             environment=spec['environment_ref'],diagnostics=spec['diagnostics'])
         ready=stack.start();guard.check()
+        from tools.pb_navigation_stack import controller_result_settings
+        # The real stack has already validated its complete configuration.
+        # Legacy injected stacks retain the old scan-only default; only an
+        # explicit, build-bound v2 configuration enables the new wire profile.
+        result_settings=(controller_result_settings(config) if config.get('schema')=='polar.pb-stack-config.v2'
+            else dict(result_profile='scan_v1',controller_id='pb_controller_sourced_v1'))
         settings=NavigationSettings(node_name='polar_wsl_bridge_'+spec['run_uuid'][:16],domain_id=84,
             cloud_topic=ready['topics']['cloud'],pointcloud_topic=ready['topics']['cloud']+'/pointcloud',
             imu_topic=ready['topics']['imu'],request_topic=ready['topics']['request'],result_topic=ready['topics']['result'],
-            odom_topic=ready['topics']['odom'],clock_topic=ready['topics']['clock'],tf_static_topic=ready['topics']['tf_static'])
+            odom_topic=ready['topics']['odom'],clock_topic=ready['topics']['clock'],tf_static_topic=ready['topics']['tf_static'],
+            **result_settings)
         core=NavigationBridge(settings)
         original_odom=core.receive_odom_stamp
         def received_odom(stamp):

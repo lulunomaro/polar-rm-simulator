@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_goal_velocity_coop_sil.py", line 100, in deadman
+    if session.process.poll() is not None or peer.child.poll() is not None:raise RuntimeError('owned_PB_supervisor_exited_early')
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: owned_PB_supervisor_exited_early

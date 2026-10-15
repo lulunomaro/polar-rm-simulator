@@ -235,7 +235,7 @@ def main(argv=None):
     stop=threading.Event();old={sig:signal.getsignal(sig) for sig in (signal.SIGINT,signal.SIGTERM)}
     for sig in old:signal.signal(sig,lambda *_:stop.set())
     started=time.perf_counter();end=started+spec['max_wall_seconds'];ident=process_identity()
-    observer=backend=engine=None;errors=[];events=[];completed=False;clients=[];goal_report={};snapshots=[]
+    observer=backend=engine=None;errors=[];events=[];completed=False;clients=[];goal_report={};snapshots=[];last_map_attempt=None
     grid_lock=threading.Lock();grid_cache={'last':None,'count':0,'error':None}
     def event(name,**values):
         if len(events)>=128:raise ValueError('bounded_goal_events')
@@ -261,13 +261,17 @@ def main(argv=None):
         publish_json(out/'READY.json',dict(schema='polar.pb.external-goal-ready.v1',run_uuid=spec['run_uuid'],session_run_uuid=spec['session_run_uuid'],
             namespace=spec['namespace'],domain_id=84,state='OBSERVING_NO_INPUT_PUBLISHED',**ident,environment_sha256=spec['environment_ref']['sha256'],
             source_sha256=spec['source_sha256'],spec_sha256=args.spec_sha256,sensor_published=False,goal_sent=False,lifecycle_changed=False))
-        state_futures={};states={};last_seq=-1;phase='first';target=None;active_at=None;event_key=None;readiness_key=None;map_failures=set()
+        state_futures={};states={};last_seq=-1;phase='first';target=None;active_at=None;event_key=None;readiness_key=None;map_failures=set();last_map_attempt=None
         def map_target():
+            nonlocal last_map_attempt
             transform=observer.buffer.lookup_transform('map','base_link',Time())
             pose,saved=goal_from_estimate(transform,PoseStamped)
             with grid_lock:grid=grid_cache['last']
             if grid is None:return None
             decision=geometry_decision(*grid,saved)
+            # Preserve the last genuine full-grid geometry even if readiness
+            # never succeeds; the first failure event alone is insufficient.
+            last_map_attempt=dict(costmap=grid[0],decision=decision)
             if not decision['ready']:
                 if 'geometry' not in map_failures:event('map_geometry_not_ready',decision=decision);map_failures.add('geometry')
                 return None
@@ -341,6 +345,7 @@ def main(argv=None):
                 time.sleep(.005)
             if not engine.snapshot()['clean']:errors.append('goal_stop_unproved')
             goal_report=dict(schema='polar.sim.navigation-goal-scenario.v1',completed=completed,lifecycle=engine.snapshot(),snapshots=snapshots,
+                last_map_attempt=last_map_attempt,
                 cancel_ack_is_terminal=False,sensor_published=False,cmd_vel_published=False,source_clock='original_Windows_header_opaque_in_Linux')
         if backend is not None:
             try:backend.destroy()

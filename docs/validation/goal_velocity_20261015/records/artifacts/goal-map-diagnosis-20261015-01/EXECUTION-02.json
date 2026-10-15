@@ -1,0 +1,19 @@
+{
+  "schema": "polar.pb.saved-diagnosis-execution.v1",
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-I",
+    "-B",
+    "-S",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-map-diagnosis-20261015-01\\diagnose-02.py"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 0.08654769998975098,
+  "script_sha256_before": "56e1c6b8429538b278a8ecd878d5b30511eab3b3a895322b4cf05bcce00116d0",
+  "script_sha256_after": "56e1c6b8429538b278a8ecd878d5b30511eab3b3a895322b4cf05bcce00116d0",
+  "ros_executed": false,
+  "algorithm_executed": false,
+  "scope": "read-only inspection of existing evidence; not a fresh ROS experiment",
+  "prior_attempt_preserved": "EXECUTION.json/stdout.log/stderr.log/diagnose.py; failed on missing old STACK_CONFIG.json; new replay treats absent legacy config as explicitly absent"
+}

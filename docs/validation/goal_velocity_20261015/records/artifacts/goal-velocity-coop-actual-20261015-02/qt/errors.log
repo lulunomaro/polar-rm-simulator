@@ -1,0 +1,6 @@
+event_loop
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_qt_manual_peer.py", line 467, in poll
+    raise RuntimeError('parent_stop_before_original_run_completed')
+RuntimeError: parent_stop_before_original_run_completed
+

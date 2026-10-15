@@ -16,6 +16,7 @@ from ..platform_v2.navigation_contracts import (NAV_STATUS_SCHEMA, POINT_STRUCT,
 
 REQUEST_SCHEMA = 'polar.sim.pb-navigation-request.v1'
 RESULT_SCHEMA = 'polar.sim.pb-navigation-result.v1'
+GOAL_RESULT_SCHEMA = 'polar.sim.pb-navigation-result.v2'
 
 
 @dataclass(frozen=True)
@@ -33,6 +34,7 @@ class NavigationSettings:
     domain_id: int = 81
     response_timeout: float = .05
     controller_id: str = 'pb_controller_sourced_v1'
+    result_profile: str = 'scan_v1'
     expected_robot_id: str = 'red_sentry'
     expected_episode: int = 0
     expected_binding_epoch: int = 1
@@ -41,6 +43,8 @@ class NavigationSettings:
         if type(self.adapter_id) is not str or not re.fullmatch('custom_[a-z0-9_]{1,100}', self.adapter_id): raise BridgeError('pb_invalid_adapter_id')
         for key in ('node_name', 'controller_id'):
             if type(getattr(self,key)) is not str or not re.fullmatch('[A-Za-z_][A-Za-z0-9_]{0,127}',getattr(self,key)): raise BridgeError('pb_invalid_node_or_controller')
+        if type(self.result_profile) is not str or self.result_profile not in ('scan_v1','follow_path_uuid_v2'):
+            raise BridgeError('pb_invalid_result_profile')
         topics=[getattr(self,k) for k in ('cloud_topic','pointcloud_topic','imu_topic','request_topic','result_topic','odom_topic','clock_topic','tf_static_topic')]
         if len(set(topics))!=len(topics) or any(type(t) is not str or len(t)>256 or not re.fullmatch('(?:/[A-Za-z_][A-Za-z0-9_]*)+',t) for t in topics): raise BridgeError('pb_invalid_topics')
         if type(self.domain_id) is not int or not 0<=self.domain_id<=101: raise BridgeError('pb_invalid_domain')
@@ -91,6 +95,19 @@ def sourced_result(observation, action, *, cloud_frame_id, localization_stamp_ns
             controller_stamp_ns=controller_stamp_ns,controller_id=controller_id))
 
 
+def sourced_goal_result(observation, action, *, goal_uuid, **kwargs):
+    """Envelope helper for a reviewed actual goal-server computation hook.
+
+    A plain UUID cannot establish its own provenance. The upstream server must
+    capture its real current goal around the original controller computation.
+    """
+    if type(goal_uuid) is not str or not re.fullmatch('[0-9a-f]{32}',goal_uuid):
+        raise BridgeError('pb_invalid_goal_uuid')
+    row=sourced_result(observation,action,**kwargs)
+    row['schema']=GOAL_RESULT_SCHEMA;row['source']['goal_uuid']=goal_uuid
+    return row
+
+
 class NavigationBridge:
     def __init__(self,settings,*,clock=time.monotonic):
         self.settings=settings; self.clock=clock; self.context=None; self._pending=None
@@ -132,8 +149,13 @@ class NavigationBridge:
         if self._pending is None or self._closed or self.clock()>=self._deadline: raise BridgeError('pb_no_live_pending')
         row=parse_json(payload,MAX_RESPONSE)
         exact(row,('schema','adapter_id','action','source'),'pb_result')
-        if type(row['schema']) is not str or row['schema']!=RESULT_SCHEMA or type(row['adapter_id']) is not str or row['adapter_id']!=self.settings.adapter_id: raise BridgeError('pb_result_route')
-        source=row['source'];exact(source,('cloud_frame_id','localization_stamp_ns','controller_stamp_ns','controller_id'),'pb_result_source')
+        goal_profile=self.settings.result_profile=='follow_path_uuid_v2'
+        expected_schema=GOAL_RESULT_SCHEMA if goal_profile else RESULT_SCHEMA
+        if type(row['schema']) is not str or row['schema']!=expected_schema or type(row['adapter_id']) is not str or row['adapter_id']!=self.settings.adapter_id: raise BridgeError('pb_result_route')
+        source=row['source'];fields=('cloud_frame_id','localization_stamp_ns','controller_stamp_ns','controller_id')
+        exact(source,(*fields,'goal_uuid') if goal_profile else fields,'pb_result_source')
+        if goal_profile and (type(source['goal_uuid']) is not str or not re.fullmatch('[0-9a-f]{32}',source['goal_uuid'])):
+            raise BridgeError('pb_invalid_goal_uuid')
         for k in ('cloud_frame_id','localization_stamp_ns','controller_stamp_ns'):integer(source[k],k)
         cloud=self._pending['sensors']['pointcloud']
         if (source['cloud_frame_id']!=cloud['frame_id'] or type(source['controller_id']) is not str or source['controller_id']!=self.settings.controller_id

@@ -51,9 +51,23 @@
 origin seq16/19分别保留，后续seq17/42只是续授权，不重标旧目标终态。第01导入、第02无目标、第03 NumPy UUID失败均保留。
 
 这里验证异步目标生命周期，不等于比赛决策。`NavigateToPose`后端目前仅单元测试，未启动完整比赛BT；
-PB速度仍未带goal UUID，因此没有逐条“某goal→某cmd_vel”的归属证明。decision v1导航/视觉反馈仍为unavailable，
+该轮旧PB速度未带goal UUID，因此该轮没有逐条“某goal→某cmd_vel”的归属证明。后续显式v2验证见下节。decision v1导航/视觉反馈仍为unavailable，
 没有理想位姿或敌方位置输入；目标为实际估计map TF沿map-x方向偏移1米，未验收定位精度、多目标比赛策略或六车3v3。
 具体API、两种后端配置和显式复现命令见[生命周期文档](NAVIGATION_GOAL_LIFECYCLE.md)。
+
+## 显式FollowPath UUID关联验证
+
+新[goal到速度验证](NAV2_GOAL_VELOCITY.md)实际03已通过26项检查：GO15.0010015秒，238/238原Qt手动批全部匹配，
+4473手动消费步；90原ray/IMU请求、88 LIO、27真实v2控制器结果、463非零导航步，387个同一物理步两车同时非零。
+第一目标origin seq15实际hold取消确认并终止，第二目标origin seq18实际成功；原UUID分别关联2结果/25步和25结果/438步。
+新独立Nav2 server在原计算入口/出口绑定并重检真实FollowPath handle，旧PB PID算法ELF保持原样；
+原SDK/扫描/期限审计后再逐UUID关联动作与消费，歧义拒绝，不选latest UUID。
+
+这是显式v2 profile与stationary_scan_accumulation_v1建图配置，旧默认和旧实验不改变。
+01在配置字段校验前置失败，02实际地图边界长期未就绪而TimeoutError，原件保留；03没有填地图/夹起点或改TF。
+runtime/external分别0.5917298/0.3981158秒完成，共享host1.5秒/Linux1.3秒保持、全部clean、source unchanged、无强制终止。
+这补上有限场景的目标UUID到实际速度消费证明；仍未注册通用goal-aware速度插件、未接PB比赛树/decision定位反馈，
+也不把取消目标终态当编码器零速、移动自瞄或整场3v3完成。复现配置与范围见上述新文档。
 
 ## 启动手动入口
 

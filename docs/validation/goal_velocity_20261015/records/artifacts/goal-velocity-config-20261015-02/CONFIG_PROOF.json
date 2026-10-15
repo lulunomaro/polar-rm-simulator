@@ -1,0 +1,12 @@
+{
+  "original_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-velocity-config-20261015-01\\STACK_CONFIG.json",
+  "original_sha256": "fcc973501ec24a371d1af71980ec5738ba293da66d09bfb4bc9162508159621a",
+  "new_sha256": "8a823bcbebf66f37168f6ec7faa58ce6a8eec33e0c8539d75ea74706662aec9d",
+  "only_added_field": "mapping_profile",
+  "no_asset_change": true,
+  "original_SI_time_interval": 0.2,
+  "original_mapping_algorithm": true,
+  "no_map_or_pose_synthesis": true,
+  "source": "https://raw.githubusercontent.com/SteveMacenski/slam_toolbox/2.6.10/src/slam_toolbox_common.cpp",
+  "qualification": "explicit config only, not runtime acceptance"
+}

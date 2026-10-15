@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/ros-navigation/navigation2",
+  "tag": "1.1.20",
+  "revision": "a097086719c88f781aa59788eca29ac6ca5e56db",
+  "files": [
+    {
+      "path": "nav2_controller/src/controller_server.cpp",
+      "sha256": "b9bc6dc7bb90602f65971d8c5eed2b73ffeaf5aa3e9ebd4ec1de3e725552d705",
+      "bytes": 23483,
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/a097086719c88f781aa59788eca29ac6ca5e56db/nav2_controller/src/controller_server.cpp"
+    },
+    {
+      "path": "nav2_controller/src/main.cpp",
+      "sha256": "cdec7e6f5e7bdbe95eadac16371c9aaa74d78855b67812ebae9b4525e32ed3ea",
+      "bytes": 915,
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/a097086719c88f781aa59788eca29ac6ca5e56db/nav2_controller/src/main.cpp"
+    },
+    {
+      "path": "nav2_controller/include/nav2_controller/controller_server.hpp",
+      "sha256": "b607b9d512a830046b26130e240655098bac6c17ec6a5596d4f604a172237e09",
+      "bytes": 9867,
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/a097086719c88f781aa59788eca29ac6ca5e56db/nav2_controller/include/nav2_controller/controller_server.hpp"
+    },
+    {
+      "path": "nav2_controller/CMakeLists.txt",
+      "sha256": "cc309424fc72f65d1ef79badf8a65288c20993b05f6d14298b062899ae46070d",
+      "bytes": 3189,
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/a097086719c88f781aa59788eca29ac6ca5e56db/nav2_controller/CMakeLists.txt"
+    },
+    {
+      "path": "nav2_controller/package.xml",
+      "sha256": "79a576e2b2faf6a368ed7b4e8c5e209f72bd2233f53afc5c2feb27c1e3634e8e",
+      "bytes": 1082,
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/a097086719c88f781aa59788eca29ac6ca5e56db/nav2_controller/package.xml"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "e71fcb65bd31cdbdcf50cf43ab87a0c600ea3ec407495c2e15d1e68bc9c3bfc1",
+      "bytes": 524,
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/a097086719c88f781aa59788eca29ac6ca5e56db/LICENSE"
+    }
+  ],
+  "qualification": "source_only_not_build_or_runtime"
+}

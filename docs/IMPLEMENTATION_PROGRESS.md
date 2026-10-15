@@ -12,9 +12,9 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope与原子batch；新增goal-only异步生命周期和显式Nav2后端，真实PB首次hold取消确认后第二目标完成，原六身份/UUID保持；原Qt手动SDK同场审计通过 | 新goal库尚未注册为通用goal-aware速度插件；PB速度未关联goal UUID；决策 v1 定位/感知仍unavailable；各队需审核包装层，第二套完整自瞄/移动/多车/自动火未验收 |
+| T07 | 通用graph/SDK/JSONL/ROS 2及goal库保持；新显式v2服务端hook以真实FollowPath handle/UUID绑定原scan/LIO/PID速度，两个目标分别25/438非零物理消费步，原Qt同场审计通过 | 通用goal-aware速度插件注册/决策定位反馈仍待连接；旧PB v1仍无UUID；decision v1 navigation/perception仍unavailable；第二套完整自瞄/多车/自动火未验收 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 局部SIL通过：实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；原30秒单目标保持；新增15秒真实PB目标取消/重开，95原传感器请求/93LIO/26控制器、448非零消费步 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收；NavigateToPose后端仅单元证据 |
+| T09 | 局部SIL通过：原30秒/v1记录保持；新显式静止扫描累积配置下15秒原90请求/88LIO/27带真实UUID控制器结果、463非零消费步；取消后第二目标到达，初始地图越界失败保留 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、长期扫描累积开销及完整任务未验收；NavigateToPose后端仅单元证据 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup11四步骤0/source unchanged：2252pass/40明确skip/1024subtests；新增38项生命周期和36项Nav2后端回归、真实15秒取消/第二目标通过；原第五客户端/历史失败保持 | 质量/两车局部SIL不替许可/发布或完整比赛；更长/可见桌面、PB/Tongji自瞄图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup12四步骤0/source unchanged：2360pass/41明确skip/1024subtests；真实server UUID→原PID/scan/LIO→SDK→两目标463物理步闭合，原第五客户端/历史失败保持 | 质量/两车局部SIL不替许可/发布或完整比赛；更长/可见桌面、PB/Tongji自瞄图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,45 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 真实目标 UUID、速度与物理消费关联（2026-10-15）
+
+新增[服务端来源说明](NAV2_GOAL_VELOCITY.md)，在原Nav2 1.1.20控制器调用前捕获真实accepted handle/UUID，
+算法计算期间不持该锁，发布v2来源结果前在真实server mutex内核对同一handle/UUID、active、cancel已接受/状态、pending/preempt。
+没有把外部“最新目标”贴在旧Twist上；原插件异常路径制造的零速度也不进入v2来源结果。
+独立namespace/单executable避免加载另一份controller_server_core，原PB PID ELF与旧11资产原件保持。
+新配置仅换用新server ELF；新wire profile显式协商，默认v1继续严格拒绝v2，反向亦然。
+源形状新增goal_uuid，物理action仍为原六身份和原velocity_body，不扩大SDK权限或期限。
+桥本身只证明schema/来源守卫，不知道哪些UUID由本高层授权；独立审计再匹配原accepted目标、完整typed action与SDK/实际消费回执。
+同一六身份关联多个UUID即歧义拒绝，不以latest覆盖。历史目标来源不刷新为后续authorization。
+
+新独立构建116.925秒、3条CMake命令exit0/reaped、loader全resolved，ELF
+09e70405510db579cacbf00d456391d89fdf6ce041fbc860fbc04f562993e53f；12项专项含真实C++门禁执行通过。
+桥新旧57pass/23subtests；目标来源审计最终92pass/35subtests；均是对应单元/受控过程，不能当ROS闭环。
+root配置/worker专项早期28pass/10明确skip/18subtests；后续配置roster及地图修补由新actual03和最终QA验证，未改旧日志身份。
+
+| 新实际试验 | 事实与结果 |
+| --- | --- |
+| actual01 | 新v2 config字段未加入exact roster，READY前拒绝；无Qt/传感器/目标，失败与清理原件保留 |
+| actual02 | 配置roster修复后真实server active，55原请求/53LIO，但真实全局地图持续outside；0目标/0controller/0导航，原TimeoutError安全关闭 |
+| actual03 | 新显式stationary_scan_accumulation_v1配置，26根检查全过；15.0010015秒GO、238手动批全部消费/4473步，90请求/88LIO/27控制器、463非零导航步、387同一步两车非零 |
+
+actual02真实planner仅1次resize/41次outside；旧上一轮actual04为6次resize/初始2次outside，不能归因于probe缓存。
+原SLAM2.6.10移动门槛会在静止时阻止追加扫描；现有日志未直接记录每scan是否被接纳，因果解释据参数/日志/官方源码推断。
+新配置只把minimum_travel_distance/heading从.1改0，保留time interval .2、map update .5、use_scan_matching=false、原滤波/PID。
+仍由原SLAM累积真实扫描，不填充地图、不clamp起点、不重标TF；最终原raw map几何/数据SHA保留。
+长期内存/栅格重算和性能矩阵尚待测量，本轮不以短SIL关闭该开销问题。
+
+actual03首目标origin seq15，UUID32b1248f593b45f88f6fcf1c3f37ed79有2真实controller结果/25非零物理步，
+hold取得真实cancel ACK+terminal stop后，origin seq18第二目标4d4b00dd4aa94040a9b9367488979a98有25结果/438步并成功。
+原来源/UUID/动作与消费全部匹配，无歧义；action终态不宣称编码器测得零速，合法原150ms授权历史消费仍单独保留。
+内部35.2830733秒/driver37.4271006秒/exit0/reaped/source unchanged/无强制直接终止，
+runtime join .5917298秒、外部owner .3981158秒，原Qt/HTTP/相机/SDK/ROS组在原共享host1.5秒/Linux1.3秒内clean。
+这是实际离屏两车、合成高层goal/hold策略与真实PB导航的来源闭合；无新自瞄/比赛树/可见桌面/RTF/LAN/完整对局验收。
+原80ms图像/150ms控制、50ms导航、reset2秒和graph1秒保持。[独立永久包](validation/goal_velocity_20261015/README.md)保存构建、失败、成功、来源和清理证明。
+最终QA12四步骤exit0/source unchanged：2360passed/41明确skip/1024subtests/6已有warnings，pytest142.76秒、
+driver179.1218684秒/reaped，显式原CPU4 WSL spec无回退；424程序/测试/provenance原字节保持。
+QA后仅本文结果补记、封存及Git交付，未声称新封存文件或此补记参加此前QA；其余T01–T18/M0–M5边界保持。
 
 ## 通用导航目标生命周期与真实取消确认（2026-10-15）
 

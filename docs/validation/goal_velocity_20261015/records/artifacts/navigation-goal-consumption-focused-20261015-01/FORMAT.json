@@ -1,0 +1,16 @@
+[
+  {
+    "path": "tools/audit_navigation_goals.py",
+    "sha256": "c317e9c9d32a03fd4211e837079825a249a6f0004867885e63740ebcec0e45b9",
+    "size": 14021,
+    "lf_only": true,
+    "one_eof_lf": true
+  },
+  {
+    "path": "tests/test_navigation_goal_consumption.py",
+    "sha256": "0b21eac59f1816acb7ac610aa39246341fbea9d2d0619f5a558a214ded2eccd9",
+    "size": 11175,
+    "lf_only": true,
+    "one_eof_lf": true
+  }
+]

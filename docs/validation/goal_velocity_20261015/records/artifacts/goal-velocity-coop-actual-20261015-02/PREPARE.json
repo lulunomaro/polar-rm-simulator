@@ -1,0 +1,65 @@
+{
+  "elapsed_s": 11.172730099991895,
+  "ready": {
+    "schema": "polar.pb.wsl-session.v1",
+    "event": "ready",
+    "run_uuid": "2832c75dd1ca4ef694d939da9d076bf7",
+    "namespace": "/polar_sil_2832c75dd1ca4ef694d939da9d076bf7/red_sentry",
+    "config_sha256": "fcc973501ec24a371d1af71980ec5738ba293da66d09bfb4bc9162508159621a",
+    "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+    "state": "CONFIGURED",
+    "supervisor_pid": 324,
+    "start_ticks": 6494,
+    "boot_id": "41a31a91-1c8f-4cd3-9ae8-19e8c2e6baf5"
+  },
+  "external_ready": {
+    "schema": "polar.pb.external-goal-supervisor.v1",
+    "event": "ready",
+    "run_uuid": "6f4951f7fc1b27b06a4b258e78093b00",
+    "spec_sha256": "e8eb9fd0c979dd82be7ce594f0ebae03893d650e5189cc944b5cac984eedf53f",
+    "client": {
+      "schema": "polar.pb.external-goal-ready.v1",
+      "run_uuid": "6f4951f7fc1b27b06a4b258e78093b00",
+      "session_run_uuid": "2832c75dd1ca4ef694d939da9d076bf7",
+      "namespace": "/polar_sil_2832c75dd1ca4ef694d939da9d076bf7/red_sentry",
+      "domain_id": 84,
+      "state": "OBSERVING_NO_INPUT_PUBLISHED",
+      "pid": 607,
+      "start_ticks": 7242,
+      "boot_id": "41a31a91-1c8f-4cd3-9ae8-19e8c2e6baf5",
+      "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+      "source_sha256": {
+        "tools/qa_navigation_goal_client.py": "a1b579cafa886bf4f21af9f57b3258d90d33b53cb968b8e70abe29e1e30662ab",
+        "tools/qa_navigation_goal_supervisor.py": "a7a8c94a6fe005c7a5d092a0065daee6b89aecd9223c878c4f7598e8e88a051c",
+        "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+        "rm_match/integrations/nav2_goal_backend.py": "5da1b0c258f30b9afd747159f9856c927b8c7122e090d2ba9a29d70a521d149e",
+        "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+        "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+        "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+        "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+        "tools/qa_pb_navigation_sil.py": "5a1e09675c437f3d4bb4387238a32abe11287222e77cba0add82bcbb9268ef26",
+        "tools/pb_navigation_stack.py": "70049d09877596168b414aabd1620b491836325234d0649113208a44b07fa98f",
+        "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+        "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+      },
+      "spec_sha256": "e8eb9fd0c979dd82be7ce594f0ebae03893d650e5189cc944b5cac984eedf53f",
+      "sensor_published": false,
+      "goal_sent": false,
+      "lifecycle_changed": false
+    },
+    "owned_identity": {
+      "run_id": "6ea21e859dab42299b2f4dc670b36026",
+      "supervisor_pid": 606,
+      "boot_id": "41a31a91-1c8f-4cd3-9ae8-19e8c2e6baf5",
+      "pid": 607,
+      "pgid": 607,
+      "leader_start_ticks": 7242
+    },
+    "supervisor_pid": 606,
+    "start_ticks": 7173,
+    "boot_id": "41a31a91-1c8f-4cd3-9ae8-19e8c2e6baf5"
+  },
+  "physics_steps": 0,
+  "sensor_frames": 0,
+  "algorithm_data_warmup": false
+}

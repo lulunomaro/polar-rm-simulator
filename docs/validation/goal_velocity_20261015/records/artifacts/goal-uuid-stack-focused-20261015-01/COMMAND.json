@@ -1,0 +1,14 @@
+[
+  "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "-B",
+  "-m",
+  "pytest",
+  "-q",
+  "tests/test_pb_goal_stack_profile.py",
+  "tests/test_pb_navigation_stack.py",
+  "tests/test_pb_wsl_navigation_worker.py",
+  "tests/test_pb_wsl_navigation_stdio.py",
+  "-p",
+  "no:cacheprovider",
+  "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-uuid-stack-focused-20261015-01\\pytest.xml"
+]

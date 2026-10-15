@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\integrations\pb_wsl_navigation_registry.py", line 72, in register_pb_wsl_navigation
+    try:session.prepare()
+        ^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\integrations\pb_wsl_navigation.py", line 343, in prepare
+    self.ready = self._ready(self._receive(deadline))
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\integrations\pb_wsl_navigation.py", line 290, in _receive
+    raise RuntimeError('session_io_failed_or_cancelled')
+RuntimeError: session_io_failed_or_cancelled
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_goal_velocity_coop_sil.py", line 65, in run
+    session=register_pb_wsl_navigation(registry,manifest,repo_root=ROOT,relative_test_goal=False)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\integrations\pb_wsl_navigation_registry.py", line 76, in register_pb_wsl_navigation
+    except BaseException as cleanup_error:raise cleanup_error from prepare_error
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\integrations\pb_wsl_navigation_registry.py", line 75, in register_pb_wsl_navigation
+    try:session.close()
+        ^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\integrations\pb_wsl_navigation.py", line 604, in close
+    raise RuntimeError(self._close_failure)
+RuntimeError: session_supervisor_exit_nonzero;RuntimeError:session_linux_cleanup_incomplete;session_linux_cleanup_unproved

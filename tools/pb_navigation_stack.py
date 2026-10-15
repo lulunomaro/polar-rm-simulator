@@ -35,6 +35,56 @@ PB_COMMIT = 'cb97fb07ace54fcc617ddb884227ef85fe4b8f85'
 DDS_ENVIRONMENT = {'ROS_DOMAIN_ID':'84', 'ROS_LOCALHOST_ONLY':'1', 'RMW_IMPLEMENTATION':'rmw_fastrtps_cpp'}
 _DDS_INIT_LOCK = threading.RLock()
 
+
+def controller_result_settings(config):
+    """Choose an explicit, build-bound wire profile; never infer from output."""
+    version=config.get('schema')
+    if type(version) is str and version=='polar.pb-stack-config.v1':
+        if 'controller_result_profile' in config:raise ValueError('stack_goal_profile_requires_v2')
+        return dict(result_profile='scan_v1',controller_id='pb_controller_sourced_v1')
+    if (type(version) is not str or version!='polar.pb-stack-config.v2'
+        or type(config.get('controller_result_profile')) is not str
+        or config['controller_result_profile']!='follow_path_uuid_v2'):
+        raise ValueError('stack_config_result_profile')
+    refs=config['provenance']
+    if not {'goal_controller_source','goal_controller_build'}<=set(refs):
+        raise ValueError('stack_goal_controller_provenance_required')
+    from rm_match.deployment.profile import read_json_snapshot
+    build,build_digest=read_json_snapshot(refs['goal_controller_build']['path'],4*1024*1024)
+    if (type(build) is not dict or build_digest!=refs['goal_controller_build']['sha256']
+        or build.get('schema')!='polar.nav2.goal-controller-build.v1' or build.get('passed') is not True
+        or build.get('upstream_revision')!='a097086719c88f781aa59788eca29ac6ca5e56db'
+        or build.get('source_manifest_sha256')!=refs['goal_controller_source']['sha256']
+        or build.get('executable')!=config['assets']['controller_server']):
+        raise ValueError('stack_goal_controller_build_mismatch')
+    source,source_digest=read_json_snapshot(refs['goal_controller_source']['path'],4*1024*1024)
+    repository=Path(__file__).resolve().parents[1]
+    if (type(source) is not dict or source_digest!=refs['goal_controller_source']['sha256']
+        or source.get('schema')!='polar.nav2.goal-controller-source.v1'
+        or source.get('generator_sha256')!=sha(repository/'tools/prepare_nav2_goal_controller_overlay.py')
+        or source.get('overlay_header_sha256')!=sha(repository/'rm_match/integrations/pb_goal_controller_context.hpp')
+        or source.get('request_header_sha256')!=sha(repository/'rm_match/integrations/pb_request_context.hpp')):
+        raise ValueError('stack_goal_controller_source_mismatch')
+    original=build.get('original_controller_server')
+    if (type(original) is not dict or set(original)!={'path','sha256'}
+        or sha(original['path'])!=original['sha256']
+        or original['sha256']==build['executable']['sha256']):
+        raise ValueError('stack_goal_controller_original_changed')
+    return dict(result_profile='follow_path_uuid_v2',controller_id='nav2_server_pb_pid_goal_v1')
+
+
+def adapt_mapping_profile(parameters,namespace,profile='upstream_v1'):
+    """An explicit original-SLAM sampling policy, never synthesized map cells."""
+    if type(profile) is not str or profile not in ('upstream_v1','stationary_scan_accumulation_v1'):
+        raise ValueError('stack_mapping_profile')
+    if profile=='upstream_v1':return []
+    values=parameters[namespace+'/slam_toolbox']['ros__parameters'];changes=[]
+    for name in ('minimum_travel_distance','minimum_travel_heading'):
+        before=values[name];values[name]=0.0
+        changes.append(dict(node='slam_toolbox',parameter=name,original=before,adapted=0.0,
+            reason='explicit stationary nonrepeating scan accumulation in original SLAM; time interval unchanged, no map/TF fabrication'))
+    return changes
+
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
@@ -189,12 +239,16 @@ class PBNavigationStack:
             raise ValueError('stack_output_must_be_fresh_unlinked')
         cfg = self.config
         required = {'schema','repo_root','source_repo','source_revision','generation_config','environment','install_prefixes','assets','libraries','provenance'}
+        if type(cfg) is dict and cfg.get('schema')=='polar.pb-stack-config.v2':
+            required.add('controller_result_profile')
+            if 'mapping_profile' in cfg:required.add('mapping_profile')
         if type(cfg) is not dict or set(cfg) != required: raise ValueError('stack_config_fields')
-        if cfg['schema']!='polar.pb-stack-config.v1' or cfg['source_revision']!=PB_COMMIT:raise ValueError('stack_config_identity')
+        if cfg['source_revision']!=PB_COMMIT:raise ValueError('stack_config_identity')
         repo = Path(cfg['repo_root']).resolve()
         for ref in [cfg['environment'],cfg['generation_config'],*cfg['provenance'].values()]:
             if type(ref) is not dict or set(ref)!={'path','sha256'} or not Path(ref['path']).is_absolute() or sha(ref['path'])!=ref['sha256']:
                 raise ValueError('stack_input_snapshot_changed')
+        result_settings=controller_result_settings(cfg)
         environment = Path(cfg['environment']['path'])
         environment_value = checked_json(environment)
         env = {k:os.environ[k] for k in ('PATH','HOME','LANG','LC_ALL','TZ','USER','LOGNAME','TMPDIR') if k in os.environ}
@@ -240,6 +294,17 @@ class PBNavigationStack:
         reality = yaml.safe_load(config_bytes['reality'])
         simulation = yaml.safe_load(config_bytes['simulation'])
         params, adaptations = adapt_parameters(reality, simulation, checked_json(generation_file), self.namespace, self.diagnostics)
+        mapping_profile=cfg.get('mapping_profile','upstream_v1')
+        adaptations+=adapt_mapping_profile(params,self.namespace,mapping_profile)
+        if result_settings['result_profile']=='follow_path_uuid_v2':
+            selected=params[self.namespace+'/controller_server']['ros__parameters']
+            selected['polar_sourced.enabled']=False
+            for key in ('enabled','robot_id','episode','binding_epoch','request_topic','result_topic','localization_topic','diagnostics'):
+                old_key='polar_sourced.'+key
+                if old_key in selected:
+                    selected['polar_goal_sourced.'+key]=True if key=='enabled' else selected[old_key]
+            adaptations.append(dict(node='controller_server',parameter='polar_goal_sourced.enabled',original=False,adapted=True,
+                reason='new build-bound server goal UUID hook; original PB algorithm/ELF unchanged and legacy publisher disabled'))
         self.out.mkdir(parents=True)
         params_file = self.out / 'owned_parameters.yaml'
         params_file.write_text(yaml.safe_dump(params, sort_keys=False), encoding='utf8')
@@ -261,7 +326,10 @@ class PBNavigationStack:
             'imu_topic': '/livox/imu', 'request_topic': '/polar/pb/request', 'result_topic': '/polar/pb/result',
             'odom_topic': '/odometry', 'clock_topic': '/clock', 'tf_static_topic': '/tf_static'}.items():
             bridge += ['--' + key.replace('_', '-'), self.namespace + topic]
-        bridge += ['--response-timeout', '0.05', '--expected-robot-id', 'red_sentry', '--expected-episode', '0', '--expected-binding-epoch', '1']
+        if result_settings['result_profile']=='follow_path_uuid_v2':
+            bridge+=['--response-timeout=0.05','--result-profile=follow_path_uuid_v2','--controller-id=nav2_server_pb_pid_goal_v1']
+        else:bridge+=['--response-timeout','0.05']
+        bridge += ['--expected-robot-id', 'red_sentry', '--expected-episode', '0', '--expected-binding-epoch', '1']
         assert len(bridge) <= 32
         manifest = {'schema': 'polar.sim.pb-navigation-manifest.v1', 'adapters': [{'adapter_id': 'custom_pb_navigation',
             'label': 'PB2025 sourced Smac + PID', 'command': bridge, 'cwd': str(repo)}]}
@@ -272,7 +340,7 @@ class PBNavigationStack:
             original_configuration={'upstream_commit': head, 'reality_sha256': hashlib.sha256(config_bytes['reality']).hexdigest(), 'simulation_sha256': hashlib.sha256(config_bytes['simulation']).hexdigest(),
                 'point_lio_base': 'reality', 'navigation_base': 'reality', 'generation_config_sha256': sha(generation_file)},
             parameters_path=str(params_file), parameters_sha256=sha(params_file), adaptations=adaptations,
-            diagnostics=self.diagnostics,
+            diagnostics=self.diagnostics,controller_result_settings=copy.deepcopy(result_settings),mapping_profile=mapping_profile,
             static_vehicle_calibration={'source':str(repo/'rm_match/harness.xml'),'sha256':sha(repo/'rm_match/harness.xml'),
                 'chassis_halfsize_xy_m':[.28,.23],'circumscribed_radius_m':math.hypot(.28,.23),'costmap_radius_m':.38,
                 'qualification':'simplified simulator vehicle profile, not real sentry CAD or dynamic world truth'},

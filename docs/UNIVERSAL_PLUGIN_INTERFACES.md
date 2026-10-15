@@ -253,6 +253,9 @@ finally:
 
 可选 Nav2 后端显式选择 `navigate_to_pose` 或 `compute_path_then_follow`。前者目前仅单元测试；
 后者已在实际第04轮与原 Qt 手动步兵、真实 PB 传感器/LIO/导航栈联合验证取消后重开并完成，全部25检查通过。
-高层 goal/hold 策略为 synthetic 测试策略，不是 PB 比赛树；现 PB 速度回执尚无 goal UUID 关联。
+高层 goal/hold 策略为 synthetic 测试策略，不是 PB 比赛树；上述goal-only第04轮旧scan profile未关联goal UUID。
+新增[FollowPath UUID到速度消费](NAV2_GOAL_VELOCITY.md)使用独立Nav2 server与显式v2 profile，
+在后续实际03按原来源/动作/SDK回执证明两目标分别25/438个非零消费步，26检查通过。
+桥仅检验格式和原扫描来源，不自行决定本应用目标授权；独立audit从真实accepted UUID历史关联并拒绝歧义。
 库不直接注册为通用速度插件，不输出 action、不合成定位/视觉反馈、不扩大权限；decision v1 的 navigation/perception 仍保持 unavailable。
 跨 Windows/Linux 使用 opaque 原期限，仅本地 future 资源观察计时；原宿主 SDK 150 ms、图像80 ms和所有控制仲裁仍独立检查。

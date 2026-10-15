@@ -1,0 +1,10 @@
+[
+  "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "-m",
+  "pytest",
+  "tests/test_navigation_goal_consumption.py",
+  "tests/test_pb_navigation_sil_audit.py",
+  "tests/test_pb_goal_navigation_bridge.py",
+  "-q",
+  "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\navigation-goal-consumption-focused-20261015-01\\junit02.xml"
+]

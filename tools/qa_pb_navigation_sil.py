@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 import secrets
 import signal
@@ -29,8 +30,13 @@ def identity(value):
     return tuple((type(value[k]).__name__,value[k]) for k in IDENTITY)
 
 
-def audit_navigation_consumption(rows,ros_rows):
+def audit_navigation_consumption(rows,ros_rows,*,result_profile='scan_v1'):
     """Join original controller/LIO provenance with actual actuator receipts."""
+    if type(result_profile) is not str or result_profile not in ('scan_v1','follow_path_uuid_v2'):
+        raise ValueError('audit_result_profile')
+    goal_profile=result_profile=='follow_path_uuid_v2'
+    result_schema='polar.sim.pb-navigation-result.v2' if goal_profile else 'polar.sim.pb-navigation-result.v1'
+    controller_id='nav2_server_pb_pid_goal_v1' if goal_profile else 'pb_controller_sourced_v1'
     from rm_match.platform_v2.contracts import exact,integer,finite,validate_action
     requests={};localizations={};results={};enqueues={};activations={};errors=[];consumed=set();nonzero=set()
     request_keys=('adapter_id',*IDENTITY,'cloud_frame_id','acquisition_start_ns','acquisition_end_ns')
@@ -85,12 +91,15 @@ def audit_navigation_consumption(rows,ros_rows):
                 localizations.setdefault(key,[]).append(value)
             elif row.get('topic_kind')=='controller_result':
                 value=row['value'];exact(value,('schema','adapter_id','action','source'),'audit_result')
-                if value['schema']!='polar.sim.pb-navigation-result.v1' or value['adapter_id']!='custom_pb_navigation':raise ValueError('result_schema_or_adapter')
+                if type(value['schema']) is not str or value['schema']!=result_schema or value['adapter_id']!='custom_pb_navigation':raise ValueError('result_schema_or_adapter')
                 action=value['action'];key=identity(action)
                 validate_action(action,action,dict(kind='navigation',output_modes=['velocity_body']))
-                source=value['source'];exact(source,('cloud_frame_id','localization_stamp_ns','controller_stamp_ns','controller_id'),'audit_controller_source')
+                source=value['source'];fields=('cloud_frame_id','localization_stamp_ns','controller_stamp_ns','controller_id')
+                exact(source,(*fields,'goal_uuid') if goal_profile else fields,'audit_controller_source')
+                if goal_profile and (type(source['goal_uuid']) is not str or not re.fullmatch('[0-9a-f]{32}',source['goal_uuid'])):
+                    raise ValueError('source_goal_uuid')
                 for name in ('cloud_frame_id','localization_stamp_ns','controller_stamp_ns'):integer(source[name],name)
-                if source['controller_id']!='pb_controller_sourced_v1':raise ValueError('source_controller')
+                if type(source['controller_id']) is not str or source['controller_id']!=controller_id:raise ValueError('source_controller')
                 results.setdefault(key,[]).append(value)
         except (KeyError,TypeError,ValueError):errors.append('malformed_ros_source_record')
     for row in rows:

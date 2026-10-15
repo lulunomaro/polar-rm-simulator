@@ -1,0 +1,79 @@
+{
+  "schema": "polar.nav2.goal-controller-build.v1",
+  "passed": true,
+  "upstream_revision": "a097086719c88f781aa59788eca29ac6ca5e56db",
+  "source_manifest_sha256": "a767ba51c563c1782a2680509fcdc78e45690e39acd171dbb28c2ad7aff06fb2",
+  "executable": {
+    "path": "/root/polar-nav2-goal-controller-build-20261015-01/install/lib/polar_nav2_goal_controller/polar_goal_controller_server",
+    "sha256": "09e70405510db579cacbf00d456391d89fdf6ce041fbc860fbc04f562993e53f"
+  },
+  "original_controller_server": {
+    "path": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/nav2_controller/controller_server",
+    "sha256": "16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d"
+  },
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "environment": {
+    "CMAKE_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+    "AMENT_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+    "LD_LIBRARY_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+    "PKG_CONFIG_PATH": "/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "commands": [
+    {
+      "command": [
+        "cmake",
+        "-S",
+        "/root/polar-nav2-goal-controller-build-20261015-01/src",
+        "-B",
+        "/root/polar-nav2-goal-controller-build-20261015-01/build",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DBUILD_TESTING=OFF",
+        "-DCMAKE_INSTALL_PREFIX=/root/polar-nav2-goal-controller-build-20261015-01/install",
+        "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+      ],
+      "exit_code": 0,
+      "reaped": true,
+      "elapsed_s": 76.56050249
+    },
+    {
+      "command": [
+        "cmake",
+        "--build",
+        "/root/polar-nav2-goal-controller-build-20261015-01/build",
+        "--parallel",
+        "2"
+      ],
+      "exit_code": 0,
+      "reaped": true,
+      "elapsed_s": 40.340506450999996
+    },
+    {
+      "command": [
+        "cmake",
+        "--install",
+        "/root/polar-nav2-goal-controller-build-20261015-01/build"
+      ],
+      "exit_code": 0,
+      "reaped": true,
+      "elapsed_s": 0.007800803999998607
+    }
+  ],
+  "timed_out": false,
+  "elapsed_s": 116.92475211600001,
+  "loader": {
+    "command": [
+      "ldd",
+      "/root/polar-nav2-goal-controller-build-20261015-01/install/lib/polar_nav2_goal_controller/polar_goal_controller_server"
+    ],
+    "exit_code": 0,
+    "resolved": true,
+    "stdout_sha256": "cdc0cf92c12569f3ba417452cc7a917e7028717844dea94f921102175ebb63f8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "generated_source_unchanged": true,
+  "original_server_unchanged": true,
+  "nodes_started": false,
+  "qualification": "compile_and_loader_only_not_navigation_acceptance"
+}

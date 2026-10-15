@@ -1,0 +1,46 @@
+{
+  "schema": "polar.pb.saved-diagnosis-evidence.v1",
+  "files": {
+    "diagnose-02.py": {
+      "bytes": 8199,
+      "sha256": "56e1c6b8429538b278a8ecd878d5b30511eab3b3a895322b4cf05bcce00116d0"
+    },
+    "diagnose.py": {
+      "bytes": 8140,
+      "sha256": "f28b0fb8b64b8fd972c21877d82bdbd6b2c5bd55dee833e2a4247b862b43a626"
+    },
+    "EXECUTION-02.json": {
+      "bytes": 932,
+      "sha256": "a89c2088a3b51da45c0250136d0b274d9d88be2da71b6792fd02e69c9219fda4"
+    },
+    "EXECUTION.json": {
+      "bytes": 1237,
+      "sha256": "fa9101061e63fbb153e3fef0f62cd30e505a9f167bc61623d83c67989300f306"
+    },
+    "LICENSE_COPY.json": {
+      "bytes": 520,
+      "sha256": "52f103999a6bf2efe2de9888e6c84815bdfdd9c9be5603a010918b346042cbdd"
+    },
+    "REPORT.json": {
+      "bytes": 61636,
+      "sha256": "0bef4533ffe7992e7190bef3dd9559c7e08a76473bc1b64b93240d34dee8db71"
+    },
+    "stderr-02.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr.log": {
+      "bytes": 1742,
+      "sha256": "1e7bcf494bd2581d0cb6835c1e4784684150dacc760fce77b23a174fe94a883f"
+    },
+    "stdout-02.log": {
+      "bytes": 1673,
+      "sha256": "14103047c155f7295abce52358667c067490669850f15c2e9f2c578105f535d6"
+    },
+    "stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "scope": "saved-artifact inspection only; no fresh ROS run"
+}

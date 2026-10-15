@@ -1,0 +1,61 @@
+{
+  "schema": "polar.nav2.goal-controller-source.v1",
+  "upstream_revision": "a097086719c88f781aa59788eca29ac6ca5e56db",
+  "upstream_url": "https://github.com/ros-navigation/navigation2",
+  "upstream_file_sha256": {
+    "src/controller_server.cpp": "b9bc6dc7bb90602f65971d8c5eed2b73ffeaf5aa3e9ebd4ec1de3e725552d705",
+    "src/main.cpp": "cdec7e6f5e7bdbe95eadac16371c9aaa74d78855b67812ebae9b4525e32ed3ea",
+    "include/nav2_controller/controller_server.hpp": "b607b9d512a830046b26130e240655098bac6c17ec6a5596d4f604a172237e09",
+    "CMakeLists.txt": "cc309424fc72f65d1ef79badf8a65288c20993b05f6d14298b062899ae46070d",
+    "package.xml": "79a576e2b2faf6a368ed7b4e8c5e209f72bd2233f53afc5c2feb27c1e3634e8e"
+  },
+  "installed_action_server_header_sha256": "942c09496c49f8343e360a549819582b299ddae7b07fc3e2678a57568d2df8cc",
+  "generator_sha256": "d3c29631bf918b2822ce2c81ad4aa239090ff8e3a7913349ab8e04979af01a88",
+  "overlay_header_sha256": "9fba560f2612307404d11ea4ea9259cee6a5152f229ab4fa26d71ce35876d494",
+  "request_header_sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea",
+  "original_controller_server": {
+    "path": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/nav2_controller/controller_server",
+    "sha256": "16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d"
+  },
+  "files": {
+    "CMakeLists.txt": {
+      "bytes": 906,
+      "sha256": "60746f81f01a1300da9e06e8c827b4053cab0a404aeae464d0aaeedfb653e10d"
+    },
+    "UPSTREAM_CMakeLists.txt": {
+      "bytes": 3189,
+      "sha256": "cc309424fc72f65d1ef79badf8a65288c20993b05f6d14298b062899ae46070d"
+    },
+    "UPSTREAM_PACKAGE.xml": {
+      "bytes": 1082,
+      "sha256": "79a576e2b2faf6a368ed7b4e8c5e209f72bd2233f53afc5c2feb27c1e3634e8e"
+    },
+    "include/polar_nav2_controller/controller_server.hpp": {
+      "bytes": 10030,
+      "sha256": "1ead498d799474d170d3663ea637efd930a7d17b695481ebeb516fe0db0063db"
+    },
+    "include/polar_nav2_controller/goal_action_server.hpp": {
+      "bytes": 21688,
+      "sha256": "065ca6cb1011ed830f6250d7533a2ac07c4924aed1cc81afd4b45761c364568a"
+    },
+    "include/polar_nav2_controller/pb_goal_controller_context.hpp": {
+      "bytes": 12596,
+      "sha256": "9fba560f2612307404d11ea4ea9259cee6a5152f229ab4fa26d71ce35876d494"
+    },
+    "include/polar_nav2_controller/pb_request_context.hpp": {
+      "bytes": 2793,
+      "sha256": "cc15cb6c66ba9b5381640f9466d72a3ab1f9e409529d0ebd624e471ef830b3ea"
+    },
+    "src/controller_server.cpp": {
+      "bytes": 23906,
+      "sha256": "f171a7df15d94b74c86c20ba5bcb719a7b290674e8dcadae032d6ee2e952cbf4"
+    },
+    "src/main.cpp": {
+      "bytes": 927,
+      "sha256": "f9890db4fb375752e4775a7387fe59e64fadd4403c9d935e3b1dab3d350187c0"
+    }
+  },
+  "qualification": "source_overlay_only_not_navigation_acceptance",
+  "algorithm": "unchanged_pluginlib_loaded_controller",
+  "component_core_library": false
+}

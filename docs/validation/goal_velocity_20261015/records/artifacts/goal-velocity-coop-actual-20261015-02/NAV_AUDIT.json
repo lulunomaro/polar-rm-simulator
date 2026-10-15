@@ -1,0 +1,11 @@
+{
+  "consumed_steps": 0,
+  "nonzero_consumed_steps": 0,
+  "actual_sensor_requests": 55,
+  "actual_controller_results": 0,
+  "actual_localizations": 53,
+  "errors": [
+    "actual_navigation_adapter_fault:TimeoutError"
+  ],
+  "passed": false
+}

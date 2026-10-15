@@ -1,0 +1,29 @@
+[
+  {
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-pthread",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/nav2-goal-controller-focused-20261015-01/cpp/goal_gate.cpp",
+      "-o",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/nav2-goal-controller-focused-20261015-01/cpp/goal_gate"
+    ],
+    "exit_code": 0,
+    "reaped": true
+  },
+  {
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/nav2-goal-controller-focused-20261015-01/cpp/goal_gate"
+    ],
+    "exit_code": 0,
+    "reaped": true
+  }
+]

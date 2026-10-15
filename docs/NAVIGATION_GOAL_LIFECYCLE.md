@@ -2,7 +2,8 @@
 
 `NavigationGoalLifecycle` 是可复用的 **goal-only 库**：接收原 `decision-intent.v1`，跟踪异步目标、取消和真实终态。
 它不读取传感器、不输出速度、不提供定位反馈，也尚未注册为通用 `velocity_body` 插件。
-现有 decision v1 的 navigation/perception 仍为 unavailable；PB 速度回执也尚未关联 goal UUID。
+现有 decision v1 的 navigation/perception 仍为 unavailable。旧PB默认scan_v1不带goal UUID；
+新增显式follow_path_uuid_v2已完成[真实goal→速度消费关联](NAV2_GOAL_VELOCITY.md)，但不改变本库的goal-only权限。
 
 实现为 [navigation_goal_lifecycle.py](../rm_match/integrations/navigation_goal_lifecycle.py) 和可选
 [nav2_goal_backend.py](../rm_match/integrations/nav2_goal_backend.py)。仅导入不创建 ROS context、线程或 executor。
@@ -107,7 +108,9 @@ Nav2 后端 UUID 修复后的 36 项 focused 通过。这些单元不代表实�
 这是 **synthetic 高层 goal/hold 策略 + 原 PB ComputePath/FollowPath** 的有限联合 SIL，不是 PB 比赛树。
 目标来自实际估计 map TF 的 map-x 方向相对 1 m 偏移，不用世界真值；这也不提供按原扫描六身份关联的定位反馈 v2。
 第 01 轮导入失败、第 02 轮未取得目标、第 03 轮 NumPy UUID 失败分别保留，不能重判旧结果。
-现 PB cmd_vel/速度回执没有 goal UUID 关联，因此不能据同时运动就逐条证明速度属于哪个 goal。
+上述goal-only第04轮使用的旧PB速度回执没有goal UUID，因此该轮不能据同时运动逐条证明速度归属。
+后续独立goal-velocity第03轮使用新server/v2显式profile，已按原UUID/六身份/动作/SDK消费证明两目标分别25/438个非零步；
+26项检查通过，详情及两次此前失败见[goal到速度验证](NAV2_GOAL_VELOCITY.md)。它仍是synthetic高层策略，不是通用插件或比赛树。
 
 复现需已有的已核验 Humble 环境、PB 构建/stack 配置和第五客户端补丁；公开读者须先在本机准备这些依赖。
 不自动下载或回退到其他源。全新输出目录、显式运行：

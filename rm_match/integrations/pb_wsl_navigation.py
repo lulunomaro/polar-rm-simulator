@@ -42,6 +42,8 @@ SOURCE_FILES = (
     'rm_match/integrations/ros2_bridge.py',
     'rm_match/integrations/pb_request_context.hpp',
     'rm_match/integrations/pb_controller_context.hpp',
+    'rm_match/integrations/pb_goal_controller_context.hpp',
+    'tools/prepare_nav2_goal_controller_overlay.py',
     'rm_match/platform_v2/contracts.py',
     'rm_match/platform_v2/navigation_contracts.py',
     'rm_match/deployment/profile.py',

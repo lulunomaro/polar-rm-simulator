@@ -1,0 +1,48 @@
+# Real FollowPath handle, sourced velocity and physical consumption
+
+Parent development commit: `c7c6a0f5c5ad3e2d68e0d8905b2752c6781d51fb`.
+User plan SHA256: `299b58e785778ae143ff86808f333d2c6ff4e470a00d4dd9138ee1c7380a21fd`.
+
+This checkpoint closes the recorded goal-UUID-to-controller-to-physical-receipt gap for one explicitly configured original PB navigation scenario. It does not register a general goal-aware velocity plugin, provide decision localization feedback or complete a match behavior tree. Existing scan_v1, five original client deliveries and all earlier archives remain unchanged.
+
+## Actual server provenance
+
+The new standalone executable is built from official Nav2 1.1.20 commit `a097086719c88f781aa59788eca29ac6ca5e56db` with exact upstream source hashes, an exact installed SimpleActionServer header and a reviewed source-context hook. Its classes have separate namespaces; it does not load another controller_server_core library. It loads the unchanged original PB PID plugin. The original eleven native assets are not overwritten; the new stack configuration selects a new controller_server executable while the remaining ten assets remain the same.
+
+An actual accepted goal handle/UUID is captured before the real computeVelocityCommands call. No server lock is held during the algorithm. Before publishing provenance, the actual server mutex serializes a recheck of that same handle/UUID, active state, accepted cancellation, cancel state, pending goal and preemption. The accepted-cancel set covers the interval before ROS exposes the canceling state. Unusable or replaced tokens do not publish, and synthetic zero output from the upstream exception branch does not acquire a v2 provenance receipt. No Twist subscriber adds a latest goal label. Existing scan/LIO/source/window guards also remain in the new context hook.
+
+The new ELF is `09e70405510db579cacbf00d456391d89fdf6ce041fbc860fbc04f562993e53f`. Actual build takes116.924752116s; all three CMake processes exit0/reaped, loader resolves every dependency and original server SHA remains16b8ccba3f17203480a065787caef9a6f312c8090c1943ad346766008a7d274d. Generated-source, build, nm/readelf, flags/link and copy identities are retained. The binary itself is excluded from this source/evidence package. The standard Apache2 license and upstream attribution are included with source notices intact.
+
+Wire profile follow_path_uuid_v2 is explicitly selected by a build-bound v2 stack config. The bridge accepts only result schema v2 and the five exact source fields including a strict32lowerhex goal_uuid; legacy scan_v1 accepts only v1. Physical action fields stay exactly the original six identities and velocity_body. The bridge checks type/source/deadline, not whether a particular UUID is authorized by this high-level caller. A separate read-only audit joins the original accepted lifecycle UUIDs, complete typed source/action and real SDK/actuator receipts. Same-source multiple-UUID ambiguity is rejected, never resolved by selecting a latest value.
+
+## Distinct actual runs and original failures
+
+| Attempt | Actual result | Internal / driver seconds |
+| --- | --- | --- |
+| 01 | New v2 field absent from the original exact configuration roster; rejected before READY/data, zero Qt/sensors/goals. Original failure and cleanup proofs retained. | 6.1527696 / 8.4049749 |
+| 02 | Roster fixed; real server active,55 requests/53 LIO but0 goal/controller/navigation. Real global costmap continually excludes the robot; eventual original TimeoutError safely closes the session. Manual166 batches are all consumed, but the requested15s interval is incomplete. | 29.5000093 / 31.9894373 |
+| 03 | Explicit stationary real-scan accumulation profile, full26checks pass; first goal cancel confirmed then second goal completes, both have UUID-matched physical consumption alongside original Qt manual control. | 35.2830733 / 37.4271006 |
+
+03 original GO/F12 interval is15.0010015s;238 manual batches all match exact original SDK window/lease/seq/value/expiry,4473 manual consume steps,2151 positive-x/2048 negative-x and4473 nonzero-gimbal steps. Real PB produces90 sensor requests/88 LIO sources/27 controller v2 results and463 nonzero physical navigation steps.387 original2ms physics steps have both robots nonzero during the same Windows host interval. Linux and host clocks are not subtracted.
+
+First goal origin seq15, navigation UUID `32b1248f593b45f88f6fcf1c3f37ed79`:2 real controller results and25 nonzero physical consume steps. Actual hold/cancel receives matching acknowledgment plus terminal stop proof before replacement. Second goal origin seq18, UUID `4d4b00dd4aa94040a9b9367488979a98`:25 controller results and438 nonzero steps, real success. No later authorization replaces historical origin. A terminal action is not an encoder zero-speed measurement; still-valid historical source/SDK consumption is retained without relabeling or manufactured stopping actions.
+
+Source unchanged, exit0/reaped, no forced direct child termination; runtime join .5917298s/external owner .3981158s and original Qt/HTTP/camera/SDK/IO/ROS groups all clean inside the original shared host1.5s/Linux1.3s budgets. Preparation advances no physics and publishes no sensor warmup. The original fifth client, real HTTP image, two-F2 claim/arm and actual key/mouse/timer path are unchanged. Sentry navigation activates only after original manual arm. World truth remains isolated evaluation, never a control input. Camera80ms, SDK150ms, navigation50ms, reset2s and graph1s gates are unchanged.
+
+## Initial map correction and evidence limits
+
+02 real planner logs have one resize/41 outside warnings; previous goal-only04 has six resizes/two initial outside warnings. This is not merely a stale raw-costmap subscription: the real costmap is out of bounds. The initial peer only retained the first failed geometry event; new transparent last_map_attempt records the last goal-selection grid/TF/decision without changing any predicate, pixel or timestamp. The missing end geometry for02 is not filled retrospectively.
+
+Official SLAM Toolbox2.6.10 shouldProcessScan applies a movement gate even after the .2s time gate. Its .1m/.1rad thresholds can suppress subsequent stationary nonrepeating scans after an initially narrow map. Actual logs do not directly count accepted scans, so this explanation is explicitly an inference from matching configuration/logs and official code, not an observed accepted=1 counter. The new nondefault stationary_scan_accumulation_v1 profile changes only original distance/heading thresholds to0, preserving time .2s, map update .5s, use_scan_matching=false, filters and PID. Original SLAM accumulates genuine scans; no map padding/filling, start-cell clamping, TF change, ideal pose or alternative mapper is used.
+
+03 real planner has15resizes/three initial outside warnings, ending resize248x171. Saved goal-selection raw grid receipt2 is192x167, start[20,154]/goal[40,154], goal cost255; it is not the final entire map. Geometry being in bounds does not prove feasibility; original Smac/FollowPath actual results do. Repeated stationary scans can increase graph/storage/grid work. This bounded pass does not qualify long-term memory, throughput or an RTF/performance matrix, and the previous runs are not a single-factor performance comparison.
+
+## Tests and preservation
+
+Native focused12 pass includes actual compiled C++ production GOAL_GUARD cases for accepted-but-not-yet-canceling, replaced/late handle, UUID change, pending/preempt/inactive/deactivated states. Bridge focused57pass/23subtests and final goal audit focused92pass/35subtests use real validators with controlled data; source bytes, raw/JUnit and process proofs are retained. Earlier host stack/worker focused28pass/10explicit skips/18subtests are tied to their own byte snapshots. Later field-roster/mapping changes have separate actual03 and final full QA evidence, not retagged focused claims.
+
+The separate map comparison is read-only postprocessing of saved files.37 inputs are unchanged and no ROS/algorithm is run. The first comparison script's missing prior04 STACK_CONFIG error remains separate from its corrected successful comparison. Final Quality12 passes all four steps with unchanged source:2360passed/41explicit skips/1024subtests/6existing warnings; pytest142.76s, driver179.1218684s exit0/reaped. The424 program/test/provenance files remain unchanged, using the explicit original CPU4 WSL specification without fallback. New sealing records and post-QA progress-result prose are not claimed to have participated in this prior run. No unit, offline read-only comparison or build is called a new live match.
+
+PRESERVATION_MANIFEST.json binds literal and deterministic-gzip originals, stored bytes and SHA256. Its excluded list identifies native/model/private assets omitted. FILES.json covers exact package files except itself; verify_archives.py checks only hash/decompression/coverage, not execution qualification. Post-QA result prose, archive sealing and Git delivery are not additional execution tests. Failures, actual distinct sources, raw ROS, original Qt image, deadlines and cleanup remain separate.
+
+High-level navigate/hold/second-target policy is synthetic, targets use actual estimated map TF, and there is no PB match tree, new aim/NN/automatic fire, visible desktop, second-team full implementation, LAN or full3v3/7v7 acceptance. Decision v1 navigation/perception stay unavailable, general plugin registration and estimated feedback remain open. M0–M5 remain unsigned. No main merge, release, training or hardware test.

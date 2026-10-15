@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "-u",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_navigation_goal_client.py",
+    "--spec",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/goal-velocity-coop-actual-20261015-02/peer/EXTERNAL_SPEC.json",
+    "--spec-sha256",
+    "e8eb9fd0c979dd82be7ce594f0ebae03893d650e5189cc944b5cac984eedf53f",
+    "--run"
+  ],
+  "identity": {
+    "run_id": "6ea21e859dab42299b2f4dc670b36026",
+    "supervisor_pid": 606,
+    "boot_id": "41a31a91-1c8f-4cd3-9ae8-19e8c2e6baf5",
+    "pid": 607,
+    "pgid": 607,
+    "leader_start_ticks": 7242
+  }
+}

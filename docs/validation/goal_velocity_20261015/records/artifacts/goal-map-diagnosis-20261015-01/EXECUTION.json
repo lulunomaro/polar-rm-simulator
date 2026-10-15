@@ -1,0 +1,26 @@
+{
+  "schema": "polar.pb.saved-diagnosis-execution.v1",
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-I",
+    "-B",
+    "-S",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-map-diagnosis-20261015-01\\diagnose.py"
+  ],
+  "exit_code": 1,
+  "reaped": true,
+  "elapsed_s": 0.08539480000035837,
+  "script_sha256_before": "f28b0fb8b64b8fd972c21877d82bdbd6b2c5bd55dee833e2a4247b862b43a626",
+  "script_sha256_after": "f28b0fb8b64b8fd972c21877d82bdbd6b2c5bd55dee833e2a4247b862b43a626",
+  "license_files_before": {
+    "licenses/Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "licenses/NAV2_GOAL_CONTROLLER_NOTICE.md": "ae3b4563b4fac56c9252fc4ae9a721f5c169ee558e9389a00fa8243d811089f9"
+  },
+  "license_files_after": {
+    "licenses/Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "licenses/NAV2_GOAL_CONTROLLER_NOTICE.md": "ae3b4563b4fac56c9252fc4ae9a721f5c169ee558e9389a00fa8243d811089f9"
+  },
+  "ros_executed": false,
+  "algorithm_executed": false,
+  "scope": "read-only inspection of existing evidence; not a fresh ROS experiment"
+}

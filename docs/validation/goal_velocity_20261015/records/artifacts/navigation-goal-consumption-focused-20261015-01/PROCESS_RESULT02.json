@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed": 0.9936755999951856,
+  "before": {
+    "tools/audit_navigation_goals.py": "c317e9c9d32a03fd4211e837079825a249a6f0004867885e63740ebcec0e45b9",
+    "tests/test_navigation_goal_consumption.py": "0b21eac59f1816acb7ac610aa39246341fbea9d2d0619f5a558a214ded2eccd9",
+    "tools/qa_pb_navigation_sil.py": "5a1e09675c437f3d4bb4387238a32abe11287222e77cba0add82bcbb9268ef26",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc"
+  },
+  "after": {
+    "tools/audit_navigation_goals.py": "c317e9c9d32a03fd4211e837079825a249a6f0004867885e63740ebcec0e45b9",
+    "tests/test_navigation_goal_consumption.py": "0b21eac59f1816acb7ac610aa39246341fbea9d2d0619f5a558a214ded2eccd9",
+    "tools/qa_pb_navigation_sil.py": "5a1e09675c437f3d4bb4387238a32abe11287222e77cba0add82bcbb9268ef26",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc"
+  },
+  "source_unchanged": true,
+  "scope": "synthetic source/action/physical receipt fixture audit plus legacy units; no ROS/WSL/NN/physics"
+}

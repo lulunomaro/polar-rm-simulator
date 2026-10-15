@@ -1,0 +1,36 @@
+{
+  "schema": "polar.pb.external-goal-spec.v1",
+  "run_uuid": "6f4951f7fc1b27b06a4b258e78093b00",
+  "session_run_uuid": "2832c75dd1ca4ef694d939da9d076bf7",
+  "session_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/goal-velocity-coop-actual-20261015-02/session/SESSION_SPEC.json",
+    "sha256": "50920babaa7af606e367476bf79c5f9f39a17ee5990161d97861302470e3a9e7"
+  },
+  "namespace": "/polar_sil_2832c75dd1ca4ef694d939da9d076bf7/red_sentry",
+  "domain_id": 84,
+  "root_linux": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+  "out_linux": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/goal-velocity-coop-actual-20261015-02/peer",
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "source_sha256": {
+    "tools/qa_navigation_goal_client.py": "a1b579cafa886bf4f21af9f57b3258d90d33b53cb968b8e70abe29e1e30662ab",
+    "tools/qa_navigation_goal_supervisor.py": "a7a8c94a6fe005c7a5d092a0065daee6b89aecd9223c878c4f7598e8e88a051c",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+    "rm_match/integrations/nav2_goal_backend.py": "5da1b0c258f30b9afd747159f9856c927b8c7122e090d2ba9a29d70a521d149e",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "5a1e09675c437f3d4bb4387238a32abe11287222e77cba0add82bcbb9268ef26",
+    "tools/pb_navigation_stack.py": "70049d09877596168b414aabd1620b491836325234d0649113208a44b07fa98f",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "goal_offset_m": [
+    1.0,
+    0.0
+  ],
+  "max_wall_seconds": 60.0
+}
