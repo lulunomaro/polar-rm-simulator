@@ -243,3 +243,16 @@ finally:
 通用SDK可使用[control_batch_v1](CONTROL_BATCH_INTERFACE.md)，将已绑定navigation/aim的操作手授权与其余手动通道一次原子提交。
 必须完整覆盖motion/gimbal/fire，保留独立fire权限；它不改变组件观测、算法输出或原typed六身份，且不创建/延长控制窗口。
 仅明确能力版本1启用，原单条端点继续可用；任何成员无效整批拒绝，ACK逐项原期限/no-retry校验。
+
+## 异步导航目标生命周期（独立 goal-only 库）
+
+[NavigationGoalLifecycle v1](NAVIGATION_GOAL_LIFECYCLE.md) 已提供可跨队伍复用的目标来源、续授权、取消与终态管理。
+它接受原 decision-intent 六身份；origin_intent 与后续 latest_authorization 分开保存，旧目标完成不会贴上新观测身份。
+调用为单线程串行、poll 非阻塞；不同目标等待旧操作真实 terminal/stop 屏障，cancel ACK 单独不能放行。
+同几何终态去重，不自动重试；显式 hold/cancel 后可按新授权重开。
+
+可选 Nav2 后端显式选择 `navigate_to_pose` 或 `compute_path_then_follow`。前者目前仅单元测试；
+后者已在实际第04轮与原 Qt 手动步兵、真实 PB 传感器/LIO/导航栈联合验证取消后重开并完成，全部25检查通过。
+高层 goal/hold 策略为 synthetic 测试策略，不是 PB 比赛树；现 PB 速度回执尚无 goal UUID 关联。
+库不直接注册为通用速度插件，不输出 action、不合成定位/视觉反馈、不扩大权限；decision v1 的 navigation/perception 仍保持 unavailable。
+跨 Windows/Linux 使用 opaque 原期限，仅本地 future 资源观察计时；原宿主 SDK 150 ms、图像80 ms和所有控制仲裁仍独立检查。

@@ -1,0 +1,12 @@
+[
+  "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "-m",
+  "pytest",
+  "tests/test_navigation_goal_lifecycle.py",
+  "tests/test_decision_plugin.py",
+  "tests/test_decision_bridge_core.py",
+  "tests/test_navigation_plugin.py",
+  "tests/test_robotio_ros2_bridge.py",
+  "-q",
+  "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\navigation-goal-lifecycle-focused-20261015-01\\junit03.xml"
+]

@@ -1,0 +1,32 @@
+{
+  "schema": "polar.pb.external-goal-supervisor.v1",
+  "run_uuid": "30aad353cfef4c65133ee05435dd09d7",
+  "spec_sha256": "eec59e52455d78d39e50801975bceb7c4315cad4fcbb36dceee013d71d082d19",
+  "supervisor_pid": 613,
+  "start_ticks": 866,
+  "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+  "clean": false,
+  "errors": [
+    "RuntimeError:external_client_exited_before_ready",
+    "client_cleanup_missing:ValueError"
+  ],
+  "group": {
+    "run_id": "6b146c4511c24fc0b5187c730ecbbbe2",
+    "supervisor_pid": 613,
+    "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+    "pid": 614,
+    "pgid": 614,
+    "leader_start_ticks": 931,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": 1,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.005053161000001083
+  },
+  "client_cleanup": null,
+  "returncode": 1
+}

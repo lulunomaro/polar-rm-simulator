@@ -1,0 +1,30 @@
+{
+  "schema": "polar.pb.external-goal-ready.v1",
+  "run_uuid": "cda8d7c4d5c1ea0949293b2d006dd458",
+  "session_run_uuid": "c70713b3b1414e188307516cc422717b",
+  "namespace": "/polar_sil_c70713b3b1414e188307516cc422717b/red_sentry",
+  "domain_id": 84,
+  "state": "OBSERVING_NO_INPUT_PUBLISHED",
+  "pid": 616,
+  "start_ticks": 952,
+  "boot_id": "669d5734-579b-4e3b-9afb-11b1eddfef30",
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "source_sha256": {
+    "tools/qa_navigation_goal_client.py": "a1b579cafa886bf4f21af9f57b3258d90d33b53cb968b8e70abe29e1e30662ab",
+    "tools/qa_navigation_goal_supervisor.py": "a7a8c94a6fe005c7a5d092a0065daee6b89aecd9223c878c4f7598e8e88a051c",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+    "rm_match/integrations/nav2_goal_backend.py": "ccbfbb4f5834aa9bc846c6f551a6fd6f8f07fbdae771248f57acc86243b781ef",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "spec_sha256": "cf630ae6fc100e9a8b865ee5cb3e501de9844e8e5869f7ef357c5ea9a3090f5c",
+  "sensor_published": false,
+  "goal_sent": false,
+  "lifecycle_changed": false
+}

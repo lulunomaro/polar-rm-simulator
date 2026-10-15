@@ -1,0 +1,41 @@
+{
+  "schema": "polar.pb.external-goal-supervisor.v1",
+  "run_uuid": "56857cb49e83d59024dfe6f92e6d239c",
+  "spec_sha256": "11a94ae46e6f6c914947bd37633d485e1889001dfdf2b2bc15bc42a7a04484f9",
+  "supervisor_pid": 600,
+  "start_ticks": 9021,
+  "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+  "clean": false,
+  "errors": [
+    "external_client_exit_nonzero:2"
+  ],
+  "group": {
+    "run_id": "c49a3dba85954b809c864e5fedf41ec8",
+    "supervisor_pid": 600,
+    "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+    "pid": 601,
+    "pgid": 601,
+    "leader_start_ticks": 9080,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": 2,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.2218861009999955
+  },
+  "client_cleanup": {
+    "schema": "polar.pb.external-goal-cleanup.v1",
+    "run_uuid": "56857cb49e83d59024dfe6f92e6d239c",
+    "pid": 601,
+    "start_ticks": 9080,
+    "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+    "clean": true,
+    "errors": [],
+    "observer_thread_alive": false,
+    "session_node_processes_owned": false
+  },
+  "returncode": 0
+}

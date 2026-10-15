@@ -1,0 +1,31 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed": 2.365415499996743,
+  "before": {
+    "tests/test_navigation_goal_lifecycle.py": "073db6901fe02a8930d4b96d6f9d2fb392f75575dab5c7cbef44abb308843727",
+    "tests/test_decision_plugin.py": "c8a8fc5faf6482731d3c0fe9c24cabdd30b4e0a2bd69860d3e592ea4240f141a",
+    "tests/test_decision_bridge_core.py": "58d24da6f29f7873399dca48b9fea7a969fcb94ad27e9aa7110febb257a0c1ca",
+    "tests/test_navigation_plugin.py": "f2d72fa15ed700bf44555be0dbf11acfb4258636dd6717e8e8c9c242be5cee19",
+    "tests/test_robotio_ros2_bridge.py": "d48b3fc1322744d70012ec0f44589e7e6cf5566a5b39e6b221f21b51429c3dd9",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "650862b4056c75b1e7c946255169eb0b67720f0802aa74455dcf415b5d5b58df",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/deployment/decision_plugin.py": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+    "rm_match/deployment/navigation_plugin.py": "04aabeaca2f84f9c64719786501fec94c81154a61b4399ba8190f47e095e18fb",
+    "rm_match/integrations/robotio_ros2_bridge.py": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790"
+  },
+  "after": {
+    "tests/test_navigation_goal_lifecycle.py": "073db6901fe02a8930d4b96d6f9d2fb392f75575dab5c7cbef44abb308843727",
+    "tests/test_decision_plugin.py": "c8a8fc5faf6482731d3c0fe9c24cabdd30b4e0a2bd69860d3e592ea4240f141a",
+    "tests/test_decision_bridge_core.py": "58d24da6f29f7873399dca48b9fea7a969fcb94ad27e9aa7110febb257a0c1ca",
+    "tests/test_navigation_plugin.py": "f2d72fa15ed700bf44555be0dbf11acfb4258636dd6717e8e8c9c242be5cee19",
+    "tests/test_robotio_ros2_bridge.py": "d48b3fc1322744d70012ec0f44589e7e6cf5566a5b39e6b221f21b51429c3dd9",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "650862b4056c75b1e7c946255169eb0b67720f0802aa74455dcf415b5d5b58df",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/deployment/decision_plugin.py": "a85fcb23d52d906c84bfcba65617dae51441e0db44bbe0cf858eb6d98aaf13ac",
+    "rm_match/deployment/navigation_plugin.py": "04aabeaca2f84f9c64719786501fec94c81154a61b4399ba8190f47e095e18fb",
+    "rm_match/integrations/robotio_ros2_bridge.py": "60e1fb4461361db8ef5a206dd3eae2fb0e436d26e54cf0dad66f0237a8266790"
+  },
+  "source_unchanged": true,
+  "scope": "controlled backend/futures plus original JSONL/ROS envelope units, no actual ROS/WSL/sensors/physics"
+}

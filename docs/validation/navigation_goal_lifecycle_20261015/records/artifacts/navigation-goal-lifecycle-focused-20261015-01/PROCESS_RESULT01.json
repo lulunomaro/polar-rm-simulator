@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed": 0.797517599989078,
+  "before": {
+    "tests/test_navigation_goal_lifecycle.py": "02d5e58c4f851019daba9cc4d594f405e0daffc8b1cced0b788c18a99ee4b524",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "5e29e2df4f37a14b13d4a83f8f847cd70598291da4bbbcf39b8624bfcb498412",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3"
+  },
+  "after": {
+    "tests/test_navigation_goal_lifecycle.py": "02d5e58c4f851019daba9cc4d594f405e0daffc8b1cced0b788c18a99ee4b524",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "5e29e2df4f37a14b13d4a83f8f847cd70598291da4bbbcf39b8624bfcb498412",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3"
+  },
+  "source_unchanged": true
+}

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_navigation_goal_client.py", line 293, in main
+    if current['fault']:raise RuntimeError('lifecycle_fault:'+current['fault'])
+RuntimeError: lifecycle_fault:backend_fault

@@ -1,0 +1,38 @@
+{
+  "schema": "polar.sim.navigation-goal-scenario.v1",
+  "completed": false,
+  "lifecycle": {
+    "schema": "polar.sim.navigation-goal-lifecycle.v1",
+    "current_source": null,
+    "state": "stopped",
+    "active": null,
+    "pending_intent": null,
+    "fault": null,
+    "stop_requested": true,
+    "clean": true,
+    "goals": [],
+    "deadline_mode": "opaque",
+    "actuator_authority": "none",
+    "localization_feedback": "unavailable"
+  },
+  "snapshots": [
+    {
+      "schema": "polar.sim.navigation-goal-lifecycle.v1",
+      "current_source": null,
+      "state": "idle",
+      "active": null,
+      "pending_intent": null,
+      "fault": null,
+      "stop_requested": false,
+      "clean": true,
+      "goals": [],
+      "deadline_mode": "opaque",
+      "actuator_authority": "none",
+      "localization_feedback": "unavailable"
+    }
+  ],
+  "cancel_ack_is_terminal": false,
+  "sensor_published": false,
+  "cmd_vel_published": false,
+  "source_clock": "original_Windows_header_opaque_in_Linux"
+}

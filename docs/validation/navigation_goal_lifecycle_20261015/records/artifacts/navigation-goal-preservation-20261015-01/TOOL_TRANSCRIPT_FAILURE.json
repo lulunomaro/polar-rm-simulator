@@ -1,0 +1,9 @@
+{
+  "scope": "integrity helper, no algorithm or Git mutation",
+  "capture": "Copiable Codex exec tool result, not original stdout file",
+  "reported_exit_code": 1,
+  "script_sha256": "9170a0a9b5b1a519e0d212c10cca883bc73e2bb1f38a52e2ab42dbd82f959b1b",
+  "error": "AssertionError: artifacts/nav2-goal-backend-focused-20261015-01/stderr.bin",
+  "reason": "Copied whitelist allowed only the previous preflight .bin UTF-8 logs; the new focused stdout/stderr use the same extension",
+  "immutable_package_created": false
+}

@@ -1,0 +1,7 @@
+{
+  "capture": "Codex tool result, not original stdout file",
+  "reported_exit_code": 1,
+  "script_sha256": "cbbf9da54e4ee022a504844b49404ca8f9bdb694e7b503f786523bc5519d1c94",
+  "error": "AssertionError: artifacts/nav2-goal-backend-focused-20261015-03/stderr.bin",
+  "immutable_package_created": false
+}

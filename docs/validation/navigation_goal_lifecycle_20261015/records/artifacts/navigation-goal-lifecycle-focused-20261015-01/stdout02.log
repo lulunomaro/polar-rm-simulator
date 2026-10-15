@@ -1,0 +1,48 @@
+....................................FF                                   [100%]
+================================== FAILURES ===================================
+____ test_backend_identity_strings_require_plain_json_scalar_types[schema] ____
+
+field = 'schema'
+
+    @pytest.mark.parametrize("field", ["schema", "operation_id"])
+    def test_backend_identity_strings_require_plain_json_scalar_types(field):
+        class NonJsonString(str):
+            pass
+        lifecycle, backend, _ = engine()
+        lifecycle.submit(intent())
+        operation = backend.started[0]
+        operation.reply = backend.status(operation, "sending")
+        operation.reply[field] = NonJsonString(operation.reply[field])
+        snapshot = lifecycle.poll()
+>       assert snapshot["state"] == "fault" and not snapshot["clean"]
+E       AssertionError: assert ('sending' == 'fault'
+E         
+E         - fault
+E         + sending)
+
+tests\test_navigation_goal_lifecycle.py:467: AssertionError
+_ test_backend_identity_strings_require_plain_json_scalar_types[operation_id] _
+
+field = 'operation_id'
+
+    @pytest.mark.parametrize("field", ["schema", "operation_id"])
+    def test_backend_identity_strings_require_plain_json_scalar_types(field):
+        class NonJsonString(str):
+            pass
+        lifecycle, backend, _ = engine()
+        lifecycle.submit(intent())
+        operation = backend.started[0]
+        operation.reply = backend.status(operation, "sending")
+        operation.reply[field] = NonJsonString(operation.reply[field])
+        snapshot = lifecycle.poll()
+>       assert snapshot["state"] == "fault" and not snapshot["clean"]
+E       AssertionError: assert ('sending' == 'fault'
+E         
+E         - fault
+E         + sending)
+
+tests\test_navigation_goal_lifecycle.py:467: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_navigation_goal_lifecycle.py::test_backend_identity_strings_require_plain_json_scalar_types[schema]
+FAILED tests/test_navigation_goal_lifecycle.py::test_backend_identity_strings_require_plain_json_scalar_types[operation_id]
+2 failed, 36 passed in 0.40s

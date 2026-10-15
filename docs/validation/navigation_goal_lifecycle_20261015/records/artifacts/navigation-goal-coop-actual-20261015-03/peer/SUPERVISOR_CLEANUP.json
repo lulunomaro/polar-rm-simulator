@@ -1,0 +1,46 @@
+{
+  "schema": "polar.pb.external-goal-supervisor.v1",
+  "run_uuid": "cda8d7c4d5c1ea0949293b2d006dd458",
+  "spec_sha256": "cf630ae6fc100e9a8b865ee5cb3e501de9844e8e5869f7ef357c5ea9a3090f5c",
+  "supervisor_pid": 615,
+  "start_ticks": 887,
+  "boot_id": "669d5734-579b-4e3b-9afb-11b1eddfef30",
+  "clean": false,
+  "errors": [
+    "external_client_exit_nonzero:2",
+    "external_client_cleanup_unclean"
+  ],
+  "group": {
+    "run_id": "1bec240d79a142978d0a9c1f2ab9e116",
+    "supervisor_pid": 615,
+    "boot_id": "669d5734-579b-4e3b-9afb-11b1eddfef30",
+    "pid": 616,
+    "pgid": 616,
+    "leader_start_ticks": 952,
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "remaining_members": [],
+    "errors": [],
+    "killed": false,
+    "returncode": 2,
+    "reaped_descendants": [],
+    "cleanup_elapsed_s": 0.004879879000000642
+  },
+  "client_cleanup": {
+    "schema": "polar.pb.external-goal-cleanup.v1",
+    "run_uuid": "cda8d7c4d5c1ea0949293b2d006dd458",
+    "pid": 616,
+    "start_ticks": 952,
+    "boot_id": "669d5734-579b-4e3b-9afb-11b1eddfef30",
+    "clean": false,
+    "errors": [
+      "RuntimeError:lifecycle_fault:backend_fault",
+      "goal_stop_unproved",
+      "backend_destroy:ContractError"
+    ],
+    "observer_thread_alive": false,
+    "session_node_processes_owned": false
+  },
+  "returncode": 2
+}

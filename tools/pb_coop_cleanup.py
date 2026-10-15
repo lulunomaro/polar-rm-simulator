@@ -124,12 +124,14 @@ class PBCoopCleanup:
             or deadline>self.started+HOST_BUDGET_S):
             raise ValueError('cleanup_deadline_must_not_extend_host_1_5s')
         self.deadline=deadline;self.jobs={};self.errors=[];self._result=None
-        selected=(('navigation',navigation,WslNavigationSession),('external_goal',external_goal,ExternalGoalSession))
+        from tools.navigation_goal_session import NavigationGoalSession
+        selected=(('navigation',navigation,(WslNavigationSession,)),
+                  ('external_goal',external_goal,(ExternalGoalSession,NavigationGoalSession)))
         # Signal every accepted resource before starting ANY potentially blocking
         # close. Foreign objects are never invoked, while valid owners still stop.
         for kind,owner,expected_type in selected:
             if owner is None:continue
-            if type(owner) is not expected_type:self.errors.append(kind+'_unreviewed_owner');continue
+            if type(owner) not in expected_type:self.errors.append(kind+'_unreviewed_owner');continue
             job=dict(owner=owner,done=threading.Event(),thread=None,exception_type=None,completed_host_wall=None)
             self.jobs[kind]=job
             try:_stop_owner(kind,owner)

@@ -58,17 +58,18 @@ def build_decision_observation(navigation_observation):
         navigation=copy.deepcopy(unavailable), perception=copy.deepcopy(unavailable)))
 
 
-def validate_decision_intent(value, observation):
-    observation = validate_decision_observation(observation)
+def _decision_intent_header(value):
     value = copy.deepcopy(value)
     exact(value, ('schema', *IDENTITY, 'kind', 'mode', 'command'), 'decision_intent')
     identity(value)
     if (type(value['schema']) is not str or value['schema'] != DECISION_INTENT_SCHEMA or
             type(value['kind']) is not str or value['kind'] != 'decision' or
-            type(value['mode']) is not str or value['mode'] != 'navigation_intent' or
-            any(type(value[name]) is not type(observation[name]) or
-                value[name] != observation[name] for name in IDENTITY)):
+            type(value['mode']) is not str or value['mode'] != 'navigation_intent'):
         raise ContractError('decision_intent_identity_or_mode')
+    return value
+
+
+def _decision_intent_command(value):
     command = value['command']
     if type(command) is not dict or type(command.get('behavior')) is not str:
         raise ContractError('invalid_decision_command')
@@ -89,6 +90,24 @@ def validate_decision_intent(value, observation):
     if '\0' in command['reason']:
         raise ContractError('invalid_decision_reason')
     return value
+
+
+def validate_decision_intent_shape(value):
+    """Check a goal-only envelope; this does not prove a sensor or authority.
+
+    Goal lifecycle consumers need no fabricated own/referee observation. The
+    normal decision/navigation path still compares against the original input.
+    """
+    return _decision_intent_command(_decision_intent_header(value))
+
+
+def validate_decision_intent(value, observation):
+    observation = validate_decision_observation(observation)
+    value = _decision_intent_header(value)
+    if any(type(value[name]) is not type(observation[name]) or
+           value[name] != observation[name] for name in IDENTITY):
+        raise ContractError('decision_intent_identity_or_mode')
+    return _decision_intent_command(value)
 
 
 def decision_intent_for(observation, command):

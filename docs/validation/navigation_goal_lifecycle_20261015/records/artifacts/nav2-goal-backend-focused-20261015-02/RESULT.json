@@ -1,0 +1,27 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_nav2_goal_backend.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\nav2-goal-backend-focused-20261015-02\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 0.5696687999879941,
+  "source_before": {
+    "rm_match/integrations/nav2_goal_backend.py": "ccbfbb4f5834aa9bc846c6f551a6fd6f8f07fbdae771248f57acc86243b781ef",
+    "tests/test_nav2_goal_backend.py": "2bb504ea531e229bc732b51b0fc41ea401012928ff74257be6546a8642af1695"
+  },
+  "source_after": {
+    "rm_match/integrations/nav2_goal_backend.py": "ccbfbb4f5834aa9bc846c6f551a6fd6f8f07fbdae771248f57acc86243b781ef",
+    "tests/test_nav2_goal_backend.py": "2bb504ea531e229bc732b51b0fc41ea401012928ff74257be6546a8642af1695"
+  },
+  "source_unchanged": true,
+  "scope": "fake_actionclient_future_interleavings_no_ROS_GL_algorithm",
+  "started_ros": false
+}

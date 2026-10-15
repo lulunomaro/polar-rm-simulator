@@ -1,0 +1,134 @@
+{
+  "qt_job": {
+    "clean": true,
+    "reaped": true,
+    "group_empty": true,
+    "active_processes": 0,
+    "returncode": 0,
+    "errors": [],
+    "pid": 24972,
+    "ownership": "suspended_before_execute_job_kill_on_close"
+  },
+  "qt_finished": {
+    "event": "qt_finished",
+    "clean": true,
+    "errors": [],
+    "exit_code": 0
+  },
+  "runtime": {
+    "clean": true,
+    "unfinished_slots": [],
+    "lifecycle_errors": [],
+    "join_budget_s": 1.5,
+    "join_elapsed_s": 0.5527945999929216
+  },
+  "reader_stopped": true,
+  "http_stopped": true,
+  "http_workers_idle": true,
+  "camera_clean": true,
+  "external_owner": {
+    "schema": "polar.pb.coop-cleanup.v1",
+    "clean": true,
+    "errors": [],
+    "owners": {
+      "external_goal": {
+        "clean": true,
+        "errors": [],
+        "owner_closed": true,
+        "owner_failure_present": false,
+        "stop_write_failure_present": false,
+        "stop_requested": true,
+        "owner_threads": [
+          {
+            "name": "external-stop-writer",
+            "alive": false
+          },
+          {
+            "name": "external-ready-reader",
+            "alive": false
+          }
+        ],
+        "host_launcher_pid": 20532,
+        "host_launcher_returncode": 0,
+        "not_spawned": false,
+        "host_launcher_reaped": true,
+        "host_pipes_closed": {
+          "stdin": true,
+          "stdout": true
+        },
+        "host_stderr_closed": true,
+        "linux_proof_scope": "original_owner_validated_linux_cleanup",
+        "linux_cleanup": {
+          "schema": "polar.pb.external-goal-supervisor.v1",
+          "run_uuid": "d9f756c110888ed095836343d9ec466a",
+          "spec_sha256": "657cb23b0f96b45ea82f35a6ac7d1812790de056195d0b398c20aebbab0b2b9d",
+          "supervisor_pid": 607,
+          "start_ticks": 889,
+          "boot_id": "1ce49a22-8a90-4d20-878c-fcf924a87a4b",
+          "clean": true,
+          "errors": [],
+          "group": {
+            "run_id": "7e6d21f1568a4b49aba3bebba5c5c912",
+            "supervisor_pid": 607,
+            "boot_id": "1ce49a22-8a90-4d20-878c-fcf924a87a4b",
+            "pid": 608,
+            "pgid": 608,
+            "leader_start_ticks": 949,
+            "clean": true,
+            "reaped": true,
+            "group_empty": true,
+            "remaining_members": [],
+            "errors": [],
+            "killed": false,
+            "returncode": 0,
+            "reaped_descendants": [],
+            "cleanup_elapsed_s": 0.2809902280000003
+          },
+          "client_cleanup": {
+            "schema": "polar.pb.external-goal-cleanup.v1",
+            "run_uuid": "d9f756c110888ed095836343d9ec466a",
+            "pid": 608,
+            "start_ticks": 949,
+            "boot_id": "1ce49a22-8a90-4d20-878c-fcf924a87a4b",
+            "clean": true,
+            "errors": [],
+            "observer_thread_alive": false,
+            "session_node_processes_owned": false
+          },
+          "returncode": 0
+        },
+        "close_worker": {
+          "name": "pb-coop-close-external_goal",
+          "alive": false,
+          "done": true,
+          "exception_type": null,
+          "completed_host_wall": 91178.7803698
+        }
+      }
+    },
+    "started_host_wall": 91178.3359789,
+    "deadline_host_wall": 91179.8348003,
+    "finished_host_wall": 91178.7804869,
+    "elapsed_host_s": 0.4445080000004964,
+    "host_budget_s": 1.5,
+    "clock": "host_local_perf_counter",
+    "linux_internal_budget_s": 1.3,
+    "no_force_kill": true,
+    "no_budget_retry": true
+  },
+  "navigation_owner": {
+    "schema": "polar.pb.wsl-session-cleanup.v1",
+    "run_uuid": "a2e4063fc64d449a9884fd0d7c0c0f7d",
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "clean": true,
+    "owned_groups": [],
+    "errors": [],
+    "supervisor_pid": 327,
+    "start_ticks": 256,
+    "boot_id": "1ce49a22-8a90-4d20-878c-fcf924a87a4b"
+  },
+  "nav_sdk_stopped": true,
+  "external_observer_stopped": true,
+  "shared_host_deadline": 91179.8348003,
+  "finished_within_shared_host_budget": true
+}

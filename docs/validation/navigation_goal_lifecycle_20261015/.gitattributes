@@ -1,0 +1,5 @@
+# Literal evidence/source bytes; no checkout conversion.
+* -text -whitespace
+*.gz binary
+*.png binary
+*.bin binary

@@ -1,0 +1,17 @@
+{
+  "tests/test_navigation_goal_lifecycle.py": {
+    "observed_sha256": "073db6901fe02a8930d4b96d6f9d2fb392f75575dab5c7cbef44abb308843727",
+    "current_sha256": "073db6901fe02a8930d4b96d6f9d2fb392f75575dab5c7cbef44abb308843727",
+    "literal_snapshot_saved": true
+  },
+  "rm_match/integrations/navigation_goal_lifecycle.py": {
+    "observed_sha256": "5e29e2df4f37a14b13d4a83f8f847cd70598291da4bbbcf39b8624bfcb498412",
+    "current_sha256": "650862b4056c75b1e7c946255169eb0b67720f0802aa74455dcf415b5d5b58df",
+    "literal_snapshot_saved": false
+  },
+  "rm_match/platform_v2/decision_contracts.py": {
+    "observed_sha256": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "current_sha256": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "literal_snapshot_saved": true
+  }
+}

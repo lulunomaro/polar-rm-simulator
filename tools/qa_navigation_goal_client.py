@@ -1,0 +1,369 @@
+#!/usr/bin/env python3
+"""Independent read-only production-Gate observer and Nav2 action client."""
+from __future__ import annotations
+import argparse
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import re
+import signal
+import sys
+import threading
+import time
+import traceback
+
+ROOT=Path(__file__).resolve().parents[1]
+SOURCE_FILES=(
+    'tools/qa_navigation_goal_client.py',
+    'tools/qa_navigation_goal_supervisor.py',
+    'rm_match/integrations/navigation_goal_lifecycle.py',
+    'rm_match/integrations/nav2_goal_backend.py',
+    'rm_match/platform_v2/decision_contracts.py',
+    'tools/qa_pb_external_navigation_goal.py',
+    'tools/qa_pb_external_goal_supervisor.py',
+    'rm_match/integrations/owned_linux_group.py',
+    'tools/qa_pb_navigation_sil.py',
+    'tools/pb_navigation_stack.py',
+    'rm_match/platform_v2/contracts.py',
+    'rm_match/platform_v2/navigation_contracts.py',
+)
+SCHEMA='polar.pb.external-goal-spec.v1'
+MAX_SPEC=1024*1024
+MAX_COSTMAP_CELLS=1024*1024
+
+
+def no_alias(path):
+    path=Path(path)
+    if (not path.is_absolute() or '..' in path.parts or path!=path.resolve()
+        or any(p.is_symlink() for p in (path,*path.parents))):
+        raise ValueError('external_goal_absolute_unaliased_path')
+    return path
+
+
+def snapshot(path):
+    path=no_alias(path)
+    with path.open('rb') as stream:raw=stream.read(MAX_SPEC+1)
+    if len(raw)>MAX_SPEC:raise ValueError('external_goal_json_oversized')
+    def pairs(items):
+        value={}
+        for k,v in items:
+            if k in value:raise ValueError('external_goal_duplicate_key')
+            value[k]=v
+        return value
+    def constant(_):raise ValueError('external_goal_nonfinite')
+    def number(text):
+        value=float(text)
+        if not math.isfinite(value):raise ValueError('external_goal_nonfinite')
+        return value
+    return json.loads(raw,object_pairs_hook=pairs,parse_constant=constant,parse_float=number),hashlib.sha256(raw).hexdigest()
+
+
+def checked_ref(ref):
+    if type(ref) is not dict or set(ref)!={'path','sha256'} or type(ref['path']) is not str or type(ref['sha256']) is not str or not re.fullmatch('[a-f0-9]{64}',ref['sha256']):
+        raise ValueError('external_goal_reference_fields')
+    value,digest=snapshot(ref['path'])
+    if digest!=ref['sha256']:raise ValueError('external_goal_reference_changed')
+    return value
+
+
+def load_spec(path,expected_sha):
+    value,digest=snapshot(path)
+    if digest!=expected_sha:raise ValueError('external_goal_spec_changed')
+    fields={'schema','run_uuid','session_run_uuid','session_ref','namespace','domain_id','root_linux','out_linux',
+            'environment_ref','source_sha256','goal_offset_m','max_wall_seconds'}
+    if type(value) is not dict or set(value)!=fields or value['schema']!=SCHEMA:raise ValueError('external_goal_spec_fields')
+    for name in ('run_uuid','session_run_uuid'):
+        if type(value[name]) is not str or not re.fullmatch('[a-f0-9]{32}',value[name]):raise ValueError('external_goal_uuid')
+    if value['namespace']!='/polar_sil_'+value['session_run_uuid']+'/red_sentry':raise ValueError('external_goal_namespace')
+    if type(value['domain_id']) is not int or value['domain_id']!=84:raise ValueError('external_goal_domain84')
+    if type(value['root_linux']) is not str or no_alias(value['root_linux']).resolve()!=ROOT:raise ValueError('external_goal_repository')
+    out=no_alias(value['out_linux'])
+    if not out.is_dir() or not out.resolve().is_relative_to((ROOT/'artifacts').resolve()) or no_alias(path).parent.resolve()!=out.resolve():
+        raise ValueError('external_goal_owned_output')
+    if type(value['max_wall_seconds']) not in (int,float) or not math.isfinite(value['max_wall_seconds']) or not 5<=value['max_wall_seconds']<=60:
+        raise ValueError('external_goal_wall_bound')
+    if type(value['goal_offset_m']) is not list or len(value['goal_offset_m'])!=2 or any(type(v) is not float for v in value['goal_offset_m']) or value['goal_offset_m']!=[1.,0.]:
+        raise ValueError('external_goal_fixed_offset')
+    sources=value['source_sha256']
+    if type(sources) is not dict or set(sources)!=set(SOURCE_FILES):raise ValueError('external_goal_source_roster')
+    for name,expected in sources.items():
+        source=no_alias(ROOT/name)
+        if type(expected) is not str or hashlib.sha256(source.read_bytes()).hexdigest()!=expected:
+            raise ValueError('external_goal_source_changed:'+name)
+    session=checked_ref(value['session_ref'])
+    if (type(session) is not dict or session.get('schema')!='polar.pb.wsl-session-spec.v1' or session.get('run_uuid')!=value['session_run_uuid']
+        or session.get('namespace')!=value['namespace'] or session.get('relative_test_goal') is not False
+        or session.get('expected_generation')!={'robot_id':'red_sentry','episode':0,'binding_epoch':1}
+        or session.get('environment_ref')!=value['environment_ref']):
+        raise ValueError('external_goal_production_session_required')
+    generation=session['expected_generation']
+    if any(type(generation[k]) is not type(v) for k,v in dict(robot_id='red_sentry',episode=0,binding_epoch=1).items()):
+        raise ValueError('external_goal_session_generation_type')
+    checked_ref(value['environment_ref'])
+    return value,out
+
+
+def bootstrap(spec,environment,argv):
+    python=environment.get('venv_python');settings=environment.get('process_environment')
+    if type(python) is not str or not Path(python).is_absolute() or not Path(python).is_file():raise ValueError('external_goal_verified_python')
+    if type(settings) is not dict or any(type(k) is not str or type(v) is not str for k,v in settings.items()):raise ValueError('external_goal_process_environment')
+    if 'PYTHONPATH' in settings or 'PYTHONHOME' in settings:raise ValueError('external_goal_python_environment_scrub')
+    marker=spec['run_uuid']+':'+spec['environment_ref']['sha256']
+    if (Path(sys.executable).absolute()!=Path(python).absolute() or os.environ.get('POLAR_EXTERNAL_GOAL_ENV')!=marker
+        or any(os.environ.get(k)!=v for k,v in settings.items()) or 'PYTHONPATH' in os.environ or 'PYTHONHOME' in os.environ):
+        env=dict(os.environ);env.update(settings);env.pop('PYTHONPATH',None);env.pop('PYTHONHOME',None)
+        env['POLAR_EXTERNAL_GOAL_ENV']=marker
+        os.execve(python,[python,'-u',str(Path(__file__).resolve()),*argv],env)
+
+
+def process_identity():
+    fields=Path('/proc/self/stat').read_text().rsplit(')',1)[1].split()
+    return dict(pid=os.getpid(),start_ticks=int(fields[19]),boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip())
+
+
+def publish_json(path,value):
+    """Publish one complete fresh metadata record; readers never see partial JSON."""
+    path=no_alias(path);temporary=no_alias(path.with_name(path.name+'.tmp'))
+    if path.exists() or temporary.exists():raise ValueError('external_goal_metadata_reuse')
+    raw=(json.dumps(value,indent=2,allow_nan=False)+'\n').encode('utf8')
+    if len(raw)>MAX_SPEC:raise ValueError('external_goal_metadata_oversized')
+    with temporary.open('xb') as stream:stream.write(raw)
+    no_alias(path)
+    if path.exists():raise ValueError('external_goal_metadata_reuse')
+    os.replace(temporary,path)
+
+
+def cleanup_record(run_uuid,ident,errors,observer_thread_alive):
+    if type(observer_thread_alive) is not bool:raise ValueError('external_goal_thread_status_type')
+    return dict(schema='polar.pb.external-goal-cleanup.v1',run_uuid=run_uuid,**ident,
+        clean=not errors and not observer_thread_alive,errors=errors,
+        observer_thread_alive=observer_thread_alive,session_node_processes_owned=False)
+
+
+def goal_from_estimate(message,goal_factory):
+    from tools.qa_pb_navigation_sil import recorded_transform,recorded_pose
+    source=recorded_transform(message)
+    goal=goal_factory();goal.header.frame_id='map';goal.header.stamp=message.header.stamp
+    goal.pose.position.x=message.transform.translation.x+1.;goal.pose.position.y=message.transform.translation.y
+    goal.pose.orientation=message.transform.rotation
+    return goal,dict(source_kind='actual_tf_buffer_lookup',transform=source,goal=recorded_pose(goal),relative_offset_m=[1.,0.])
+
+
+def gate_active(states):
+    return all(type(states.get(name)) is int and states[name]==3 for name in ('controller_server','planner_server'))
+
+
+def _append_event(rows,lock,row):
+    if len(json.dumps(row,allow_nan=False).encode())>16384:raise ValueError('external_goal_event_oversized')
+    with lock:
+        if len(rows)>=128:raise ValueError('external_goal_events_full')
+        rows.append(row)
+
+
+def costmap_snapshot(message,receipt_id,receive_wall,topic):
+    """Copy one mutex-published raw Costmap; retain original geometry and stamps."""
+    from array import array
+    from tools.qa_pb_navigation_sil import _ros_header,_ros_stamp,_ros_vector
+    if type(receipt_id) is not int or receipt_id<1 or type(receive_wall) not in (int,float) or not math.isfinite(receive_wall):
+        raise ValueError('external_costmap_receipt')
+    header=_ros_header(message.header);meta=message.metadata
+    if header['frame_id']!='map':raise ValueError('external_costmap_frame')
+    width=meta.size_x;height=meta.size_y;resolution=meta.resolution
+    if (type(width) is not int or type(height) is not int or not 1<=width<=4096 or not 1<=height<=4096
+        or width*height>MAX_COSTMAP_CELLS or type(resolution) not in (int,float)
+        or not math.isfinite(resolution) or not 0<resolution<=10):raise ValueError('external_costmap_geometry')
+    origin=dict(position=_ros_vector(meta.origin.position,'xyz'),orientation=_ros_vector(meta.origin.orientation,'xyzw'))
+    if origin['orientation']!={'x':0.,'y':0.,'z':0.,'w':1.}:raise ValueError('external_costmap_axis_alignment')
+    if type(meta.layer) is not str or len(meta.layer)>128:raise ValueError('external_costmap_layer')
+    value=message.data
+    if len(value)!=width*height:raise ValueError('external_costmap_payload_length')
+    if type(value) in (bytes,bytearray):raw=bytes(value)
+    elif type(value) is array and value.typecode=='B':raw=value.tobytes()
+    elif type(value) in (list,tuple):
+        if any(type(v) is not int or not 0<=v<=255 for v in value):raise ValueError('external_costmap_payload_uint8')
+        raw=bytes(value)
+    elif type(value).__module__=='numpy':
+        import numpy as np
+        if type(value) is not np.ndarray or value.dtype!=np.dtype('uint8') or value.shape!=(width*height,):
+            raise ValueError('external_costmap_payload_uint8')
+        raw=value.tobytes()
+    else:raise ValueError('external_costmap_payload_uint8')
+    return dict(schema='polar.pb.actual-global-costmap.v1',receipt_id=receipt_id,
+        source='actual_raw_costmap_subscription',topic=topic,message_type='nav2_msgs/msg/Costmap',header=header,
+        metadata=dict(size_x=width,size_y=height,resolution=resolution,origin=origin,layer=meta.layer,
+            map_load_time=_ros_stamp(meta.map_load_time),update_time=_ros_stamp(meta.update_time)),
+        data_bytes=len(raw),data_sha256=hashlib.sha256(raw).hexdigest(),receive_wall=receive_wall,
+        receive_clock='linux_local_perf_counter'),raw
+
+
+def geometry_decision(grid,raw,saved_goal):
+    """Only locate points in the published half-open grid; Smac decides feasibility."""
+    meta=grid['metadata'];position=meta['origin']['position'];resolution=meta['resolution']
+    start=saved_goal['transform']['transform']['translation'];goal=saved_goal['goal']['pose']['position']
+    def cell(point):
+        x=(point['x']-position['x'])/resolution;y=(point['y']-position['y'])/resolution
+        inside=0<=x<meta['size_x'] and 0<=y<meta['size_y']
+        indices=[math.floor(x),math.floor(y)]
+        return dict(in_bounds=inside,index_xy=indices,
+            cost=raw[indices[1]*meta['size_x']+indices[0]] if inside else None)
+    first=cell(start);last=cell(goal)
+    return dict(schema='polar.pb.global-costmap-readiness.v1',grid_receipt_id=grid['receipt_id'],
+        grid_data_sha256=grid['data_sha256'],grid_header=grid['header'],
+        actual_tf=saved_goal['transform'],actual_goal=saved_goal['goal'],start_cell=first,goal_cell=last,
+        ready=first['in_bounds'] and last['in_bounds'],predicate='same_published_map_geometry_half_open_bounds',
+        costs_affect_predicate=False,planner_feasibility_qualified=False)
+
+
+def main(argv=None):
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--spec',required=True);p.add_argument('--spec-sha256',required=True);p.add_argument('--run',action='store_true')
+    args=p.parse_args(argv);spec,out=load_spec(args.spec,args.spec_sha256)
+    if not args.run:return 0
+    if sys.platform!='linux':raise ValueError('actual_linux_required')
+    bootstrap(spec,checked_ref(spec['environment_ref']),sys.argv[1:] if argv is None else argv)
+    if str(ROOT) not in sys.path:sys.path.insert(0,str(ROOT))
+    from tools.qa_pb_navigation_sil import AlgorithmObserver,recorded_transform
+    from rm_match.integrations.navigation_goal_lifecycle import NavigationGoalLifecycle
+    from rm_match.integrations.nav2_goal_backend import Nav2GoalBackend,Nav2GoalSettings
+    from rm_match.platform_v2.contracts import IDENTITY
+    from lifecycle_msgs.srv import GetState
+    from geometry_msgs.msg import PoseStamped
+    from nav2_msgs.msg import Costmap
+    from rclpy.qos import QoSProfile,ReliabilityPolicy,DurabilityPolicy
+    from rclpy.time import Time
+    stop=threading.Event();old={sig:signal.getsignal(sig) for sig in (signal.SIGINT,signal.SIGTERM)}
+    for sig in old:signal.signal(sig,lambda *_:stop.set())
+    started=time.perf_counter();end=started+spec['max_wall_seconds'];ident=process_identity()
+    observer=backend=engine=None;errors=[];events=[];completed=False;clients=[];goal_report={};snapshots=[]
+    grid_lock=threading.Lock();grid_cache={'last':None,'count':0,'error':None}
+    def event(name,**values):
+        if len(events)>=128:raise ValueError('bounded_goal_events')
+        events.append(dict(event=name,receive_clock='linux_local_perf_counter',receive_wall=time.perf_counter(),**values))
+    try:
+        observer=AlgorithmObserver(spec['namespace'],84,receive_clock='linux_local_perf_counter')
+        backend=Nav2GoalBackend(observer.node,Nav2GoalSettings('compute_path_then_follow',
+            planner_action=spec['namespace']+'/compute_path_to_pose',controller_action=spec['namespace']+'/follow_path',
+            planner_id='GridBased',controller_id='FollowPath',goal_checker_id='general_goal_checker'))
+        engine=NavigationGoalLifecycle(backend,deadline_mode='opaque');engine.reset(dict(robot_id='red_sentry',episode=0,binding_epoch=1))
+        topic=spec['namespace']+'/global_costmap/costmap_raw'
+        def receive_grid(message):
+            try:
+                with grid_lock:
+                    grid_cache['count']+=1
+                    if grid_cache['count']>512:raise ValueError('bounded_costmaps')
+                    grid_cache['last']=costmap_snapshot(message,grid_cache['count'],time.perf_counter(),topic)
+            except BaseException as exc:grid_cache['error']=type(exc).__name__
+        observer.subs.append(observer.node.create_subscription(Costmap,topic,receive_grid,
+            QoSProfile(depth=1,reliability=ReliabilityPolicy.RELIABLE,durability=DurabilityPolicy.TRANSIENT_LOCAL)))
+        for name in ('controller_server','planner_server'):
+            clients.append((name,observer.node.create_client(GetState,spec['namespace']+'/'+name+'/get_state')))
+        publish_json(out/'READY.json',dict(schema='polar.pb.external-goal-ready.v1',run_uuid=spec['run_uuid'],session_run_uuid=spec['session_run_uuid'],
+            namespace=spec['namespace'],domain_id=84,state='OBSERVING_NO_INPUT_PUBLISHED',**ident,environment_sha256=spec['environment_ref']['sha256'],
+            source_sha256=spec['source_sha256'],spec_sha256=args.spec_sha256,sensor_published=False,goal_sent=False,lifecycle_changed=False))
+        state_futures={};states={};last_seq=-1;phase='first';target=None;active_at=None;event_key=None;readiness_key=None;map_failures=set()
+        def map_target():
+            transform=observer.buffer.lookup_transform('map','base_link',Time())
+            pose,saved=goal_from_estimate(transform,PoseStamped)
+            with grid_lock:grid=grid_cache['last']
+            if grid is None:return None
+            decision=geometry_decision(*grid,saved)
+            if not decision['ready']:
+                if 'geometry' not in map_failures:event('map_geometry_not_ready',decision=decision);map_failures.add('geometry')
+                return None
+            q=pose.pose.orientation;yaw=math.atan2(2*(q.w*q.z+q.x*q.y),1-2*(q.y*q.y+q.z*q.z))
+            goal=dict(frame='map',position_m=[float(pose.pose.position.x),float(pose.pose.position.y)],yaw_rad=yaw)
+            event('actual_estimate_goal',source_transform=recorded_transform(transform),goal=goal,geometry_decision=decision)
+            return goal
+        while not stop.is_set() and time.perf_counter()<end:
+            if observer.errors or grid_cache['error']:raise RuntimeError('actual_observer_failed')
+            for name,client in clients:
+                future=state_futures.get(name)
+                if future is None and client.service_is_ready():state_futures[name]=client.call_async(GetState.Request())
+                elif future is not None and future.done():
+                    value=future.result().current_state.id
+                    if type(value) is not int:raise ValueError('actual_lifecycle_type')
+                    states[name]=value
+                    if value!=3:state_futures.pop(name)
+            current=engine.poll()
+            key=(current['active'],current['state'],tuple((g['state'],g['terminal'],g['cancel_acknowledged'],tuple(g['goal_uuids'].values())) for g in current['goals']))
+            if key!=event_key:
+                if len(snapshots)>=128:raise ValueError('bounded_lifecycle_snapshots')
+                snapshots.append(current);event_key=key
+            if current['fault']:raise RuntimeError('lifecycle_fault:'+current['fault'])
+            goals=current['goals']
+            if phase=='first' and goals and goals[0]['goal_uuids']['navigation'] is not None:
+                if active_at is None:active_at=time.perf_counter()
+                if time.perf_counter()-active_at>=.2 and goals[0]['state']=='active':phase='hold'
+                elif goals[0]['terminal']:raise RuntimeError('first_goal_finished_before_cancel_probe')
+            if phase=='hold' and goals and goals[0]['terminal']:
+                if not (goals[0]['state']=='canceled' and goals[0]['cancel_acknowledged'] and goals[0]['stop_confirmed']):raise RuntimeError('actual_cancel_not_confirmed')
+                event('real_cancel_ack_and_terminal',operation=goals[0]);phase='second';target=None
+            if phase=='second' and len(goals)==2 and goals[1]['terminal']:
+                if not (goals[1]['state']=='succeeded' and goals[1]['stop_confirmed']):raise RuntimeError('second_goal_not_successful')
+                completed=True;phase='done';event('second_real_goal_completed',operation=goals[1])
+            with observer.lock:
+                requests=[r['value'] for r in observer.rows if r.get('topic_kind')=='request']
+            raw=requests[-1] if requests else None
+            now_ready=(tuple(sorted(states.items())),backend.ready(),bool(observer.map_count),bool(observer.odom_count),raw is not None)
+            if now_ready!=readiness_key:
+                event('actual_readiness',states=dict(states),backend_ready=now_ready[1],map_messages=observer.map_count,
+                    odometry_messages=observer.odom_count,request_received=raw is not None)
+                readiness_key=now_ready
+            if raw is not None and raw['observed_seq']>last_seq and gate_active(states) and backend.ready() and observer.map_count and observer.odom_count:
+                source={key:raw[key] for key in IDENTITY}
+                if phase in ('first','second') and target is None:
+                    try:target=map_target()
+                    except Exception as exc:
+                        code=type(exc).__name__
+                        if code not in map_failures:event('target_lookup_exception',error_type=code);map_failures.add(code)
+                        if code not in ('LookupException','ConnectivityException','ExtrapolationException','TransformException'):raise
+                        target=None
+                if phase=='hold':command=dict(behavior='hold',reason='actual_cancel_confirmation_probe')
+                elif phase in ('first','second') and target is not None:command=dict(behavior='navigate_to_pose',reason='actual_estimated_relative_goal',goal=target)
+                else:command=None
+                if command is not None:
+                    intent=dict(schema='polar.sim.decision-intent.v1',**source,kind='decision',mode='navigation_intent',command=command)
+                    engine.submit(intent,expected_source=source);last_seq=source['observed_seq']
+                    event_name='hold_original_intent' if phase=='hold' else None
+                    if event_name and not any(r['event']==event_name for r in events):event(event_name,intent=intent)
+            stop.wait(.005)
+        if not stop.is_set() and not completed:raise TimeoutError('actual_goal_scenario_bound')
+    except BaseException as exc:
+        errors.append(type(exc).__name__+':'+str(exc));traceback.print_exc()
+    finally:
+        resource_deadline=time.perf_counter()+1.
+        if engine is not None:
+            engine.request_stop()
+            while time.perf_counter()<resource_deadline:
+                final=engine.poll()
+                if final['clean']:break
+                time.sleep(.005)
+            if not engine.snapshot()['clean']:errors.append('goal_stop_unproved')
+            goal_report=dict(schema='polar.sim.navigation-goal-scenario.v1',completed=completed,lifecycle=engine.snapshot(),snapshots=snapshots,
+                cancel_ack_is_terminal=False,sensor_published=False,cmd_vel_published=False,source_clock='original_Windows_header_opaque_in_Linux')
+        if backend is not None:
+            try:backend.destroy()
+            except BaseException as exc:errors.append('backend_destroy:'+type(exc).__name__)
+        if observer is not None:
+            for _,client in clients:
+                try:observer.node.destroy_client(client)
+                except BaseException as exc:errors.append('state_client_close:'+type(exc).__name__)
+            try:observer.close()
+            except BaseException as exc:errors.append('observer_close:'+type(exc).__name__)
+            errors+=observer.errors
+            (out/'ROS_SOURCE.jsonl').write_text(''.join(json.dumps(row,allow_nan=False,separators=(',',':'))+'\n' for row in observer.rows),encoding='utf8')
+        for name,expected in spec['source_sha256'].items():
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=expected:errors.append('source_changed:'+name)
+        (out/'GOAL_REPORT.json').write_text(json.dumps(goal_report,indent=2,allow_nan=False)+'\n',encoding='utf8')
+        (out/'EXTERNAL_EVENTS.jsonl').write_text(''.join(json.dumps(r,allow_nan=False,separators=(',',':'))+'\n' for r in events),encoding='utf8')
+        cleanup=cleanup_record(spec['run_uuid'],ident,errors,observer is not None and observer.thread.is_alive());publish_json(out/'CLEANUP.json',cleanup)
+        result=dict(schema='polar.pb.external-goal-result.v1',run_uuid=spec['run_uuid'],session_run_uuid=spec['session_run_uuid'],namespace=spec['namespace'],
+            goal_completed=completed,cleanup=cleanup,source_sha256=spec['source_sha256'],environment_ref=spec['environment_ref'],goal_report=goal_report,
+            algorithm_input_has_truth=False,lifecycle_changed=False,sensor_published=False,cmd_vel_published=False,
+            scope='synthetic original-source goal/hold lifecycle policy with actual Nav2 actions, sourced PB sensors/controller; no match tree/feedback integration')
+        (out/'RESULT.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n',encoding='utf8')
+        for sig,handler in old.items():signal.signal(sig,handler)
+    return 0 if completed and cleanup['clean'] else 2
+
+if __name__=='__main__':raise SystemExit(main())

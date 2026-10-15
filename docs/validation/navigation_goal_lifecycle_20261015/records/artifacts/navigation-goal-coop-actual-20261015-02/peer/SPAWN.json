@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "-u",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_navigation_goal_client.py",
+    "--spec",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/navigation-goal-coop-actual-20261015-02/peer/EXTERNAL_SPEC.json",
+    "--spec-sha256",
+    "11a94ae46e6f6c914947bd37633d485e1889001dfdf2b2bc15bc42a7a04484f9",
+    "--run"
+  ],
+  "identity": {
+    "run_id": "c49a3dba85954b809c864e5fedf41ec8",
+    "supervisor_pid": 600,
+    "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+    "pid": 601,
+    "pgid": 601,
+    "leader_start_ticks": 9080
+  }
+}

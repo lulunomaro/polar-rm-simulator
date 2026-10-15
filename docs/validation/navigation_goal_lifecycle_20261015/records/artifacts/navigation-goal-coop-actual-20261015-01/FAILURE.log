@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_navigation_goal_coop_sil.py", line 70, in run
+    peer=ExternalGoalSession(ROOT,peer_out,peer_spec,digest(peer_spec));peer.prepare()
+                                                                        ^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\navigation_goal_session.py", line 22, in prepare
+    if isinstance(value,BaseException):self.request_stop();raise value
+                                                           ^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\pb_external_goal_session.py", line 57, in _reader
+    if not raw.endswith(b'\n') or len(raw)>32768:raise ValueError('external_ready_line_invalid')
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: external_ready_line_invalid

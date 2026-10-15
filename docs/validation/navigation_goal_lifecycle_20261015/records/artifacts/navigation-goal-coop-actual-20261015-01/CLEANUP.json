@@ -1,0 +1,83 @@
+{
+  "qt_job": null,
+  "qt_finished": null,
+  "runtime": null,
+  "reader_stopped": true,
+  "http_stopped": true,
+  "http_workers_idle": true,
+  "camera_clean": null,
+  "external_owner": {
+    "schema": "polar.pb.coop-cleanup.v1",
+    "clean": false,
+    "errors": [
+      "external_goal_close_exception",
+      "external_goal_owner_cleanup_unproved"
+    ],
+    "owners": {
+      "external_goal": {
+        "clean": false,
+        "errors": [
+          "owner_close_failure",
+          "host_launcher_not_reaped_zero",
+          "linux_cleanup_missing"
+        ],
+        "owner_closed": true,
+        "owner_failure_present": true,
+        "stop_write_failure_present": false,
+        "stop_requested": true,
+        "owner_threads": [
+          {
+            "name": "external-stop-writer",
+            "alive": false
+          },
+          {
+            "name": "external-ready-reader",
+            "alive": false
+          }
+        ],
+        "host_launcher_pid": 39536,
+        "host_launcher_returncode": 2,
+        "not_spawned": false,
+        "host_launcher_reaped": true,
+        "host_pipes_closed": {
+          "stdin": true,
+          "stdout": true
+        },
+        "host_stderr_closed": true,
+        "linux_proof_scope": "original_owner_validated_linux_cleanup",
+        "linux_cleanup": null,
+        "close_worker": {
+          "name": "pb-coop-close-external_goal",
+          "alive": false,
+          "done": true,
+          "exception_type": "RuntimeError",
+          "completed_host_wall": 90573.3358603
+        }
+      }
+    },
+    "started_host_wall": 90573.3346325,
+    "deadline_host_wall": 90574.8344581,
+    "finished_host_wall": 90573.3359383,
+    "elapsed_host_s": 0.0013058000040473416,
+    "host_budget_s": 1.5,
+    "clock": "host_local_perf_counter",
+    "linux_internal_budget_s": 1.3,
+    "no_force_kill": true,
+    "no_budget_retry": true
+  },
+  "navigation_owner": {
+    "schema": "polar.pb.wsl-session-cleanup.v1",
+    "run_uuid": "c74ebf27206d4b70a89951a4cb77b798",
+    "config_sha256": "affba380753b6b8eac9505098fd0bf9d8a4457a4ec2892c09c80fb3da62d5c26",
+    "clean": true,
+    "owned_groups": [],
+    "errors": [],
+    "supervisor_pid": 331,
+    "start_ticks": 290,
+    "boot_id": "80bd122a-356b-45df-bf33-395148ca1964"
+  },
+  "nav_sdk_stopped": true,
+  "external_observer_stopped": true,
+  "shared_host_deadline": 90574.8344581,
+  "finished_within_shared_host_budget": true
+}

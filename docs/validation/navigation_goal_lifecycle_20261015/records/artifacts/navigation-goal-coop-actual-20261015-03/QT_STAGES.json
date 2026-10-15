@@ -1,0 +1,78 @@
+[
+  {
+    "event": "qt_watch_ready",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "frame_sequence": 17,
+    "watch_epoch": 1
+  },
+  {
+    "event": "qt_plan_selected",
+    "robot_id": "red_infantry",
+    "selected": {
+      "V2 Navigation": "Manual",
+      "V2 Aim": "Manual"
+    },
+    "plan": {},
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": false,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "selection_route": "original_Jello_dispatch"
+  },
+  {
+    "event": "qt_claimed_hud",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": true,
+      "runtime_armed": false,
+      "transport_focus": false
+    },
+    "lease_epochs": {
+      "motion": 1,
+      "gimbal": 1,
+      "fire": 1
+    },
+    "f2_count": 1
+  },
+  {
+    "event": "qt_manual_armed",
+    "robot_id": "red_infantry",
+    "guards": {
+      "qt_internal_shown": true,
+      "qt_active": true,
+      "qt_exposed": true,
+      "combat_input": true,
+      "selection_ready": true,
+      "own_hud_ready": true,
+      "runtime_armed": true,
+      "transport_focus": true
+    },
+    "plan": {},
+    "bindings": {},
+    "f2_count": 2,
+    "frame_sequence": 18,
+    "visible_desktop": false,
+    "qt_internal_shown": true
+  }
+]

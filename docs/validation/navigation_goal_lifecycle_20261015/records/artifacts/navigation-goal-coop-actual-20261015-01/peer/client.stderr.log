@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_navigation_goal_client.py", line 357, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/qa_navigation_goal_client.py", line 225, in main
+    from tools.qa_pb_navigation_sil import AlgorithmObserver,recorded_transform
+ModuleNotFoundError: No module named 'tools'

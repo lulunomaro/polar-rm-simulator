@@ -1,0 +1,79 @@
+{
+  "schema": "polar.pb.external-goal-result.v1",
+  "run_uuid": "56857cb49e83d59024dfe6f92e6d239c",
+  "session_run_uuid": "9e79d36c4bf34b6f93fd182f4baa5119",
+  "namespace": "/polar_sil_9e79d36c4bf34b6f93fd182f4baa5119/red_sentry",
+  "goal_completed": false,
+  "cleanup": {
+    "schema": "polar.pb.external-goal-cleanup.v1",
+    "run_uuid": "56857cb49e83d59024dfe6f92e6d239c",
+    "pid": 601,
+    "start_ticks": 9080,
+    "boot_id": "80bd122a-356b-45df-bf33-395148ca1964",
+    "clean": true,
+    "errors": [],
+    "observer_thread_alive": false,
+    "session_node_processes_owned": false
+  },
+  "source_sha256": {
+    "tools/qa_navigation_goal_client.py": "42476eaabe5f9fa35fba8e6b34b0dcfc6db67b353f5c4c4e649c7e3c42d2fc79",
+    "tools/qa_navigation_goal_supervisor.py": "a7a8c94a6fe005c7a5d092a0065daee6b89aecd9223c878c4f7598e8e88a051c",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+    "rm_match/integrations/nav2_goal_backend.py": "ccbfbb4f5834aa9bc846c6f551a6fd6f8f07fbdae771248f57acc86243b781ef",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "tools/qa_pb_external_navigation_goal.py": "a8cc413694b2f77e2cf2d481fc0ead31513ef7233cf99c9ec728bde053fed8f3",
+    "tools/qa_pb_external_goal_supervisor.py": "22a518846bbe99db88a93f53a0f3d4d863ff8121fac4bd77554ca60290ffe300",
+    "rm_match/integrations/owned_linux_group.py": "170b089e0fc1bd31003a0f991ef6df3f85c0f82d33efcc836486f5f5624117af",
+    "tools/qa_pb_navigation_sil.py": "cff521308c900a9791ed323aa08d1787d53382b5f0860f1e02ca89d22880870a",
+    "tools/pb_navigation_stack.py": "6e591530ceff3b09478f83e87d4dda6c1f85a76199e6f38a6acfe93fe75bff10",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+  },
+  "goal_report": {
+    "schema": "polar.sim.navigation-goal-scenario.v1",
+    "completed": false,
+    "lifecycle": {
+      "schema": "polar.sim.navigation-goal-lifecycle.v1",
+      "current_source": null,
+      "state": "stopped",
+      "active": null,
+      "pending_intent": null,
+      "fault": null,
+      "stop_requested": true,
+      "clean": true,
+      "goals": [],
+      "deadline_mode": "opaque",
+      "actuator_authority": "none",
+      "localization_feedback": "unavailable"
+    },
+    "snapshots": [
+      {
+        "schema": "polar.sim.navigation-goal-lifecycle.v1",
+        "current_source": null,
+        "state": "idle",
+        "active": null,
+        "pending_intent": null,
+        "fault": null,
+        "stop_requested": false,
+        "clean": true,
+        "goals": [],
+        "deadline_mode": "opaque",
+        "actuator_authority": "none",
+        "localization_feedback": "unavailable"
+      }
+    ],
+    "cancel_ack_is_terminal": false,
+    "sensor_published": false,
+    "cmd_vel_published": false,
+    "source_clock": "original_Windows_header_opaque_in_Linux"
+  },
+  "algorithm_input_has_truth": false,
+  "lifecycle_changed": false,
+  "sensor_published": false,
+  "cmd_vel_published": false,
+  "scope": "synthetic original-source goal/hold lifecycle policy with actual Nav2 actions, sourced PB sensors/controller; no match tree/feedback integration"
+}

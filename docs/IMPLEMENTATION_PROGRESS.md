@@ -12,9 +12,9 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope与原子batch；原Qt手动SDK和真实PB原云/LIO/控制器/SDK消费同场审计通过；PB显式复用已有reset后新采样policy，无runtime/算法/期限改动 | 决策 v1 未提供定位/感知反馈；PB目标wrapper还缺通用goal/hold/cancel；各队需审核包装层；第二套完整自瞄、移动/多车/自动火未验收；PB图像超80ms、同济无图像闭环 |
+| T07 | 队伍无关graph/SDK/JSONL/ROS 2 envelope与原子batch；新增goal-only异步生命周期和显式Nav2后端，真实PB首次hold取消确认后第二目标完成，原六身份/UUID保持；原Qt手动SDK同场审计通过 | 新goal库尚未注册为通用goal-aware速度插件；PB速度未关联goal UUID；决策 v1 定位/感知仍unavailable；各队需审核包装层，第二套完整自瞄/移动/多车/自动火未验收 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 局部SIL通过：实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；同场30秒PB有198原传感器请求/196LIO来源/28控制器结果、476非零消费步并完成原估计位置相对目标；默认ideal odom/64rays限制另记 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收 |
+| T09 | 局部SIL通过：实际3D ray/gyro/accelerometer、四线逐点ns且无ideal pose；原30秒单目标保持；新增15秒真实PB目标取消/重开，95原传感器请求/93LIO/26控制器、448非零消费步 | MID360真实光学/动力学标定、编码器、定位精度/漂移/恢复、多场景与完整任务未验收；NavigateToPose后端仅单元证据 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | followup10四步骤0/source unchanged：2178pass/40明确skip/1024subtests；原第五客户端字节保持；同场真实PB导航与手控5秒/修复后30秒通过，中间reset期限失败及全部历史证据不改 | 质量/两车单目标SIL不替许可/发布或完整比赛；更长/可见桌面、PB/Tongji自瞄图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
+| T17 | followup11四步骤0/source unchanged：2252pass/40明确skip/1024subtests；新增38项生命周期和36项Nav2后端回归、真实15秒取消/第二目标通过；原第五客户端/历史失败保持 | 质量/两车局部SIL不替许可/发布或完整比赛；更长/可见桌面、PB/Tongji自瞄图像、反馈/移动/多车/比赛未过，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,44 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 通用导航目标生命周期与真实取消确认（2026-10-15）
+
+新增[goal-only生命周期说明](NAVIGATION_GOAL_LIFECYCLE.md)和两个显式Nav2后端：NavigateToPose，或
+ComputePathToPose→FollowPath。核心只接收原decision-intent.v1，调用者拥有ROS节点/执行器并串行poll，
+不阻塞等待、不发布传感器/速度、不获得actuator或真值权限。shape检查不伪造own/referee，
+正常决策契约仍先验证原observation并逐字段严格匹配六身份。
+新目标替换先取消旧目标，只有真实终态及stop证明才启动后继；cancel ACK本身不算终态。
+原goal intent/UUID保持历史身份，后来新采样只更新authorization，不把旧成功重新标成当前帧。
+host模式检查原期限；Linux opaque模式不比较Windows时钟，原传感器/控制器/SDK期限仍独立约束实际运动。
+它还不是已注册的通用goal-aware速度插件，PB当前controller来源只有scan六身份，尚无goal UUID关联；
+decision v1导航/感知仍unavailable，未接真实PB比赛树或提供导航估计反馈。
+
+| fresh实际探针 | 结果与保留失败 |
+| --- | --- |
+| actual01 | peer导入缺ROOT路径，READY前失败；没有Qt/传感器/目标，Linux空组与缺client协议证明分别记录 |
+| actual02 | 真Qt15.021秒、97原请求/95LIO但0目标/0导航；当时缺定位诊断，未倒填根因 |
+| actual03 | 新诊断证明map/3-3 active/后端ready后真实目标已接收；Humble NumPy UUID被误拒，0导航，fault/unclean保留 |
+| actual04 | 严格支持uint8[16]原UUID后，15.0248667秒、239手动批全部消费/4779物理步，95请求/93LIO/26控制器、448导航非零步、376同物理步两车非零；25根检查全过 |
+
+UUID兼容仅接受bytes/bytearray/array('B')、严格Python int序列或exact NumPy uint8形状(16,)，
+float/bool/错dtype/错shape仍拒绝。accepted handle独立保留，即使元数据失败也真实cancel并监视GetResult，
+只允许一次额外只读getter请求，不重发goal/cancel；未知UUID或缺终态继续unclean。
+actual04第一目标原seq16，hold原seq18，真实取消ACK/terminal/stop均确认后，seq19第二目标才发出并成功；
+后续authorization seq17/42不覆盖origin。目标来自实际算法TF相对1米的合成高层策略，
+TF原stamp和传感器source分开记录，不称同一扫描定位反馈或真实比赛树。
+实际PB仅验证ComputePathToPose→FollowPath，NavigateToPose模式只有受控Future回归。
+原80ms图像/150ms控制/50ms导航、reset2秒、Linux1.3秒及host1.5秒未改。
+04 runtime join .5527946秒、外部owner .444508秒，原Qt/HTTP/相机/SDK/ROS组全部在共享原预算内退出；
+内部34.7467119秒、driver37.0327612秒/exit0/reaped/source unchanged/无强制直接终止。
+
+新生命周期38项、后端最终36项focused回归通过；早期schema/operation str子类两失败和各版本来源保留。
+focused02当时执行的旧生命周期源码只保留实际SHA与日志，没有在修复前捕获完整字节，明确缺失而不重建冒充原件。
+本轮失败、实际source/goal/rawROS/画面与收尾证明保存在[独立永久包](validation/navigation_goal_lifecycle_20261015/README.md)。
+最终QA11四步骤exit0/source unchanged：2252passed/40明确skip/1024subtests/6已有warnings，
+pytest138.65秒、driver170.0997353秒/reaped；显式同一CPU4 WSL spec，无回退，417程序/测试/provenance原字节保持。
+QA后仅本文结果说明、封存及Git交付，未声称新增封存文件或此补记参加此前QA。
+T01–T18其余缺口及M0–M5状态保持上表，无新自瞄/自动火/完整3v3/7v7验收。
 
 ## 原手控步兵与真实PB导航同场（2026-10-15）
 

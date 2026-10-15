@@ -1,0 +1,15 @@
+{
+  "schema": "polar.pb.external-goal-cleanup.v1",
+  "run_uuid": "cda8d7c4d5c1ea0949293b2d006dd458",
+  "pid": 616,
+  "start_ticks": 952,
+  "boot_id": "669d5734-579b-4e3b-9afb-11b1eddfef30",
+  "clean": false,
+  "errors": [
+    "RuntimeError:lifecycle_fault:backend_fault",
+    "goal_stop_unproved",
+    "backend_destroy:ContractError"
+  ],
+  "observer_thread_alive": false,
+  "session_node_processes_owned": false
+}

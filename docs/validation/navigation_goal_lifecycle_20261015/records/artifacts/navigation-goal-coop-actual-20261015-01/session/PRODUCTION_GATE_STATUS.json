@@ -1,0 +1,1 @@
+{"schema": "polar.pb.production-gate-status.v1", "run_uuid": "c74ebf27206d4b70a89951a4cb77b798", "production_gate": true, "namespace": "/polar_sil_c74ebf27206d4b70a89951a4cb77b798/red_sentry", "stack_state": "CONFIGURED", "map_messages": 0, "odometry_messages": 0, "latest_odom_stamp_ns": -1, "activation_started": false, "errors": [], "clock_domain": "linux_local_receive_only"}

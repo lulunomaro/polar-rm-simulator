@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-client\\Scripts\\python.exe",
+    "-u",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_qt_manual_peer.py",
+    "--client-root",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\external\\polar-rm-client-camera-order-review",
+    "--manifest",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\client_patches\\CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json",
+    "--url",
+    "http://127.0.0.1:55451",
+    "--robot-id",
+    "red_infantry",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\navigation-goal-coop-actual-20261015-03\\qt",
+    "--max-wall-seconds",
+    "30.0",
+    "--run-seconds",
+    "15.0",
+    "--host-opencv-threads",
+    "4",
+    "--host-python-switch-interval-ms",
+    "1.0"
+  ],
+  "credential_transport": "memory/environment_only"
+}
