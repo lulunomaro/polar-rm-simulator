@@ -1,0 +1,7 @@
+{
+  "base": "ENVIRONMENT_COMPAT_FINAL.json",
+  "added": {
+    "ROS_DISTRO": "humble"
+  },
+  "reason": "Original installed rosidl_generator_rs requires explicit ROS_DISTRO; no nodes or generated values substituted"
+}

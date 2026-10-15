@@ -372,3 +372,44 @@ def test_changed_graph_releases_already_claimed_resources_before_reset(tmp_path)
     assert decision._cancelled.is_set() and navigation._cancelled.is_set()
     assert decision.close_deadlines and navigation.close_deadlines
     assert result.shutdown_status['clean']
+
+
+def test_all_owned_stop_requests_precede_first_wait_under_original_deadline():
+    from types import SimpleNamespace
+    clock=Clock();events=[]
+    decision,navigation=ResourcePeer(clock),ResourcePeer(clock)
+    result=resource_pipeline(clock,decision,navigation)
+    result.reset(context(nav_observation()))
+    original_deadline=result._budget.claim()
+    for name,peer in (('navigation',navigation),('decision',decision)):
+        peer._owned_process=SimpleNamespace(request_stop=lambda name=name:events.append(('stop',name)))
+        close=peer.close
+        def wait(*,deadline,name=name,close=close):
+            assert events[:2]==[('stop','navigation'),('stop','decision')]
+            assert deadline==original_deadline
+            events.append(('wait',name));close(deadline=deadline)
+        peer.close=wait
+    result.close()
+    assert events==[('stop','navigation'),('stop','decision'),('wait','navigation'),('wait','decision')]
+    assert result.shutdown_status['clean'] and result._budget.claim()==original_deadline
+    result.close()
+    assert events==[('stop','navigation'),('stop','decision'),('wait','navigation'),('wait','decision')]
+
+
+def test_owned_stop_request_failure_still_closes_both_and_stays_unclean():
+    from types import SimpleNamespace
+    clock=Clock();decision,navigation=ResourcePeer(clock),ResourcePeer(clock)
+    result=resource_pipeline(clock,decision,navigation);result.reset(context(nav_observation()))
+    events=[]
+    def failed():raise OSError('synthetic_stop_write_failure')
+    navigation._owned_process=SimpleNamespace(request_stop=failed)
+    decision._owned_process=SimpleNamespace(request_stop=lambda:events.append('decision_stop'))
+    with pytest.raises(RuntimeError,match='cleanup unproved'):
+        result.close()
+    assert events==['decision_stop'] and decision.close_deadlines==navigation.close_deadlines
+    assert not result.shutdown_status['clean']
+    assert result.shutdown_status['errors']==['navigation_stop_request:OSError']
+    proof=copy.deepcopy(result.shutdown_status)
+    with pytest.raises(RuntimeError,match='cleanup unproved'):
+        result.close()
+    assert result.shutdown_status==proof and events==['decision_stop']

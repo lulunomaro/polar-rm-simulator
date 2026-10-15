@@ -1,0 +1,80 @@
+{
+  "schema": "polar.pb-match-interfaces-build.v1",
+  "passed": false,
+  "fixed_revision": "8912fa565a7ac57ef070df218957379123d238ee",
+  "version": "protocol-v1.7.0",
+  "source_files": 17,
+  "source_unchanged": true,
+  "work": "/root/polar-pb-match-interfaces-20261015-01",
+  "install": "/root/polar-pb-match-interfaces-20261015-01/install",
+  "library": "/root/polar-pb-match-interfaces-20261015-01/install/lib/libpb_rm_interfaces__rosidl_typesupport_cpp.so",
+  "library_sha256": null,
+  "steps": [
+    {
+      "argv": [
+        "cmake",
+        "-S",
+        "/root/polar-pb-match-interfaces-20261015-01/source",
+        "-B",
+        "/root/polar-pb-match-interfaces-20261015-01/build",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DBUILD_TESTING=OFF",
+        "-DCMAKE_INSTALL_PREFIX=/root/polar-pb-match-interfaces-20261015-01/install",
+        "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+      ],
+      "exit_code": 0,
+      "elapsed_s": 8.800224248,
+      "cleanup": {
+        "run_id": "3654214da4c04bf5974aef6f2eef911d",
+        "supervisor_pid": 327,
+        "boot_id": "25893c7a-19d5-46ce-a71a-bc64c4769d32",
+        "pid": 404,
+        "pgid": 404,
+        "leader_start_ticks": 416,
+        "clean": true,
+        "reaped": true,
+        "group_empty": true,
+        "remaining_members": [],
+        "errors": [],
+        "killed": false,
+        "returncode": 0,
+        "reaped_descendants": [],
+        "cleanup_elapsed_s": 0.003666935000000038
+      }
+    },
+    {
+      "argv": [
+        "cmake",
+        "--build",
+        "/root/polar-pb-match-interfaces-20261015-01/build",
+        "--parallel",
+        "2"
+      ],
+      "exit_code": 2,
+      "elapsed_s": 1.992607249999999,
+      "cleanup": {
+        "run_id": "c9cd7fc2e1a24476ab4d401c5779cad6",
+        "supervisor_pid": 327,
+        "boot_id": "25893c7a-19d5-46ce-a71a-bc64c4769d32",
+        "pid": 484,
+        "pgid": 484,
+        "leader_start_ticks": 1296,
+        "clean": true,
+        "reaped": true,
+        "group_empty": true,
+        "remaining_members": [],
+        "errors": [],
+        "killed": false,
+        "returncode": 2,
+        "reaped_descendants": [],
+        "cleanup_elapsed_s": 0.00569484300000056
+      }
+    }
+  ],
+  "error": "RuntimeError:build_step_failed:2",
+  "elapsed_s": 10.968201078,
+  "nodes_started": false,
+  "scope": "actual clean protocol message build only; no decision tick or SIL"
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "branch": "healthy_current_goal",
+    "intent": {
+      "binding_epoch": 1,
+      "command": {
+        "behavior": "navigate_to_pose",
+        "goal": {
+          "frame": "map",
+          "position_m": [
+            1.2,
+            -0.1
+          ],
+          "yaw_rad": 0.0
+        },
+        "reason": "pb_rmul_2025_current_tick"
+      },
+      "episode": 0,
+      "kind": "decision",
+      "mode": "navigation_intent",
+      "observed_seq": 1,
+      "robot_id": "red_sentry",
+      "schema": "polar.sim.decision-intent.v1",
+      "sim_time": 0.1,
+      "wall_deadline": 116934.8207034
+    }
+  },
+  {
+    "branch": "low_status_rfid_unavailable",
+    "intent": {
+      "binding_epoch": 1,
+      "command": {
+        "behavior": "hold",
+        "reason": "pb_rfid_unavailable"
+      },
+      "episode": 0,
+      "kind": "decision",
+      "mode": "navigation_intent",
+      "observed_seq": 2,
+      "robot_id": "red_sentry",
+      "schema": "polar.sim.decision-intent.v1",
+      "sim_time": 0.2,
+      "wall_deadline": 116934.8274198
+    }
+  },
+  {
+    "branch": "paused_hold",
+    "intent": {
+      "binding_epoch": 1,
+      "command": {
+        "behavior": "hold",
+        "reason": "pb_game_or_safety_hold"
+      },
+      "episode": 0,
+      "kind": "decision",
+      "mode": "navigation_intent",
+      "observed_seq": 3,
+      "robot_id": "red_sentry",
+      "schema": "polar.sim.decision-intent.v1",
+      "sim_time": 0.30000000000000004,
+      "wall_deadline": 116934.83372479999
+    }
+  },
+  {
+    "branch": "emergency_stop_hold",
+    "intent": {
+      "binding_epoch": 1,
+      "command": {
+        "behavior": "hold",
+        "reason": "pb_game_or_safety_hold"
+      },
+      "episode": 0,
+      "kind": "decision",
+      "mode": "navigation_intent",
+      "observed_seq": 4,
+      "robot_id": "red_sentry",
+      "schema": "polar.sim.decision-intent.v1",
+      "sim_time": 0.4,
+      "wall_deadline": 116934.8401356
+    }
+  },
+  {
+    "branch": "navigation_unavailable",
+    "intent": {
+      "binding_epoch": 1,
+      "command": {
+        "behavior": "hold",
+        "reason": "pb_navigation_unavailable"
+      },
+      "episode": 0,
+      "kind": "decision",
+      "mode": "navigation_intent",
+      "observed_seq": 5,
+      "robot_id": "red_sentry",
+      "schema": "polar.sim.decision-intent.v1",
+      "sim_time": 0.5,
+      "wall_deadline": 116934.84642379999
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_robotio_plugin.py",
+    "-q",
+    "--tb=short",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-pipeline-cleanup-focused-20261015-02\\pytest.xml"
+  ],
+  "scope": "Capture stop-before-wait protocol regressions; no team algorithm claim."
+}

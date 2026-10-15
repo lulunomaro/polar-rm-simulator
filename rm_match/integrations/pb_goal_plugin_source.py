@@ -219,8 +219,16 @@ class PBGoalPluginSource(PBGoalControllerSource):
             kind = "action" if "command" in response["value"] else "status"
             self._event("stage_act_exit", _wall=finish, value_kind=kind, goal_uuid=response["goal_uuid"],
                 status=response["value"].get("status"))
-            if kind == "action" and self.clock() >= self._deadline:
-                raise BridgeError("pb_staged_local_budget_expired")
+            if kind == "action":
+                withheld_wall = self.clock()
+                if withheld_wall >= self._deadline:
+                    # The previous event records the actual native candidate,
+                    # not a claim that it was delivered. Keep it intact and
+                    # make the final loss of actuation authority explicit.
+                    original_uuid = response["goal_uuid"]
+                    response = dict(value=navigation_status(self._stage, "no_associated_command"), goal_uuid=None)
+                    self._event("stage_action_withheld", _wall=withheld_wall, value_kind="action",
+                        goal_uuid=original_uuid, reason="stage_exit_budget_expired")
             return response
         finally:
             self._stage_busy = False

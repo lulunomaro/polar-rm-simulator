@@ -1,0 +1,27 @@
+[  1%] Generating C code for ROS interfaces
+[  2%] Generating Rust code for ROS interfaces
+Traceback (most recent call last):
+  File "/opt/ros/humble/share/rosidl_generator_rs/cmake/../../../lib/rosidl_generator_rs/rosidl_generator_rs", line 8, in <module>
+    from rosidl_generator_rs import generate_rs
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_rs/__init__.py", line 20, in <module>
+    if os.environ['ROS_DISTRO'] <= 'humble':
+  File "/usr/lib/python3.10/os.py", line 680, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'ROS_DISTRO'
+gmake[2]: *** [pb_rm_interfaces__rs/CMakeFiles/pb_rm_interfaces__rs.dir/build.make:173: rosidl_generator_rs/pb_rm_interfaces/rust/src/lib.rs] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:635: pb_rm_interfaces__rs/CMakeFiles/pb_rm_interfaces__rs.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+[  4%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/buff__functions.c.o
+[  4%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/event_data__functions.c.o
+[  5%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/game_robot_hp__functions.c.o
+[  6%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/game_status__functions.c.o
+[  7%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/ground_robot_position__functions.c.o
+[  8%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/rfid_status__functions.c.o
+[  8%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/robot_status__functions.c.o
+[  9%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/gimbal__functions.c.o
+[ 10%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/gimbal_cmd__functions.c.o
+[ 11%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/models__functions.c.o
+[ 12%] Building C object CMakeFiles/pb_rm_interfaces__rosidl_generator_c.dir/rosidl_generator_c/pb_rm_interfaces/msg/detail/robot_state_info__functions.c.o
+[ 13%] Linking C shared library libpb_rm_interfaces__rosidl_generator_c.so
+[ 13%] Built target pb_rm_interfaces__rosidl_generator_c
+gmake: *** [Makefile:146: all] Error 2

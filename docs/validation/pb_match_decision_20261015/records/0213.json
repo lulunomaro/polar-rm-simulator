@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_pb_match_decision_prepare.py",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-decision-prepare-focused-20261015-03\\pytest.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "scope": "pure source/overlay preparation; no native build/ROS/BT execution"
+}

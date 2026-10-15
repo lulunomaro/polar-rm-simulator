@@ -1,0 +1,120 @@
+{
+  "root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-02\\peer-evidence",
+  "files": [
+    {
+      "path": "ACT_RESULTS.jsonl",
+      "size": 1498,
+      "sha256": "cdc3148d57125180537844aab0d39b3d974e1091f78729b9baf6a4db71e8df33"
+    },
+    {
+      "path": "CLEANUP.json",
+      "size": 6308,
+      "sha256": "99fe3e846b5de4c89014effdf4525856d0ef86e9f1401998edc4c5eda1abb97e"
+    },
+    {
+      "path": "EMIT_GATES.jsonl",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "FEEDBACK.jsonl",
+      "size": 1082,
+      "sha256": "ae235f7c44ba42f04425068b345c25f356629e83fe8de2824435d4a1b1a77315"
+    },
+    {
+      "path": "GOAL_REPORT.json",
+      "size": 751,
+      "sha256": "8f5bbbdce436641a472b1619c67ada941245ca40647a95fc93363abbe5b3e91f"
+    },
+    {
+      "path": "READY.json",
+      "size": 4345,
+      "sha256": "682746b6667debd8bddbf893c7ec828e7016b290ff7b6b8e072b865d9f5dbc92"
+    },
+    {
+      "path": "REJECTED_RESULTS.jsonl",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ROS_SOURCE.jsonl",
+      "size": 792,
+      "sha256": "099d0933e3dfb243ea620ff2cb741b7d36ee51a0e1fd6546dbf44b2da5a2fa1f"
+    },
+    {
+      "path": "stack/bridge_manifest.json",
+      "size": 1641,
+      "sha256": "7089eaa119b55c7cd336c272ad4a319e481c455e1db52e2e12eccab4947d19df"
+    },
+    {
+      "path": "stack/CLEANUP.json",
+      "size": 5572,
+      "sha256": "e6785bed3b8ecb7d68c2b67a6ff30ae16bba06f4cebf28063d2d0dbf4988acb5"
+    },
+    {
+      "path": "stack/controller_server.log",
+      "size": 4575,
+      "sha256": "ba7e6fc8b9f08e0b90baaf1f113aa6a7dc943ec092be5ed44382bc3dec17ad88"
+    },
+    {
+      "path": "stack/loam_interface.log",
+      "size": 71,
+      "sha256": "1047d4867c63641899c8870d7ed58a6e23f62001bf128f8420465cd668841bed"
+    },
+    {
+      "path": "stack/owned_parameters.yaml",
+      "size": 14639,
+      "sha256": "b5689cef917b64604084d0bb8b4b9d54ce761dfe3407ab708870a765c11e848f"
+    },
+    {
+      "path": "stack/PLAN.json",
+      "size": 56593,
+      "sha256": "156e9fce47783d5f8e4a26b53f11cbc43780c421fe2e34541b947c78808aa11b"
+    },
+    {
+      "path": "stack/planner_server.log",
+      "size": 4417,
+      "sha256": "2bba3ffa4f7ae05cb4142c59f5e47009819b0fd1d958ed7d0b7f4067cecebb78"
+    },
+    {
+      "path": "stack/point_lio.log",
+      "size": 642,
+      "sha256": "8aeecfbc38b3505e93a733e12fc6c2cb8fa289e170a62624a1a02533b8546eff"
+    },
+    {
+      "path": "stack/pointcloud_to_laserscan.log",
+      "size": 244,
+      "sha256": "521ac2d1b06296a7456e61510191c094c4b9c444488c68c4d2cb1005b968b937"
+    },
+    {
+      "path": "stack/sensor_scan_generation.log",
+      "size": 71,
+      "sha256": "8951babe36e3270dc43593825a8de1c10fd080028c443327d59fd3e793cad20a"
+    },
+    {
+      "path": "stack/slam_toolbox.log",
+      "size": 498,
+      "sha256": "c447136484049b1fac06dcd392f61f12db1e15f53e69b4c71f7eec7ff6f3731f"
+    },
+    {
+      "path": "stack/supervisor.jsonl",
+      "size": 25194,
+      "sha256": "48f14cc852099096ffd0640f78d3110fe1f7055facc6295df5ed83ad82c168cf"
+    },
+    {
+      "path": "stack/terrain_analysis.log",
+      "size": 324,
+      "sha256": "7f43e244cc3f2f3ebfad934455dd7d3147b70fa8fa0ee48c3e9d3180dffa8fe8"
+    },
+    {
+      "path": "stack/terrain_analysis_ext.log",
+      "size": 324,
+      "sha256": "10125f8d3f88f8cda8d44fb7e7b0b811774c2ac9d7420519acdbdf6011a89856"
+    },
+    {
+      "path": "STAGES.jsonl",
+      "size": 5620,
+      "sha256": "ab1781e95e8cc0652edcd7a981153bbb8274a2579efa4072a0193d0ce04b8518"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "root": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-05\\peer-evidence",
+  "files": [
+    {
+      "path": "READY.json",
+      "size": 4466,
+      "sha256": "d881fe2ff95439f64a90558312cdc6e5bf0b114dd6759d9e29e0b918fabe8ab2"
+    },
+    {
+      "path": "stack/bridge_manifest.json",
+      "size": 1641,
+      "sha256": "c4dc38bd5b32a05256b7a9bc738a547eb24f92c89465f747f6d54d565ac35a02"
+    },
+    {
+      "path": "stack/controller_server.log",
+      "size": 113891,
+      "sha256": "a41fde53ed395a600e040aba89110a5eebae28b7172034ce4ab865cd1e96e47f"
+    },
+    {
+      "path": "stack/loam_interface.log",
+      "size": 71,
+      "sha256": "197a98549781ef7554022b27111906eef35b289e6fa22d9a5c28bb210f016c54"
+    },
+    {
+      "path": "stack/owned_parameters.yaml",
+      "size": 14639,
+      "sha256": "c71f5d477c65e10b606d0238f18555371a741a06428b02c54d9078dbb265181e"
+    },
+    {
+      "path": "stack/PLAN.json",
+      "size": 56593,
+      "sha256": "ee01d364650e7ef3b1e3ae9c4b30f1457a6ad39598c520ada481f7f13d78d2ed"
+    },
+    {
+      "path": "stack/planner_server.log",
+      "size": 8996,
+      "sha256": "382f77879e443da92dfa6a794719d2b67be33d005e4e0178f5a68e8aa801f7c0"
+    },
+    {
+      "path": "stack/point_lio.log",
+      "size": 854,
+      "sha256": "971f266916e35da277aaee648e23883fe97f1d4addd2f2d96d2d7f7d31996f8f"
+    },
+    {
+      "path": "stack/pointcloud_to_laserscan.log",
+      "size": 244,
+      "sha256": "166429eb2c537b72f176325c09aeb85336eb329419148ec6c82c9aa23b64e75a"
+    },
+    {
+      "path": "stack/sensor_scan_generation.log",
+      "size": 71,
+      "sha256": "1782734513aa744fd9ac34b5cc354bfcde0a44058ad743a67316615ced30b7b6"
+    },
+    {
+      "path": "stack/slam_toolbox.log",
+      "size": 800,
+      "sha256": "d9747963d252348e3cfa4d63be6bd8c7ada772ef8e7f1bdeced367590e7746f6"
+    },
+    {
+      "path": "stack/supervisor.jsonl",
+      "size": 25792,
+      "sha256": "f1cc089bb5d49128b2097fe4022dd01bf5d0ae287ceaacfd571dfe738b9e9b35"
+    },
+    {
+      "path": "stack/terrain_analysis.log",
+      "size": 324,
+      "sha256": "a2aac1329b7c201d5a8eb4d159293e70135f293b707645f0438f80ad4866b7f8"
+    },
+    {
+      "path": "stack/terrain_analysis_ext.log",
+      "size": 324,
+      "sha256": "9401d3a7e717bbd195fb786c30ddce52229ececc3a988766169f7bb841dd9b7c"
+    }
+  ]
+}

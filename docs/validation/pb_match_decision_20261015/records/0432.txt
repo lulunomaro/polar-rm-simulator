@@ -1,0 +1,31 @@
+...FFF.sss                                                               [100%]
+================================== FAILURES ===================================
+_ test_cooperative_term_only_signals_leader_until_it_exits_then_remaining_descendants _
+
+    def test_cooperative_term_only_signals_leader_until_it_exits_then_remaining_descendants():
+        proof,sent=phase_case(leader_exit_delay=.04)
+>       assert proof['clean'] and proof['reaped'] and proof['group_empty'] and not proof['killed']
+E       assert (False)
+
+tests\test_wsl_jsonl_owned_tree.py:93: AssertionError
+_ test_stubborn_leader_preserves_original_point8_term_escalation_and_1point17_kill_gate _
+
+    def test_stubborn_leader_preserves_original_point8_term_escalation_and_1point17_kill_gate():
+        proof,sent=phase_case(child_ignores_term=True)
+>       assert proof['clean'] and proof['killed'] and proof['cleanup_elapsed_s']<=1.3
+E       assert (False)
+
+tests\test_wsl_jsonl_owned_tree.py:102: AssertionError
+_ test_leader_exit_does_not_give_term_ignoring_orphan_another_grace_or_deadline _
+
+    def test_leader_exit_does_not_give_term_ignoring_orphan_another_grace_or_deadline():
+        proof,sent=phase_case(leader_exit_delay=.01,child_ignores_term=True)
+>       assert proof['clean'] and proof['killed'] and proof['cleanup_elapsed_s']<=1.3
+E       assert (False)
+
+tests\test_wsl_jsonl_owned_tree.py:110: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_wsl_jsonl_owned_tree.py::test_cooperative_term_only_signals_leader_until_it_exits_then_remaining_descendants
+FAILED tests/test_wsl_jsonl_owned_tree.py::test_stubborn_leader_preserves_original_point8_term_escalation_and_1point17_kill_gate
+FAILED tests/test_wsl_jsonl_owned_tree.py::test_leader_exit_does_not_give_term_ignoring_orphan_another_grace_or_deadline
+3 failed, 4 passed, 3 skipped in 0.41s

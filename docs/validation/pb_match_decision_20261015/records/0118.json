@@ -1,0 +1,13 @@
+{
+  "executable": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "argv": [
+    "-m",
+    "pytest",
+    "tests/test_pb_match_decision_sil_audit.py",
+    "-q",
+    "--disable-warnings",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-decision-audit-focused-20261015-03\\FOCUSED.xml"
+  ],
+  "scope": "pure synthetic fault-stop/final-wire/rejected-candidate audit tests only; no native/ROS/build/physics"
+}

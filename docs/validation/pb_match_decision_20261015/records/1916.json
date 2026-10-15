@@ -1,0 +1,47 @@
+{
+  "schema": "polar.sim.decision-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_pb_match_decision",
+      "label": "Real PB BT4 source-bound match decision",
+      "command": [
+        "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "-u",
+        "-m",
+        "rm_match.integrations.pb_match_decision_peer",
+        "--spec",
+        "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-route-decision-prep-20261015-07/PEER_SPEC.json",
+        "--sha256",
+        "8d6a9c122540b29d8c6a77a3ed38550c51c3e24d91fd0571e33ec3879e5fee17"
+      ],
+      "cwd": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+      "supported_robots": [
+        "red_sentry"
+      ],
+      "transport": "wsl_jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.decision-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.decision-observation.v2",
+        "intent_schema": "polar.sim.decision-intent.v1",
+        "sensor_profile": "own_referee_navigation_v2",
+        "output_modes": [
+          "navigation_intent"
+        ],
+        "source_association": "exact_observation_and_navigation_feedback_v1",
+        "fire_authority": "none",
+        "ui_config_contract": "empty_v1"
+      },
+      "wsl": {
+        "distribution": "Ubuntu-22.04",
+        "python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+        "process_env": {
+          "CMAKE_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+          "AMENT_PREFIX_PATH": "/root/polar-pb-match-interfaces-20261015-02/install:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+          "LD_LIBRARY_PATH": "/root/polar-pb-match-bt4-20261015-01/install/lib:/root/polar-pb-match-interfaces-20261015-02/install/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+          "PKG_CONFIG_PATH": "/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      }
+    }
+  ]
+}

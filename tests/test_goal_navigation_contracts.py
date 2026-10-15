@@ -211,6 +211,27 @@ def test_history_is_idempotent_detached_and_does_not_infer_terminal_from_none():
     assert history.check(later) == later
 
 
+def test_history_preview_can_be_discarded_without_committing_action_or_uuid_owner():
+    o, intent, row = envelope()
+    history = GoalNavigationResultHistory()
+    candidate = history.checked_copy(row)
+    final_status = checked_status(o, intent, row['selection'])
+    committed = history.checked_copy(final_status)
+    assert history._last_source is None and history._records == {} and history._navigation_owners == {}
+    assert candidate.check(row) == row and committed.check(final_status) == final_status
+    with pytest.raises(ContractError, match='response_rewritten'):
+        committed.check(row)
+    # Later authorization keeps the same operation and original accepted UUID.
+    later = later_status(o, intent, row['selection'], 4)
+    assert committed.checked_copy(later).check(later) == later
+    assert committed._last_source['observed_seq'] == 3
+    wrong = copy.deepcopy(later)
+    wrong['selection']['goal_uuids']['navigation'] = '9' * 32
+    with pytest.raises(ContractError, match='uuid_changed'):
+        committed.checked_copy(wrong)
+    assert committed.check(final_status) == final_status
+
+
 def test_history_acceptance_uuid_appears_once_then_cannot_change_or_disappear():
     o, intent, selected = fixture()
     history = GoalNavigationResultHistory()

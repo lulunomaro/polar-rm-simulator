@@ -149,6 +149,66 @@ def test_native_action_withheld_as_status_after_current_goal_revocation_is_not_z
     assert route['errors']==[] and route['actions']==0 and route['statuses']==1
 
 
+def deadline_withheld_fixture():
+    rows,stages,ros=fixture();result=rows[2]['response']['result']
+    result.pop('action');result.update(controller_goal_uuid=None,
+        status=navigation_status_for(rows[0]['packet']['observation']))
+    marker={k:copy.deepcopy(stages[4][k]) for k in ('source','scan','local_deadline','clock')}
+    marker.update(event='stage_action_withheld',local_wall=200.05,value_kind='action',
+        goal_uuid=stages[4]['goal_uuid'],reason='stage_exit_budget_expired')
+    stages.insert(5,marker);stages[6]['local_wall']=200.051
+    return rows,stages,ros
+
+
+def test_stage_journal_cost_withholds_original_action_as_same_source_public_status():
+    rows,stages,ros=deadline_withheld_fixture()
+    audit=audit_stages(rows,stages,ros)
+    assert audit['errors']==[] and audit['deadline_withheld_actions']==1
+    assert audit['withheld_native_actions']==1 and audit['qualified_action_stages']==0
+    assert audit['passed'] is False  # A status does not invent a passing action.
+
+
+@pytest.mark.parametrize('change',[
+    lambda r,s:s[5]['source'].update(episode=99),
+    lambda r,s:s[5]['source'].update(episode=False),
+    lambda r,s:s[5]['scan'].update(cloud_frame_id=999),
+    lambda r,s:s[5].update(local_deadline=200.06),
+    lambda r,s:s[5].update(clock='host_perf_counter'),
+    lambda r,s:s[5].update(local_wall=200.049),
+    lambda r,s:s[5].update(goal_uuid='4'*32),
+    lambda r,s:s[5].update(value_kind='status'),
+    lambda r,s:s[5].update(reason='budget_renewed'),
+    lambda r,s:s[4].update(value_kind='status'),
+    lambda r,s:s[4].update(local_wall=200.05),
+    lambda r,s:s.insert(6,copy.deepcopy(s[5])),
+    lambda r,s:r[2]['response']['result'].update(controller_goal_uuid='3'*32),
+    lambda r,s:r[2]['response']['result']['status'].update(status='pending_localization'),
+    lambda r,s:r[2]['response']['result']['status'].update(observed_seq=999),
+    lambda r,s:r[2]['response']['result'].update(action=action(r[0]['packet']['observation'])),
+])
+def test_deadline_withheld_marker_cannot_change_candidate_source_UUID_stage_or_public_status(change):
+    rows,stages,ros=deadline_withheld_fixture();change(rows,stages)
+    assert audit_stages(rows,stages,ros)['errors']
+
+
+def test_shutdown_unreturned_stage_marker_is_separate_from_a_public_status_claim():
+    rows,stages,ros=deadline_withheld_fixture();rows.pop(2)
+    audit=audit_stages(rows,stages,ros)
+    assert audit['errors']==[] and audit['unreturned_deadline_withholds']==1
+    assert audit['deadline_withheld_actions']==0 and audit['qualified_action_stages']==0
+
+
+@pytest.mark.parametrize('change',[
+    lambda ros:ros[2]['value']['source'].update(goal_uuid='4'*32),
+    lambda ros:ros[2].update(receive_clock='host_perf_counter'),
+    lambda ros:ros[2].update(receive_wall=200.05),
+    lambda ros:ros[2]['value']['action'].update(observed_seq=999),
+])
+def test_stage_deadline_withheld_marker_needs_actual_original_native_UUID_and_action(change):
+    rows,stages,ros=deadline_withheld_fixture();change(ros)
+    assert audit_stages(rows,stages,ros)['errors']
+
+
 def test_synthetic_goal_is_joined_to_original_estimate_not_current_or_world_position():
     rows,_,_=fixture();origin=copy.deepcopy(rows[1]['response']['intent'])
     result=audit_estimated_goal_origins(rows,dict(goals=[dict(origin_intent=origin)]))

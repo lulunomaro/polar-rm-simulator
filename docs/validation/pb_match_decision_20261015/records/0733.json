@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "errors": [],
+  "overlay": {
+    "passed": true,
+    "errors": [],
+    "explicit_edits": 5,
+    "scope": "same original PB conditions/control tree; spin disabled, source hold and estimated-anchor local waypoints explicit"
+  },
+  "scope": "literal build-result/source/XML/loader mirrors; native readiness separately proves actual ext4 self-read"
+}

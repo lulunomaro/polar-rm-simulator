@@ -1,0 +1,29 @@
+{
+  "lifecycle": {
+    "schema": "polar.sim.navigation-goal-lifecycle.v1",
+    "current_source": {
+      "robot_id": "red_sentry",
+      "episode": 0,
+      "binding_epoch": 1,
+      "observed_seq": 3,
+      "sim_time": 0.30000000000000004,
+      "wall_deadline": 121315.2371208
+    },
+    "state": "stopped",
+    "active": null,
+    "pending_intent": null,
+    "fault": null,
+    "stop_requested": true,
+    "clean": true,
+    "goals": [],
+    "deadline_mode": "opaque",
+    "actuator_authority": "none",
+    "localization_feedback": "unavailable"
+  },
+  "sensor_published": true,
+  "feedback_count": 2,
+  "result_count": 2,
+  "rejected_localizations": 0,
+  "rejected_costmaps": 0,
+  "scope": "registered staged PB estimated feedback and original source-bound goal results"
+}

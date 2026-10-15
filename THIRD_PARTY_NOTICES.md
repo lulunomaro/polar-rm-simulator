@@ -7,3 +7,35 @@ The original owned implementation and documentation in this repository are relea
 - Arena and armor are newly authored analytic approximations of cited dimensions/rule references. Official CAD meshes, sticker artwork and product photographs are not included. Official documents remain their owners' copyrighted works and are not relicensed. Arena source references and approximation boundaries are retained in its manifest and docs/ARENA_ASSETS.md.
 - Python dependencies remain external packages with their respective licenses. No claim is made that the root MIT License licenses external model weights, native libraries, private vehicle CAD, or any third-party dataset.
 - The explicitly selected `camera-fast` extra uses external `pybase64==1.5.1` under BSD-2-Clause, with its bundled native base64 library retaining upstream notices. See https://github.com/mayeut/pybase64/tree/v1.5.1 and the installed wheel's license files. It serializes the same actual camera bytes; it does not replace vision inference. The wheel and compiled extension are not bundled in this repository.
+
+## Source-pinned PB behavior-tree integration
+
+The owned `operator_native/pb_match_decision/runner.cpp`, CMake integration and
+Python preparation/peer glue use the root MIT License for the newly authored
+code only. They do not relicense the original PB conditions/actions, XML,
+BehaviorTree.ROS2 fork, BehaviorTree.CPP or protocol messages. The preparation
+tool copies pinned inputs into an owned build directory and records their raw
+SHA256 values. The original XML is preserved separately from the explicitly
+changed spin/stop/local-waypoint I/O overlay; the original PB C++ node
+implementations and their notices remain intact.
+
+The following notices were copied byte for byte from the local fixed source
+checkouts. Source URLs below come from those checkouts' Git `origin` metadata;
+the fixed revision identifies the license and source, rather than the moving
+repository default branch.
+
+| Component and fixed revision | Upstream source | Unchanged license text |
+| --- | --- | --- |
+| PB `pb2025_sentry_behavior`, `d111b635d326775c6c19aa12500a0bbd6a27a588` | [SMBU-PolarBear-Robotics-Team/pb2025_sentry_behavior](https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_behavior/tree/d111b635d326775c6c19aa12500a0bbd6a27a588) | Apache-2.0: [PB_SENTRY_BEHAVIOR_APACHE2.txt](licenses/PB_SENTRY_BEHAVIOR_APACHE2.txt) |
+| PB `BehaviorTree.ROS2` fork, `7d177dcfbd7dbb7f5e5cd79c4e5e3e744e389c56` | [SMBU-PolarBear-Robotics-Team/BehaviorTree.ROS2](https://github.com/SMBU-PolarBear-Robotics-Team/BehaviorTree.ROS2/tree/7d177dcfbd7dbb7f5e5cd79c4e5e3e744e389c56) | Apache-2.0: [PB_BEHAVIORTREE_ROS2_APACHE2.txt](licenses/PB_BEHAVIORTREE_ROS2_APACHE2.txt) |
+| `BehaviorTree.CPP` 4.6.2, `2a8a226fbbd99f524f0796e0d8a3145773c61c06` | [BehaviorTree/BehaviorTree.CPP](https://github.com/BehaviorTree/BehaviorTree.CPP/tree/2a8a226fbbd99f524f0796e0d8a3145773c61c06) | MIT: [BEHAVIORTREE_CPP_4_6_2_MIT.txt](licenses/BEHAVIORTREE_CPP_4_6_2_MIT.txt) |
+| `pb_rm_interfaces` protocol-v1.7.0, `8912fa565a7ac57ef070df218957379123d238ee` | [SMBU-PolarBear-Robotics-Team/pb_rm_interfaces](https://github.com/SMBU-PolarBear-Robotics-Team/pb_rm_interfaces/tree/8912fa565a7ac57ef070df218957379123d238ee) | MIT: [PB_RM_INTERFACES_1_7_0_MIT.txt](licenses/PB_RM_INTERFACES_1_7_0_MIT.txt) |
+
+The native runner ELF, BT shared library, generated protocol typesupport and
+other ROS/system shared libraries remain external build outputs and are not
+published as part of this repository. Their runtime paths and hashes are build
+evidence, not a grant of rights to redistribute every dependency. Original
+third-party copyright, license and any applicable notice obligations remain;
+the root MIT notice is not a substitute for them. Build or tick evidence alone
+does not establish a complete licensed release, field-map rights, full-match
+qualification or hardware acceptance.

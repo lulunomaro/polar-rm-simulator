@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "stage": "owned_windows_launch",
+  "exception": "OwnedLaunchFailure caused by FileNotFoundError WinError 2",
+  "cause": "CreateProcessW application name was short wsl.exe, absolute resolved executable required",
+  "linux_build_started": false,
+  "root_driver_failure": true
+}

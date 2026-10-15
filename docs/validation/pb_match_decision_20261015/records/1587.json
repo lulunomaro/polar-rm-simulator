@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "errors": [],
+  "public_final_result_joins": 1,
+  "final_wire_receipts": 2,
+  "rejected_action_candidates": 0,
+  "rejected_actions_withheld_as_final_status": 0,
+  "scope": "same original source/intent/selection; expired action -> no_associated_command status; no extra actuator gate"
+}

@@ -1,0 +1,34 @@
+..............................................................F.....     [100%]
+================================== FAILURES ===================================
+_____ test_emit_gate_status_and_nonact_messages_need_no_fake_action_proof _____
+
+pinned_spec = (WindowsPath('C:/Users/lulu/AppData/Local/Temp/pytest-of-lulu/pytest-195/test_emit_gate_status_and_nona0/repo'), Windo...aaaaaaaaaaaaaaaaaaaaaaa', 'namespace': '/polar_sil_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/red_sentry', 'domain_id': 84, ...})
+
+    def test_emit_gate_status_and_nonact_messages_need_no_fake_action_proof(pinned_spec):
+        peer, clock = real_compute_peer(pinned_spec)
+        peer.before_emit(dict(op="prepare", ok=True), b"unused")
+        o=observation();peer.source._deadline=clock()+.05
+>       result=peer(o,intent(o,behavior="hold"));clock.now+=1.
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_pb_goal_plugin_peer.py:352: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+rm_match\integrations\pb_goal_plugin_peer.py:206: in __call__
+    result = self.compute(observation, intent)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+rm_match\integrations\goal_navigation_compute.py:141: in __call__
+    response = self.sourced_controller(callback_observation, callback_intent)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+o = {'schema': 'polar.sim.navigation-observation.v1', 'robot_id': 'red_sentry', 'episode': 0, 'binding_epoch': 1, ...}
+i = {'schema': 'polar.sim.decision-intent.v1', 'robot_id': 'red_sentry', 'episode': 0, 'binding_epoch': 1, ...}
+
+>   lambda o, i: dict(value=action(o), goal_uuid=peer.backend.operations[-1]["uuid"]))
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   IndexError: list index out of range
+
+tests\test_pb_goal_plugin_peer.py:281: IndexError
+=========================== short test summary info ===========================
+FAILED tests/test_pb_goal_plugin_peer.py::test_emit_gate_status_and_nonact_messages_need_no_fake_action_proof
+1 failed, 67 passed in 1.29s

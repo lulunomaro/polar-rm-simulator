@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "errors": [
+    "route:original_host_transaction_deadline"
+  ],
+  "observations": 2,
+  "decision_intents": 2,
+  "navigation_results": 2,
+  "available_estimates": 0,
+  "actions": 0,
+  "statuses": 2,
+  "shutdown_aborted_transactions": 0
+}

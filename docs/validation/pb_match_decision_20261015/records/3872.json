@@ -1,0 +1,83 @@
+{
+  "lifecycle": {
+    "schema": "polar.sim.navigation-goal-lifecycle.v1",
+    "current_source": {
+      "robot_id": "red_sentry",
+      "episode": 0,
+      "binding_epoch": 1,
+      "observed_seq": 102,
+      "sim_time": 10.200000000000001,
+      "wall_deadline": 119500.2501254
+    },
+    "state": "stopped",
+    "active": null,
+    "pending_intent": null,
+    "fault": null,
+    "stop_requested": true,
+    "clean": true,
+    "goals": [
+      {
+        "operation_id": "2953e153da8ccf0b217c88010282adb8",
+        "origin_intent": {
+          "binding_epoch": 1,
+          "command": {
+            "behavior": "navigate_to_pose",
+            "goal": {
+              "frame": "map",
+              "position_m": [
+                1.0207526367888164,
+                0.012579488702132479
+              ],
+              "yaw_rad": 0.0014398875888431896
+            },
+            "reason": "pb_rmul_2025_current_tick"
+          },
+          "episode": 0,
+          "kind": "decision",
+          "mode": "navigation_intent",
+          "observed_seq": 8,
+          "robot_id": "red_sentry",
+          "schema": "polar.sim.decision-intent.v1",
+          "sim_time": 0.8,
+          "wall_deadline": 119486.6892104
+        },
+        "latest_authorization": {
+          "robot_id": "red_sentry",
+          "episode": 0,
+          "binding_epoch": 1,
+          "observed_seq": 102,
+          "sim_time": 10.200000000000001,
+          "wall_deadline": 119500.2501254
+        },
+        "goal": {
+          "frame": "map",
+          "position_m": [
+            1.0207526367888164,
+            0.012579488702132479
+          ],
+          "yaw_rad": 0.0014398875888431896
+        },
+        "state": "aborted",
+        "goal_uuids": {
+          "planner": "89917b592b354ceaa823e85e208ab229",
+          "navigation": null
+        },
+        "cancel_requested": false,
+        "cancel_acknowledged": false,
+        "terminal": true,
+        "stop_confirmed": true,
+        "error_code": null,
+        "stop_intent": null,
+        "stop_reason": null
+      }
+    ],
+    "deadline_mode": "opaque",
+    "actuator_authority": "none",
+    "localization_feedback": "unavailable"
+  },
+  "sensor_published": true,
+  "feedback_count": 101,
+  "result_count": 101,
+  "rejected_localizations": 0,
+  "scope": "registered staged PB estimated feedback and original source-bound goal results"
+}

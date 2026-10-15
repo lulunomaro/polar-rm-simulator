@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "peers": [
+    {
+      "peer": "navigation",
+      "prepared": true,
+      "process_identity": null,
+      "ownership_hello": {
+        "event": "hello",
+        "run_id": "8072113863fb46a380e4b99377f00f69",
+        "spec_sha256": "7b0606977036237e1eed5a2b0fda1b385259b76e8ad40e2236db972ffeae4c43",
+        "worker_pid": 329,
+        "worker_start_ticks": 259,
+        "boot_id": "e521cc46-a722-4f54-b281-e4feea64a962",
+        "peer_identity": {
+          "run_id": "472471cd45b64ddb9d31e11ed8145281",
+          "supervisor_pid": 329,
+          "boot_id": "e521cc46-a722-4f54-b281-e4feea64a962",
+          "pid": 437,
+          "pgid": 437,
+          "leader_start_ticks": 376
+        },
+        "algorithm_ready": false
+      },
+      "capabilities": {
+        "schema": "polar.sim.navigation-plugin.capabilities.v3",
+        "observation_schema": "polar.sim.navigation-observation.v1",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.navigation-status.v1",
+        "sensor_profile": "pointcloud_imu_v1",
+        "source_association": "exact_capture_and_active_goal_v1",
+        "output_modes": [
+          "velocity_body"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "goal_input_modes": [
+          "decision_intent_v1"
+        ],
+        "goal_result_schema": "polar.sim.navigation-goal-result.v1",
+        "feedback_schema": "polar.sim.navigation-feedback.v1",
+        "feedback_mode": "staged_scan_v1"
+      },
+      "sensor_frames": 0,
+      "policy_calls": 0
+    },
+    {
+      "peer": "decision",
+      "prepared": true,
+      "process_identity": null,
+      "ownership_hello": {
+        "event": "hello",
+        "run_id": "093e70a8e90347e58f07dee728acf169",
+        "spec_sha256": "c611ca5b34e1ca4d340099fab46775fe6b169fb8c00f23850aaac9be40f1806a",
+        "worker_pid": 643,
+        "worker_start_ticks": 1121,
+        "boot_id": "e521cc46-a722-4f54-b281-e4feea64a962",
+        "peer_identity": {
+          "run_id": "372d38c4bc32491daf60c3f3dcc73225",
+          "supervisor_pid": 643,
+          "boot_id": "e521cc46-a722-4f54-b281-e4feea64a962",
+          "pid": 675,
+          "pgid": 675,
+          "leader_start_ticks": 1180
+        },
+        "algorithm_ready": false
+      },
+      "capabilities": {
+        "schema": "polar.sim.decision-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.decision-observation.v2",
+        "intent_schema": "polar.sim.decision-intent.v1",
+        "sensor_profile": "own_referee_navigation_v2",
+        "output_modes": [
+          "navigation_intent"
+        ],
+        "source_association": "exact_observation_and_navigation_feedback_v1",
+        "fire_authority": "none",
+        "ui_config_contract": "empty_v1"
+      },
+      "sensor_frames": 0,
+      "policy_calls": 0
+    }
+  ],
+  "elapsed_s": 13.832893200000399,
+  "physics_steps": 0,
+  "sensor_frames": 0,
+  "algorithm_data_warmup": false
+}

@@ -170,3 +170,63 @@ def test_staged_emit_guard_must_be_callable_before_response_is_written():
         serve_navigation_plugin(c,io.BytesIO(json.dumps(requests(o)[0]).encode()+b'\n'),out,
             goal_input_modes=['decision_intent_v1'],goal_result_profile='staged_scan_v1')
     assert out.getvalue()==b''
+
+
+class WithholdingCompute(Compute):
+    def __init__(self):
+        super().__init__();self.origin=None;self.guard_calls=0
+    def __call__(self,o,i):
+        self.current_observation=copy.deepcopy(o)
+        result=envelope(o,i)
+        if self.origin is None:self.origin=copy.deepcopy(result['selection']['origin_intent'])
+        result['selection']['origin_intent']=copy.deepcopy(self.origin)
+        return result
+    def before_emit(self,response,encoded):
+        if response['op']!='act':return None
+        self.guard_calls+=1
+        if self.guard_calls!=1:return None
+        result=response['result'];result.pop('action')
+        result['controller_goal_uuid']=None
+        result['status']=navigation_status_for(self.current_observation)
+        return response
+
+
+def test_final_expiry_withholds_once_then_next_capture_can_control_same_goal():
+    o=observation();later=copy.deepcopy(o);later['observed_seq']+=1;later['sim_time']+=.01
+    rows=requests(o)+requests(later)[1:];c=WithholdingCompute()
+    returned=peer(rows,c)
+    withheld=returned[2]['result'];following=returned[4]['result']
+    assert 'action' not in withheld and withheld['status']==navigation_status_for(o)
+    assert withheld['controller_goal_uuid'] is None and withheld['source']==source(o)
+    assert 'action' in following and following['source']==source(later)
+    assert following['selection']['origin_intent']==withheld['selection']['origin_intent']
+    assert c.guard_calls==2
+
+
+@pytest.mark.parametrize('mutation',[
+    lambda r:r['result']['source'].update(episode=True),
+    lambda r:r['result']['intent']['command'].update(reason='rewritten'),
+    lambda r:r['result']['selection'].update(operation_id='c'*32),
+    lambda r:r['result'].update(controller_goal_uuid='b'*32),
+    lambda r:r.update(ok=1),
+    lambda r:r['result']['status'].update(status='unavailable'),
+])
+def test_emit_withholding_cannot_rewrite_authorization_or_control(mutation):
+    o=observation();c=WithholdingCompute();original=c.before_emit;out=io.BytesIO()
+    def guard(response,encoded):
+        final=original(response,encoded)
+        if final is not None:mutation(final)
+        return final
+    c.before_emit=guard
+    with pytest.raises(ContractError):
+        serve_navigation_plugin(c,io.BytesIO(b''.join(json.dumps(r).encode()+b'\n' for r in requests(o))),out,
+            goal_input_modes=['decision_intent_v1'],goal_result_profile='staged_scan_v1')
+    assert len(out.getvalue().splitlines())==2
+
+
+def test_guard_returning_none_cannot_mutate_wire_or_committed_candidate():
+    o=observation();c=Compute()
+    def guard(response,encoded):
+        response.clear()
+    c.before_emit=guard
+    assert peer(requests(o),c)[-1]['result']==envelope(o)

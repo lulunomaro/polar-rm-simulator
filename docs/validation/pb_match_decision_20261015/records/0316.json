@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Windows\\system32\\wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--",
+    "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/tools/prepare_pb_match_decision.py",
+    "--out",
+    "/root/polar-pb-match-decision-build-20261015-03",
+    "--btcpp-prefix",
+    "/root/polar-pb-match-bt4-20261015-01/install",
+    "--interface-prefix",
+    "/root/polar-pb-match-interfaces-20261015-02/install",
+    "--environment",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-humble-ext4-runtime-20261014/ENVIRONMENT_COMPAT_FINAL.json",
+    "--build"
+  ],
+  "timeout_s": 240,
+  "nodes_started": false
+}

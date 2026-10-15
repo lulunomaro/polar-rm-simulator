@@ -203,3 +203,44 @@ def test_close_discards_open_slot_without_sending_another_scan():
     core.observe(o, transport);core.close()
     assert core._pending is None and core._closed and len(transport.published) == 1
     assert stages[-1]["event"] == "stage_discard" and stages[-1]["reason"] == "closed"
+
+
+@pytest.mark.parametrize("overrun", [0., .001])
+def test_native_candidate_becomes_same_source_status_when_exit_journal_exhausts_stage(overrun):
+    core, clock, rows, stages, _ = source();o = observation()
+    transport = Transport(core, clock, [lambda: core.receive_result(wire(native(o))),
+        lambda: core.receive_localization(wire(localization(o)))])
+    core.observe(o, transport);deadline = core._deadline
+    record = core.record_stage
+    def delayed_exit(row):
+        record(row)
+        if row["event"] == "stage_act_exit":clock.now = deadline + overrun
+    core.record_stage = delayed_exit
+    response = core.consume_sourced(o, transport)
+    assert response["goal_uuid"] is None and response["value"]["status"] == "no_associated_command"
+    assert {k:response["value"][k] for k in IDENTITY} == {k:o[k] for k in IDENTITY}
+    exit = next(row for row in stages if row["event"] == "stage_act_exit")
+    withheld = next(row for row in stages if row["event"] == "stage_action_withheld")
+    assert exit["value_kind"] == "action" and exit["goal_uuid"] == "a" * 32 and exit["status"] is None
+    assert exit["local_wall"] < deadline and withheld["local_wall"] == deadline + overrun
+    assert withheld["local_deadline"] == exit["local_deadline"] == deadline == core._deadline
+    assert withheld["source"] == exit["source"] == {k:o[k] for k in IDENTITY}
+    assert withheld["scan"] == exit["scan"] and withheld["goal_uuid"] == "a" * 32
+    assert withheld["value_kind"] == "action" and withheld["reason"] == "stage_exit_budget_expired"
+    assert len(transport.published) == 1 and core._closed is False and core._stage is None
+    # A new original scan can continue; the expired scan is never restarted.
+    core.record_stage = record;two = observation(2)
+    next_transport = Transport(core, clock, [lambda: core.receive_localization(wire(localization(two)))])
+    assert core.observe(two, next_transport)["source"]["observed_seq"] == 2
+    assert len(next_transport.published) == 1
+
+
+def test_capture_mismatch_is_still_fatal_instead_of_a_successful_withheld_status():
+    core, clock, _, _, _ = source();o = observation()
+    transport = Transport(core, clock, [lambda: core.receive_result(wire(native(o))),
+        lambda: core.receive_localization(wire(localization(o)))])
+    core.observe(o, transport)
+    _, value, uuid = core._source_capture
+    core._source_capture = (object(), value, uuid)
+    with pytest.raises(BridgeError, match="action_capture_mismatch"):
+        core.consume_sourced(o, transport)

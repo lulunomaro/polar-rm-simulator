@@ -37,6 +37,7 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
         if type(request) is not dict or type(request.get('schema')) is not str or request['schema'] != JSONL_SCHEMA or type(request.get('op')) is not str:
             raise ContractError('navigation_jsonl_schema_or_operation')
         op = request['op']
+        next_goal_history = None
         if op == 'prepare':
             exact(request, ('schema', 'op', 'config'), 'navigation_peer_prepare')
             exact(request['config'], (), 'navigation_peer_config')
@@ -106,7 +107,7 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
             if goal_profile:
                 from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result
                 value = validate_goal_navigation_result(value, o, intent)
-                goal_history.check(value)
+                next_goal_history = goal_history.checked_copy(value)
                 field = 'result'
             else:
                 field, value = validate_result_for_intent(value, o, intent)
@@ -116,11 +117,35 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
         encoded = encode_json(response, MAX_RESPONSE - 1) + b'\n'
         # A staged producer may own a stricter local computation budget than
         # the foreign host deadline. Check after validation/history/encoding,
-        # immediately before writing; the host still bounds actual I/O.
+        # immediately before writing; the host still bounds actual I/O. A
+        # final local expiry may withhold an action, committing only the
+        # source-bound status to history. It cannot rewrite an emitted receipt.
         before_emit = getattr(compute, 'before_emit', None) if staged_profile else None
         if before_emit is not None:
             if not callable(before_emit): raise ContractError('navigation_peer_emit_guard_callable_required')
-            before_emit(response, encoded)
+            replacement = before_emit(copy.deepcopy(response), encoded)
+            if replacement is not None:
+                if op != 'act' or not goal_profile:
+                    raise ContractError('navigation_peer_emit_replacement_requires_action')
+                original = parse_json(encoded, MAX_RESPONSE)
+                original_result = original['result']
+                exact(replacement, ('schema', 'op', 'ok', 'result'), 'navigation_peer_emit_replacement')
+                if (type(replacement['schema']) is not str or replacement['schema'] != JSONL_SCHEMA
+                        or type(replacement['op']) is not str or replacement['op'] != 'act'
+                        or replacement['ok'] is not True or 'action' not in original_result):
+                    raise ContractError('navigation_peer_emit_replacement_requires_action')
+                replacement_value = validate_goal_navigation_result(replacement['result'], o, intent)
+                if (any(not same_typed_tree(replacement_value[k], original_result[k])
+                        for k in ('schema', 'source', 'intent', 'selection'))
+                        or replacement_value['controller_goal_uuid'] is not None
+                        or not same_typed_tree(replacement_value.get('status'), navigation_status_for(o))):
+                    raise ContractError('navigation_peer_emit_replacement_must_withhold')
+                # Start from committed history, not the discarded action preview.
+                next_goal_history = goal_history.checked_copy(replacement_value)
+                response = dict(schema=JSONL_SCHEMA, op='act', ok=True, result=replacement_value)
+                encoded = encode_json(response, MAX_RESPONSE - 1) + b'\n'
+        if next_goal_history is not None:
+            goal_history = next_goal_history
         output_stream.write(encoded)
         output_stream.flush()
 

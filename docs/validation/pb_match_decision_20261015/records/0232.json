@@ -1,0 +1,19 @@
+{
+  ".gitignore": "0f757e4650fcbcc3e9f7b97632ea3c5e2f2633a9417c897ef1b2e64c6d9e8b4e",
+  "CMakeLists.txt": "e628d5c2ceb6d344e35ea047704d89a4737a57f64c180f45d4b85b852ba90739",
+  "LICENSE": "e27d20d301ddb6a8386f5cf3485a0c5c01b9062a4cc32bec265a7deabc82177f",
+  "package.xml": "ce3ad730874c91b6bdc6f0ccf494223ec2f64e6da389fbf51d7e3b18308358de",
+  "README.md": "3bfeb6c97cb23e2040b92ab9e7bf455fcfb380bbd9cf12808333eee11ef93cea",
+  "msg/Gimbal.msg": "7bcefebf551657ad89f190818bdea40b18b8aa84b697f48256e219d2107b21d7",
+  "msg/GimbalCmd.msg": "6332f3f6a58112c27b642e44bdeffa5cab823670c7d309a3c2d8f0f4d4516236",
+  "msg/Models.msg": "82469a9669ab007d51ff32b81fd2784c6d7e82c89105e3e1f084c864cdaac9f1",
+  "msg/RobotStateInfo.msg": "4191a84985e5c32a5527cda9886d503f7590e5577e6a18994776dc751622cd41",
+  ".github/workflows/ci.yml": "cbb64300a6df8a53c3ceba13cca8cb56d4709782d2280ad14e3bbbb40c020586",
+  "msg/referee/Buff.msg": "63c63fdea181804bc9cd85052a41a47d800a2c78c7f3a00daf0f0e11da7ee089",
+  "msg/referee/EventData.msg": "85d95af1ae9a0133153e27d34248ee16e43c12de8eb352b42210a71d2ea05ce2",
+  "msg/referee/GameRobotHP.msg": "f4f0210a28176b5a44649e935b75229097b05e0a1fb87d352a723149b166c655",
+  "msg/referee/GameStatus.msg": "4d79fef478d44b8be33f367c77b42e2721914947092770db2bf34d56cf5e287a",
+  "msg/referee/GroundRobotPosition.msg": "22906ef492800cf7a1b2aed9ee2c33825630c8c0f66a90e39cccdeae491a72b3",
+  "msg/referee/RfidStatus.msg": "da5e5b50ac395f296128b9a3aa761a8b383dd1112c318358727fc97e9e941224",
+  "msg/referee/RobotStatus.msg": "bffa8921fc0a3feb68404b488beff0a4847e7be38af14d1eaaaced9bb3797d31"
+}

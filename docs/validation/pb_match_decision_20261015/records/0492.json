@@ -1,0 +1,19 @@
+{
+  "schema": "polar.sim.robotio-plugins.v1",
+  "manifests": {
+    "navigation": "navigation.json",
+    "decision": "decision.json",
+    "aim": null
+  },
+  "pipelines": [
+    {
+      "adapter_id": "custom_pb_match_pipeline",
+      "label": "Actual PB BT4 with actual PB navigation",
+      "decision_plugin_id": "custom_pb_match_decision",
+      "navigation_plugin_id": "custom_pb_goal_navigation",
+      "supported_robots": [
+        "red_sentry"
+      ]
+    }
+  ]
+}

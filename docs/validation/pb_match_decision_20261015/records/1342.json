@@ -1,0 +1,64 @@
+{
+  "schema": "polar.pb.match-decision-peer-spec.v1",
+  "run_uuid": "8c65d996e0c54394a5db9c07129b265b",
+  "root_linux": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+  "out_linux": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-route-decision-prep-20261015-05/peer-evidence",
+  "namespace": "/polar_match_8c65d996e0c54394a5db9c07129b265b/red_sentry",
+  "domain_id": 84,
+  "native_ref": {
+    "path": "/root/polar-pb-match-decision-build-20261015-03/install/bin/polar_pb_match_decision",
+    "sha256": "31932110540f2caa4ae6969c5e41fa07c853a8a539c8d53d72a44416a9210c66"
+  },
+  "xml_ref": {
+    "path": "/root/polar-pb-match-decision-build-20261015-03/src/local_rmul_2025.xml",
+    "sha256": "7a09236753e004fc9b10325c2b9713154ff9da00749deaaa3a790aaff23581dc"
+  },
+  "build_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-native-build-20261015-03-shared/BUILD_RESULT.json",
+    "sha256": "889ef727678896d69e2fee60e0505a08eb6929b015d9db7d1ae20412f0ff27c9"
+  },
+  "environment_ref": {
+    "path": "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-route-decision-prep-20261015-05/ENVIRONMENT.json",
+    "sha256": "1e84de2828c5fba768e9186e421ebf073dfe99143d67ecc4f123abdde4c7f604"
+  },
+  "source_sha256": {
+    "rm_match/integrations/pb_match_decision_peer.py": "6048488bcd1fd83177c55945578bb78d7b06b31d09c73ab9241efb0c70dc9e1d",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "operator_native/pb_match_decision/CMakeLists.txt": "faea5acba35d70054b7767c7455f9913d656c634788668dddc7a521db645c1b3",
+    "operator_native/pb_match_decision/runner.cpp": "e14f84cf72729fc37599dfbfbde5f217b9cfb0dfeb2cef87194360570bdf7a2f",
+    "tools/prepare_pb_match_decision.py": "22bf0eed182fb3ada46cb5e1c39f9b4da268acee9ad5c721726fd548602bc7d8"
+  },
+  "expected_generation": {
+    "robot_id": "red_sentry",
+    "episode": 0,
+    "binding_epoch": 1
+  },
+  "waypoints": {
+    "schema": "polar.pb.local-waypoints.v1",
+    "attack_offset_m": [
+      1.0,
+      0.0
+    ],
+    "supply_offset_m": [
+      0.0,
+      0.0
+    ],
+    "yaw_offset_rad": 0.0
+  },
+  "capabilities": {
+    "schema": "polar.sim.decision-plugin.capabilities.v2",
+    "observation_schema": "polar.sim.decision-observation.v2",
+    "intent_schema": "polar.sim.decision-intent.v1",
+    "sensor_profile": "own_referee_navigation_v2",
+    "output_modes": [
+      "navigation_intent"
+    ],
+    "source_association": "exact_observation_and_navigation_feedback_v1",
+    "fire_authority": "none",
+    "ui_config_contract": "empty_v1"
+  }
+}

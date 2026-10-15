@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "errors": [],
+  "returned_public_actions": 2,
+  "exact_public_physical_steps": 72,
+  "nonzero_public_steps": 72,
+  "scope": "actual returned complete action only; statuses and failed/withheld native candidates grant no consumption"
+}

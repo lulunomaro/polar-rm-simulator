@@ -1,0 +1,67 @@
+{
+  "schema": "polar.pb-match-build-preflight.v1",
+  "packages": {
+    "behaviortree_cpp": [],
+    "behaviortree_cpp_v3": [
+      "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/cmake/behaviortree_cpp_v3/behaviortree_cpp_v3Config.cmake",
+      "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/share/behaviortree_cpp_v3/cmake/behaviortree_cpp_v3Config.cmake"
+    ],
+    "pb_rm_interfaces": [],
+    "auto_aim_interfaces": [],
+    "rclcpp": [
+      "/opt/ros/humble/share/rclcpp/cmake/rclcppConfig.cmake"
+    ],
+    "geometry_msgs": [
+      "/opt/ros/humble/share/geometry_msgs/cmake/geometry_msgsConfig.cmake"
+    ],
+    "example_interfaces": [
+      "/opt/ros/humble/share/example_interfaces/cmake/example_interfacesConfig.cmake"
+    ],
+    "nlohmann_json": [],
+    "generate_parameter_library": []
+  },
+  "headers": {
+    "/usr/include/nlohmann/json.hpp": false,
+    "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/include/nlohmann/json.hpp": false
+  },
+  "tools": {
+    "cmake": "/usr/bin/cmake",
+    "ninja": null,
+    "c++": "/usr/bin/c++",
+    "g++": "/usr/bin/g++",
+    "ldd": "/usr/bin/ldd"
+  },
+  "versions": {
+    "cmake": {
+      "returncode": 0,
+      "first_line": "cmake version 3.22.1"
+    },
+    "c++": {
+      "returncode": 0,
+      "first_line": "c++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+    }
+  },
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee",
+  "environment": {
+    "venv_python": "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "process_environment": {
+      "CMAKE_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/compat:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/root/polar-humble-ext4-20261014-01/prefix/usr:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+      "AMENT_PREFIX_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble:/opt/ros/humble:/root/polar-humble-ext4-20261014-01/livox_ros_driver2",
+      "LD_LIBRARY_PATH": "/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu:/root/polar-humble-ext4-20261014-01/prefix/usr/lib:/root/polar-humble-ext4-20261014-01/livox_ros_driver2/lib:/opt/ros/humble/lib:/root/polar-humble-ext4-20261014-01/prefix/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/opt/rviz_ogre_vendor/lib",
+      "PKG_CONFIG_PATH": "/root/polar-humble-ext4-20261014-01/prefix/usr/lib/x86_64-linux-gnu/pkgconfig",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "hardware_or_nodes_started": false,
+    "derived_from_sha256": "0cd98634002c5456b5b0f77789b700c1c8941d9051fe9ac8a3cebae82da9ec49",
+    "storage_profile": "ext4_byte_identical_runtime_v1",
+    "copy_manifest_sha256": "93fd064c4451ffbdbf8643064b980515791575a80a9295dfcaeae7280fd5dcef",
+    "derived_pth_sha256": "aadc51d8ccebdda01e32b3777eebe35fb9e6cca5322feb728521fd255c3c46dd",
+    "finalizer_source_sha256": "f07637b16e6f0c390b24f55f1e7cf63ecf7cc9e2aec8def61b37f6988c56368d",
+    "original_migration_environment_sha256": "d5d1dab00204fe41b2ccbf79d74f963f636f0bbbadbe8bfb55b80e71c23c33e0"
+  },
+  "active_relevant": [],
+  "target_exists": false,
+  "nodes_started": false,
+  "build_started": false,
+  "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]"
+}

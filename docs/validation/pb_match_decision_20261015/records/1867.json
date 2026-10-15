@@ -1,0 +1,51 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_pb_match_decision_sil.py",
+    "--run",
+    "--manifest",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-graph-20261015-07\\robotio.json",
+    "--pipeline-id",
+    "custom_pb_match_pipeline",
+    "--peer-evidence-dir",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-07\\peer-evidence",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-actual-20261015-07",
+    "--decision-evidence-dir",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-decision-prep-20261015-07\\peer-evidence",
+    "--seconds",
+    "15",
+    "--max-wall-seconds",
+    "30",
+    "--activation-period-s",
+    ".02",
+    "--python-switch-interval-s",
+    ".001"
+  ],
+  "manifest": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-graph-20261015-07\\robotio.json",
+  "pipeline_id": "custom_pb_match_pipeline",
+  "peer_evidence_dir": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-07\\peer-evidence",
+  "decision_evidence_dir": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-decision-prep-20261015-07\\peer-evidence",
+  "seconds": 15.0,
+  "max_wall_seconds": 30.0,
+  "activation_period_s": 0.02,
+  "original_activation_period_s": 0.05,
+  "unchanged_budgets": {
+    "sdk_s": 0.15,
+    "pb_navigation_s": 0.05,
+    "camera_s": 0.08
+  },
+  "python_switch_interval": {
+    "scope_entered": true,
+    "requested_s": 0.001,
+    "original_s": 0.005,
+    "actual_s": 0.001,
+    "restored_s": 0.005,
+    "restored": true,
+    "changed": true,
+    "restore_attempted": true,
+    "scope_error_type": null,
+    "restore_error_type": null,
+    "scope": "CPython thread switch interval only; no source/sensor/SDK deadline changes"
+  },
+  "scope": "registered actual native PB BT4 healthy running one-route; no synthetic high-level policy"
+}

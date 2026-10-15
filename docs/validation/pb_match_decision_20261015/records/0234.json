@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "cmake",
+    "-S",
+    "/root/polar-pb-match-interfaces-20261015-01/source",
+    "-B",
+    "/root/polar-pb-match-interfaces-20261015-01/build",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DBUILD_TESTING=OFF",
+    "-DCMAKE_INSTALL_PREFIX=/root/polar-pb-match-interfaces-20261015-01/install",
+    "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+  ],
+  "identity": {
+    "run_id": "3654214da4c04bf5974aef6f2eef911d",
+    "supervisor_pid": 327,
+    "boot_id": "25893c7a-19d5-46ce-a71a-bc64c4769d32",
+    "pid": 404,
+    "pgid": 404,
+    "leader_start_ticks": 416
+  },
+  "timeout_s": 900
+}

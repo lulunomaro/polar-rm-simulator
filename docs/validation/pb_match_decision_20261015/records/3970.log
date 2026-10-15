@@ -1,0 +1,10 @@
+[INFO] [1792058606.368398346] [ImuProcess]: IMU Initializing: 1.0 %
+[WARN] [1792058606.369146655] [ImuProcess]: reset ImuProcess
+[INFO] [1792058606.466995365] [ImuProcess]: IMU Initializing: 50.0 %
+[INFO] [1792058606.467520120] [ImuProcess]: IMU Initializing: 100.0 %
+lidar_type: 1
+~~~~/root/polar-navigation-humble-e05eb08e/lio_tf_build_20261014_05_02/src/point_lio/ file opened
+first imu time: 0.198000
+[INFO] [1792058621.377267672] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+terminate called after throwing an instance of 'std::system_error'
+  what():  Invalid argument

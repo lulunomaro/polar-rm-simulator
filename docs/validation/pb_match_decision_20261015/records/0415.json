@@ -1,0 +1,10 @@
+{
+  "executable": "C:/Windows/System32/wsl.exe",
+  "argv": [
+    "-d",
+    "Ubuntu-22.04",
+    "--exec",
+    "/usr/bin/python3",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-owned-cleanup-focused-20261015-01/READ_OLD_IDENTITIES.py"
+  ]
+}

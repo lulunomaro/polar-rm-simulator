@@ -1,0 +1,8 @@
+{
+  "diagnosis": "WindowsApps Python alias returned exit 1 before pytest output; no test result claimed",
+  "resolved_python": "C:/Users/lulu/AppData/Local/Microsoft/WindowsApps/python.exe",
+  "stdout": "",
+  "exit_code": 1,
+  "command": "python -m pytest tests/test_pb_match_decision_sil_audit.py -q --disable-warnings",
+  "stderr": ""
+}

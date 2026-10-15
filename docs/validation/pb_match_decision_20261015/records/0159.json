@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_pb_match_decision_peer.py",
+    "tests/test_decision_navigation_v2.py",
+    "tests/test_decision_plugin.py",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-decision-peer-focused-20261015-01\\junit01.xml"
+  ],
+  "scope": "pure exec/pin negative units and harmless stdlib decision peer regression; no nativeBT build/tick/ROS/WSL/NN/physics"
+}

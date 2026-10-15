@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "input_unchanged": true,
+  "native_identity": {
+    "passed": true,
+    "errors": [],
+    "scope": "source-pinned native /proc/self/exe + original checked XML + BT4 build/readiness; no localization accuracy claim"
+  },
+  "native_build_mirror": {
+    "passed": true,
+    "errors": [],
+    "overlay": {
+      "passed": true,
+      "errors": [],
+      "explicit_edits": 5,
+      "scope": "same original PB conditions/control tree; spin disabled, source hold and estimated-anchor local waypoints explicit"
+    },
+    "scope": "literal build-result/source/XML/loader mirrors; native readiness separately proves actual ext4 self-read"
+  },
+  "native_ticks": {
+    "passed": true,
+    "errors": [],
+    "ticks": 5,
+    "public_intent_joins": 0,
+    "unreturned_native_ticks": 0,
+    "healthy_current_tick_goals": 1,
+    "original_base_set_message_events": 2,
+    "branches": {
+      "healthy_current_goal": 1,
+      "low_status_rfid_unavailable": 1,
+      "safety_hold": 2,
+      "paused_hold": 1,
+      "emergency_stop_hold": 1,
+      "pending_navigation": 1
+    },
+    "scope": "standalone_native_protocol_inputs",
+    "limitations": [
+      "branch protocol inputs are not actual referee ticks unless joined to the real runtime trace",
+      "explicit spin-disabled, sync hold and estimated-anchor local waypoint XML overlay; no official field map alignment"
+    ]
+  },
+  "qualification": "actual_native_runner_with_explicit_standalone_protocol_inputs_no_runtime_or_physics_acceptance",
+  "elapsed_s": 0.10127590000047348,
+  "exit_code": 0
+}

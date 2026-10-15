@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "cmake",
+    "-S",
+    "/root/polar-pb-match-bt4-20261015-01/source",
+    "-B",
+    "/root/polar-pb-match-bt4-20261015-01/build",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DCMAKE_INSTALL_PREFIX=/root/polar-pb-match-bt4-20261015-01/install",
+    "-DCMAKE_DISABLE_FIND_PACKAGE_ament_cmake=ON",
+    "-DBTCPP_BUILD_TOOLS=OFF",
+    "-DBTCPP_EXAMPLES=OFF",
+    "-DBTCPP_UNIT_TESTS=OFF",
+    "-DBTCPP_GROOT_INTERFACE=OFF",
+    "-DBTCPP_SQLITE_LOGGING=OFF"
+  ],
+  "identity": {
+    "run_id": "d883c03835524a49a0afd55ad66cfb25",
+    "supervisor_pid": 335,
+    "boot_id": "b826e557-0c59-414f-a980-179aac0d9d3e",
+    "pid": 414,
+    "pgid": 414,
+    "leader_start_ticks": 1247
+  },
+  "timeout_s": 900
+}

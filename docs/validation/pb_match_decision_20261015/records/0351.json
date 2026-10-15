@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "BUILD_RESULT.json",
+      "sha256": "889ef727678896d69e2fee60e0505a08eb6929b015d9db7d1ae20412f0ff27c9"
+    },
+    {
+      "path": "ldd.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ldd.stdout",
+      "sha256": "f21e8d321e5c8164eaccf7e33e513c88251b75d67424491bde8af411df2fb2c1"
+    },
+    {
+      "path": "local_rmul_2025.xml",
+      "sha256": "7a09236753e004fc9b10325c2b9713154ff9da00749deaaa3a790aaff23581dc"
+    },
+    {
+      "path": "SOURCE_IDENTITY.json",
+      "sha256": "78a330aef75e2d3b62eaeef465e0d2dea7750df2704fab29030ccbe670fb800d"
+    }
+  ],
+  "scope": "Exact post-build literal metadata/loader output placement; initial copy expected obsolete ldd.stdout name, corrected to actual command04 bytes; no build or native run repeated"
+}

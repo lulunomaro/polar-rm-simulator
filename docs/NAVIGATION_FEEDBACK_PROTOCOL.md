@@ -116,7 +116,7 @@ Windows原150ms SDK和source wall_deadline仍是宿主authority并包含实际I/
 10Hz扫描、每stage多条事件时，STAGES约136秒就可能触及上限；这是当前短时验证入口的资源边界，
 不能直接许诺分钟级完整比赛。长期journal持久化/轮转及其性能仍需另做有界设计和实际验证。
 
-## 本轮实际证据与缺口
+## 先前synthetic决策的实际证据与缺口
 
 原件入口：[attempt02 RESULT](../artifacts/registered-pb-goal-actual-20261015-02/RESULT.json)、
 [peer索引](../artifacts/registered-pb-goal-actual-20261015-02/PEER_EVIDENCE_INDEX.json)、
@@ -146,3 +146,60 @@ runtime join .7700017秒，peer内部 .428730679秒（本地计时，不跨时�
 
 注册路径的取消/替换/第二目标、多车、感知/自瞄联调、自动火、Qt/可见桌面、RTF、跨机DDS、定位精度、
 完整3v3/7v7和M0–M5均未签收。先前独立PB探针两目标成功的证据保留，但不能移用为本注册路径资格。
+
+## 真实PB决策替换与普通expiry处理
+
+新[BT4 scoped runner](../operator_native/pb_match_decision/README.md)用真实C++ BT与原PB条件/动作替换先前的
+synthetic高层策略，仍走同一decision v2/intent v1和navigation v3，不改此协议字段。
+真实BT构建与standalone五个合成DTO tick已过，不代表实际裁判分支通过。
+固定原XML与明确5处spin/stop/local-waypoint overlay分别记录；缺RFID保持缺失并抑制supply输出，
+原树未实现receipt完成guard，不能用先前synthetic策略的finalhold替它补一条已验证战术。
+
+真树注册actual02默认SDK cadence .05秒，原host事务期限失败、0公开动作/0motion；
+actual03显式.02秒的fresh SDK授权后有2份及时公开action/72非零物理消费步，
+但随后原Linux50ms最终encode门超期.739304ms，peer退出并出现adapter/共享清理失败，两轮均FAIL。
+03的16observe/16intent只有15返回（2action/13status、1停止后中止）；
+6份精确LIO/TF估计、14LIO/3controller及实际健康PB节点/原setMessage局部事实不能覆盖整个FAIL。
+外层最终Job空/reaped也不能替内部共享预算或SDK release/close Timeout洗成clean。
+原失败见[actual02](../artifacts/pb-match-route-actual-20261015-02/RESULT.json)、
+[actual03](../artifacts/pb-match-route-actual-20261015-03/RESULT.json)。SDK cadence只改变操作手发送新授权的频率，
+不改变点云/IMU采样、BT输入来源、source6或原150ms。
+
+当前新增事务式末端修复，待新实际：候选结果先完整stateless验证与history preview，再encode，
+`before_emit`只收到detached副本。及时action提交对应preview并写出；普通本地expiry可将尚未发出的action
+降为同source/intent/selection的`no_associated_command`，controller_goal_uuid必须为空。
+replacement重新验证、从原已提交history另建preview并编码后，只提交实际wire结果，
+不会先提交action再以同seq改写history，也不把迟动作换成零速度。
+坏来源/UUID/shape仍严格失败，回调不能改selection或伪造新授权；原candidate保留在REJECTED记录。
+GoalNavigationCompute内部已验证候选与外部实际wire历史分别记账；候选不等于公开或已消费动作。
+原single-act/single-response、同seq不可改响应和禁重放不变，write失败仍fault关闭，不自动重发。
+
+50ms门仍只对动作授权，并截至encode后/write前；有源status不获得运动权限，也不延长原stage或host150ms。
+status自身编码/实际I/O仍由原宿主期限约束，不宣称Linux50ms内完成pipe写入。
+修复后actual04受控15.006447秒，101原observe/intent/status、95精确估计/101真实BT tick，无adapter fault且原共享资源清理通过；
+但首次规划被实际Nav2以Start pose is out of costmap拒绝、0公开动作/0物理消费，整轮仍FAIL。
+原失败目标sticky语义保留；随后新增真实代价地图metadata/同次TF估计起点bounds readiness，106项helper测试已冻结。
+缺图/越界继续pending_navigation，不能clamp起点、填地图或用等待时间代替实际数据；bounds就绪不声明Smac规划可行。
+
+actual05有149observe/149intent、148公开返回（5action/143status、1停止后中止）；
+PUBLIC_CONSUMPTION按原公开动作源匹配206非零物理步。137份available反馈只是公共声明，
+退出前navpeer journal全缺，缺原ROS_SOURCE/STAGES/ACT_RESULTS等就无法认证原生TF/LIO、UUID、终态或最终emit门。
+decision Linux cleanup proof也缺，不能用native CLOSE或外层Job最终空替补，整轮FAIL。
+Root的只读raw review05因缺ROS_SOURCE直接FileNotFoundError，没有rawpass；旧失败和缺件不重建、不掩盖。
+
+原ownedTree同时TERM leader与Nav2 children会中断协作停机和证据保存。
+新修复让pipeline先对所有owned peer请求stop，再等待；Linux侧先给leader最多.8秒协作，
+仍合用原1.17秒KILL阶段、1.3秒Linux和1.5秒host总预算。
+PB peer已增加幂等signal、PRE_CLOSE快照与写证据耗时，未知收尾继续unclean。
+actual06原宿主期限失败，546步/1.2565519秒后中止，0动作；资源与完整证据在原预算内完成，整轮仍FAIL。
+
+最终actual07显式CPython switch .001秒（实读并恢复原.005），SDK仍.02秒/原.15秒授权。
+23项检查全过：147observe/147真实BT tick/147结果=15action+132status，136原LIO/精确TF，620非零物理步；
+2份真实迟动作只返回同source status，原candidate保留/无物理消费，后续交易继续。
+15份公开动作最终原50ms门通过；host收尾.9927301秒<1.5，Linux1.3保持，0adapter fault。
+原目标origin seq13、navigation UUID 642bfdadacd6414386254d3888e4fcf1，真实succeeded/terminal/stop后保持原树持续目标语义。
+独立raw复核15份原地图metadata、136本次TF起点覆盖、7未就绪估计被抑制；bounds不声明路径可行性。
+见[actual07](../artifacts/pb-match-route-actual-20261015-07/RESULT.json)和[raw复核](../artifacts/pb-match-postqa-review-20261015-07/RESULT.json)。
+该单次成功不证明1ms是此前失败唯一原因；默认调度、其余实际裁判分支、多车、自瞄、长局与完整比赛仍待验。
+最终QA15四步骤通过，3041passed/45明确skip/1024subtests，460程序源前后不变；本句为QA后补记。
+完整原件及失败的校验副本见[永久证据](validation/pb_match_decision_20261015/README.md)。

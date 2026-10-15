@@ -1,0 +1,90 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "/root/polar-pb-match-interfaces-20261015-02/source",
+      "-B",
+      "/root/polar-pb-match-interfaces-20261015-02/build",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "-DBUILD_TESTING=OFF",
+      "-DCMAKE_INSTALL_PREFIX=/root/polar-pb-match-interfaces-20261015-02/install",
+      "-DPython3_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python",
+      "-DPYTHON_EXECUTABLE=/root/polar-humble-ext4-20261014-01/venv/bin/python"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 8.288353041,
+    "cleanup": {
+      "run_id": "8a378e1b90e042088fc63752c2c5cb7b",
+      "supervisor_pid": 329,
+      "boot_id": "a80b9d13-4a98-4ba1-ab6c-c3f24e2f0130",
+      "pid": 406,
+      "pgid": 406,
+      "leader_start_ticks": 396,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.0036552990000000563
+    }
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "/root/polar-pb-match-interfaces-20261015-02/build",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 14.442997801999999,
+    "cleanup": {
+      "run_id": "20ac4c7fb25144c68a45c2963d497712",
+      "supervisor_pid": 329,
+      "boot_id": "a80b9d13-4a98-4ba1-ab6c-c3f24e2f0130",
+      "pid": 485,
+      "pgid": 485,
+      "leader_start_ticks": 1225,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.0032893429999987234
+    }
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "/root/polar-pb-match-interfaces-20261015-02/build"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 0.18026177000000132,
+    "cleanup": {
+      "run_id": "4d4a17d293434cc4a10520fc5fb0fd3e",
+      "supervisor_pid": 329,
+      "boot_id": "a80b9d13-4a98-4ba1-ab6c-c3f24e2f0130",
+      "pid": 1391,
+      "pgid": 1391,
+      "leader_start_ticks": 2670,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.0033312849999980187
+    }
+  }
+]

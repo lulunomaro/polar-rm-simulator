@@ -1,0 +1,47 @@
+[  2%] Building CXX object CMakeFiles/minitrace.dir/3rdparty/minitrace/minitrace.cpp.o
+[  4%] Building CXX object 3rdparty/lexy/src/CMakeFiles/lexy_file.dir/input/file.cpp.o
+[  6%] Linking CXX static library liblexy_file.a
+[  9%] Linking CXX static library libminitrace.a
+[  9%] Built target lexy_file
+[  9%] Built target minitrace
+[ 13%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/action_node.cpp.o
+[ 13%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/basic_types.cpp.o
+[ 15%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/behavior_tree.cpp.o
+[ 18%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/blackboard.cpp.o
+[ 20%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/bt_factory.cpp.o
+[ 22%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorator_node.cpp.o
+[ 25%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/condition_node.cpp.o
+[ 27%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/control_node.cpp.o
+[ 29%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/shared_library.cpp.o
+[ 31%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/tree_node.cpp.o
+[ 34%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/script_parser.cpp.o
+[ 36%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/json_export.cpp.o
+[ 38%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/xml_parsing.cpp.o
+[ 40%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/actions/test_node.cpp.o
+[ 43%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/actions/sleep_node.cpp.o
+[ 45%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/actions/updated_action.cpp.o
+[ 47%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/delay_node.cpp.o
+[ 50%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/inverter_node.cpp.o
+[ 52%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/repeat_node.cpp.o
+[ 54%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/retry_node.cpp.o
+[ 56%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/subtree_node.cpp.o
+[ 59%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/timeout_node.cpp.o
+[ 61%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/decorators/updated_decorator.cpp.o
+[ 63%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/if_then_else_node.cpp.o
+[ 65%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/fallback_node.cpp.o
+[ 68%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/parallel_node.cpp.o
+[ 70%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/parallel_all_node.cpp.o
+[ 72%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/reactive_sequence.cpp.o
+[ 75%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/reactive_fallback.cpp.o
+[ 77%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/sequence_node.cpp.o
+[ 79%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/sequence_with_memory_node.cpp.o
+[ 81%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/switch_node.cpp.o
+[ 84%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/controls/while_do_else_node.cpp.o
+[ 86%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/loggers/bt_cout_logger.cpp.o
+[ 88%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/loggers/bt_file_logger_v2.cpp.o
+[ 90%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/loggers/bt_minitrace_logger.cpp.o
+[ 93%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/loggers/bt_observer.cpp.o
+[ 95%] Building CXX object CMakeFiles/behaviortree_cpp.dir/3rdparty/tinyxml2/tinyxml2.cpp.o
+[ 97%] Building CXX object CMakeFiles/behaviortree_cpp.dir/src/shared_library_UNIX.cpp.o
+[100%] Linking CXX shared library libbehaviortree_cpp.so
+[100%] Built target behaviortree_cpp

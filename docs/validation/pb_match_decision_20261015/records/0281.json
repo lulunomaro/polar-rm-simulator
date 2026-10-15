@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Windows\\system32\\wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--",
+    "/usr/bin/python3",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/copy_pb_match_build_evidence_20261015.py",
+    "--attempt",
+    "2"
+  ],
+  "exit_code": 0,
+  "reaped": true
+}

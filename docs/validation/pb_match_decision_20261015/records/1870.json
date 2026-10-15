@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "errors": [],
+  "public_actions": 15,
+  "qualified_final_emit_gates": 15,
+  "unmatched_gate_records": 0,
+  "scope": "source-bound final before-write encoded action gate; not a pipe-write-completion timestamp"
+}

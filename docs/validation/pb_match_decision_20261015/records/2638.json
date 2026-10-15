@@ -1,0 +1,25 @@
+{
+  "passed": false,
+  "returncode": 2,
+  "reaped": true,
+  "elapsed_s": 30.75769379999838,
+  "source_unchanged": true,
+  "source_files": 223,
+  "forced_cleanup": false,
+  "job_empty": true,
+  "reader_stopped": true,
+  "handles_released": true,
+  "errors": [],
+  "outer_cleanup_elapsed_s": 0.005638100003125146,
+  "job_observations": [
+    {
+      "elapsed_s": 1.2900010915473104e-05,
+      "active_processes": 1
+    },
+    {
+      "elapsed_s": 0.005528900001081638,
+      "active_processes": 0
+    }
+  ],
+  "actual_result": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-actual-20261015-03\\RESULT.json"
+}

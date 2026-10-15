@@ -27,6 +27,7 @@ SPEC_SCHEMA = "polar.pb.goal-plugin-peer-spec.v1"
 SOURCE_FILES = (
     "rm_match/integrations/pb_goal_plugin_peer.py", "rm_match/integrations/pb_goal_plugin_source.py",
     "rm_match/integrations/pb_goal_controller_source.py", "rm_match/integrations/pb_navigation_bridge.py",
+    "rm_match/integrations/pb_costmap_readiness.py",
     "rm_match/integrations/pb_navigation_transport.py", "rm_match/integrations/pb_wsl_navigation_worker.py",
     "rm_match/integrations/pb_navigation_phases.py", "rm_match/integrations/goal_navigation_compute.py",
     "rm_match/integrations/navigation_goal_lifecycle.py", "rm_match/integrations/nav2_goal_backend.py",
@@ -156,6 +157,7 @@ class PBGoalPluginPeer:
         self.rejected_result_rows = []
         self.emit_gate_rows = [];self._emit_pending = None
         self.rejected_localizations = 0
+        self.rejected_costmaps = 0;self.costmap_metadata = None;self._map_lookup = None
 
     @staticmethod
     def _append(rows, value):
@@ -168,6 +170,44 @@ class PBGoalPluginPeer:
 
     def record_stage(self, row):
         self._append(self.stage_rows, row)
+
+    def receive_costmap_metadata(self,value):
+        from .pb_costmap_readiness import validate_costmap_metadata
+        self.costmap_metadata=None
+        try:metadata=validate_costmap_metadata(value)
+        except ValueError:
+            self.rejected_costmaps+=1
+            return False
+        self.costmap_metadata=metadata
+        self.record_native(dict(topic_kind="costmap_metadata",value=metadata,receive_wall=self.clock(),
+            receive_clock="linux_local_perf_counter"))
+        return True
+
+    def navigation_ready(self):
+        from .pb_costmap_readiness import contains_map_position
+        current=self._map_lookup
+        stage=None if self.source is None else self.source._stage
+        if current is None or stage is None:
+            return False
+        source={k:stage[k] for k in IDENTITY};cloud=stage["sensors"]["pointcloud"]
+        scan=dict(cloud_frame_id=cloud["frame_id"],acquisition_start_ns=cloud["acquisition_start_ns"],
+            acquisition_end_ns=cloud["acquisition_end_ns"],profile_sha256=cloud["profile_sha256"])
+        if not _same_tree(current["source"],source) or not _same_tree(current["scan"],scan):
+            return False
+        transform=current["transform"];stamp=transform["header"]["stamp"]
+        if (type(current["requested_stamp_ns"]) is not int
+            or stamp["sec"]*1000000000+stamp["nanosec"]!=current["requested_stamp_ns"]
+            or current["requested_stamp_ns"] not in self.source._localization_stamps):
+            return False
+        active=self.stack.state=="ACTIVE";backend_ready=self.backend.ready()
+        contains=contains_map_position(self.costmap_metadata,[transform["transform"]["translation"][k] for k in "xyz"])
+        ready=active and backend_ready and contains
+        self.record_native(dict(topic_kind="costmap_readiness",receive_wall=self.clock(),
+            receive_clock="linux_local_perf_counter",value=dict(source=copy.deepcopy(source),scan=scan,
+                requested_stamp_ns=current["requested_stamp_ns"],transform=copy.deepcopy(transform),
+                metadata=copy.deepcopy(self.costmap_metadata),stack_active=active,backend_ready=backend_ready,
+                contains_start=contains,ready=ready)))
+        return ready
 
     def spin(self, timeout):
         if not self.closing:
@@ -194,6 +234,7 @@ class PBGoalPluginPeer:
         if self.context is None or self.closed:
             raise ContractError("pb_goal_peer_reset_required")
         self._emit_pending = None
+        self._map_lookup = None
         value = self.source.observe(observation, self.transport)
         self._append(self.feedback_rows, value)
         return value
@@ -204,24 +245,34 @@ class PBGoalPluginPeer:
         self._emit_pending = None
         original_deadline = self.source._deadline
         result = self.compute(observation, intent)
-        self._append(self.result_rows, result)
+        cloud = observation["sensors"]["pointcloud"]
+        pending = dict(source={k:copy.deepcopy(observation[k]) for k in IDENTITY},
+            scan=dict(cloud_frame_id=cloud["frame_id"], acquisition_start_ns=cloud["acquisition_start_ns"],
+                acquisition_end_ns=cloud["acquisition_end_ns"], profile_sha256=cloud["profile_sha256"]),
+            observation=copy.deepcopy(observation), intent=copy.deepcopy(intent),
+            local_deadline=original_deadline, result=copy.deepcopy(result))
         if "action" in result:
-            cloud = observation["sensors"]["pointcloud"]
-            pending = dict(source={k:copy.deepcopy(observation[k]) for k in IDENTITY},
-                scan=dict(cloud_frame_id=cloud["frame_id"], acquisition_start_ns=cloud["acquisition_start_ns"],
-                    acquisition_end_ns=cloud["acquisition_end_ns"], profile_sha256=cloud["profile_sha256"]),
-                local_deadline=original_deadline, result=copy.deepcopy(result))
             returned_at = self.clock()
             if returned_at >= original_deadline:
-                # History has already accepted this one immutable receipt.
-                # Reject delivery instead of replacing it with another same-seq
-                # status or allowing later compute/journal work to renew time.
-                self.result_rows.pop()
-                self._append(self.rejected_result_rows, dict(reason="original_stage_deadline_expired",
-                    original_deadline=original_deadline, rejected_wall=returned_at, result=result))
-                raise ContractError("pb_goal_peer_original_stage_expired")
-            self._emit_pending = pending
+                result = self._withhold_expired(pending,"original_stage_deadline_expired",returned_at)
+        self._emit_pending = pending
         return result
+
+    def _withhold_expired(self, pending, reason, wall, *, encoded_sha256=None):
+        from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result, goal_navigation_result
+        from ..deployment.navigation_plugin import navigation_status_for
+        # Withholding must never disguise malformed source, UUID or authority.
+        # Validate the original action before constructing its no-command receipt.
+        original = validate_goal_navigation_result(pending["result"],pending["observation"],pending["intent"])
+        if "action" not in original:
+            raise ContractError("pb_goal_peer_withhold_action_required")
+        rejected = dict(reason=reason,original_deadline=pending["local_deadline"],rejected_wall=wall,result=original)
+        if encoded_sha256 is not None:rejected["encoded_sha256"] = encoded_sha256
+        self._append(self.rejected_result_rows,rejected)
+        replacement = goal_navigation_result(pending["observation"],pending["intent"],original["selection"],None,
+            navigation_status_for(pending["observation"]))
+        pending["result"] = copy.deepcopy(replacement)
+        return replacement
 
     def before_emit(self, response, encoded):
         """Final 50 ms gate after encoding, immediately before JSONL write.
@@ -232,9 +283,6 @@ class PBGoalPluginPeer:
         if type(response) is not dict or response.get("op") != "act":
             return
         result = response.get("result")
-        if type(result) is not dict or "action" not in result:
-            self._emit_pending = None
-            return
         pending = self._emit_pending;self._emit_pending = None
         exact(response, ("schema", "op", "ok", "result"), "pb_goal_peer_emit_response")
         if (type(response["schema"]) is not str or response["schema"] != JSONL_SCHEMA
@@ -244,23 +292,38 @@ class PBGoalPluginPeer:
             raise ContractError("pb_goal_peer_emit_source_or_result_changed")
         if type(encoded) is not bytes or not _same_tree(parse_json(encoded, MAX_RESPONSE), response):
             raise ContractError("pb_goal_peer_emit_encoding_changed")
+        if "action" not in result:
+            self._append(self.result_rows,result)
+            return
         row = dict(source=pending["source"], scan=pending["scan"], local_deadline=pending["local_deadline"],
             gate_wall=self.clock(), clock="linux_local_perf_counter", result=result,
             encoded_sha256=hashlib.sha256(encoded).hexdigest())
-        self._append(self.emit_gate_rows, row)
+        self._append(self.result_rows,result)
+        self._append(self.emit_gate_rows,row)
         gate_wall = self.clock()
         if gate_wall >= pending["local_deadline"]:
             self.emit_gate_rows.pop()
-            self._append(self.rejected_result_rows, dict(reason="encoded_stage_deadline_expired",
-                original_deadline=pending["local_deadline"], rejected_wall=gate_wall,
-                encoded_sha256=row["encoded_sha256"], result=result))
-            raise ContractError("pb_goal_peer_original_stage_expired")
+            self.result_rows.pop()
+            replacement = self._withhold_expired(pending,"encoded_stage_deadline_expired",gate_wall,
+                encoded_sha256=row["encoded_sha256"])
+            self._append(self.result_rows,replacement)
+            return dict(response,result=replacement)
         self.emit_gate_rows[-1]["gate_wall"] = gate_wall
 
     def _save(self, name, value):
         raw = (json.dumps(value, indent=2, allow_nan=False) + "\n").encode()
         with (self.out / name).open("xb") as stream:
             stream.write(raw)
+
+    def _journals(self):
+        return (("ROS_SOURCE.jsonl", self.native_rows), ("FEEDBACK.jsonl", self.feedback_rows),
+            ("STAGES.jsonl", self.stage_rows), ("ACT_RESULTS.jsonl", self.result_rows),
+            ("REJECTED_RESULTS.jsonl", self.rejected_result_rows), ("EMIT_GATES.jsonl", self.emit_gate_rows))
+
+    def _save_journal(self, name, rows):
+        with (self.out / name).open("xb") as stream:
+            for row in rows:
+                stream.write(json.dumps(row, allow_nan=False, separators=(",", ":")).encode() + b"\n")
 
     def close(self, *, deadline=None):
         if deadline is not None and (type(deadline) not in (int, float) or not math.isfinite(deadline)):
@@ -273,6 +336,12 @@ class PBGoalPluginPeer:
         start = self.clock();end = min(start + 1.3, deadline) if deadline is not None else start + 1.3
         errors = [];goal_clean = self.lifecycle is None
         stack_cleanup = None;gate_clean = self.gate is None;transport_clean = self.transport is None
+        # Keep completed-work evidence before cancellation/resource teardown.
+        # The final journals below still include actual records received while
+        # polling cancellation; these snapshots never substitute for clean proof.
+        for name, rows in self._journals():
+            try:self._save_journal("PRE_CLOSE_" + name, copy.deepcopy(rows))
+            except BaseException:errors.append("pre_close_evidence_write_failed:" + name)
         if self.source is not None:
             try:self.source.discard_stage("closed")
             except BaseException:errors.append("stage_close_failed")
@@ -309,25 +378,53 @@ class PBGoalPluginPeer:
         try:unchanged = all(sha(ROOT / name) == digest for name, digest in self.spec["source_sha256"].items())
         except (OSError, ValueError):unchanged = False
         if not unchanged:errors.append("peer_source_changed")
-        elapsed = self.clock() - start
-        if self.clock() > end:errors.append("peer_cleanup_deadline_exceeded")
-        snapshot = None if self.lifecycle is None else self.lifecycle.snapshot()
+        try:snapshot = None if self.lifecycle is None else self.lifecycle.snapshot()
+        except BaseException:snapshot = None;errors.append("goal_snapshot_failed")
+        for name, rows in self._journals():
+            try:self._save_journal(name, rows)
+            except BaseException:errors.append("final_evidence_write_failed:" + name)
+        try:
+            self._save("GOAL_REPORT.json", dict(lifecycle=snapshot,
+                sensor_published=any(row["topic_kind"] == "request" for row in self.native_rows),
+                feedback_count=len(self.feedback_rows), result_count=len(self.result_rows),
+                rejected_localizations=self.rejected_localizations,
+                rejected_costmaps=self.rejected_costmaps,
+                scope="registered staged PB estimated feedback and original source-bound goal results"))
+        except BaseException:errors.append("goal_report_write_failed")
         self.cleanup = dict(schema="polar.pb.goal-plugin-peer-cleanup.v1", run_uuid=self.spec["run_uuid"],
-            clean=not errors and goal_clean and gate_clean and transport_clean, errors=errors,
-            goal_stop_confirmed=goal_clean, gate_clean=gate_clean, transport_clean=transport_clean,
-            stack=stack_cleanup, elapsed_s=elapsed, source_unchanged=unchanged,
+            clean=False, errors=errors, goal_stop_confirmed=goal_clean,
+            gate_clean=gate_clean, transport_clean=transport_clean, stack=stack_cleanup,
+            elapsed_s=0., source_unchanged=unchanged,
             config_sha256=self.spec["config_ref"]["sha256"], environment_sha256=self.spec["environment_ref"]["sha256"])
-        for name, rows in (("ROS_SOURCE.jsonl", self.native_rows), ("FEEDBACK.jsonl", self.feedback_rows),
-            ("STAGES.jsonl", self.stage_rows), ("ACT_RESULTS.jsonl", self.result_rows),
-            ("REJECTED_RESULTS.jsonl", self.rejected_result_rows), ("EMIT_GATES.jsonl", self.emit_gate_rows)):
-            with (self.out / name).open("xb") as stream:
-                for row in rows:stream.write(json.dumps(row, allow_nan=False, separators=(",", ":")).encode() + b"\n")
-        self._save("GOAL_REPORT.json", dict(lifecycle=snapshot,
-            sensor_published=any(row["topic_kind"] == "request" for row in self.native_rows),
-            feedback_count=len(self.feedback_rows), result_count=len(self.result_rows),
-            rejected_localizations=self.rejected_localizations,
-            scope="registered staged PB estimated feedback and original source-bound goal results"))
-        self._save("CLEANUP.json", self.cleanup)
+        # Include every journal/report write and certificate preparation in the
+        # original budget. The unavoidable final certificate write has its own
+        # post-write guard; a late certificate is repaired to false, never clean.
+        try:json.dumps(self.cleanup, indent=2, allow_nan=False)
+        except BaseException:errors.append("cleanup_prepare_failed")
+        prepared = self.clock()
+        if prepared >= end:errors.append("peer_cleanup_deadline_exceeded")
+        self.cleanup["elapsed_s"] = prepared - start
+        self.cleanup["clean"] = not errors and goal_clean and gate_clean and transport_clean
+        certificate_start = self.clock()
+        try:self._save("CLEANUP.json", self.cleanup)
+        except BaseException:errors.append("cleanup_write_failed")
+        finished = self.clock()
+        self.cleanup["certificate_write_elapsed_s"] = finished - certificate_start
+        self.cleanup["total_elapsed_s"] = finished - start
+        if finished >= end and "peer_cleanup_deadline_exceeded" not in errors:
+            errors.append("peer_cleanup_deadline_exceeded")
+        if errors:
+            self.cleanup["clean"] = False
+            # A slow/failed first write may already have persisted a candidate
+            # with clean:true. Best-effort failure recording cannot rescue the
+            # budget, but it must not leave that candidate as clean evidence.
+            try:
+                raw = (json.dumps(self.cleanup, indent=2, allow_nan=False) + "\n").encode()
+                with (self.out / "CLEANUP.json").open("wb") as stream:stream.write(raw)
+            except BaseException:
+                errors.append("cleanup_failure_record_write_failed")
+                try:(self.out / "CLEANUP.json").unlink(missing_ok=True)
+                except OSError:pass
         if not self.cleanup["clean"]:
             raise ContractError("pb_goal_peer_cleanup_unproved")
         return copy.deepcopy(self.cleanup)
@@ -370,30 +467,48 @@ def create_peer(spec, out):
             expected_robot_id=spec["expected_generation"]["robot_id"], expected_episode=spec["expected_generation"]["episode"],
             expected_binding_epoch=spec["expected_generation"]["binding_epoch"], **cfg)
         def lookup(stamp):
+            peer._map_lookup=None
             from rclpy.time import Time
             from tf2_ros import TransformException
             try:value = peer.gate.buffer.lookup_transform("map", "base_link", Time(nanoseconds=stamp))
             except TransformException:return None
-            return dict(header=dict(stamp=dict(sec=value.header.stamp.sec, nanosec=value.header.stamp.nanosec),
+            transform=dict(header=dict(stamp=dict(sec=value.header.stamp.sec, nanosec=value.header.stamp.nanosec),
                 frame_id=value.header.frame_id), child_frame_id=value.child_frame_id,
                 transform=dict(translation={k: getattr(value.transform.translation, k) for k in "xyz"},
                     rotation={k: getattr(value.transform.rotation, k) for k in "xyzw"}))
+            stage=peer.source._stage;cloud=stage["sensors"]["pointcloud"]
+            peer._map_lookup=dict(source={k:copy.deepcopy(stage[k]) for k in IDENTITY},
+                scan=dict(cloud_frame_id=cloud["frame_id"],acquisition_start_ns=cloud["acquisition_start_ns"],
+                    acquisition_end_ns=cloud["acquisition_end_ns"],profile_sha256=cloud["profile_sha256"]),
+                requested_stamp_ns=stamp,transform=copy.deepcopy(transform))
+            return transform
         peer.source = PBGoalPluginSource(settings, lookup_estimate=lookup,
             provenance=dict(producer_source_sha256=spec["source_sha256"]["rm_match/integrations/pb_goal_plugin_source.py"],
                 localization_binary_sha256=config["assets"]["point_lio"]["sha256"],
                 mapping_binary_sha256=config["assets"]["slam_toolbox"]["sha256"]),
-            navigation_ready=lambda: peer.stack.state == "ACTIVE" and peer.backend.ready(),
+            navigation_ready=peer.navigation_ready,
             goal_snapshot=lambda: peer.lifecycle.poll(), record=peer.record_native, record_stage=peer.record_stage)
         peer.transport = HumbleNavigationTransport(settings, peer.source)
         peer.raw_spin = peer.transport.spin_once;peer.transport.spin_once = peer.spin
         peer.gate = Gate(peer.transport, peer.stack, peer.guard)
         from std_msgs.msg import String
+        from nav_msgs.msg import OccupancyGrid
         from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
         def localization(message):
             try:peer.source.receive_localization(message.data)
             except ValueError:peer.rejected_localizations += 1
         peer.localization_subscription = peer.transport.node.create_subscription(String, topics["localization"], localization,
             QoSProfile(depth=8, reliability=ReliabilityPolicy.RELIABLE, durability=DurabilityPolicy.VOLATILE))
+        def costmap(message):
+            origin=message.info.origin
+            peer.receive_costmap_metadata(dict(
+                header=dict(stamp=dict(sec=message.header.stamp.sec,nanosec=message.header.stamp.nanosec),frame_id=message.header.frame_id),
+                info=dict(map_load_time=dict(sec=message.info.map_load_time.sec,nanosec=message.info.map_load_time.nanosec),
+                    resolution=message.info.resolution,width=message.info.width,height=message.info.height,
+                    origin=dict(position={k:getattr(origin.position,k) for k in "xyz"},
+                        orientation={k:getattr(origin.orientation,k) for k in "xyzw"})),data_length=len(message.data)))
+        peer.costmap_subscription=peer.transport.node.create_subscription(OccupancyGrid,spec["namespace"]+"/global_costmap/costmap",costmap,
+            QoSProfile(depth=1,reliability=ReliabilityPolicy.RELIABLE,durability=DurabilityPolicy.TRANSIENT_LOCAL))
         peer.backend = Nav2GoalBackend(peer.transport.node, Nav2GoalSettings("compute_path_then_follow",
             planner_action=spec["namespace"] + "/compute_path_to_pose", controller_action=spec["namespace"] + "/follow_path",
             planner_id="GridBased", controller_id="FollowPath", goal_checker_id="general_goal_checker"))
@@ -427,7 +542,9 @@ def main(argv=None):
     old = {sig: signal.getsignal(sig) for sig in (signal.SIGINT, signal.SIGTERM)}
     def stop(*_):
         peer = holder.get("peer")
-        if peer is not None:peer.guard.stop.set()
+        if peer is not None:
+            peer.guard.stop.set()
+            if peer.closing:return
         raise KeyboardInterrupt
     for sig in old:signal.signal(sig, stop)
     try:

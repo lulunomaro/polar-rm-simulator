@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/build_pb_match_interfaces_20261015.py", line 42, in <module>
+    if code or not cleanup['clean']:raise RuntimeError('build_step_failed:'+str(index))
+RuntimeError: build_step_failed:2

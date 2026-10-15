@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "-m",
+    "pytest",
+    "tests/test_pb_match_decision_sil_audit.py",
+    "-q",
+    "--disable-warnings",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-decision-audit-focused-20261015-02\\FOCUSED.xml"
+  ],
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "executable": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "scope": "pure synthetic audit and CLI cadence tests only; no native/ROS/build/physics"
+}

@@ -1,0 +1,51 @@
+{
+  "scope": "literal local pinned-source license copies only; no ELF or dependency package",
+  "copies": [
+    {
+      "source": "artifacts\\pb-match-behavior-audit-20261014-01\\pb2025_sentry_behavior\\LICENSE",
+      "destination": "licenses\\PB_SENTRY_BEHAVIOR_APACHE2.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "head": "d111b635d326775c6c19aa12500a0bbd6a27a588",
+      "origin": "https://github.com/SMBU-PolarBear-Robotics-Team/pb2025_sentry_behavior.git",
+      "written": true,
+      "literal_equal": true
+    },
+    {
+      "source": "artifacts\\pb-match-behavior-audit-20261014-01\\BehaviorTree.ROS2\\LICENSE",
+      "destination": "licenses\\PB_BEHAVIORTREE_ROS2_APACHE2.txt",
+      "bytes": 10310,
+      "sha256": "e79f5fae08351b969f33aca04e7c3fbe62c3174a9aabc98d37dc51c363033cec",
+      "head": "7d177dcfbd7dbb7f5e5cd79c4e5e3e744e389c56",
+      "origin": "https://github.com/SMBU-PolarBear-Robotics-Team/BehaviorTree.ROS2.git",
+      "written": true,
+      "literal_equal": true
+    },
+    {
+      "source": "artifacts\\pb-match-behavior-audit-20261014-01\\BehaviorTree.CPP\\LICENSE",
+      "destination": "licenses\\BEHAVIORTREE_CPP_4_6_2_MIT.txt",
+      "bytes": 1095,
+      "sha256": "73619551b110524235fd4272e7236a6b6e2e162770b1d79cb929022d165e8706",
+      "head": "2a8a226fbbd99f524f0796e0d8a3145773c61c06",
+      "origin": "https://github.com/BehaviorTree/BehaviorTree.CPP.git",
+      "written": true,
+      "literal_equal": true
+    },
+    {
+      "source": "artifacts\\pb-match-behavior-audit-20261014-01\\pb_rm_interfaces_protocol_v1_7_0\\LICENSE",
+      "destination": "licenses\\PB_RM_INTERFACES_1_7_0_MIT.txt",
+      "bytes": 1085,
+      "sha256": "e27d20d301ddb6a8386f5cf3485a0c5c01b9062a4cc32bec265a7deabc82177f",
+      "head": "8912fa565a7ac57ef070df218957379123d238ee",
+      "origin": "https://github.com/SMBU-PolarBear-Robotics-Team/pb_rm_interfaces.git",
+      "written": true,
+      "literal_equal": true
+    }
+  ],
+  "preexisting_licenses": {
+    "Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NAV2_GOAL_CONTROLLER_NOTICE.md": "ae3b4563b4fac56c9252fc4ae9a721f5c169ee558e9389a00fa8243d811089f9",
+    "RMCS_MIT.txt": "d415250801c46571ba8bb11b1587b46ecb00ac60c826050a2ee6bd19f1bc3ca5"
+  },
+  "preexisting_licenses_unchanged": true
+}

@@ -1,0 +1,36 @@
+{
+  "source_unchanged": true,
+  "actual_cases": [
+    {
+      "clean": true,
+      "case": "cooperative",
+      "descendant_term_started_s": 0.08620871400000141,
+      "reaped": true,
+      "leader_exit_before_descendant_term": true,
+      "cleanup_elapsed_s": 0.0933407110000033,
+      "killed": false,
+      "group_empty": true
+    },
+    {
+      "clean": true,
+      "case": "nested_orphan",
+      "descendant_term_started_s": 0.001395758000001024,
+      "reaped": true,
+      "leader_exit_before_descendant_term": true,
+      "cleanup_elapsed_s": 1.1824236340000027,
+      "killed": true,
+      "group_empty": true
+    },
+    {
+      "clean": true,
+      "case": "stubborn",
+      "descendant_term_started_s": 0.8053070420000026,
+      "reaped": true,
+      "leader_exit_before_descendant_term": false,
+      "cleanup_elapsed_s": 1.1847637050000017,
+      "killed": true,
+      "group_empty": true
+    }
+  ],
+  "scope": "harmless Linux only; original 1.3 deadline/1.17 kill and .8 cooperative subphase"
+}

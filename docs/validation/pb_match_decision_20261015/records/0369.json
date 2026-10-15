@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "tools/qa_pb_match_decision_sil.py",
+    "--audit-native-only",
+    "--decision-spec",
+    "artifacts/pb-match-native-standalone-prep-20261015-01/PEER_SPEC.json",
+    "--decision-spec-sha256",
+    "5355009bc9236ed21eedc0e44ed0c4ca66b37980903bf7d6b276eb5917133935",
+    "--decision-evidence-dir",
+    "artifacts/pb-match-native-standalone-prep-20261015-01/peer-evidence",
+    "--out",
+    "artifacts/pb-match-native-standalone-audit-20261015-01",
+    "--require-branch",
+    "healthy_current_goal",
+    "--require-branch",
+    "low_status_rfid_unavailable",
+    "--require-branch",
+    "paused_hold",
+    "--require-branch",
+    "emergency_stop_hold"
+  ],
+  "mode": "audit_native_only",
+  "decision_spec": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-native-standalone-prep-20261015-01\\PEER_SPEC.json",
+  "decision_spec_sha256": "5355009bc9236ed21eedc0e44ed0c4ca66b37980903bf7d6b276eb5917133935",
+  "decision_evidence_dir": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-native-standalone-prep-20261015-01\\peer-evidence",
+  "required_branches": [
+    "healthy_current_goal",
+    "low_status_rfid_unavailable",
+    "paused_hold",
+    "emergency_stop_hold"
+  ],
+  "scope": "read-only audit; no process, ROS, physics or referee-state injection"
+}

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "errors": [],
+  "input_unchanged": true,
+  "actual_result_passed": true,
+  "original_costmap_metadata_receipts": 15,
+  "exact_estimated_pose_map_readiness_joins": 136,
+  "original_goal_ready_joins": 1,
+  "unready_estimates_withheld": 7,
+  "actual_final_action_gates": 15,
+  "minimum_original_gate_remaining_ms": 2.125745000000734,
+  "qualification": "original map bounds and same exact TF/source only; no occupancy, path validity, calibration or RTF claim",
+  "input_sha256": {
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-actual-20261015-07\\RESULT.json": "9258e7fd7d7d93b61aa9db32ae9ab93d8ce827a0c2e1d43ab543cd70bf1f40a6",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-actual-20261015-07\\TRACE.jsonl.gz": "7c285c8fa97a5215285ec964747b1721e4989379f091ed1572ff1ac9782aef3c",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-07\\peer-evidence\\ROS_SOURCE.jsonl": "ec85f75c59bb2c9d37be6bc640e9b8fc6b01658325a36a66f693fe2a90a3ff84",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-07\\peer-evidence\\STAGES.jsonl": "f10436e3c9bf24c0c2d8c17c8c34bdf8316ac9de2fba4767301c4439a093f6b2",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-07\\peer-evidence\\EMIT_GATES.jsonl": "412a4b7cf9951e2996672b540bed4089a146cedea677fc01fa63bcf66b120627",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-route-nav-prep-20261015-07\\peer-evidence\\GOAL_REPORT.json": "0def057a10e99d5a39cf45332ba9a4b863313832c2a63bb0ba43a600b033b278",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\rm_match\\integrations\\pb_costmap_readiness.py": "367fdc6f7dc83bda515d47e14e5e01bc63a88ba77228267183290d4a862408d4"
+  }
+}

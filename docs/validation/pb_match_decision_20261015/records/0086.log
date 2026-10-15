@@ -1,0 +1,27 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- ------------------------------------------
+-- BehaviourTree is being built with conan.
+-- ------------------------------------------
+-- BTCPP_EXTRA_LIBRARIES: 
+-- BTCPP_LIB_DESTINATION:   lib 
+-- BTCPP_INCLUDE_DESTINATION: include 
+-- BTCPP_UNIT_TESTS:   OFF 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/polar-pb-match-bt4-20261015-01/build

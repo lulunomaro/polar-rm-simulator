@@ -12,9 +12,9 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
-| T07 | 通用graph/SDK/JSONL/ROS 2及goal库保持；navigation capabilities v3的observe→decision v2→同scan compact act真实注册PB单目标通过，actual03有138份精确LIO/TF估计、580非零消费步、14/14最终emit门通过 | PB比赛树、注册路径取消/替换/第二目标与多车未验；旧v1/v2兼容，decision v1及v2 perception保持unavailable |
+| T07 | 通用graph/SDK/JSONL/ROS 2及goal库保持；真实BT4/PB原节点通过同scan注册actual07：147实际tick、15及时动作、2迟动作有源拒发，原UUID/传感/SDK/物理来源核对通过 | 显式1ms配置下健康单目标局部资格；比赛树其余实际分支/多车/第二实现完整替换未验 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
-| T09 | 局部SIL证据：先前两目标/463步保持；本轮最终源注册单目标149扫描/147LIO/15原生UUID结果/580非零消费步，估计反馈驱动synthetic决策终态后hold | 该链无自瞄/Qt/比赛树；MID360标定、定位精度/恢复及完整任务未验收；NavigateToPose后端仅单元证据 |
+| T09 | 真树actual07局部SIL通过：136原LIO/精确TF、原costmap起点门、15实际公开动作/620非零物理步，原目标终态/stop与owned资源回收有证；旧失败保留 | 健康单目标非完整巡逻/交战；定位标定/精度/恢复和完整任务未验收；NavigateToPose仅单元证据 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
 | T11 | 图像修复局部证据，已有源尺寸装甲和弹丸实现 | 真实装甲光学/物理标定、实体弹丸命中/热量/伤害完整证据 |
 | T12 | 未验收 | 六车自有算法完整 3v3；旧算法/像素代打不计通过 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 最终QA14四步骤通过：2788pass/41明确skip/1024subtests，452程序/测试/来源文件前后不变；actual03共17根检查通过，旧02和失败保留 | 局部SIL不替完整运动/比赛/发布矩阵，M0–M5仍未签收 |
+| T17 | 最终QA15四步骤全过：3041pass/45明确skip/1024subtests，460程序/测试/来源文件及13787检查输入前后不变；真树注册actual07全部23检查通过 | 健康单目标局部SIL不替移动自瞄/多车/比赛/发布矩阵，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -34,7 +34,105 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
-## 估计导航反馈与真实PB通用注册（2026-10-15，本轮增量）
+## 真实PB比赛树最小接入（2026-10-15，本轮增量，联动尚未通过）
+
+新增[真实BT scoped runner](../operator_native/pb_match_decision/README.md)，由BehaviorTree.CPP 4.6.2实际执行
+固定PB `rmul_2025` 结构及原IsGameStatus/IsStatusOK/IsRfidDetected/PubNav2Goal C++节点；
+Python peer只验证本地spec/ELF/XML/build/ENV/source后exec原runner，没有Python规则树替代。
+prepare真实建factory/tree但0tick，reset仅原context；只有原decision observation v2触发一次真实tick，输出仍为原intent.v1。
+navigation v3、原LIO/精确TF反馈、同scan compact act、原50/150ms及owned资源边界不变。
+
+| 本轮实际资源/独立分支 | 事实与边界 |
+| --- | --- |
+| BT4 clean build | 43.4268秒，391源不变，实际构建4.6.2；没有tick或比赛验收 |
+| protocol msg01/02 | 01因ROS_DISTRO环境失败保留；02耗时23.1202秒、17源不变，实际protocol-v1.7.0消息typesupport构建通过 |
+| runner02/03 | 02缺`plugins.hpp`真实编译失败；03补完整固定头后45.853秒/exit0/reaped/loader通过，原失败不改写 |
+| standalone01 | 真实原生5tick、原typed source/intent/节点事件闭合；healthy goal、hp199.9且RFID缺失hold、paused hold、e-stop hold、缺估计hold。输入为合成DTO，不算实际裁判触发分支 |
+
+原XML SHA `68e216c145949538444bd8b9f9e97cc1b79b1536ddbc52a37eb00252e20c34f9`与原源保留；
+owned XML明确5处overlay：两处spin禁用、原零Twist改source-bound hold、两处固定场地目标改首次估计anchor上的显式local waypoint。
+ScopedPubNavGoal在本次tick内调用原`setMessage`并保存原返回/pose，不能订阅旧裸Pose后补本次身份。
+RFID没有合法源，保留缺失并抑制该supply输出；不伪造NOT_DETECTED或真实补给事实。
+原树没有基于导航receipt的完成guard，本轮不偷偷加synthetic finalhold；持续同几何intent与Nav2真实终态分别记账。
+standalone原生SIGTERM关闭2.565ms、`protocol_interrupted=true`、tree/node/context实际关闭；
+outer OWNED_CLEANUP独立证明原出生身份下group空/reaped，不把日志写完时刻叫完整I/O完成。
+
+| 真树+导航注册实际 | 失败事实 |
+| --- | --- |
+| actual02 | 默认SDK cadence .05秒，7521个2ms步/受控15.0029724秒；2observe/2intent/2status、0估计/0goal/0motion，原host transaction deadline拒绝；SDK release/close Timeout，整体共享清理检查失败 |
+| actual03 | 显式SDK cadence .02秒取得合法fresh授权，未改传感采样或150ms。7533个2ms步/受控15.0106135秒；16observe/16intent、15返回=2action+13status，1笔停止后中止；6精确估计/14LIO/3原生controller、2及时公开动作真实消费72非零步 |
+| actual05 | 新实际代价地图起点门后149observe/149intent、148返回=5action+143status，1笔停止后中止；PUBLIC_CONSUMPTION匹配206非零步。但navpeer全部journal与decision Linux清理proof缺失，原生TF/UUID/终态审计无证，整轮FAIL |
+| actual04 | 事务式拒发修复后15.006447秒受控、5119物理步，101observe/intent/status、95精确估计、101真实BT tick，0公开动作/0controller/0消费；无adapter fault，原共享清理检查全过，但运动验收仍FAIL |
+
+03健康真实树节点产生6次原goal/setMessage事件，并有1个原目标起源匹配；这仅是实际局部事实。
+随后50ms原stage超期约.739ms导致peer死亡/adapter RuntimeError，整体仍FAIL，
+SDK release/close Timeout，runtime/pipeline/navpeer与shared cleanup不能判clean。
+外层driver仍真实exit2/reaped/223程序源不变/无forced、Job最终空，外层 .0056381秒；
+最终reap不覆盖内部资源/原期限失败。失败/原源见[02](../artifacts/pb-match-route-actual-20261015-02/RESULT.json)与
+[03](../artifacts/pb-match-route-actual-20261015-03/RESULT.json)。构建和standalone原件分别在
+`artifacts/pb-match-bt4-build-20261015-01`、`pb-match-interfaces-build-20261015-01/02`、
+`pb-match-native-build-20261015-02/03`及`pb-match-native-standalone-20261015-01`。
+
+普通expiry不再变格式/资源fault：候选动作严格验证后保留原candidate进REJECTED记录，
+仅将其改为同source/intent/selection、controller UUID为空的`no_associated_command`，不发零速度、不刷新deadline。
+generic staged peer先在独立history preview验证并编码，最终before_emit可仅将action降为有源status；
+replacement再验证/编码，从原committed history重新preview，最终只提交实际wire响应。
+callback拿detached副本，不能原地修改已编码消息绕过检查；write失败仍fault关闭，不重发。
+action的最终50ms门在encode后/write前，status不获得额外动作权限，实际I/O仍受原host150ms约束。
+source日志后越期也返回原source状态，保留原候选及独立stage_action_withheld事件；原source/scan/UUID/期限与原生接收记录严格核对。
+actual04未触发迟动作，没有以本轮无故障替代迟动作现场分支证据；相应分支仍有注入时钟单元测试。
+该轮原Nav2 planner日志明确首目标被“Start pose is out of costmap!”拒绝，随后地图扩张。
+原生命周期刻意保留失败目标sticky、不自动重试；已补真实global costmap metadata与同次实际TF估计起点的bounds readiness，
+helper的106项测试已冻结，但不是实际规划可行性证明。缺图/起点越界维持pending_navigation，等待后续原扫描，
+不固定sleep、不clamp起点、不填地图或理想TF；原Smac仍自行规划。
+
+actual05的137份available估计仅是公共feedback声明，不得写成137次原生TF/LIO精确认证：
+navpeer的ROS_SOURCE/STAGES/ACT_RESULTS等journal在退出时全缺，原生来源、原UUID/目标终态、最终50ms门审计均不能闭合。
+原生BT tick/公开action与206消费步的局部匹配不能替代这些缺件；decision Linux owned cleanup proof缺失也不能用native CLOSE或最终外层reap补造。
+Root只读review05直接因缺ROS_SOURCE抛FileNotFoundError，没有raw审计pass，不隐藏此失败或重建缺失原件。
+该次driver33.1418964秒/exit2/reaped/224程序源不变/无forced、最终Job空，仅证明外层最终收尾，不能改整轮FAIL。
+
+已定位原ownedTree同时TERM leader与Nav2 children会打断leader的正常保存/协作清理，
+正在改pipeline先向所有owned peer请求stop再等待，并由Linux owner先给leader最多.8秒协作窗口；
+这消耗原总预算，不延长原1.17秒KILL阶段、Linux1.3秒或host共享1.5秒。
+PB peer另补幂等signal、PRE_CLOSE快照及保存耗时，不能在缺证时先写clean。
+以上为actual05之后的历史待验记录，后继06/07和最终QA15结果见下文；02–05均按原失败保留。
+
+自有runner/glue为MIT，上游PB behavior/BehaviorTree.ROS2仍Apache-2.0、BT.CPP和protocol接口保留原MIT，
+原许可证已逐字节留存，见[第三方声明](../THIRD_PARTY_NOTICES.md)。ELF/共享库不发布。
+本轮没有关闭RFID/交战/感知/自瞄/自动火/完成策略/多车/Qt/长局/RTF/LAN/完整3v3/7v7或M0–M5；
+先前synthetic注册成功和QA14只归其原源范围，不验证本轮真树联动。
+
+## 真树与导航最终局部通过（actual07，2026-10-15）
+
+[actual07](../artifacts/pb-match-route-actual-20261015-07/RESULT.json)的23项根检查全部通过；
+7451个2ms物理步，SDK受控15.0050229秒，147observe/147真实C++BT tick/147返回（15action/132status），0中止事务、0adapter fault。
+136份公开可用估计逐一匹配原LIO事件与原stamp TF，136次本tick原PB setMessage与真实意图对应；
+唯一原目标、原navigation UUID、原scan/source/SDK与620个非零物理消费步逐项匹配。
+15份实际action均有同原50ms encode后/write前门；最小剩余2.125745ms，不把门时刻当I/O完成。
+原生候选有3份被抑制，其中2份真实迟动作在REJECTED保留，并只输出同source/intent/selection的无指令status；
+147最终回执均与实际公开结果相同，迟动作来源无物理消费，后续帧继续运行。
+
+独立[raw复核](../artifacts/pb-match-postqa-review-20261015-07/RESULT.json)校验15份原costmap metadata接收、
+136份本次估计起点与原地图覆盖、1份原目标起源；7个未就绪估计保持pending，不补旧定位或真值。
+这只证明原地图边界包含本次起点，不证明占据、路径可行性、精度或官方场地标定。
+原XML的5处显式overlay仍在；RFID缺失、持续目标及无receipt完成策略的范围保持。
+
+本轮显式CPython switch .001秒，实读生效并finally恢复原.005秒；SDK cadence仍.02秒、授权仍.15秒。
+这是资源调度配置，不改变原采样/source/50/80/150ms；默认调度actual06曾在seq3宿主期限失败，
+546步/1.2565519秒后停止、0动作；新关停已预算内clean，不回填为完整运行通过。
+07 driver33.0109988秒/exit0/reaped/224程序源前后不变、无外层forced、Job空；
+host共享收尾.9927301秒<1.5，原Linux1.3保持，正常关闭含PRE_CLOSE快照、最终完整日志与证书检查。
+这次成功不能单独证明1ms是06失败的唯一原因，全部旧失败和各自源码身份保留。
+
+最终[QA15](../artifacts/quality-aim-followup-20261014-15/manifest.json)四步骤全部退出0：
+3041passed/45明确skip/1024subtests、6条既有collection warnings；pytest149.46秒，driver196.7534391秒/exit0/reaped。
+460程序/测试/来源文件及13787检查输入在运行期间SHA不变；QA后只补本文/协议/runner说明与归档，不把新文案重标为QA当时原字节。
+可校验副本见[永久证据](validation/pb_match_decision_20261015/README.md)。
+以上是本机Windows/WSL、实际原PB BT与生产导航经通用注册接口的健康单目标局部通过；
+移动自瞄、感知/自动火、Qt可见桌面、真实裁判负分支、长局、多车、LAN、RTF矩阵与完整3v3/7v7和M0–M5仍未签收。
+
+## 估计导航反馈与真实PB通用注册（2026-10-15，先前synthetic决策检查点）
 
 新增[导航反馈协议](NAVIGATION_FEEDBACK_PROTOCOL.md)：navigation capabilities v3显式协商staged_scan_v1，
 先发送本次原始点云/IMU执行observe，再将完整原反馈嵌入decision observation v2，最后以同一原六身份和intent执行compact act。

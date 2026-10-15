@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_pb_match_decision_sil.py", line 863, in run
+    runtime.run(max_wall_seconds=args.max_wall_seconds,real_time_factor=1.)
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\runtime.py", line 862, in run
+    self.step_once()
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\runtime.py", line 743, in step_once
+    self._collect(snapshot,sim_time)
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\runtime.py", line 408, in _collect
+    self._trace('adapter_result',robot_id=rid,kind=kind,binding_epoch=old['epoch'],observed_seq=o['observed_seq'],episode=o['episode'],observation_sim_time=o['sim_time'],wall_deadline=o['wall_deadline'],sensor_budget=budget,sample_identity=job.get('sample_identity'),operator_authorization=job.get('operator_authorization'),started_wall=result.get('started_wall'),completed_wall=result['completed'],error=result['error'],command=result['value'].get('command') if result['value'] else None,
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\rm_match\platform_v2\runtime.py", line 259, in _trace
+    if self.trace is not None:self.trace(dict(event=event,wall_time=self.clock(),**values))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_pb_match_decision_sil.py", line 803, in trace
+    stop_on_adapter_fault(row, sdk_stop=sdk_stop, claim_cleanup=claim_cleanup,
+  File "C:\Users\lulu\Desktop\claude\polarsimulation\polar-rm-simulator\tools\qa_pb_match_decision_sil.py", line 183, in stop_on_adapter_fault
+    raise ObservedAdapterFault('actual_adapter_fault:' + str(row['error']))
+ObservedAdapterFault: actual_adapter_fault:TimeoutError

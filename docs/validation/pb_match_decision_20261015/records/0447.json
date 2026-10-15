@@ -1,0 +1,24 @@
+{
+  "source": "isolated_post_shutdown_evaluation_never_peer_input",
+  "robot": {
+    "robot_id": "red_sentry",
+    "team": "red",
+    "role": "sentry",
+    "xy": [
+      -5.249999999346529,
+      3.6500000000000004
+    ],
+    "hp": 400.0,
+    "max_hp": 400.0,
+    "ammo": 750,
+    "heat": 0.0,
+    "heat_max": 260.0,
+    "alive": true,
+    "yaw": 6.985856919168947e-29,
+    "gimbal_yaw": -1.372955983149019e-32,
+    "gimbal_pitch": -0.02353747846133455,
+    "vx": -3.2920410899647453e-10,
+    "vy": -5.186453981677535e-31,
+    "wz": -3.4016320815357324e-29
+  }
+}

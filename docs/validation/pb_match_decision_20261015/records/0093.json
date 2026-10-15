@@ -1,0 +1,93 @@
+[
+  {
+    "argv": [
+      "cmake",
+      "-S",
+      "/root/polar-pb-match-bt4-20261015-01/source",
+      "-B",
+      "/root/polar-pb-match-bt4-20261015-01/build",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+      "-DCMAKE_INSTALL_PREFIX=/root/polar-pb-match-bt4-20261015-01/install",
+      "-DCMAKE_DISABLE_FIND_PACKAGE_ament_cmake=ON",
+      "-DBTCPP_BUILD_TOOLS=OFF",
+      "-DBTCPP_EXAMPLES=OFF",
+      "-DBTCPP_UNIT_TESTS=OFF",
+      "-DBTCPP_GROOT_INTERFACE=OFF",
+      "-DBTCPP_SQLITE_LOGGING=OFF"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 5.458536973999999,
+    "cleanup": {
+      "run_id": "d883c03835524a49a0afd55ad66cfb25",
+      "supervisor_pid": 335,
+      "boot_id": "b826e557-0c59-414f-a980-179aac0d9d3e",
+      "pid": 414,
+      "pgid": 414,
+      "leader_start_ticks": 1247,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.003241068000001235
+    }
+  },
+  {
+    "argv": [
+      "cmake",
+      "--build",
+      "/root/polar-pb-match-bt4-20261015-01/build",
+      "--parallel",
+      "2"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 35.145018663,
+    "cleanup": {
+      "run_id": "1efa75cede8442dc9aa720b67a2bfa7d",
+      "supervisor_pid": 335,
+      "boot_id": "b826e557-0c59-414f-a980-179aac0d9d3e",
+      "pid": 484,
+      "pgid": 484,
+      "leader_start_ticks": 1794,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.0032927800000024376
+    }
+  },
+  {
+    "argv": [
+      "cmake",
+      "--install",
+      "/root/polar-pb-match-bt4-20261015-01/build"
+    ],
+    "exit_code": 0,
+    "elapsed_s": 0.09034651899999346,
+    "cleanup": {
+      "run_id": "b771cb4cb862463ba6aba71af76bb453",
+      "supervisor_pid": 335,
+      "boot_id": "b826e557-0c59-414f-a980-179aac0d9d3e",
+      "pid": 758,
+      "pgid": 758,
+      "leader_start_ticks": 5310,
+      "clean": true,
+      "reaped": true,
+      "group_empty": true,
+      "remaining_members": [],
+      "errors": [],
+      "killed": false,
+      "returncode": 0,
+      "reaped_descendants": [],
+      "cleanup_elapsed_s": 0.0031473949999991646
+    }
+  }
+]

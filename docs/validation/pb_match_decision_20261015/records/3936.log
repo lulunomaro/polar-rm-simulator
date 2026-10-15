@@ -1,0 +1,7 @@
+[INFO] [1792058249.231276606] [ImuProcess]: IMU Initializing: 1.0 %
+[WARN] [1792058249.231822992] [ImuProcess]: reset ImuProcess
+[INFO] [1792058249.377257980] [ImuProcess]: IMU Initializing: 50.0 %
+[INFO] [1792058249.377562171] [ImuProcess]: IMU Initializing: 100.0 %
+[INFO] [1792058249.534741889] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+terminate called after throwing an instance of 'std::system_error'
+  what():  Invalid argument

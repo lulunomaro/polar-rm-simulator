@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "errors": [
+    "emit:one_final_emit_gate_per_public_action_required",
+    "emit:one_final_emit_gate_per_public_action_required",
+    "emit:one_final_emit_gate_per_public_action_required",
+    "emit:one_final_emit_gate_per_public_action_required",
+    "emit:one_final_emit_gate_per_public_action_required"
+  ],
+  "public_actions": 5,
+  "qualified_final_emit_gates": 0,
+  "unmatched_gate_records": 0,
+  "scope": "source-bound final before-write encoded action gate; not a pipe-write-completion timestamp"
+}

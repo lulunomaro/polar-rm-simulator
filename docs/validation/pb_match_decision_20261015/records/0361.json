@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "errors": [],
+  "source_unchanged": true,
+  "public_input_output_native_tick_join": true,
+  "native_ticks": 5,
+  "elapsed_s": 7.091908099988359,
+  "decision_spec": {
+    "spec_path": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-native-standalone-prep-20261015-01\\PEER_SPEC.json",
+    "spec_sha256": "5355009bc9236ed21eedc0e44ed0c4ca66b37980903bf7d6b276eb5917133935",
+    "peer_evidence_dir": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-native-standalone-prep-20261015-01\\peer-evidence",
+    "resources_started": false,
+    "ticks": 0
+  },
+  "scope": "actual PB BT4 standalone branches with explicit synthetic DTOs; no real sensors, physics, navigation or match acceptance"
+}

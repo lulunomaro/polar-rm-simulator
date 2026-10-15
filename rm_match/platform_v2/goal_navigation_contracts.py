@@ -167,6 +167,20 @@ class GoalNavigationResultHistory:
         self._last_source = None
         self._last_envelope = None
 
+    def checked_copy(self, envelope):
+        """Preview one receipt without committing it to this wire history.
+
+        Existing records are only replaced by check(), never mutated in place.
+        Copy the bounded indexes, then let check detach the new receipt. A
+        producer can therefore withhold an expired action before committing
+        exactly one final response for this capture.
+        """
+        staged = copy.copy(self)
+        staged._records = dict(self._records)
+        staged._navigation_owners = dict(self._navigation_owners)
+        staged.check(envelope)
+        return staged
+
     def check(self, envelope):
         value = copy.deepcopy(envelope)
         if type(value) is not dict:

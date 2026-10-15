@@ -1,0 +1,22 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 3.014365299997735,
+  "source_unchanged": true,
+  "before": {
+    "rm_match/integrations/pb_match_decision_peer.py": "6e686a7ecbd5ab17eba878c8dee030c89a810c0547fb2270c6827c6fc0ef12a1",
+    "tests/test_pb_match_decision_peer.py": "881ec59b164b4eec60a688195071c0bb1157439e39d076e095e403626e621511",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0"
+  },
+  "after": {
+    "rm_match/integrations/pb_match_decision_peer.py": "6e686a7ecbd5ab17eba878c8dee030c89a810c0547fb2270c6827c6fc0ef12a1",
+    "tests/test_pb_match_decision_peer.py": "881ec59b164b4eec60a688195071c0bb1157439e39d076e095e403626e621511",
+    "rm_match/platform_v2/decision_contracts.py": "b22285ea2d4af680c0b82987640ad2123699ba827c2ce9621f6d81c9bab1d1a8",
+    "rm_match/platform_v2/navigation_feedback_contracts.py": "711a0c8b2093e14aee0ebd75b200ec69f1c4187263300a756f103102e1e16c04",
+    "rm_match/deployment/decision_plugin.py": "41658858ef4351938e5556707e34882bbd200560fd9da697b56aaa8506378f3e",
+    "rm_match/deployment/profile.py": "55e4404ce630d91cdd5bd2019b0d30c0ed5bc68541661a1f004352864d8494f0"
+  }
+}

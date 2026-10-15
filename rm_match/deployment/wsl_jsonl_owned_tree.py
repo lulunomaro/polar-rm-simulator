@@ -71,6 +71,7 @@ class WslJsonPeerTree(_LinuxAdapterGroup):
     def cleanup_until(self,deadline):
         if self.closed:raise RuntimeError('owned cleanup single use')
         self.closed=True;started=time.perf_counter();errors=[];reaped=[];sent=set();killed=False
+        descendant_term_started=None;leader_exit_before_descendant_term=None
         if self.child is None:return dict(clean=True,reaped=False,not_spawned=True,group_empty=True,errors=[])
         def reap():
             self.child.poll()
@@ -79,16 +80,27 @@ class WslJsonPeerTree(_LinuxAdapterGroup):
                 try:pid,status=os.waitpid(row['pid'],os.WNOHANG)
                 except ChildProcessError:continue
                 if pid:reaped.append(dict(pid=pid,start_ticks=row['start_ticks'],status=status))
-        def signal_owned(sig):
+        def signal_owned(sig,*,leader_only=False):
             # Children may create a new SID; signal only exact verified births.
             for row in self._verified_members():
+                if leader_only and row['pid']!=self.child.pid:continue
                 key=(row['pid'],row['start_ticks'],sig)
                 if key in sent:continue
                 if self._signal_row(row,sig):sent.add(key)
         try:
             term_end=min(deadline,started+1.17)
+            cooperative_end=min(term_end,started+.8)
             while time.perf_counter()<term_end:
-                signal_owned(signal.SIGTERM);reap()
+                reap()
+                # The leader owns graceful cancellation/journals and may need
+                # its child services to finish that work. This is part of the
+                # original TERM interval, never a new cleanup deadline.
+                leader_alive=self.child.poll() is None
+                leader_only=leader_alive and time.perf_counter()<cooperative_end
+                if not leader_only and descendant_term_started is None:
+                    descendant_term_started=time.perf_counter()-started
+                    leader_exit_before_descendant_term=not leader_alive
+                signal_owned(signal.SIGTERM,leader_only=leader_only);reap()
                 if not self._verified_members():break
                 time.sleep(min(.005,max(0,term_end-time.perf_counter())))
             reap()
@@ -105,4 +117,6 @@ class WslJsonPeerTree(_LinuxAdapterGroup):
             group_empty=verified and not remaining,remaining_members=remaining,errors=errors,
             owned_scope='birth_bound_descendants_including_nested_sessions',
             observed_births=dict(self.births),reaped_descendants=reaped,killed=killed,
+            leader_cooperative_budget_s=.8,descendant_term_started_s=descendant_term_started,
+            leader_exit_before_descendant_term=leader_exit_before_descendant_term,
             cleanup_elapsed_s=time.perf_counter()-started)

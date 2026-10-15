@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "kind": "transcribed_terminal_failure",
+  "error": "FileNotFoundError",
+  "missing": "peer-evidence/ROS_SOURCE.jsonl; then GOAL_REPORT missing",
+  "scope": "No raw map/action provenance pass; original actual05 FAIL preserved"
+}

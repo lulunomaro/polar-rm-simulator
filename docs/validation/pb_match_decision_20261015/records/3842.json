@@ -1,0 +1,69 @@
+{
+  "schema": "polar.pb.goal-plugin-peer-cleanup.v1",
+  "run_uuid": "fc27368239874ff288bbd7b68b060bfe",
+  "clean": false,
+  "errors": [
+    "stack_close_unproved"
+  ],
+  "goal_stop_confirmed": true,
+  "gate_clean": true,
+  "transport_clean": true,
+  "stack": {
+    "schema": "polar.pb-stack-cleanup.v1",
+    "clean": false,
+    "errors": [
+      "shutdown_exception:KeyboardInterrupt"
+    ],
+    "processes": [
+      {
+        "node": "point_lio",
+        "pid": 492,
+        "returncode": null
+      },
+      {
+        "node": "loam_interface",
+        "pid": 493,
+        "returncode": null
+      },
+      {
+        "node": "sensor_scan_generation",
+        "pid": 494,
+        "returncode": null
+      },
+      {
+        "node": "terrain_analysis",
+        "pid": 495,
+        "returncode": null
+      },
+      {
+        "node": "terrain_analysis_ext",
+        "pid": 496,
+        "returncode": null
+      },
+      {
+        "node": "pointcloud_to_laserscan",
+        "pid": 497,
+        "returncode": null
+      },
+      {
+        "node": "slam_toolbox",
+        "pid": 498,
+        "returncode": null
+      },
+      {
+        "node": "planner_server",
+        "pid": 503,
+        "returncode": null
+      },
+      {
+        "node": "controller_server",
+        "pid": 504,
+        "returncode": null
+      }
+    ]
+  },
+  "elapsed_s": 0.2563532649999978,
+  "source_unchanged": true,
+  "config_sha256": "8a823bcbebf66f37168f6ec7faa58ce6a8eec33e0c8539d75ea74706662aec9d",
+  "environment_sha256": "d60183ebf62d520c72eb20b84207fa4344d8f17183bb0df8eee92f97b7f981ee"
+}

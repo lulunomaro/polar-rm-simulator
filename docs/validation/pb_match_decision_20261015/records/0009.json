@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/test_goal_navigation_contracts.py",
+    "tests/test_staged_navigation_plugin.py",
+    "tests/test_active_goal_navigation_plugin.py",
+    "-q",
+    "--tb=short",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\final-withholding-focused-20261015-01\\pytest.xml"
+  ],
+  "scope": "Capture synthetic history/JSONL regressions; no ROS or real-time claim."
+}

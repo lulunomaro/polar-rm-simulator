@@ -1,0 +1,14 @@
+{
+  "scope": "pure synthetic strict withheld native-action association audit; no native/ROS/build/physics",
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "argv": [
+    "-m",
+    "pytest",
+    "tests/test_pb_match_decision_sil_audit.py",
+    "tests/test_registered_pb_goal_sil_audit.py",
+    "-q",
+    "--disable-warnings",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-match-decision-audit-focused-20261015-05\\FOCUSED.xml"
+  ],
+  "executable": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe"
+}

@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "stage": "graph_preflight",
+  "error": "ContractError: invalid_robotio_manifest_fields",
+  "root_driver_failure": true,
+  "physics_steps": 0,
+  "resources_started": false
+}

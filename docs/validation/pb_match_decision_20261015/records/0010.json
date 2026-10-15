@@ -1,0 +1,7 @@
+{
+  "kind": "transcribed_terminal_result_not_raw_log",
+  "passed": 120,
+  "failed": 1,
+  "reason": "Test fixture supplied identity-only source to navigation_status_for, which correctly requires original observation; fixture corrected, no production relaxation.",
+  "test": "test_final_expiry_withholds_once_then_next_capture_can_control_same_goal"
+}

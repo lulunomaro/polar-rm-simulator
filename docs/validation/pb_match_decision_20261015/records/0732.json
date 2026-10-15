@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "errors": [
+    "navigation:actual_navigation_adapter_fault:RuntimeError"
+  ],
+  "per_goal": {},
+  "actual_controller_results": 3,
+  "consumed_steps": 72,
+  "nonzero_consumed_steps": 72,
+  "navigation_audit": {
+    "consumed_steps": 72,
+    "nonzero_consumed_steps": 72,
+    "actual_sensor_requests": 16,
+    "actual_controller_results": 3,
+    "actual_localizations": 14,
+    "errors": [
+      "actual_navigation_adapter_fault:RuntimeError"
+    ],
+    "passed": false
+  },
+  "qualification": "recorded FollowPath UUID/source/action/physical receipt join; no encoder stop or current-goal inference"
+}

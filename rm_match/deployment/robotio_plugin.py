@@ -125,7 +125,24 @@ class DecisionNavigationAdapter(BaseAdapter):
         for peer in (self.decision,self.navigation):
             if peer is not None:JsonLineAdapter.cancel(peer)
     def close(self):
+        if self.shutdown_status is not None:
+            if not self.shutdown_status.get('clean'):
+                raise RuntimeError('RobotIO pipeline cleanup unproved: '+','.join(self.shutdown_status['errors']))
+            return
         self.cancel();deadline=self._budget.claim();errors=[];proofs={}
+        # Owned WSL peers cooperate concurrently under this same deadline.
+        # Send both stop requests before waiting for either process tree;
+        # navigation may need its live ROS children to cancel real goals.
+        for name in ('navigation','decision'):
+            peer=getattr(self,name,None)
+            owner=getattr(peer,'_owned_process',None)
+            request_stop=getattr(owner,'request_stop',None)
+            if request_stop is None:continue
+            try:
+                if not callable(request_stop):raise TypeError('owned_stop_not_callable')
+                if time.perf_counter()>=deadline:raise TimeoutError('original_shared_cleanup_expired')
+                request_stop()
+            except BaseException as exc:errors.append(name+'_stop_request:'+type(exc).__name__)
         for name in ('navigation','decision'):
             peer=getattr(self,name,None)
             if peer is None:continue

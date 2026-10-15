@@ -1,0 +1,22 @@
+{
+  "executable": "C:/Windows/System32/wsl.exe",
+  "cwd": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator",
+  "scope": "harmless Linux process ownership only; no ROS/native algorithm/build/physics",
+  "argv": [
+    "-d",
+    "Ubuntu-22.04",
+    "--cd",
+    "/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator",
+    "--exec",
+    "/usr/bin/env",
+    "POLAR_RUN_OWNED_TREE_ACTUAL=1",
+    "POLAR_OWNED_TREE_PROOF_DIR=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-owned-cleanup-focused-20261015-01/actual-proofs",
+    "/root/polar-humble-ext4-20261014-01/venv/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_wsl_jsonl_owned_tree.py",
+    "-q",
+    "--disable-warnings",
+    "--junitxml=/mnt/c/Users/lulu/Desktop/claude/polarsimulation/polar-rm-simulator/artifacts/pb-match-owned-cleanup-focused-20261015-01/LINUX_FOCUSED.xml"
+  ]
+}

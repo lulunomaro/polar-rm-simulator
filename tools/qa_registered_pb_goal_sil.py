@@ -264,16 +264,19 @@ def audit_stages(rows,stages,ros_rows):
             extras={'stage_begin':{'begin_wall','response_timeout_s','published_count'},
                 'stage_published':{'published_count'},'stage_feedback':{'available','reason'},
                 'stage_act_enter':set(),'stage_act_exit':{'value_kind','goal_uuid','status'},
+                'stage_action_withheld':{'value_kind','goal_uuid','reason'},
                 'stage_discard':{'reason'}}
             if type(row) is not dict or row.get('event') not in extras or set(row)!=base|extras[row['event']]:
                 raise ValueError('stage_exact_event_fields')
             key=source_key(row['source'])
+            if row['event']=='stage_action_withheld' and key not in observations:
+                raise ValueError('withheld_without_original_observation_source')
             if row['clock']!='linux_local_perf_counter':raise ValueError('stage_clock_domain')
             if type(row['local_wall']) not in (int,float) or not math.isfinite(row['local_wall']):
                 raise ValueError('stage_local_clock')
             events.setdefault(key,[]).append(row)
         except (KeyError,TypeError,ValueError) as exc:errors.append('stage_record:'+str(exc))
-    actions=0;withheld_native_actions=0
+    actions=0;withheld_native_actions=0;deadline_withheld_actions=0;unreturned_deadline_withholds=0
     for key,original in observations.items():
         try:
             recorded=events[key];begins=[e for e in recorded if e['event']=='stage_begin']
@@ -315,6 +318,40 @@ def audit_stages(rows,stages,ros_rows):
                     if not any(within(candidate) for candidate in candidates):
                         raise ValueError('available_feedback_without_stage_local_'+kind)
             result=envelopes.get(key)
+            withheld=[e for e in recorded if e['event']=='stage_action_withheld']
+            if len(withheld)>1:raise ValueError('one_stage_action_withheld_event_required')
+            if withheld:
+                enter=[e for e in recorded if e['event']=='stage_act_enter'];exits=[e for e in recorded if e['event']=='stage_act_exit']
+                if len(enter)!=1 or len(exits)!=1:raise ValueError('withheld_original_staged_action_required')
+                exit=exits[0];marker=withheld[0]
+                if (marker['value_kind']!='action' or marker['reason']!='stage_exit_budget_expired'
+                    or type(marker['goal_uuid']) is not str or re.fullmatch('[0-9a-f]{32}',marker['goal_uuid']) is None
+                    or exit['value_kind']!='action' or exit['goal_uuid']!=marker['goal_uuid'] or exit['status'] is not None
+                    or not start<=enter[0]['local_wall']<=exit['local_wall']<deadline<=marker['local_wall']
+                    or recorded.index(marker)<=recorded.index(exit)):
+                    raise ValueError('withheld_original_action_uuid_deadline_or_order_changed')
+                from rm_match.platform_v2.contracts import validate_action
+                native_match=False
+                for candidate in native.get(key,[]):
+                    if candidate['value']['source']['goal_uuid']!=marker['goal_uuid']:continue
+                    validate_action(candidate['value']['action'],original,dict(kind='navigation',output_modes=['velocity_body']))
+                    received=candidate.get('receive_wall')
+                    if (candidate.get('receive_clock')=='linux_local_perf_counter'
+                        and type(received) in (int,float) and math.isfinite(received) and start<=received<deadline):
+                        native_match=True
+                if not native_match:raise ValueError('withheld_without_original_native_action_in_stage')
+                if result is not None:
+                    from rm_match.platform_v2.navigation_contracts import validate_navigation_status
+                    if ('action' in result or result.get('controller_goal_uuid') is not None
+                        or result.get('status',{}).get('status')!='no_associated_command'):
+                        raise ValueError('withheld_original_action_requires_final_public_status')
+                    validate_navigation_status(result['status'],original)
+                    deadline_withheld_actions+=1
+                else:
+                    # No public result means no delivered action/status claim.
+                    # The composed audit must separately join ACT_RESULTS to
+                    # an actual shutdown-aborted transaction for this source.
+                    unreturned_deadline_withholds+=1
             if result is None:continue
             enter=[e for e in recorded if e['event']=='stage_act_enter'];exits=[e for e in recorded if e['event']=='stage_act_exit']
             if len(enter)!=1 or len(exits)!=1:raise ValueError('one_original_staged_act_required')
@@ -344,7 +381,8 @@ def audit_stages(rows,stages,ros_rows):
         except (KeyError,TypeError,ValueError) as exc:errors.append('stage:'+str(exc))
     return dict(passed=bool(observations and actions) and not errors,errors=errors,
         original_stages=len(observations),qualified_action_stages=actions,
-        withheld_native_actions=withheld_native_actions)
+        withheld_native_actions=withheld_native_actions,deadline_withheld_actions=deadline_withheld_actions,
+        unreturned_deadline_withholds=unreturned_deadline_withholds)
 
 
 def audit_native_estimates(rows,ros_rows,expected_provenance):
