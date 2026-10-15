@@ -1,0 +1,77 @@
+{
+  "schema": "polar.sim.aim-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_reviewed_inertial_aim",
+      "label": "Inertial aim v2 interface template; replace with reviewed algorithm wrapper",
+      "command": [
+        "{python}",
+        "-u",
+        "reviewed_inertial_aim_wrapper.py"
+      ],
+      "cwd": "..",
+      "supported_robots": [
+        "red_infantry"
+      ],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.aim-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.observation.v2",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.aim-status.v1",
+        "sensor_profile": "calibrated_camera_capture_own_v1",
+        "pipeline_level": "direct_gimbal_v1",
+        "source_association": "exact_capture_context_v1",
+        "image_encodings": [
+          "rgb8",
+          "bgr8"
+        ],
+        "output_modes": [
+          "gimbal_target"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "gimbal_reference": "inertial_from_source_base_v1"
+      }
+    },
+    {
+      "adapter_id": "custom_reviewed_wsl_inertial_aim",
+      "label": "WSL inertial aim v2 interface template; local algorithm and preparation required",
+      "command": [
+        "/opt/polar-reviewed/venv/bin/python",
+        "-u",
+        "-m",
+        "reviewed_inertial_aim_wrapper"
+      ],
+      "cwd": "/opt/polar-reviewed/workspace",
+      "supported_robots": [
+        "blue_infantry"
+      ],
+      "transport": "wsl_jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.aim-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.observation.v2",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.aim-status.v1",
+        "sensor_profile": "calibrated_camera_capture_own_v1",
+        "pipeline_level": "direct_gimbal_v1",
+        "source_association": "exact_capture_context_v1",
+        "image_encodings": [
+          "rgb8",
+          "bgr8"
+        ],
+        "output_modes": [
+          "gimbal_target"
+        ],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "gimbal_reference": "inertial_from_source_base_v1"
+      },
+      "wsl": {
+        "distribution": "Ubuntu-22.04",
+        "python": "/opt/polar-reviewed/venv/bin/python",
+        "process_env": {}
+      }
+    }
+  ]
+}

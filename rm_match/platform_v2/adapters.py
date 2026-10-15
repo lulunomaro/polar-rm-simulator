@@ -17,6 +17,29 @@ class AdapterSpec:
     descriptor: dict
     factory: object
 
+def _aim_reference(descriptor):
+    """Resolve a new reference only from the complete explicit v2 contract."""
+    capabilities=descriptor.get('aim_plugin_capabilities')
+    expected='base_link'
+    if capabilities is not None:
+        from ..deployment.aim_plugin import gimbal_reference_for_capabilities
+        expected=gimbal_reference_for_capabilities(capabilities)
+    reference=descriptor.get('aim_reference',expected)
+    if type(reference) is not str or reference not in ('base_link','inertial_from_source_base_v1') or reference!=expected:
+        raise ContractError('invalid_or_mismatched_aim_reference')
+    if descriptor.get('aim_plugin_contract')=='camera_gimbal_v2' and reference=='base_link':
+        raise ContractError('aim_reference_v2_capabilities_required')
+    if reference!='base_link':
+        sensors=descriptor.get('required_sensors')
+        if (descriptor['kind']!='aim' or descriptor.get('version')!='2.0.0'
+            or descriptor.get('aim_plugin_contract')!='camera_gimbal_v2'
+            or descriptor.get('output_modes')!=['gimbal_target']
+            or descriptor.get('fire_authority')!='manual_only' or descriptor.get('ui_config_contract')!='empty_v1'
+            or type(sensors) is not list or any(type(name) is not str for name in sensors)
+            or len(sensors)!=len(set(sensors)) or not {'camera','odometry'}<=set(sensors)):
+            raise ContractError('aim_reference_requires_v2_camera_and_odometry')
+    return reference
+
 class Registry:
     def __init__(self):self._specs={};self._capabilities={};self._plugin_catalog=[]
     def set_plugin_catalog(self,rows):
@@ -27,6 +50,7 @@ class Registry:
         d=copy.deepcopy(descriptor);aid=d['adapter_id']
         if aid in self._specs or len(self._specs)>=32:raise ContractError('duplicate_or_full_registry')
         if d['kind'] not in ('navigation','aim') or not callable(factory):raise ContractError('invalid_adapter')
+        aim_reference=_aim_reference(d)
         # Only detached, immutable scalar metadata belongs on the physics hot
         # path. Keep public descriptor registration/get compatibility, including
         # partial descriptors; unavailable capabilities fail when queried.
@@ -35,11 +59,11 @@ class Registry:
         try:stationary_only=bool(d.get('stationary_only',False))
         except Exception:stationary_only=None
         self._capabilities[aid]=MappingProxyType(dict(
-            stationary_only=stationary_only,requires_camera=requires_camera))
+            stationary_only=stationary_only,requires_camera=requires_camera,aim_reference=aim_reference))
         self._specs[aid]=AdapterSpec(d,factory)
     def capability(self,adapter_id,key):
-        """Return a frozen boolean without exposing internal descriptor data."""
-        if type(key) is not str or key not in ('stationary_only','requires_camera'):
+        """Return a frozen scalar without exposing internal descriptor data."""
+        if type(key) is not str or key not in ('stationary_only','requires_camera','aim_reference'):
             raise ContractError('unknown_adapter_capability')
         try:capabilities=self._capabilities[adapter_id]
         except (KeyError,TypeError):raise ContractError('unknown_adapter') from None

@@ -1,5 +1,6 @@
 """Pure async protocol/lifecycle fixtures. No WSL, native child, NN or camera."""
 import copy
+import errno
 import hashlib
 import json
 from pathlib import Path
@@ -37,12 +38,14 @@ def actor(tmp_path):
     a._stop=threading.Event();a._broken=threading.Event();a._transaction=threading.Lock()
     a._incoming=queue.Queue(maxsize=2);a._outgoing=queue.Queue(maxsize=1)
     a.ready={};a.process=object();a.timeout=.08;a._serial=0;a.fov={};a.out=tmp_path
-    a.evidence_out=None;a.diagnostics=[]
+    a.evidence_out=None;a.diagnostics=[];a.cleanup=None;a._threads=[]
     return a
 
 
 def slot(a,h,*,abandoned=False,started=True):
-    a._inflight=dict(header=h,deadline=100.08,host_started=100.,started=started,abandoned=abandoned,terminal=None)
+    a._inflight=dict(header=h,deadline=100.08,host_started=100.,started=started,abandoned=abandoned,terminal=None,
+        transport_write_attempted=False,transport_write_in_progress=False,transport_bytes_written=0,
+        transport_expected_bytes=worker.MAX_IMAGE+1024)
 
 
 def reply(h,event='result'):
@@ -260,7 +263,7 @@ def test_native_optional_time_is_original_not_reticked():
     with pytest.raises(ValueError,match='response_time'):worker.checked_response(r,h)
 
 
-def supervise_fixture(monkeypatch,tmp_path,chunks,*,cleanup_clean=True,late_ready=False,stop_before_spawn=False):
+def supervise_fixture(monkeypatch,tmp_path,chunks,*,cleanup_clean=True,late_ready=False,stop_before_spawn=False,stop_after_reads=None):
     """Mock OS boundaries only: no subprocess/ROS/WSL/NN is created."""
     clock=[0.];spawn=[];cleaned=[];closed=[]
     class Stream:
@@ -286,8 +289,17 @@ def supervise_fixture(monkeypatch,tmp_path,chunks,*,cleanup_clean=True,late_read
         if late_ready:clock[0]=16.
         return {'syscall':'read','fd':0}
     monkeypatch.setattr(worker,'_stdin_wait',ready)
-    reads=iter(chunks)
-    monkeypatch.setattr(worker.os,'read',lambda fd,size:next(reads))
+    reads=iter(chunks);read_count=[0]
+    def read(fd,size):
+        data=next(reads);read_count[0]+=1
+        if read_count[0]==stop_after_reads:
+            (out/'STOP').write_bytes(b'cancel\n');clock[0]+=.006
+        return data
+    monkeypatch.setattr(worker.os,'read',read)
+    def payload_read(fd,payload,received):
+        data=read(fd,len(payload)-received);payload[received:received+len(data)]=data
+        return len(data)
+    monkeypatch.setattr(worker,'_read_payload_into',payload_read)
     monkeypatch.setattr(worker.os,'write',lambda fd,data:len(data))
     def select_fds(*args):clock[0]+=.001;return [0],[1] if args[1] else [],[]
     monkeypatch.setattr(worker.select,'select',select_fds)
@@ -351,7 +363,7 @@ def test_exception_after_supervisor_entry_cannot_claim_native_not_spawned(monkey
 
 
 def test_writer_preserves_exact_header_plus_actual_bytes_across_short_writes(tmp_path):
-    a=actor(tmp_path);h,raw=header();sent=b'{"synthetic_protocol_fixture":true}\n'
+    a=actor(tmp_path);h,raw=header();slot(a,h,started=False);sent=b'{"synthetic_protocol_fixture":true}\n'
     a._outgoing.put((sent,raw,100.08,1));collected=bytearray()
     class Stream:
         def write(self,view):
@@ -361,6 +373,8 @@ def test_writer_preserves_exact_header_plus_actual_bytes_across_short_writes(tmp
     with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.01):
         a._write(SimpleNamespace(stdin=Stream()))
     assert bytes(collected)==sent+raw and not a._broken.is_set()
+    assert a._inflight['transport_bytes_written']==len(sent)+len(raw)
+    assert a._inflight['transport_write_attempted'] is True and a._inflight['transport_write_in_progress'] is False
 
 
 @pytest.mark.parametrize('count',[True,-1,worker.MAX_IMAGE+worker.MAX_LINE+1])
@@ -385,3 +399,122 @@ def test_writer_expired_before_first_byte_is_pending_without_native_or_model_sto
         a._write(SimpleNamespace(stdin=SimpleNamespace(write=lambda data:writes.append(data))))
     assert not writes and not a._broken.is_set() and a._inflight is None
     assert a.diagnostics[-1]['event']=='async_discarded_before_write'
+
+
+def closed_actor(tmp_path):
+    a=actor(tmp_path);h,_=header();slot(a,h,started=False,abandoned=True);a._stop.set()
+    identity=dict(run_id='a'*32,supervisor_pid=998,pid=999,pgid=999,boot_id='test-boot',leader_start_ticks=1,
+        spec_sha256='b'*64,transport=worker.TRANSPORT)
+    a.cleanup=dict(identity,reason='host_cancel',clean=True,reaped=True,group_empty=True,tmpfs_removed=True,
+        remaining_members=[],errors=[])
+    a.ready=dict(run_id=identity['run_id'],supervisor_pid=998,native_pid=999,spec_sha256='b'*64,transport=worker.TRANSPORT)
+    a._threads=[SimpleNamespace(is_alive=lambda:False)]
+    return a
+
+
+def test_zero_write_cancellation_is_only_certified_after_real_writer_join_and_owned_cleanup(tmp_path):
+    a=closed_actor(tmp_path)
+    a._record('closed',clean=True,linux_child_reaped=True,native_not_spawned=False,errors=[])
+    proof=a.diagnostics[0]
+    assert proof['event']=='async_cancelled_before_write' and proof['transport_bytes_written']==0
+    assert proof['source_context']==a._inflight['header']['source_context']
+    assert proof['ownership']['run_id']=='a'*32 and proof['writer_joined'] is True
+    assert a._inflight['terminal']=={'kind':'cancelled_before_write'}
+    # A second resource close must not invent another terminal.
+    a._record('closed',clean=True)
+    assert sum(r['event']=='async_cancelled_before_write' for r in a.diagnostics)==1
+
+
+@pytest.mark.parametrize('change',['attempted','blocked','partial','writer_alive','no_threads','bad_cleanup','foreign_ready','already_started','fault','broken'])
+def test_zero_count_alone_never_proves_cancelled_before_write(tmp_path,change):
+    a=closed_actor(tmp_path)
+    if change=='attempted':a._inflight['transport_write_attempted']=True
+    elif change=='blocked':a._inflight['transport_write_in_progress']=True
+    elif change=='partial':a._inflight['transport_bytes_written']=1
+    elif change=='writer_alive':a._threads=[SimpleNamespace(is_alive=lambda:True)]
+    elif change=='no_threads':a._threads=[]
+    elif change=='bad_cleanup':a.cleanup['clean']=False
+    elif change=='foreign_ready':a.ready['native_pid']=1000
+    elif change=='fault':a._fault='ValueError:unrecognized supervisor message'
+    elif change=='broken':a._broken.set()
+    else:a._inflight['started']=True
+    a._record('closed',clean=True)
+    assert not any(r['event']=='async_cancelled_before_write' for r in a.diagnostics)
+
+
+def test_write_exception_with_zero_returned_bytes_remains_uncertain(tmp_path):
+    a=closed_actor(tmp_path);a._stop.clear();h,raw=header();a._outgoing.put((b'{}\n',raw,100.08,1))
+    def failed(view):raise BrokenPipeError('actual write may have transferred bytes')
+    with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.01):
+        a._write(SimpleNamespace(stdin=SimpleNamespace(write=failed)))
+    assert a._inflight['transport_write_attempted'] is True and a._inflight['transport_write_in_progress'] is True
+    assert a._inflight['transport_bytes_written']==0
+    a._record('closed',clean=True)
+    assert not any(r['event']=='async_cancelled_before_write' for r in a.diagnostics)
+
+
+@pytest.mark.parametrize('full_payload',[False,True])
+def test_validated_input_cancel_retains_actual_receive_phase_without_claiming_native_compute(monkeypatch,tmp_path,full_payload):
+    h,raw=header();encoded=json.dumps(h).encode()+b'\n'
+    chunks=[encoded+raw[:1024]]+([raw[1024:]] if full_payload else [])
+    out,code,spawn,cleaned,_=supervise_fixture(monkeypatch,tmp_path,chunks,stop_after_reads=len(chunks))
+    assert code in (None,0) and len(spawn)==1 and cleaned==[True]
+    journal=json.loads((out/'NATIVE_EVENTS.json').read_text());rows=journal['events']
+    admission=next(r for r in rows if r['event']=='input_header_received')
+    cancel=next(r for r in rows if r['event']=='input_cancelled')
+    assert admission['source_context']==h['source_context']==cancel['source_context']
+    assert cancel['received_bgr_bytes']==(worker.MAX_IMAGE if full_payload else 1024)
+    assert cancel['phase']==('validated_payload' if full_payload else 'receiving_payload')
+    assert cancel['payload_sha256_verified'] is full_payload
+    assert cancel['verified_image_sha256']==(h['packet']['frame']['image']['sha256'] if full_payload else None)
+    assert cancel['native_compute_started'] is False and cancel['native_stdin_bytes_written']==0
+    assert not any(r['event'] in ('native_started','native_cancelled','result') for r in rows)
+    assert journal['inflight_at_close'] is None and journal['ownership']['run_id']=='a'*32
+
+
+def test_unvalidated_header_stop_has_no_source_specific_terminal(monkeypatch,tmp_path):
+    out,code,_,_,_=supervise_fixture(monkeypatch,tmp_path,[b'{"schema":'],stop_after_reads=1)
+    journal=json.loads((out/'NATIVE_EVENTS.json').read_text())
+    assert code in (None,0) and journal['input_at_close']['header_validated'] is False
+    assert not any(r['event'] in ('input_cancelled','native_cancelled','input_header_received') for r in journal['events'])
+
+
+@pytest.mark.parametrize('kind',['epipe','windows109','windows232'])
+def test_owned_stop_pipe_closure_is_only_interruption_candidate_with_original_unknown_write_state(tmp_path,kind):
+    a=closed_actor(tmp_path);a._stop.clear();h,raw=header();a._outgoing.put((b'{}\n',raw,100.08,1));writes=[]
+    class Stream:
+        def write(self,view):
+            writes.append(len(view))
+            if len(writes)==1:return 97
+            a._stop.set()
+            if kind=='epipe':raise BrokenPipeError(errno.EPIPE,'owned receiver closed')
+            error=OSError('owned Windows pipe closed');error.winerror=int(kind.removeprefix('windows'));raise error
+    with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.01):
+        a._write(SimpleNamespace(stdin=Stream()))
+    assert not a._broken.is_set() and a._fault is None
+    candidate=next(r for r in a.diagnostics if r['event']=='async_transport_write_interrupted')
+    assert candidate['source_context']==h['source_context'] and candidate['request_id']==1
+    assert candidate['owned_stop_requested'] is True and candidate['transport_bytes_written']==97
+    assert a._inflight['transport_write_attempted'] is True and a._inflight['transport_write_in_progress'] is True
+    assert a._inflight['terminal'] is None and a._inflight['started'] is False
+    a._record('closed',clean=True)
+    assert not any(r['event'] in ('async_native_fault','async_cancelled_before_write','async_native_started','async_native_stdout') for r in a.diagnostics)
+
+
+@pytest.mark.parametrize('kind',['pre_stop_epipe','previous_fault','previous_broken','unknown_after_stop','protocol_after_stop'])
+def test_stopped_writer_never_washes_out_unknown_protocol_or_preexisting_fault(tmp_path,kind):
+    a=closed_actor(tmp_path);a._stop.clear();h,raw=header();a._outgoing.put((b'{}\n',raw,100.08,1))
+    def failed(view):
+        if kind!='pre_stop_epipe':a._stop.set()
+        if kind=='previous_fault':a._set_fault(ValueError('real protocol fault before pipe close'))
+        elif kind=='previous_broken':a._broken.set()
+        elif kind=='unknown_after_stop':raise OSError(errno.EIO,'unknown write failure')
+        elif kind=='protocol_after_stop':raise ValueError('invalid original write')
+        raise BrokenPipeError(errno.EPIPE,'pipe closed')
+    with patch('rm_match.integrations.wsl_aim_async.time.perf_counter',return_value=100.01):
+        a._write(SimpleNamespace(stdin=SimpleNamespace(write=failed)))
+    assert a._broken.is_set() and a._fault is not None
+    if kind=='previous_fault':assert 'real protocol fault' in a._fault
+    assert not any(r['event']=='async_transport_write_interrupted' for r in a.diagnostics)
+    a._record('closed',clean=True)
+    assert not any(r['event']=='async_cancelled_before_write' for r in a.diagnostics)

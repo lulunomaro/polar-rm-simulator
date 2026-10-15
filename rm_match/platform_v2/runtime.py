@@ -192,12 +192,12 @@ class AdapterSlot:
                     if not private_rejected and not discarded_reason:
                         phase='action_validation'
                         from .navigation_contracts import NAV_SCHEMA,NAV_PROFILE,NAV_STATUS_SCHEMA,validate_navigation_status
-                        from .aim_contracts import AIM_STATUS_SCHEMA,AIM_PLUGIN_CONTRACT,validate_aim_status
+                        from .aim_contracts import AIM_STATUS_SCHEMA,AIM_PLUGIN_CONTRACTS,validate_aim_status
                         metadata=self.registry.get(b['adapter_id']).descriptor
                         if (metadata.get('observation_profile')==NAV_PROFILE and o['schema']==NAV_SCHEMA
                             and type(value) is dict and value.get('schema')==NAV_STATUS_SCHEMA):
                             value=validate_navigation_status(value,o)
-                        elif (metadata.get('kind')=='aim' and metadata.get('aim_plugin_contract')==AIM_PLUGIN_CONTRACT
+                        elif (metadata.get('kind')=='aim' and metadata.get('aim_plugin_contract') in AIM_PLUGIN_CONTRACTS
                             and type(value) is dict and value.get('schema')==AIM_STATUS_SCHEMA):
                             value=validate_aim_status(value,o)
                         else:value=validate_action(value,o,metadata)
@@ -250,6 +250,7 @@ class PlatformRuntime:
         self.observation_period=observation_period;self.action_ttl=action_ttl
         self.slots={};self.outputs={};self.observed={};self.next_observation={};self.status={};self._navigation_samples={}
         self._fault_epochs={};self._slot_bound={};self._own_samples={};self._camera_samples={};self._aim_status_context={}
+        self._aim_sources={};self._aim_reference_receipts={};self._aim_source_fences={}
         self.stop_event=threading.Event();self.cache_lock=threading.Lock()
         self.cached={'runtime_state':'starting','telemetry_available':False}
         self._authority=None;self._episode=None;self.steps=0;self.last_step_wall=None;self.error=None
@@ -338,12 +339,20 @@ class PlatformRuntime:
 
     def _registry_capability(self,adapter_id,key):
         query=getattr(self.registry,'capability',None)
-        if callable(query):return query(adapter_id,key)
+        if callable(query):
+            value=query(adapter_id,key)
+            if key=='aim_reference':
+                from .aim_reference import reference_value
+                return reference_value(value)
+            return value
         # Existing duck-typed local registries retain their live get semantics.
         from .contracts import ContractError
-        if type(key) is not str or key not in ('stationary_only','requires_camera'):
+        if type(key) is not str or key not in ('stationary_only','requires_camera','aim_reference'):
             raise ContractError('unknown_adapter_capability')
         metadata=self.registry.get(adapter_id).descriptor
+        if key=='aim_reference':
+            from .aim_reference import reference_value
+            return reference_value(metadata.get(key,'base_link'))
         if key=='stationary_only':return bool(metadata.get(key,False))
         return 'camera' in metadata['required_sensors']
 
@@ -389,6 +398,31 @@ class PlatformRuntime:
             if not session.audit_authorized:raise Rejected('audit_authorization_required',403)
             return value
 
+    def _clear_aim_source(self,key):
+        self._aim_sources.pop(key,None);self._aim_reference_receipts.pop(key,None)
+
+    def _discard_output(self,key):
+        self.outputs.pop(key,None);self._clear_aim_source(key)
+
+    def _aim_binding_identity(self,b):
+        return (self._episode,b['epoch'],b['owner'],b['adapter_id'])
+
+    def _fence_aim_source(self,key,b):
+        from .aim_reference import INERTIAL_FROM_SOURCE_BASE
+        if b['owner'] is None or self._registry_capability(b['adapter_id'],'aim_reference')!=INERTIAL_FROM_SOURCE_BASE:
+            return
+        identity=self._aim_binding_identity(b)
+        seq=self.observed.get(key,0)
+        output=self.outputs.get(key)
+        if output is not None and output['binding_epoch']==b['epoch']:
+            seq=max(seq,output['observed_seq'])
+        previous=self._aim_source_fences.get(key)
+        if previous is not None and previous[0]==identity:seq=max(seq,previous[1])
+        # Include submitted but unfinished work, even before the first action.
+        # This watermark grants no time or authority to any newer source.
+        self._aim_source_fences[key]=(identity,seq)
+        self._clear_aim_source(key)
+
     def _collect(self,snapshot,sim_time):
         from .contracts import validate_action
         now=self.clock()
@@ -400,7 +434,7 @@ class PlatformRuntime:
                                       or output['episode']!=self._episode or output['robot_id']!=rid
                                       or not self._budget_valid(self.output_budgets.get(key),now,sim_time)
                                       or not self._private_output_valid(key,b,sim_time)):
-                self.outputs.pop(key,None)
+                self._discard_output(key)
                 self.status[key]='expired_or_rebound'
             result=slot.poll()
             if result is None:continue
@@ -410,40 +444,51 @@ class PlatformRuntime:
             if b['owner'] is None or (b['epoch'],b['owner'],b['lease_epochs'])!=(old['epoch'],old['owner'],old['lease_epochs']):
                 continue
             if result.get('discarded_reason'):
+                self._clear_aim_source(key)
                 self.status[key]='sample_discarded:'+result['discarded_reason'];continue
             if result.get('private_rejected'):
+                self._clear_aim_source(key)
                 self._native_pixels_denied[key]=(b['epoch'],b['owner'])
                 self._camera_samples.pop(key,None);self.next_observation.pop(key,None)
                 self.status[key]='waiting_for_public_camera';continue
             if self._fault_epochs.get(key)==b['epoch']:
-                self.outputs.pop(key,None)
+                self._discard_output(key)
                 continue  # No queued or late same-generation result can recover a fault.
             if result['error']:
-                self.outputs.pop(key,None);self.status[key]='adapter_error:'+result['error'];self._fault_epochs[key]=b['epoch'];continue
+                self._discard_output(key);self.status[key]='adapter_error:'+result['error'];self._fault_epochs[key]=b['epoch'];continue
             if (o['robot_id']!=rid or o['episode']!=self._episode
                 or now>=o['wall_deadline'] or not 0<=sim_time-o['sim_time']<=self.action_ttl
                 or not self._budget_valid(budget,now,sim_time)
                 or not self._camera_budget_current(rid,kind,b,budget,sim_time,private=job.get('native_pixels') is not None)):
-                self.outputs.pop(key,None);self.status[key]='late_result';continue
+                self._discard_output(key);self.status[key]='late_result';continue
+            fence=self._aim_source_fences.get(key)
+            if fence is not None:
+                if fence[0]!=self._aim_binding_identity(b):self._aim_source_fences.pop(key,None)
+                elif o['observed_seq']<=fence[1]:
+                    self._discard_output(key);self.status[key]='source_invalidated_after_submit'
+                    self._trace('adapter_sample_rejected',robot_id=rid,kind=kind,binding_epoch=b['epoch'],
+                        episode=o['episode'],observed_seq=o['observed_seq'],wall_deadline=o['wall_deadline'],
+                        reason='source_precedes_disallowed_boundary')
+                    continue
             try:
                 from .navigation_contracts import NAV_STATUS_SCHEMA,validate_navigation_status
-                from .aim_contracts import AIM_STATUS_SCHEMA,AIM_PLUGIN_CONTRACT,validate_aim_status
+                from .aim_contracts import AIM_STATUS_SCHEMA,AIM_PLUGIN_CONTRACTS,validate_aim_status
                 if result['value'].get('schema')==NAV_STATUS_SCHEMA:
                     metadata=self.registry.get(b['adapter_id']).descriptor
                     if metadata.get('observation_profile')!='pointcloud_imu_v1':raise ValueError('navigation_status_profile')
                     status=validate_navigation_status(result['value'],o)
-                    self.outputs.pop(key,None);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
+                    self._discard_output(key);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
                     self.status[key]='waiting_for_navigation:'+status['status']
                     continue
                 if result['value'].get('schema')==AIM_STATUS_SCHEMA:
                     metadata=self.registry.get(b['adapter_id']).descriptor
-                    if kind!='aim' or metadata.get('aim_plugin_contract')!=AIM_PLUGIN_CONTRACT:
+                    if kind!='aim' or metadata.get('aim_plugin_contract') not in AIM_PLUGIN_CONTRACTS:
                         raise ValueError('aim_status_contract')
                     status=validate_aim_status(result['value'],o)
                     current=self.outputs.get(key)
                     if current and status['observed_seq']<=current['observed_seq']:
                         raise ValueError('replayed aim status')
-                    self.outputs.pop(key,None);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
+                    self._discard_output(key);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
                     self._private_outputs.discard(key)
                     self.status[key]='waiting_for_aim:'+status['status']
                     self._remember_aim_status(key,b,o,budget,status['status'])
@@ -455,6 +500,19 @@ class PlatformRuntime:
                 if action['kind']!=kind:raise ValueError('kind mismatch')
                 current=self.outputs.get(key)
                 if current and action['observed_seq']<=current['observed_seq']:raise ValueError('replayed result')
+                reference=None
+                if kind=='aim':
+                    from .aim_reference import INERTIAL_FROM_SOURCE_BASE,SourceBaseAim,validate_source_camera_budget
+                    if self._registry_capability(b['adapter_id'],'aim_reference')==INERTIAL_FROM_SOURCE_BASE:
+                        from .aim_contracts import AIM_PLUGIN_CONTRACT_V2
+                        metadata=self.registry.get(b['adapter_id']).descriptor
+                        if (metadata.get('aim_plugin_contract')!=AIM_PLUGIN_CONTRACT_V2
+                            or not {'camera','odometry'}.issubset(metadata['required_sensors'])):
+                            raise ValueError('aim_reference_required_sensors')
+                        validate_source_camera_budget(o,budget)
+                        if action['command']['active']:reference=SourceBaseAim.accepted(action,o,budget)
+                    self._clear_aim_source(key)
+                    if reference is not None:self._aim_sources[key]=reference
                 self.outputs[key]=action;self.output_budgets[key]=budget;self.output_authorizations[key]=job.get('operator_authorization');self.status[key]='active'
                 if job.get('native_pixels') is not None:self._private_outputs.add(key)
                 else:self._private_outputs.discard(key)
@@ -462,7 +520,7 @@ class PlatformRuntime:
                     self._remember_aim_status(key,b,o,budget,
                         'result_available' if action['command']['active'] else 'no_target')
             except (ValueError,TypeError,KeyError):
-                self.outputs.pop(key,None);self.status[key]='invalid_result';self._fault_epochs[key]=b['epoch']
+                self._discard_output(key);self.status[key]='invalid_result';self._fault_epochs[key]=b['epoch']
 
     def _remember_aim_status(self,key,b,o,budget,status):
         """UI metadata only, bound to the original source and owner; not motion."""
@@ -528,12 +586,15 @@ class PlatformRuntime:
             for kind in KINDS:
                 key=(rid,kind);b=snapshot['bindings'][rid][kind]
                 if b['owner'] is None:
+                    self._clear_aim_source(key)
+                    self._aim_source_fences.pop(key,None)
                     self._own_samples.pop(key,None)
                     self._camera_samples.pop(key,None)
                     self._navigation_samples.pop(key,None)
                     if self._slot_bound.pop(key,False) and key in self.slots:self.slots[key].submit({'deactivate':True})
                     continue
                 if not self._binding_active(b,self.clock()):
+                    self._clear_aim_source(key)
                     self.status[key]='waiting_for_operator_activation';continue
                 if self._fault_epochs.get(key)==b['epoch']:continue
                 self._slot_bound[key]=True
@@ -594,7 +655,7 @@ class PlatformRuntime:
                         raise ValueError('sensor_authority_identity_or_time_mismatch')
                 except Exception as exc:
                     self._own_samples.pop(key,None)
-                    self.outputs.pop(key,None);self._fault_epochs[key]=b['epoch']
+                    self._discard_output(key);self._fault_epochs[key]=b['epoch']
                     self.status[key]='sensor_error:'+type(exc).__name__
                     if key in self.slots:self.slots[key].submit({'deactivate':True})
                     continue
@@ -618,8 +679,9 @@ class PlatformRuntime:
                             wall_deadline=observation['wall_deadline'])
                         continue
                 if missing:
-                    self.outputs.pop(key,None);self.status[key]='required_sensor_unavailable:'+','.join(missing);continue
+                    self._discard_output(key);self.status[key]='required_sensor_unavailable:'+','.join(missing);continue
                 if budget is not None and not self._budget_valid(budget,self.clock(),sim_time):
+                    self._clear_aim_source(key)
                     self.status[key]='camera_sample_expired'
                     self._trace('adapter_sample_rejected',robot_id=rid,kind=kind,binding_epoch=b['epoch'],
                         observed_seq=seq,reason='original_camera_deadline_expired',sensor_budget=budget,
@@ -685,7 +747,7 @@ class PlatformRuntime:
                 operator_authorization=authorization))
             if key not in self.outputs:self.status[key]='waiting_for_navigation'
         except Exception as exc:
-            self.outputs.pop(key,None);self._fault_epochs[key]=b['epoch'];self.status[key]='sensor_error:'+type(exc).__name__
+            self._discard_output(key);self._fault_epochs[key]=b['epoch'];self.status[key]='sensor_error:'+type(exc).__name__
             if key in self.slots:self.slots[key].submit({'deactivate':True})
 
     def _targets(self,snapshot,sim_time,*,sampled_wall=None):
@@ -711,7 +773,21 @@ class PlatformRuntime:
                     and self._private_output_valid((rid,kind),b,sim_time)):
                     command=output['command']
                     if kind=='navigation' or command['active']:
-                        if self.backend.validate_target(rid,channel,command):t[channel]=command
+                        reference_receipt=None
+                        if kind=='aim':
+                            from .aim_reference import INERTIAL_FROM_SOURCE_BASE
+                            if self._registry_capability(b['adapter_id'],'aim_reference')==INERTIAL_FROM_SOURCE_BASE:
+                                reference=self._aim_sources.get((rid,kind))
+                                try:
+                                    if (reference is None or not reference.matches(output,self.output_budgets.get((rid,kind)))
+                                        or not self.backend.allowed(rid)):
+                                        raise ValueError('aim_reference_source_unavailable')
+                                    command,reference_receipt=reference.target(self.backend.own_pose(rid)['yaw'])
+                                except (ValueError,TypeError,KeyError,OverflowError):
+                                    self._clear_aim_source((rid,kind));self.status[rid,kind]='aim_reference_rejected';continue
+                        if self.backend.validate_target(rid,channel,command):
+                            t[channel]=command
+                            if reference_receipt is not None:self._aim_reference_receipts[rid,kind]=reference_receipt
                         else:self.status[rid,kind]='robot_limit_rejected'
             aim_binding=bindings['aim']
             if aim_binding['owner'] is not None and self._registry_capability(aim_binding['adapter_id'],'stationary_only'):
@@ -721,7 +797,10 @@ class PlatformRuntime:
                 measured_motion=abs(pose['wz'])>.03 or (pose['vx']**2+pose['vy']**2)**.5>.03
                 if requested_motion or measured_motion:
                     t['gimbal']=None;self.status[rid,'aim']='stationary_required'
-            if not self.backend.allowed(rid):t=dict(motion=None,gimbal=None,fire=False)
+            if not self.backend.allowed(rid):
+                t=dict(motion=None,gimbal=None,fire=False)
+                self._fence_aim_source((rid,'aim'),aim_binding)
+            if t['gimbal'] is None or aim_binding['owner'] is None:self._clear_aim_source((rid,'aim'))
             result[rid]=t
         return result
 
@@ -730,7 +809,7 @@ class PlatformRuntime:
         if self.stop_event.is_set() or self.control.stopped:return False
         episode=self.backend.episode
         if self._episode is not None and self._episode!=episode:
-            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._navigation_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear();self._aim_status_context.clear()
+            self.control.reset_episode();self.outputs.clear();self._own_samples.clear();self._camera_samples.clear();self._navigation_samples.clear();self._private_outputs.clear();self._native_pixels_denied.clear();self._aim_status_context.clear();self._aim_sources.clear();self._aim_reference_receipts.clear();self._aim_source_fences.clear()
         self._episode=episode
         sim_time=self.backend.sim_time
         prepare=getattr(self.backend,'prepare_navigation_sensors',None)
@@ -794,6 +873,8 @@ class PlatformRuntime:
                 receipt_target=dict(checked,motion=dict(checked['motion']) if checked['motion'] is not None else None,
                     gimbal=dict(checked['gimbal']) if checked['gimbal'] is not None else None)
                 receipt.update(consume_wall=consume_wall,consume_sim_time=consume_sim_time,target=receipt_target)
+                if (reference:=self._aim_reference_receipts.get((rid,'aim'))) is not None:
+                    receipt['aim_reference']=copy.deepcopy(reference)
                 consumed.append(receipt)
                 return checked
             if hasattr(self.backend,'guarded_step'):self.backend.guarded_step(targets,command_guard,clock=self.clock)
@@ -883,6 +964,7 @@ class PlatformRuntime:
 
     def request_stop(self):
         self.stop_event.set();self.control.stop()
+        self._aim_sources.clear();self._aim_reference_receipts.clear();self._aim_source_fences.clear()
         if self.camera is not None:self.camera.stop()
 
     def _shutdown_workers(self):

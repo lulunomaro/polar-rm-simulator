@@ -9,6 +9,8 @@ from .contracts import ContractError, IDENTITY, OBS_SCHEMA, exact, identity
 
 AIM_STATUS_SCHEMA = 'polar.sim.aim-status.v1'
 AIM_PLUGIN_CONTRACT = 'camera_gimbal_v1'
+AIM_PLUGIN_CONTRACT_V2 = 'camera_gimbal_v2'
+AIM_PLUGIN_CONTRACTS = (AIM_PLUGIN_CONTRACT, AIM_PLUGIN_CONTRACT_V2)
 
 
 def validate_aim_status(value, observation):

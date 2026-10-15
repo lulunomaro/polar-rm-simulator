@@ -1,6 +1,8 @@
 """Meaningful fail-closed report checks; no fake inference/physics success."""
 import copy
 import importlib.util
+import math
+import pytest
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -54,13 +56,14 @@ def test_async_pending_or_late_cannot_supply_required_timely_native_samples():
 def async_events():
     source=dict(robot_id='red_sentry',episode=1,binding_epoch=2,observed_seq=7,sim_time=.422,wall_deadline=100.08)
     shared=dict(request_id=1,source_context=source,**source,frame_id=7,exposure_timestamp_ns=410000000,
-        control_time_ns=422000000,raw_bgr_sha256='a'*64)
-    response=dict(inference_calls=1,clock_time_ns=422000000)
+        control_time_ns=422000000,capture_sim_time=.410,raw_bgr_sha256='a'*64,bgr_bytes=4665600)
+    response=dict(inference_calls=1,clock_time_ns=422000000,tracking=True)
     rows=[dict(shared,event='async_transport_request',wall_time=100.01),
         dict(shared,event='async_native_started',wall_time=100.02,native_stdin_complete=True),
         dict(shared,event='async_native_stdout',wall_time=100.04,response=response),
         dict(shared,event='async_result_accepted80',wall_time=100.05,response=response),
-        dict(shared,event='native_result',wall_time=100.051,response=response)]
+        dict(shared,event='native_result',wall_time=100.051,wall_clock='host_perf_counter',
+             observation_sim_time=source['sim_time'],response=response)]
     return rows
 
 
@@ -78,12 +81,235 @@ def test_async_original_source_accounting_rejects_late_context_and_fake_native_c
 
 def test_async_inflight_requires_original_owned_cleanup_proof():
     rows=async_events()[:2];r=rows[0]
-    journal={'NATIVE_EVENTS.json':{'events':[dict(event='native_cancelled',id=1,source_context=r['source_context'],
-        frame_id=7,control_time_ns=422000000,exposure_timestamp_ns=410000000,image_sha256='a'*64)]},
-        'CLEANUP.json':{'clean':True,'reason':'host_cancel'}}
+    journal=cancel_evidence(r,'native_cancelled')
     assert smoke.async_transaction_measurements(rows,journal)['original_async_transactions_accounted']
     journal['CLEANUP.json']['clean']=False
     assert not smoke.async_transaction_measurements(rows,journal)['original_async_transactions_accounted']
+
+
+def cancel_evidence(request,event='input_cancelled',*,full_payload=False):
+    from rm_match.integrations.wsl_aim_async_worker import SCHEMA,TRANSPORT
+    identity=dict(run_id='a'*32,supervisor_pid=998,pid=999,pgid=999,boot_id='test-boot',leader_start_ticks=1,
+        spec_sha256='b'*64,transport=TRANSPORT)
+    ready=dict(event='ready',schema=SCHEMA,transport=TRANSPORT,run_id=identity['run_id'],supervisor_pid=998,
+        native_pid=999,spec_sha256='b'*64,native_ticks=0,inference_calls=0,camera_captures=0,physics_steps=0)
+    source=dict(schema=SCHEMA,transport=TRANSPORT,id=request['request_id'],source_context=copy.deepcopy(request['source_context']),
+        frame_id=request['frame_id'],exposure_timestamp_ns=request['exposure_timestamp_ns'],control_time_ns=request['control_time_ns'],
+        image_sha256=request['raw_bgr_sha256'],bgr_bytes=4665600,clock_domain='linux_local_diagnostic_only')
+    terminal=dict(source,event=event,reason='host_cancel',ownership=copy.deepcopy(identity))
+    journal=dict(schema=SCHEMA,transport=TRANSPORT,ownership=copy.deepcopy(identity),events=[copy.deepcopy(ready)],inflight_at_close=None)
+    trace=[dict(event='closed',clean=True,linux_child_reaped=True,native_not_spawned=False,errors=[])]
+    if event=='native_cancelled':
+        terminal.update(native_stdin_bytes_written=1729,native_stdin_expected_bytes=1729,native_stdout_buffer_bytes=0)
+        journal['events'].append(terminal)
+    elif event=='input_cancelled':
+        journal['events'].append(dict(source,event='input_header_received',header_validated=True,received_bgr_bytes=1024))
+        terminal.update(phase='validated_payload' if full_payload else 'receiving_payload',header_validated=True,
+            received_bgr_bytes=4665600 if full_payload else 1024,payload_sha256_verified=full_payload,
+            verified_image_sha256=request['raw_bgr_sha256'] if full_payload else None,
+            native_stdin_bytes_written=0,native_compute_started=False)
+        journal['events'].append(terminal)
+    else:
+        terminal=dict(request,event='async_cancelled_before_write',phase='queued',reason='host_cancel',writer_joined=True,
+            transport_write_attempted=False,transport_write_in_progress=False,transport_bytes_written=0,
+            transport_expected_bytes=4667000,ownership=copy.deepcopy(identity))
+        trace.insert(0,terminal)
+    return {'OWNED_CHILD.json':copy.deepcopy(identity),'STARTUP.json':ready,'NATIVE_EVENTS.json':journal,'HOST_TRACE.json':trace,
+        'CLEANUP.json':dict(identity,reason='host_cancel',clean=True,reaped=True,group_empty=True,tmpfs_removed=True,remaining_members=[],errors=[])}
+
+
+@pytest.mark.parametrize('kind',['unwritten','partial','full'])
+def test_phase_specific_pre_native_cancellation_accounts_only_original_source_not_inference(kind):
+    rows=async_events()[:1]
+    evidence=cancel_evidence(rows[0],'async_cancelled_before_write' if kind=='unwritten' else 'input_cancelled',full_payload=kind=='full')
+    result=smoke.async_transaction_measurements(rows,evidence)
+    assert result['original_async_transactions_accounted'] and result['async_incomplete_transactions']==0
+    assert result['async_actual_complete_stdin']==result['async_timely_accepted_results']==result['async_owned_cancelled_at_close']==0
+    assert result['async_owned_unwritten_cancelled_at_close']==(1 if kind=='unwritten' else 0)
+    assert result['async_owned_input_cancelled_at_close']==(0 if kind=='unwritten' else 1)
+
+
+@pytest.mark.parametrize('change',['missing_owner','cleanup_false','not_reaped','group_alive','tmpfs_alive','wrong_run',
+    'wrong_birth','wrong_ready','bool_ready','wrong_row_owner','no_host_join','missing_header','wrong_admission_transport',
+    'wrong_admission_schema','wrong_admission_clock','wrong_robot','typed_seq','typed_sim','wrong_hash','bad_phase',
+    'unverified_full','false_native_zero','conflicting_start','conflicting_result','duplicate_cancel','fault_ledger','fault_trace'])
+def test_input_cancellation_requires_typed_original_header_and_same_actual_owned_endpoint(change):
+    rows=async_events()[:1];evidence=cancel_evidence(rows[0]);journal=evidence['NATIVE_EVENTS.json'];terminal=journal['events'][-1]
+    if change=='missing_owner':evidence.pop('OWNED_CHILD.json')
+    elif change=='cleanup_false':evidence['CLEANUP.json']['clean']=False
+    elif change=='not_reaped':evidence['CLEANUP.json']['reaped']=False
+    elif change=='group_alive':evidence['CLEANUP.json']['remaining_members']=[999]
+    elif change=='tmpfs_alive':evidence['CLEANUP.json']['tmpfs_removed']=False
+    elif change=='wrong_run':evidence['CLEANUP.json']['run_id']='c'*32
+    elif change=='wrong_birth':evidence['CLEANUP.json']['leader_start_ticks']=True
+    elif change=='wrong_ready':evidence['STARTUP.json']['native_pid']=1000
+    elif change=='bool_ready':journal['events'][0]['native_ticks']=False
+    elif change=='wrong_row_owner':terminal['ownership']['run_id']='c'*32
+    elif change=='no_host_join':evidence['HOST_TRACE.json'][0]['clean']=False
+    elif change=='missing_header':journal['events'].pop(1)
+    elif change=='wrong_admission_transport':journal['events'][1]['transport']='other'
+    elif change=='wrong_admission_schema':journal['events'][1]['schema']='other'
+    elif change=='wrong_admission_clock':journal['events'][1]['clock_domain']='host_perf_counter'
+    elif change=='wrong_robot':terminal['source_context']['robot_id']='blue_sentry'
+    elif change=='typed_seq':terminal['source_context']['observed_seq']=7.
+    elif change=='typed_sim':terminal['source_context']['sim_time']=False
+    elif change=='wrong_hash':terminal['image_sha256']='c'*64
+    elif change=='bad_phase':terminal['phase']='unknown'
+    elif change=='unverified_full':terminal['received_bgr_bytes']=4665600
+    elif change=='false_native_zero':terminal['native_stdin_bytes_written']=False
+    elif change=='conflicting_start':rows.append(dict(rows[0],event='async_native_started',native_stdin_complete=True))
+    elif change=='conflicting_result':journal['events'].insert(1,dict(terminal,event='result'))
+    elif change=='fault_ledger':rows.append(dict(rows[0],event='async_native_fault',error='unknown supervisor message'))
+    elif change=='fault_trace':evidence['HOST_TRACE.json'].insert(0,dict(event='async_native_fault',error='unknown supervisor message'))
+    else:journal['events'].append(copy.deepcopy(terminal))
+    assert not smoke.async_transaction_measurements(rows,evidence)['original_async_transactions_accounted']
+
+
+@pytest.mark.parametrize('change',['attempted','blocked','bytes','writer_alive','typed_id','header_observed','source_mismatch'])
+def test_unwritten_cancellation_never_accepts_ambiguous_or_contradicted_zero_count(change):
+    rows=async_events()[:1];evidence=cancel_evidence(rows[0],'async_cancelled_before_write')
+    proof=evidence['HOST_TRACE.json'][0]
+    if change=='attempted':proof['transport_write_attempted']=True
+    elif change=='blocked':proof['transport_write_in_progress']=True
+    elif change=='bytes':proof['transport_bytes_written']=1
+    elif change=='writer_alive':proof['writer_joined']=False
+    elif change=='typed_id':proof['request_id']=True
+    elif change=='header_observed':evidence['NATIVE_EVENTS.json']['events'].append(dict(event='input_header_received',id=1))
+    else:proof['source_context']=dict(proof['source_context'],observed_seq=8)
+    assert not smoke.async_transaction_measurements(rows,evidence)['original_async_transactions_accounted']
+
+
+def test_old_host_cancel_or_unknown_header_remains_incomplete_even_with_clean_owned_resources():
+    rows=async_events()[:1];rows.append(dict(rows[0],event='async_control_cancelled',reason='owned_stop_requested'))
+    evidence=cancel_evidence(rows[0]);evidence['NATIVE_EVENTS.json']['events']=evidence['NATIVE_EVENTS.json']['events'][:1]
+    evidence['NATIVE_EVENTS.json']['input_at_close']={'header_validated':False,'header_bytes':11}
+    result=smoke.async_transaction_measurements(rows,evidence)
+    assert not result['original_async_transactions_accounted'] and result['async_incomplete_transactions']==1
+
+
+def test_write_interruption_candidate_cannot_replace_independent_linux_terminal_or_add_native_samples():
+    rows=async_events()[:1]
+    candidate=dict(rows[0],event='async_transport_write_interrupted',owned_stop_requested=True,
+        reason='owned_stop_pipe_closed',transport_bytes_written=0,transport_write_attempted=True,transport_write_in_progress=True)
+    rows.append(candidate)
+    without=smoke.async_transaction_measurements(rows,{})
+    assert not without['original_async_transactions_accounted'] and without['async_incomplete_transactions']==1
+    evidence=cancel_evidence(rows[0]);evidence['HOST_TRACE.json'].insert(0,copy.deepcopy(candidate))
+    proven=smoke.async_transaction_measurements(rows,evidence)
+    assert proven['original_async_transactions_accounted'] and proven['async_owned_input_cancelled_at_close']==1
+    assert proven['async_actual_complete_stdin']==proven['async_wrapper_native_results']==proven['async_timely_accepted_results']==0
+    evidence['NATIVE_EVENTS.json']['events'][-1]['source_context']['observed_seq']=8
+    assert not smoke.async_transaction_measurements(rows,evidence)['original_async_transactions_accounted']
+
+
+def expired_wrapper_events(stamp=100.08):
+    rows=async_events();rows[-1].update(event='native_response_expired_before_action',wall_time=stamp)
+    return rows
+
+
+@pytest.mark.parametrize('stamp',[100.08,100.081])
+def test_bridge_acceptance_then_wrapper_expiry_is_accounted_without_timely_native_result(stamp):
+    rows=expired_wrapper_events(stamp)
+    result=smoke.async_transaction_measurements(rows,{})
+    assert result['original_async_transactions_accounted'] and result['async_incomplete_transactions']==0
+    assert result['async_timely_accepted_results']==1 and result['async_wrapper_native_results']==0
+    assert result['async_expired_before_action']==1 and not any(r['event']=='native_result' for r in rows)
+    # The existing qualification gate still needs actual timely result samples.
+    plan=smoke.build_plan('wsl_async_bgr_v3');m=measured();m.update(result)
+    m['configuration']=copy.deepcopy(plan['configuration']);m['native_results']=0
+    assert not smoke.classify(m,plan=plan)['checks']['native_sample_count']
+
+
+@pytest.mark.parametrize('change',['missing','duplicate','also_result','early','bad_clock','nonfinite','bool_time',
+    'robot','episode','epoch','seq','seq_type','sim_type','deadline','frame','capture','hash','response','response_type',
+    'missing_sim','not_accepted'])
+def test_expired_wrapper_requires_unique_typed_original_source_response_and_real_expiry(change):
+    rows=expired_wrapper_events();row=rows[-1]
+    if change=='missing':rows.pop()
+    elif change=='duplicate':rows.append(copy.deepcopy(row))
+    elif change=='also_result':rows.append(dict(row,event='native_result',wall_time=100.05))
+    elif change=='early':row['wall_time']=math.nextafter(100.08,-math.inf)
+    elif change=='bad_clock':row['wall_clock']='linux_local_diagnostic_only'
+    elif change=='nonfinite':row['wall_time']=float('inf')
+    elif change=='bool_time':row['wall_time']=True
+    elif change=='robot':row['robot_id']='blue_sentry'
+    elif change=='episode':row['episode']=2
+    elif change=='epoch':row['binding_epoch']=3
+    elif change=='seq':row['observed_seq']=8
+    elif change=='seq_type':row['observed_seq']=7.
+    elif change=='sim_type':row['observation_sim_time']=False
+    elif change=='deadline':row['wall_deadline']=100.081
+    elif change=='frame':row['frame_id']=8
+    elif change=='capture':row['capture_sim_time']=.411
+    elif change=='hash':row['raw_bgr_sha256']='b'*64
+    elif change=='response':row['response']={}
+    elif change=='response_type':row['response']=dict(row['response'],inference_calls=True)
+    elif change=='missing_sim':row.pop('observation_sim_time')
+    else:rows.pop(3)
+    assert not smoke.async_transaction_measurements(rows,{})['original_async_transactions_accounted']
+
+
+def test_expiry_allows_only_documented_wrapper_fields_and_does_not_relabel_old_source():
+    rows=expired_wrapper_events();response=rows[-1]['response']
+    rows[-1]['response']=dict(response,episode=rows[-1]['episode'],should_control=True)
+    assert smoke.async_transaction_measurements(rows,{})['original_async_transactions_accounted']
+    rows[-1]['response']['new_clock']=200.
+    assert not smoke.async_transaction_measurements(rows,{})['original_async_transactions_accounted']
+
+
+def original_receipt():
+    budget=dict(robot_id='red_infantry',episode=0,frame_id=22,capture_wall=132185.2877611,
+        capture_sim_time=1.306000000000001,wall_deadline=132185.36776109997,sim_deadline=1.386000000000001)
+    return dict(robot_id='red_infantry',episode=0,frame_id=22,consume_wall=132185.3630102,
+        consume_sim_time=budget['sim_deadline'],budget=budget)
+
+
+def test_original_absolute_sim_deadline_passes_despite_unrounded_float_difference():
+    row=original_receipt();budget=row['budget']
+    assert row['consume_sim_time']-budget['capture_sim_time']==.08000000000000007
+    assert smoke.actuator_receipt_budget_checks(row)==dict(wall=True,sim=True)
+    m=measured();m['actuator_budget_receipts']=[row]
+    m['actuator_wall_ages_s']=[row['consume_wall']-budget['capture_wall']]
+    m['actuator_sim_ages_s']=[row['consume_sim_time']-budget['capture_sim_time']]
+    assert smoke.classify(m)['live_static_chain_qualified']
+    assert m['actuator_sim_ages_s']==[.08000000000000007]
+    # Reported raw differences must still exactly match their original receipts.
+    m['actuator_sim_ages_s']=[.08]
+    assert not smoke.classify(m)['checks']['actuator_sim_ages_s']
+
+
+@pytest.mark.parametrize('axis',['wall','sim'])
+def test_absolute_budget_boundary_is_exact_in_each_original_clock(axis):
+    row=original_receipt();budget=row['budget']
+    consume='consume_wall' if axis=='wall' else 'consume_sim_time';deadline='wall_deadline' if axis=='wall' else 'sim_deadline'
+    capture='capture_wall' if axis=='wall' else 'capture_sim_time'
+    row[consume]=math.nextafter(budget[capture],-math.inf)
+    assert not smoke.actuator_receipt_budget_checks(row)[axis]
+    row[consume]=math.nextafter(budget[deadline],-math.inf)
+    assert smoke.actuator_receipt_budget_checks(row)[axis]
+    row[consume]=budget[deadline]
+    assert smoke.actuator_receipt_budget_checks(row)[axis] is (axis=='sim')
+    row[consume]=math.nextafter(budget[deadline],math.inf)
+    assert not smoke.actuator_receipt_budget_checks(row)[axis]
+
+
+@pytest.mark.parametrize('change',['wrong_robot','wrong_episode','bool_episode','wrong_frame','bool_frame',
+    'late_wall_budget','late_sim_budget','empty_budget','nonfinite','bool_consume','extra_budget','missing_budget'])
+def test_receipt_requires_finite_typed_original_identity_and_unexpanded_80ms_budget(change):
+    row=original_receipt();budget=row['budget']
+    if change=='wrong_robot':row['robot_id']='blue_infantry'
+    elif change=='wrong_episode':row['episode']=1
+    elif change=='bool_episode':row['episode']=False
+    elif change=='wrong_frame':row['frame_id']=23
+    elif change=='bool_frame':budget['frame_id']=True
+    elif change=='late_wall_budget':budget['wall_deadline']=math.nextafter(budget['capture_wall']+.08,math.inf)
+    elif change=='late_sim_budget':budget['sim_deadline']=math.nextafter(budget['capture_sim_time']+.08,math.inf)
+    elif change=='empty_budget':budget['sim_deadline']=budget['capture_sim_time']
+    elif change=='nonfinite':row['consume_sim_time']=float('nan')
+    elif change=='bool_consume':row['consume_wall']=True
+    elif change=='extra_budget':budget['renewed_at']=200.
+    else:row.pop('budget')
+    assert not all(smoke.actuator_receipt_budget_checks(row).values())
 
 
 def test_missing_or_late_stage_cannot_be_hidden_by_successful_receipts():

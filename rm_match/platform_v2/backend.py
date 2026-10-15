@@ -188,12 +188,18 @@ class MuJoCoBackend:
         # write, not before potentially slower preparation/zone bookkeeping.
         def final(rid,command,phase,sampled_wall=None):
             from dataclasses import replace
-            original=targets[rid]
+            # The runtime guard may replace or mutate targets[rid]. Capture
+            # revocation facts before calling it, and apply returned angles to
+            # the real Command rather than merely updating runtime receipts.
+            had_motion=targets[rid]['motion'] is not None
+            had_gimbal=targets[rid]['gimbal'] is not None
             current=guard(rid,command,phase,sampled_wall)
             changes={}
-            if original['motion'] is not None and current['motion'] is None:
+            if had_motion and current['motion'] is None:
                 changes.update(force_x=0.,force_y=0.,yaw_torque=0.)
-            if original['gimbal'] is not None and current['gimbal'] is None:
+            if current['gimbal'] is not None:
+                changes.update(gimbal_yaw=current['gimbal']['yaw_rad'],gimbal_pitch=current['gimbal']['pitch_rad'])
+            elif had_gimbal:
                 pose=self.own_pose(rid)
                 self._gimbal_hold[rid]=(pose['gimbal_yaw'],pose['gimbal_pitch'])
                 self._gimbal_was_active[rid]=False

@@ -27,6 +27,14 @@ IDENTITY=('robot_id','episode','binding_epoch','observed_seq','sim_time','wall_d
 WATCHDOG_S=1.0  # Resource hang bound; never an action/observation validity window.
 MAX_EVENTS=4096
 MAX_EVIDENCE_BYTES=8*1024*1024
+OWNERSHIP_FIELDS=('run_id','supervisor_pid','pid','pgid','boot_id','leader_start_ticks','spec_sha256','transport')
+
+
+def input_source(header):
+    f=header['packet']['frame']
+    return dict(id=header['id'],source_context=copy.deepcopy(header['source_context']),frame_id=f['frame_id'],
+        exposure_timestamp_ns=f['exposure_timestamp_ns'],control_time_ns=header['packet']['control_time_ns'],
+        image_sha256=f['image']['sha256'],bgr_bytes=MAX_IMAGE)
 
 
 def parse_json(raw):
@@ -139,10 +147,7 @@ class NativeComputeSlot:
     def source(self):
         h=self.current
         if h is None:raise ValueError('async_no_inflight_source')
-        f=h['packet']['frame']
-        return dict(id=h['id'],source_context=copy.deepcopy(h['source_context']),frame_id=f['frame_id'],
-            exposure_timestamp_ns=f['exposure_timestamp_ns'],control_time_ns=h['packet']['control_time_ns'],
-            image_sha256=f['image']['sha256'],bgr_bytes=MAX_IMAGE)
+        return input_source(h)
     def check_watchdog(self,now):
         if self.current is not None and now-self.started>=WATCHDOG_S:raise TimeoutError('async_native_compute_watchdog')
     def complete(self,response,now):
@@ -162,13 +167,13 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
     if not out.is_dir():raise ValueError('async_fresh_output_missing')
     if any((out/name).exists() for name in ('OWNED_CHILD.json','STARTUP.json','CLEANUP.json','native_stderr.log')):
         raise ValueError('async_output_reuse')
-    stopped=False;child=None;tmp=None;errorlog=None;owner=None;reason='startup_failure';events=[];exit_code=0;attempted=False;evidence_bytes=0
+    stopped=False;child=None;tmp=None;errorlog=None;owner=None;owned=None;reason='startup_failure';events=[];exit_code=0;attempted=False;evidence_bytes=0
     def stop(*_):
         nonlocal stopped
         stopped=True
     old={s:signal.signal(s,stop) for s in (signal.SIGTERM,signal.SIGINT)}
     started=time.monotonic();limit=started+startup_timeout if startup_deadline is None else startup_deadline
-    slot=NativeComputeSlot();header=bytearray();header_started=None;incoming=None;payload=None;received=0
+    slot=NativeComputeSlot();header=bytearray();header_started=None;incoming=None;payload=None;received=0;payload_verified=False
     native_buffer=bytearray();writebuf=b'';written=0;expected=0;outputs=[];ready=False;next_stop=started;startup_error=None
     def journal(data):
         nonlocal evidence_bytes
@@ -284,12 +289,16 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                         continue
                     header.extend(chunk[:newline])
                     incoming=checked_header(parse_json(header),fov,control_timeout);header.clear()
-                    payload=bytearray(MAX_IMAGE);received=len(chunk)-newline-1
+                    payload=bytearray(MAX_IMAGE);received=len(chunk)-newline-1;payload_verified=False
                     if received>MAX_IMAGE:raise ValueError('async_extra_binary_bytes')
                     payload[:received]=chunk[newline+1:]
+                    journal(dict(event='input_header_received',schema=SCHEMA,transport=TRANSPORT,**input_source(incoming),
+                        header_validated=True,received_bgr_bytes=received,clock_domain='linux_local_diagnostic_only'))
                 if received!=MAX_IMAGE:continue
                 sha=hashlib.sha256(payload).hexdigest()
                 if sha!=incoming['packet']['frame']['image']['sha256']:raise ValueError('async_payload_sha_mismatch')
+                payload_verified=True
+                if stopped or (out/'STOP').exists():reason='host_cancel';break
                 if time.monotonic()>=header_started+incoming['timeout_s']:
                     f=incoming['packet']['frame']
                     emit(dict(event='discarded_before_native',schema=SCHEMA,transport=TRANSPORT,id=incoming['id'],
@@ -315,7 +324,7 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                         writebuf=json.dumps(request,allow_nan=False,separators=(',',':')).encode()+b'\n'
                         if len(writebuf)>MAX_LINE:raise ValueError('async_native_header_bound')
                         written=0;expected=len(writebuf)
-                payload=None;incoming=None;received=0;header_started=None
+                payload=None;incoming=None;received=0;header_started=None;payload_verified=False
     except Exception as error:
         exit_code=2;reason='host_cancel' if isinstance(error,InterruptedError) else 'resource_or_protocol_fault'
         if child is None:startup_error=error
@@ -341,13 +350,25 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         if errorlog is not None:
             try:errorlog.close()
             except Exception as error:errors.append('stderr_close:'+type(error).__name__)
+        ownership=None if owned is None else {**owned,'spec_sha256':spec_sha,'transport':TRANSPORT}
         if slot.current is not None:
             try:journal(dict(event='native_cancelled',schema=SCHEMA,transport=TRANSPORT,**slot.source(),reason=reason,
                 native_stdin_bytes_written=written,native_stdin_expected_bytes=expected,
-                native_stdout_buffer_bytes=len(native_buffer),clock_domain='linux_local_diagnostic_only'))
+                native_stdout_buffer_bytes=len(native_buffer),ownership=ownership,clock_domain='linux_local_diagnostic_only'))
             except Exception as error:errors.append('cancel_evidence:'+type(error).__name__)
+        elif incoming is not None and reason in ('host_cancel','host_eof'):
+            try:journal(dict(event='input_cancelled',schema=SCHEMA,transport=TRANSPORT,**input_source(incoming),reason=reason,
+                phase='validated_payload' if payload_verified else 'receiving_payload',header_validated=True,
+                received_bgr_bytes=received,payload_sha256_verified=payload_verified,
+                verified_image_sha256=incoming['packet']['frame']['image']['sha256'] if payload_verified else None,
+                native_stdin_bytes_written=0,native_compute_started=False,ownership=ownership,
+                clock_domain='linux_local_diagnostic_only'))
+            except Exception as error:errors.append('input_cancel_evidence:'+type(error).__name__)
         try:_record(out,'NATIVE_EVENTS.json',dict(schema=SCHEMA,transport=TRANSPORT,events=events,
-            inflight_at_close=None if slot.current is None else slot.source(),clock_domain='linux_local_diagnostic_only'))
+            inflight_at_close=None if slot.current is None else slot.source(),
+            input_at_close=None if incoming is None and not header else dict(header_validated=incoming is not None,
+                header_bytes=len(header),received_bgr_bytes=received,payload_sha256_verified=payload_verified),
+            ownership=ownership,clock_domain='linux_local_diagnostic_only'))
         except Exception as error:errors.append('evidence_write:'+type(error).__name__)
         if child is not None:
             result=dict(cleanup or {},transport=TRANSPORT,spec_sha256=spec_sha,reason=reason,tmpfs_directory=tmp_path,

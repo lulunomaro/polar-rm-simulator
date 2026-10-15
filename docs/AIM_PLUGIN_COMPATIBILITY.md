@@ -22,6 +22,30 @@ Windows 的 WSL 插件另显式加 `--prepare-aim-plugins`，在 backend/physics
 
 原 Qt 客户端固定基线为 `0cedf99b70b1beec99865b9980af6789e6c53d99`，用 [固定补丁](../client_patches/README.md) 校验/安装。`V2 Aim` 通过服务 catalog 中的公开 capability 合同发现 `custom_*` 插件，可用机器人和相机声明匹配时才可选择；绑定 config 精确为 `{}`。选择不自动 claim、arm 或开火。未适配的客户端/算法不能仅加一个 ID 就获得支持。
 
+### 显式 v2 惯性 yaw 参考与能力协商
+
+[aim_plugins_inertial_v2.json](../examples/aim_plugins_inertial_v2.json) 是本地 JSONL / Windows→WSL 的**接口模板，未提供可运行算法或实测资格**。其中 `reviewed_inertial_aim_wrapper.py`、模块名和 `/opt/polar-reviewed/...` 路径必须替换为实际审核过的 wrapper 与环境；不是测试 fixture 或第二套自瞄的部署成果。`supported_robots` 仍由本地安装、标定与实际输入范围决定，不按队名分派，也不授予控制权。
+
+manifest 顶层仍为 `polar.sim.aim-plugins.v1`；其 `capabilities` 显式选择 `polar.sim.aim-plugin.capabilities.v2`，保留 v1 的全部能力字段和值，另增加精确字段 `gimbal_reference='inertial_from_source_base_v1'`。服务 descriptor 对应 `aim_plugin_contract='camera_gimbal_v2'`、`version='2.0.0'`、`required_sensors=['camera','odometry']`。旧 v1 继续使用原 base-relative 关节目标语义；不能把缺少该字段的旧声明推断为惯性参考，或把未知能力当 v1 接受。
+
+wrapper 必须独立声明其真实支持的版本，例如在原真实算法工厂入口使用：
+
+```python
+from rm_match.deployment.aim_plugin import CAPABILITIES_V2
+from rm_match.integrations.aim_jsonl_peer import run_aim_plugin
+
+# factory 由审核过的算法 wrapper 实现，返回实际 compute；不供应假图像或假目标。
+raise SystemExit(run_aim_plugin(factory, capabilities=CAPABILITIES_V2))
+```
+
+JSONL 与 WSL peer 的 v2 `prepare` / `reset` 请求均携带完整 capabilities，ACK 必须精确回显同一完整能力对象；不接受缺项、额外字段、错误版本或将任意请求能力原样回声冒充支持。`prepare` 只确认真实资源初始化完成，不调用推理、不代替当前 context 的真实 reset；reset 保持原 2 秒门限。未准备的本地直接 JSONL 仍需真实 reset 协商；WSL 仍需显式 `--prepare-aim-plugins` 和完整 owned-process 清理证明。旧 `ros2_envelope_v1` 没有该 v2 协商，v2 配此 transport 必须拒绝，不能沿旧 ROS bridge 自动降级。
+
+v2 输出仍是原 `polar.sim.action.v2` / `aim/gimbal_target`：`command.frame='base_link'`，yaw/pitch 表达**该动作原 source observation 的 base 坐标系**中的方向角，六身份不变。宿主用同一原观测的 `own.odom_xyyaw[2]` 锁定 source yaw，恢复惯性 yaw；消费边界再以本车新 yaw 转回当前云台相对关节角。平面 yaw 示意为 `inertial_yaw = source_yaw + action_yaw`、`joint_yaw = inertial_yaw - consume_yaw`，实际还需原角度归一化及关节限制。宿主不会以插件另填的姿态或新时间替换该 source。这里的“惯性”是本次源方向的 yaw 保持，不补底盘平移、目标位移、弹道、前馈或完整三维 IMU 稳定。
+
+曝光时的 `camera.own_*_at_capture` 与 source observation 的 own 姿态属于不同采样点。算法若由曝光的相机 / `pitch_link` 方向计算输出，须显式利用该曝光的捕获姿态和标定，再正确转换到原 source base；不能把曝光姿态和当前观测姿态混用，也不能对已是 source-base 的角度重复补偿。每次消费仍重查原 capture 80 ms、SDK 150 ms、epoch、租约、activation 与 fault；yaw 补偿不刷新身份、时间戳或授权寿命。`no_target` / `pending_result` 继续是无角度状态，不用零角动作伪装等待。
+
+固定第五 Qt 客户端的 `custom_*` 解析精确接受 v1 capabilities 和 `['camera']`，因此会安全拒绝 v2，不会在原下拉列表中获得可选资格。保持该客户端和补丁身份时，v2 可经服务 catalog 与具备对应协议的 SDK 显式选择、绑定和授权；不能把 v2 伪标 v1、删字段或借原 native ID 绕过 UI 检查。需要 Qt 直接选择 v2 时，应另做独立客户端兼容版本。本节的分层证据见[本轮固定记录](validation/aim_reference_20261015/README.md)：真实MuJoCo合成指令机械正/负对照、真实无害WSL能力协商与取消回收通过，最终QA为3322pass/45skip/1024subtests；三次实际T2静态实时回归仍FAIL，最新RTF0.821310。最终STOP管道窄修后未重跑NN。协议与宿主关节语义扩展不等于T2移动底盘、移动命中、多车同时自瞄或完整比赛通过。
+
 ### T2 显式静止身份 scope
 
 [native_robot_scope.json](../examples/native_robot_scope.json) 是**显式本地身份范围示例，不授予算法资格**：仅声明 `red_infantry/red/infantry/3` 和 `blue_infantry/blue/infantry/103`。这些值分别为 robot ID、team、role、referee ID；示例不是通用插件队伍白名单，也不是移动或两车同时运行的验收记录。
@@ -56,11 +80,11 @@ Linux部署 launcher 对显式scope核对 doctor 的完整类型化声明，在�
 
 ## 输出与无目标
 
-动作是 `polar.sim.action.v2` 的 `aim/gimbal_target`：base-relative yaw、pitch 为 rad，正 pitch 向上，`active`、算法真实 confidence 或 null，以及仅信息性的 fire permission。实际火控保持人工独立授权。
+v1 动作是 `polar.sim.action.v2` 的 `aim/gimbal_target`：base-relative yaw、pitch 为 rad，正 pitch 向上，`active`、算法真实 confidence 或 null，以及仅信息性的 fire permission。v2 保留动作形状，但按上文显式源参考在消费时转换 yaw。实际火控保持人工独立授权。
 
 当前通用输出是关节角目标，不含 yaw/pitch 角速度或角加速度前馈；上游协议若依赖这些字段或板端控制器，须声明并实现对应适配/控制链，不能把位置 servo 的结果称成原 C 板控制器效果。通用输入的五维向量也不等于完整 IMU 四元数、加速度或真实编码器协议；机器人运动学映射、时间同步和闭环表现仍需逐适配器验证。
 
-无目标/尚无关联结果使用 `polar.sim.aim-status.v1`，精确原六身份 + `kind=aim` + `status=no_target|pending_result`，没有角度、command 或假置信度。服务只对已声明 `camera_gimbal_v1` 的插件接收这类状态，清掉旧输出并保持同代实例；它不计为推理成功或物理消费。过期、旧代、未知 status 仍拒绝。
+无目标/尚无关联结果使用 `polar.sim.aim-status.v1`，精确原六身份 + `kind=aim` + `status=no_target|pending_result`，没有角度、command 或假置信度。服务仅对显式支持的 `camera_gimbal_v1` / `camera_gimbal_v2` 合同接收这类状态，清掉旧输出并保持同代实例；它不计为推理成功或物理消费。过期、旧代、未知合同或 status 仍拒绝。
 
 Qt 的受限状态可显示带 episode/绑定/adapter/source frame/原 deadline 的 `algorithm_status_context`。只显示有效本会话绑定；过期样本不显示，无目标不会继续显示旧机械成功。`result_available` 仅表示结果可用，机械消费必须另有隔离评测证据。
 

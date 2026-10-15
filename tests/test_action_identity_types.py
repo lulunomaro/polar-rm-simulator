@@ -3,7 +3,7 @@ import copy
 
 import pytest
 
-from rm_match.deployment.aim_plugin import AimPluginAdapter
+from rm_match.deployment.aim_plugin import AimPluginAdapter,CAPABILITIES
 from rm_match.deployment.json_adapter import SCHEMA as JSONL_SCHEMA
 from rm_match.platform_v2.contracts import (
     ContractError, IDENTITY, action_for, validate_action, validate_observation)
@@ -21,7 +21,7 @@ def validate_aim_response(action, observation):
     # wire-response boundary used by JSONL, ROS relay and WSL transports.
     adapter = AimPluginAdapter({}, registration=dict(
         adapter_id='custom_identity_validator', kind='aim',
-        label='Validation only', required_sensors=['camera']),
+        label='Validation only', required_sensors=['camera'],transport='jsonl_v1',capabilities=copy.deepcopy(CAPABILITIES)),
         manifest=__file__, manifest_sha='0' * 64)
     adapter._validate_response(
         dict(schema=JSONL_SCHEMA, op='act', ok=True, action=action),

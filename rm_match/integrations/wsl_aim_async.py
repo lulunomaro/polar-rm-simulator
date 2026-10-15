@@ -6,6 +6,7 @@ The caller must turn it into the current observation's canonical aim status.
 from __future__ import annotations
 import copy
 from dataclasses import dataclass,replace
+import errno
 import hashlib
 import json
 import math
@@ -51,12 +52,41 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
         self.checked=replace(self.checked,metadata=metadata,_identities=identities);self.checked.verify_unchanged()
 
     def _record(self,event,**fields):
+        if event=='closed' and fields.get('clean') is True:
+            self._record_unwritten_cancellation()
         row=dict(event=event,transport=TRANSPORT,wall_time=time.perf_counter(),wall_clock='host_perf_counter')
         row.update(fields)
         with self._async_lock:
             if len(self.diagnostics)>=MAX_HOST_EVENTS:raise ValueError('async_host_evidence_bound')
             self.diagnostics.append(row)
         if self._trace_event is not None:self._trace_event(copy.deepcopy(row))
+
+    def _record_unwritten_cancellation(self):
+        # The inherited close calls this only after joining the actual writer.
+        # A stopped control call alone says nothing about an in-progress write.
+        with self._async_lock:
+            slot=self._inflight;cleanup=self.cleanup
+            if (self._fault is not None or self._broken.is_set()
+                or slot is None or slot.get('terminal') is not None or slot['started']
+                or slot.get('transport_write_attempted') is not False
+                or slot.get('transport_write_in_progress') is not False
+                or type(slot.get('transport_bytes_written')) is not int or slot['transport_bytes_written']!=0
+                or type(slot.get('transport_expected_bytes')) is not int or slot['transport_expected_bytes']<=IMAGE_BYTES
+                or not self._stop.is_set() or not self._threads or any(t.is_alive() for t in self._threads)
+                or type(cleanup) is not dict or cleanup.get('reason') not in ('host_cancel','host_eof')
+                or any(cleanup.get(k) is not True for k in ('clean','reaped','group_empty','tmpfs_removed'))
+                or cleanup.get('remaining_members')!=[] or cleanup.get('errors')!=[]
+                or type(self.ready) is not dict):return
+            keys=('run_id','supervisor_pid','pid','pgid','boot_id','leader_start_ticks','spec_sha256','transport')
+            if any(k not in cleanup for k in keys):return
+            if any(type(self.ready.get(k)) is not type(cleanup[v]) or self.ready[k]!=cleanup[v]
+                for k,v in (('run_id','run_id'),('supervisor_pid','supervisor_pid'),('native_pid','pid'),
+                            ('spec_sha256','spec_sha256'),('transport','transport'))):return
+            slot['terminal']=dict(kind='cancelled_before_write')
+            self._record('async_cancelled_before_write',phase='queued',reason=cleanup['reason'],writer_joined=True,
+                transport_write_attempted=False,transport_write_in_progress=False,transport_bytes_written=0,
+                transport_expected_bytes=slot['transport_expected_bytes'],
+                ownership={k:cleanup[k] for k in keys},**self._source_fields(slot))
 
     @property
     def busy(self):
@@ -150,6 +180,7 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             if not self._stop.is_set():self._set_fault(error)
 
     def _write(self,child):
+        writing_slot=None
         try:
             while not self._stop.is_set():
                 try:header,payload,deadline,serial=self._outgoing.get(timeout=.02)
@@ -168,11 +199,39 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                 # finish after the action deadline; it grants no new authority.
                 view=memoryview(header+payload)
                 while view:
-                    if self._stop.is_set():return
+                    with self._async_lock:
+                        if self._stop.is_set():return
+                        slot=self._inflight
+                        if slot is None or slot['header']['id']!=serial:raise ValueError('async_writer_identity')
+                        slot['transport_write_attempted']=True;slot['transport_write_in_progress']=True
+                        writing_slot=slot
                     count=child.stdin.write(view)
                     if type(count) is not int or not 0<count<=len(view):raise BrokenPipeError('async_binary_write_failed')
+                    with self._async_lock:
+                        slot['transport_bytes_written']+=count;slot['transport_write_in_progress']=False
                     view=view[count:]
-        except Exception as error:self._set_fault(error)
+        except Exception as error:
+            with self._async_lock:
+                slot=self._inflight
+                pipe_closed=(isinstance(error,OSError)
+                    and ((type(error.errno) is int and error.errno==errno.EPIPE)
+                         or (type(getattr(error,'winerror',None)) is int and error.winerror in (109,232))))
+                if (pipe_closed and self._stop.is_set() and self._fault is None and not self._broken.is_set()
+                    and slot is not None and slot is writing_slot
+                    and slot.get('transport_write_attempted') is True and slot.get('transport_write_in_progress') is True):
+                    # Owned shutdown closes the far pipe while this original
+                    # write is blocked. It proves no byte count or inference;
+                    # only the independent Linux terminal/cleanup can do that.
+                    try:
+                        self._record('async_transport_write_interrupted',reason='owned_stop_pipe_closed',
+                            error=type(error).__name__+':'+str(error),error_errno=error.errno,
+                            error_winerror=getattr(error,'winerror',None),owned_stop_requested=True,
+                            transport_write_attempted=True,transport_write_in_progress=True,
+                            transport_bytes_written=slot['transport_bytes_written'],
+                            transport_expected_bytes=slot['transport_expected_bytes'],**self._source_fields(slot))
+                        self._async_wake.set();return
+                    except Exception as record_error:self._set_fault(record_error);return
+            self._set_fault(error)
 
     def reset(self,message):
         if self._stop.is_set() or self.process is not None:raise RuntimeError('async_bridge_not_fresh')
@@ -248,7 +307,9 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
             encoded=json.dumps(header,allow_nan=False,separators=(',',':')).encode()+b'\n'
             if len(encoded)>MAX_LINE:raise ValueError('async_binary_header_bound')
             with self._async_lock:
-                self._inflight=dict(header=header,deadline=deadline,host_started=host_started,started=False,abandoned=False,terminal=None)
+                self._inflight=dict(header=header,deadline=deadline,host_started=host_started,started=False,abandoned=False,terminal=None,
+                    transport_write_attempted=False,transport_write_in_progress=False,transport_bytes_written=0,
+                    transport_expected_bytes=len(encoded)+len(raw))
                 self._generation=generation;self._last_frame=frame['frame_id'];self._last_seq=source['observed_seq']
                 self._async_wake.clear();self._record('async_transport_request',original_host_deadline=deadline,**self._source_fields(self._inflight))
             self._outgoing.put_nowait((encoded,raw,deadline,serial))

@@ -156,7 +156,7 @@ class DecisionNavigationAdapter(BaseAdapter):
 def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepared=None):
     from .navigation_plugin import register_navigation_plugins,uses_navigation_feedback
     from .decision_plugin import DecisionPluginAdapter,decision_profile
-    from .aim_plugin import register_aim_plugins
+    from .aim_plugin import register_aim_plugins,gimbal_reference_for_capabilities,GIMBAL_REFERENCE_INERTIAL
     if not isinstance(registry,Registry):raise ContractError('robotio_registration_requires_local_registry')
     graph=load_robotio_plugins(path);wsl_prepared={} if wsl_prepared is None else wsl_prepared
     catalog=registry.plugin_catalog();decision_factories={}
@@ -174,10 +174,11 @@ def register_robotio_plugins(registry,path,*,clock=time.perf_counter,wsl_prepare
     staged._specs=dict(registry._specs);staged._capabilities=dict(registry._capabilities)
     for category,rows in graph['rows'].items():
         for row in rows:
+            aim_v2=(category=='aim' and gimbal_reference_for_capabilities(row['capabilities'])==GIMBAL_REFERENCE_INERTIAL)
             catalog.append(dict(plugin_id=row['adapter_id'],category=category,label=row['label'],
-                version='1.0.0',capabilities=copy.deepcopy(row['capabilities']),supported_robots=list(row['supported_robots']),
+                version='2.0.0' if aim_v2 else '1.0.0',capabilities=copy.deepcopy(row['capabilities']),supported_robots=list(row['supported_robots']),
                 transport=row['transport'],manifest_sha256=graph['hashes'][str(graph['paths'][category])],
-                negotiation='exact_peer_capabilities_on_reset' if category!='aim' else 'declared_aim_contract',
+                negotiation='exact_peer_capabilities_on_reset' if category!='aim' or aim_v2 else 'declared_aim_contract',
                 qualification='interface_not_algorithm_or_live_acceptance'))
     for category,register in (('navigation',register_navigation_plugins),('aim',register_aim_plugins)):
         if not graph['rows'][category]:continue

@@ -40,9 +40,9 @@
     {
       "path": "rm_match/platform_v2/backend.py",
       "original_sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
-      "current_sha256": "777d711b51c1e18933482c38a18a3fdb0caf949f7d648a103270691147201a5e",
-      "task": "T09",
-      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation profile samples actual rays/gyro/accelerometer on physics authority outside the control lock; repeated preparation at the same physical time preserves the original sensor bytes and capture clock"
+      "current_sha256": "e73a520e6d2e11f16d17f3298d77202c943497647582e161c236038afebf7285",
+      "task": "T05,T06,T07",
+      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation profile samples actual rays/gyro/accelerometer on physics authority outside the control lock; repeated preparation at the same physical time preserves the original sensor bytes and capture clock; Final guarded actuator command applies returned authorized gimbal angles and captures active-channel facts before target alias mutation; no clock or permission extension; Apply final consume guard yaw/pitch to actual MuJoCo Commands at each actuator write, preserve alias revocation facts and existing fire/authority gates; actual synthetic-command mechanics and original-backend negative control are separate evidence"
     },
     {
       "path": "rm_match/platform_v2/camera.py",
@@ -89,9 +89,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "3448bf5221298b94a03bf53324af1061c46a4674dbc6ed15fe57832ce4b4171f",
-      "task": "T09,T01,T07,T03",
-      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit generic navigation admission discards reset-time and earlier queued captures using original host capture_wall and awaits independent post-reset sampling without changing identity/deadline or masking reset faults"
+      "current_sha256": "75afd6533440b33d4e2962a781c74f473ac7b3592cc38c0bb38dc2ea488592c3",
+      "task": "T05,T06,T07",
+      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit generic navigation admission discards reset-time and earlier queued captures using original host capture_wall and awaits independent post-reset sampling without changing identity/deadline or masking reset faults; Explicit v2 source-base inertial direction holds retain exact original action/identity/camera budget; each authority consume derives mechanical yaw from current own yaw, all original expiry/authority/status/stationary gates remain; private source cleared on every invalidation; Retain immutable original action/source/camera budget for opt-in inertial yaw reference, derive joint yaw from current own yaw only after original 80/150ms authority gates; same-binding source watermark prevents pre-pause pending results reviving after resume without extending any deadline; legacy v1 and native stationary gates remain unchanged"
     },
     {
       "path": "rm_match/platform_v2/server.py",
@@ -208,9 +208,9 @@
     {
       "path": "rm_match/platform_v2/adapters.py",
       "original_sha256": "dadb5bd731327270d0314d90648abfcebcf112adc54ea15ab348b81647d372e2",
-      "current_sha256": "75633e21fba08e205730a5cd07de728f15a14b18f3e21b737bc2369570225bee",
-      "task": "T03,T01,T07 ,T05",
-      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates"
+      "current_sha256": "baa6260c5d9d12a8cbfca276c8a1da1b94f82305134bc8a155b417713d9dc182",
+      "task": "T05,T06,T07",
+      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates; Immutable aim_reference capability is base_link by default; separately versioned v2 requires exact declared camera/odometry/manual-fire/direct-angle contract and rejects missing/mismatched versions; Freeze explicit v2 source-base inertial yaw only from complete typed capabilities, camera/odometry declaration and negotiated contract; legacy base_link semantics and original authority remain unchanged"
     },
     {
       "path": "rm_match/integrations/rmcs_contract.py",

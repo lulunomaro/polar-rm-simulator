@@ -158,6 +158,30 @@ def image_stage_summary(events):
     return {stage:distribution(values) for stage,values in samples.items()}
 
 
+def native_sensor_budget_valid(budget):
+    fields={'robot_id','episode','frame_id','capture_wall','capture_sim_time','wall_deadline','sim_deadline'}
+    return (type(budget) is dict and set(budget)==fields
+        and type(budget['robot_id']) is str and 0<len(budget['robot_id'])<=128
+        and all(type(budget[k]) is int and 0<=budget[k]<=2**53-1 for k in ('episode','frame_id'))
+        and all(type(budget[k]) in (int,float) and math.isfinite(budget[k]) and 0<=budget[k]<=1e12
+            for k in ('capture_wall','capture_sim_time','wall_deadline','sim_deadline'))
+        and budget['capture_wall']<budget['wall_deadline']<=budget['capture_wall']+.08
+        and budget['capture_sim_time']<budget['sim_deadline']<=budget['capture_sim_time']+.08)
+
+
+def actuator_receipt_budget_checks(receipt):
+    """Original absolute limits: wall is exclusive, sim is inclusive; no epsilon."""
+    if type(receipt) is not dict:return dict(wall=False,sim=False)
+    budget=receipt.get('budget')
+    if not native_sensor_budget_valid(budget):return dict(wall=False,sim=False)
+    if (any(type(receipt.get(k)) is not type(budget[k]) or receipt[k]!=budget[k] for k in ('robot_id','episode'))
+        or ('frame_id' in receipt and (type(receipt['frame_id']) is not int or receipt['frame_id']!=budget['frame_id']))):
+        return dict(wall=False,sim=False)
+    wall=receipt.get('consume_wall');sim=receipt.get('consume_sim_time')
+    return dict(wall=type(wall) in (int,float) and math.isfinite(wall) and budget['capture_wall']<=wall<budget['wall_deadline'],
+        sim=type(sim) in (int,float) and math.isfinite(sim) and budget['capture_sim_time']<=sim<=budget['sim_deadline'])
+
+
 def classify(measurements,*,plan=None):
     """Late/rejected results and empty measurements never establish live pass."""
     plan=PLAN if plan is None else plan
@@ -183,6 +207,13 @@ def classify(measurements,*,plan=None):
     for key in ('raw_ages_s','native_result_ages_s','actuator_wall_ages_s','actuator_sim_ages_s'):
         values=m.get(key,[])
         checks[key]=bool(values) and all(type(v) in (int,float) and 0<=v<=.08 for v in values)
+        if key.startswith('actuator_') and 'actuator_budget_receipts' in m:
+            receipts=m['actuator_budget_receipts'];axis='wall' if key=='actuator_wall_ages_s' else 'sim'
+            capture='capture_wall' if axis=='wall' else 'capture_sim_time'
+            consume='consume_wall' if axis=='wall' else 'consume_sim_time'
+            checks[key]=(type(receipts) is list and bool(receipts) and len(receipts)==len(values)
+                and all(actuator_receipt_budget_checks(r)[axis] and type(v) is type(r[consume]-r['budget'][capture])
+                    and v==r[consume]-r['budget'][capture] for r,v in zip(receipts,values)))
     if c.get('exact_raw_codec_identity'):
         checks['raw_codec_identity_unchanged']=m.get('raw_codec_identity_unchanged') is True
     if c.get('postclose_actual_pixel_audit'):
@@ -321,6 +352,9 @@ def stage_measurements(events, raw_frames, consumed_frames,*,private_native_pixe
         unpublished_private_frames={fid:row.get('reason') for fid,row in unpublished.items()},
         exact_sensor_pixel_binding=matched and bool(requests),
         raw_ages_s=stages['exposure_to_raw_encode_end'],native_result_ages_s=native_ages,
+        actuator_budget_receipts=[dict(robot_id=x.get('robot_id'),episode=x.get('episode'),frame_id=fid,
+            consume_wall=x['consume_wall'],consume_sim_time=x['consume_sim_time'],budget=copy.deepcopy(x['budget']))
+            for fid,x in consumed_frames.items()],
         actuator_wall_ages_s=[x['consume_wall']-x['budget']['capture_wall'] for x in consumed_frames.values()],
         actuator_sim_ages_s=[x['consume_sim_time']-x['budget']['capture_sim_time'] for x in consumed_frames.values()])
 
@@ -333,19 +367,26 @@ def async_transaction_measurements(events,transport_evidence):
     the unchanged minimum sample and 80ms qualification checks.
     """
     from rm_match.platform_v2.contracts import IDENTITY
+    from rm_match.integrations.wsl_aim_async_worker import (SCHEMA,TRANSPORT,MAX_IMAGE,
+        OWNERSHIP_FIELDS,same_identity,validate_source_context)
     queued={};terminal={};started={};accepted={};valid=True
     dispositions=Counter()
     def key(row):return row.get('request_id')
     def matches(row,request):
-        return (type(row.get('source_context')) is dict
+        return (type(row.get('source_context')) is dict and set(row['source_context'])==set(IDENTITY)
             and all(type(row['source_context'].get(k)) is type(request.get(k))
                 and row['source_context'].get(k)==request.get(k) for k in IDENTITY)
             and all(type(row.get(k)) is type(request.get(k)) and row.get(k)==request.get(k)
                 for k in ('frame_id','exposure_timestamp_ns','control_time_ns','raw_bgr_sha256')))
     for row in events:
         event=row['event'];serial=key(row)
+        if event=='async_native_fault':valid=False
         if event=='async_transport_request':
             if type(serial) is not int or serial in queued:valid=False
+            try:
+                validate_source_context(row.get('source_context'))
+                if not matches(row,row):valid=False
+            except ValueError:valid=False
             queued[serial]=row
         elif event in ('async_native_started','async_native_stdout','async_late_discard','async_after_pending_discard',
                        'async_discarded_before_native','async_discarded_before_write','async_result_accepted80'):
@@ -366,36 +407,132 @@ def async_transaction_measurements(events,transport_evidence):
                 if event in ('async_native_stdout','async_late_discard','async_after_pending_discard') and serial not in started:valid=False
     journal=transport_evidence.get('NATIVE_EVENTS.json',{})
     cleanup=transport_evidence.get('CLEANUP.json',{})
-    cancelled=0
-    for row in journal.get('events',[]):
-        if row.get('event')!='native_cancelled':continue
+    native_events=journal.get('events',[]);host_trace=transport_evidence.get('HOST_TRACE.json',[])
+    owned=transport_evidence.get('OWNED_CHILD.json',{});ready=transport_evidence.get('STARTUP.json',{})
+    if any(row.get('event')=='async_native_fault' for row in host_trace):valid=False
+    def exact_json(a,b):
+        if type(a) is not type(b):return False
+        if type(a) is dict:return set(a)==set(b) and all(exact_json(a[k],b[k]) for k in a)
+        if type(a) is list:return len(a)==len(b) and all(exact_json(x,y) for x,y in zip(a,b))
+        return a==b
+    def owned_close_proven():
+        if (type(owned) is not dict or type(cleanup) is not dict or type(ready) is not dict
+            or type(journal) is not dict or type(native_events) is not list or type(host_trace) is not list):return False
+        if any(k not in owned or type(cleanup.get(k)) is not type(owned[k]) or cleanup[k]!=owned[k]
+            for k in OWNERSHIP_FIELDS):return False
+        identity={k:owned[k] for k in OWNERSHIP_FIELDS}
+        if (type(identity['run_id']) is not str or len(identity['run_id'])!=32
+            or any(c not in '0123456789abcdef' for c in identity['run_id'])
+            or type(identity['spec_sha256']) is not str or len(identity['spec_sha256'])!=64
+            or any(c not in '0123456789abcdef' for c in identity['spec_sha256'])
+            or type(identity['boot_id']) is not str or not identity['boot_id']
+            or any(type(identity[k]) is not int or identity[k]<=0 for k in ('supervisor_pid','pid','pgid','leader_start_ticks'))
+            or identity['pid']!=identity['pgid'] or identity['transport']!=TRANSPORT):return False
+        if (any(cleanup.get(k) is not True for k in ('clean','reaped','group_empty','tmpfs_removed'))
+            or cleanup.get('remaining_members')!=[] or cleanup.get('errors')!=[]
+            or cleanup.get('reason') not in ('host_cancel','host_eof')):return False
+        if (ready.get('event')!='ready' or ready.get('schema')!=SCHEMA or ready.get('transport')!=TRANSPORT
+            or any(type(ready.get(k)) is not type(identity[v]) or ready[k]!=identity[v]
+                for k,v in (('run_id','run_id'),('supervisor_pid','supervisor_pid'),('native_pid','pid'),('spec_sha256','spec_sha256')))
+            or any(type(ready.get(k)) is not int or ready[k]!=0
+                for k in ('native_ticks','inference_calls','camera_captures','physics_steps'))):return False
+        ready_rows=[r for r in native_events if r.get('event')=='ready']
+        closed=[r for r in host_trace if r.get('event')=='closed']
+        return (len(ready_rows)==1 and exact_json(ready_rows[0],ready) and len(closed)==1
+            and closed[0].get('clean') is True and closed[0].get('linux_child_reaped') is True
+            and closed[0].get('native_not_spawned') is False and closed[0].get('errors')==[]
+            and same_identity(journal.get('ownership'),identity))
+    def native_matches(row,request):
+        return (type(row.get('id')) is int and row['id']==request['request_id']
+            and same_identity(row.get('source_context'),request.get('source_context'))
+            and all(type(row.get(k)) is type(request.get(v)) and row.get(k)==request.get(v)
+                for k,v in (('frame_id','frame_id'),('control_time_ns','control_time_ns'),
+                            ('exposure_timestamp_ns','exposure_timestamp_ns'),('image_sha256','raw_bgr_sha256')))
+            and type(row.get('bgr_bytes')) is int and row['bgr_bytes']==MAX_IMAGE)
+    def cancellation_matches(row,request):
+        return (owned_close_proven() and request is not None and row.get('reason')==cleanup['reason']
+            and same_identity(row.get('ownership'),{k:owned[k] for k in OWNERSHIP_FIELDS}))
+    cancelled=0;input_cancelled=0;unwritten_cancelled=0
+    for row in native_events:
+        event=row.get('event')
+        if event not in ('native_cancelled','input_cancelled'):continue
         serial=row.get('id');request=queued.get(serial)
-        if (request is None or serial in terminal or cleanup.get('clean') is not True
-            or cleanup.get('reason') not in ('host_cancel','host_eof')
-            or row.get('source_context')!=request.get('source_context')
-            or row.get('frame_id')!=request.get('frame_id')
-            or row.get('control_time_ns')!=request.get('control_time_ns')
-            or row.get('exposure_timestamp_ns')!=request.get('exposure_timestamp_ns')
-            or row.get('image_sha256')!=request.get('raw_bgr_sha256')):valid=False;continue
-        terminal[serial]='owned_native_cancelled_at_close';cancelled+=1
-    real_results=[row for row in events if row['event']=='native_result']
-    if len(real_results)!=len(accepted):valid=False
-    for row in real_results:
-        candidates=[a for a in accepted.values() if a['frame_id']==row['frame_id']]
-        response=row.get('response');original=None if len(candidates)!=1 else candidates[0].get('response')
-        same_response=response==original
-        if type(response) is dict and type(original) is dict:
-            # Native transports add these two wrapper fields after validating
-            # actual stdout. Neither may change the original computation.
-            same_response=(response==dict(original,episode=candidates[0]['episode'],should_control=original.get('tracking'))
-                or response==original)
-        if (len(candidates)!=1 or not same_response
-            or any(type(candidates[0].get(k)) is not type(row.get(k)) or candidates[0].get(k)!=row.get(k)
-                for k in ('robot_id','episode','binding_epoch','observed_seq','wall_deadline'))):valid=False
+        okay=(cancellation_matches(row,request) and serial not in terminal and native_matches(row,request)
+            and row.get('schema')==SCHEMA and row.get('transport')==TRANSPORT
+            and row.get('clock_domain')=='linux_local_diagnostic_only')
+        related=[r for r in native_events if type(r.get('id')) is int and r['id']==serial]
+        if event=='native_cancelled':
+            okay=(okay and not any(r.get('event') in ('result','input_cancelled','discarded_before_native') for r in related)
+                and type(row.get('native_stdin_bytes_written')) is int and type(row.get('native_stdin_expected_bytes')) is int
+                and 0<=row['native_stdin_bytes_written']<=row['native_stdin_expected_bytes']<=65536
+                and row['native_stdin_expected_bytes']>0
+                and (serial not in started or row['native_stdin_bytes_written']==row['native_stdin_expected_bytes']))
+            label='owned_native_cancelled_at_close'
+        else:
+            admissions=[r for r in related if r.get('event')=='input_header_received']
+            received=row.get('received_bgr_bytes');verified=row.get('payload_sha256_verified')
+            okay=(okay and serial not in started and len(admissions)==1 and native_matches(admissions[0],request)
+                and admissions[0].get('schema')==SCHEMA and admissions[0].get('transport')==TRANSPORT
+                and admissions[0].get('clock_domain')=='linux_local_diagnostic_only'
+                and admissions[0].get('header_validated') is True and row.get('header_validated') is True
+                and type(admissions[0].get('received_bgr_bytes')) is int and type(received) is int
+                and 0<=admissions[0]['received_bgr_bytes']<=received<=MAX_IMAGE
+                and row.get('native_compute_started') is False and type(row.get('native_stdin_bytes_written')) is int
+                and row['native_stdin_bytes_written']==0
+                and ((row.get('phase')=='receiving_payload' and received<MAX_IMAGE and verified is False
+                      and row.get('verified_image_sha256') is None)
+                     or (row.get('phase')=='validated_payload' and received==MAX_IMAGE and verified is True
+                         and row.get('verified_image_sha256')==request['raw_bgr_sha256']))
+                and not any(r.get('event') in ('native_started','result','native_cancelled','discarded_before_native') for r in related))
+            label='owned_input_cancelled_at_close'
+        if not okay:valid=False;continue
+        terminal[serial]=label;dispositions[label]+=1
+        if event=='native_cancelled':cancelled+=1
+        else:input_cancelled+=1
+    for row in host_trace:
+        if row.get('event')!='async_cancelled_before_write':continue
+        serial=row.get('request_id');request=queued.get(serial)
+        if (type(serial) is not int or not cancellation_matches(row,request) or serial in terminal or serial in started or not matches(row,request)
+            or type(row.get('bgr_bytes')) is not int or row['bgr_bytes']!=MAX_IMAGE
+            or row.get('phase')!='queued' or row.get('writer_joined') is not True
+            or row.get('transport_write_attempted') is not False or row.get('transport_write_in_progress') is not False
+            or type(row.get('transport_bytes_written')) is not int or row['transport_bytes_written']!=0
+            or type(row.get('transport_expected_bytes')) is not int
+            or not MAX_IMAGE<row['transport_expected_bytes']<=MAX_IMAGE+65536
+            or any(type(r.get('id')) is int and r['id']==serial for r in native_events)):
+            valid=False;continue
+        terminal[serial]='owned_unwritten_cancelled_at_close';dispositions[terminal[serial]]+=1;unwritten_cancelled+=1
+    wrappers={};wrapper_results=0;wrapper_expired=0
+    for row in events:
+        if row['event'] not in ('native_result','native_response_expired_before_action'):continue
+        candidates=[]
+        for serial,a in accepted.items():
+            if (all(type(row.get(k)) is type(a.get(k)) and row.get(k)==a.get(k)
+                    for k in ('robot_id','episode','binding_epoch','observed_seq','wall_deadline',
+                              'frame_id','capture_sim_time','raw_bgr_sha256'))
+                and type(row.get('observation_sim_time')) is type(a['sim_time'])
+                and row['observation_sim_time']==a['sim_time']):candidates.append((serial,a))
+        if len(candidates)!=1:valid=False;continue
+        serial,a=candidates[0];original=a.get('response');response=row.get('response');stamp=row.get('wall_time')
+        # A timely bridge return may expire before the wrapper regains the GIL.
+        # This is a withheld original response, never another successful sample.
+        same_response=(exact_json(response,original) or (type(original) is dict
+            and exact_json(response,dict(original,episode=a['episode'],should_control=original.get('tracking')))))
+        expired=row['event']=='native_response_expired_before_action'
+        if (serial in wrappers or not same_response or row.get('wall_clock')!='host_perf_counter'
+            or type(stamp) not in (int,float) or not math.isfinite(stamp)
+            or (expired and stamp<a['wall_deadline']) or (not expired and not 0<=stamp<a['wall_deadline'])):
+            valid=False;continue
+        wrappers[serial]=row['event']
+        if expired:wrapper_expired+=1
+        else:wrapper_results+=1
+    if set(wrappers)!=set(accepted):valid=False
     incomplete=len(set(queued)-set(terminal))
     return dict(original_async_transactions_accounted=bool(queued) and valid and incomplete==0,
         async_queued_transactions=len(queued),async_actual_complete_stdin=len(started),
         async_timely_accepted_results=len(accepted),async_owned_cancelled_at_close=cancelled,
+        async_wrapper_native_results=wrapper_results,async_expired_before_action=wrapper_expired,
+        async_owned_input_cancelled_at_close=input_cancelled,async_owned_unwritten_cancelled_at_close=unwritten_cancelled,
         async_terminal_dispositions=dict(dispositions),async_incomplete_transactions=incomplete,
         async_pending_statuses=sum(row['event']=='native_pending_status' for row in events),
         scope='Pending is no command; late actual stdout is discarded on its original identity, never a timely NN sample')
@@ -502,7 +639,7 @@ def _run(a,affinity,scheduling):
             counts['native_actuator_receipts']+=1
             wall_age=row['consume_wall']-budget['capture_wall']
             sim_age=row['consume_sim_time']-budget['capture_sim_time']
-            if not (0<=wall_age<=.08 and 0<=sim_age<=.08):
+            if not all(actuator_receipt_budget_checks(row).values()):
                 counts['stale_actuator_receipts']+=1
                 # Keep each failure even if this frame already had an earlier
                 # timely receipt. First-frame deduplication must not hide it.
@@ -658,8 +795,7 @@ def _run(a,affinity,scheduling):
         or (Path(extension).is_file() and hashlib.sha256(Path(extension).read_bytes()).hexdigest()==codec_identity.get('extension_sha256'))))
     if counts['stale_actuator_receipts']:errors.append('Stale actuator consumption')
     budgets=[x['sensor_budget'] for x in events if x['event']=='adapter_enqueue' and x.get('sensor_budget')]
-    native_budget_ok=bool(budgets) and all(0< b['wall_deadline']-b['capture_wall']<=.08+1e-9
-        and 0< b['sim_deadline']-b['capture_sim_time']<=.08+1e-9 for b in budgets)
+    native_budget_ok=bool(budgets) and all(native_sensor_budget_valid(b) for b in budgets)
     transport_evidence,evidence_collection=collect_transport_evidence(out/'native',native_process)
     actual_transport=(transport_evidence.get('STARTUP.json') or {}).get('transport')
     async_measurements=(async_transaction_measurements(events,transport_evidence)
