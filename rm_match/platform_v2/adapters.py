@@ -150,7 +150,9 @@ class HoldAimTestAdapter(BaseAdapter):
         q=self.hold
         return action_for(o,"aim","gimbal_target",dict(frame="base_link",yaw_rad=math.atan2(math.sin(q[3]),math.cos(q[3])),pitch_rad=max(-math.pi/2,min(math.pi/2,q[4])),active=True,confidence=None,fire_permission=False))
 
-def default_registry(*,native_spec=None,native_out=None,native_trace=None):
+def default_registry(*,native_spec=None,native_out=None,native_trace=None,native_robot_scope=None):
+    from .native_robot_scope import load_native_robot_scope
+    scope=load_native_robot_scope(native_robot_scope)
     r=Registry()
     r.register(descriptor('nav_rule_v1','navigation','Existing sensor A* rule baseline',('odometry','ranges'),goal_input_modes=['point_world_config'],trajectory_input=False),RuleNavigationAdapter)
     r.register(descriptor('nav_stop_test_v1','navigation','Zero-motion contract test adapter',(),goal_input_modes=[],trajectory_input=False,test_only=True),StopTestAdapter)
@@ -163,6 +165,7 @@ def default_registry(*,native_spec=None,native_out=None,native_trace=None):
         _,registered_sha=validate_native_spec(native_spec)
     def make_native(config):
         from .native_adapter import NativeSourceAdapter
-        return NativeSourceAdapter(config,spec_path=native_spec,out=native_out,registered_spec_sha=registered_sha,trace=native_trace)
-    r.register(descriptor('aim_native_rmcs_v1','aim','Actual opt-in native RMCS sensor wrapper',('camera','odometry'),available=ready,reason='available' if ready else 'explicit_trusted_native_spec_required',supported_robots=['red_sentry'],stationary_only=True,confidence_available=False,max_camera_age_sim_s=.08,max_camera_age_wall_s=.08,schedule_on_camera_frame=True),make_native)
+        scope.verify_unchanged()
+        return NativeSourceAdapter(config,spec_path=native_spec,out=native_out,registered_spec_sha=registered_sha,trace=native_trace,robot_scope=scope)
+    r.register(descriptor('aim_native_rmcs_v1','aim','Actual native RMCS (stationary, locally declared identities)',('camera','odometry'),available=ready,reason='available' if ready else 'explicit_trusted_native_spec_required',supported_robots=scope.supported_robots,native_robot_scope=scope.declaration(),stationary_only=True,confidence_available=False,max_camera_age_sim_s=.08,max_camera_age_wall_s=.08,schedule_on_camera_frame=True),make_native)
     return r

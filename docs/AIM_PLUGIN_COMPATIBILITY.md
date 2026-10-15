@@ -22,6 +22,26 @@ Windows 的 WSL 插件另显式加 `--prepare-aim-plugins`，在 backend/physics
 
 原 Qt 客户端固定基线为 `0cedf99b70b1beec99865b9980af6789e6c53d99`，用 [固定补丁](../client_patches/README.md) 校验/安装。`V2 Aim` 通过服务 catalog 中的公开 capability 合同发现 `custom_*` 插件，可用机器人和相机声明匹配时才可选择；绑定 config 精确为 `{}`。选择不自动 claim、arm 或开火。未适配的客户端/算法不能仅加一个 ID 就获得支持。
 
+### T2 显式静止身份 scope
+
+[native_robot_scope.json](../examples/native_robot_scope.json) 是**显式本地身份范围示例，不授予算法资格**：仅声明 `red_infantry/red/infantry/3` 和 `blue_infantry/blue/infantry/103`。这些值分别为 robot ID、team、role、referee ID；示例不是通用插件队伍白名单，也不是移动或两车同时运行的验收记录。
+
+平台入口可把该文件与已核验的 native spec 一起显式指定。例如 Windows→WSL：
+
+```powershell
+.venv-sim/Scripts/python.exe -m rm_match.platform_v2 --camera --admission-manifest LOCAL_GRANTS --wsl-native-spec LOCAL_VERIFIED_LINUX_SPEC --native-out artifacts/native-scope-local01 --wsl-native-transport wsl_async_bgr_v3 --private-native-pixels --native-robot-scope examples/native_robot_scope.json
+```
+
+`LOCAL_GRANTS` 和 `LOCAL_VERIFIED_LINUX_SPEC` 需替换为本机准备的实际文件；Linux 本地原生入口改用 `--native-spec LOCAL_VERIFIED_NATIVE_SPEC`，不带 WSL transport/private-pixels 选项。上面的命令只展示身份 scope 接线，没有替代前述显式调度、codec 和各机实际依赖配置，也不声明达到实时门禁。未提供 `--native-robot-scope` 时仍仅为原默认 `red_sentry/red/sentry/7`。
+
+scope 原始文件按 SHA-256 固定，并在适配器创建、准备/交接等边界重检；运行期间不要修改后沿用旧注册。服务 catalog 的 `supported_robots` 来自该本地声明，输入本车 `team/role` 必须与同一 robot ID 的声明一致；adapter 将对应身份送入原生帧。该声明不授予 HTTP 控制权限，客户端仍需独立 admission grant、租约、绑定和原窗口授权，不能通过 binding config 改身份或扩大范围。
+
+身份扩展仍保留 `stationary_only=True`、速度/稳定等待和每次消费门禁，以及原模型、图像尺寸、K/D、相机安装位姿的严格校验。更换模型或车辆相机安装需要另行适配与验证，不能靠改 scope 绕过。该文件列出两车只表示允许选择这两个身份；既有静止红哨兵 ELF/实时证据不会自动扩展资格。新增两次顺序单车静止实测已通过：红步兵135及时结果/135独立帧物理消费、RTF0.988907；蓝步兵124及时结果/121消费帧、RTF0.998169，均0fault/0fire/clean。原80/150ms保持；不是移动或两车同时运行通过，详见[本轮证据](validation/native_identity_scope_20261015/README.md)。
+
+Linux部署 launcher 对显式scope核对 doctor 的完整类型化声明，在创建服务进程前复核原文件，并检查 ready 回执的同一声明；服务读取另一份合法scope也会被拒绝。scope不会扩大原自动生成的红哨兵 admission，步兵操作仍需匹配的独立本地grant。
+
+方向转换 helper 若显式处理 `pitch_link`，必须另传属于原曝光的 `capture_observation`，用同次捕获姿态转换，不能以当前送达姿态冒充曝光姿态。生产原生输出仍使用显式 `world` 方向；此 helper 边界不改变现有 `base_link` 关节目标语义，也不新增惯性稳定或移动补偿资格。
+
 ## 相机、反馈与期限
 
 - 输入仍为 `polar.sim.observation.v2`，六身份字段是 robot/episode/binding_epoch/observed_seq/sim_time/wall_deadline。

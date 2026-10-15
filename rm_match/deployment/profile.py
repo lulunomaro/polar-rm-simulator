@@ -217,22 +217,25 @@ def validate_t2_spec(path):
     return checked, spec_sha
 
 
-def own_registry(spec_path, native_out, *, adapters_json=None, aim_plugins_json=None, native_trace=None, wsl_prepared=None):
+def own_registry(spec_path, native_out, *, adapters_json=None, aim_plugins_json=None, native_trace=None, wsl_prepared=None,native_robot_scope=None):
     from ..platform_v2.adapters import Registry, descriptor
     from ..platform_v2.native_adapter import NativeSourceAdapter
+    from ..platform_v2.native_robot_scope import load_native_robot_scope
+    scope=load_native_robot_scope(native_robot_scope)
     checked_spec, registered_sha = validate_t2_spec(spec_path)
     registry = Registry()
     def make_native(config):
         # Spec content is pinned again by NativeSourceAdapter at construction and
         # process start. Recheck T2 lineage here before accepting a new binding.
+        scope.verify_unchanged()
         if digest(spec_path) != registered_sha:
             raise ValueError('native_spec_changed_after_registration')
         validate_t2_spec(spec_path)
         return NativeSourceAdapter(config, spec_path=spec_path, out=native_out,
-                                   registered_spec_sha=registered_sha, trace=native_trace)
+                                   registered_spec_sha=registered_sha, trace=native_trace,robot_scope=scope)
     registry.register(descriptor(
-        'aim_native_rmcs_v1', 'aim', 'Own RMCS T2 native (stationary red sentry)',
-        ('camera', 'odometry'), supported_robots=['red_sentry'],
+        'aim_native_rmcs_v1', 'aim', 'Own RMCS T2 native (stationary, locally declared identities)',
+        ('camera', 'odometry'), supported_robots=scope.supported_robots,native_robot_scope=scope.declaration(),
         stationary_only=True, confidence_available=False,
         max_camera_age_sim_s=.08, max_camera_age_wall_s=.08, schedule_on_camera_frame=True, source_identity=checked_spec['source_identity'],
         deployment_profile=PROFILE), make_native)

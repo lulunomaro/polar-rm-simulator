@@ -1,0 +1,17 @@
+{
+  "schema": "polar.sim.native-robot-scope.v1",
+  "robots": [
+    {
+      "robot_id": "red_infantry",
+      "team": "red",
+      "role": "infantry",
+      "referee_id": 3
+    },
+    {
+      "robot_id": "blue_infantry",
+      "team": "blue",
+      "role": "infantry",
+      "referee_id": 103
+    }
+  ]
+}

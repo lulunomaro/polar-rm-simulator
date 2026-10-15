@@ -10,26 +10,30 @@ from .wsl_profile import validate_wsl_spec
 from ..platform_v2.adapters import Registry,descriptor
 from ..platform_v2.contracts import ContractError
 from ..platform_v2.wsl_native_adapter import WslNativeSourceAdapter
+from ..platform_v2.native_robot_scope import load_native_robot_scope
 
 
 class WslRegistry(Registry):
-    def __init__(self,checked,out,distribution,trace):
+    def __init__(self,checked,out,distribution,trace,native_robot_scope=None):
         super().__init__();self.checked=checked;self.out=out
+        self.robot_scope=load_native_robot_scope(native_robot_scope)
         self.distribution=distribution;self.trace=trace
         self._lock=threading.Lock();self._prepared=None;self.native_instance=None
         self._closed=False;self._preparing=False;self._preparing_instance=None
         capabilities={}
         if checked.metadata['transport']=='wsl_async_bgr_v3':capabilities['aim_plugin_contract']='camera_gimbal_v1'
         self.register(descriptor('aim_native_rmcs_v1','aim',
-            'Own RMCS T2, Windows camera / WSL native (stationary red sentry)',
-            ('camera','odometry'),supported_robots=['red_sentry'],stationary_only=True,
+            'Own RMCS T2, Windows camera / WSL native (stationary, locally declared identities)',
+            ('camera','odometry'),supported_robots=self.robot_scope.supported_robots,
+            native_robot_scope=self.robot_scope.declaration(),stationary_only=True,
             confidence_available=False,max_camera_age_sim_s=.08,max_camera_age_wall_s=.08,schedule_on_camera_frame=True,
             source_identity=checked.linux_spec['source_identity'],deployment_profile=PROFILE,
             transport=checked.metadata['transport'],windows_native=False,**capabilities),self._make)
 
     def _new(self,config):
+        self.robot_scope.verify_unchanged()
         return WslNativeSourceAdapter(config,checked=self.checked,out=self.out,
-            distribution=self.distribution,trace=self.trace)
+            distribution=self.distribution,trace=self.trace,robot_scope=self.robot_scope)
 
     def prepare_native(self,config=None):
         # The local caller performs this before starting its physics clock.
@@ -66,6 +70,7 @@ class WslRegistry(Registry):
             if self._closed:raise ContractError('wsl_registry_closed')
             if self._preparing:raise ContractError('native_preparation_in_progress')
             instance=self._prepared
+            self.robot_scope.verify_unchanged()
             # Inputs loaded into a prepared process have frozen identity already.
             # Recheck the small original spec and controlled host snapshot at
             # handover. Full asset/source checks happen before every new process.
@@ -99,7 +104,8 @@ class WslRegistry(Registry):
             finally:instance.close()
 
 
-def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu',native_trace=None,transport='wsl_stdio_v1'):
+def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu',native_trace=None,transport='wsl_stdio_v1',native_robot_scope=None):
+    scope=load_native_robot_scope(native_robot_scope)
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ContractError('wsl_transport_not_authorized')
     checked=validate_wsl_spec(linux_spec_path,repo_root=repo_root,
         shared_out=native_out,distribution=distribution)
@@ -122,4 +128,4 @@ def own_wsl_registry(linux_spec_path,native_out,*,repo_root,distribution='Ubuntu
                 qualification='Explicit async transport; pending is not inference or actuation; live qualification requires actual fresh samples')
         checked=replace(checked,metadata=metadata,_identities=identities)
         checked.verify_unchanged()
-    return WslRegistry(checked,native_out,distribution,native_trace)
+    return WslRegistry(checked,native_out,distribution,native_trace,native_robot_scope=scope)

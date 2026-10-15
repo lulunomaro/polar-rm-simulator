@@ -33,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "8132936aa53b0d23254f88c0d2735650554fda66657abedb5920f677318ba2e4",
-      "task": "T09,T01,T07",
-      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
+      "current_sha256": "9d30f6da4e72c1282555a90ff230546240e1182fa614b13eb63c223acd7309e0",
+      "task": "T09,T01,T07 ,T05",
+      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
@@ -187,9 +187,9 @@
     {
       "path": "rm_match/platform_v2/native_adapter.py",
       "original_sha256": "bb05a7cda653b9394c58ac26d6eb99c22031b2b6ebdfb7540f3144508b4b89c7",
-      "current_sha256": "43640c0154d421e761ce2eb11944d88b87e6a0797027fe52167dc734dd63b4af",
-      "task": "T03",
-      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget; v3 response that expires between the reader and source slot remains original evidence and no-command pending status, never a timely native_result or angles; receipt time is a fresh real sample and delivery/consumption guards remain independent"
+      "current_sha256": "27d3f4818403f0ebf10c26d51b10f2a0026c37c8562a665aae729517b95349e1",
+      "task": "T03 ,T05",
+      "reason": "Preserve full original T2 input and 80/150ms gates; opt-in async transport keeps original source context, busy skips image preparation, pending clears commands, late stdout is never emitted as fresh native_result; synchronous/offline behavior remains separate; bounded evidence-capacity backpressure skips the whole fresh frame and retains all accepted pixels; resource cleanup shares the original outer 1.5s budget; v3 response that expires between the reader and source slot remains original evidence and no-command pending status, never a timely native_result or angles; receipt time is a fresh real sample and delivery/consumption guards remain independent; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates"
     },
     {
       "path": "rm_match/platform_v2/offline_runtime.py",
@@ -208,9 +208,16 @@
     {
       "path": "rm_match/platform_v2/adapters.py",
       "original_sha256": "dadb5bd731327270d0314d90648abfcebcf112adc54ea15ab348b81647d372e2",
-      "current_sha256": "5e599559391135fcb3bee2ccac894a29e1850f404a01945fbe1c90876a2e7e24",
-      "task": "T03,T01,T07",
-      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained"
+      "current_sha256": "75633e21fba08e205730a5cd07de728f15a14b18f3e21b737bc2369570225bee",
+      "task": "T03,T01,T07 ,T05",
+      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates"
+    },
+    {
+      "path": "rm_match/integrations/rmcs_contract.py",
+      "original_sha256": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf",
+      "current_sha256": "4dc5dddabecd7a5187d0230b9fa9f5713a11b3610e62140f341cd6fcba337018",
+      "task": "T05,T06",
+      "reason": "Require explicit exposure observation for pitch_link direction, verify same robot/episode and nonfuture finite capture pose, rotate exposure frame then project into current own base; world and source-declined hold unchanged; geometry helper does not establish source association or moving algorithm qualification"
     }
   ]
 }

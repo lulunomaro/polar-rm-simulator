@@ -47,12 +47,28 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
-        host_python_switch_interval_ms=None,authority_affinity_mask=None):
+        host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    from rm_match.match_model import ROSTER
+    from rm_match.platform_v2.native_robot_scope import load_native_robot_scope
+    roster={rid:(team,role) for rid,team,role in ROSTER}
+    if type(robot_id) is not str or robot_id not in roster:raise ValueError('Live diagnostic requires a declared scene robot')
+    scope=load_native_robot_scope(native_robot_scope)
+    # Check the same source identity later enforced on actual own measurements.
+    actor=scope.match(robot_id,*roster[robot_id])
+    if native_robot_scope is not None or robot_id!='red_sentry':
+        plan['configuration']['robot_id']=robot_id
+        plan['configuration']['native_robot_scope']=dict(path=None if native_robot_scope is None else str(Path(native_robot_scope).absolute()),
+            sha256=scope.sha256,team=actor.team,role=actor.role,referee_id=actor.referee_id,stationary_only=True)
+        target=('blue' if actor.team=='red' else 'red')+'_infantry'
+        sign=1 if actor.team=='red' else -1
+        plan['scene']={robot_id+'_xy_m':[-3.5*sign,3.],target+'_xy_m':[-1.2*sign,3.],
+            'initial_velocity':'zero, remaining public analytic 3v3 scene unchanged',
+            'truth_boundary':PLAN['scene']['truth_boundary']}
     from rm_match.platform_v2.host_scheduling import switch_interval_ms,affinity_mask
     if host_python_switch_interval_ms is not None:
         plan['configuration']['host_python_switch_interval_ms']=switch_interval_ms(host_python_switch_interval_ms)
@@ -435,9 +451,16 @@ def _run(a,affinity,scheduling):
     host_threads=getattr(a,'host_opencv_threads',None)
     plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
         host_opencv_threads=host_threads,host_python_switch_interval_ms=getattr(a,'host_python_switch_interval_ms',None),
-        authority_affinity_mask=getattr(a,'authority_affinity_mask',None))
+        authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None))
+    actor_id=getattr(a,'robot_id','red_sentry')
     def write(name,value):
         (out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    scope_path=getattr(a,'native_robot_scope',None)
+    scope_raw=None if scope_path is None else Path(scope_path).read_bytes()
+    if scope_raw is not None:
+        if hashlib.sha256(scope_raw).hexdigest()!=plan['configuration']['native_robot_scope']['sha256']:
+            raise RuntimeError('Native robot scope changed before resource construction')
+        (out/'NATIVE_ROBOT_SCOPE.json').write_bytes(scope_raw)
     sources={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (ROOT/'rm_match').rglob('*.py')}
     sources[Path(__file__).relative_to(ROOT).as_posix()]=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
@@ -454,10 +477,12 @@ def _run(a,affinity,scheduling):
     write('CLIENT_IDENTITY.json',identity)
     sys.path.insert(0,str(a.client_root.resolve()))
     from rm_client.sim_platform_client import PlatformClient,ClientError
-    credential=provision_operator(out/'admission.json')
+    credential=provision_operator(out/'admission.json',allowed_robots=(actor_id,))
     backend=MuJoCoBackend(camera=True);sim=backend._sim
     if len(backend.robot_ids)!=6 or backend.timestep!=.002:raise RuntimeError('Six-car dt2ms required')
-    for rid,x,y in [('red_sentry',-3.5,3.),('blue_infantry',-1.2,3.)]:
+    for key,xy in plan['scene'].items():
+        if not key.endswith('_xy_m'):continue
+        rid=key[:-5];x,y=xy
         sim.data.qpos[sim.qindices[rid][0]]=x-SPAWNS[rid][0]
         sim.data.qpos[sim.qindices[rid][1]]=y-SPAWNS[rid][1]
     sim.data.qvel[:]=0;mujoco.mj_forward(sim.model,sim.data)
@@ -470,7 +495,7 @@ def _run(a,affinity,scheduling):
             counts['fire_true']+=sum(bool(t['fire']) for t in row['targets'].values())
             return
         if event=='integration_boundary':return
-        if row.get('robot_id','red_sentry')!='red_sentry':return
+        if row.get('robot_id',actor_id)!=actor_id:return
         if event=='actuator_consumed':
             target=row['target'];budget=row.get('budget')
             if target.get('gimbal') is None or budget is None:return
@@ -487,8 +512,8 @@ def _run(a,affinity,scheduling):
             frame_id=budget['frame_id']
             if frame_id not in consumed:
                 value=dict(row,host_received_wall=now,
-                    actual_qpos=sim.data.qpos[sim.qindices['red_sentry']].tolist(),
-                    actual_actuator_ctrl=sim.data.ctrl[sim.aindices['red_sentry']].tolist())
+                    actual_qpos=sim.data.qpos[sim.qindices[actor_id]].tolist(),
+                    actual_actuator_ctrl=sim.data.ctrl[sim.aindices[actor_id]].tolist())
                 consumed[frame_id]=value;events.append(value)
             return
         events.append(dict(row,host_received_wall=now))
@@ -513,7 +538,7 @@ def _run(a,affinity,scheduling):
     codec_identity=camera._raw_encoder_metadata
     write('RAW_CODEC_IDENTITY.json',codec_identity)
     registry=own_wsl_registry(a.linux_native_spec,out/'native',repo_root=ROOT,
-        distribution=a.distribution,native_trace=trace,transport=a.native_transport)
+        distribution=a.distribution,native_trace=trace,transport=a.native_transport,native_robot_scope=getattr(a,'native_robot_scope',None))
     class TimedRuntime(PlatformRuntime):
         def step_once(self):
             started=time.perf_counter()
@@ -554,14 +579,14 @@ def _run(a,affinity,scheduling):
         http.start()
         client=PlatformClient('http://127.0.0.1:'+str(server.server_address[1]),
             timeout=.25,control_profile='server_window_v1',admission_credential=credential)
-        client.open('operator');client.watch('red_sentry');client.claim('red_sentry',['gimbal'])
-        bound=client.bind('red_sentry','aim','aim_native_rmcs_v1',
+        client.open('operator');client.watch(actor_id);client.claim(actor_id,['gimbal'])
+        bound=client.bind(actor_id,'aim','aim_native_rmcs_v1',
             dict(fov_degrees=180.,circle_radius_x_norm=1.,circle_radius_y_norm=1.))
         sdk_admitted=True
         def activate():
             nonlocal window_acked
-            window=client.control_window('red_sentry',['gimbal'])
-            ack=client.adapter_input('red_sentry','aim',bound['binding_epoch'],window_id=window['window_id'],valid_for_s=.15)
+            window=client.control_window(actor_id,['gimbal'])
+            ack=client.adapter_input(actor_id,'aim',bound['binding_epoch'],window_id=window['window_id'],valid_for_s=.15)
             window_acked=True;sdk_events.append(dict(event='activation_ack',host_wall=time.perf_counter(),
                 window_id=window['window_id'],activation_expires=ack['activation_expires']))
         activate()
@@ -580,13 +605,13 @@ def _run(a,affinity,scheduling):
         while physics.is_alive() and time.perf_counter()-start<a.seconds:
             activate()
             now=time.perf_counter()
-            if now-renew>=.25:client.renew('red_sentry',['gimbal']);renew=now
+            if now-renew>=.25:client.renew(actor_id,['gimbal']);renew=now
             if now-sample>=.2:
                 state=client.state();sample=now
                 sdk_events.append(dict(event='operator_status',host_wall=now,
                     algorithm_status=state.get('algorithm_status'),runtime_state=state.get('runtime_state')))
             time.sleep(.04)
-        client.release('red_sentry',['gimbal']);client.close();client=None
+        client.release(actor_id,['gimbal']);client.close();client=None
     except BaseException as exc:
         if expected_shutdown_rejection(exc,runtime,ClientError):
             sdk_events.append(dict(event='expected_runtime_stopped',phase='terminal_sdk_request',
@@ -626,6 +651,8 @@ def _run(a,affinity,scheduling):
     clean=(camera_closed and not http.is_alive() and (physics is None or not physics.is_alive())
         and getattr(runtime,'shutdown_status',{}).get('clean') is True)
     source_unchanged=all((ROOT/p).is_file() and hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
+    if scope_raw is not None:
+        source_unchanged=source_unchanged and Path(scope_path).read_bytes()==scope_raw
     extension=codec_identity.get('extension_path')
     codec_unchanged=(camera.raw_base64_codec==a.raw_base64_codec and (extension is None
         or (Path(extension).is_file() and hashlib.sha256(Path(extension).read_bytes()).hexdigest()==codec_identity.get('extension_sha256'))))
@@ -706,6 +733,8 @@ def main(argv=None):
     p.add_argument('--distribution',default='Ubuntu')
     p.add_argument('--native-transport',choices=('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'),default='wsl_stdio_v1')
     p.add_argument('--private-native-pixels',action='store_true',help='Explicit experimental own-native input before public base64 completion')
+    p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
+    p.add_argument('--native-robot-scope',type=Path,help='Explicit local stationary robot identity registration')
     p.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked')
     p.add_argument('--host-opencv-threads',type=int,help='Explicit verified host camera OpenCV thread option, 1..32')
     from rm_match.platform_v2.host_scheduling import switch_interval_ms,parse_affinity_mask
@@ -722,10 +751,13 @@ def main(argv=None):
     if a.authority_affinity_mask is not None and sys.platform!='win32':p.error('--authority-affinity-mask requires Windows')
     if a.host_opencv_threads is not None and not 1<=a.host_opencv_threads<=32:p.error('--host-opencv-threads must be within 1..32')
     if not 10<=a.seconds<=20:p.error('Actual run must be bounded to 10..20 wall seconds')
-    if not a.run:
-        print(json.dumps(build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
+    try:
+        selected_plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
-            authority_affinity_mask=a.authority_affinity_mask),indent=2));return 0
+            authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope)
+    except (ValueError,OSError) as exc:p.error('Invalid local native scene/scope: '+str(exc))
+    if not a.run:
+        print(json.dumps(selected_plan,indent=2));return 0
     for key in ('linux_native_spec','client_root','out'):
         if getattr(a,key) is None:p.error('--'+key.replace('_','-')+' is required with --run')
         setattr(a,key,getattr(a,key).resolve())
@@ -741,9 +773,7 @@ def main(argv=None):
             state='AFTER_STARTUP_FAILURE' if admitted else 'SETUP_FAILED',
             startup_admitted=admitted,runtime_evidence_available=(a.out/'RUNTIME_OBSERVATION.json').exists(),
             errors=[type(exc).__name__+':'+str(exc)],live_static_chain_qualified=False,
-            cleanup_qualified=False,plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
-                host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
-                authority_affinity_mask=a.authority_affinity_mask))
+            cleanup_qualified=False,plan=selected_plan)
         (a.out/'RESULT.json').write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
         print(json.dumps(value,indent=2));return 2
 

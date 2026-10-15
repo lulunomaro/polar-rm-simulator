@@ -177,7 +177,7 @@ class CliLifecycleTests(unittest.TestCase):
             cli.main(['--admission-manifest','fixture-admission.json','--pb-navigation-manifest','local.json',
                 '--native-spec','native-spec.json','--native-out','native-output','--camera'])
         self.assertEqual(local.call_args.args[1],'local.json')
-        self.assertEqual(created['registry_kwargs'],dict(native_spec='native-spec.json',native_out='native-output'))
+        self.assertEqual(created['registry_kwargs'],dict(native_spec='native-spec.json',native_out='native-output',native_robot_scope=None))
         self.assertIsNotNone(created['backend_kwargs']['navigation_sensors'])
         self.assertEqual(created['sensor_robot_ids'],('red_sentry',))
         self.assertNotIn('session_create',events)

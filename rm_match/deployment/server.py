@@ -13,6 +13,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
     p.add_argument('--native-spec', type=Path, required=True)
     p.add_argument('--native-out', type=Path, required=True)
+    p.add_argument('--native-robot-scope', type=Path,help='Explicit local stationary robot identity scope')
     p.add_argument('--adapters-json', type=Path)
     p.add_argument('--aim-plugins-json', type=Path,help='Reviewed local calibrated-camera aim interface registrations')
     p.add_argument('--admission-manifest', type=Path, required=True,
@@ -32,7 +33,7 @@ def main(argv=None):
     from ..platform_v2.admission import AdmissionPolicy
     admission = AdmissionPolicy.from_manifest(a.admission_manifest)
     admission_sha = admission.manifest_sha256
-    registry = own_registry(a.native_spec, a.native_out, adapters_json=a.adapters_json,aim_plugins_json=a.aim_plugins_json)
+    registry = own_registry(a.native_spec, a.native_out, adapters_json=a.adapters_json,aim_plugins_json=a.aim_plugins_json,native_robot_scope=a.native_robot_scope)
     from ..platform_v2.backend import MuJoCoBackend
     from ..platform_v2.camera import CameraProvider
     from ..platform_v2.runtime import PlatformRuntime
@@ -60,7 +61,8 @@ def main(argv=None):
             source_identity=spec['source_identity'],
             adapter_ids=[v['adapter_id'] for v in registry.descriptors()],
             automatic_binding=False, fire_authority='manual_only',
-            limitations=LIMITATIONS)), flush=True)
+            native_robot_scope=registry.get('aim_native_rmcs_v1').descriptor['native_robot_scope'],
+            limitations=([x for x in LIMITATIONS if x!='stationary_red_sentry_only']+['stationary_locally_declared_robots_only']) if a.native_robot_scope else list(LIMITATIONS))), flush=True)
         runtime.run(max_wall_seconds=a.max_wall_seconds, real_time_factor=a.real_time_factor)
         if runtime.error:
             raise RuntimeError('Runtime stopped with error: ' + str(runtime.error))

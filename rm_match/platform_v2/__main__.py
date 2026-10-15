@@ -35,6 +35,7 @@ def main(argv=None):
     parser.add_argument('--admission-manifest',required=True,
         help='Local server-owned role/robot grants; no implicit HTTP enrollment')
     parser.add_argument('--native-out',help='Local native process output root; never a network-selected executable')
+    parser.add_argument('--native-robot-scope',help='Trusted local stationary native robot identity scope; default remains red sentry')
     parser.add_argument('--aim-plugins-json',help='Trusted local manifest of negotiated camera/gimbal aim plugins')
     parser.add_argument('--robotio-plugins-json',help='Trusted local graph of independent navigation, decision and aim plugins')
     parser.add_argument('--prepare-robotio-plugins',action='store_true',help='Explicit WSL resource-only preparation before physics')
@@ -50,6 +51,7 @@ def main(argv=None):
     from .admission import AdmissionPolicy
     admission=AdmissionPolicy.from_manifest(args.admission_manifest)
     if bool(args.native_spec or args.wsl_native_spec)!=bool(args.native_out):parser.error('A native spec and --native-out are required together')
+    if args.native_robot_scope and not (args.native_spec or args.wsl_native_spec):parser.error('--native-robot-scope requires a native spec')
     if (args.native_spec or args.wsl_native_spec) and not args.camera:parser.error('Native source requires --camera')
     if args.wsl_native_spec and sys.platform!='win32':parser.error('--wsl-native-spec requires a Windows host')
     if args.private_native_pixels and not args.wsl_native_spec:parser.error('--private-native-pixels requires --wsl-native-spec')
@@ -77,11 +79,11 @@ def main(argv=None):
             from ..deployment.wsl_registry import own_wsl_registry
             repo_root=Path(__file__).resolve().parents[2]
             registry=wsl_native_registry=own_wsl_registry(args.wsl_native_spec,args.native_out,repo_root=repo_root,
-                distribution=args.wsl_native_distribution,transport=args.wsl_native_transport)
+                distribution=args.wsl_native_distribution,transport=args.wsl_native_transport,native_robot_scope=args.native_robot_scope)
             # Actual model loading and stdin readiness, zero captured frames and
             # zero NN calls, precede the physics clock. Binding still resets.
             registry.prepare_native()
-        else:registry=default_registry(native_spec=args.native_spec,native_out=args.native_out)
+        else:registry=default_registry(native_spec=args.native_spec,native_out=args.native_out,native_robot_scope=args.native_robot_scope)
         if args.aim_plugins_json:
             from ..deployment.aim_plugin import register_aim_plugins
             if args.prepare_aim_plugins:

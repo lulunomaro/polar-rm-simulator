@@ -20,16 +20,54 @@ def own_state(observation):
   camera_optical_from_pitchlink_rotation=[[0,-1,0],[0,0,-1],[1,0,0]],
   hp=observation.own_hp,ammo=observation.ammo,heat=observation.own_heat)
 
-def command_from_direction(output,observation):
- """Explicit frame required. No synthetic firing when source declines control."""
+def _direction_pose(observation,label):
+ try:
+  q=np.asarray(observation.own_qpos);odom=np.asarray(observation.odom_xyyaw)
+  if (q.shape!=(5,) or odom.shape!=(3,) or q.dtype.kind not in 'iuf' or odom.dtype.kind not in 'iuf'
+      or not np.isfinite(q).all() or not np.isfinite(odom).all()):
+   raise ValueError(label+' finite five-joint pose and three-value odometry required')
+  q=q.astype(float);odom=odom.astype(float)
+  if not np.isfinite(q).all() or not np.isfinite(odom).all():raise ValueError(label+' finite pose conversion required')
+  return q,odom
+ except (AttributeError,TypeError,OverflowError) as exc:
+  raise ValueError(label+' finite five-joint pose and three-value odometry required') from exc
+
+def command_from_direction(output,current_observation,*,capture_observation=None):
+ """Map a direction without rebinding its source or claiming moving support.
+
+ pitch_link explicitly means the supplied exposure's pitch frame. The caller
+ must associate that exposure with the real algorithm result; this helper only
+ validates mechanical pose/time relationships and emits no source/deadline.
+ """
  from rm_match.contracts import Command
- q=np.array(observation.own_qpos);base=observation.odom_xyyaw[2]
+ if output.get('should_control',False) and output.get('direction_frame')=='pitch_link':
+  q,current_odom=_direction_pose(current_observation,'Current');base=float(current_odom[2])
+ else:
+  q=np.array(current_observation.own_qpos);base=current_observation.odom_xyyaw[2]
  hold=Command(gimbal_yaw=float(q[3]),gimbal_pitch=float(q[4]),fire=False)
  if not output.get('should_control',False):return hold
  direction=np.array(output['direction'],dtype=float)
  if direction.shape!=(3,) or not np.isfinite(direction).all() or np.linalg.norm(direction)<1e-12:raise ValueError('Finite nonzero direction required')
  frame=output.get('direction_frame')
- if frame=='pitch_link':direction=rotation(base+q[3],q[4])@direction
+ if frame=='pitch_link':
+  if capture_observation is None:raise ValueError('Explicit capture observation required for pitch_link direction')
+  try:
+   for key in ('robot_id','episode'):
+    current=getattr(current_observation,key);captured=getattr(capture_observation,key)
+    if type(current) is not type(captured) or current!=captured:raise ValueError('Capture/current identity mismatch')
+   if (type(current_observation.robot_id) is not str or not current_observation.robot_id
+       or type(current_observation.episode) is not int or current_observation.episode<0):
+    raise ValueError('Capture/current robot and episode required')
+   now=current_observation.sim_time;exposure=capture_observation.sim_time
+   if (type(now) not in (int,float) or type(exposure) not in (int,float)
+       or not math.isfinite(now) or not math.isfinite(exposure) or not 0<=exposure<=now):
+    raise ValueError('Finite capture time must not follow current time')
+  except AttributeError as exc:raise ValueError('Capture/current identity and time required') from exc
+  captured_q,captured_odom=_direction_pose(capture_observation,'Capture')
+  captured_yaw=float(captured_odom[2])+float(captured_q[3])
+  if not math.isfinite(captured_yaw):raise ValueError('Finite capture yaw required')
+  direction=rotation(captured_yaw,captured_q[4])@direction
+  if not np.isfinite(direction).all():raise ValueError('Finite transformed direction required')
  elif frame!='world':raise ValueError('Direction frame must be explicit world or pitch_link')
  yaw=math.atan2(direction[1],direction[0])-base
  yaw=float(q[3]+math.atan2(math.sin(yaw-q[3]),math.cos(yaw-q[3])))

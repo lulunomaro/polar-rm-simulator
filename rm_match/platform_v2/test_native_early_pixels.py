@@ -15,6 +15,7 @@ from .native_camera_snapshot import NativeCameraSnapshot,mint_native_snapshot,is
 from .native_observation import validate_native_observation,raw_native_observation,reviewed_native_instance,NATIVE_SCHEMA
 from .contracts import ContractError,validate_observation,action_for
 from .native_adapter import NativeSourceAdapter
+from .native_robot_scope import load_native_robot_scope
 from .runtime import AdapterSlot,PlatformRuntime
 from .adapters import Registry,descriptor
 from .test_contracts import sample
@@ -251,6 +252,7 @@ class NativeSlotTests(unittest.TestCase):
     def test_exact_native_entry_retains_camera_profile_and_context_checks(self):
         base,p,b=fixture();instance=object.__new__(NativeSourceAdapter);instance.context=dict(episode=1,robot_id=RID,binding_epoch=1)
         instance._cancelled=threading.Event()
+        instance.robot_scope=load_native_robot_scope();base['own']['role']='sentry'
         self.assertTrue(reviewed_native_instance(instance))
         # Synthetic 16x12 cannot pass production 1440x1080; no native is launched.
         with self.assertRaisesRegex(ContractError,'native_camera_resolution_mismatch'):
@@ -270,6 +272,7 @@ class NativeSlotTests(unittest.TestCase):
             intrinsics=intr,extrinsics=m['extrinsics'])
         instance=object.__new__(NativeSourceAdapter);instance.context=dict(episode=1,robot_id=RID,binding_epoch=1)
         instance._cancelled=threading.Event()
+        instance.robot_scope=load_native_robot_scope();base['own']['role']='sentry'
         with self.assertRaisesRegex(ContractError,'native_camera_calibration_mismatch'):
             NativeSourceAdapter._act_native_pixels(instance,base,pixels,consumer=C,budget=b,now=1000.01)
 

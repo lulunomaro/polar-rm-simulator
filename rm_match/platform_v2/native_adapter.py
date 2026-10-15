@@ -42,12 +42,14 @@ def validate_native_spec(spec_path,expected_spec_sha=None):
     return spec,spec_sha
 
 class NativeSourceAdapter(BaseAdapter):
-    def __init__(self,config,*,spec_path,out,registered_spec_sha=None,trace=None):
+    def __init__(self,config,*,spec_path,out,registered_spec_sha=None,trace=None,robot_scope=None):
         from ..operator.source_aim import IDENTITY
         # Definition-only Python imports belong to local setup, before the
         # physics/camera clock starts. No exposure, native tick or inference.
         from . import native_observation
         from ..integrations import rmcs_contract
+        from .native_robot_scope import load_native_robot_scope
+        self.robot_scope=load_native_robot_scope(robot_scope)
         if set(config)-{'fov_degrees','circle_radius_x_norm','circle_radius_y_norm'}:raise ContractError('invalid_native_config')
         self.fov=dict(fov_degrees=finite(config.get('fov_degrees',85.),'fov',10,180),circle_radius_x_norm=finite(config.get('circle_radius_x_norm',.25),'circle_x',1e-6,2),circle_radius_y_norm=finite(config.get('circle_radius_y_norm',.25),'circle_y',1e-6,2))
         self.trace=trace
@@ -129,6 +131,7 @@ class NativeSourceAdapter(BaseAdapter):
 
     def _start_process(self,episode):
         from ..operator.source_aim import OperatorFovProcess
+        self.robot_scope.verify_unchanged()
         validate_native_spec(self.spec_path,self.spec_sha)
         self.directory=self.root/('binding_'+uuid.uuid4().hex);self.directory.mkdir(parents=True,exist_ok=False)
         (self.directory/'tracking_mode').write_text(self.spec['runtime_mode_contents'])
@@ -156,7 +159,7 @@ class NativeSourceAdapter(BaseAdapter):
         require_sensors(o,('camera','odometry') if native_envelope is None else ('odometry',))
         cam=o['sensors']['camera'] if native_envelope is None else native_envelope.pixels.metadata()
         p=SourceCameraProfile()
-        if o['robot_id']!='red_sentry':raise ContractError('native_robot_unsupported')
+        robot=self.robot_scope.match(o['robot_id'],o['own']['team'],o['own']['role'])
         intr=cam['intrinsics'];im=cam['image'];ext=cam['extrinsics']
         if (im['width'],im['height'])!=(p.width,p.height):raise ContractError('native_camera_resolution_mismatch')
         if any(abs(intr[k]-getattr(p,k))>1e-8 for k in ('fx','fy','cx','cy')) or not np.allclose(intr['distortion'],p.distortion,atol=1e-10,rtol=0):raise ContractError('native_camera_calibration_mismatch')
@@ -212,7 +215,7 @@ class NativeSourceAdapter(BaseAdapter):
             receipt=writer.submit(cam['frame_id'],image_bytes,image['sha256'])
             if self.trace:self.trace(dict(event='native_evidence_accepted',wall_time=time.perf_counter(),wall_clock='host_perf_counter',receipt=receipt,sha256=image['sha256']))
         captured=replace(raw,sim_time=cam['capture_sim_time'],own_qpos=tuple(cam['own_qpos_at_capture']),own_qvel=tuple(cam['own_qvel_at_capture']),odom_xyyaw=tuple(cam['own_odom_at_capture']),odom_vxyw=tuple(cam['own_odom_velocity_at_capture']))
-        frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=7,own_team='red',image=image,camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))
+        frame=dict(schema='rmcs-mujoco-actor-frame-v1',episode=o['episode'],frame_id=cam['frame_id'],exposure_timestamp_ns=round(cam['capture_sim_time']*1e9),capture_time_s=cam['capture_sim_time'],own_referee_id=robot.referee_id,own_team=robot.team,image=image,camera={k:intr[k] for k in ('fx','fy','cx','cy','distortion')},own=own_state(captured))
         self.last_capture=cam['frame_id']
         if self.trace:
             trace_identity=dict(robot_id=o['robot_id'],episode=o['episode'],binding_epoch=o['binding_epoch'],observed_seq=o['observed_seq'],frame_id=cam['frame_id'],capture_sim_time=cam['capture_sim_time'],observation_sim_time=t,clock_profile=o.get('clock_profile','wall_deadline_live'),wall_deadline=o.get('wall_deadline'),schedule=o.get('schedule'),raw_bgr_sha256=frame['image']['sha256'],raw_rgb_sha256=rgb_sha,

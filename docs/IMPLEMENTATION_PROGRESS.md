@@ -10,7 +10,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与静态OFFLINE24/三次live链通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
 | T03 | 显式CPU4/CV4/pybase64/1ms/authority mask0x10配置三次静态live通过；正式入口RTF.9971029、107及时/97新帧物理消费、0fault/clean | 旧async02/stage/调度失败全部保留；默认profile、移动/多车、完整性能矩阵未验收；原80/150ms不变 |
 | T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
-| T05 | 进行中：新通用组件按 manifest 声明 robot scope，无队名分派；已定位 native 速度/角色与消费时坐标门，旧 native 仍限 stationary red_sentry | opt-in 移动实现与实际验证、旧 native 硬编码、多车真实算法 |
+| T05 | 进行中：通用组件按manifest声明scope；T2新增SHA固定本地身份配置，实际own team/role匹配；红步兵135及时/135消费帧、蓝步兵124及时/121消费帧，两次顺序静态live通过，原默认仍红哨兵 | 移动补偿与实际验证、多车同时真实算法；scope声明不改变相机/动力学适用域 |
 | T06 | 部分基础：独立正/负图像、故障安全与期限测试；保留全部失败和来源 | 系统运动/遮挡/丢失/射击/断线闭环矩阵与冻结验收 |
 | T07 | 通用graph/SDK/JSONL/ROS 2及goal库保持；真实BT4/PB原节点通过同scan注册actual07：147实际tick、15及时动作、2迟动作有源拒发，原UUID/传感/SDK/物理来源核对通过 | 显式1ms配置下健康单目标局部资格；比赛树其余实际分支/多车/第二实现完整替换未验 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 最终QA15四步骤全过：3041pass/45明确skip/1024subtests，460程序/测试/来源文件及13787检查输入前后不变；真树注册actual07全部23检查通过 | 健康单目标局部SIL不替移动自瞄/多车/比赛/发布矩阵，M0–M5仍未签收 |
+| T17 | 本轮scope QA03四步骤全过：3123pass/45明确skip/1024subtests；原native ELF/模型保持，两色静态live与独立原图/时限/消费审计通过；旧QA15/真树actual07保留 | 静态单车与健康单目标局部SIL不替移动自瞄/多车/比赛/发布矩阵，M0–M5仍未签收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -34,7 +34,46 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
-## 真实PB比赛树最小接入（2026-10-15，本轮增量，联动尚未通过）
+## T05 显式静止身份扩展（2026-10-15，本轮最新）
+
+新增[本地scope示例](../examples/native_robot_scope.json)，将T2输入的robot/team/role/referee ID绑定到
+SHA固定声明，替代包装层原先固定红方/ID7的帧构造；默认仍为red_sentry。
+注册、adapter构造、native启动及WSL已准备实例交接重检原字节；HTTP config不能选择身份或文件。
+Linux部署launcher的doctor、启动前文件检查、ready完整类型化声明也保持同一scope，admission不随scope扩大。
+原静止速度0.03、位置漂移0.025m、稳定0.4s、固定1440×1080/K/D/安装位姿、80ms图像/150ms SDK与人工火控均保留。
+
+| 实际顺序单车静止运行 | 红步兵01 | 蓝步兵01 |
+| --- | --- | --- |
+| 真实2ms物理步/仿真秒 | 4945 / 9.89 | 4991 / 9.982 |
+| 物理RTF | 0.9889068252 | 0.9981690168 |
+| 原始图像帧 | 148 | 148 |
+| 及时原生结果 / 独立帧物理消费 | 135 / 135 | 124 / 121 |
+| 最大消费capture wall age / sim age | 77.5396ms / 78ms | 79.1358ms / 78ms |
+| fault / fire / 清理 | 0 / 0 / clean | 0 / 0 / clean |
+
+两次均使用原CPU4 ELF/模型和显式CV4、pybase64_1_5_1、CPython1ms、authority mask0x10配置，
+实读并finally恢复调度；driver24.6974323s/21.4255280s，exit0/reaped、各自执行源码前后一致。
+全部277个实际BGR文件及反通道RGB SHA独立复核，259个及时结果的原native字段逐类型保持；
+host仅添加原episode和由tracking导出的should_control。其余pending/late/discard单列，未计及时推理或消费。
+Linux owned cleanup11.306/16.597ms；host runtime共享收尾76.937/88.666ms，均在原预算内。
+原始stdin的team/referee字段没有独立echo记录，身份路径由scope、逐帧匹配与执行源码证明，未伪称额外wire捕获。
+
+`pitch_link`机械helper现在要求显式曝光观察，同robot/episode、有限且不晚于当前的捕获姿态，
+先按曝光姿态转惯性方向再投影当前本车base；生产原生仍输出world，helper单元证据不等于移动支持。
+目前原T2 PnP/Tracker仍缺本车平移原点补偿，FireController要求pivot-relative目标，
+runtime还需要真实消费时朝向投影。下一步按已保存的source-owned移动设计实施新profile和29TU新cleanbuild，
+保持原deadline/物理速率后测正常速度移动、重捕获，再做多实例与完整3v3；没有移除stationary门。
+
+QA01在来源清单缺新helper变更说明时失败，未执行pytest；QA02保留3个旧测试夹具/参数断言失败
+（3120pass/45skip）；修正__new__夹具的明确身份初始化与新可选参数断言后，QA03四步骤通过，
+3123pass/45明确skip/1024subtests/6既有collection warnings，测试165.15s、driver219.2396239s/exit0/reaped。
+独立review01的两种跨阶段比较误判原样保留，review02严格逐原字段核对并纠正独立bootstrap/owned run ID比较后通过。
+两次live之后只另改launcher的scope pin检查及一个未初始化native测试夹具；旧live执行身份不回写。
+466个程序/测试/来源输入及17846个Git已知检查输入在QA期间前后不变；程序/测试最终字节与QA03一致。
+本节与兼容文档的结果说明在QA结束后补写，没有冒充参与旧QA。
+证据、失败及复现见[本轮固定包](validation/native_identity_scope_20261015/README.md)。M0–M5仍未完整签收。
+
+## 真实PB比赛树最小接入（2026-10-15，历史起点，后续actual07见下文）
 
 新增[真实BT scoped runner](../operator_native/pb_match_decision/README.md)，由BehaviorTree.CPP 4.6.2实际执行
 固定PB `rmul_2025` 结构及原IsGameStatus/IsStatusOK/IsRfidDetected/PubNav2Goal C++节点；

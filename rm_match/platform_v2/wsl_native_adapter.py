@@ -31,7 +31,9 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
             circle_radius_x_norm=finite(config.get('circle_radius_x_norm',.25),'circle_x',1e-6,2),
             circle_radius_y_norm=finite(config.get('circle_radius_y_norm',.25),'circle_y',1e-6,2))
 
-    def __init__(self,config,*,checked,out,distribution='Ubuntu',trace=None):
+    def __init__(self,config,*,checked,out,distribution='Ubuntu',trace=None,robot_scope=None):
+        from .native_robot_scope import load_native_robot_scope
+        robot_scope=load_native_robot_scope(robot_scope)
         self.normalized_fov(config)
         from ..deployment.wsl_profile import host_to_linux_path
         if distribution!=checked.metadata['distribution']:raise ContractError('wsl_distribution_not_authorized')
@@ -51,11 +53,12 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
         snapshot=root/('host_spec_'+uuid.uuid4().hex+'.json')
         with snapshot.open('x',encoding='utf8',newline='\n') as stream:
             json.dump(checked.host_checked_spec,stream,sort_keys=True,indent=2);stream.write('\n')
-        super().__init__(config,spec_path=snapshot,out=root,trace=trace)
+        super().__init__(config,spec_path=snapshot,out=root,trace=trace,robot_scope=robot_scope)
         self._evidence_required=self.transport in ('wsl_stdio_bgr_v2','wsl_async_bgr_v3')
         self._prepared=False;self._bound=False;self._starting=False
 
     def verify_handover(self):
+        self.robot_scope.verify_unchanged()
         from ..deployment.wsl_profile import _host_path,_within
         seen=set()
         roots=(_host_path(self.checked_wsl._repo_root,seen),_host_path(self.checked_wsl._shared_out,seen))
@@ -100,6 +103,7 @@ class WslNativeSourceAdapter(NativeSourceAdapter):
             with self._lifecycle_lock:self._starting=False
 
     def _start_owned_process(self,episode,process_type):
+        self.robot_scope.verify_unchanged()
         self.checked_wsl.verify_unchanged()
         validate_native_spec(self.spec_path,self.spec_sha)
         if self._cancelled.is_set():raise ContractError('native_adapter_cancelled')

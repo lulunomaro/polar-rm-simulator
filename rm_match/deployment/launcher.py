@@ -78,6 +78,9 @@ def plan(a):
     aim_plugins=getattr(a,'aim_plugins_json',None)
     if aim_plugins:
         server += ['--aim-plugins-json',str(aim_plugins.expanduser().absolute())]
+    native_scope=getattr(a,'native_robot_scope',None)
+    if native_scope:
+        server += ['--native-robot-scope',str(native_scope.expanduser().absolute())]
     return dict(schema='polar.sim.deployment.plan.v1', profile=PROFILE,
         server_argv=server,
         client_argv=[client_python, str(root / 'main.py'), '--sim-platform-v2',
@@ -85,13 +88,14 @@ def plan(a):
         sim_root=str(ROOT), client_root=str(root), out=str(out), native_spec=str(spec),
         adapters_json=str(a.adapters_json.expanduser().absolute()) if a.adapters_json else None,
         aim_plugins_json=str(aim_plugins.expanduser().absolute()) if aim_plugins else None,
+        native_robot_scope=str(native_scope.expanduser().absolute()) if native_scope else None,
         admission_manifest=str(admission), provision_local_admission=supplied_admission is None,
         admission_scope=['red_sentry'] if supplied_admission is None else 'local_manifest',
         client_repository=CLIENT_REPOSITORY, client_commit=CLIENT_COMMIT,
         client_patch=client_patch_identity(),
         url=f'http://127.0.0.1:{a.port}', max_wall_seconds=a.max_wall_seconds,
         gl=a.gl, automatic_binding=False, fire_authority='manual_only',
-        limitations=LIMITATIONS,
+        limitations=([x for x in LIMITATIONS if x!='stationary_red_sentry_only']+['stationary_locally_declared_robots_only']) if native_scope else list(LIMITATIONS),
         qualification='Plan only; no dependency, inference, renderer or UI qualification')
 
 
@@ -175,6 +179,11 @@ def doctor(p):
         return {'scope':list(grant.allowed_robots),'audit_authorized':grant.audit_authorized,
                 'manifest_sha256':policy.manifest_sha256}
     check('local_admission',admission)
+    if p.get('native_robot_scope'):
+        def scope():
+            from ..platform_v2.native_robot_scope import load_native_robot_scope
+            return load_native_robot_scope(p['native_robot_scope']).declaration()
+        check('native_robot_scope',scope)
     def native():
         code = ('import json; from rm_match.deployment.profile import validate_t2_spec; '
                 's,h=validate_t2_spec(' + repr(p['native_spec']) + '); '
@@ -262,6 +271,30 @@ def stop_child(child):
     return child.returncode
 
 
+def _same_json_tree(left, right):
+    """Compare pinned declarations without bool/int or nested-shape aliases."""
+    if type(left) is not type(right):
+        return False
+    if type(left) is dict:
+        return left.keys() == right.keys() and all(_same_json_tree(left[k], right[k]) for k in left)
+    if type(left) is list:
+        return len(left) == len(right) and all(_same_json_tree(a, b) for a, b in zip(left, right))
+    return left == right
+
+
+def _scope_after_doctor(p, report):
+    if not p.get('native_robot_scope'):
+        return None
+    checks = [c for c in report['checks'] if c.get('name') == 'native_robot_scope']
+    if len(checks) != 1 or checks[0].get('ok') is not True or type(checks[0].get('detail')) is not dict:
+        raise ValueError('native_robot_scope_missing_doctor_pin')
+    from ..platform_v2.native_robot_scope import load_native_robot_scope
+    scope = load_native_robot_scope(p['native_robot_scope'])
+    if not _same_json_tree(scope.declaration(), checks[0]['detail']):
+        raise ValueError('native_robot_scope_changed_after_doctor')
+    return scope
+
+
 def verify_ready(value, p, spec_sha):
     if (value.get('event') != 'ready' or value.get('profile') != PROFILE
             or value.get('url') != p['url'] or value.get('spec_sha256') != spec_sha
@@ -273,12 +306,19 @@ def verify_ready(value, p, spec_sha):
             or value.get('fire_authority') != 'manual_only'
             or 'aim_native_rmcs_v1' not in value.get('adapter_ids', [])):
         raise ValueError('Server ready message does not match own-RMCS deployment')
+    if p.get('native_robot_scope'):
+        expected = p.get('native_robot_scope_declaration')
+        if type(expected) is not dict or not _same_json_tree(value.get('native_robot_scope'), expected):
+            raise ValueError('Server ready native robot scope differs from doctor pin')
 
 
 def launch(p):
     report = doctor(p)
     if not report['ready_to_attempt']:
         print(json.dumps(report, indent=2)); return 2
+    native_scope = _scope_after_doctor(p, report)
+    if native_scope is not None:
+        p = dict(p, native_robot_scope_declaration=native_scope.declaration())
     from ..platform_v2.admission import AdmissionPolicy
     if not p['provision_local_admission']:
         expected=next(c['detail'] for c in report['checks'] if c['name']=='local_admission')
@@ -307,6 +347,8 @@ def launch(p):
             env = clean_environment(); env['POLAR_USER_DATA_ROOT'] = str(out / 'client_user_data')
             senv = dict(env, MUJOCO_GL=p['gl'], OMP_NUM_THREADS='1')
             policy.verify_manifest_unchanged(p['admission_manifest'])
+            if native_scope is not None:
+                native_scope.verify_unchanged()
             server = subprocess.Popen(p['server_argv'], cwd=p['sim_root'], env=senv,
                 stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=serr, bufsize=0)
             reader = ReadyLines(server.stdout)
@@ -326,6 +368,8 @@ def launch(p):
                         raise TimeoutError('Server readiness timeout')
             (out / 'server_ready.json').write_text(json.dumps(ready, indent=2) + '\n')
             policy.verify_manifest_unchanged(p['admission_manifest'])
+            if native_scope is not None:
+                native_scope.verify_unchanged()
             # Ready may take seconds. Do not grant the credential to a client
             # whose tracked source/patch identity changed during server startup.
             current_client=check_client(p['client_root'])
@@ -389,6 +433,7 @@ def main(argv=None):
     p.add_argument('--out', type=Path, default=ROOT / 'artifacts/deployment')
     p.add_argument('--adapters-json', type=Path)
     p.add_argument('--aim-plugins-json',type=Path,help='Reviewed local camera aim plugin registrations')
+    p.add_argument('--native-robot-scope',type=Path,help='Explicit local stationary robot identity scope; admission remains separate')
     p.add_argument('--admission-manifest',type=Path,
         help='Existing local grants; supply the operator credential via POLAR_SIM_ADMISSION_CREDENTIAL')
     p.add_argument('--port', type=int, default=8766)
