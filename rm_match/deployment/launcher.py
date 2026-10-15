@@ -81,6 +81,10 @@ def plan(a):
     native_scope=getattr(a,'native_robot_scope',None)
     if native_scope:
         server += ['--native-robot-scope',str(native_scope.expanduser().absolute())]
+    selected_manifest=getattr(a,'client_patch_manifest',None)
+    selected_manifest=selected_manifest.expanduser().absolute() if selected_manifest else None
+    client_identity=(client_patch_identity() if selected_manifest is None else
+                     client_patch_identity(manifest_path=selected_manifest))
     return dict(schema='polar.sim.deployment.plan.v1', profile=PROFILE,
         server_argv=server,
         client_argv=[client_python, str(root / 'main.py'), '--sim-platform-v2',
@@ -92,7 +96,8 @@ def plan(a):
         admission_manifest=str(admission), provision_local_admission=supplied_admission is None,
         admission_scope=['red_sentry'] if supplied_admission is None else 'local_manifest',
         client_repository=CLIENT_REPOSITORY, client_commit=CLIENT_COMMIT,
-        client_patch=client_patch_identity(),
+        client_patch=client_identity,
+        client_patch_manifest=str(selected_manifest) if selected_manifest is not None else None,
         url=f'http://127.0.0.1:{a.port}', max_wall_seconds=a.max_wall_seconds,
         gl=a.gl, automatic_binding=False, fire_authority='manual_only',
         limitations=([x for x in LIMITATIONS if x!='stationary_red_sentry_only']+['stationary_locally_declared_robots_only']) if native_scope else list(LIMITATIONS),
@@ -149,6 +154,26 @@ def check_client(root, *, patch_manifest=None):
             'client_patch': identity}
 
 
+def _check_planned_client(p):
+    selected=p.get('client_patch_manifest')
+    current=(check_client(p['client_root']) if selected is None else
+             check_client(p['client_root'],patch_manifest=selected))
+    if not _same_json_tree(current.get('client_patch'),p['client_patch']):
+        raise ValueError('client_patch_changed_after_plan')
+    return current
+
+
+def _selected_client_after_doctor(p, report):
+    if p.get('client_patch_manifest') is None:
+        return
+    checks=[c for c in report['checks'] if c.get('name')=='pinned_client']
+    if (len(checks)!=1 or checks[0].get('ok') is not True or
+            type(checks[0].get('detail')) is not dict or
+            not _same_json_tree(checks[0]['detail'].get('client_patch'),p['client_patch'])):
+        raise ValueError('selected_client_missing_doctor_pin')
+    _check_planned_client(p)
+
+
 def doctor(p):
     """Import dependencies / check assets; never start physics, renderer or actor."""
     checks = []
@@ -167,7 +192,8 @@ def doctor(p):
     check('native_host', host)
     check('sim_python_dependencies', lambda: python_probe(p['server_argv'][0], ['numpy', 'mujoco', 'PIL', 'cv2']))
     check('client_python_dependencies', lambda: python_probe(p['client_argv'][0], ['PySide6.QtCore', 'PySide6.QtWidgets', 'cv2', 'numpy', 'paho.mqtt.client', 'serial']))
-    check('pinned_client', lambda: check_client(p['client_root']))
+    check('pinned_client',lambda: (_check_planned_client(p) if p.get('client_patch_manifest') is not None
+                                  else check_client(p['client_root'])))
     def admission():
         if p['provision_local_admission']:
             return {'scope':['red_sentry'],'credential':'provisioned_in_memory_at_launch',
@@ -317,6 +343,7 @@ def launch(p):
     if not report['ready_to_attempt']:
         print(json.dumps(report, indent=2)); return 2
     native_scope = _scope_after_doctor(p, report)
+    _selected_client_after_doctor(p,report)
     if native_scope is not None:
         p = dict(p, native_robot_scope_declaration=native_scope.declaration())
     from ..platform_v2.admission import AdmissionPolicy
@@ -349,6 +376,8 @@ def launch(p):
             policy.verify_manifest_unchanged(p['admission_manifest'])
             if native_scope is not None:
                 native_scope.verify_unchanged()
+            if p.get('client_patch_manifest') is not None:
+                _check_planned_client(p)
             server = subprocess.Popen(p['server_argv'], cwd=p['sim_root'], env=senv,
                 stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=serr, bufsize=0)
             reader = ReadyLines(server.stdout)
@@ -372,9 +401,7 @@ def launch(p):
                 native_scope.verify_unchanged()
             # Ready may take seconds. Do not grant the credential to a client
             # whose tracked source/patch identity changed during server startup.
-            current_client=check_client(p['client_root'])
-            if current_client['client_patch']!=p['client_patch']:
-                raise ValueError('client_patch_changed_after_plan')
+            _check_planned_client(p)
             env['POLAR_SIM_ADMISSION_CREDENTIAL']=credential
             client = subprocess.Popen(p['client_argv'], cwd=p['client_root'], env=env,
                 stdin=subprocess.DEVNULL, stdout=clog, stderr=subprocess.STDOUT)
@@ -404,21 +431,27 @@ def launch(p):
         result.get(k) not in (None, 0) for k in ('server_exit_before_cleanup', 'client_exit_before_cleanup')) else 0
 
 
-def setup_client(root, run=False):
+def setup_client(root, run=False, *, patch_manifest=None):
     root = Path(root).expanduser().absolute()
     if root.exists() or root.is_symlink():
         raise ValueError('Client destination exists; use a new directory or pass existing --client-root')
+    selected=None if patch_manifest is None else Path(patch_manifest).expanduser().absolute()
+    identity=client_patch_identity() if selected is None else client_patch_identity(manifest_path=selected)
     commands = [['git', 'init', str(root)],
                 ['git', '-C', str(root), 'remote', 'add', 'origin', CLIENT_REPOSITORY],
                 ['git', '-C', str(root), 'fetch', '--depth=1', 'origin', CLIENT_COMMIT],
                 ['git', '-C', str(root), 'checkout', '--detach', 'FETCH_HEAD'],
                 [sys.executable,str(ROOT/'tools/apply_client_patch.py'),'--client-root',str(root),'--run']]
+    if selected is not None:
+        commands[-1] += ['--manifest',str(selected)]
     if run:
         for cmd in commands:
             run_checked(cmd, timeout=180)
-        check_client(root)
+        current=check_client(root) if selected is None else check_client(root,patch_manifest=selected)
+        if not _same_json_tree(current.get('client_patch'),identity):
+            raise ValueError('client_patch_changed_during_setup')
     return {'repository': CLIENT_REPOSITORY, 'commit': CLIENT_COMMIT,
-            'client_patch': client_patch_identity(),
+            'client_patch': identity, 'client_patch_manifest':str(selected) if selected is not None else None,
             'commands': commands, 'executed': run, 'submodules': 'not initialized',
             'scope': 'External client only; no dependency installation or application startup'}
 
@@ -427,6 +460,8 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
     p.add_argument('command', nargs='?', choices=('plan', 'doctor', 'launch', 'setup-client'), default='plan')
     p.add_argument('--client-root', type=Path, default=ROOT / 'external/polar-rm-client')
+    p.add_argument('--client-patch-manifest',type=Path,
+        help='Explicit reviewed client patch paired with --client-root; omitted keeps the original client patch')
     p.add_argument('--sim-python', type=Path, default=Path(sys.executable))
     p.add_argument('--client-python', type=Path, default=ROOT / '.venv-client/bin/python')
     p.add_argument('--native-spec', type=Path, default=ROOT / 'operator_native/runtime/local_build/operator_source.local.json')
@@ -445,7 +480,7 @@ def main(argv=None):
     a = p.parse_args(argv)
     try:
         if a.command == 'setup-client':
-            value = setup_client(a.client_root, run=a.run)
+            value = setup_client(a.client_root, run=a.run,patch_manifest=a.client_patch_manifest)
         else:
             value = plan(a)
             if a.command == 'launch' and a.run:

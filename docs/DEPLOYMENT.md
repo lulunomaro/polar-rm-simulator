@@ -4,6 +4,24 @@ The default profile is `own-rmcs-t2-v1`. It uses this independent repository, th
 
 ## 1. Platform and repositories
 
+For the new aim protocol v2, use the sixth complete patch and a separate checkout.
+Pass this same explicit pair to **setup-client, plan, doctor and launch**:
+
+```sh
+python3 tools/deploy.py setup-client --client-root external/polar-rm-client-aim-reference-review --client-patch-manifest client_patches/CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json
+python3 tools/deploy.py setup-client --client-root external/polar-rm-client-aim-reference-review --client-patch-manifest client_patches/CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json --run
+```
+
+The first command is a dry plan; the second requires a fresh destination. For an
+existing fixed-base clean checkout, use `tools/apply_client_patch.py --manifest`
+as described in [client patches](../client_patches/README.md). No automatic version
+detection or fallback occurs. The selected bytes are pinned in the deployment
+plan, checked by doctor, before server startup and before handing credentials to
+the client. The commands below preserve the original patch when this option is
+omitted. Client protocol compatibility does not qualify moving native aim or a
+complete game. The same explicit option is available in
+`tools/smoke_wsl_native_live.py`; historical probe defaults are preserved.
+
 Use a Linux x86-64 desktop. The server and client run on the same computer over loopback; deploying both on another computer is supported by these setup steps. This is not a remote-LAN client/server configuration. Windows native and WSL-to-Windows desktop integration are not qualified; the doctor refuses a non-Linux native host. Old `.bat` files are historical/manual entries.
 
 Clone this public simulator repository normally. No historical navigation checkout or private recovery archive is needed for the deployment sources. From its root:

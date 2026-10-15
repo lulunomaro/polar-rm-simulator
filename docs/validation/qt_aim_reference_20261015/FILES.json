@@ -1,0 +1,25 @@
+{
+  "schema": "polar.evidence-package.files.v1",
+  "files": {
+    "MANIFEST.json": {
+      "size": 356132,
+      "sha256": "54a958eb5cbd761cc6753fddd9e4932ca8b75afcc18cb6e316257dea8285f9c8"
+    },
+    "README.md": {
+      "size": 6633,
+      "sha256": "9af8d2974b25f2f2245b882ecdf4fbf9ddf5c023b38e7e37919324ade99c5341"
+    },
+    "records.tar.gz": {
+      "size": 4220278,
+      "sha256": "5b363afd5a0353232b500b4973f832c19d5f0ce3da5ea7e47ad57db58b657654"
+    },
+    "review-final.tar.gz": {
+      "size": 9233,
+      "sha256": "b13eec0ab6df4b3551b4ab4288731036a33501bd2cc67a5d95920ed3d6743027"
+    },
+    "SUPPLEMENT.json": {
+      "size": 1754,
+      "sha256": "8bc212dc1f3c9cd626254d5be00b53f6cf7ffbf262c33bb0c607740906f6cd08"
+    }
+  }
+}

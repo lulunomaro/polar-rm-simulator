@@ -1,5 +1,20 @@
 # 自有 Qt 客户端 operator_state_v1 补丁
 
+新安装推荐第六份完整组合补丁 [CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json](CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json)
+与 [robotio_aim_reference_v2.patch](robotio_aim_reference_v2.patch)，从同一固定基线安装在全新 checkout。
+包含第五份全部修复，另允许严格声明的通用 aim v2；不是 Qt 框架升级，也不表示任意算法已经适配。
+安装和部署时必须同时指定该 manifest 与对应 client root，不能叠加旧补丁或自动回退版本。
+原五份 patch、manifest 与低层省略参数的原默认保持不变。
+
+```powershell
+.venv-sim/Scripts/python.exe tools/apply_client_patch.py --client-root external/polar-rm-client-aim-reference-review --manifest client_patches/CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json --run
+```
+
+上面的目标须为固定基线的干净 checkout；已有修改的客户端不会被重置或覆盖。
+第六接口、真实验证范围与 Linux setup/doctor/launch 配对参数见[兼容文档](../docs/AIM_PLUGIN_COMPATIBILITY.md)。
+本轮继承平台32模块真实Qt离屏回归513pass/395subtests/0skip，33文件apply/还原及独立身份检查通过；
+合成SDK/图像夹具不等于算法或比赛验证。原失败与最终项目QA见[固定证据](../docs/validation/qt_aim_reference_20261015/README.md)。
+
 2026-10-15 第五份完整组合补丁为 [CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json](CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json)
 与 [robotio_camera_order_v1.patch](robotio_camera_order_v1.patch)。从下述同一固定基线安装在全新干净 checkout，不能叠加旧四版。
 包含之前通用组件和 batch 修复；合法相机帧暂时超前 HUD 时验证后丢弃，不刷新原时间锚或有效期，

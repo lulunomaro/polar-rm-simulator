@@ -3,6 +3,15 @@
 新的显式组合补丁支持按能力合同选择通用导航、决策/导航 pipeline，以及已有通用自瞄。
 注册和显示不按队名分派。队伍仍需提供匹配协议的本地 wrapper；目录可选不代表算法或整场比赛已经通过。
 
+## 第六份 aim v2 组合补丁（2026-10-15）
+
+新安装推荐 [CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json](../client_patches/CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json)
+对应的完整第六补丁。它包含第五版全部改动，另支持完整声明的 `camera_gimbal_v2` 与 source-base 惯性 yaw 参考；
+这是自瞄接口版本，客户端仍用 Qt 6。原第五版及其真实手控/导航证据保持原身份。
+严格能力选择、安装、显式 `--client-patch-manifest`、版本错配拒绝和范围见[自瞄兼容文档](AIM_PLUGIN_COMPATIBILITY.md#第六-qt-客户端显式选择-v2)。
+`examples/coop_aim_reference_manual.json` 提供对应 root/manifest 的手控配置；算法 spec 仍须单独准备。
+UI 能选择和绑定不表示第三方算法、移动云台或整场比赛已通过。
+
 ## 第五份相机顺序组合补丁（2026-10-15）
 
 [CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json](../client_patches/CLIENT_CAMERA_ORDER_PATCH_MANIFEST.json) 与

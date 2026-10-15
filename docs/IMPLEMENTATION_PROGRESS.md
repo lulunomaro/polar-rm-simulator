@@ -8,11 +8,11 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3修复，完整T2新构建与历史静态OFFLINE24/三次live链局部通过 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
-| T03 | 本轮三次静态native回归仍FAIL，最新RTF0.821310；原80/150ms与原ELF/模型保持，取消/包装过期/浮点边界审计已补齐 | 实际绑定+图像+线程性能退化仍待定位；最终STOP窄修后仅无害资源验证，未重跑NN，不继承旧静态资格 |
-| T04 | 进行中：第五客户端原字节保持；原Qt手控步兵与真实PB导航同场5秒/30秒通过，82/486批手动全部消费、314/410同物理步两车非零；旧手动和联合失败均保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
+| T03 | 三次静态native仍FAIL，最新RTF0.821310；新增六车active-v1合成图像ABBA及独立profile，差异不足解释实际退化；原80/150ms与原ELF/模型保持 | 实际图像/异步线程耗时仍待同源wall/thread-CPU计时定位；未重跑NN，不继承旧静态资格 |
+| T04 | 进行中：第六Qt新增严格aim v2选择/原授权绑定；513项/395subtests客户端回归通过；旧五版保持各自身份，既有第五版手控/PB导航5秒/30秒局部SIL保留 | 更长/可见桌面、移动完整自瞄、云台精度/实体弹丸、完整队伍算法/比赛树组合 |
 | T05 | 新增显式通用aim v2源方向参考，原source/budget锁定后按当前本车yaw转换；真实MuJoCo合成指令机械正/负对照通过，修复最终Command未应用新角度 | 不补平移/目标预测/弹道；T2原生移动profile、29TU新构建、多车同时真实自瞄未验；原静止scope证据按原源保留 |
 | T06 | 新增真实Slot暂停在途结果复活修复、fault与取消负例、绝对截止边界回归；全部失败和来源保留 | 系统运动/遮挡/丢失/射击/断线完整闭环矩阵仍待完成；合成/单位与无害进程不替NN实时验证 |
-| T07 | 真实BT4/PB actual07健康单目标局部SIL保留；新增capabilities.v2完整协商、camera+odometry及实际WSL prepare/reset/owned清理 | 通用接口不等于大部分算法实际通过；第五Qt/旧ROS envelope拒绝v2，第二完整自瞄/比赛树多分支/多车仍未验 |
+| T07 | 真实BT4/PB actual07健康单目标局部SIL保留；capabilities.v2完整协商与WSL生命周期保留；第六Qt接受完整v2声明，显式root/manifest贯穿检查和启动 | 通用接口不等于大部分算法实际通过；第五Qt/旧ROS envelope仍拒绝v2，第二完整自瞄/比赛树多分支/多车仍未验 |
 | T08 | 未完整实现：当前解析式简化车辆 | 真实车辆资产/动力学/轮腿策略；来源许可与策略复现 |
 | T09 | 真树actual07局部SIL通过：136原LIO/精确TF、原costmap起点门、15实际公开动作/620非零物理步，原目标终态/stop与owned资源回收有证；旧失败保留 | 健康单目标非完整巡逻/交战；定位标定/精度/恢复和完整任务未验收；NavigateToPose仅单元证据 |
 | T10 | 已有版本化 2026 RMUL 子集，未完整验收 | 官方规则逐条测试、资产许可和适用性 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 本轮最终QA02四阶段通过：3322pass/45skip/1024subtests；源码逐SHA不变。QA01压力失败及三次native实际FAIL全部保留 | 质量通过不替实时性能、移动自瞄、多车/比赛、发布或M0–M5验收 |
+| T17 | 本轮第六Qt检查点四阶段通过：3332pass/45skip/1024subtests，484程序/测试/补丁输入不变；第六Qt32模块513pass/395subtests；全部原失败保留 | 质量通过不替实时性能、移动自瞄、多车/比赛、发布或M0–M5验收 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -34,7 +34,38 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
 
-## 通用aim v2与最终执行器修复（2026-10-15，本轮最新）
+## 第六Qt兼容与显式部署选择（2026-10-15，本轮最新）
+
+第六完整补丁从固定client BASE独立生成，包含第五版所有改动并严格支持
+`camera_gimbal_v2` / `2.0.0` / `camera+odometry` / 原source-base惯性yaw参考。
+真实Qt离屏专项56pass/64subtests、继承平台32模块513pass/395subtests/0skip；
+第一次完整调用因未提供旧夹具所需的父仓PYTHONPATH而collection失败3项，保留原日志，
+只修运行环境后另存第二次完整结果，没有改客户端源码掩盖失败。
+选择仍使用原claim/fresh-own-HUD/人工arm/空binding config，未知/混合能力和旧ROS v2拒绝。
+原五份patch、manifest、checkout与历史实际SIL证据不继承第六身份，也不被覆盖。
+
+Linux部署显式 `--client-patch-manifest` 与同一 `--client-root` 配对，
+计划固定hash、doctor/服务启动前/ready后客户端取凭证前重验；setup apply/postcheck同版本。
+native diagnostic也支持显式选择并在收尾核验身份，旧省略参数默认仍第一版，不自动猜版本。
+新增第六手控coop模板的导航/自瞄spec仍为null，不能当成已部署算法或完整比赛。
+
+第六33文件从固定BASE实际apply/还原和源码核验通过，独立review真实调用check_client通过；
+旧五份patch/MF及138份旧checkout成员原字节不变。首次roundtrip因混用Git CRLF配置而raw-clean断言失败，
+保留原命令/dirty输出；后续逐调用匹配LF或CRLF配置验证，未改全局Git设置或回写原结果。
+deploy/co-op/native diagnostic三个真实dry CLI均选择同一第六身份，没有启动算法。
+
+六车实际MuJoCo、合成camera/aim v1绑定的ABBA诊断覆盖实际active执行：
+active目标路径中位数parent/current约18.75/21.00微秒，同版本样本波动大，不能据此解释实际T2退化。
+旧native01/02/03的render和输入ACK墙钟对照已存；没有thread CPU证据，不能断言GIL为原因。
+下一步复用profile-authority并补有界同源队列/写入wall与thread-CPU采样，停后落盘；本轮未改门限或重跑NN。
+
+[固定证据](validation/qt_aim_reference_20261015/README.md)保存原失败、源快照和复现命令。
+最终QA01四阶段通过：3332pass/45skip/6既有warnings/1024subtests，pytest227.07s，
+driver329.413784s/exit0/reaped；484程序/测试/补丁输入前后逐SHA相同。
+256客户端源文件在Qt测试前后相同，归档时逐文件核验后补存字节，不伪称运行前已复制。
+本节、兼容文档和归档结果说明在QA后补写。M0–M5状态不变，旧实时失败不因Qt通过而签收。
+
+## 通用aim v2与最终执行器修复（2026-10-15，历史检查点）
 
 [本轮固定证据](validation/aim_reference_20261015/README.md)分开保存单位/合成、真实无害WSL生命周期、
 真实MuJoCo合成指令机械对照和三次T2静态实时失败。新增完整v2能力协商与源方向yaw保持，

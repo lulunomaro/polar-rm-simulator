@@ -8,7 +8,7 @@
 
 当前仿真接口链路是：**MuJoCo 场景实际渲染 RGB/BGR → 原 CameraInfo/K/D/标定和曝光源上下文 + 同次物理快照的本车姿态反馈 → 上位机完整自瞄算法（检测、跟踪及其控制/弹道链）→ 规范 yaw/pitch action → runtime 重查原 80/150 ms 门限及租约 → MuJoCo 云台关节 actuator → 下一次曝光和关节反馈**。适配程序把原图与本车测量交给算法，不从仿真器喂敌方位置、Target 角度或目标身份真值。yaw/pitch 是算法计算后的控制输出，不是替代图像的输入。相机像素由模拟相机产生，不是物理工业相机采集；qpos/qvel 来自模拟关节，不是实物 IMU/编码器采样。[camera.py](../rm_match/platform_v2/camera.py) 在曝光时复制实际 MuJoCo data；[backend.py](../rm_match/platform_v2/backend.py) 执行经过重检的目标并推进物理。仿真 adapter/runtime/actuator 在这里替代 C 板控制与电机执行，没有连接或验证物理 C 板/电机，也尚未复现特定固件的 CAN、电流环、滤波或硬件延迟。
 
-自家 T2 的显式配置已连续三次通过本机静态实时链，正式入口一次物理RTF0.9971029、107个及时结果/97个独立新帧实际关节消费、0fault/0fire/clean；原80/150ms保持，late/pending不计及时推理或动作。旧async02的RTF0.5475和额外计时/调度失败保留。同济source04实际原模型prepare/reset/清理通过，仍无真实图像计算。PB source03七包build/三真实节点graph/reset/clean已过；实际首帧在host序列化或跨WSL请求部分传输时超原80ms，尚无该帧MLP/PnP或控制结果。接口合同不表示三套实时自瞄都通过，也不保证未经适配的程序零修改接入。见[最新逐次验证](validation/aim_live_followup_20261014/README.md)与[此前构建/准备记录](validation/universal_aim_20261014/README.md)。
+自家 T2 的历史显式配置曾连续三次通过本机静态实时链，正式入口一次物理RTF0.9971029、107个及时结果/97个独立新帧实际关节消费、0fault/0fire/clean；原80/150ms保持，late/pending不计及时推理或动作。后续源检查点的三次静态实时回归仍FAIL，最新RTF0.821310，当前不继承历史实时资格，见[原始失败记录](validation/aim_reference_20261015/README.md)。旧async02的RTF0.5475和额外计时/调度失败保留。同济source04实际原模型prepare/reset/清理通过，仍无真实图像计算。PB source03七包build/三真实节点graph/reset/clean已过；实际首帧在host序列化或跨WSL请求部分传输时超原80ms，尚无该帧MLP/PnP或控制结果。接口合同不表示三套实时自瞄都通过，也不保证未经适配的程序零修改接入。见[历史逐次验证](validation/aim_live_followup_20261014/README.md)与[此前构建/准备记录](validation/universal_aim_20261014/README.md)。
 
 导航已有 Windows→WSL、实际 LiDAR/IMU→Point-LIO→Nav2→SDK→MuJoCo 的单目标生产 SIL 闭环证据，见 [导航生产验证](validation/pb_wsl_production_20261014/README.md)。这是导航的局部结果，不替代自瞄实时门禁、定位精度、完整比赛或实机 C 板验收。
 
@@ -45,6 +45,35 @@ v2 输出仍是原 `polar.sim.action.v2` / `aim/gimbal_target`：`command.frame=
 曝光时的 `camera.own_*_at_capture` 与 source observation 的 own 姿态属于不同采样点。算法若由曝光的相机 / `pitch_link` 方向计算输出，须显式利用该曝光的捕获姿态和标定，再正确转换到原 source base；不能把曝光姿态和当前观测姿态混用，也不能对已是 source-base 的角度重复补偿。每次消费仍重查原 capture 80 ms、SDK 150 ms、epoch、租约、activation 与 fault；yaw 补偿不刷新身份、时间戳或授权寿命。`no_target` / `pending_result` 继续是无角度状态，不用零角动作伪装等待。
 
 固定第五 Qt 客户端的 `custom_*` 解析精确接受 v1 capabilities 和 `['camera']`，因此会安全拒绝 v2，不会在原下拉列表中获得可选资格。保持该客户端和补丁身份时，v2 可经服务 catalog 与具备对应协议的 SDK 显式选择、绑定和授权；不能把 v2 伪标 v1、删字段或借原 native ID 绕过 UI 检查。需要 Qt 直接选择 v2 时，应另做独立客户端兼容版本。本节的分层证据见[本轮固定记录](validation/aim_reference_20261015/README.md)：真实MuJoCo合成指令机械正/负对照、真实无害WSL能力协商与取消回收通过，最终QA为3322pass/45skip/1024subtests；三次实际T2静态实时回归仍FAIL，最新RTF0.821310。最终STOP管道窄修后未重跑NN。协议与宿主关节语义扩展不等于T2移动底盘、移动命中、多车同时自瞄或完整比赛通过。
+
+### 第六 Qt 客户端：显式选择 v2
+
+这里的“v2”是自瞄接口版本；客户端仍使用 PySide6 / Qt 6。
+新 [CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json](../client_patches/CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json)
+与 [robotio_aim_reference_v2.patch](../client_patches/robotio_aim_reference_v2.patch)
+是从原固定 BASE 出发的第六份**完整组合补丁**，包含第五版所有修复，不叠加在旧 checkout 上。
+它另接受上述完整 v2 capabilities、`camera_gimbal_v2`、`2.0.0`、`camera+odometry` 和惯性参考组合；
+缺字段、额外能力、版本混搭、未知参考、没有协商能力的旧 ROS envelope 均拒绝。
+合法 v1 保持原语义。可选项仍经原 Qt 选择、租约、fresh own HUD、手动 arm 和空 `{}` binding config；
+选中协议不会自动绑定、续期、取得控制或开火。
+
+新 checkout 使用 `external/polar-rm-client-aim-reference-review`，安装命令见[客户端补丁](../client_patches/README.md)。
+Linux 部署的 `setup-client/plan/doctor/launch` 均需携带
+`--client-root external/polar-rm-client-aim-reference-review --client-patch-manifest client_patches/CLIENT_AIM_REFERENCE_PATCH_MANIFEST.json`。
+部署计划固定同一 manifest/patch hash，doctor、服务启动前和客户端进程取得凭证前重新核验对应源码；
+期间改文件必须拒绝。省略该参数仍是原第一份补丁，没有版本自动猜测或回退。
+真实 WSL native diagnostic 也接受同一个显式参数，并在收尾复核客户端身份；它的历史默认未变。
+旧五份补丁和所有既有证据均保留自己的原字节及资格。
+
+[coop_aim_reference_manual.json](../examples/coop_aim_reference_manual.json) 仅提供第六 Qt 的手控入口配置，
+外部导航/自瞄 spec 仍为 null；它不随模板安装模型或运行算法。要接入第三方算法，仍需实际 wrapper、
+严格能力协商、相机标定与原时限验证；该 UI 扩展不能使尚未通过的实时/移动/比赛自动获得资格。
+
+第六实际离屏专项56pass/64subtests、继承平台32模块513pass/395subtests/0skip，
+使用原Qt窗口与合成SDK/图像夹具，未运行真实HTTP到物理、自瞄NN或可见桌面。
+33文件补丁往返、独立check_client和三个实际dry CLI已通过；原五版字节保留。
+最终项目QA3332pass/45skip/1024subtests，484程序/测试/补丁输入不变。
+原collection环境失败和CRLF探针失败、active-v1性能诊断及复现见[本轮固定证据](validation/qt_aim_reference_20261015/README.md)。
 
 ### T2 显式静止身份 scope
 

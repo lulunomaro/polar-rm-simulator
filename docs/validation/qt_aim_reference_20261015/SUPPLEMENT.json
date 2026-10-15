@@ -1,0 +1,31 @@
+{
+  "schema": "polar.qt-aim-reference.final-review-supplement.v1",
+  "archive": "review-final.tar.gz",
+  "archive_sha256": "b13eec0ab6df4b3551b4ab4288731036a33501bd2cc67a5d95920ed3d6743027",
+  "records": [
+    {
+      "original_path": "artifacts/qt-aim-reference-independent-review-20261015-01/CLIENT_REVIEW.json",
+      "sha256": "f5680c8ea6b6c2ada6ebee944312a3b71993abdd0af48f069bc2cc6ec5639ae7",
+      "size": 34368,
+      "archive_member": "payload/f5680c8ea6b6c2ada6ebee944312a3b71993abdd0af48f069bc2cc6ec5639ae7",
+      "superseded_sha256": "4aa474af1b3883696a581e6b974a53d84f1dd7ca9e00400791b2e0557846806a"
+    },
+    {
+      "original_path": "artifacts/qt-aim-reference-independent-review-20261015-01/CLIENT_REVIEW.md",
+      "sha256": "a60126b1eb02569c285c295fd9cd86065bf32dd804fdd76eb0ff4a5a6e50c730",
+      "size": 3065,
+      "archive_member": "payload/a60126b1eb02569c285c295fd9cd86065bf32dd804fdd76eb0ff4a5a6e50c730",
+      "superseded_sha256": "11f0005baeb301937b40a02ce91a53ebfd894d0450d20a1109b9b32117cabc83"
+    },
+    {
+      "original_path": "artifacts/preserve_qt_aim_reference_review_final_20261015.py",
+      "sha256": "447ff59ad4b0476e075ce30024ed9185b746efcc0df4cb96a2774b2434821648",
+      "size": 2699,
+      "archive_member": "payload/447ff59ad4b0476e075ce30024ed9185b746efcc0df4cb96a2774b2434821648",
+      "superseded_sha256": null
+    }
+  ],
+  "reason": "The reviewer finalized two reports after the initial archive snapshot, correcting its note about test-source hash history. Program/client/patch/manifest/test bytes and all actual results were unchanged. Preserve both report revisions instead of rewriting the original archive.",
+  "initial_archive_unchanged": true,
+  "all_other_initial_records_match_current": true
+}

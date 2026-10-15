@@ -572,9 +572,26 @@ def run(a):
     return 0 if report['classification']['live_static_chain_qualified'] else 2
 
 
+def selected_client_identity(a):
+    """Explicit root/manifest pair; omitted manifest retains the legacy patch."""
+    from rm_match.deployment.launcher import check_client
+    selected=getattr(a,'client_patch_manifest',None)
+    return (check_client(a.client_root) if selected is None else
+            check_client(a.client_root,patch_manifest=selected))
+
+
+def selected_client_plan(a):
+    from rm_match.deployment.launcher import client_patch_identity
+    selected=getattr(a,'client_patch_manifest',None)
+    if selected is None:
+        return None
+    return dict(client_root=str(a.client_root.expanduser().absolute()),
+        client_patch_manifest=str(selected.expanduser().absolute()),
+        client_patch=client_patch_identity(manifest_path=selected.expanduser().absolute()))
+
+
 def _run(a,affinity,scheduling):
     if sys.platform!='win32':raise RuntimeError('Actual Windows host required for NVIDIA live diagnostic')
-    from rm_match.deployment.launcher import check_client
     from rm_match.deployment.enrollment import provision_operator
     from rm_match.deployment.wsl_profile import own_wsl_registry
     from rm_match.platform_v2.admission import AdmissionPolicy
@@ -610,8 +627,18 @@ def _run(a,affinity,scheduling):
         from rm_match.platform_v2.host_opencv import configure_opencv_threads
         host_opencv=configure_opencv_threads(host_threads)
         write('HOST_OPENCV_STARTUP.json',host_opencv)
-    identity=check_client(a.client_root)
+    identity=selected_client_identity(a)
+    selected=getattr(a,'_client_selection',None)
+    if selected is not None:
+        if selected_client_plan(a)!=selected or identity['client_patch']!=selected['client_patch']:
+            raise RuntimeError('Selected client changed after plan')
+        plan['client_selection']=selected
+        write('PLAN.json',plan)
     write('CLIENT_IDENTITY.json',identity)
+    selected_manifest=getattr(a,'client_patch_manifest',None)
+    write('CLIENT_SELECTION.json',dict(client_root=str(a.client_root.absolute()),
+        client_patch_manifest=None if selected_manifest is None else str(selected_manifest.absolute()),
+        client_patch=identity['client_patch']))
     sys.path.insert(0,str(a.client_root.resolve()))
     from rm_client.sim_platform_client import PlatformClient,ClientError
     credential=provision_operator(out/'admission.json',allowed_robots=(actor_id,))
@@ -788,6 +815,14 @@ def _run(a,affinity,scheduling):
     clean=(camera_closed and not http.is_alive() and (physics is None or not physics.is_alive())
         and getattr(runtime,'shutdown_status',{}).get('clean') is True)
     source_unchanged=all((ROOT/p).is_file() and hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in sources.items())
+    try:
+        final_identity=selected_client_identity(a)
+        client_unchanged=final_identity==identity
+        write('CLIENT_FINAL_IDENTITY.json',dict(identity=final_identity,unchanged=client_unchanged))
+    except Exception as exc:
+        client_unchanged=False
+        write('CLIENT_FINAL_IDENTITY.json',dict(unchanged=False,error=type(exc).__name__+':'+str(exc)))
+    source_unchanged=source_unchanged and client_unchanged
     if scope_raw is not None:
         source_unchanged=source_unchanged and Path(scope_path).read_bytes()==scope_raw
     extension=codec_identity.get('extension_path')
@@ -880,10 +915,14 @@ def main(argv=None):
         help='Explicit Windows authority-thread mask, base-0 integer; restored after runtime.run')
     p.add_argument('--profile-authority',action='store_true',help='Additional local stage timers with explicit diagnostic overhead')
     p.add_argument('--client-root',type=Path)
+    p.add_argument('--client-patch-manifest',type=Path,
+        help='Explicit reviewed patch for this exact client checkout; no automatic version fallback')
     p.add_argument('--out',type=Path)
     p.add_argument('--seconds',type=float,default=10.)
     p.add_argument('--run',action='store_true')
     a=p.parse_args(argv)
+    if a.client_patch_manifest is not None and a.client_root is None:
+        p.error('--client-patch-manifest requires its explicit --client-root')
     if a.authority_affinity_mask is not None and sys.platform!='win32':p.error('--authority-affinity-mask requires Windows')
     if a.host_opencv_threads is not None and not 1<=a.host_opencv_threads<=32:p.error('--host-opencv-threads must be within 1..32')
     if not 10<=a.seconds<=20:p.error('Actual run must be bounded to 10..20 wall seconds')
@@ -891,6 +930,9 @@ def main(argv=None):
         selected_plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope)
+        a._client_selection=selected_client_plan(a)
+        if a._client_selection is not None:
+            selected_plan['client_selection']=a._client_selection
     except (ValueError,OSError) as exc:p.error('Invalid local native scene/scope: '+str(exc))
     if not a.run:
         print(json.dumps(selected_plan,indent=2));return 0
@@ -898,6 +940,8 @@ def main(argv=None):
         if getattr(a,key) is None:p.error('--'+key.replace('_','-')+' is required with --run')
         setattr(a,key,getattr(a,key).resolve())
     if a.out.exists():p.error('Fresh output directory required; preserved evidence is never overwritten')
+    if a.client_patch_manifest is not None:
+        a.client_patch_manifest=a.client_patch_manifest.expanduser().absolute()
     try:return run(a)
     except BaseException as exc:
         # Errors before resource construction still leave an honest bounded
