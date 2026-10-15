@@ -1,0 +1,22 @@
+[
+  "docs/ACTIVE_GOAL_NAVIGATION_PLUGIN.md",
+  "docs/COOP_PLAYABLE_PATH.md",
+  "docs/IMPLEMENTATION_PROGRESS.md",
+  "docs/UNIVERSAL_PLUGIN_INTERFACES.md",
+  "examples/robotio_active_goal_navigation.json",
+  "examples/robotio_active_goal_plugins.json",
+  "rm_match/deployment/navigation_plugin.py",
+  "rm_match/integrations/goal_navigation_compute.py",
+  "rm_match/integrations/navigation_jsonl_peer.py",
+  "rm_match/integrations/pb_goal_controller_source.py",
+  "rm_match/integrations/robotio_ros2_bridge.py",
+  "rm_match/platform_v2/goal_navigation_contracts.py",
+  "tests/fixtures/active_goal_navigation_fixture.py",
+  "tests/test_active_goal_navigation_plugin.py",
+  "tests/test_active_goal_protocol_audit.py",
+  "tests/test_active_goal_ros2_bridge.py",
+  "tests/test_goal_navigation_compute.py",
+  "tests/test_goal_navigation_contracts.py",
+  "tests/test_pb_goal_controller_source.py",
+  "tools/qa_active_goal_protocol_sil.py"
+]

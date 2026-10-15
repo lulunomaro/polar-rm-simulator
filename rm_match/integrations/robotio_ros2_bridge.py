@@ -25,11 +25,15 @@ class RobotIOSettings:
     domain_id:int
     response_timeout:float=.05
     goal_input:bool=False
+    goal_result_profile:str='none'
     def __post_init__(self):
         BridgeSettings(self.adapter_id,'navigation',self.node_name,self.observation_topic,self.action_topic,self.domain_id,self.response_timeout)
         if self.kind not in ('navigation','decision') or type(self.kind) is not str or type(self.goal_input) is not bool:
             raise BridgeError('robotio_ros2_kind_or_goal_profile')
         if self.kind=='decision' and self.goal_input:raise BridgeError('robotio_decision_not_navigation')
+        if (type(self.goal_result_profile) is not str or self.goal_result_profile not in ('none','active_goal_v1')
+            or self.goal_result_profile=='active_goal_v1' and (self.kind!='navigation' or not self.goal_input)):
+            raise BridgeError('robotio_ros2_goal_result_profile')
         if self.response_timeout>(.05 if self.kind=='navigation' else .15):raise BridgeError('robotio_ros2_original_budget')
 
 class RobotIOEnvelopeBridge:
@@ -37,9 +41,13 @@ class RobotIOEnvelopeBridge:
         self.settings=settings;self.clock=clock;self.context=None;self._pending=None
         self._response=None;self._deadline=None;self._seq=-1;self._closed=False
         self._negotiating=False;self._negotiated=False
+        self._pending_intent=None
+        from ..platform_v2.goal_navigation_contracts import GoalNavigationResultHistory
+        self._goal_history=GoalNavigationResultHistory()
         if settings.kind=='navigation':
-            from ..deployment.navigation_plugin import CAPABILITIES
-            self.capabilities=dict(copy.deepcopy(CAPABILITIES),goal_input_modes=['decision_intent_v1'] if settings.goal_input else [])
+            from ..deployment.navigation_plugin import CAPABILITIES,GOAL_CAPABILITIES
+            selected=GOAL_CAPABILITIES if settings.goal_result_profile=='active_goal_v1' else CAPABILITIES
+            self.capabilities=dict(copy.deepcopy(selected),goal_input_modes=['decision_intent_v1'] if settings.goal_input else [])
         else:
             from ..deployment.decision_plugin import CAPABILITIES
             self.capabilities=copy.deepcopy(CAPABILITIES)
@@ -82,7 +90,7 @@ class RobotIOEnvelopeBridge:
         packet=dict(schema=ENVELOPE_SCHEMA,type='observation',adapter_id=self.settings.adapter_id,observation=o)
         if intent is not None:packet['intent']=intent
         payload=encode_json(packet,MAX_REQUEST).decode();self._check_deadline()
-        self._pending=o;self._seq=o['observed_seq'];return payload
+        self._pending=o;self._pending_intent=copy.deepcopy(intent);self._seq=o['observed_seq'];return payload
     def receive_action(self,payload):
         self._check_deadline();value=parse_json(payload,MAX_RESPONSE)
         if self._negotiating:
@@ -98,25 +106,31 @@ class RobotIOEnvelopeBridge:
         else:
             if self._pending is None or self._response is not None:raise BridgeError('robotio_ros2_no_pending_request')
             if self.settings.kind=='decision':field='intent'
+            elif self.settings.goal_result_profile=='active_goal_v1':field='result'
             else:field='status' if type(value) is dict and value.get('type')=='status' else 'action'
             exact(value,('schema','type','adapter_id',field),'robotio_ros2_response')
             if value['type']!=field:raise BridgeError('robotio_ros2_response_kind')
             if field=='intent':
                 from ..platform_v2.decision_contracts import validate_decision_intent
                 result=validate_decision_intent(value[field],self._pending)
+            elif field=='result':
+                from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result
+                result=validate_goal_navigation_result(value[field],self._pending,self._pending_intent)
             else:
                 from ..deployment.navigation_plugin import validate_result
                 wanted,result=validate_result(value[field],self._pending)
                 if wanted!=field:raise BridgeError('robotio_ros2_response_kind')
         if type(value['schema']) is not str or value['schema']!=ENVELOPE_SCHEMA or type(value['adapter_id']) is not str or value['adapter_id']!=self.settings.adapter_id:
             raise BridgeError('robotio_ros2_route_mismatch')
+        if not self._negotiating and self.settings.goal_result_profile=='active_goal_v1':
+            self._goal_history.check(result)
         self._check_deadline();self._response=result
     def exchange(self,o,transport,intent=None):
         transport.publish(self.begin(o,intent))
         while self._response is None:
             self._check_deadline();transport.spin_once(min(.005,max(0.,self._deadline-self.clock())))
-        self._check_deadline();result=self._response;self._response=None;self._pending=None;return result
-    def close(self):self._closed=True;self._pending=None;self._response=None
+        self._check_deadline();result=self._response;self._response=None;self._pending=None;self._pending_intent=None;return result
+    def close(self):self._closed=True;self._pending=None;self._response=None;self._pending_intent=None
 
 def serve(core,transport,input_stream,output_stream):
     while True:
@@ -139,7 +153,8 @@ def serve(core,transport,input_stream,output_stream):
             has_intent='intent' in packet
             exact(packet,('schema','op','observation','intent') if has_intent else ('schema','op','observation'),'robotio_ros2_act')
             value=core.exchange(packet['observation'],transport,packet.get('intent'))
-            field='intent' if core.settings.kind=='decision' else 'status' if value.get('schema')=='polar.sim.navigation-status.v1' else 'action'
+            field=('intent' if core.settings.kind=='decision' else 'result' if core.settings.goal_result_profile=='active_goal_v1'
+                else 'status' if value.get('schema')=='polar.sim.navigation-status.v1' else 'action')
             result=dict(schema=JSONL_SCHEMA,op='act',ok=True,**{field:value})
         else:raise BridgeError('robotio_ros2_operation')
         output_stream.write(encode_json(result,MAX_RESPONSE-1)+b'\n');output_stream.flush()
@@ -148,7 +163,9 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__,allow_abbrev=False)
     for name in ('adapter-id','kind','node-name','observation-topic','action-topic'):p.add_argument('--'+name,required=True)
     p.add_argument('--domain-id',type=int,required=True);p.add_argument('--response-timeout',type=float,default=.05)
-    p.add_argument('--goal-input',action='store_true');settings=RobotIOSettings(**vars(p.parse_args(argv)))
+    p.add_argument('--goal-input',action='store_true')
+    p.add_argument('--goal-result-profile',choices=('none','active_goal_v1'),default='none')
+    settings=RobotIOSettings(**vars(p.parse_args(argv)))
     sys.stdout.flush();protocol=os.fdopen(os.dup(sys.stdout.fileno()),'wb',buffering=0);os.dup2(sys.stderr.fileno(),sys.stdout.fileno())
     core=RobotIOEnvelopeBridge(settings);transport=None;code=0
     try:

@@ -1,0 +1,8 @@
+[
+  "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+  "-m",
+  "pytest",
+  "tests/test_goal_navigation_contracts.py",
+  "-q",
+  "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\goal-navigation-contracts-focused-20261015-01\\junit01.xml"
+]

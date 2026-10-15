@@ -259,3 +259,13 @@ finally:
 桥仅检验格式和原扫描来源，不自行决定本应用目标授权；独立audit从真实accepted UUID历史关联并拒绝歧义。
 库不直接注册为通用速度插件，不输出 action、不合成定位/视觉反馈、不扩大权限；decision v1 的 navigation/perception 仍保持 unavailable。
 跨 Windows/Linux 使用 opaque 原期限，仅本地 future 资源观察计时；原宿主 SDK 150 ms、图像80 ms和所有控制仲裁仍独立检查。
+
+## 新增当前目标授权profile
+
+[通用active-goal导航插件](ACTIVE_GOAL_NAVIGATION_PLUGIN.md)显式使用navigation capabilities v2与
+`polar.sim.navigation-goal-result.v1`，把原扫描、当前完整intent、active selection、真实控制器UUID一起验证。
+包括零速度在内的action只允许当前navigate授权；hold/cancel只返回status，不伪造停止动作。
+每binding历史拒绝原source/授权倒放、同seq改响应和UUID复用；None selection不宣称旧目标终结。
+旧v1及此前独立PB真实v2探针保持原范围。新profile注册、JSONL实际子进程、受控ROS包络和两车synthetic协议SIL
+已有独立证据；新profile真实DDS/WSL队伍算法组合仍待验证，不能称PB已注册通用profile或decision定位反馈已完成。
+接口、回调来源责任、失败/复跑和示例见新文档。

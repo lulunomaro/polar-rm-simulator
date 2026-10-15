@@ -1,0 +1,43 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_pb_goal_controller_source.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\pb-goal-source-focused-20261015-01\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 0.6407682999997633,
+  "source_before": {
+    "rm_match/integrations/pb_goal_controller_source.py": "f30c3c855ab72f1d28fc08820d09ba70e301d66d39538d1ea643dd847f11ae83",
+    "tests/test_pb_goal_controller_source.py": "156384f4c5d6af18820d14d83a6c8e6a1f35c12529880f41646b0eade5fc94da"
+  },
+  "source_after": {
+    "rm_match/integrations/pb_goal_controller_source.py": "f30c3c855ab72f1d28fc08820d09ba70e301d66d39538d1ea643dd847f11ae83",
+    "tests/test_pb_goal_controller_source.py": "156384f4c5d6af18820d14d83a6c8e6a1f35c12529880f41646b0eade5fc94da"
+  },
+  "source_unchanged": true,
+  "dependencies_before": {
+    "rm_match/integrations/pb_navigation_bridge.py": "7d09920d38a8e381264664b2cc0c532aff85c716e65675d7ae2961bc177070e5",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "rm_match/integrations/goal_navigation_compute.py": "b9cb83dd864aeefe164799fb465e4958b39e59f4d23443fcf2005e816b4df3e6",
+    "rm_match/platform_v2/goal_navigation_contracts.py": "c6e5b3088ab514ab03bcd584e0a62febbcf40315ec8b8e4d8de82d69afd29b7c",
+    "rm_match/integrations/ros2_bridge.py": "1cb700a4db69d9bf21f77c7174798e4e635672e581e129dc7f4a661cafdf44f1"
+  },
+  "dependencies_after": {
+    "rm_match/integrations/pb_navigation_bridge.py": "7d09920d38a8e381264664b2cc0c532aff85c716e65675d7ae2961bc177070e5",
+    "rm_match/integrations/pb_navigation_transport.py": "d7a4738d90818ddef14516ea20129bef758a5777397dffc53e03779ec4fd07d6",
+    "rm_match/integrations/goal_navigation_compute.py": "b9cb83dd864aeefe164799fb465e4958b39e59f4d23443fcf2005e816b4df3e6",
+    "rm_match/platform_v2/goal_navigation_contracts.py": "c6e5b3088ab514ab03bcd584e0a62febbcf40315ec8b8e4d8de82d69afd29b7c",
+    "rm_match/integrations/ros2_bridge.py": "1cb700a4db69d9bf21f77c7174798e4e635672e581e129dc7f4a661cafdf44f1"
+  },
+  "dependencies_unchanged": true,
+  "scope": "fake_sensor_wire_transport_and_async_goal_composition_only_not_real_PB_registration_or_ROS_acceptance",
+  "started_ros": false,
+  "started_algorithm": false
+}

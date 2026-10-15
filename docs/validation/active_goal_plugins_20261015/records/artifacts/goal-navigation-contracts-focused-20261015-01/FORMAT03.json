@@ -1,0 +1,14 @@
+[
+  {
+    "path": "rm_match/platform_v2/goal_navigation_contracts.py",
+    "sha256": "c6e5b3088ab514ab03bcd584e0a62febbcf40315ec8b8e4d8de82d69afd29b7c",
+    "lf_only": true,
+    "one_eof_lf": true
+  },
+  {
+    "path": "tests/test_goal_navigation_contracts.py",
+    "sha256": "4d8d97a870ad2d01c53fa3c21b227004be4c876c288accfc5e467b48279a0b5f",
+    "lf_only": true,
+    "one_eof_lf": true
+  }
+]

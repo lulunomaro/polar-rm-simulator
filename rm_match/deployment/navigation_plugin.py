@@ -24,17 +24,28 @@ CAPABILITIES = dict(schema=CAPABILITY_SCHEMA, observation_schema=NAV_SCHEMA,
     sensor_profile=NAV_PROFILE, source_association='exact_capture_context_v1',
     output_modes=['velocity_body'], fire_authority='manual_only',
     ui_config_contract='empty_v1', goal_input_modes=[])
+GOAL_CAPABILITY_SCHEMA = 'polar.sim.navigation-plugin.capabilities.v2'
+GOAL_CAPABILITIES = dict(copy.deepcopy(CAPABILITIES), schema=GOAL_CAPABILITY_SCHEMA,
+    source_association='exact_capture_and_active_goal_v1',
+    goal_input_modes=['decision_intent_v1'],
+    goal_result_schema='polar.sim.navigation-goal-result.v1')
 
 
 def validate_capabilities(value):
-    exact(value, CAPABILITIES, 'navigation_plugin_capabilities')
-    for key, wanted in CAPABILITIES.items():
-        if key == 'goal_input_modes':
+    goal_profile = type(value) is dict and value.get('schema') == GOAL_CAPABILITY_SCHEMA
+    expected = GOAL_CAPABILITIES if goal_profile else CAPABILITIES
+    exact(value, expected, 'navigation_plugin_capabilities')
+    for key, wanted in expected.items():
+        if key == 'goal_input_modes' and not goal_profile:
             if type(value[key]) is not list or value[key] not in ([], ['decision_intent_v1']):
                 raise ContractError('unsupported_navigation_plugin_goal_input')
         elif type(value[key]) is not type(wanted) or value[key] != wanted:
             raise ContractError('unsupported_navigation_plugin_capability_' + key)
     return copy.deepcopy(value)
+
+
+def uses_goal_result(capabilities):
+    return capabilities['schema'] == GOAL_CAPABILITY_SCHEMA
 
 
 def navigation_status_for(observation, status='no_associated_command'):
@@ -126,6 +137,9 @@ class NavigationPluginAdapter(JsonLineAdapter):
         identity(dict(context, observed_seq=0, sim_time=0., wall_deadline=0.))
         if context['robot_id'] not in self.registration['supported_robots']:
             raise ContractError('navigation_plugin_robot_unsupported')
+        from ..platform_v2.goal_navigation_contracts import GoalNavigationResultHistory
+        self._goal_history = GoalNavigationResultHistory()
+        self.last_goal_result = None
         kwargs = {} if deadline is None else {'deadline': deadline}
         return super().reset(context, **kwargs)
 
@@ -143,10 +157,15 @@ class NavigationPluginAdapter(JsonLineAdapter):
             return
         if packet['op'] != 'act': return super()._validate_response(result, packet)
         if type(result) is not dict: raise ContractError('invalid_navigation_plugin_response')
-        field = 'status' if 'status' in result else 'action'
+        goal_profile = uses_goal_result(self.registration['capabilities'])
+        field = 'result' if goal_profile else ('status' if 'status' in result else 'action')
         exact(result, ('schema', 'op', 'ok', field), 'navigation_plugin_response')
         if type(result['schema']) is not str or result['schema'] != JSONL_SCHEMA or type(result['op']) is not str or result['op'] != 'act' or result['ok'] is not True:
             raise ContractError('navigation_plugin_response_identity')
+        if goal_profile:
+            from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result
+            validate_goal_navigation_result(result['result'], packet['observation'], packet.get('intent'))
+            return
         expected, _ = validate_result_for_intent(result[field], packet['observation'], packet.get('intent'))
         if field != expected: raise ContractError('navigation_plugin_response_kind')
 
@@ -160,6 +179,8 @@ class NavigationPluginAdapter(JsonLineAdapter):
         return self._act(observation, intent)
 
     def _act(self, observation, intent):
+        # This receipt describes only this request; history remains separate.
+        self.last_goal_result = None
         o = self.checked(observation)
         if o['schema'] != NAV_SCHEMA: raise ContractError('navigation_plugin_observation_profile')
         require_sensors(o, ['pointcloud', 'imu'])
@@ -168,6 +189,17 @@ class NavigationPluginAdapter(JsonLineAdapter):
             if intent is None: return navigation_status_for(o)
             packet['intent'] = validate_intent(intent, o)
         response = self._exchange(packet, timeout=min(.25, o['wall_deadline'] - self.clock()))
+        if uses_goal_result(self.registration['capabilities']):
+            # Repeat the boundary check after custom transports, then record
+            # historical identity once. Only the strict actuator DTO leaves.
+            self._validate_response(response, packet)
+            from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result, GoalNavigationResultHistory
+            result = validate_goal_navigation_result(response['result'], o, packet['intent'])
+            if not hasattr(self, '_goal_history'):
+                self._goal_history = GoalNavigationResultHistory()
+            self._goal_history.check(result)
+            self.last_goal_result = copy.deepcopy(result)
+            return copy.deepcopy(result['status'] if 'status' in result else result['action'])
         field = 'status' if 'status' in response else 'action'
         return validate_result_for_intent(response[field], o, packet.get('intent'))[1]
 

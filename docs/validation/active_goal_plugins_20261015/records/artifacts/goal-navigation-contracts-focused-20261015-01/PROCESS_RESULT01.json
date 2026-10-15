@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed": 1.145929399994202,
+  "before": {
+    "rm_match/platform_v2/goal_navigation_contracts.py": "3f413bc1c40a843d5e9b1415873246dc22f2cc73d3b80f4898fc4caef9fa8857",
+    "tests/test_goal_navigation_contracts.py": "f34531470dfb4310efa5a3a729b69cbcca60d345e7a8596dc09099252039b3bd",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3"
+  },
+  "after": {
+    "rm_match/platform_v2/goal_navigation_contracts.py": "3f413bc1c40a843d5e9b1415873246dc22f2cc73d3b80f4898fc4caef9fa8857",
+    "tests/test_goal_navigation_contracts.py": "f34531470dfb4310efa5a3a729b69cbcca60d345e7a8596dc09099252039b3bd",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3"
+  },
+  "source_unchanged": true,
+  "scope": "synthetic stateless and per-binding history protocol tests, no ROS/WSL/physics/NN/GUI"
+}

@@ -10,15 +10,21 @@ import os
 import sys
 from .ros2_bridge import parse_json, encode_json, MAX_REQUEST, MAX_RESPONSE, JSONL_SCHEMA
 from ..deployment.navigation_plugin import (
-    CAPABILITIES, validate_capabilities, validate_intent, validate_result_for_intent, navigation_status_for)
+    CAPABILITIES, GOAL_CAPABILITIES, validate_capabilities, validate_intent,
+    validate_result_for_intent, navigation_status_for)
 from ..platform_v2.contracts import ContractError, exact, identity
 from ..platform_v2.navigation_contracts import validate_navigation_observation
 
 
-def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_modes=()):
-    capabilities = copy.deepcopy(CAPABILITIES)
+def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_modes=(), goal_result_profile='none'):
+    if type(goal_result_profile) is not str or goal_result_profile not in ('none', 'active_goal_v1'):
+        raise ContractError('navigation_peer_goal_result_profile')
+    goal_profile = goal_result_profile == 'active_goal_v1'
+    capabilities = copy.deepcopy(GOAL_CAPABILITIES if goal_profile else CAPABILITIES)
     capabilities['goal_input_modes'] = list(goal_input_modes)
     capabilities = validate_capabilities(capabilities)
+    from ..platform_v2.goal_navigation_contracts import GoalNavigationResultHistory
+    goal_history = GoalNavigationResultHistory()
     context = None; last_seq = -1; prepared = False
     while True:
         raw = input_stream.readline(MAX_REQUEST + 1)
@@ -60,11 +66,19 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
             if has_intent and not capabilities['goal_input_modes']:
                 raise ContractError('navigation_peer_goal_input_unsupported')
             intent = validate_intent(request['intent'], o) if has_intent else None
+            if goal_profile and not has_intent:
+                raise ContractError('navigation_peer_goal_result_intent_required')
             if capabilities['goal_input_modes'] and not has_intent:
                 value = navigation_status_for(o)
             else:
                 value = compute(copy.deepcopy(o), copy.deepcopy(intent))
-            field, value = validate_result_for_intent(value, o, intent)
+            if goal_profile:
+                from ..platform_v2.goal_navigation_contracts import validate_goal_navigation_result
+                value = validate_goal_navigation_result(value, o, intent)
+                goal_history.check(value)
+                field = 'result'
+            else:
+                field, value = validate_result_for_intent(value, o, intent)
             last_seq = o['observed_seq']
             response = dict(schema=JSONL_SCHEMA, op=op, ok=True, **{field: value})
         else: raise ContractError('navigation_peer_operation')
@@ -72,7 +86,7 @@ def serve_navigation_plugin(compute, input_stream, output_stream, *, goal_input_
         output_stream.flush()
 
 
-def run_navigation_plugin(compute_factory, *, goal_input_modes=()):
+def run_navigation_plugin(compute_factory, *, goal_input_modes=(), goal_result_profile='none'):
     """Keep algorithm/library stdout off the protocol; report shutdown failure."""
     sys.stdout.flush()
     protocol = os.fdopen(os.dup(sys.stdout.fileno()), 'wb', buffering=0)
@@ -81,7 +95,8 @@ def run_navigation_plugin(compute_factory, *, goal_input_modes=()):
     try:
         compute = compute_factory()
         if not callable(compute): raise ContractError('navigation_compute_callable_required')
-        serve_navigation_plugin(compute, sys.stdin.buffer, protocol, goal_input_modes=goal_input_modes)
+        serve_navigation_plugin(compute, sys.stdin.buffer, protocol, goal_input_modes=goal_input_modes,
+            goal_result_profile=goal_result_profile)
     except KeyboardInterrupt: code = 130
     except Exception:
         print('navigation_plugin_failed', file=sys.stderr, flush=True); code = 2

@@ -1,0 +1,52 @@
+{
+  "rows": [
+    {
+      "robot_id": "red_infantry",
+      "peer": "decision",
+      "pid": 41512,
+      "started_wall": 104523.5535475,
+      "ack_wall": 104523.7038674,
+      "elapsed_s": 0.15031989999988582,
+      "operation": "prepare",
+      "sensor_messages": 0,
+      "policy_calls": 0
+    },
+    {
+      "robot_id": "red_infantry",
+      "peer": "navigation",
+      "pid": 55012,
+      "started_wall": 104523.7038713,
+      "ack_wall": 104523.8529289,
+      "elapsed_s": 0.1490576000069268,
+      "operation": "prepare",
+      "sensor_messages": 0,
+      "policy_calls": 0
+    },
+    {
+      "robot_id": "blue_sentry",
+      "peer": "decision",
+      "pid": 66216,
+      "started_wall": 104523.8529319,
+      "ack_wall": 104524.0303268,
+      "elapsed_s": 0.17739490000531077,
+      "operation": "prepare",
+      "sensor_messages": 0,
+      "policy_calls": 0
+    },
+    {
+      "robot_id": "blue_sentry",
+      "peer": "navigation",
+      "pid": 57936,
+      "started_wall": 104524.0303348,
+      "ack_wall": 104524.1957974,
+      "elapsed_s": 0.1654625999944983,
+      "operation": "prepare",
+      "sensor_messages": 0,
+      "policy_calls": 0
+    }
+  ],
+  "elapsed_s": 0.6424688999977661,
+  "budget_s": 15.0,
+  "completed": true,
+  "scope": "actual resource-only prepare ACK, no context/reset/sensor/policy/inference"
+}

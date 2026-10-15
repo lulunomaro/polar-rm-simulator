@@ -1,0 +1,4219 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 58,
+      "sha256": "0a3d105e82925cf43143a9600eaabb67b626e2d74eaa518af90d8eff7924dba4"
+    },
+    {
+      "path": "PRESERVATION_MANIFEST.json",
+      "bytes": 434802,
+      "sha256": "7cd86f8dad390984e027c1522d51587ecde898046c4e84d56777e1f729a37ca7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3658,
+      "sha256": "090b60fc28468eb6d71d95bfab8cbc7f51f5b7ebc6ccf430de2def77a517537b"
+    },
+    {
+      "path": "records/artifacts/active-goal-compute-focused-20261015-01/pytest.xml.gz",
+      "bytes": 959,
+      "sha256": "46d1739a871593f9b5fb19c71f65494d2ce420776fa5fd369ad0dcc02ab2f520"
+    },
+    {
+      "path": "records/artifacts/active-goal-compute-focused-20261015-01/RESULT.json",
+      "bytes": 2752,
+      "sha256": "f3ba3947363f5ebd3b5cb061392c674076cbe47768e84b0eec785c74bd5f560e"
+    },
+    {
+      "path": "records/artifacts/active-goal-compute-focused-20261015-01/SOURCE_BEFORE.json",
+      "bytes": 1009,
+      "sha256": "7d401df934933b037f24ccb8c8baa563875d73b04114b973a2433f55031080b5"
+    },
+    {
+      "path": "records/artifacts/active-goal-compute-focused-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-compute-focused-20261015-01/stdout.log",
+      "bytes": 101,
+      "sha256": "d9985cbbf0aed317b3798604c2612200a9e52a2f800aeacee0bde9977e2d16c0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/COMMAND.json",
+      "bytes": 2355,
+      "sha256": "a9cbbbaa90961a5ec164d2b754800c8fafbd559672718646553a440b19b3bdca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/driver.py",
+      "bytes": 2903,
+      "sha256": "2b0f397f87ba8165f80012255a130aecb2bd359728e900e39df4265a3a94168b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/PID.json",
+      "bytes": 37,
+      "sha256": "f4da6dc97782173dcbc217adcb91e50275ca626e171830c91e5fff3ac188c904"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/pytest.xml.gz",
+      "bytes": 2711,
+      "sha256": "c842892ac14fd6aafe6216617d637a802fbd5a45be4ac14e2b8f056af8af8e82"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/RESULT.json",
+      "bytes": 3792,
+      "sha256": "6422bab831f4172e2c4919e486d7dd3a79e57643e13a90efe7acc262aa0fe55c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3892,
+      "sha256": "9c74a5a79ef990bfe77fb10284c0c629e02a821dca500d053aa9ee543ce14115"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/deployment/robotio_wsl.py.gz",
+      "bytes": 2622,
+      "sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/integrations/goal_navigation_compute.py.gz",
+      "bytes": 2863,
+      "sha256": "6e5a88fb38510366c4c6fcd6acc9f0ff9ea7d508ed404bbc57d6925bf39510b7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1872,
+      "sha256": "d478f3931a0a9bda6f41fca34b3159c62e6a70f029b43c0911ab06916ef0f30b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "bytes": 3179,
+      "sha256": "07afec88bd8e1333cc80e3690f5646048f49b3feeb25a2c6c8fd42ad0b4d6418"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2776,
+      "sha256": "3480b790a06c807962e146651611f6cff11a97f6cc20b46bb670fd79398f0054"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/tests/fixtures/active_goal_navigation_fixture.py",
+      "bytes": 2231,
+      "sha256": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/tests/test_active_goal_navigation_plugin.py.gz",
+      "bytes": 2898,
+      "sha256": "512e652e4289f20da7c2bb1a443593e62016528011d14e0a8a360dc0dc1e7849"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/sources/tests/test_active_goal_ros2_bridge.py.gz",
+      "bytes": 1925,
+      "sha256": "9087cd801db25686d36ef5ad15acf9b4eab60ed78b266ad13ec55cddbbb1d828"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-01/stdout.log",
+      "bytes": 183,
+      "sha256": "9f4dfe3ffe94962ec62a47a851b5b23835338b71f408df44c2cacebc7969fb9e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/COMMAND.json",
+      "bytes": 3090,
+      "sha256": "682ae3e7d8a180a85f59f1e30ac7ec63c44900f7fc5a7a97aa327cedb107dd78"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/driver.py",
+      "bytes": 3522,
+      "sha256": "6a20972dcc7012bf923420797f1de069405c700a755fbbd82f5565d404439b15"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/PID.json",
+      "bytes": 37,
+      "sha256": "ceaa6766d78de0eb2d73ab2a0c3f06f5bb59cfeda7120492d60a541153b44edb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/pytest.xml.gz",
+      "bytes": 3274,
+      "sha256": "c0c045d9a9ec18e972e2bc20ad5f7bb4d7c5b5468586efb3951233c9342877d4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/RESULT.json.gz",
+      "bytes": 1316,
+      "sha256": "5d8bcb0bb8dd0775ec97fee4c64fd89045942262e7ffa9c007a75ac546f60a1d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3933,
+      "sha256": "d2198a24b9e15161cad3bcde74c423dcf1b957decd1e351dfbbe3ae062ce7a81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/deployment/robotio_wsl.py.gz",
+      "bytes": 2622,
+      "sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/integrations/goal_navigation_compute.py.gz",
+      "bytes": 2863,
+      "sha256": "6e5a88fb38510366c4c6fcd6acc9f0ff9ea7d508ed404bbc57d6925bf39510b7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1872,
+      "sha256": "d478f3931a0a9bda6f41fca34b3159c62e6a70f029b43c0911ab06916ef0f30b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/integrations/pb_goal_controller_source.py.gz",
+      "bytes": 1716,
+      "sha256": "45785a648da72144dfce07328a079a52731cd8322e3fb7a891932ddfee7e3b9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "bytes": 3179,
+      "sha256": "07afec88bd8e1333cc80e3690f5646048f49b3feeb25a2c6c8fd42ad0b4d6418"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2802,
+      "sha256": "7a17669389881a83bf68ed9751e8cb3de7693262f54a287060d5f7b6dde65947"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/fixtures/active_goal_navigation_fixture.py",
+      "bytes": 2231,
+      "sha256": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/test_active_goal_navigation_plugin.py.gz",
+      "bytes": 2948,
+      "sha256": "230a0baf00a4b7986d4d7c87af5c6d3112e73a7823faf9df2ee49755729b25a9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/test_active_goal_protocol_audit.py.gz",
+      "bytes": 2122,
+      "sha256": "2de618191e9450e83d64bf5759512a51f21d3f457bf21e6aa9ddd24c10136b89"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/test_active_goal_ros2_bridge.py.gz",
+      "bytes": 1925,
+      "sha256": "9087cd801db25686d36ef5ad15acf9b4eab60ed78b266ad13ec55cddbbb1d828"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/test_goal_navigation_compute.py.gz",
+      "bytes": 4470,
+      "sha256": "45c82297f92c84d228443a58a7d44ba672db39ab741f985d8b5122094943817d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/test_goal_navigation_contracts.py.gz",
+      "bytes": 3708,
+      "sha256": "44bdedd86a9313b6b2a32ca94ff4ce2f0f70057b3abe1e7bf82bc2f46f45d1b2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tests/test_pb_goal_controller_source.py.gz",
+      "bytes": 4035,
+      "sha256": "dfaf78f7f78dfbc72a271790a13fbcad22580e1eed98b108748dd7fc0546abcb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/sources/tools/qa_active_goal_protocol_sil.py.gz",
+      "bytes": 8843,
+      "sha256": "b1b6b78cd373b87c51f77554a0a2b9d1b178b73ce1a32e7fe4235e8c6a82f73e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-focused-20261015-02/stdout.log",
+      "bytes": 264,
+      "sha256": "f55c896944827ca0d45abcc3e98c197c667d6d88a6dc18fde0479b5b13bd3da0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/AUDIT.json",
+      "bytes": 1875,
+      "sha256": "2f5fff233880978b8fd2b3c1c5c69adb1d89c4e1a627bbf2e7b195279fe20175"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/CLEANUP.json",
+      "bytes": 2458,
+      "sha256": "3f9ec03cad29cc6f519d2aca36dace891bb6db1d0475859d4a2b19af4b173aad"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/COMMAND.json",
+      "bytes": 458,
+      "sha256": "1e4e64361fadfc487f2b6f63817f750197394f27d7d91093317c5e595e22b50d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/EVAL.json",
+      "bytes": 508,
+      "sha256": "b4341381669e16534451093b87a0f4667604177926f2d6ecdfc8afe3c24020e9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/PREPARE.json",
+      "bytes": 1384,
+      "sha256": "81e134fdbb3d5fa204421ca349131ee99dce93f664226ba822f1df1eec210288"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/PROTOCOL_TRACE.jsonl.gz",
+      "bytes": 328006,
+      "sha256": "a06012091086953753505b5cf41a63e290e94e17b0d7c70a99ad119acc6f3f74"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/RESULT.json.gz",
+      "bytes": 1462,
+      "sha256": "a64ea6d97111f96d8bfec307e01ff7c30022c184e1f426163f9c9194ad58b52e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/examples/robotio_active_goal_navigation.json",
+      "bytes": 1973,
+      "sha256": "f8c17d6de827d6044c8fedc2a6531edd1e7447924e40a9b786c267950767cff5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/examples/robotio_active_goal_plugins.json",
+      "bytes": 844,
+      "sha256": "c03d2ff14613d31d9fbd50134560e28cc77e778594056a4442e22229daeaeb59"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/examples/robotio_protocol_decision.json",
+      "bytes": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/__init__.py",
+      "bytes": 156,
+      "sha256": "5988284300ba0a2e64c0dde4b8f67e3b1557728003b852bb13c208ef3fe0a1be"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/acceptance.py",
+      "bytes": 3811,
+      "sha256": "bff9889e8783c0f01fddb5feae724b818f2c32f6c1d45852d5a2183b557ab998"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/adapters.py",
+      "bytes": 711,
+      "sha256": "739f74febb79f1d93fbcec1910dd608368dac129d91f98ac3886e8d06b1b3011"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/aim_evaluation.py.gz",
+      "bytes": 5025,
+      "sha256": "d10e7dbdcb6f90688cc4b3ed26862d3415a0e98d3849741cc58dfb0ca6852fd2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/aim_scenarios.py.gz",
+      "bytes": 2727,
+      "sha256": "7ad6406eee8da952c46991d333fddaa6cbc2148bd0faa55eeede7441dc192151"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/arena.py",
+      "bytes": 1570,
+      "sha256": "7d67c46c718df7c1511b1ede564b3f6b657db4e17c3920dff4bb907c48f2b711"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/armor_visual.py",
+      "bytes": 2816,
+      "sha256": "1e26607a6c8ab0ff8e34dae937e5eba776f8d04f2df8f1f8dea35873d65e1036"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/armor_visual_v2.py.gz",
+      "bytes": 2035,
+      "sha256": "48fc5227a0092a7e8fb028faf0c30c426d0ac3ae0ceae4af6441a3606c7cb8ab"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/armor_visual_v21.py",
+      "bytes": 1987,
+      "sha256": "e58e49b4a0a1a014fa190e649705bb9932af7994f32c70ecb0200cd1b0194135"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/armor_visual_v22.py",
+      "bytes": 1129,
+      "sha256": "3e2302be7e41846b0602539326a1f3ed1553893b00dc05db468d83d2f7a3d280"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/armor_visual_v23.py",
+      "bytes": 2317,
+      "sha256": "5fd1ef16940b434efb2b7d61ac92a86af3cf63033644047a7a38d934ee058163"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/ballistics.py.gz",
+      "bytes": 1954,
+      "sha256": "a945bfd601c3c7e3eac7f3bc648cbf28cdaa19f1d4625e3c26e3f3b20f6a485a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/broadcast.py.gz",
+      "bytes": 2747,
+      "sha256": "873c340cf77d5d79ac5dc544feb4fd236f3beb0d83a7337f089b9381bbdc44c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/cad_appearance.py",
+      "bytes": 2059,
+      "sha256": "95e198a6ed67fb4f8ef6f7f62afbf8974525efed42206b3027cf0b218677d63e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/competition_judge.py.gz",
+      "bytes": 6377,
+      "sha256": "c13b6be246a9ab7611b8f5b56dc7152bbe688b7f5f769bac1781f3a7da2495c0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/contracts.py",
+      "bytes": 1758,
+      "sha256": "c60bf2965269bc8f809ef088c0d602ab6192cd12813986c0b72a990da0075f7f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/controllers.py",
+      "bytes": 1566,
+      "sha256": "c501c5c4f3db3ca119be132354d13f5c865fd0fb916a1299e2da41bbf45ea4e5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/decision_bridge_core.py.gz",
+      "bytes": 2526,
+      "sha256": "c33ad59213ef729aeca6af96819503334a6556ab34d4621fa4255ff58a6efefb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/demo.py",
+      "bytes": 3408,
+      "sha256": "7437327ae63103674e9b255b344031905149e5fe0820f5e53757d1ae85715508"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/__init__.py",
+      "bytes": 86,
+      "sha256": "8641e0dcba9a70cfaf7922b72634f6a6bac61b24b04bb41ef89d319a7438121e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/aim_plugin.py.gz",
+      "bytes": 2569,
+      "sha256": "bf6e1e46594eaf61085c30086351ee3dd75c589d61b6aa88151fdac18cef704f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/decision_plugin.py.gz",
+      "bytes": 2812,
+      "sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/enrollment.py",
+      "bytes": 861,
+      "sha256": "d4198945847cf2bba343d6d1e3659686cd50f43b09273ffb8348bbbbe72c3d9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/json_owned_process.py.gz",
+      "bytes": 1820,
+      "sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3933,
+      "sha256": "d2198a24b9e15161cad3bcde74c423dcf1b957decd1e351dfbbe3ae062ce7a81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/profile.py.gz",
+      "bytes": 4412,
+      "sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/robotio_wsl.py.gz",
+      "bytes": 2622,
+      "sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/server.py",
+      "bytes": 4038,
+      "sha256": "0b89a915b8ca2339ff16b6976c5820c8f9403ee8a88becf9e0e4b94e5de8af5c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/wsl_jsonl.py.gz",
+      "bytes": 6346,
+      "sha256": "9974178d902b0fae17a1bca1ad33645099b087f3eaf3b8348067a06d23688688"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/wsl_jsonl_owned_tree.py.gz",
+      "bytes": 2006,
+      "sha256": "34a08872b917ec2f6e4fd4b2d293ad701ad0e35d7a621c122858971ff1ed48dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/wsl_jsonl_worker.py.gz",
+      "bytes": 4759,
+      "sha256": "7f70a501b22f6e60f7899644187d803b32000cfeefa87318a24865f5e58a3477"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/wsl_profile.py.gz",
+      "bytes": 4135,
+      "sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/deployment/wsl_registry.py.gz",
+      "bytes": 2098,
+      "sha256": "c9377024fdc678580623d232997a3cf7afdf2fa6bcfda5ba647d781972d90a68"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/diagnostics.py",
+      "bytes": 2462,
+      "sha256": "b9a42b702e6ff7ac9d74ae169caab5d275af53d19935ecb96548456ac8d9ac1a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/engine.py.gz",
+      "bytes": 2019,
+      "sha256": "bdfb0e34c973cbd3f84e07cb91a3fc450f82ac668d2b3cd02f79252b1c83ab22"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/harness.xml",
+      "bytes": 2412,
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/__init__.py",
+      "bytes": 64,
+      "sha256": "aacf1a46cf3914d7f06ee22d3a869aa038c8ea1ab9709e50ed61d7285f0c6d68"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/aim_camera_codec.py.gz",
+      "bytes": 1787,
+      "sha256": "0c2ecc07053be30c936f4f6d723daa43db4a098f62a3055f0a0799adc4d97097"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/aim_command_mapping.py.gz",
+      "bytes": 2753,
+      "sha256": "928720703bc310609868f3a820bce7135722456340704c26e02111bfaa330a50"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/aim_jsonl_peer.py.gz",
+      "bytes": 1661,
+      "sha256": "5cb012ff95982ab7144856c911f2f6589ce555ab6b30caa88c699c3e603965b2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "bytes": 1525,
+      "sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/goal_navigation_compute.py.gz",
+      "bytes": 2863,
+      "sha256": "6e5a88fb38510366c4c6fcd6acc9f0ff9ea7d508ed404bbc57d6925bf39510b7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/nav2_goal_backend.py.gz",
+      "bytes": 4381,
+      "sha256": "ed48ba4fd3f8670617336e4d9ad511974a486e05ab22627e21310f428308b59e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1872,
+      "sha256": "d478f3931a0a9bda6f41fca34b3159c62e6a70f029b43c0911ab06916ef0f30b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/own_gravity.py.gz",
+      "bytes": 1945,
+      "sha256": "27e63f5a150e613351756c5d4b14f982a7e8a5275d91e0fd40b0fdbe7b73fa26"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/owned_linux_group.py.gz",
+      "bytes": 1956,
+      "sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_aim_configure.py",
+      "bytes": 2262,
+      "sha256": "94afb421da3e71545b9f091c8ebda93f3e202f02d1a4af46c13284f2d0cfec3e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_aim_contract.py",
+      "bytes": 2511,
+      "sha256": "48aae66a4cc67c3954a91f5f97d5fa24e9067bd724f1123dc5abdbe600b99e4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_aim_engine.py.gz",
+      "bytes": 2048,
+      "sha256": "160a055544562debdb54cf61656da7eff1a1b81b6720306d05c940e9ecd88b2e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_aim_ros_peer.py.gz",
+      "bytes": 4693,
+      "sha256": "e30fda3a8b9db53d8f435414f96c16a409bfae631cb564c11715814c42f5572e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_aim_stack.py.gz",
+      "bytes": 3522,
+      "sha256": "f6e6beb913c2959be70f6fe0a53e287aecd0b30c4e89d60ccd9f3d9c750221f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_goal_controller_source.py.gz",
+      "bytes": 1716,
+      "sha256": "45785a648da72144dfce07328a079a52731cd8322e3fb7a891932ddfee7e3b9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_navigation_adapter.py.gz",
+      "bytes": 1609,
+      "sha256": "28150a646053185d5eb971b691582b7eee5bbc2607ea7ec2973d87d9d21a31ba"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_navigation_phases.py",
+      "bytes": 3964,
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "bytes": 2798,
+      "sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_navigation_workspace.py.gz",
+      "bytes": 3097,
+      "sha256": "ddab24d7d0dbb907a36ef44072814bb006a9578c2bc72e19bf50619a69f9463c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "bytes": 1837,
+      "sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/rmcs_contract.py",
+      "bytes": 2485,
+      "sha256": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/rmcs_process.py",
+      "bytes": 3581,
+      "sha256": "2fa115b0aa26b48949dc72f961e74bf0fa9a57993af0b526793e43b7d1ee3a08"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "bytes": 3179,
+      "sha256": "07afec88bd8e1333cc80e3690f5646048f49b3feeb25a2c6c8fd42ad0b4d6418"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/ros2_bridge.py.gz",
+      "bytes": 3341,
+      "sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/ros2_bridge_transport.py",
+      "bytes": 4075,
+      "sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/test_rmcs_process_cleanup.py.gz",
+      "bytes": 1347,
+      "sha256": "72a89220c7e0ab3c0c8331de1a5bf1cccbf45069ffb787d6574286cb162f7d13"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/test_wsl_operator.py.gz",
+      "bytes": 4107,
+      "sha256": "404e1b2227a8866f4ab56d3e528af67299889783bb27844e81e53898db1f7799"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/test_wsl_operator_pipe.py.gz",
+      "bytes": 7224,
+      "sha256": "ed46283bcf398970210ee31678c6c733dc3a59302fdf360b4a0a18227b6ee827"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/wsl_aim_async.py.gz",
+      "bytes": 5902,
+      "sha256": "c1db92e2691d89a89f82060be16737dcdfc9d4213f92b962c5b26980758aef2f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/wsl_aim_async_worker.py.gz",
+      "bytes": 7178,
+      "sha256": "87475512844caee7c1d131c356aad6a0d251b33656b57ae119b89082df595667"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/wsl_operator.py.gz",
+      "bytes": 4901,
+      "sha256": "93cb3f06a409af5d2b9b3757074edb34d7ac4dbe5263bb18b202fa49f8286b8e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/wsl_operator_pipe.py.gz",
+      "bytes": 4005,
+      "sha256": "1cdc5f7e8a75338d4ebb808d828082652587d98c06497a3d574c980fb894c486"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/wsl_operator_pipe_worker.py.gz",
+      "bytes": 5772,
+      "sha256": "42e0c721195f9f8d5376bfb3d921c6df23ae847ad6f0be53ad6d2b15c47cff2f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/integrations/wsl_operator_worker.py.gz",
+      "bytes": 4672,
+      "sha256": "68b9815b2f8adf518b6a3dd24336cd972b65ad1c593ae56c1b9a2fcbebcea249"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/judge.py",
+      "bytes": 1111,
+      "sha256": "8286fd5ea3a7a5a64f743c27b2c59676ad8f67d294a7bb5fed8d99bd3720be32"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_controllers.py.gz",
+      "bytes": 4661,
+      "sha256": "62f50e5a9d28e41aae4845447c98ffac21cc99a48b30cc252e3926af91448bd1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_evidence.py",
+      "bytes": 3405,
+      "sha256": "bbd17c35c7b4289019cce0a421bbb92b1ed74386762426115e5ba882be383dbc"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_pixel_aim.py",
+      "bytes": 2572,
+      "sha256": "e94c35dc029a6513393dbad4dcb382fc57499f21d3254a64aff04bf12793b7b6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_runner.py.gz",
+      "bytes": 3283,
+      "sha256": "c68c6976e586645269a3db5f3910b13455a5d3867d0728d42150c22805607086"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/match_viewer.py.gz",
+      "bytes": 1543,
+      "sha256": "4511027e55c842acc93de167aa527bf6d568ea4e1889275de6834f8660b8516c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/navigation.py.gz",
+      "bytes": 5059,
+      "sha256": "d146021848c5262de36583e4750daeb67f6975a58a2c96dcf231637452c087f6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/opening_runner.py.gz",
+      "bytes": 4571,
+      "sha256": "a1fbf2da40cc1cb8cf6a5afa63740d49bcaa12b8a9fdbe405a401a3a296c7a05"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/opening_strategy.py",
+      "bytes": 3292,
+      "sha256": "15e691dc7b85e70c88f217eb7a14ebe4a32931a6996f43dd1c5687276776ce1f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/__init__.py",
+      "bytes": 81,
+      "sha256": "9ece99aafdb42cb2ca0004d20f5f9256bd6bc24d683bfa92eac775592364de81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/__main__.py",
+      "bytes": 2933,
+      "sha256": "2e311f698608f175a6d1ed25d217c4b877907572d57bbdd12824a8d9225a99da"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/autoaim.py.gz",
+      "bytes": 1908,
+      "sha256": "5822fc511c3894e264ea4eda28ca709f761f7ba6e2e7d82534caa68a8bbfb2cf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/protocol.py.gz",
+      "bytes": 5573,
+      "sha256": "5dbacdf6c8690256fa1aea39bfad56d2a9c64924052387423f6839b332082825"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/qa_drive_frames.py.gz",
+      "bytes": 2467,
+      "sha256": "7271f9da7ed54d63482508b2e5db757b4c5e91cb6a78d9a62e3ac5db4220cb27"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/qa_modes.py",
+      "bytes": 4010,
+      "sha256": "3c8da6289f637d00e00537670209b774ef1484eeb26d96b6afbc9f946a8dafbf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/qa_smoke.py",
+      "bytes": 4095,
+      "sha256": "f5dc04b77d9c74f9e638d425d4ab3d7f5b2cc1611305690048a2757de0c8a461"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/runtime.py.gz",
+      "bytes": 6396,
+      "sha256": "68fca6a06a54d75c508a2815c2b019e215b2f199be757e7b654a6b9ebed62ff3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/server.py.gz",
+      "bytes": 4112,
+      "sha256": "39b2e93fd47623b1fd3c2eb667595f6672bc782e1886d0c59d66b1a8729fc37a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/source_aim.py.gz",
+      "bytes": 3084,
+      "sha256": "6149f9152b8858a8ffd05b741158c75ba331a8d7db9518e3ac73caecd9ca9710"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/source_runtime.py.gz",
+      "bytes": 4596,
+      "sha256": "bbf53d444648d59582ff905070586b02028ac058632e018c3395e7b73925702a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_autoaim.py.gz",
+      "bytes": 1397,
+      "sha256": "93d3177e4153cb4294f443882ae2e8bba697378eaf09f7068c54f3cc46e209fe"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_drive_frames.py.gz",
+      "bytes": 5121,
+      "sha256": "4c5ac0f1b7543e7b4c3b1f5389d7336fefbafc24161ad917adb7df40d2be3ba0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_mode_safety.py.gz",
+      "bytes": 1781,
+      "sha256": "11674ab6428a86dfed5667c187529dfead3fc9d65b0889ee6056b8a84042d840"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_modes.py.gz",
+      "bytes": 2666,
+      "sha256": "1e58874e686cafbf2a4bbdb76999eeafd90f3691faf26e633c47df6fbbc99cd8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_mouse_angle.py.gz",
+      "bytes": 1718,
+      "sha256": "41180af0ef47f0983ef088fea866375c35604652875c6d76d9e643ffe68e2604"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_own_damage.py.gz",
+      "bytes": 1816,
+      "sha256": "bb77607971b624ed79c88c8722bd4e9b18be52ae7c4818d5131e76cccb8e4e0d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_protocol.py.gz",
+      "bytes": 2568,
+      "sha256": "b5a7823ea6f4f582cf4e5dfc71e48cd225e2670d51b8627efd1e417a919213d7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_robot_selection.py.gz",
+      "bytes": 4283,
+      "sha256": "9b601c43f8cdcfb32040b549fbc732db1aa3b09996dd0f2b1090ed8d5fec6df2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_runtime.py.gz",
+      "bytes": 1564,
+      "sha256": "e65f87b130947829b7cdb46e2ed97205a81d628221f51b46c1d9348d50705ec7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_source_aim.py",
+      "bytes": 3583,
+      "sha256": "1d24f2553cbb21945905c31a8f805f97bf1f0af07d0ff921812d2c17176a7025"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_source_profile.py",
+      "bytes": 1839,
+      "sha256": "64395f6056d92c21713c13722c4c4dc9568d24297d6ba76ab6df70d59d85e189"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/operator/test_source_runtime.py.gz",
+      "bytes": 2316,
+      "sha256": "2cf8296fd76059e666477e2097dcdb637b16afb8bae7e9b8735152c33cf2eb09"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/original_decision_adapter.py",
+      "bytes": 2378,
+      "sha256": "75a7f2be19fca227a1c337750d4b439338985e12a4b5ce233950ba462dc5c3d8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/__init__.py",
+      "bytes": 78,
+      "sha256": "12239a84f8ab68329d1afa4ba84187cdc8e6f35820273c4500a0a91de5875e94"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/__main__.py.gz",
+      "bytes": 4034,
+      "sha256": "4cb714d35e8a5e2245b02da684454c785ee0acb4b02205c5212b9a9f75729825"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/aim_contracts.py",
+      "bytes": 1344,
+      "sha256": "1cdf69e81b6e64718d90b80ecdc18a8f89cf1d6da01eb49ba7f34fb0eb64bb02"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/base64_codec.py",
+      "bytes": 3545,
+      "sha256": "575d17d4d8b6663bea06fc443e28233de3209e6fec28f9bb634554c3c4aa3d1f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/camera_pixels.py.gz",
+      "bytes": 1756,
+      "sha256": "f29a675ac97a74f8a8db3e37375faee34969f0c4f977ea451f619b9077f7c21d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 5082,
+      "sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 6711,
+      "sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2776,
+      "sha256": "3480b790a06c807962e146651611f6cff11a97f6cc20b46bb670fd79398f0054"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/host_opencv.py",
+      "bytes": 2678,
+      "sha256": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/native_adapter.py.gz",
+      "bytes": 5448,
+      "sha256": "988f91a6fabf3e9765a76fee54862be0eed8f283fa73adc05cdbd37940feaa97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/native_camera_snapshot.py.gz",
+      "bytes": 1866,
+      "sha256": "7167d1823b72362be191ac05d0b5a5c7b34344749264d1429c7777c7db8d1700"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/native_evidence.py.gz",
+      "bytes": 2370,
+      "sha256": "d25a471cc97ff7d7a490c1766b9e06afd709a595a179408dba84b7f28584e316"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/native_image.py.gz",
+      "bytes": 2490,
+      "sha256": "e1be297f467c74abd8df1b54a9284abb8b6938b75d0a4a3c48d3c815dc87d016"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/native_observation.py",
+      "bytes": 3105,
+      "sha256": "324cee8d6bcb50818d634eba7f4c75dd0ea15d0076ee4073bde2c7285ccc536f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/offline_contract.py.gz",
+      "bytes": 1860,
+      "sha256": "19dee5a276acd5ca452335c59bc0478c3c0b10384e98b01ff46406970a3e2f40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/offline_lifecycle.py",
+      "bytes": 2018,
+      "sha256": "61b65a6d71d06d846f81435ef5dc29c5e0788a13920672b0d8e71094bce8e80f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/offline_native.py",
+      "bytes": 1025,
+      "sha256": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/offline_runtime.py.gz",
+      "bytes": 4743,
+      "sha256": "ea10c5a8226f2742d3c13f9b3819ef8dcb781d22e2c61e3889678c446f2132c4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/qa_camera.py.gz",
+      "bytes": 3655,
+      "sha256": "84f1ae07678bc4ad930764099cdb46ca745ec85d9dd5fc8448b2c7dc3d6933ea"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/qa_multiclient.py.gz",
+      "bytes": 3912,
+      "sha256": "f7b66962e9934dc2c6ecbe0d054acbcf08c48de63bd9fea29664247eeafd5d8c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/qa_resupply.py.gz",
+      "bytes": 2796,
+      "sha256": "794737fefbcff714fb281ce6c38cde1f9cb97b6ac80eae6acd9a8ddfee6a99bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/resupply.py",
+      "bytes": 2895,
+      "sha256": "a3f05ab3d0f933255afca2258c7008d7b7d82877cac7730c8e55cc91bbaa8750"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3349,
+      "sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/spin.py",
+      "bytes": 3385,
+      "sha256": "b1610e2a1e20e461b1c01b41f986f1878b28f5a8ac19374a51a76327b2f650dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/state_projection.py.gz",
+      "bytes": 3939,
+      "sha256": "49817b857f95b92edfb4ed2e6ee17f047e0f1e99fc19446c1b82fe6edd5105fa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_adapter_activation.py.gz",
+      "bytes": 2442,
+      "sha256": "b16730967ea49e46c46ad557f7f477b5eeae5b72f52a8c868f7a1a5b9b5eb64b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_adapters.py",
+      "bytes": 3426,
+      "sha256": "91a69692d5f0f26d7495c179e774f2c0fe9903329da3618140b0c23b87cbbbdd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_admission.py.gz",
+      "bytes": 3566,
+      "sha256": "ac6c2acf1d371fb81ecc8d513231b657921806ae47603d5e09bc99f158931e17"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_camera.py.gz",
+      "bytes": 4441,
+      "sha256": "dfe8a49a6952deae4cced74299b62e422011924c7fbe0a7a64c5e969b0dc89c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_camera_codec_boundary.py.gz",
+      "bytes": 1492,
+      "sha256": "fd01e90a103b3d5c0cffd0be1db03261e007e31598d1c689c4c805b97c3701a2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_camera_entry_guard.py",
+      "bytes": 1261,
+      "sha256": "148b87861d32ae7eac2a06e22fda900205882eed2a71989bab900c3fc11dba02"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_camera_pixel_boundary.py.gz",
+      "bytes": 2185,
+      "sha256": "c379f4682744ead4223738323f7615815fe4a3091b76110fdd257ace10a0c093"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_camera_pixels.py.gz",
+      "bytes": 1786,
+      "sha256": "c3deba80606b945f2c9530bf99fe7feece5b14e961af9c8f71b97d7dbf4731de"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_camera_sensor_identity.py",
+      "bytes": 3717,
+      "sha256": "f4c7fa7c10d2cc01881d3a20f3553471d7310cc73732c4cc7e4a6a832b74f70e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_client.py.gz",
+      "bytes": 1865,
+      "sha256": "fa5fb0d6477c7d7582989469860b590b3a8b4aa0206bd9f51fe0f50b563be567"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_contracts.py.gz",
+      "bytes": 1906,
+      "sha256": "c6aed49fd4540642ff1bf5de30d623fb041030575ba70854103172793a4bed74"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_control.py.gz",
+      "bytes": 1503,
+      "sha256": "47c0d208d1a08859b82741c690d398c16c18890aa82ea7a037c36316c94c591b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_control_windows.py.gz",
+      "bytes": 1407,
+      "sha256": "fe4c8304042cb05b2445278130db031592451a154b1b4d11648fd61e36de7155"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_decoded_camera_races.py.gz",
+      "bytes": 2344,
+      "sha256": "a64c7a5f2081040353165e39b6042da58fb003ca6e3fc404d51b885656d7c7bc"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_adapter.py.gz",
+      "bytes": 2090,
+      "sha256": "e07fd9e54cc25a3ef30c80705ff5140adc8d86111b8e93cd8023452d96693a7e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_admission_deadline.py.gz",
+      "bytes": 1946,
+      "sha256": "a9877256b21fe80a705c5120b5dfa5505342965b3f0784e372d4b0b23d5a8a29"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_decoded_boundary.py.gz",
+      "bytes": 2132,
+      "sha256": "511da15a32ce6d12b263ff3486d182c6aea6666d226d4edc6097a4ee895728f1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_deferred_trace.py.gz",
+      "bytes": 2284,
+      "sha256": "abc09ca34258fddc9f674e23f08cab9dd923b956dbf2a6ea769d83bb19abc6aa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_early_pixels.py.gz",
+      "bytes": 6021,
+      "sha256": "0ee6c9e8bf81875a2725465dcf6a00269eb2056062cdaa5024ea1017432f94da"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_early_pixels_review.py",
+      "bytes": 2958,
+      "sha256": "63e5d7a669a2932f7088d6fa68da818ae0129eb4cdf0a58d570e345ff6555fc4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_evidence.py.gz",
+      "bytes": 2049,
+      "sha256": "0ca7ee63e2e08a5ad524c98efeea766a08008cfdc3a6c8cfc858c5e00868163a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_image.py",
+      "bytes": 3474,
+      "sha256": "66712337c3275a7f5095dad5ae9803f15653792e2d7064b63a49c2e755eb4273"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_native_timing.py.gz",
+      "bytes": 2428,
+      "sha256": "76419dc6c0bd24cd3c70948bf986618080c2b50dbf28900621e8573ba740c174"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_observation_refresh.py.gz",
+      "bytes": 2630,
+      "sha256": "6708516964cc6297016f844171dd1dab711a0487bb49ae168d692288b1e6ea20"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_offline.py.gz",
+      "bytes": 2516,
+      "sha256": "f3ec59588954e6a8ae541c25dc191b6683651fa1ef11f60fb39f5743957060d7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_offline_lifecycle.py",
+      "bytes": 2518,
+      "sha256": "cb4f5d2c5fa1d6141aaf847e7aa064844bfac7199949810a3885f64fbc763732"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_offline_projection.py.gz",
+      "bytes": 1549,
+      "sha256": "bcca6b6c1d83730094278975fb0f92d5a11da3362eb731d5a079864f11adb227"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_raw_encoding.py",
+      "bytes": 1510,
+      "sha256": "7b51be2044329f4e3daf98f0aca015e33ff9d03a5a4844f7d7d774a2a7408eef"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_registry_hotpath.py.gz",
+      "bytes": 2075,
+      "sha256": "1aa08e13869258fe55b678081e2e702df8556b3c53905eac1f7a28fc30ab7cac"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_resupply.py.gz",
+      "bytes": 1662,
+      "sha256": "4c55ada884a712cad3a8a2ddc70f20e3c9300635a4972791b062bbda8f5b1935"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_runtime.py.gz",
+      "bytes": 4177,
+      "sha256": "1f98446431954ea7b45436e2fa1b173586e56788508d6281c6967a350f4bcae7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_runtime_pacing.py",
+      "bytes": 1690,
+      "sha256": "67b71e4c25c7d2736213586b72a6be8c9f47c642d789b2261123e108ad03c39c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_server.py.gz",
+      "bytes": 1944,
+      "sha256": "876b35010de4c4f7a900a9d423daeadb4c928e981247a44c67a323a1a72eaaca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_slot_shutdown.py.gz",
+      "bytes": 3172,
+      "sha256": "c37038cd0c6bd166f21907405798c111651dd9e3f2547509f2334b14c7898c5a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_snapshot_robot.py.gz",
+      "bytes": 1585,
+      "sha256": "6d720e66f58a63c0c1e65abb7fdbb5dd999cd063bc6e179767d7f67dc0eb7e82"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_spin.py.gz",
+      "bytes": 1446,
+      "sha256": "3d07de2543a4ac558d399678790f1edb1a8228999045e5445c57064f82328e3a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_spin_feedback.py.gz",
+      "bytes": 1721,
+      "sha256": "baf0a28ea5dfa97448db149bd0e966be9bfc5a27b2b9443f7f694d91e1c3554f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_spin_model_metadata.py",
+      "bytes": 1303,
+      "sha256": "81e9950a94c366c43f1838dc0ddf4870df4cab6b7a7ae08a8e16f4c7f3bb2cf2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_state_projection.py.gz",
+      "bytes": 2775,
+      "sha256": "550771c7e24158eec235bfb59c566a8f0e2ba1886d5918750267b5f42709f917"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_support_admission.py",
+      "bytes": 680,
+      "sha256": "b5c211bc782fcffed5ac4cbf703fa3480b754cc9d75483b9951ede87d7b44ca1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_wall_pacing.py",
+      "bytes": 1486,
+      "sha256": "54c0dbc8a9ffb8c398764d222002dbd135c50d7b984b232013a088d7e9d0ab22"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_window_client.py.gz",
+      "bytes": 1357,
+      "sha256": "113f2c578eb3ac960b17744516a0db56762d50557999a3483489f21415f6f4c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/test_window_consumption.py.gz",
+      "bytes": 1761,
+      "sha256": "2c90bb52991e0517af411ead47e5b90107eed22968b5d4f9e3263df315b5ff66"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/platform_v2/wsl_native_adapter.py.gz",
+      "bytes": 2411,
+      "sha256": "13da091aa8080edc244b6b0fb6ba8f36b5def72ea9a234c0baa0938649ed62c9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/recording_health.py",
+      "bytes": 2384,
+      "sha256": "653cb4db26642b919af1272b25d80a72e5045bc3356bed0a3d443636abf0ba08"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/rmcs_stop_aim.py.gz",
+      "bytes": 5365,
+      "sha256": "30c23aa6f5daa7c86f3594459b06665380f50a032b55e1eb6696cee44e8f285d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/sensor_schedule.py",
+      "bytes": 1343,
+      "sha256": "d549c3268f8668233b5e65b068b5f9fae9f24ed190ae001b167652d3fafdb0f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/serialization.py",
+      "bytes": 538,
+      "sha256": "e16aa541b23665f8c227397f2d847ac2790a77d79d5f34e462b257031e7ae34a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/spectator_effects.py.gz",
+      "bytes": 3806,
+      "sha256": "1ace234fd7a2ec56755b5d9a86c18933f3ba51d8189325c5a6a1caa828fbd438"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/telemetry.py",
+      "bytes": 2121,
+      "sha256": "7c9abdf9332256b1ba6e3cea28573125276e80b7f7f2223872df2e21d0829e13"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/aim.py",
+      "bytes": 3581,
+      "sha256": "b8b16a44893f9d262eeb9539ba75bd971a8f5d20f1d8909504e94df57e4ae035"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/camera_view.py",
+      "bytes": 1496,
+      "sha256": "d726218a5214201280e63bfdbfd75178bae5facb94e4c88e538391dcd5952cb9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/fire_level_delay.py.gz",
+      "bytes": 3284,
+      "sha256": "aa20f0bd7391963c286f3ed98c19ad0cc1121a9d9cee202478f49228892924d5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/plant.py.gz",
+      "bytes": 1797,
+      "sha256": "794d8d1342d92b22cd28ea0dda3cebab9f708607e937823f06c73451ac34f145"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/strict_process.py",
+      "bytes": 1993,
+      "sha256": "6e2adbd5f87dc57ad6dfddfcf9393b3810d6c6ddfdadb5bbe9dcdea682668713"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/timing/transport.py",
+      "bytes": 3594,
+      "sha256": "ccac362a76d9103e4be09fcc84fe67fab728ccdb52ee7e3d6270e26fcabf102e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/upstream_rule.py",
+      "bytes": 3005,
+      "sha256": "d7f7e6b9a01b83b98b169c8ed9ee5f499d05e1887cd1c994372d561b80ebf7d3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/rm_match/viewer.py",
+      "bytes": 3119,
+      "sha256": "801f75a71afb2dcb2d33ddc8a7c58cdfc038cd3dd3afe611c31dd5dcb3c6236c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/tests/fixtures/active_goal_navigation_fixture.py",
+      "bytes": 2231,
+      "sha256": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/tests/fixtures/decision_heat_v2.py",
+      "bytes": 1140,
+      "sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/tests/fixtures/decision_supply_v1.py",
+      "bytes": 1160,
+      "sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/source/tools/qa_active_goal_protocol_sil.py.gz",
+      "bytes": 8843,
+      "sha256": "b1b6b78cd373b87c51f77554a0a2b9d1b178b73ce1a32e7fe4235e8c6a82f73e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/SOURCE_MANIFEST.json.gz",
+      "bytes": 11591,
+      "sha256": "acc16019be6dd9d4475c4eb0abc8db76c9395dad5bd74d6c3091e6d4bb508a19"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-01/UNCLAIMED_CLEANUP.json",
+      "bytes": 66,
+      "sha256": "f2252b5d524d01005ddfcd73c8be5372efa2e8bdb7473dca1385c66116d09952"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/AUDIT.json",
+      "bytes": 1875,
+      "sha256": "1f70007522f0ad06b46de354d4ee038546a2a2148a09d7398b4faa8ca665b756"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/CLEANUP.json",
+      "bytes": 2458,
+      "sha256": "4f07f686b922a01201db6bf53842fe6c3e16655781c6b778bbb98fa5f2218fb2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/COMMAND.json",
+      "bytes": 458,
+      "sha256": "ae51daa15a261bcb9f35d6406ff143d83ee9dcc699dce2c3b9f141ece3fd5a83"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/EVAL.json",
+      "bytes": 508,
+      "sha256": "cf04528893541b01404fd286b35728b8df5b6f010194ddd883d576376acdcb5e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/PREPARE.json",
+      "bytes": 1384,
+      "sha256": "0eeb598da45b29012c0542879054364c386091f752f558383546dceb18d3a5f5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/PROTOCOL_TRACE.jsonl.gz",
+      "bytes": 323274,
+      "sha256": "31aa3414b2c055417b5f336a2d21fafd2df2c208e6cd4aef5af237c1a8821708"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/RESULT.json.gz",
+      "bytes": 1470,
+      "sha256": "606a8abb3cacafba4b88205cd68214f420d51d18d144f47a8c4da4bd11a6aa1a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/examples/robotio_active_goal_navigation.json",
+      "bytes": 1973,
+      "sha256": "f8c17d6de827d6044c8fedc2a6531edd1e7447924e40a9b786c267950767cff5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/examples/robotio_active_goal_plugins.json",
+      "bytes": 844,
+      "sha256": "c03d2ff14613d31d9fbd50134560e28cc77e778594056a4442e22229daeaeb59"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/examples/robotio_protocol_decision.json",
+      "bytes": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/__init__.py",
+      "bytes": 156,
+      "sha256": "5988284300ba0a2e64c0dde4b8f67e3b1557728003b852bb13c208ef3fe0a1be"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/acceptance.py",
+      "bytes": 3811,
+      "sha256": "bff9889e8783c0f01fddb5feae724b818f2c32f6c1d45852d5a2183b557ab998"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/adapters.py",
+      "bytes": 711,
+      "sha256": "739f74febb79f1d93fbcec1910dd608368dac129d91f98ac3886e8d06b1b3011"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/aim_evaluation.py.gz",
+      "bytes": 5025,
+      "sha256": "d10e7dbdcb6f90688cc4b3ed26862d3415a0e98d3849741cc58dfb0ca6852fd2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/aim_scenarios.py.gz",
+      "bytes": 2727,
+      "sha256": "7ad6406eee8da952c46991d333fddaa6cbc2148bd0faa55eeede7441dc192151"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/arena.py",
+      "bytes": 1570,
+      "sha256": "7d67c46c718df7c1511b1ede564b3f6b657db4e17c3920dff4bb907c48f2b711"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/armor_visual.py",
+      "bytes": 2816,
+      "sha256": "1e26607a6c8ab0ff8e34dae937e5eba776f8d04f2df8f1f8dea35873d65e1036"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/armor_visual_v2.py.gz",
+      "bytes": 2035,
+      "sha256": "48fc5227a0092a7e8fb028faf0c30c426d0ac3ae0ceae4af6441a3606c7cb8ab"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/armor_visual_v21.py",
+      "bytes": 1987,
+      "sha256": "e58e49b4a0a1a014fa190e649705bb9932af7994f32c70ecb0200cd1b0194135"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/armor_visual_v22.py",
+      "bytes": 1129,
+      "sha256": "3e2302be7e41846b0602539326a1f3ed1553893b00dc05db468d83d2f7a3d280"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/armor_visual_v23.py",
+      "bytes": 2317,
+      "sha256": "5fd1ef16940b434efb2b7d61ac92a86af3cf63033644047a7a38d934ee058163"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/ballistics.py.gz",
+      "bytes": 1954,
+      "sha256": "a945bfd601c3c7e3eac7f3bc648cbf28cdaa19f1d4625e3c26e3f3b20f6a485a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/broadcast.py.gz",
+      "bytes": 2747,
+      "sha256": "873c340cf77d5d79ac5dc544feb4fd236f3beb0d83a7337f089b9381bbdc44c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/cad_appearance.py",
+      "bytes": 2059,
+      "sha256": "95e198a6ed67fb4f8ef6f7f62afbf8974525efed42206b3027cf0b218677d63e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/competition_judge.py.gz",
+      "bytes": 6377,
+      "sha256": "c13b6be246a9ab7611b8f5b56dc7152bbe688b7f5f769bac1781f3a7da2495c0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/contracts.py",
+      "bytes": 1758,
+      "sha256": "c60bf2965269bc8f809ef088c0d602ab6192cd12813986c0b72a990da0075f7f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/controllers.py",
+      "bytes": 1566,
+      "sha256": "c501c5c4f3db3ca119be132354d13f5c865fd0fb916a1299e2da41bbf45ea4e5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/decision_bridge_core.py.gz",
+      "bytes": 2526,
+      "sha256": "c33ad59213ef729aeca6af96819503334a6556ab34d4621fa4255ff58a6efefb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/demo.py",
+      "bytes": 3408,
+      "sha256": "7437327ae63103674e9b255b344031905149e5fe0820f5e53757d1ae85715508"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/__init__.py",
+      "bytes": 86,
+      "sha256": "8641e0dcba9a70cfaf7922b72634f6a6bac61b24b04bb41ef89d319a7438121e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/aim_plugin.py.gz",
+      "bytes": 2569,
+      "sha256": "bf6e1e46594eaf61085c30086351ee3dd75c589d61b6aa88151fdac18cef704f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/decision_plugin.py.gz",
+      "bytes": 2812,
+      "sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/enrollment.py",
+      "bytes": 861,
+      "sha256": "d4198945847cf2bba343d6d1e3659686cd50f43b09273ffb8348bbbbe72c3d9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/json_owned_process.py.gz",
+      "bytes": 1820,
+      "sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3933,
+      "sha256": "d2198a24b9e15161cad3bcde74c423dcf1b957decd1e351dfbbe3ae062ce7a81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/profile.py.gz",
+      "bytes": 4412,
+      "sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/robotio_wsl.py.gz",
+      "bytes": 2622,
+      "sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/server.py",
+      "bytes": 4038,
+      "sha256": "0b89a915b8ca2339ff16b6976c5820c8f9403ee8a88becf9e0e4b94e5de8af5c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/wsl_jsonl.py.gz",
+      "bytes": 6346,
+      "sha256": "9974178d902b0fae17a1bca1ad33645099b087f3eaf3b8348067a06d23688688"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/wsl_jsonl_owned_tree.py.gz",
+      "bytes": 2006,
+      "sha256": "34a08872b917ec2f6e4fd4b2d293ad701ad0e35d7a621c122858971ff1ed48dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/wsl_jsonl_worker.py.gz",
+      "bytes": 4759,
+      "sha256": "7f70a501b22f6e60f7899644187d803b32000cfeefa87318a24865f5e58a3477"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/wsl_profile.py.gz",
+      "bytes": 4135,
+      "sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/deployment/wsl_registry.py.gz",
+      "bytes": 2098,
+      "sha256": "c9377024fdc678580623d232997a3cf7afdf2fa6bcfda5ba647d781972d90a68"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/diagnostics.py",
+      "bytes": 2462,
+      "sha256": "b9a42b702e6ff7ac9d74ae169caab5d275af53d19935ecb96548456ac8d9ac1a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/engine.py.gz",
+      "bytes": 2019,
+      "sha256": "bdfb0e34c973cbd3f84e07cb91a3fc450f82ac668d2b3cd02f79252b1c83ab22"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/harness.xml",
+      "bytes": 2412,
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/__init__.py",
+      "bytes": 64,
+      "sha256": "aacf1a46cf3914d7f06ee22d3a869aa038c8ea1ab9709e50ed61d7285f0c6d68"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/aim_camera_codec.py.gz",
+      "bytes": 1787,
+      "sha256": "0c2ecc07053be30c936f4f6d723daa43db4a098f62a3055f0a0799adc4d97097"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/aim_command_mapping.py.gz",
+      "bytes": 2753,
+      "sha256": "928720703bc310609868f3a820bce7135722456340704c26e02111bfaa330a50"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/aim_jsonl_peer.py.gz",
+      "bytes": 1661,
+      "sha256": "5cb012ff95982ab7144856c911f2f6589ce555ab6b30caa88c699c3e603965b2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "bytes": 1525,
+      "sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/goal_navigation_compute.py.gz",
+      "bytes": 2863,
+      "sha256": "6e5a88fb38510366c4c6fcd6acc9f0ff9ea7d508ed404bbc57d6925bf39510b7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/nav2_goal_backend.py.gz",
+      "bytes": 4381,
+      "sha256": "ed48ba4fd3f8670617336e4d9ad511974a486e05ab22627e21310f428308b59e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1872,
+      "sha256": "d478f3931a0a9bda6f41fca34b3159c62e6a70f029b43c0911ab06916ef0f30b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/own_gravity.py.gz",
+      "bytes": 1945,
+      "sha256": "27e63f5a150e613351756c5d4b14f982a7e8a5275d91e0fd40b0fdbe7b73fa26"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/owned_linux_group.py.gz",
+      "bytes": 1956,
+      "sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_aim_configure.py",
+      "bytes": 2262,
+      "sha256": "94afb421da3e71545b9f091c8ebda93f3e202f02d1a4af46c13284f2d0cfec3e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_aim_contract.py",
+      "bytes": 2511,
+      "sha256": "48aae66a4cc67c3954a91f5f97d5fa24e9067bd724f1123dc5abdbe600b99e4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_aim_engine.py.gz",
+      "bytes": 2048,
+      "sha256": "160a055544562debdb54cf61656da7eff1a1b81b6720306d05c940e9ecd88b2e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_aim_ros_peer.py.gz",
+      "bytes": 4693,
+      "sha256": "e30fda3a8b9db53d8f435414f96c16a409bfae631cb564c11715814c42f5572e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_aim_stack.py.gz",
+      "bytes": 3522,
+      "sha256": "f6e6beb913c2959be70f6fe0a53e287aecd0b30c4e89d60ccd9f3d9c750221f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_goal_controller_source.py.gz",
+      "bytes": 1716,
+      "sha256": "45785a648da72144dfce07328a079a52731cd8322e3fb7a891932ddfee7e3b9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_navigation_adapter.py.gz",
+      "bytes": 1609,
+      "sha256": "28150a646053185d5eb971b691582b7eee5bbc2607ea7ec2973d87d9d21a31ba"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_navigation_phases.py",
+      "bytes": 3964,
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "bytes": 2798,
+      "sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_navigation_workspace.py.gz",
+      "bytes": 3097,
+      "sha256": "ddab24d7d0dbb907a36ef44072814bb006a9578c2bc72e19bf50619a69f9463c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "bytes": 1837,
+      "sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/rmcs_contract.py",
+      "bytes": 2485,
+      "sha256": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/rmcs_process.py",
+      "bytes": 3581,
+      "sha256": "2fa115b0aa26b48949dc72f961e74bf0fa9a57993af0b526793e43b7d1ee3a08"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "bytes": 3179,
+      "sha256": "07afec88bd8e1333cc80e3690f5646048f49b3feeb25a2c6c8fd42ad0b4d6418"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/ros2_bridge.py.gz",
+      "bytes": 3341,
+      "sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/ros2_bridge_transport.py",
+      "bytes": 4075,
+      "sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/test_rmcs_process_cleanup.py.gz",
+      "bytes": 1347,
+      "sha256": "72a89220c7e0ab3c0c8331de1a5bf1cccbf45069ffb787d6574286cb162f7d13"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/test_wsl_operator.py.gz",
+      "bytes": 4107,
+      "sha256": "404e1b2227a8866f4ab56d3e528af67299889783bb27844e81e53898db1f7799"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/test_wsl_operator_pipe.py.gz",
+      "bytes": 7224,
+      "sha256": "ed46283bcf398970210ee31678c6c733dc3a59302fdf360b4a0a18227b6ee827"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/wsl_aim_async.py.gz",
+      "bytes": 5902,
+      "sha256": "c1db92e2691d89a89f82060be16737dcdfc9d4213f92b962c5b26980758aef2f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/wsl_aim_async_worker.py.gz",
+      "bytes": 7178,
+      "sha256": "87475512844caee7c1d131c356aad6a0d251b33656b57ae119b89082df595667"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/wsl_operator.py.gz",
+      "bytes": 4901,
+      "sha256": "93cb3f06a409af5d2b9b3757074edb34d7ac4dbe5263bb18b202fa49f8286b8e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/wsl_operator_pipe.py.gz",
+      "bytes": 4005,
+      "sha256": "1cdc5f7e8a75338d4ebb808d828082652587d98c06497a3d574c980fb894c486"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/wsl_operator_pipe_worker.py.gz",
+      "bytes": 5772,
+      "sha256": "42e0c721195f9f8d5376bfb3d921c6df23ae847ad6f0be53ad6d2b15c47cff2f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/integrations/wsl_operator_worker.py.gz",
+      "bytes": 4672,
+      "sha256": "68b9815b2f8adf518b6a3dd24336cd972b65ad1c593ae56c1b9a2fcbebcea249"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/judge.py",
+      "bytes": 1111,
+      "sha256": "8286fd5ea3a7a5a64f743c27b2c59676ad8f67d294a7bb5fed8d99bd3720be32"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_controllers.py.gz",
+      "bytes": 4661,
+      "sha256": "62f50e5a9d28e41aae4845447c98ffac21cc99a48b30cc252e3926af91448bd1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_evidence.py",
+      "bytes": 3405,
+      "sha256": "bbd17c35c7b4289019cce0a421bbb92b1ed74386762426115e5ba882be383dbc"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_pixel_aim.py",
+      "bytes": 2572,
+      "sha256": "e94c35dc029a6513393dbad4dcb382fc57499f21d3254a64aff04bf12793b7b6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_runner.py.gz",
+      "bytes": 3283,
+      "sha256": "c68c6976e586645269a3db5f3910b13455a5d3867d0728d42150c22805607086"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/match_viewer.py.gz",
+      "bytes": 1543,
+      "sha256": "4511027e55c842acc93de167aa527bf6d568ea4e1889275de6834f8660b8516c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/navigation.py.gz",
+      "bytes": 5059,
+      "sha256": "d146021848c5262de36583e4750daeb67f6975a58a2c96dcf231637452c087f6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/opening_runner.py.gz",
+      "bytes": 4571,
+      "sha256": "a1fbf2da40cc1cb8cf6a5afa63740d49bcaa12b8a9fdbe405a401a3a296c7a05"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/opening_strategy.py",
+      "bytes": 3292,
+      "sha256": "15e691dc7b85e70c88f217eb7a14ebe4a32931a6996f43dd1c5687276776ce1f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/__init__.py",
+      "bytes": 81,
+      "sha256": "9ece99aafdb42cb2ca0004d20f5f9256bd6bc24d683bfa92eac775592364de81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/__main__.py",
+      "bytes": 2933,
+      "sha256": "2e311f698608f175a6d1ed25d217c4b877907572d57bbdd12824a8d9225a99da"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/autoaim.py.gz",
+      "bytes": 1908,
+      "sha256": "5822fc511c3894e264ea4eda28ca709f761f7ba6e2e7d82534caa68a8bbfb2cf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/protocol.py.gz",
+      "bytes": 5573,
+      "sha256": "5dbacdf6c8690256fa1aea39bfad56d2a9c64924052387423f6839b332082825"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/qa_drive_frames.py.gz",
+      "bytes": 2467,
+      "sha256": "7271f9da7ed54d63482508b2e5db757b4c5e91cb6a78d9a62e3ac5db4220cb27"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/qa_modes.py",
+      "bytes": 4010,
+      "sha256": "3c8da6289f637d00e00537670209b774ef1484eeb26d96b6afbc9f946a8dafbf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/qa_smoke.py",
+      "bytes": 4095,
+      "sha256": "f5dc04b77d9c74f9e638d425d4ab3d7f5b2cc1611305690048a2757de0c8a461"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/runtime.py.gz",
+      "bytes": 6396,
+      "sha256": "68fca6a06a54d75c508a2815c2b019e215b2f199be757e7b654a6b9ebed62ff3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/server.py.gz",
+      "bytes": 4112,
+      "sha256": "39b2e93fd47623b1fd3c2eb667595f6672bc782e1886d0c59d66b1a8729fc37a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/source_aim.py.gz",
+      "bytes": 3084,
+      "sha256": "6149f9152b8858a8ffd05b741158c75ba331a8d7db9518e3ac73caecd9ca9710"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/source_runtime.py.gz",
+      "bytes": 4596,
+      "sha256": "bbf53d444648d59582ff905070586b02028ac058632e018c3395e7b73925702a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_autoaim.py.gz",
+      "bytes": 1397,
+      "sha256": "93d3177e4153cb4294f443882ae2e8bba697378eaf09f7068c54f3cc46e209fe"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_drive_frames.py.gz",
+      "bytes": 5121,
+      "sha256": "4c5ac0f1b7543e7b4c3b1f5389d7336fefbafc24161ad917adb7df40d2be3ba0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_mode_safety.py.gz",
+      "bytes": 1781,
+      "sha256": "11674ab6428a86dfed5667c187529dfead3fc9d65b0889ee6056b8a84042d840"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_modes.py.gz",
+      "bytes": 2666,
+      "sha256": "1e58874e686cafbf2a4bbdb76999eeafd90f3691faf26e633c47df6fbbc99cd8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_mouse_angle.py.gz",
+      "bytes": 1718,
+      "sha256": "41180af0ef47f0983ef088fea866375c35604652875c6d76d9e643ffe68e2604"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_own_damage.py.gz",
+      "bytes": 1816,
+      "sha256": "bb77607971b624ed79c88c8722bd4e9b18be52ae7c4818d5131e76cccb8e4e0d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_protocol.py.gz",
+      "bytes": 2568,
+      "sha256": "b5a7823ea6f4f582cf4e5dfc71e48cd225e2670d51b8627efd1e417a919213d7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_robot_selection.py.gz",
+      "bytes": 4283,
+      "sha256": "9b601c43f8cdcfb32040b549fbc732db1aa3b09996dd0f2b1090ed8d5fec6df2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_runtime.py.gz",
+      "bytes": 1564,
+      "sha256": "e65f87b130947829b7cdb46e2ed97205a81d628221f51b46c1d9348d50705ec7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_source_aim.py",
+      "bytes": 3583,
+      "sha256": "1d24f2553cbb21945905c31a8f805f97bf1f0af07d0ff921812d2c17176a7025"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_source_profile.py",
+      "bytes": 1839,
+      "sha256": "64395f6056d92c21713c13722c4c4dc9568d24297d6ba76ab6df70d59d85e189"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/operator/test_source_runtime.py.gz",
+      "bytes": 2316,
+      "sha256": "2cf8296fd76059e666477e2097dcdb637b16afb8bae7e9b8735152c33cf2eb09"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/original_decision_adapter.py",
+      "bytes": 2378,
+      "sha256": "75a7f2be19fca227a1c337750d4b439338985e12a4b5ce233950ba462dc5c3d8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/__init__.py",
+      "bytes": 78,
+      "sha256": "12239a84f8ab68329d1afa4ba84187cdc8e6f35820273c4500a0a91de5875e94"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/__main__.py.gz",
+      "bytes": 4034,
+      "sha256": "4cb714d35e8a5e2245b02da684454c785ee0acb4b02205c5212b9a9f75729825"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/aim_contracts.py",
+      "bytes": 1344,
+      "sha256": "1cdf69e81b6e64718d90b80ecdc18a8f89cf1d6da01eb49ba7f34fb0eb64bb02"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/base64_codec.py",
+      "bytes": 3545,
+      "sha256": "575d17d4d8b6663bea06fc443e28233de3209e6fec28f9bb634554c3c4aa3d1f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/camera_pixels.py.gz",
+      "bytes": 1756,
+      "sha256": "f29a675ac97a74f8a8db3e37375faee34969f0c4f977ea451f619b9077f7c21d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 5082,
+      "sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 6711,
+      "sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2802,
+      "sha256": "7a17669389881a83bf68ed9751e8cb3de7693262f54a287060d5f7b6dde65947"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/host_opencv.py",
+      "bytes": 2678,
+      "sha256": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/native_adapter.py.gz",
+      "bytes": 5448,
+      "sha256": "988f91a6fabf3e9765a76fee54862be0eed8f283fa73adc05cdbd37940feaa97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/native_camera_snapshot.py.gz",
+      "bytes": 1866,
+      "sha256": "7167d1823b72362be191ac05d0b5a5c7b34344749264d1429c7777c7db8d1700"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/native_evidence.py.gz",
+      "bytes": 2370,
+      "sha256": "d25a471cc97ff7d7a490c1766b9e06afd709a595a179408dba84b7f28584e316"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/native_image.py.gz",
+      "bytes": 2490,
+      "sha256": "e1be297f467c74abd8df1b54a9284abb8b6938b75d0a4a3c48d3c815dc87d016"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/native_observation.py",
+      "bytes": 3105,
+      "sha256": "324cee8d6bcb50818d634eba7f4c75dd0ea15d0076ee4073bde2c7285ccc536f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/offline_contract.py.gz",
+      "bytes": 1860,
+      "sha256": "19dee5a276acd5ca452335c59bc0478c3c0b10384e98b01ff46406970a3e2f40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/offline_lifecycle.py",
+      "bytes": 2018,
+      "sha256": "61b65a6d71d06d846f81435ef5dc29c5e0788a13920672b0d8e71094bce8e80f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/offline_native.py",
+      "bytes": 1025,
+      "sha256": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/offline_runtime.py.gz",
+      "bytes": 4743,
+      "sha256": "ea10c5a8226f2742d3c13f9b3819ef8dcb781d22e2c61e3889678c446f2132c4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/qa_camera.py.gz",
+      "bytes": 3655,
+      "sha256": "84f1ae07678bc4ad930764099cdb46ca745ec85d9dd5fc8448b2c7dc3d6933ea"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/qa_multiclient.py.gz",
+      "bytes": 3912,
+      "sha256": "f7b66962e9934dc2c6ecbe0d054acbcf08c48de63bd9fea29664247eeafd5d8c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/qa_resupply.py.gz",
+      "bytes": 2796,
+      "sha256": "794737fefbcff714fb281ce6c38cde1f9cb97b6ac80eae6acd9a8ddfee6a99bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/resupply.py",
+      "bytes": 2895,
+      "sha256": "a3f05ab3d0f933255afca2258c7008d7b7d82877cac7730c8e55cc91bbaa8750"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3349,
+      "sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/spin.py",
+      "bytes": 3385,
+      "sha256": "b1610e2a1e20e461b1c01b41f986f1878b28f5a8ac19374a51a76327b2f650dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/state_projection.py.gz",
+      "bytes": 3939,
+      "sha256": "49817b857f95b92edfb4ed2e6ee17f047e0f1e99fc19446c1b82fe6edd5105fa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_adapter_activation.py.gz",
+      "bytes": 2442,
+      "sha256": "b16730967ea49e46c46ad557f7f477b5eeae5b72f52a8c868f7a1a5b9b5eb64b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_adapters.py",
+      "bytes": 3426,
+      "sha256": "91a69692d5f0f26d7495c179e774f2c0fe9903329da3618140b0c23b87cbbbdd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_admission.py.gz",
+      "bytes": 3566,
+      "sha256": "ac6c2acf1d371fb81ecc8d513231b657921806ae47603d5e09bc99f158931e17"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_camera.py.gz",
+      "bytes": 4441,
+      "sha256": "dfe8a49a6952deae4cced74299b62e422011924c7fbe0a7a64c5e969b0dc89c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_camera_codec_boundary.py.gz",
+      "bytes": 1492,
+      "sha256": "fd01e90a103b3d5c0cffd0be1db03261e007e31598d1c689c4c805b97c3701a2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_camera_entry_guard.py",
+      "bytes": 1261,
+      "sha256": "148b87861d32ae7eac2a06e22fda900205882eed2a71989bab900c3fc11dba02"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_camera_pixel_boundary.py.gz",
+      "bytes": 2185,
+      "sha256": "c379f4682744ead4223738323f7615815fe4a3091b76110fdd257ace10a0c093"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_camera_pixels.py.gz",
+      "bytes": 1786,
+      "sha256": "c3deba80606b945f2c9530bf99fe7feece5b14e961af9c8f71b97d7dbf4731de"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_camera_sensor_identity.py",
+      "bytes": 3717,
+      "sha256": "f4c7fa7c10d2cc01881d3a20f3553471d7310cc73732c4cc7e4a6a832b74f70e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_client.py.gz",
+      "bytes": 1865,
+      "sha256": "fa5fb0d6477c7d7582989469860b590b3a8b4aa0206bd9f51fe0f50b563be567"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_contracts.py.gz",
+      "bytes": 1906,
+      "sha256": "c6aed49fd4540642ff1bf5de30d623fb041030575ba70854103172793a4bed74"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_control.py.gz",
+      "bytes": 1503,
+      "sha256": "47c0d208d1a08859b82741c690d398c16c18890aa82ea7a037c36316c94c591b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_control_windows.py.gz",
+      "bytes": 1407,
+      "sha256": "fe4c8304042cb05b2445278130db031592451a154b1b4d11648fd61e36de7155"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_decoded_camera_races.py.gz",
+      "bytes": 2344,
+      "sha256": "a64c7a5f2081040353165e39b6042da58fb003ca6e3fc404d51b885656d7c7bc"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_adapter.py.gz",
+      "bytes": 2090,
+      "sha256": "e07fd9e54cc25a3ef30c80705ff5140adc8d86111b8e93cd8023452d96693a7e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_admission_deadline.py.gz",
+      "bytes": 1946,
+      "sha256": "a9877256b21fe80a705c5120b5dfa5505342965b3f0784e372d4b0b23d5a8a29"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_decoded_boundary.py.gz",
+      "bytes": 2132,
+      "sha256": "511da15a32ce6d12b263ff3486d182c6aea6666d226d4edc6097a4ee895728f1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_deferred_trace.py.gz",
+      "bytes": 2284,
+      "sha256": "abc09ca34258fddc9f674e23f08cab9dd923b956dbf2a6ea769d83bb19abc6aa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_early_pixels.py.gz",
+      "bytes": 6021,
+      "sha256": "0ee6c9e8bf81875a2725465dcf6a00269eb2056062cdaa5024ea1017432f94da"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_early_pixels_review.py",
+      "bytes": 2958,
+      "sha256": "63e5d7a669a2932f7088d6fa68da818ae0129eb4cdf0a58d570e345ff6555fc4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_evidence.py.gz",
+      "bytes": 2049,
+      "sha256": "0ca7ee63e2e08a5ad524c98efeea766a08008cfdc3a6c8cfc858c5e00868163a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_image.py",
+      "bytes": 3474,
+      "sha256": "66712337c3275a7f5095dad5ae9803f15653792e2d7064b63a49c2e755eb4273"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_native_timing.py.gz",
+      "bytes": 2428,
+      "sha256": "76419dc6c0bd24cd3c70948bf986618080c2b50dbf28900621e8573ba740c174"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_observation_refresh.py.gz",
+      "bytes": 2630,
+      "sha256": "6708516964cc6297016f844171dd1dab711a0487bb49ae168d692288b1e6ea20"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_offline.py.gz",
+      "bytes": 2516,
+      "sha256": "f3ec59588954e6a8ae541c25dc191b6683651fa1ef11f60fb39f5743957060d7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_offline_lifecycle.py",
+      "bytes": 2518,
+      "sha256": "cb4f5d2c5fa1d6141aaf847e7aa064844bfac7199949810a3885f64fbc763732"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_offline_projection.py.gz",
+      "bytes": 1549,
+      "sha256": "bcca6b6c1d83730094278975fb0f92d5a11da3362eb731d5a079864f11adb227"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_raw_encoding.py",
+      "bytes": 1510,
+      "sha256": "7b51be2044329f4e3daf98f0aca015e33ff9d03a5a4844f7d7d774a2a7408eef"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_registry_hotpath.py.gz",
+      "bytes": 2075,
+      "sha256": "1aa08e13869258fe55b678081e2e702df8556b3c53905eac1f7a28fc30ab7cac"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_resupply.py.gz",
+      "bytes": 1662,
+      "sha256": "4c55ada884a712cad3a8a2ddc70f20e3c9300635a4972791b062bbda8f5b1935"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_runtime.py.gz",
+      "bytes": 4177,
+      "sha256": "1f98446431954ea7b45436e2fa1b173586e56788508d6281c6967a350f4bcae7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_runtime_pacing.py",
+      "bytes": 1690,
+      "sha256": "67b71e4c25c7d2736213586b72a6be8c9f47c642d789b2261123e108ad03c39c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_server.py.gz",
+      "bytes": 1944,
+      "sha256": "876b35010de4c4f7a900a9d423daeadb4c928e981247a44c67a323a1a72eaaca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_slot_shutdown.py.gz",
+      "bytes": 3172,
+      "sha256": "c37038cd0c6bd166f21907405798c111651dd9e3f2547509f2334b14c7898c5a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_snapshot_robot.py.gz",
+      "bytes": 1585,
+      "sha256": "6d720e66f58a63c0c1e65abb7fdbb5dd999cd063bc6e179767d7f67dc0eb7e82"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_spin.py.gz",
+      "bytes": 1446,
+      "sha256": "3d07de2543a4ac558d399678790f1edb1a8228999045e5445c57064f82328e3a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_spin_feedback.py.gz",
+      "bytes": 1721,
+      "sha256": "baf0a28ea5dfa97448db149bd0e966be9bfc5a27b2b9443f7f694d91e1c3554f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_spin_model_metadata.py",
+      "bytes": 1303,
+      "sha256": "81e9950a94c366c43f1838dc0ddf4870df4cab6b7a7ae08a8e16f4c7f3bb2cf2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_state_projection.py.gz",
+      "bytes": 2775,
+      "sha256": "550771c7e24158eec235bfb59c566a8f0e2ba1886d5918750267b5f42709f917"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_support_admission.py",
+      "bytes": 680,
+      "sha256": "b5c211bc782fcffed5ac4cbf703fa3480b754cc9d75483b9951ede87d7b44ca1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_wall_pacing.py",
+      "bytes": 1486,
+      "sha256": "54c0dbc8a9ffb8c398764d222002dbd135c50d7b984b232013a088d7e9d0ab22"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_window_client.py.gz",
+      "bytes": 1357,
+      "sha256": "113f2c578eb3ac960b17744516a0db56762d50557999a3483489f21415f6f4c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/test_window_consumption.py.gz",
+      "bytes": 1761,
+      "sha256": "2c90bb52991e0517af411ead47e5b90107eed22968b5d4f9e3263df315b5ff66"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/platform_v2/wsl_native_adapter.py.gz",
+      "bytes": 2411,
+      "sha256": "13da091aa8080edc244b6b0fb6ba8f36b5def72ea9a234c0baa0938649ed62c9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/recording_health.py",
+      "bytes": 2384,
+      "sha256": "653cb4db26642b919af1272b25d80a72e5045bc3356bed0a3d443636abf0ba08"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/rmcs_stop_aim.py.gz",
+      "bytes": 5365,
+      "sha256": "30c23aa6f5daa7c86f3594459b06665380f50a032b55e1eb6696cee44e8f285d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/sensor_schedule.py",
+      "bytes": 1343,
+      "sha256": "d549c3268f8668233b5e65b068b5f9fae9f24ed190ae001b167652d3fafdb0f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/serialization.py",
+      "bytes": 538,
+      "sha256": "e16aa541b23665f8c227397f2d847ac2790a77d79d5f34e462b257031e7ae34a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/spectator_effects.py.gz",
+      "bytes": 3806,
+      "sha256": "1ace234fd7a2ec56755b5d9a86c18933f3ba51d8189325c5a6a1caa828fbd438"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/telemetry.py",
+      "bytes": 2121,
+      "sha256": "7c9abdf9332256b1ba6e3cea28573125276e80b7f7f2223872df2e21d0829e13"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/aim.py",
+      "bytes": 3581,
+      "sha256": "b8b16a44893f9d262eeb9539ba75bd971a8f5d20f1d8909504e94df57e4ae035"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/camera_view.py",
+      "bytes": 1496,
+      "sha256": "d726218a5214201280e63bfdbfd75178bae5facb94e4c88e538391dcd5952cb9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/fire_level_delay.py.gz",
+      "bytes": 3284,
+      "sha256": "aa20f0bd7391963c286f3ed98c19ad0cc1121a9d9cee202478f49228892924d5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/plant.py.gz",
+      "bytes": 1797,
+      "sha256": "794d8d1342d92b22cd28ea0dda3cebab9f708607e937823f06c73451ac34f145"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/strict_process.py",
+      "bytes": 1993,
+      "sha256": "6e2adbd5f87dc57ad6dfddfcf9393b3810d6c6ddfdadb5bbe9dcdea682668713"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/timing/transport.py",
+      "bytes": 3594,
+      "sha256": "ccac362a76d9103e4be09fcc84fe67fab728ccdb52ee7e3d6270e26fcabf102e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/upstream_rule.py",
+      "bytes": 3005,
+      "sha256": "d7f7e6b9a01b83b98b169c8ed9ee5f499d05e1887cd1c994372d561b80ebf7d3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/rm_match/viewer.py",
+      "bytes": 3119,
+      "sha256": "801f75a71afb2dcb2d33ddc8a7c58cdfc038cd3dd3afe611c31dd5dcb3c6236c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/tests/fixtures/active_goal_navigation_fixture.py",
+      "bytes": 2231,
+      "sha256": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/tests/fixtures/decision_heat_v2.py",
+      "bytes": 1140,
+      "sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/tests/fixtures/decision_supply_v1.py",
+      "bytes": 1160,
+      "sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/source/tools/qa_active_goal_protocol_sil.py.gz",
+      "bytes": 8843,
+      "sha256": "b1b6b78cd373b87c51f77554a0a2b9d1b178b73ce1a32e7fe4235e8c6a82f73e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/SOURCE_MANIFEST.json.gz",
+      "bytes": 11588,
+      "sha256": "44623c326314dc2ec4c7b4adbc4a41d983c62598f1c6840ef7c555de4d402677"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-02/UNCLAIMED_CLEANUP.json",
+      "bytes": 66,
+      "sha256": "f2252b5d524d01005ddfcd73c8be5372efa2e8bdb7473dca1385c66116d09952"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/AUDIT.json",
+      "bytes": 1875,
+      "sha256": "df36aab1e9e33a0c50653c32fd51978b8178969be1e415fe4085cb166d5a1459"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/CLEANUP.json",
+      "bytes": 2458,
+      "sha256": "2f8533ad1e8de7ff75d6cd5837fff73c6088ad5e42850f7abb128a590ade8370"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/COMMAND.json",
+      "bytes": 458,
+      "sha256": "1706649dc54ffea4fec1cbeec642fb51762d7a3693cce60a347c034e47618204"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/EVAL.json",
+      "bytes": 508,
+      "sha256": "4a97e4680e0d11f681bc470f00ded9139622389d27b300b0ce35a615f4d7b757"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/PREPARE.json",
+      "bytes": 1384,
+      "sha256": "dd7f09f1aa9f57ee02d399a585291b691646519de595d3ec124b4bd01e491a3f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/PROTOCOL_TRACE.jsonl.gz",
+      "bytes": 327358,
+      "sha256": "110be7ff7c7a0e58eba22bdfed8d8a199742a9f54246c4d1e2f214947ddebaaa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/RESULT.json.gz",
+      "bytes": 1463,
+      "sha256": "26097bb914b600d372bac95ce0ba8148fbb41c6c4627fc33317f389ebe6eb173"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/examples/robotio_active_goal_navigation.json",
+      "bytes": 1973,
+      "sha256": "f8c17d6de827d6044c8fedc2a6531edd1e7447924e40a9b786c267950767cff5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/examples/robotio_active_goal_plugins.json",
+      "bytes": 844,
+      "sha256": "c03d2ff14613d31d9fbd50134560e28cc77e778594056a4442e22229daeaeb59"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/examples/robotio_protocol_decision.json",
+      "bytes": 1703,
+      "sha256": "930ef13b5d0c6f3bb05c974450366c32ecdc53fd5378b73f2f685294b3eebccf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/__init__.py",
+      "bytes": 156,
+      "sha256": "5988284300ba0a2e64c0dde4b8f67e3b1557728003b852bb13c208ef3fe0a1be"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/acceptance.py",
+      "bytes": 3811,
+      "sha256": "bff9889e8783c0f01fddb5feae724b818f2c32f6c1d45852d5a2183b557ab998"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/adapters.py",
+      "bytes": 711,
+      "sha256": "739f74febb79f1d93fbcec1910dd608368dac129d91f98ac3886e8d06b1b3011"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/aim_evaluation.py.gz",
+      "bytes": 5025,
+      "sha256": "d10e7dbdcb6f90688cc4b3ed26862d3415a0e98d3849741cc58dfb0ca6852fd2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/aim_scenarios.py.gz",
+      "bytes": 2727,
+      "sha256": "7ad6406eee8da952c46991d333fddaa6cbc2148bd0faa55eeede7441dc192151"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/arena.py",
+      "bytes": 1570,
+      "sha256": "7d67c46c718df7c1511b1ede564b3f6b657db4e17c3920dff4bb907c48f2b711"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/armor_visual.py",
+      "bytes": 2816,
+      "sha256": "1e26607a6c8ab0ff8e34dae937e5eba776f8d04f2df8f1f8dea35873d65e1036"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/armor_visual_v2.py.gz",
+      "bytes": 2035,
+      "sha256": "48fc5227a0092a7e8fb028faf0c30c426d0ac3ae0ceae4af6441a3606c7cb8ab"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/armor_visual_v21.py",
+      "bytes": 1987,
+      "sha256": "e58e49b4a0a1a014fa190e649705bb9932af7994f32c70ecb0200cd1b0194135"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/armor_visual_v22.py",
+      "bytes": 1129,
+      "sha256": "3e2302be7e41846b0602539326a1f3ed1553893b00dc05db468d83d2f7a3d280"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/armor_visual_v23.py",
+      "bytes": 2317,
+      "sha256": "5fd1ef16940b434efb2b7d61ac92a86af3cf63033644047a7a38d934ee058163"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/ballistics.py.gz",
+      "bytes": 1954,
+      "sha256": "a945bfd601c3c7e3eac7f3bc648cbf28cdaa19f1d4625e3c26e3f3b20f6a485a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/broadcast.py.gz",
+      "bytes": 2747,
+      "sha256": "873c340cf77d5d79ac5dc544feb4fd236f3beb0d83a7337f089b9381bbdc44c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/cad_appearance.py",
+      "bytes": 2059,
+      "sha256": "95e198a6ed67fb4f8ef6f7f62afbf8974525efed42206b3027cf0b218677d63e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/camera_profile.py.gz",
+      "bytes": 2004,
+      "sha256": "15e6d9cbedcea5e589935751dcf5790ecc7086bfb4079f9b6f10fbd6768072bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/competition_judge.py.gz",
+      "bytes": 6377,
+      "sha256": "c13b6be246a9ab7611b8f5b56dc7152bbe688b7f5f769bac1781f3a7da2495c0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/contracts.py",
+      "bytes": 1758,
+      "sha256": "c60bf2965269bc8f809ef088c0d602ab6192cd12813986c0b72a990da0075f7f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/controllers.py",
+      "bytes": 1566,
+      "sha256": "c501c5c4f3db3ca119be132354d13f5c865fd0fb916a1299e2da41bbf45ea4e5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/decision_bridge_core.py.gz",
+      "bytes": 2526,
+      "sha256": "c33ad59213ef729aeca6af96819503334a6556ab34d4621fa4255ff58a6efefb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/demo.py",
+      "bytes": 3408,
+      "sha256": "7437327ae63103674e9b255b344031905149e5fe0820f5e53757d1ae85715508"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/__init__.py",
+      "bytes": 86,
+      "sha256": "8641e0dcba9a70cfaf7922b72634f6a6bac61b24b04bb41ef89d319a7438121e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/aim_plugin.py.gz",
+      "bytes": 2569,
+      "sha256": "bf6e1e46594eaf61085c30086351ee3dd75c589d61b6aa88151fdac18cef704f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/coop_launcher.py.gz",
+      "bytes": 8191,
+      "sha256": "53b19beedd15f10538de360ecb8b2a77cfe24dbcc08f2005438e3cee9d0fff9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/decision_plugin.py.gz",
+      "bytes": 2812,
+      "sha256": "617dbfc070037cd126608686618faa896c70fd752976202173790d49451b49f3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/enrollment.py",
+      "bytes": 861,
+      "sha256": "d4198945847cf2bba343d6d1e3659686cd50f43b09273ffb8348bbbbe72c3d9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/json_adapter.py.gz",
+      "bytes": 4082,
+      "sha256": "3428e09911578c05e98c42a4a92e825ba5d65147ed5d60e359fff94fe978e763"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/json_owned_process.py.gz",
+      "bytes": 1820,
+      "sha256": "13d69fb39b25f15699d2fb687c92d994cd6c5aeabd245cbbeec1952b39503a4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/launcher.py.gz",
+      "bytes": 6872,
+      "sha256": "583276f86a439af35821bfe2e6290296791fe779c75146752fd97c29e1e8067d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3933,
+      "sha256": "d2198a24b9e15161cad3bcde74c423dcf1b957decd1e351dfbbe3ae062ce7a81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/profile.py.gz",
+      "bytes": 4412,
+      "sha256": "97d39b0966f6c23270d68da0e1125899eaf230096b1aa9cb6cf5cfb2bf29f7ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/robotio_plugin.py.gz",
+      "bytes": 4238,
+      "sha256": "8b4113537c50439f9b3a0d45e9eba02baa44aa86d607a978b20277b220d9f443"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/robotio_wsl.py.gz",
+      "bytes": 2622,
+      "sha256": "9c45b517eea289df043da8c8ff15b477714eb5a46b55513c2ec95513aa79ca97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/server.py",
+      "bytes": 4038,
+      "sha256": "0b89a915b8ca2339ff16b6976c5820c8f9403ee8a88becf9e0e4b94e5de8af5c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/windows_owned_job.py.gz",
+      "bytes": 3860,
+      "sha256": "73f23514004187a67f7a9410ef4acbbc397a9c1059afad2a5d371a4630471f4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/wsl_jsonl.py.gz",
+      "bytes": 6346,
+      "sha256": "9974178d902b0fae17a1bca1ad33645099b087f3eaf3b8348067a06d23688688"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/wsl_jsonl_owned_tree.py.gz",
+      "bytes": 2006,
+      "sha256": "34a08872b917ec2f6e4fd4b2d293ad701ad0e35d7a621c122858971ff1ed48dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/wsl_jsonl_worker.py.gz",
+      "bytes": 4759,
+      "sha256": "7f70a501b22f6e60f7899644187d803b32000cfeefa87318a24865f5e58a3477"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/wsl_profile.py.gz",
+      "bytes": 4135,
+      "sha256": "eb0f6d926cf7a0ac2edfb2d77abe08ce82c8617e2852210b31c7c3cadef9c5c3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/deployment/wsl_registry.py.gz",
+      "bytes": 2098,
+      "sha256": "c9377024fdc678580623d232997a3cf7afdf2fa6bcfda5ba647d781972d90a68"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/diagnostics.py",
+      "bytes": 2462,
+      "sha256": "b9a42b702e6ff7ac9d74ae169caab5d275af53d19935ecb96548456ac8d9ac1a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/engine.py.gz",
+      "bytes": 2019,
+      "sha256": "bdfb0e34c973cbd3f84e07cb91a3fc450f82ac668d2b3cd02f79252b1c83ab22"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/harness.xml",
+      "bytes": 2412,
+      "sha256": "1edbac02e2419e9401f58d0fe939d5854afb16f5a1cb10d3f9404ca80b044d9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/__init__.py",
+      "bytes": 64,
+      "sha256": "aacf1a46cf3914d7f06ee22d3a869aa038c8ea1ab9709e50ed61d7285f0c6d68"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/aim_camera_codec.py.gz",
+      "bytes": 1787,
+      "sha256": "0c2ecc07053be30c936f4f6d723daa43db4a098f62a3055f0a0799adc4d97097"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/aim_command_mapping.py.gz",
+      "bytes": 2753,
+      "sha256": "928720703bc310609868f3a820bce7135722456340704c26e02111bfaa330a50"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/aim_jsonl_peer.py.gz",
+      "bytes": 1661,
+      "sha256": "5cb012ff95982ab7144856c911f2f6589ce555ab6b30caa88c699c3e603965b2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/decision_jsonl_peer.py.gz",
+      "bytes": 1525,
+      "sha256": "901ef7cf9bb41cc87c9dc9e9a3ad6a05aef12f913e14b51eb43acd4efb634c31"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/goal_navigation_compute.py.gz",
+      "bytes": 2863,
+      "sha256": "6e5a88fb38510366c4c6fcd6acc9f0ff9ea7d508ed404bbc57d6925bf39510b7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/nav2_goal_backend.py.gz",
+      "bytes": 4381,
+      "sha256": "ed48ba4fd3f8670617336e4d9ad511974a486e05ab22627e21310f428308b59e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/navigation_goal_lifecycle.py.gz",
+      "bytes": 3100,
+      "sha256": "de16169edfb5900607766fc3b995fa2e525a54018cfb3803a98fbe0276cbf5ca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1872,
+      "sha256": "d478f3931a0a9bda6f41fca34b3159c62e6a70f029b43c0911ab06916ef0f30b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/own_gravity.py.gz",
+      "bytes": 1945,
+      "sha256": "27e63f5a150e613351756c5d4b14f982a7e8a5275d91e0fd40b0fdbe7b73fa26"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/owned_linux_group.py.gz",
+      "bytes": 1956,
+      "sha256": "5c56c5b04fdd529c2875c5c1e307c69ce4c0b6cce046b23108d03c5eb934f9f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_aim_configure.py",
+      "bytes": 2262,
+      "sha256": "94afb421da3e71545b9f091c8ebda93f3e202f02d1a4af46c13284f2d0cfec3e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_aim_contract.py",
+      "bytes": 2511,
+      "sha256": "48aae66a4cc67c3954a91f5f97d5fa24e9067bd724f1123dc5abdbe600b99e4e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_aim_engine.py.gz",
+      "bytes": 2048,
+      "sha256": "160a055544562debdb54cf61656da7eff1a1b81b6720306d05c940e9ecd88b2e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_aim_ros_peer.py.gz",
+      "bytes": 4693,
+      "sha256": "e30fda3a8b9db53d8f435414f96c16a409bfae631cb564c11715814c42f5572e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_aim_stack.py.gz",
+      "bytes": 3522,
+      "sha256": "f6e6beb913c2959be70f6fe0a53e287aecd0b30c4e89d60ccd9f3d9c750221f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_goal_controller_source.py.gz",
+      "bytes": 1716,
+      "sha256": "45785a648da72144dfce07328a079a52731cd8322e3fb7a891932ddfee7e3b9c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_navigation_adapter.py.gz",
+      "bytes": 1609,
+      "sha256": "28150a646053185d5eb971b691582b7eee5bbc2607ea7ec2973d87d9d21a31ba"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_navigation_bridge.py.gz",
+      "bytes": 4341,
+      "sha256": "e2559703b70642fa03945ef968fd3bbb91a306dfdebc58cc973bbc7a4906b85d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_navigation_phases.py",
+      "bytes": 3964,
+      "sha256": "9f2ea27a4dfb96d0ab9e513ec02a10937389df83b1f7c693439aef93ecfc4753"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_navigation_transport.py.gz",
+      "bytes": 2798,
+      "sha256": "5fd767bff03f8ddddbb14d27b48c558aa9937425b57fd25cff16f9bb65440856"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_navigation_workspace.py.gz",
+      "bytes": 3097,
+      "sha256": "ddab24d7d0dbb907a36ef44072814bb006a9578c2bc72e19bf50619a69f9463c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_wsl_navigation.py.gz",
+      "bytes": 7134,
+      "sha256": "04126fc294fadb66eb29cd5dd899a6e6763686e66ecba7a317c9411fbfa9999a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_wsl_navigation_registry.py.gz",
+      "bytes": 1837,
+      "sha256": "fe553c9eaa634feba0ea30638cdd2382a8184205a47efa8f558ef1a6391f6c28"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/pb_wsl_navigation_worker.py.gz",
+      "bytes": 6718,
+      "sha256": "b039a3b2571890acc3e0579dd8d290677fab3776b2dc4a0fe27254c66fb3d35d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/rmcs_contract.py",
+      "bytes": 2485,
+      "sha256": "57a3fdc35ba5c5e9294611ae2ca6b264fbb47aab1a917aac3f771b44401a5bbf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/rmcs_process.py",
+      "bytes": 3581,
+      "sha256": "2fa115b0aa26b48949dc72f961e74bf0fa9a57993af0b526793e43b7d1ee3a08"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "bytes": 3179,
+      "sha256": "07afec88bd8e1333cc80e3690f5646048f49b3feeb25a2c6c8fd42ad0b4d6418"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/ros2_bridge.py.gz",
+      "bytes": 3341,
+      "sha256": "fc20d2026fff3d9424d53eb835744bd3020c3c3e2ebaaafb5d9db5e700b27a0d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/ros2_bridge_transport.py",
+      "bytes": 4075,
+      "sha256": "2476f1352c40140eeb0306d9984c5615cb2ae39ec9be3dc6a214eb87c604d2b9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/test_rmcs_process_cleanup.py.gz",
+      "bytes": 1347,
+      "sha256": "72a89220c7e0ab3c0c8331de1a5bf1cccbf45069ffb787d6574286cb162f7d13"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/test_wsl_operator.py.gz",
+      "bytes": 4107,
+      "sha256": "404e1b2227a8866f4ab56d3e528af67299889783bb27844e81e53898db1f7799"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/test_wsl_operator_pipe.py.gz",
+      "bytes": 7224,
+      "sha256": "ed46283bcf398970210ee31678c6c733dc3a59302fdf360b4a0a18227b6ee827"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/wsl_aim_async.py.gz",
+      "bytes": 5902,
+      "sha256": "c1db92e2691d89a89f82060be16737dcdfc9d4213f92b962c5b26980758aef2f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/wsl_aim_async_worker.py.gz",
+      "bytes": 7178,
+      "sha256": "87475512844caee7c1d131c356aad6a0d251b33656b57ae119b89082df595667"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/wsl_operator.py.gz",
+      "bytes": 4901,
+      "sha256": "93cb3f06a409af5d2b9b3757074edb34d7ac4dbe5263bb18b202fa49f8286b8e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/wsl_operator_pipe.py.gz",
+      "bytes": 4005,
+      "sha256": "1cdc5f7e8a75338d4ebb808d828082652587d98c06497a3d574c980fb894c486"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/wsl_operator_pipe_worker.py.gz",
+      "bytes": 5772,
+      "sha256": "42e0c721195f9f8d5376bfb3d921c6df23ae847ad6f0be53ad6d2b15c47cff2f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/integrations/wsl_operator_worker.py.gz",
+      "bytes": 4672,
+      "sha256": "68b9815b2f8adf518b6a3dd24336cd972b65ad1c593ae56c1b9a2fcbebcea249"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/judge.py",
+      "bytes": 1111,
+      "sha256": "8286fd5ea3a7a5a64f743c27b2c59676ad8f67d294a7bb5fed8d99bd3720be32"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_controllers.py.gz",
+      "bytes": 4661,
+      "sha256": "62f50e5a9d28e41aae4845447c98ffac21cc99a48b30cc252e3926af91448bd1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_engine.py.gz",
+      "bytes": 4888,
+      "sha256": "a3912651117da52776f07dbbb765f2eab914afc5428e47e1574d9c0509325233"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_evidence.py",
+      "bytes": 3405,
+      "sha256": "bbd17c35c7b4289019cce0a421bbb92b1ed74386762426115e5ba882be383dbc"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_model.py.gz",
+      "bytes": 1791,
+      "sha256": "e09c7a4f11dc6d58323f690085bf8229eca5be614ac49b04b48084b272bfd544"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_pixel_aim.py",
+      "bytes": 2572,
+      "sha256": "e94c35dc029a6513393dbad4dcb382fc57499f21d3254a64aff04bf12793b7b6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_runner.py.gz",
+      "bytes": 3283,
+      "sha256": "c68c6976e586645269a3db5f3910b13455a5d3867d0728d42150c22805607086"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/match_viewer.py.gz",
+      "bytes": 1543,
+      "sha256": "4511027e55c842acc93de167aa527bf6d568ea4e1889275de6834f8660b8516c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/navigation.py.gz",
+      "bytes": 5059,
+      "sha256": "d146021848c5262de36583e4750daeb67f6975a58a2c96dcf231637452c087f6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/navigation_sensors.py.gz",
+      "bytes": 4037,
+      "sha256": "af6f3af299485f1008f3714671f18eae6dee60b8bea21fd9341e628ddcc5f82f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/opening_runner.py.gz",
+      "bytes": 4571,
+      "sha256": "a1fbf2da40cc1cb8cf6a5afa63740d49bcaa12b8a9fdbe405a401a3a296c7a05"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/opening_strategy.py",
+      "bytes": 3292,
+      "sha256": "15e691dc7b85e70c88f217eb7a14ebe4a32931a6996f43dd1c5687276776ce1f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/__init__.py",
+      "bytes": 81,
+      "sha256": "9ece99aafdb42cb2ca0004d20f5f9256bd6bc24d683bfa92eac775592364de81"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/__main__.py",
+      "bytes": 2933,
+      "sha256": "2e311f698608f175a6d1ed25d217c4b877907572d57bbdd12824a8d9225a99da"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/autoaim.py.gz",
+      "bytes": 1908,
+      "sha256": "5822fc511c3894e264ea4eda28ca709f761f7ba6e2e7d82534caa68a8bbfb2cf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/protocol.py.gz",
+      "bytes": 5573,
+      "sha256": "5dbacdf6c8690256fa1aea39bfad56d2a9c64924052387423f6839b332082825"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/qa_drive_frames.py.gz",
+      "bytes": 2467,
+      "sha256": "7271f9da7ed54d63482508b2e5db757b4c5e91cb6a78d9a62e3ac5db4220cb27"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/qa_modes.py",
+      "bytes": 4010,
+      "sha256": "3c8da6289f637d00e00537670209b774ef1484eeb26d96b6afbc9f946a8dafbf"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/qa_smoke.py",
+      "bytes": 4095,
+      "sha256": "f5dc04b77d9c74f9e638d425d4ab3d7f5b2cc1611305690048a2757de0c8a461"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/runtime.py.gz",
+      "bytes": 6396,
+      "sha256": "68fca6a06a54d75c508a2815c2b019e215b2f199be757e7b654a6b9ebed62ff3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/server.py.gz",
+      "bytes": 4112,
+      "sha256": "39b2e93fd47623b1fd3c2eb667595f6672bc782e1886d0c59d66b1a8729fc37a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/source_aim.py.gz",
+      "bytes": 3084,
+      "sha256": "6149f9152b8858a8ffd05b741158c75ba331a8d7db9518e3ac73caecd9ca9710"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/source_runtime.py.gz",
+      "bytes": 4596,
+      "sha256": "bbf53d444648d59582ff905070586b02028ac058632e018c3395e7b73925702a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_autoaim.py.gz",
+      "bytes": 1397,
+      "sha256": "93d3177e4153cb4294f443882ae2e8bba697378eaf09f7068c54f3cc46e209fe"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_drive_frames.py.gz",
+      "bytes": 5121,
+      "sha256": "4c5ac0f1b7543e7b4c3b1f5389d7336fefbafc24161ad917adb7df40d2be3ba0"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_mode_safety.py.gz",
+      "bytes": 1781,
+      "sha256": "11674ab6428a86dfed5667c187529dfead3fc9d65b0889ee6056b8a84042d840"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_modes.py.gz",
+      "bytes": 2666,
+      "sha256": "1e58874e686cafbf2a4bbdb76999eeafd90f3691faf26e633c47df6fbbc99cd8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_mouse_angle.py.gz",
+      "bytes": 1718,
+      "sha256": "41180af0ef47f0983ef088fea866375c35604652875c6d76d9e643ffe68e2604"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_own_damage.py.gz",
+      "bytes": 1816,
+      "sha256": "bb77607971b624ed79c88c8722bd4e9b18be52ae7c4818d5131e76cccb8e4e0d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_protocol.py.gz",
+      "bytes": 2568,
+      "sha256": "b5a7823ea6f4f582cf4e5dfc71e48cd225e2670d51b8627efd1e417a919213d7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_robot_selection.py.gz",
+      "bytes": 4283,
+      "sha256": "9b601c43f8cdcfb32040b549fbc732db1aa3b09996dd0f2b1090ed8d5fec6df2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_runtime.py.gz",
+      "bytes": 1564,
+      "sha256": "e65f87b130947829b7cdb46e2ed97205a81d628221f51b46c1d9348d50705ec7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_source_aim.py",
+      "bytes": 3583,
+      "sha256": "1d24f2553cbb21945905c31a8f805f97bf1f0af07d0ff921812d2c17176a7025"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_source_profile.py",
+      "bytes": 1839,
+      "sha256": "64395f6056d92c21713c13722c4c4dc9568d24297d6ba76ab6df70d59d85e189"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/operator/test_source_runtime.py.gz",
+      "bytes": 2316,
+      "sha256": "2cf8296fd76059e666477e2097dcdb637b16afb8bae7e9b8735152c33cf2eb09"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/original_decision_adapter.py",
+      "bytes": 2378,
+      "sha256": "75a7f2be19fca227a1c337750d4b439338985e12a4b5ce233950ba462dc5c3d8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/__init__.py",
+      "bytes": 78,
+      "sha256": "12239a84f8ab68329d1afa4ba84187cdc8e6f35820273c4500a0a91de5875e94"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/__main__.py.gz",
+      "bytes": 4034,
+      "sha256": "4cb714d35e8a5e2245b02da684454c785ee0acb4b02205c5212b9a9f75729825"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/adapters.py.gz",
+      "bytes": 3504,
+      "sha256": "78776fbf290f329ec754d9149baa6a379077b7240d80fd89261fcf52ba28c2bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/admission.py.gz",
+      "bytes": 1573,
+      "sha256": "dd8166147e40480ce85d8ad861b2e253b567fd917ea7dcad41b66916ce4abcca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/aim_contracts.py",
+      "bytes": 1344,
+      "sha256": "1cdf69e81b6e64718d90b80ecdc18a8f89cf1d6da01eb49ba7f34fb0eb64bb02"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/backend.py.gz",
+      "bytes": 4115,
+      "sha256": "6d4ea6bf21fe17adc1e988d85587e3f562122d4ebdf873dd287c1b8633be8fce"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/base64_codec.py",
+      "bytes": 3545,
+      "sha256": "575d17d4d8b6663bea06fc443e28233de3209e6fec28f9bb634554c3c4aa3d1f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/camera.py.gz",
+      "bytes": 8101,
+      "sha256": "8f15db7d21a040b8a60e637d63b1a4aa064719f27432320c8180e4556d405266"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/camera_pixels.py.gz",
+      "bytes": 1756,
+      "sha256": "f29a675ac97a74f8a8db3e37375faee34969f0c4f977ea451f619b9077f7c21d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/client.py.gz",
+      "bytes": 5082,
+      "sha256": "5c013603e423862d62e88d3e0b4fe75a56a909a27d957e21457c807a3f010938"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/control.py.gz",
+      "bytes": 6711,
+      "sha256": "c3bdc76e206e582158b387c026b95b70e20cca2f14ad37a5155d4b3408638b19"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2802,
+      "sha256": "7a17669389881a83bf68ed9751e8cb3de7693262f54a287060d5f7b6dde65947"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/host_opencv.py",
+      "bytes": 2678,
+      "sha256": "d78b5fac08c77bc60c2a34a207a9246dbb34c9cda557a3767caf028fed40aa05"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/host_scheduling.py.gz",
+      "bytes": 2071,
+      "sha256": "36976c5f8e9d3a29c7766d6d63830e7299d2244394ae19bbcfaf4dfa77df92a5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/native_adapter.py.gz",
+      "bytes": 5448,
+      "sha256": "988f91a6fabf3e9765a76fee54862be0eed8f283fa73adc05cdbd37940feaa97"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/native_camera_snapshot.py.gz",
+      "bytes": 1866,
+      "sha256": "7167d1823b72362be191ac05d0b5a5c7b34344749264d1429c7777c7db8d1700"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/native_evidence.py.gz",
+      "bytes": 2370,
+      "sha256": "d25a471cc97ff7d7a490c1766b9e06afd709a595a179408dba84b7f28584e316"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/native_image.py.gz",
+      "bytes": 2490,
+      "sha256": "e1be297f467c74abd8df1b54a9284abb8b6938b75d0a4a3c48d3c815dc87d016"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/native_observation.py",
+      "bytes": 3105,
+      "sha256": "324cee8d6bcb50818d634eba7f4c75dd0ea15d0076ee4073bde2c7285ccc536f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/offline_contract.py.gz",
+      "bytes": 1860,
+      "sha256": "19dee5a276acd5ca452335c59bc0478c3c0b10384e98b01ff46406970a3e2f40"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/offline_lifecycle.py",
+      "bytes": 2018,
+      "sha256": "61b65a6d71d06d846f81435ef5dc29c5e0788a13920672b0d8e71094bce8e80f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/offline_native.py",
+      "bytes": 1025,
+      "sha256": "78d97ad5bfe6f77a292d3a58d2256458800bd121d5377b7c41f887ba991e11dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/offline_runtime.py.gz",
+      "bytes": 4743,
+      "sha256": "ea10c5a8226f2742d3c13f9b3819ef8dcb781d22e2c61e3889678c446f2132c4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/qa_camera.py.gz",
+      "bytes": 3655,
+      "sha256": "84f1ae07678bc4ad930764099cdb46ca745ec85d9dd5fc8448b2c7dc3d6933ea"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/qa_multiclient.py.gz",
+      "bytes": 3912,
+      "sha256": "f7b66962e9934dc2c6ecbe0d054acbcf08c48de63bd9fea29664247eeafd5d8c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/qa_resupply.py.gz",
+      "bytes": 2796,
+      "sha256": "794737fefbcff714fb281ce6c38cde1f9cb97b6ac80eae6acd9a8ddfee6a99bb"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/resupply.py",
+      "bytes": 2895,
+      "sha256": "a3f05ab3d0f933255afca2258c7008d7b7d82877cac7730c8e55cc91bbaa8750"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/runtime.py.gz",
+      "bytes": 14301,
+      "sha256": "7193c3c490b2807258529b2576b02c16f055a7c712591c6f4291396745063af8"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/server.py.gz",
+      "bytes": 3349,
+      "sha256": "bf8fbb0adf80e600abd98a54e15d0eaae8123b8c8e7a7b27b2313f1769abba5d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/spin.py",
+      "bytes": 3385,
+      "sha256": "b1610e2a1e20e461b1c01b41f986f1878b28f5a8ac19374a51a76327b2f650dd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/state_projection.py.gz",
+      "bytes": 3939,
+      "sha256": "49817b857f95b92edfb4ed2e6ee17f047e0f1e99fc19446c1b82fe6edd5105fa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_adapter_activation.py.gz",
+      "bytes": 2442,
+      "sha256": "b16730967ea49e46c46ad557f7f477b5eeae5b72f52a8c868f7a1a5b9b5eb64b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_adapters.py",
+      "bytes": 3426,
+      "sha256": "91a69692d5f0f26d7495c179e774f2c0fe9903329da3618140b0c23b87cbbbdd"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_admission.py.gz",
+      "bytes": 3566,
+      "sha256": "ac6c2acf1d371fb81ecc8d513231b657921806ae47603d5e09bc99f158931e17"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_camera.py.gz",
+      "bytes": 4441,
+      "sha256": "dfe8a49a6952deae4cced74299b62e422011924c7fbe0a7a64c5e969b0dc89c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_camera_codec_boundary.py.gz",
+      "bytes": 1492,
+      "sha256": "fd01e90a103b3d5c0cffd0be1db03261e007e31598d1c689c4c805b97c3701a2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_camera_entry_guard.py",
+      "bytes": 1261,
+      "sha256": "148b87861d32ae7eac2a06e22fda900205882eed2a71989bab900c3fc11dba02"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_camera_pixel_boundary.py.gz",
+      "bytes": 2185,
+      "sha256": "c379f4682744ead4223738323f7615815fe4a3091b76110fdd257ace10a0c093"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_camera_pixels.py.gz",
+      "bytes": 1786,
+      "sha256": "c3deba80606b945f2c9530bf99fe7feece5b14e961af9c8f71b97d7dbf4731de"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_camera_sensor_identity.py",
+      "bytes": 3717,
+      "sha256": "f4c7fa7c10d2cc01881d3a20f3553471d7310cc73732c4cc7e4a6a832b74f70e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_client.py.gz",
+      "bytes": 1865,
+      "sha256": "fa5fb0d6477c7d7582989469860b590b3a8b4aa0206bd9f51fe0f50b563be567"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_contracts.py.gz",
+      "bytes": 1906,
+      "sha256": "c6aed49fd4540642ff1bf5de30d623fb041030575ba70854103172793a4bed74"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_control.py.gz",
+      "bytes": 1503,
+      "sha256": "47c0d208d1a08859b82741c690d398c16c18890aa82ea7a037c36316c94c591b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_control_windows.py.gz",
+      "bytes": 1407,
+      "sha256": "fe4c8304042cb05b2445278130db031592451a154b1b4d11648fd61e36de7155"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_decoded_camera_races.py.gz",
+      "bytes": 2344,
+      "sha256": "a64c7a5f2081040353165e39b6042da58fb003ca6e3fc404d51b885656d7c7bc"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_adapter.py.gz",
+      "bytes": 2090,
+      "sha256": "e07fd9e54cc25a3ef30c80705ff5140adc8d86111b8e93cd8023452d96693a7e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_admission_deadline.py.gz",
+      "bytes": 1946,
+      "sha256": "a9877256b21fe80a705c5120b5dfa5505342965b3f0784e372d4b0b23d5a8a29"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_decoded_boundary.py.gz",
+      "bytes": 2132,
+      "sha256": "511da15a32ce6d12b263ff3486d182c6aea6666d226d4edc6097a4ee895728f1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_deferred_trace.py.gz",
+      "bytes": 2284,
+      "sha256": "abc09ca34258fddc9f674e23f08cab9dd923b956dbf2a6ea769d83bb19abc6aa"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_early_pixels.py.gz",
+      "bytes": 6021,
+      "sha256": "0ee6c9e8bf81875a2725465dcf6a00269eb2056062cdaa5024ea1017432f94da"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_early_pixels_review.py",
+      "bytes": 2958,
+      "sha256": "63e5d7a669a2932f7088d6fa68da818ae0129eb4cdf0a58d570e345ff6555fc4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_evidence.py.gz",
+      "bytes": 2049,
+      "sha256": "0ca7ee63e2e08a5ad524c98efeea766a08008cfdc3a6c8cfc858c5e00868163a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_image.py",
+      "bytes": 3474,
+      "sha256": "66712337c3275a7f5095dad5ae9803f15653792e2d7064b63a49c2e755eb4273"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_native_timing.py.gz",
+      "bytes": 2428,
+      "sha256": "76419dc6c0bd24cd3c70948bf986618080c2b50dbf28900621e8573ba740c174"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_observation_refresh.py.gz",
+      "bytes": 2630,
+      "sha256": "6708516964cc6297016f844171dd1dab711a0487bb49ae168d692288b1e6ea20"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_offline.py.gz",
+      "bytes": 2516,
+      "sha256": "f3ec59588954e6a8ae541c25dc191b6683651fa1ef11f60fb39f5743957060d7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_offline_lifecycle.py",
+      "bytes": 2518,
+      "sha256": "cb4f5d2c5fa1d6141aaf847e7aa064844bfac7199949810a3885f64fbc763732"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_offline_projection.py.gz",
+      "bytes": 1549,
+      "sha256": "bcca6b6c1d83730094278975fb0f92d5a11da3362eb731d5a079864f11adb227"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_raw_encoding.py",
+      "bytes": 1510,
+      "sha256": "7b51be2044329f4e3daf98f0aca015e33ff9d03a5a4844f7d7d774a2a7408eef"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_registry_hotpath.py.gz",
+      "bytes": 2075,
+      "sha256": "1aa08e13869258fe55b678081e2e702df8556b3c53905eac1f7a28fc30ab7cac"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_resupply.py.gz",
+      "bytes": 1662,
+      "sha256": "4c55ada884a712cad3a8a2ddc70f20e3c9300635a4972791b062bbda8f5b1935"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_runtime.py.gz",
+      "bytes": 4177,
+      "sha256": "1f98446431954ea7b45436e2fa1b173586e56788508d6281c6967a350f4bcae7"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_runtime_pacing.py",
+      "bytes": 1690,
+      "sha256": "67b71e4c25c7d2736213586b72a6be8c9f47c642d789b2261123e108ad03c39c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_server.py.gz",
+      "bytes": 1944,
+      "sha256": "876b35010de4c4f7a900a9d423daeadb4c928e981247a44c67a323a1a72eaaca"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_slot_shutdown.py.gz",
+      "bytes": 3172,
+      "sha256": "c37038cd0c6bd166f21907405798c111651dd9e3f2547509f2334b14c7898c5a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_snapshot_robot.py.gz",
+      "bytes": 1585,
+      "sha256": "6d720e66f58a63c0c1e65abb7fdbb5dd999cd063bc6e179767d7f67dc0eb7e82"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_spin.py.gz",
+      "bytes": 1446,
+      "sha256": "3d07de2543a4ac558d399678790f1edb1a8228999045e5445c57064f82328e3a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_spin_feedback.py.gz",
+      "bytes": 1721,
+      "sha256": "baf0a28ea5dfa97448db149bd0e966be9bfc5a27b2b9443f7f694d91e1c3554f"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_spin_model_metadata.py",
+      "bytes": 1303,
+      "sha256": "81e9950a94c366c43f1838dc0ddf4870df4cab6b7a7ae08a8e16f4c7f3bb2cf2"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_state_projection.py.gz",
+      "bytes": 2775,
+      "sha256": "550771c7e24158eec235bfb59c566a8f0e2ba1886d5918750267b5f42709f917"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_support_admission.py",
+      "bytes": 680,
+      "sha256": "b5c211bc782fcffed5ac4cbf703fa3480b754cc9d75483b9951ede87d7b44ca1"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_wall_pacing.py",
+      "bytes": 1486,
+      "sha256": "54c0dbc8a9ffb8c398764d222002dbd135c50d7b984b232013a088d7e9d0ab22"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_window_client.py.gz",
+      "bytes": 1357,
+      "sha256": "113f2c578eb3ac960b17744516a0db56762d50557999a3483489f21415f6f4c6"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/test_window_consumption.py.gz",
+      "bytes": 1761,
+      "sha256": "2c90bb52991e0517af411ead47e5b90107eed22968b5d4f9e3263df315b5ff66"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/platform_v2/wsl_native_adapter.py.gz",
+      "bytes": 2411,
+      "sha256": "13da091aa8080edc244b6b0fb6ba8f36b5def72ea9a234c0baa0938649ed62c9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/recording_health.py",
+      "bytes": 2384,
+      "sha256": "653cb4db26642b919af1272b25d80a72e5045bc3356bed0a3d443636abf0ba08"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/rmcs_stop_aim.py.gz",
+      "bytes": 5365,
+      "sha256": "30c23aa6f5daa7c86f3594459b06665380f50a032b55e1eb6696cee44e8f285d"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/sensor_schedule.py",
+      "bytes": 1343,
+      "sha256": "d549c3268f8668233b5e65b068b5f9fae9f24ed190ae001b167652d3fafdb0f4"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/serialization.py",
+      "bytes": 538,
+      "sha256": "e16aa541b23665f8c227397f2d847ac2790a77d79d5f34e462b257031e7ae34a"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/spectator_effects.py.gz",
+      "bytes": 3806,
+      "sha256": "1ace234fd7a2ec56755b5d9a86c18933f3ba51d8189325c5a6a1caa828fbd438"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/telemetry.py",
+      "bytes": 2121,
+      "sha256": "7c9abdf9332256b1ba6e3cea28573125276e80b7f7f2223872df2e21d0829e13"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/aim.py",
+      "bytes": 3581,
+      "sha256": "b8b16a44893f9d262eeb9539ba75bd971a8f5d20f1d8909504e94df57e4ae035"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/camera_view.py",
+      "bytes": 1496,
+      "sha256": "d726218a5214201280e63bfdbfd75178bae5facb94e4c88e538391dcd5952cb9"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/fire_level_delay.py.gz",
+      "bytes": 3284,
+      "sha256": "aa20f0bd7391963c286f3ed98c19ad0cc1121a9d9cee202478f49228892924d5"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/plant.py.gz",
+      "bytes": 1797,
+      "sha256": "794d8d1342d92b22cd28ea0dda3cebab9f708607e937823f06c73451ac34f145"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/strict_process.py",
+      "bytes": 1993,
+      "sha256": "6e2adbd5f87dc57ad6dfddfcf9393b3810d6c6ddfdadb5bbe9dcdea682668713"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/timing/transport.py",
+      "bytes": 3594,
+      "sha256": "ccac362a76d9103e4be09fcc84fe67fab728ccdb52ee7e3d6270e26fcabf102e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/upstream_rule.py",
+      "bytes": 3005,
+      "sha256": "d7f7e6b9a01b83b98b169c8ed9ee5f499d05e1887cd1c994372d561b80ebf7d3"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/rm_match/viewer.py",
+      "bytes": 3119,
+      "sha256": "801f75a71afb2dcb2d33ddc8a7c58cdfc038cd3dd3afe611c31dd5dcb3c6236c"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/tests/fixtures/active_goal_navigation_fixture.py",
+      "bytes": 2231,
+      "sha256": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/tests/fixtures/decision_heat_v2.py",
+      "bytes": 1140,
+      "sha256": "d5850da9b32d30dc10d6bea5d7d9c0565fef61ba881da874744a345174508fed"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/tests/fixtures/decision_supply_v1.py",
+      "bytes": 1160,
+      "sha256": "76979ffe355f8202fb28ae67797fe520613fc72300d2ea388cd63948ed41149b"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/source/tools/qa_active_goal_protocol_sil.py.gz",
+      "bytes": 8843,
+      "sha256": "b1b6b78cd373b87c51f77554a0a2b9d1b178b73ce1a32e7fe4235e8c6a82f73e"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/SOURCE_MANIFEST.json.gz",
+      "bytes": 11588,
+      "sha256": "44623c326314dc2ec4c7b4adbc4a41d983c62598f1c6840ef7c555de4d402677"
+    },
+    {
+      "path": "records/artifacts/active-goal-protocol-sil-20261015-03/UNCLAIMED_CLEANUP.json",
+      "bytes": 66,
+      "sha256": "f2252b5d524d01005ddfcd73c8be5372efa2e8bdb7473dca1385c66116d09952"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/COMMAND.json",
+      "bytes": 673,
+      "sha256": "a15f5b340f7f0876ba2bcd48ac8d1c179c05fecfadca00dc2ac967d4833172dc"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/FORCED_RESIDUAL_CLEANUP.json",
+      "bytes": 208,
+      "sha256": "7b8959f7e68f043e94420e68e6450b0c871a9299b5f1261ed331dc377057f62b"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/RESULT.json",
+      "bytes": 485,
+      "sha256": "f344c166d9bc283f1e578c1607d3f1d998d8565ba76651be513cfaf041757a34"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/source/artifacts/run_active_goal_protocol_sil_20261015.py.gz",
+      "bytes": 1697,
+      "sha256": "ee12e68f4e795bd43584204287286b81b852cb8b6052d106520e32f42476254b"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/source/tests/test_active_goal_protocol_audit.py.gz",
+      "bytes": 2122,
+      "sha256": "2de618191e9450e83d64bf5759512a51f21d3f457bf21e6aa9ddd24c10136b89"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/SOURCE_AFTER.json.gz",
+      "bytes": 11771,
+      "sha256": "90e8bc9853ed34c585cfdaddfebcd5030532397db444d078f3c83ffa9df11870"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/SOURCE_BEFORE.json.gz",
+      "bytes": 11771,
+      "sha256": "90e8bc9853ed34c585cfdaddfebcd5030532397db444d078f3c83ffa9df11870"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-01/stdout.log",
+      "bytes": 163,
+      "sha256": "24e561b8f855695de46470a035d8691a455f529433dcd4dfb093d6fbdd64049a"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/COMMAND.json",
+      "bytes": 673,
+      "sha256": "480fbc35ed8edbbb140a026926b85407f9175fd53e6d3e6955b684fcfc9e723b"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/JOB_ACCOUNTING.json",
+      "bytes": 358,
+      "sha256": "09717ebc87a82ae7edfd71c5b471dea87b1ce960d723ad9e4a731e96ceccd36a"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/RESULT.json",
+      "bytes": 438,
+      "sha256": "822f85b84823a4dad1238de53d5bff6e2dabaff5372bc6592bc98d0721718a5b"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/source/artifacts/run_active_goal_protocol_sil_20261015_02.py.gz",
+      "bytes": 2428,
+      "sha256": "bf2e488f258b02649adfdab7e0743cb54abd9d2108ef92c8129ffbcaa30121f0"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/source/tests/test_active_goal_protocol_audit.py.gz",
+      "bytes": 2122,
+      "sha256": "2de618191e9450e83d64bf5759512a51f21d3f457bf21e6aa9ddd24c10136b89"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/source/tests/test_navigation_plugin.py.gz",
+      "bytes": 5218,
+      "sha256": "7a87e844988c60992d73c7e473f855467c358c43b6f24c42f8449ba8146c2b24"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/SOURCE_AFTER.json.gz",
+      "bytes": 11823,
+      "sha256": "0fc2c21044624941200f556cdd812942c4fbfad838c05df9f87a32738b592a38"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/SOURCE_BEFORE.json.gz",
+      "bytes": 11823,
+      "sha256": "0fc2c21044624941200f556cdd812942c4fbfad838c05df9f87a32738b592a38"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-02/stdout.log",
+      "bytes": 163,
+      "sha256": "1379fd4f5a6ba18bab5bc07d90be883188b236d4e804d6043a2ed94fe3fd0f12"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/COMMAND.json",
+      "bytes": 813,
+      "sha256": "d19cf9b724f03af3549bfec1490a88d7da9d4b92912a01e4192a5c7b9bdb1e27"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/JOB_ACCOUNTING.json",
+      "bytes": 669,
+      "sha256": "bff3042c05892cadff2978402a3ab9f1127de174106c5f59b29d7ad2e40ed8f7"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/RESULT.json",
+      "bytes": 587,
+      "sha256": "9020639d13bb96b6b354d2d33dc63c117dd2ac6b17eaccb8faddc540cf268171"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/source/artifacts/run_active_goal_protocol_sil_20261015_03.py.gz",
+      "bytes": 2767,
+      "sha256": "d178099bbe146f389b47e6267a94f50eda01005570bcc61530e1b5c21d961b53"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/source/tests/test_active_goal_protocol_audit.py.gz",
+      "bytes": 2122,
+      "sha256": "2de618191e9450e83d64bf5759512a51f21d3f457bf21e6aa9ddd24c10136b89"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/source/tests/test_navigation_plugin.py.gz",
+      "bytes": 5218,
+      "sha256": "7a87e844988c60992d73c7e473f855467c358c43b6f24c42f8449ba8146c2b24"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/SOURCE_AFTER.json.gz",
+      "bytes": 11824,
+      "sha256": "949d0f253793b07f2590c2c80ffdc3a9c3e6fda65d09112d021848ca4a487883"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/SOURCE_BEFORE.json.gz",
+      "bytes": 11824,
+      "sha256": "949d0f253793b07f2590c2c80ffdc3a9c3e6fda65d09112d021848ca4a487883"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/active-goal-sil-driver-20261015-03/stdout.log",
+      "bytes": 163,
+      "sha256": "ac4e97813d4f138dcaf78e118e99dcd843bbc258926d38c209958f3a3160eba5"
+    },
+    {
+      "path": "records/artifacts/active_goal_checkpoint_sources_20261015.json",
+      "bytes": 933,
+      "sha256": "b1c02766808188efeb86da186327547a0fe2171a0d4ffff2732927a83b5df8e8"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-13/COMMAND.json.gz",
+      "bytes": 21232,
+      "sha256": "0d8e870ab1de1d488367e6869acdce739520890556d3ed8d4444662e3981e0b4"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-13/driver.py",
+      "bytes": 2009,
+      "sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-13/PID.json",
+      "bytes": 36,
+      "sha256": "308d3662a939d334181919d33fc792231e0ea70447c3595a7ca78c583203f460"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-13/RESULT.json.gz",
+      "bytes": 41374,
+      "sha256": "b3148190ab534e8d6b027e57a838b1ca64bf9d8df53368c85c4586fa354a7bcf"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-13/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/aim-followup-quality-driver-20261014-13/stdout.log",
+      "bytes": 96,
+      "sha256": "f465cc9e4f21c630c9b74fe473a56d32c7161892fe74612550c24c02f77ec641"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/COMMAND01.json",
+      "bytes": 346,
+      "sha256": "df1c94d695b2045630664b5e7990edd8d7dec059df407ebbde3ead83c844248a"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/COMMAND02.json",
+      "bytes": 346,
+      "sha256": "87c281f507835ce4acb734457b646a5328f2d3415a4b9cf64b4ee3d878a9e57e"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/COMMAND03.json",
+      "bytes": 346,
+      "sha256": "7d68772992b3843f8dab49bac245e4e1b4e8a8f217916b4cb1fa782bab6946c2"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/FORMAT.json",
+      "bytes": 405,
+      "sha256": "cf83311486e3516a0c9278b9f37af4a2906acd7c8091dcf2fa7947e43f65ec37"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/FORMAT03.json",
+      "bytes": 405,
+      "sha256": "35186d2f2feb44ae5b50c6d635038e5ebe1bbbf55c2818ec9843218f065abc2a"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/junit01.xml.gz",
+      "bytes": 1063,
+      "sha256": "d86dbe01c6d8852a40361e8f9a3409ede8982403c13cf4cfbb12148ad32fca19"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/junit02.xml.gz",
+      "bytes": 1194,
+      "sha256": "df5528df686e868df888ba21f92121b8db50e79a178de6fc42d1417dcf1b0be2"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/junit03.xml.gz",
+      "bytes": 1205,
+      "sha256": "f89ee7f0b7c4e17e902b8fb1d28d5d49c22a1041e98df9c97ae5280248b197b2"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/PROCESS_RESULT01.json",
+      "bytes": 1427,
+      "sha256": "3c532d5e7245eb9ce83f50b4e889be6b31e4384d09e2551a8f379499041a3bc4"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/PROCESS_RESULT02.json",
+      "bytes": 1428,
+      "sha256": "d1ca736b47605d1ba582bbb287b865da8844fb270b0655e9c68687bb599f6f6a"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/PROCESS_RESULT03.json",
+      "bytes": 1428,
+      "sha256": "634fcd68e83f280647b17954e05ee57f924586935fdc0f4ba501c0978f1d164b"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/run01.py",
+      "bytes": 1628,
+      "sha256": "b43c242d871c5165d2222b0e701c16b2982ceda466e034016939b04589ce7ce1"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/run02.py",
+      "bytes": 1630,
+      "sha256": "35ebdf55873a506151cce8ec692cedba81616ef2af295f966f7c29ec8f87e82e"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/run03.py",
+      "bytes": 1630,
+      "sha256": "08732ecee37f75df719aa512bd4427384452f792ca476a001f0ad752d4a5e3ce"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source01/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source01/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source01/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2608,
+      "sha256": "04e309f9f19763dff5121b4557bdd4478f9c9838565bbf47d4ff2197169c8b82"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source01/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source01/tests/test_goal_navigation_contracts.py.gz",
+      "bytes": 3083,
+      "sha256": "bedd0c974ac9c42e06e161deeb331f0747ad94cd88c420c68db13940fba4b23e"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source02/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source02/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source02/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2776,
+      "sha256": "3480b790a06c807962e146651611f6cff11a97f6cc20b46bb670fd79398f0054"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source02/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source02/tests/test_goal_navigation_contracts.py.gz",
+      "bytes": 3653,
+      "sha256": "a2bd8063ac5b4ca09e04776bd9af5bf8ccc2bd25d1316c022be8db9322788de3"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source03/rm_match/platform_v2/contracts.py.gz",
+      "bytes": 3573,
+      "sha256": "94f4780b68b03b296463bf64c8c4afe0cdca505664a8767bd438361eafcd7cc3"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source03/rm_match/platform_v2/decision_contracts.py.gz",
+      "bytes": 1615,
+      "sha256": "98b1eac228fee4f79a14282341e2f4b73e8e4c70669a55a32e62e0c322d7ec40"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source03/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2802,
+      "sha256": "7a17669389881a83bf68ed9751e8cb3de7693262f54a287060d5f7b6dde65947"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source03/rm_match/platform_v2/navigation_contracts.py.gz",
+      "bytes": 2527,
+      "sha256": "355d81d2b0963d2e74646af936428da8be17556733cf2d5f5c4e3e2e7ae6224c"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/source03/tests/test_goal_navigation_contracts.py.gz",
+      "bytes": 3708,
+      "sha256": "44bdedd86a9313b6b2a32ca94ff4ce2f0f70057b3abe1e7bf82bc2f46f45d1b2"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/stderr01.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/stderr02.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/stderr03.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/stdout01.log",
+      "bytes": 101,
+      "sha256": "6d2cbf9dd68bfe69dd0e64c5d4882553725539ae3b5b5aa86c7755453938f4a9"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/stdout02.log",
+      "bytes": 101,
+      "sha256": "b65df53962e73952f19baf08063a5f66a937cc95cd31ece5cc9f341028a8320b"
+    },
+    {
+      "path": "records/artifacts/goal-navigation-contracts-focused-20261015-01/stdout03.log",
+      "bytes": 101,
+      "sha256": "f87ff4c5f334c455748479d85784d7b4da7809b3c57709ac594d19ee0b802a5a"
+    },
+    {
+      "path": "records/artifacts/pb-goal-source-focused-20261015-01/pytest.xml.gz",
+      "bytes": 816,
+      "sha256": "fdc7cfbd794d8c8228c10a15d506472254148452bd1a070887fb155d98fc6f49"
+    },
+    {
+      "path": "records/artifacts/pb-goal-source-focused-20261015-01/RESULT.json",
+      "bytes": 2553,
+      "sha256": "b9aded4098ce7aae414928970b8916be995bce367e75d754a1d2106d476d7d0c"
+    },
+    {
+      "path": "records/artifacts/pb-goal-source-focused-20261015-01/SOURCE_BEFORE.json",
+      "bytes": 904,
+      "sha256": "1d445caa6c496ccb648eb8ce020f030b9a62d871706973f4646a266e7c0eabbb"
+    },
+    {
+      "path": "records/artifacts/pb-goal-source-focused-20261015-01/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "records/artifacts/pb-goal-source-focused-20261015-01/stdout.log",
+      "bytes": 101,
+      "sha256": "969ada478f91416f78c54d0558ed6f161236683732e1d8f607fb72c6bfc4cdca"
+    },
+    {
+      "path": "records/artifacts/preserve_active_goal_plugins_20261015.py.gz",
+      "bytes": 1953,
+      "sha256": "81fbe468f9dae75900c2e8a49e88b5c1cffd2cf29de002b28e0828eb7910d33d"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/acceptance_preset.log",
+      "bytes": 1166,
+      "sha256": "5d3d4195ce41a327ffbd1b97a342d3ea4659274ddbc3ea1910f345bbc103f32d"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/interface_static.log.gz",
+      "bytes": 3866,
+      "sha256": "bd17df11b51b85196d9b94ea6dc52d70e2229f289e201defc625c28e70ceb70b"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/manifest.json.gz",
+      "bytes": 457852,
+      "sha256": "018592280175756b9a62a2b0cf328a701ae7e6f7424aaab27786a5b108ccb451"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/preset.json",
+      "bytes": 1166,
+      "sha256": "5d3d4195ce41a327ffbd1b97a342d3ea4659274ddbc3ea1910f345bbc103f32d"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/pytest.log.gz",
+      "bytes": 656,
+      "sha256": "7ab516bf63349123d9727e88a70deaea4fe23d4a0792a1f167c95c3bed1ffde8"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/pytest.xml.gz",
+      "bytes": 54981,
+      "sha256": "8efe84e39702c51e2769d654f492ac6a078a91b0bba3eabcd4402953ed288cc3"
+    },
+    {
+      "path": "records/artifacts/quality-aim-followup-20261014-13/source_provenance.log",
+      "bytes": 1627,
+      "sha256": "7715e5290586701ed87e14998a3180a4859c91e3243a41fd7f97b12c2c50c9ef"
+    },
+    {
+      "path": "records/artifacts/run_active_goal_protocol_focus_20261015.py",
+      "bytes": 3522,
+      "sha256": "6a20972dcc7012bf923420797f1de069405c700a755fbbd82f5565d404439b15"
+    },
+    {
+      "path": "records/artifacts/run_aim_followup_quality_20261014.py",
+      "bytes": 2009,
+      "sha256": "0ff6f17c25baabeeabfae70f2aefac81913f8ea0871df8b0d220d729ca7a7292"
+    },
+    {
+      "path": "records/docs/ACTIVE_GOAL_NAVIGATION_PLUGIN.md.gz",
+      "bytes": 5385,
+      "sha256": "2e420e981fac5f68ba94d8850e3f3ba6aa34aafa581c6e6536fa1c89bec819aa"
+    },
+    {
+      "path": "records/docs/COOP_PLAYABLE_PATH.md.gz",
+      "bytes": 6602,
+      "sha256": "64da2df332f9316522bf528f039258d5f27f391ee9f8168e031edc56c66367b3"
+    },
+    {
+      "path": "records/docs/IMPLEMENTATION_PROGRESS.md.gz",
+      "bytes": 38955,
+      "sha256": "8f3889f4495fd0b098c13ee7292d2e7fd8bf2a0a955eb708d8910b30cda3f97e"
+    },
+    {
+      "path": "records/docs/UNIVERSAL_PLUGIN_INTERFACES.md.gz",
+      "bytes": 9197,
+      "sha256": "4646bf40e5b9655b64d65ad309228914cf5537ab9c4e8ee4d442dad1079c24f5"
+    },
+    {
+      "path": "records/examples/robotio_active_goal_navigation.json",
+      "bytes": 1973,
+      "sha256": "f8c17d6de827d6044c8fedc2a6531edd1e7447924e40a9b786c267950767cff5"
+    },
+    {
+      "path": "records/examples/robotio_active_goal_plugins.json",
+      "bytes": 844,
+      "sha256": "c03d2ff14613d31d9fbd50134560e28cc77e778594056a4442e22229daeaeb59"
+    },
+    {
+      "path": "records/rm_match/deployment/navigation_plugin.py.gz",
+      "bytes": 3933,
+      "sha256": "d2198a24b9e15161cad3bcde74c423dcf1b957decd1e351dfbbe3ae062ce7a81"
+    },
+    {
+      "path": "records/rm_match/integrations/goal_navigation_compute.py.gz",
+      "bytes": 2863,
+      "sha256": "6e5a88fb38510366c4c6fcd6acc9f0ff9ea7d508ed404bbc57d6925bf39510b7"
+    },
+    {
+      "path": "records/rm_match/integrations/navigation_jsonl_peer.py.gz",
+      "bytes": 1872,
+      "sha256": "d478f3931a0a9bda6f41fca34b3159c62e6a70f029b43c0911ab06916ef0f30b"
+    },
+    {
+      "path": "records/rm_match/integrations/pb_goal_controller_source.py.gz",
+      "bytes": 1716,
+      "sha256": "45785a648da72144dfce07328a079a52731cd8322e3fb7a891932ddfee7e3b9c"
+    },
+    {
+      "path": "records/rm_match/integrations/robotio_ros2_bridge.py.gz",
+      "bytes": 3179,
+      "sha256": "07afec88bd8e1333cc80e3690f5646048f49b3feeb25a2c6c8fd42ad0b4d6418"
+    },
+    {
+      "path": "records/rm_match/platform_v2/goal_navigation_contracts.py.gz",
+      "bytes": 2802,
+      "sha256": "7a17669389881a83bf68ed9751e8cb3de7693262f54a287060d5f7b6dde65947"
+    },
+    {
+      "path": "records/tests/fixtures/active_goal_navigation_fixture.py",
+      "bytes": 2231,
+      "sha256": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11"
+    },
+    {
+      "path": "records/tests/test_active_goal_navigation_plugin.py.gz",
+      "bytes": 2948,
+      "sha256": "230a0baf00a4b7986d4d7c87af5c6d3112e73a7823faf9df2ee49755729b25a9"
+    },
+    {
+      "path": "records/tests/test_active_goal_protocol_audit.py.gz",
+      "bytes": 2122,
+      "sha256": "2de618191e9450e83d64bf5759512a51f21d3f457bf21e6aa9ddd24c10136b89"
+    },
+    {
+      "path": "records/tests/test_active_goal_ros2_bridge.py.gz",
+      "bytes": 1925,
+      "sha256": "9087cd801db25686d36ef5ad15acf9b4eab60ed78b266ad13ec55cddbbb1d828"
+    },
+    {
+      "path": "records/tests/test_goal_navigation_compute.py.gz",
+      "bytes": 4470,
+      "sha256": "45c82297f92c84d228443a58a7d44ba672db39ab741f985d8b5122094943817d"
+    },
+    {
+      "path": "records/tests/test_goal_navigation_contracts.py.gz",
+      "bytes": 3708,
+      "sha256": "44bdedd86a9313b6b2a32ca94ff4ce2f0f70057b3abe1e7bf82bc2f46f45d1b2"
+    },
+    {
+      "path": "records/tests/test_pb_goal_controller_source.py.gz",
+      "bytes": 4035,
+      "sha256": "dfaf78f7f78dfbc72a271790a13fbcad22580e1eed98b108748dd7fc0546abcb"
+    },
+    {
+      "path": "records/tools/qa_active_goal_protocol_sil.py.gz",
+      "bytes": 8843,
+      "sha256": "b1b6b78cd373b87c51f77554a0a2b9d1b178b73ce1a32e7fe4235e8c6a82f73e"
+    },
+    {
+      "path": "verify_archives.py",
+      "bytes": 1321,
+      "sha256": "114af506d9d84a1eacdbeb367f23b0478bd8eaad32d0d0e26b3e2cab296b4323"
+    }
+  ]
+}

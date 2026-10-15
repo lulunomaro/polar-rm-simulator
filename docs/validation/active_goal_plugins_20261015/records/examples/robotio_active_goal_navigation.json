@@ -1,0 +1,47 @@
+{
+  "schema": "polar.sim.navigation-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_active_goal_nav_supply",
+      "label": "Synthetic active-goal UUID and fixed velocity fixture supply",
+      "command": ["{python}", "-u", "active_goal_navigation_fixture.py"],
+      "cwd": "../tests/fixtures",
+      "supported_robots": ["red_infantry"],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.navigation-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.navigation-observation.v1",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.navigation-status.v1",
+        "sensor_profile": "pointcloud_imu_v1",
+        "source_association": "exact_capture_and_active_goal_v1",
+        "output_modes": ["velocity_body"],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "goal_input_modes": ["decision_intent_v1"],
+        "goal_result_schema": "polar.sim.navigation-goal-result.v1"
+      }
+    },
+    {
+      "adapter_id": "custom_active_goal_nav_heat",
+      "label": "Synthetic active-goal status-only fixture heat",
+      "command": ["{python}", "-u", "active_goal_navigation_fixture.py"],
+      "cwd": "../tests/fixtures",
+      "supported_robots": ["blue_sentry"],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.navigation-plugin.capabilities.v2",
+        "observation_schema": "polar.sim.navigation-observation.v1",
+        "action_schema": "polar.sim.action.v2",
+        "status_schema": "polar.sim.navigation-status.v1",
+        "sensor_profile": "pointcloud_imu_v1",
+        "source_association": "exact_capture_and_active_goal_v1",
+        "output_modes": ["velocity_body"],
+        "fire_authority": "manual_only",
+        "ui_config_contract": "empty_v1",
+        "goal_input_modes": ["decision_intent_v1"],
+        "goal_result_schema": "polar.sim.navigation-goal-result.v1"
+      }
+    }
+  ]
+}

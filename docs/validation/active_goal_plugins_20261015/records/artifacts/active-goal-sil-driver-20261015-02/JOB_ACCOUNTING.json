@@ -1,0 +1,16 @@
+{
+  "budget_s": 1.5,
+  "observations": [
+    {
+      "elapsed_s": 8.00006091594696e-07,
+      "active_processes": 1
+    },
+    {
+      "elapsed_s": 0.005162200002814643,
+      "active_processes": 0
+    }
+  ],
+  "empty_observed": true,
+  "forced_cleanup": false,
+  "scope": "exact owned Windows Job after leader wait; no PID-tree inference"
+}

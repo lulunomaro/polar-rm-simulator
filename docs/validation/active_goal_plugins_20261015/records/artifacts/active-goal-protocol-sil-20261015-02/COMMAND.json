@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\tools\\qa_active_goal_protocol_sil.py",
+    "--run",
+    "--out",
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\active-goal-protocol-sil-20261015-02",
+    "--duration",
+    "4"
+  ],
+  "duration_s": 4.0,
+  "scope": "explicit synthetic active-goal protocol fixtures over real low-rate physics; no secrets recorded"
+}

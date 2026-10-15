@@ -1,0 +1,111 @@
+{
+  "errors": [],
+  "decision_results": 56,
+  "navigation_results": 56,
+  "navigation_actions": 28,
+  "navigation_statuses": 28,
+  "protocol": {
+    "red_infantry": {
+      "actions": 28,
+      "statuses": 0,
+      "operations": [
+        "14fd79544625cc97d259689745cf4cbb"
+      ],
+      "controller_uuids": [
+        "418bdb823896372375c2bed72d26817c"
+      ],
+      "behaviors": [
+        "navigate_to_pose"
+      ],
+      "pointcloud_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    },
+    "blue_sentry": {
+      "actions": 0,
+      "statuses": 28,
+      "operations": [],
+      "controller_uuids": [],
+      "behaviors": [
+        "hold"
+      ],
+      "pointcloud_frames": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ]
+    }
+  },
+  "physical": {
+    "red_infantry": {
+      "receipts": 2371,
+      "distinct_sim_steps": 792,
+      "distinct_source_actions": 27,
+      "phases": [
+        "actuator",
+        "integration",
+        "integration_entry"
+      ],
+      "nonzero_sim_steps": 792
+    },
+    "blue_sentry": {
+      "receipts": 0,
+      "distinct_sim_steps": 0,
+      "distinct_source_actions": 0,
+      "phases": [],
+      "nonzero_sim_steps": 0
+    }
+  }
+}

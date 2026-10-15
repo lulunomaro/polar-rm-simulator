@@ -1,0 +1,42 @@
+{
+  "unchanged_source_blobs_verified": 160,
+  "attributed_development_changes_verified": [
+    "pyproject.toml",
+    "rm_match/integrations/rmcs_process.py",
+    "rm_match/match_engine.py",
+    "rm_match/operator/server.py",
+    "rm_match/platform_v2/CONTRACT.md",
+    "rm_match/platform_v2/__main__.py",
+    "rm_match/platform_v2/adapters.py",
+    "rm_match/platform_v2/backend.py",
+    "rm_match/platform_v2/camera.py",
+    "rm_match/platform_v2/client.py",
+    "rm_match/platform_v2/contracts.py",
+    "rm_match/platform_v2/control.py",
+    "rm_match/platform_v2/native_adapter.py",
+    "rm_match/platform_v2/offline_runtime.py",
+    "rm_match/platform_v2/qa_camera.py",
+    "rm_match/platform_v2/qa_multiclient.py",
+    "rm_match/platform_v2/qa_resupply.py",
+    "rm_match/platform_v2/runtime.py",
+    "rm_match/platform_v2/server.py",
+    "rm_match/platform_v2/test_adapter_activation.py",
+    "rm_match/platform_v2/test_camera.py",
+    "rm_match/platform_v2/test_client.py",
+    "rm_match/platform_v2/test_native_timing.py",
+    "rm_match/platform_v2/test_server.py",
+    "rm_match/platform_v2/test_spin_feedback.py",
+    "rm_match/platform_v2/test_window_client.py",
+    "tests/test_opening_strategy.py",
+    "tools/platform_v2/control_window/serve_no_gl.py",
+    "tools/platform_v2/native_stage5/qa_live_native.py",
+    "tools/platform_v2/offline_stage6/serve.py"
+  ],
+  "derived_fixtures_verified": 1,
+  "syntax_files": {
+    ".py": 2150,
+    ".json": 1597,
+    ".xml": 31
+  },
+  "scope": "static extraction only; no physics, native execution, renderer or external service"
+}

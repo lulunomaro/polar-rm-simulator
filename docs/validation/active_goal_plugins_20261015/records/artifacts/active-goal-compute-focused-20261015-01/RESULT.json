@@ -1,0 +1,45 @@
+{
+  "command": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_goal_navigation_compute.py",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\active-goal-compute-focused-20261015-01\\pytest.xml"
+  ],
+  "exit_code": 0,
+  "reaped": true,
+  "elapsed_s": 0.6883138999983203,
+  "source_before": {
+    "rm_match/integrations/goal_navigation_compute.py": "b9cb83dd864aeefe164799fb465e4958b39e59f4d23443fcf2005e816b4df3e6",
+    "tests/test_goal_navigation_compute.py": "3946946ebba4be97b405a269cbe4bb025f2b5dc02377cc8532ec42c1dd0fc25a"
+  },
+  "source_after": {
+    "rm_match/integrations/goal_navigation_compute.py": "b9cb83dd864aeefe164799fb465e4958b39e59f4d23443fcf2005e816b4df3e6",
+    "tests/test_goal_navigation_compute.py": "3946946ebba4be97b405a269cbe4bb025f2b5dc02377cc8532ec42c1dd0fc25a"
+  },
+  "source_unchanged": true,
+  "dependencies_before": {
+    "rm_match/platform_v2/goal_navigation_contracts.py": "d583ab1de2056335d6ca2029a5f991e30e0e992e27908424537172a572d544c0",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+    "rm_match/deployment/navigation_plugin.py": "b9d4be09556a283b27c3684ff3a341e3089585b31a9bcbd8a62a001f170b420a",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "dependencies_after": {
+    "rm_match/platform_v2/goal_navigation_contracts.py": "d583ab1de2056335d6ca2029a5f991e30e0e992e27908424537172a572d544c0",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+    "rm_match/deployment/navigation_plugin.py": "b9d4be09556a283b27c3684ff3a341e3089585b31a9bcbd8a62a001f170b420a",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836"
+  },
+  "dependencies_unchanged": true,
+  "scope": "controlled_async_backend_and_sourced_callback_fixtures_not_navigation_or_ROS_acceptance",
+  "started_ros": false,
+  "started_algorithm": false
+}

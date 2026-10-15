@@ -9,6 +9,11 @@
 安装与本地 graph 启动配置见[客户端通用接口](CLIENT_ROBOTIO_INTERFACE.md)；旧默认补丁保持原范围。
 下述场景缺口用于安排验证，不能将单个队伍的专用实现或协议 fixture 宣称为通用目标已完成。
 
+当前后续增量是[显式active-goal插件](ACTIVE_GOAL_NAVIGATION_PLUGIN.md)：不同队伍可用同一版本化
+JSONL/ROS2结果封装，按当前决策目标与原计算UUID授权速度。两独立策略的低率MuJoCo协议SIL第二轮
+已闭合原intent/selection/UUID→SDK→实际消费及hold无动作，首轮外层清理失败保留。
+这补齐通用插件路由；真实PB的这一新注册组合、决策估计反馈、完整自瞄与六车比赛仍待连接验证。
+
 ## 手控步兵与真实导航哨兵同场验证（2026-10-15）
 
 新独立探针 `tools/qa_qt_pb_coop_sil.py` 已通过 5 秒与修复后的 30 秒联合 SIL。

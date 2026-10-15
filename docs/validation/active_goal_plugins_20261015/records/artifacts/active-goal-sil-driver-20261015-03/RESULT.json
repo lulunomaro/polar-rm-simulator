@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "returncode": 0,
+  "elapsed_s": 5.834072099998593,
+  "process_reaped": true,
+  "owned_job_empty": true,
+  "outer_shared_cleanup_budget_s": 1.5,
+  "outer_cleanup_elapsed_s": 0.005654000007780269,
+  "reader_stopped": true,
+  "handles_released": true,
+  "forced_cleanup": false,
+  "source_unchanged": true,
+  "source_file_count": 220,
+  "errors": [],
+  "probe_result": "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\active-goal-protocol-sil-20261015-03\\RESULT.json",
+  "qualification": "synthetic_protocol_only"
+}

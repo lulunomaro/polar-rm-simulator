@@ -1,0 +1,26 @@
+{
+  "budget_s": 1.5,
+  "observations": [
+    {
+      "stage": "settle_query",
+      "elapsed_s": 3.5999983083456755e-06,
+      "active_processes": 1
+    },
+    {
+      "stage": "settle_query",
+      "elapsed_s": 0.005526200009626336,
+      "active_processes": 0
+    },
+    {
+      "stage": "final_query",
+      "elapsed_s": 0.005566500010900199,
+      "active_processes": 0
+    }
+  ],
+  "empty_observed": true,
+  "forced_cleanup": false,
+  "reader_stopped": true,
+  "handles_released": true,
+  "outer_cleanup_elapsed_s": 0.005654000007780269,
+  "scope": "exact owned Windows Job, reaping, reader join and handles share one cleanup deadline"
+}

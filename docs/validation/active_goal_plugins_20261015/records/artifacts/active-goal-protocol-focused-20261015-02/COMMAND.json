@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\.venv-sim\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "--junitxml=C:\\Users\\lulu\\Desktop\\claude\\polarsimulation\\polar-rm-simulator\\artifacts\\active-goal-protocol-focused-20261015-02\\pytest.xml",
+    "tests/test_active_goal_navigation_plugin.py",
+    "tests/test_active_goal_ros2_bridge.py",
+    "tests/test_goal_navigation_contracts.py",
+    "tests/test_goal_navigation_compute.py",
+    "tests/test_pb_goal_controller_source.py",
+    "tests/test_active_goal_protocol_audit.py"
+  ],
+  "source_before": {
+    "rm_match/deployment/navigation_plugin.py": "e11e532455ec2564078a873b223818058da41debf5fefc809e2aae12a93de487",
+    "rm_match/deployment/robotio_plugin.py": "4baf44600a683f047996f72fd9c21a1ebf02cee3ce2a4ddb20c0629e2faf10fb",
+    "rm_match/deployment/robotio_wsl.py": "3a6dabe461572c99ca405ed6bc8a3b89a19a413655de13178bfdfdc22d5ab41c",
+    "rm_match/deployment/json_adapter.py": "61e349f1bcd0dfe5173648e8e8b44fd0fbc9c8df0ddbbf9120db879ecf4278e5",
+    "rm_match/integrations/navigation_jsonl_peer.py": "e987b7495495426209fb7030bda5b5642797ab545fa8e15f4d689026d2be5c91",
+    "rm_match/integrations/robotio_ros2_bridge.py": "b3646737e7d480840ffcb56232c0da8fa874f06f72a2c1358e0a22ddeace73a3",
+    "rm_match/integrations/navigation_goal_lifecycle.py": "ac311bfb529eea5467bbc7f52c62e6c38a594c2348a60b11fc3652ed914e9fcc",
+    "rm_match/integrations/goal_navigation_compute.py": "b9cb83dd864aeefe164799fb465e4958b39e59f4d23443fcf2005e816b4df3e6",
+    "rm_match/platform_v2/goal_navigation_contracts.py": "c6e5b3088ab514ab03bcd584e0a62febbcf40315ec8b8e4d8de82d69afd29b7c",
+    "rm_match/platform_v2/navigation_contracts.py": "e423f034707a8ac87d3b8d430aafdbda42509b47d47c85663786b96ac821f836",
+    "rm_match/platform_v2/decision_contracts.py": "18f26ec88da4d0de77049e003b7e16d5407155e706d00239fffc6c1b949ccff3",
+    "rm_match/platform_v2/contracts.py": "e66d15e5b91a18ad7bf5a2d6bfc9c7bd6e066dfd4ce83313e7aef615681ee4b2",
+    "tests/test_active_goal_navigation_plugin.py": "b0489bd213af66cbbdb5680432bae60d0ca9fe54b1f88df6cc4d255f7c4933b9",
+    "tests/test_active_goal_ros2_bridge.py": "8edf329c68d3747fa245ac066de6956967795811ca8754a7495602fe2904158d",
+    "tests/fixtures/active_goal_navigation_fixture.py": "f528fe343985b435166bab9d06f86daf1436e86217f16c88b68f39a21a290f11",
+    "rm_match/integrations/pb_goal_controller_source.py": "f30c3c855ab72f1d28fc08820d09ba70e301d66d39538d1ea643dd847f11ae83",
+    "tools/qa_active_goal_protocol_sil.py": "e93709ab1f78f346a66fa0f673ea0b4986681d21446dd67d957976d3326df342",
+    "tests/test_goal_navigation_contracts.py": "4d8d97a870ad2d01c53fa3c21b227004be4c876c288accfc5e467b48279a0b5f",
+    "tests/test_goal_navigation_compute.py": "3946946ebba4be97b405a269cbe4bb025f2b5dc02377cc8532ec42c1dd0fc25a",
+    "tests/test_pb_goal_controller_source.py": "156384f4c5d6af18820d14d83a6c8e6a1f35c12529880f41646b0eade5fc94da",
+    "tests/test_active_goal_protocol_audit.py": "910bc431c9c7953f7f264184bf3fc36e8da3b648ff6b4a226043013b590cd3c8"
+  }
+}

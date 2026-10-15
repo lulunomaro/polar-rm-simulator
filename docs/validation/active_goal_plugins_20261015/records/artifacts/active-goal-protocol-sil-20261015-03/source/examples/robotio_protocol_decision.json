@@ -1,0 +1,57 @@
+{
+  "schema": "polar.sim.decision-plugins.v1",
+  "adapters": [
+    {
+      "adapter_id": "custom_protocol_decision_supply",
+      "label": "Synthetic protocol fixture decision_supply_v1.py",
+      "command": [
+        "{python}",
+        "-u",
+        "decision_supply_v1.py"
+      ],
+      "cwd": "../tests/fixtures",
+      "supported_robots": [
+        "red_infantry"
+      ],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.decision-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.decision-observation.v1",
+        "intent_schema": "polar.sim.decision-intent.v1",
+        "sensor_profile": "own_referee_v1",
+        "output_modes": [
+          "navigation_intent"
+        ],
+        "source_association": "exact_observation_context_v1",
+        "fire_authority": "none",
+        "ui_config_contract": "empty_v1"
+      }
+    },
+    {
+      "adapter_id": "custom_protocol_decision_heat",
+      "label": "Synthetic protocol fixture decision_heat_v2.py",
+      "command": [
+        "{python}",
+        "-u",
+        "decision_heat_v2.py"
+      ],
+      "cwd": "../tests/fixtures",
+      "supported_robots": [
+        "blue_sentry"
+      ],
+      "transport": "jsonl_v1",
+      "capabilities": {
+        "schema": "polar.sim.decision-plugin.capabilities.v1",
+        "observation_schema": "polar.sim.decision-observation.v1",
+        "intent_schema": "polar.sim.decision-intent.v1",
+        "sensor_profile": "own_referee_v1",
+        "output_modes": [
+          "navigation_intent"
+        ],
+        "source_association": "exact_observation_context_v1",
+        "fire_authority": "none",
+        "ui_config_contract": "empty_v1"
+      }
+    }
+  ]
+}
