@@ -16,6 +16,18 @@ from .contracts import ContractError,action_for,validate_observation,exact,finit
 class AdapterSpec:
     descriptor: dict
     factory: object
+    scheduling: object = None
+
+
+def _scheduling_metadata(descriptor):
+    """Freeze only immutable scheduling inputs; legacy objects keep get()."""
+    sensors=descriptor.get('required_sensors')
+    if type(sensors) not in (list,tuple) or any(type(name) is not str for name in sensors):return None
+    fields=('observation_profile','schedule_on_camera_frame','max_camera_age_sim_s','max_camera_age_wall_s')
+    if any(type(descriptor[key]) not in (str,int,float,bool,type(None)) for key in fields if key in descriptor):return None
+    value={key:descriptor[key] for key in fields if key in descriptor}
+    value['required_sensors']=tuple(sensors)
+    return MappingProxyType(value)
 
 def _aim_reference(descriptor):
     """Resolve a new reference only from the complete explicit v2 contract."""
@@ -60,7 +72,7 @@ class Registry:
         except Exception:stationary_only=None
         self._capabilities[aid]=MappingProxyType(dict(
             stationary_only=stationary_only,requires_camera=requires_camera,aim_reference=aim_reference))
-        self._specs[aid]=AdapterSpec(d,factory)
+        self._specs[aid]=AdapterSpec(d,factory,_scheduling_metadata(d))
     def capability(self,adapter_id,key):
         """Return a frozen scalar without exposing internal descriptor data."""
         if type(key) is not str or key not in ('stationary_only','requires_camera','aim_reference'):
@@ -73,6 +85,18 @@ class Registry:
     def get(self,adapter_id):
         if adapter_id not in self._specs:raise ContractError('unknown_adapter')
         s=self._specs[adapter_id];return AdapterSpec(copy.deepcopy(s.descriptor),s.factory)
+    def scheduling_descriptor(self,adapter_id):
+        """No public config copy on the physics path, no live authority cached.
+
+        Subclasses may override get() to supply dynamic descriptors. Preserve
+        that behavior unless they explicitly implement their own query API.
+        The snapshot lives in AdapterSpec so staged registry publication remains
+        atomic with the existing spec/capability transaction.
+        """
+        if getattr(self.get,'__func__',None) is not Registry.get:return self.get(adapter_id).descriptor
+        if adapter_id not in self._specs:raise ContractError('unknown_adapter')
+        spec=self._specs[adapter_id]
+        return spec.scheduling if spec.scheduling is not None else self.get(adapter_id).descriptor
     def descriptors(self):return [copy.deepcopy(s.descriptor) for s in self._specs.values()]
     def create(self,adapter_id,config):
         s=self.get(adapter_id)

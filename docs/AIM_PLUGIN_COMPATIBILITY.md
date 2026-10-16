@@ -1,5 +1,13 @@
 # 通用自瞄插件与原 Qt 客户端
 
+2026-10-17最新：消除500Hz调度对完整插件描述的重复deepcopy，只读缓存仅含注册时传感器要求与固定策略；原帧、当前授权、期限和执行守卫仍实时检查。
+四组手控六车/相机关开开关RTF0.999802/0.999909/0.999184/0.999940；没有adapter或NN，不能替代自瞄。
+实际T2描述的ABBA调度微基准6000次为161.0095/13.0227/11.9594/160.5232ms，只证明该路径开销下降。
+原T2移动场景native01保持1ms配置：RTF0.8947118、99及时结果/46独立执行帧，仍因RTF<0.98失败。
+native02仅改显式CPython切换间隔0.1ms：RTF0.6554832，约2.215秒后binding_mismatch退出、2结果/0执行；失败保留，设置均恢复，未更改默认值。
+不以该微基准声称已修复整套实时性能；80ms图像/150ms控制/0.98RTF不变，根因仍待进一步隔离。
+永久证据与复现见[注册元数据调度证据](validation/registry_scheduler_20261017/README.md)。
+
 通用层按公开输入/输出契约适配算法，不按队伍名称判断兼容。当前入口接受完整云台控制链 `direct_gimbal_v1`；只有检测/跟踪状态的 `detector_tracker_target_v1` 需要显式接上原控制器/弹道模块，不能把目标 yaw、裸 Target 或串口字段当成云台目标。未知能力、版本、输出模式及任意执行路径都不会由 HTTP 自动适配。
 
 ## 实机链路与当前仿真链路
@@ -169,3 +177,11 @@ Qt 的受限状态可显示带 episode/绑定/adapter/source frame/原 deadline 
 该本机spec含哈希固定的实际Linux构建路径，需先按构建证据准备；克隆仓库中的验证包不携带模型/ELF。
 额外authority计时探针默认关闭，旧加探针诊断未达RTF的失败保留。验收仍逐帧检查原capture、SDK ACK、实际消费和清理；
 静态链资格不代表所有NN都在80ms内、精度、第二套算法、移动/多车、整场或硬件通过。
+
+最终QA02四阶段退出0：3529 passed, 45 skipped, 6 warnings, 1024 subtests passed in 167.70s (0:02:47)。driver212.8633324秒/exit0/reaped。
+502项程序/测试/补丁输入及17922项Git已知输入在QA02期间前后逐SHA相同；最终专项624pass/122subtests/2既有warnings，driver23.9851011秒。
+native01/02的生产runtime/adapters及其他程序与最终QA逐SHA相同，仅测试fixture test_observation_refresh.py和DEVELOPMENT归因记录两项不同；不把整个输入集合说成相同。
+QA01静态接口161项中的camera subtest失败原记录保留；最终fixture用公开注册声明，不降低原采样/期限断言。
+QA后仅补记结果文档、归档及索引；冻结期间四份文档原字节归档，最后的结果/归档增补未参加此前QA。
+永久归档3691条记录、648份唯一payload、4,846,821字节；160份完整实际BGR留本地，Git取2份样本，13项私有账本只列SHA。
+records.tar.gz SHA256：`d0fea92d39667d1654615d5eddb44e9a4dfae02f33c45ddc84c7b9b9c193830a`。

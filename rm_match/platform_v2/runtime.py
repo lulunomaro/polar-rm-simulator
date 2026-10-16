@@ -591,6 +591,10 @@ class PlatformRuntime:
             and b['activation_window_id']!=old['window_id']
             and b['activation_expires']>old['activation_expires'])
 
+    def _scheduling_descriptor(self,adapter_id):
+        query=getattr(self.registry,'scheduling_descriptor',None)
+        return query(adapter_id) if callable(query) else self.registry.get(adapter_id).descriptor
+
     def _schedule(self,snapshot,sim_time):
         from .contracts import build_observation,validate_observation
         for rid in self.control.robot_ids:
@@ -612,7 +616,7 @@ class PlatformRuntime:
                 self._slot_bound[key]=True
                 schedule_identity=(b['epoch'],b['owner'])
                 previous=self.next_observation.get(key)
-                spec=self.registry.get(b['adapter_id']).descriptor
+                spec=self._scheduling_descriptor(b['adapter_id'])
                 if spec.get('observation_profile')=='pointcloud_imu_v1':
                     self._schedule_navigation(rid,kind,b,spec,sim_time)
                     continue
@@ -641,7 +645,7 @@ class PlatformRuntime:
                         capture_start=self.clock();raw=self.backend.sensor_sample(rid);capture_end=self.clock()
                     seq=self.observed.get(key,0)+1;self.observed[key]=seq
                     camera=None;budget=None;pixel_token=None;native_pixels=None
-                    spec=self.registry.get(b['adapter_id']).descriptor
+                    spec=self._scheduling_descriptor(b['adapter_id'])
                     if self.camera is not None and 'camera' in spec['required_sensors']:
                         if private_pixels:
                             packet=self.camera.native_sensor_packet(rid,self._episode,self._camera_binding(rid,kind,b),sim_time,self.action_ttl)
@@ -671,7 +675,7 @@ class PlatformRuntime:
                     self.status[key]='sensor_error:'+type(exc).__name__
                     if key in self.slots:self.slots[key].submit({'deactivate':True})
                     continue
-                spec=self.registry.get(b['adapter_id']).descriptor
+                spec=self._scheduling_descriptor(b['adapter_id'])
                 missing=[name for name in spec['required_sensors']
                          if not (all(observation['own'][k] is not None for k in ('odom_xyyaw','odom_vxyw'))
                                  if name=='odometry' else ((name=='camera' and native_pixels is not None)

@@ -1,6 +1,6 @@
 # 按计划实施的进度与证据
 
-更新至 2026-10-16（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
+更新至 2026-10-17（UTC+8）。按用户指定的父目录 PROJECT_PLAN.md 推进，源码工作分支为
 work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 历史 cf6a6e4 证据、原帧、原模型及失败实验均保留。当前无 M0–M5 完整签收。
 
@@ -8,7 +8,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | --- | --- | --- |
 | T01 | 进行中：RobotIO 草案、R01–R12/A01–A15 追踪、live/offline 独立预设；新增独立导航/决策能力协商、组合图与原请求身份契约 | 最终目标机、负责人、标定、规则和指标冻结；预设仍 draft |
 | T02 | 进行中：原失败保留；contour-v3与完整T2构建；新增原租约驱动对方移动的真实场景诊断，03有72个运动期间及时执行帧 | 模型漏检、PnP精度矩阵、移动/丢失重捕获仍待完整验收 |
-| T03 | 本轮四次原T2移动场景实时回归均FAIL：RTF0.942783/0.965446/0.814787(计时)/0.643594(不绑单核)；新增原判定时刻/日志时刻分开审计，03/04归账通过 | 当前不继承此前实时资格；性能退化根因未定位，80/150ms/RTF0.98保持；停止盲目NN重复，后续需隔离完整线程负载 |
+| T03 | 注册调度元数据只读快照，消除完整描述的500Hz拷贝；四组手控/相机关开开关RTF0.9992以上；当前原T2实时RTF0.894712仍FAIL，0.1ms诊断提前binding_mismatch | 不继承历史实时资格；退化根因仍未定位，80/150ms/RTF0.98保持；只读元数据微基准不替整套闭环 |
 | T04 | 新增显式本车yaw反馈增益1..4，原默认1；受控物理正反RMS降至约25%，原始算法角度不变，旧pitch重力修复/客户端身份保留 | 实时复验全部FAIL，不保证动态跟踪；目标关联/重捕获、瞄准/命中、可见桌面和完整比赛未验 |
 | T05 | 新增显式通用aim v2源方向参考，原source/budget锁定后按当前本车yaw转换；真实MuJoCo合成指令机械正/负对照通过，修复最终Command未应用新角度 | 不补平移/目标预测/弹道；T2原生移动profile、29TU新构建、多车同时真实自瞄未验；原静止scope证据按原源保留 |
 | T06 | 新增24项yaw反馈/六车阶跃/过期撤权禁射和13项接收判定/日志延迟负例；旧源gain1对照物理终值与执行计数相同，所有本轮实时失败保留 | 无渲染/合成Clock数值证据不替真实实时；遮挡/丢失/射击/断线完整闭环矩阵仍缺 |
@@ -22,7 +22,7 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | T14 | 未验收 | 14 车完整 7v7、资源与实时性能 |
 | T15 | 已有局部事件账本、哈希和帧证据 | 整场日志/复演/视频与关键事件、终局一致性 |
 | T16 | 本机 Windows 仿真/Qt 与 WSL Linux 两次 clean native build；LF/UTF-8/socket/路径修复 | Windows native、干净第二电脑和可复现发布包 |
-| T17 | 本轮四阶段3513pass/45skip/1024subtests；501程序与17917项全树输入前后不变；560专项通过，四次真实实时回归仍FAIL | 单元通过不关闭当前实时退化、目标关联、GUI、第二实现/完整比赛；M0–M5均未关闭 |
+| T17 | 本轮最终QA四阶段通过；3529 passed, 45 skipped, 6 warnings, 1024 subtests passed in 167.70s (0:02:47)；502程序与17922项全树输入不变；最终专项624pass/122subtests；首次fixture失败保留并修正公开注册方式 | 当前两次真实实时仍FAIL；单元不关闭目标关联、GUI、第二实现或完整比赛；M0–M5均未关闭 |
 | T18 | 未启动真实硬件 | 先完成 SIL 与 HIL 安全方案；真实车辆专项授权仍需要 |
 
 | 里程碑 | 状态 | 原因 |
@@ -33,6 +33,34 @@ work/plan-t01-t03，开发起点 1fdcd249be761100076670bb863c14357e8c62ed。
 | M3 完整 3v3 | 未完成 | 六车自有完整比赛、整场复演与换机未验收 |
 | M4 完整 7v7 发布 | 未完成 | 14 车、Windows native、发布许可/包未验收 |
 | M5 真实车辆 HIL | 未启动 | 依赖前置 SIL 及专项硬件授权 |
+
+## 调度元数据隔离与性能定位（2026-10-17，本轮最新）
+
+未调用子代理。标准Registry将传感器名称和四个固定调度策略字段保存到AdapterSpec内的只读mapping，
+公有get仍返回完整独立副本；局部注册事务沿既有spec原子发布。动态get覆盖、duck registry、非常规元数据继续走原路径。
+不缓存授权、activation、帧有效性或预算判定；重复帧仍检查新身份，原80/150ms/0.98门限均保持。
+16项新增回归；首轮49项中1失败/48通过，原因为测试相机fixture缺max_views，补齐fixture后49通过/21subtests。
+最终专项609pass/119subtests/2既有warnings，driver31.7472472秒/exit0/reaped，502项程序/测试/补丁输入前后相同。
+
+2026-10-17最新：消除500Hz调度对完整插件描述的重复deepcopy，只读缓存仅含注册时传感器要求与固定策略；原帧、当前授权、期限和执行守卫仍实时检查。
+四组手控六车/相机关开开关RTF0.999802/0.999909/0.999184/0.999940；没有adapter或NN，不能替代自瞄。
+实际T2描述的ABBA调度微基准6000次为161.0095/13.0227/11.9594/160.5232ms，只证明该路径开销下降。
+原T2移动场景native01保持1ms配置：RTF0.8947118、99及时结果/46独立执行帧，仍因RTF<0.98失败。
+native02仅改显式CPython切换间隔0.1ms：RTF0.6554832，约2.215秒后binding_mismatch退出、2结果/0执行；失败保留，设置均恢复，未更改默认值。
+不以该微基准声称已修复整套实时性能；80ms图像/150ms控制/0.98RTF不变，根因仍待进一步隔离。
+永久证据与复现见[注册元数据调度证据](validation/registry_scheduler_20261017/README.md)。
+
+另有一次明确标注cProfile附加开销的诊断，在约0.815秒物理测量后binding_mismatch，native结果0、RTF0.596253，失败保留。
+输出出现HTTP/显示编码等其他线程帧，不将该文件解释为独占authority CPU；该额外包装未参加无包装native01/02资格判定。
+没有把全局性能退化归因于这一项deepcopy，也没有以较短执行延迟、恢复历史资格或改变时间戳掩盖失败。
+没有重建/替换原T2 ELF和ONNX、训练、硬件、可见Qt、多车或完整比赛验收；T01–T18/M0–M5按上表保留。
+
+全量QA01在静态接口阶段出现1个旧测试失败（161项中1个subtest）；旧fixture直接修改已注册内部descriptor，与只读元数据不一致。
+现改为按每个变体通过公开Registry.register注册相机/自定义传感器profile，原采样与期限断言不变；针对性31项/3subtests通过。
+QA01及首次49项的fixture失败原日志均保留。生产adapters.py/runtime.py自native01/02后未改；仅该测试fixture和DEVELOPMENT归因记录增补，不能称全部502项输入与native完全相同。
+手控与cProfile诊断使用修改前e34fa57生产源，源快照分开保留；无包装native使用本轮调度优化源；后续全量QA02待执行。
+
+全量QA02待冻结后执行。完整实际像素留本地，永久包选取每个有帧运行的一份实际BGR；私有admission/SDK/session账本只记SHA。
 
 ## yaw反馈与接收审计，当前实时回归失败（2026-10-16，本轮最新）
 
@@ -1372,3 +1400,11 @@ actual3已有validation前/后guard与WORKER phase；其后仅补最终Popen前�
 通用JSONL插件原Windows实际复现：leader退出且close返回成功，孙进程仍存活。修复使用执行前归属的Windows Job和Linux owned session，leader先退出仍清理后代；共享1.5秒资源预算涵盖生命周期锁/回收/IO join，原reset2秒和action原deadline不扩大。取消/Job assignment/句柄关闭/IO thread启动/归属检查失败保留明确unclean proof，未spawn与reaped分开；无法验证group时只对直接Popen尝试回收，不声称未知后代已消失。Windows after02原专测29passed/2Linuxskip/2subtests；CRLF→LF仅字节规范记录另存，最终LF源实际Linux02为20passed/11Windowsskip/2subtests，包括TERM-ignore孤儿孙进程和blocked pipe实际回收。原before/after01与错误标签ERRATA全部保留。
 
 最终统一 artifacts/quality-20261014-runtime-threads-frozen-01 四阶段退出0，1324passed/35明确skip/930subtests/6已有warnings，pytest108.77s、driver128.635s/reaped、source_unchanged_during_checks=true；显式POLAR_TEST_WSL=1/POLAR_WSL_TEST_SPEC=原42spec。QA后只有本文、WSL说明和新永久包增补，不称这些文档或归档参与此前QA。当前最新真实live自瞄仍1请求/0回复/0消费/fire0；导航与自瞄同时实时、自动开火、完整巡逻/比赛及M0–M5仍未签收。
+
+最终QA02四阶段退出0：3529 passed, 45 skipped, 6 warnings, 1024 subtests passed in 167.70s (0:02:47)。driver212.8633324秒/exit0/reaped。
+502项程序/测试/补丁输入及17922项Git已知输入在QA02期间前后逐SHA相同；最终专项624pass/122subtests/2既有warnings，driver23.9851011秒。
+native01/02的生产runtime/adapters及其他程序与最终QA逐SHA相同，仅测试fixture test_observation_refresh.py和DEVELOPMENT归因记录两项不同；不把整个输入集合说成相同。
+QA01静态接口161项中的camera subtest失败原记录保留；最终fixture用公开注册声明，不降低原采样/期限断言。
+QA后仅补记结果文档、归档及索引；冻结期间四份文档原字节归档，最后的结果/归档增补未参加此前QA。
+永久归档3691条记录、648份唯一payload、4,846,821字节；160份完整实际BGR留本地，Git取2份样本，13项私有账本只列SHA。
+records.tar.gz SHA256：`d0fea92d39667d1654615d5eddb44e9a4dfae02f33c45ddc84c7b9b9c193830a`。

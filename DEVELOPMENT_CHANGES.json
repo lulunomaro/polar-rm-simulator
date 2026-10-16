@@ -89,9 +89,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "22f4619a84fa5b47cfe57830e0834c6b4b936cdd0080ed74124bf80cf4ade0ef",
+      "current_sha256": "ff595d985923903b376d530707c1fe95589a3ee84fe98b550a95297fc39dd6d5",
       "task": "T05,T06,T07 ,T03",
-      "reason": "Preserve original image/control/reset/graph deadlines and authority; negotiated no-target/pending aim status clears previous command without hold angles; own bounded display context; exact reviewed JSON cancellation only wakes its queue without authority-thread IO; prepare detached consumption evidence before one fresh logical boundary sample shared by authority and receipt, preserving original uniform integration-entry latch and all original deadlines; do not alias later budget/authorization/target mutations into receipts; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit generic navigation admission discards reset-time and earlier queued captures using original host capture_wall and awaits independent post-reset sampling without changing identity/deadline or masking reset faults; Explicit v2 source-base inertial direction holds retain exact original action/identity/camera budget; each authority consume derives mechanical yaw from current own yaw, all original expiry/authority/status/stationary gates remain; private source cleared on every invalidation; Retain immutable original action/source/camera budget for opt-in inertial yaw reference, derive joint yaw from current own yaw only after original 80/150ms authority gates; same-binding source watermark prevents pre-pause pending results reviving after resume without extending any deadline; legacy v1 and native stationary gates remain unchanged; Explicit optional wall-clock display-cache publication interval (default zero/every step); per-step camera scheduling, collection, original expiry and physical guards, integration and complete receipt trace unchanged; first/revision/episode/clock-regression and final stopped displays publish independently; deferred historical samples retain original stamps"
+      "reason": "Query immutable registered scheduling metadata instead of copying complete public descriptors at 500Hz; legacy duck registries remain live; original activation, sensor/frame, expiry, source and consume gates unchanged"
     },
     {
       "path": "rm_match/platform_v2/server.py",
@@ -208,9 +208,9 @@
     {
       "path": "rm_match/platform_v2/adapters.py",
       "original_sha256": "dadb5bd731327270d0314d90648abfcebcf112adc54ea15ab348b81647d372e2",
-      "current_sha256": "baa6260c5d9d12a8cbfca276c8a1da1b94f82305134bc8a155b417713d9dc182",
+      "current_sha256": "990ddb0f939d31977bfb27503d22fa1e3dba3e18e9787eec237683120f096a00",
       "task": "T05,T06,T07",
-      "reason": "Reuse private validated image bytes; explicitly declare 80ms native budgets/frame scheduling and query frozen scalar capabilities without exposing mutable descriptor data; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates; Immutable aim_reference capability is base_link by default; separately versioned v2 requires exact declared camera/odometry/manual-fire/direct-angle contract and rejects missing/mismatched versions; Freeze explicit v2 source-base inertial yaw only from complete typed capabilities, camera/odometry declaration and negotiated contract; legacy base_link semantics and original authority remain unchanged"
+      "reason": "Freeze only scheduling sensor names and scalar policy fields in each registered AdapterSpec; retain detached complete public get, legacy unusual metadata and dynamic get overrides; staging publishes spec and immutable scheduling metadata together"
     },
     {
       "path": "rm_match/integrations/rmcs_contract.py",
@@ -218,6 +218,13 @@
       "current_sha256": "4dc5dddabecd7a5187d0230b9fa9f5713a11b3610e62140f341cd6fcba337018",
       "task": "T05,T06",
       "reason": "Require explicit exposure observation for pitch_link direction, verify same robot/episode and nonfuture finite capture pose, rotate exposure frame then project into current own base; world and source-declined hold unchanged; geometry helper does not establish source association or moving algorithm qualification"
+    },
+    {
+      "path": "rm_match/platform_v2/test_observation_refresh.py",
+      "original_sha256": "9b690cb01413f48a05e0f722252765e83389eeeb16b5d553bef78653185a4e7c",
+      "current_sha256": "e4e4e89618b1d5304f97448d7bc3bb626ffd9e94962d2c2aa3a35c6938c3e34e",
+      "task": "T03,T06",
+      "reason": "Declare each camera/custom sensor fixture via public Registry.register before scheduling instead of mutating registered private descriptor after its immutable policy snapshot; preserve original sampling/activation assertions"
     }
   ]
 }

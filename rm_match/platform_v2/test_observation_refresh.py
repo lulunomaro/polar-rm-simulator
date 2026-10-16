@@ -93,17 +93,21 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(len(self.backend.samples),2);self.assertEqual(len(self.slot.jobs),2)
 
     def test_other_profiles_and_legacy_keep_sim_only(self):
+        from .adapters import Registry
+        registered=self.runtime.registry.get('nav_rule_v1')
         for variant in ('legacy','camera','custom'):
             with self.subTest(variant=variant):
                 self.runtime._own_samples.clear();self.runtime.next_observation.clear();self.slot.jobs.clear();self.backend.samples.clear()
                 self.now=10.;self.pulse(0 if variant=='legacy' else (2 if variant=='camera' else 4))
                 snapshot=self.p.snapshot();b=snapshot['bindings']['r']['navigation']
-                spec=self.runtime.registry._specs['nav_rule_v1'].descriptor
+                # Each fixture declares its actual immutable profile through
+                # public registration, rather than mutating registered internals.
+                spec=copy.deepcopy(registered.descriptor)
                 if variant=='legacy':b['activation_required']=False
                 if variant=='camera':spec['required_sensors']=['camera','odometry']
                 if variant=='custom':
-                    spec['required_sensors']=['odometry','ranges']
-                    self.runtime.registry._specs['custom']=self.runtime.registry._specs['nav_rule_v1'];b['adapter_id']='custom'
+                    spec['adapter_id']='custom';b['adapter_id']='custom'
+                registry=Registry();registry.register(spec,registered.factory);self.runtime.registry=registry
                 self.backend.sim_time=0.;self.runtime._schedule(snapshot,0.)
                 count=len(self.backend.samples);self.now=10.1
                 b['activation_seq']+=1;b['activation_window_id']+=1;b['activation_expires']+=.1
