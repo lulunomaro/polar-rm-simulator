@@ -49,12 +49,17 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
         host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False,
-        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None):
+        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position'):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    from rm_match.platform_v2.gimbal_servo import servo_mode
+    if servo_mode(gimbal_servo)!='position':
+        plan['configuration']['gimbal_servo']=gimbal_servo
+        plan['criteria']['gimbal_servo_configuration_matches_plan']=True
+        plan['scope']+='; explicit verified own-model gravity feedforward, unchanged physical model and raw algorithm reference'
     from rm_match.platform_v2.runtime import telemetry_publish_interval
     if type(telemetry_publish_interval_ms) not in (int,float):
         raise ValueError('Explicit numeric telemetry interval required')
@@ -258,6 +263,8 @@ def classify(measurements,*,plan=None):
         checks['camera_capture_policy_matches_plan']=m.get('camera_capture_policy_matches_plan') is True
     if c.get('telemetry_publication_matches_plan'):
         checks['telemetry_publication_matches_plan']=m.get('telemetry_publication_matches_plan') is True
+    if c.get('gimbal_servo_configuration_matches_plan'):
+        checks['gimbal_servo_configuration_matches_plan']=m.get('gimbal_servo_configuration_matches_plan') is True
     if c.get('original_async_transactions_accounted'):
         checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
     if c.get('host_scheduling_applied_and_restored'):
@@ -653,7 +660,7 @@ def _run(a,affinity,scheduling):
         authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None),
         profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'),
         telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.),
-        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None))
+        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None),gimbal_servo=getattr(a,'gimbal_servo','position'))
     phase_probe=None
     if getattr(a,'profile_phases',False):
         from rm_match.integrations.phase_timing import NumericPhaseProbe
@@ -670,6 +677,8 @@ def _run(a,affinity,scheduling):
     sources={p.relative_to(ROOT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (ROOT/'rm_match').rglob('*.py')}
     sources[Path(__file__).relative_to(ROOT).as_posix()]=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    if plan['configuration'].get('moving_target'):
+        sources['tools/native_target_motion.py']=hashlib.sha256((ROOT/'tools/native_target_motion.py').read_bytes()).hexdigest()
     if plan['criteria'].get('postclose_actual_pixel_audit'):
         for rel in ('tools/audit_live_native_pixels.py','tools/diagnose_native_saved_compute.py'):
             sources[rel]=hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()
@@ -696,7 +705,10 @@ def _run(a,affinity,scheduling):
     sys.path.insert(0,str(a.client_root.resolve()))
     from rm_client.sim_platform_client import PlatformClient,ClientError
     credential=provision_operator(out/'admission.json',allowed_robots=(actor_id,))
-    backend=MuJoCoBackend(camera=True);sim=backend._sim
+    backend=MuJoCoBackend(camera=True,gimbal_servo=plan['configuration'].get('gimbal_servo','position'));sim=backend._sim
+    servo_identity=dict(mode=backend.gimbal_servo_mode,provenance=None if backend._gimbal_servo is None else backend._gimbal_servo.provenance,
+        scope='Own-model low-level feedforward only; raw native references and original authority checks unchanged; no target/accuracy/shooting qualification')
+    write('GIMBAL_SERVO.json',servo_identity)
     if len(backend.robot_ids)!=6 or backend.timestep!=.002:raise RuntimeError('Six-car dt2ms required')
     for key,xy in plan['scene'].items():
         if not key.endswith('_xy_m'):continue
@@ -972,6 +984,9 @@ def _run(a,affinity,scheduling):
             original_target_motion_proven=(target_report['original_manual_authority_and_motion_proven'] is True
                 and target_report['robot_id']==plan['configuration']['moving_target']['robot_id']
                 and target_report['vy_mps']==plan['configuration']['moving_target']['vy_mps']))
+    if plan['criteria'].get('gimbal_servo_configuration_matches_plan'):
+        measured['gimbal_servo_configuration_matches_plan']=(servo_identity['mode']==plan['configuration']['gimbal_servo']
+            and set(servo_identity['provenance'] or {})==set(backend.robot_ids))
     rejects=Counter()
     for event in events:
         if event['event']=='adapter_result':
@@ -1021,6 +1036,8 @@ def main(argv=None):
     p.add_argument('--camera-capture-policy',choices=('latest_pending','render_ready'),default='latest_pending',
         help='Explicit local render-ready mode defers fresh exposure while renderer is busy; may reduce FPS, never restamps old pixels')
     p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
+    p.add_argument('--gimbal-servo',choices=('position','position_gravity_v1'),default='position',
+        help='Explicit own-model gravity feedforward; original deadlines and native references unchanged')
     p.add_argument('--moving-target-vy-mps',type=float,
         help='Explicit manual scene target motion, magnitude 0.03..0.15 m/s; shooter stays stationary; no navigation/decision qualification')
     p.add_argument('--native-robot-scope',type=Path,help='Explicit local stationary robot identity registration')
@@ -1050,7 +1067,7 @@ def main(argv=None):
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
             profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy,
-            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps)
+            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps,gimbal_servo=a.gimbal_servo)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection

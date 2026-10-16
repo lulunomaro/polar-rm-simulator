@@ -16,7 +16,9 @@ class MuJoCoBackend:
     The existing 3v3 core and judge remain unchanged. Supplying a different backend
     preserves the platform protocol; this does not qualify a new roster or ruleset.
     """
-    def __init__(self,sim=None,*,camera=False,virtual_resupply="disabled",navigation_sensors=None,clock=time.perf_counter):
+    def __init__(self,sim=None,*,camera=False,virtual_resupply="disabled",navigation_sensors=None,clock=time.perf_counter,gimbal_servo='position'):
+        from .gimbal_servo import servo_mode,GravityPositionServo
+        self.gimbal_servo_mode=servo_mode(gimbal_servo)
         from .resupply import VirtualResupply
         self._resupply=VirtualResupply(virtual_resupply)
         if sim is None:
@@ -44,6 +46,7 @@ class MuJoCoBackend:
         self.last_commands={}
         self._gimbal_hold={}
         self._gimbal_was_active={r:False for r in self.robot_ids}
+        self._gimbal_servo=GravityPositionServo(sim.model,self.robot_ids) if self.gimbal_servo_mode=='position_gravity_v1' else None
         # Immutable model-derived cache. Never read model/data in HTTP threads.
         from .spin import capability
         import mujoco
@@ -189,10 +192,17 @@ class MuJoCoBackend:
             commands[rid]=Command(force_x=fx,force_y=fy,yaw_torque=torque,
                 gimbal_yaw=hold_yaw if g is None else g['yaw_rad'],
                 gimbal_pitch=hold_pitch if g is None else g['pitch_rad'],fire=bool(t['fire']))
+        servo=getattr(self,'_gimbal_servo',None)
+        raw_refs={rid:(c.gimbal_yaw,c.gimbal_pitch) for rid,c in commands.items()} if servo is not None else None
         # Guard is invoked by the engine immediately before each real actuator
         # write, not before potentially slower preparation/zone bookkeeping.
         def final(rid,command,phase,sampled_wall=None):
             from dataclasses import replace
+            if servo is not None:
+                # Engine carries the previous phase's actual compensated ctrl.
+                # Restore its raw reference before rechecking original authority;
+                # applying compensation must never accumulate across guards.
+                command=replace(command,gimbal_yaw=raw_refs[rid][0],gimbal_pitch=raw_refs[rid][1])
             # The runtime guard may replace or mutate targets[rid]. Capture
             # revocation facts before calling it, and apply returned angles to
             # the real Command rather than merely updating runtime receipts.
@@ -210,8 +220,14 @@ class MuJoCoBackend:
                 self._gimbal_was_active[rid]=False
                 changes.update(gimbal_yaw=pose['gimbal_yaw'],gimbal_pitch=pose['gimbal_pitch'])
             if not current['fire']:changes['fire']=False
-            return replace(command,**changes) if changes else command
+            command=replace(command,**changes) if changes else command
+            if servo is not None:
+                raw_refs[rid]=(command.gimbal_yaw,command.gimbal_pitch)
+                command=servo.apply(rid,command,float(s.data.qpos[s.qindices[rid][4]]),phase)
+            return command
         integration_sim_time=self.sim_time
+        if guard is None and servo is not None:
+            commands={rid:servo.apply(rid,c,float(s.data.qpos[s.qindices[rid][4]]),'unguarded') for rid,c in commands.items()}
         s.step(commands,command_guard=final if guard is not None else None,integration_clock=clock if guard is not None else None)
         self.last_integration_timing=getattr(s,"last_integration_timing",None)
         self.last_commands={r:_command_snapshot(c) for r,c in s.commands.items()}
