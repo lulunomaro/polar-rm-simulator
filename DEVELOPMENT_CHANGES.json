@@ -26,9 +26,9 @@
     {
       "path": "rm_match/match_engine.py",
       "original_sha256": "6c3f542ae3511a638cd15994941a08b6682760b9d10f272b0707e4ce05404abd",
-      "current_sha256": "a19655fb6de69516bd199cae70e7f2f61202232c26902286293c5c26ef875af8",
+      "current_sha256": "1b0c4350f4501118d7b0317e9265fa6a650eb8a3637c6af325b6272ae6708c05",
       "task": "T03",
-      "reason": "Skip collision bounds preparation only when no projectiles exist"
+      "reason": "Preserve no-projectile collision early return; sample the same 64 basic range directions/group/static/self exclusion in one mj_multiRay call with infinite cutoff before unchanged 8m saturation, avoiding repeated Python/C boundaries under thread contention; no sensor, frame, model, timestep or deadline substitution"
     },
     {
       "path": "rm_match/platform_v2/__main__.py",

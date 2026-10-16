@@ -82,14 +82,18 @@ class MatchSimulation:
     def scan(self,rid):
         origin=self.data.xpos[self.body_ids[rid]].copy();origin[2]=.25
         yaw=float(self.data.qpos[self.qindices[rid][2]])
-        ranges=[]
-        for a in np.linspace(-np.pi,np.pi,65)[:-1]+yaw:
-            gid=np.array([-1],dtype=np.int32)
-            # group0 physical geometry; excludes coloured, noncolliding map decals.
-            distance=mujoco.mj_ray(self.model,self.data,origin,np.array([np.cos(a),np.sin(a),0.]),
-                np.array([1,0,0,0,0,0],dtype=np.uint8),1,self.body_ids[rid],gid)
-            ranges.append(float(min(distance,8.)) if distance>=0 else 8.)
-        return tuple(ranges)
+        angles=np.linspace(-np.pi,np.pi,65)[:-1]+yaw
+        # Keep the original 64 directions, physical group0/static geometry and
+        # own-body exclusion, but cross the Python/C boundary only once. Repeated
+        # mj_ray calls release/reacquire the GIL between every ray under load.
+        directions=np.array([[np.cos(a),np.sin(a),0.] for a in angles],dtype=np.float64)
+        ids=np.empty(64,dtype=np.int32);distances=np.empty(64,dtype=np.float64)
+        # Infinite query cutoff preserves original nearest-hit semantics before
+        # the existing 8m sensor saturation, including large distant geoms.
+        mujoco.mj_multiRay(self.model,self.data,origin,directions.ravel(),
+            np.array([1,0,0,0,0,0],dtype=np.uint8),True,self.body_ids[rid],
+            ids,distances,None,64,float('inf'))
+        return tuple(float(min(distance,8.)) if distance>=0 else 8. for distance in distances)
 
     def observe(self,rid,include_rgb=True,include_ranges=True):
         if rid not in self.robot_ids:raise KeyError(rid)
