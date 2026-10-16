@@ -33,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "9d30f6da4e72c1282555a90ff230546240e1182fa614b13eb63c223acd7309e0",
-      "task": "T09,T01,T07 ,T05",
-      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates"
+      "current_sha256": "467de30de5d637845b9fb5085cf5d0c6598b0dcd9aaf57b78cd3c7d520492e26",
+      "task": "T09,T01,T07 ,T05 ,T03",
+      "reason": "Preserve loopback, admission and original deadlines; locally reviewed capability manifest and explicit Windows WSL native/JSONL model preparation precede physics without images or NN; program paths remain local configuration, unclaimed resources close on failures; explicit opt-in CPython switch interval and Windows current authority-thread affinity apply with readback and finally restoration, actual selected raw camera encoder is reported, default scheduling remains unchanged; original deadlines and control authority unchanged; team-independent component graph and authenticated scoped navigation/decision/aim catalog with SDK pipeline binding, arbitrary declared robot scopes and original source/deadline/authority retained; explicit locally pinned stationary robot identity scope, measured team/role checks and unchanged capture/motion/fire gates; Expose the existing explicit bounded historical-display publication interval in the actual server CLI, reject invalid values before admission/model setup, pass the unchanged seconds value to PlatformRuntime and report it at startup; default every-step publication, per-step sensors/guards/traces and original 80/150ms deadlines remain unchanged"
     },
     {
       "path": "rm_match/platform_v2/backend.py",

@@ -7,7 +7,7 @@ import threading
 import time
 from pathlib import Path
 from .backend import MuJoCoBackend
-from .runtime import PlatformRuntime
+from .runtime import PlatformRuntime,telemetry_publish_interval
 from .server import PlatformHTTPServer,TransportConfig
 from .host_scheduling import PythonSwitchInterval,AuthorityThreadAffinity,switch_interval_ms,parse_affinity_mask
 
@@ -17,6 +17,8 @@ def main(argv=None):
     parser.add_argument('--max-wall-seconds',type=float,default=300.)
     parser.add_argument('--camera',action='store_true',help='Opt in to actual role_v23 calibrated cameras')
     parser.add_argument('--camera-total-fps',type=float,default=2.)
+    parser.add_argument('--telemetry-publish-interval-ms',type=float,default=0.,
+        help='Explicit historical display sampling, 0..100 ms; default every physics step; sensors/control/traces unchanged')
     parser.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked',
         help='Explicit raw image encoder; optional codec requires matching installed identity')
     parser.add_argument('--host-opencv-threads',type=int,help='Explicit local host camera OpenCV thread option, 1..32')
@@ -46,6 +48,8 @@ def main(argv=None):
     navigation.add_argument('--pb-wsl-navigation-manifest',help='Opt-in trusted local Windows + WSL Humble navigation manifest; prepared before physics')
     parser.add_argument('--real-time-factor',type=float,default=1.,help='Maximum simulation/wall rate; wall leases and deadlines never scale')
     args=parser.parse_args(argv)
+    try:telemetry_interval=telemetry_publish_interval(args.telemetry_publish_interval_ms/1000.)
+    except ValueError as exc:parser.error(str(exc))
     if args.authority_affinity_mask is not None and sys.platform!='win32':parser.error('--authority-affinity-mask requires Windows')
     if args.pb_wsl_navigation_manifest and sys.platform!='win32':parser.error('--pb-wsl-navigation-manifest requires a Windows host')
     from .admission import AdmissionPolicy
@@ -124,7 +128,8 @@ def main(argv=None):
             from .camera import CameraProvider
             camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps,enable_native_pixels=args.private_native_pixels,
                 raw_base64_codec=args.raw_base64_codec)
-        runtime=PlatformRuntime(backend,camera=camera,registry=registry,enable_native_pixels=args.private_native_pixels)
+        runtime=PlatformRuntime(backend,camera=camera,registry=registry,enable_native_pixels=args.private_native_pixels,
+            telemetry_publish_interval_s=telemetry_interval)
         server=PlatformHTTPServer(TransportConfig(port=args.port,admission_policy=admission),runtime)
         http=threading.Thread(target=server.serve_forever,name='sim-v2-http',daemon=True);http.start();http_started=True
         def stop(*_):
@@ -139,6 +144,7 @@ def main(argv=None):
             wsl_native_registered=bool(args.wsl_native_spec),
             wsl_native_transport=None if not args.wsl_native_spec else args.wsl_native_transport,
             prepared_aim_plugin_count=0 if aim_resources is None else len(aim_resources.instances),
+            telemetry_publish_interval_s=telemetry_interval,
             host_opencv=host_opencv,
             host_scheduling=scheduling,
             raw_codec_identity=None if camera is None else getattr(camera,'_raw_encoder_metadata',None),
