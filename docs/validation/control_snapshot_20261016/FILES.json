@@ -1,0 +1,17 @@
+{
+  "schema": "polar.control-snapshot-files.v1",
+  "files": {
+    "MANIFEST.json": {
+      "size": 785942,
+      "sha256": "054d022323247d1ddda6c580514843fa9e2af384a2ad46bfe8d129bed418dbfe"
+    },
+    "README.md": {
+      "size": 4436,
+      "sha256": "0f00d83046c83549dedd6bc943f4cbe9164f3454ad499a8cd14ff206a0423bb5"
+    },
+    "records.tar.gz": {
+      "size": 3569063,
+      "sha256": "66b3e87a2eaf1b86178b6d3931a234ff462724ecdfd0da50f59735909552c213"
+    }
+  }
+}

@@ -61,9 +61,9 @@
     {
       "path": "rm_match/platform_v2/control.py",
       "original_sha256": "2e4f0c1d2ce316c880c1f49ff3bca1a8bb898d19168b4723eb910c51eaf3ae2d",
-      "current_sha256": "07830ad34f3d33455472462ea661ca160786613807466f5b024f8fe09edb2cc3",
+      "current_sha256": "a2de51548c57b6bd3c2b3435c8ecda03e1bf446aa50ab343bb969d5ffaa2a411",
       "task": "T03,T13",
-      "reason": "Single-robot authority snapshots, monotonic expiry and server-owned robot/audit grants enforced at every authority operation; Explicit three-channel control_batch_v1 validates every original lease/window/binding/sequence and detached bounded value before one atomic commit; real lease and unchanged 150ms window cap every member, with no new authority or fire permit"
+      "reason": "Copy immutable binding snapshot scalars directly and detach all non-scalars with a shared deepcopy memo, preserving nested config/lease maps, aliases/cycles, future fields and original snapshot expiry/revision checks; no authorization caching, deadline refresh or reduced actuator guarding"
     },
     {
       "path": "rm_match/platform_v2/qa_camera.py",

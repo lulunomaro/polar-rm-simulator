@@ -9,6 +9,20 @@ import time
 
 CHANNELS = ('motion', 'gimbal', 'fire')
 KINDS = {'navigation': ('motion',), 'aim': ('gimbal',)}
+_SNAPSHOT_ATOMIC_TYPES=frozenset((type(None),bool,int,float,str))
+
+
+def _binding_snapshot(binding):
+    """Detach binding data, copying nested values with one shared deepcopy memo.
+
+    Epochs, original deadlines and identity strings are immutable scalars.
+    Configs, lease maps and future non-scalar fields still get a full copy;
+    shared/cyclic nested references retain deepcopy's original behavior.
+    """
+    source=vars(binding);result={};memo={id(source):result}
+    for key,value in source.items():
+        result[key]=value if type(value) in _SNAPSHOT_ATOMIC_TYPES else copy.deepcopy(value,memo)
+    return result
 
 class Rejected(ValueError):
     def __init__(self, reason, status=409):
@@ -526,7 +540,7 @@ class ControlPlane:
                     input=copy.deepcopy(self.leases[r,c].input) if now<self.leases[r,c].input_expires else None,
                     mode_signature=self.leases[r,c].mode_signature,mode_fault=self.leases[r,c].mode_fault,
                     input_expires=self.leases[r,c].input_expires,input_window_id=self.leases[r,c].input_window_id,input_window_deadline=self.leases[r,c].input_window_deadline) for c in CHANNELS} for r in self.robot_ids},
-                bindings={r:{k:copy.deepcopy(vars(self.bindings[r,k])) for k in KINDS} for r in self.robot_ids})
+                bindings={r:{k:_binding_snapshot(self.bindings[r,k]) for k in KINDS} for r in self.robot_ids})
 
     def snapshot_robot(self,rid):
         """Trusted authority snapshot with the same fields, copied for one robot.
@@ -547,7 +561,7 @@ class ControlPlane:
                     mode_signature=self.leases[rid,c].mode_signature,mode_fault=self.leases[rid,c].mode_fault,
                     input_expires=self.leases[rid,c].input_expires,input_window_id=self.leases[rid,c].input_window_id,
                     input_window_deadline=self.leases[rid,c].input_window_deadline) for c in CHANNELS}},
-                bindings={rid:{k:copy.deepcopy(vars(self.bindings[rid,k])) for k in KINDS}})
+                bindings={rid:{k:_binding_snapshot(self.bindings[rid,k]) for k in KINDS}})
 
     def reset_episode(self):
         """Trusted authority only: retain sessions, revoke every actuator lease."""
