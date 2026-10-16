@@ -23,6 +23,27 @@ MAX_JPEG_BYTES=2*1024*1024
 RAW_BASE64_CHUNK_BYTES=192*1024  # Divisible by three: padding only in final chunk.
 CAPTURE_POLICIES=('latest_pending','render_ready')
 RENDERER_MODES=('thread','owned_process_v1')
+DISPLAY_JPEG_CODECS=('pillow_jpeg85','opencv_jpeg85_v1')
+
+
+def encode_display_jpeg(rgb,codec='pillow_jpeg85'):
+    """Display only; original native RGB/seals never pass through this codec."""
+    if type(codec) is not str or codec not in DISPLAY_JPEG_CODECS:
+        raise ValueError('Unknown display JPEG codec')
+    if codec=='pillow_jpeg85':
+        from PIL import Image
+        buffer=io.BytesIO();Image.fromarray(rgb).save(buffer,format='JPEG',quality=85)
+        jpeg=buffer.getvalue()
+    else:
+        import cv2
+        # imencode consumes BGR, whereas every provider display copy is RGB.
+        # No resize, quality reduction or change to the raw algorithm camera.
+        bgr=cv2.cvtColor(rgb,cv2.COLOR_RGB2BGR)
+        ok,encoded=cv2.imencode('.jpg',bgr,[cv2.IMWRITE_JPEG_QUALITY,85])
+        if not ok:raise ValueError('OpenCV display JPEG encoding failed')
+        jpeg=encoded.tobytes()
+    if len(jpeg)>MAX_JPEG_BYTES:raise ValueError('Display JPEG exceeds bounded capacity')
+    return jpeg
 
 
 def encode_raw_base64(raw):
@@ -104,7 +125,7 @@ class CameraProvider:
     def __init__(self,sim,*,clock=time.perf_counter,total_fps=2.,max_frame_age_wall_s=2.5,
                  renderer_factory=MuJoCoCameraRenderer,max_views=MAX_VIEWS,
                  enable_native_pixels=False,native_pixels_hook=None,raw_base64_codec='stdlib_chunked',
-                 capture_policy='latest_pending',renderer_mode='thread'):
+                 capture_policy='latest_pending',renderer_mode='thread',display_jpeg_codec='pillow_jpeg85'):
         import mujoco
         import numpy as np
         from ..camera_profile import SourceCameraProfile
@@ -113,6 +134,14 @@ class CameraProvider:
         if type(capture_policy) is not str or capture_policy not in CAPTURE_POLICIES:
             raise ValueError('Unknown camera capture policy')
         self.capture_policy=capture_policy;self.capture_deferred_busy=0
+        if type(display_jpeg_codec) is not str or display_jpeg_codec not in DISPLAY_JPEG_CODECS:
+            raise ValueError('Unknown display JPEG codec')
+        self.display_jpeg_codec=display_jpeg_codec
+        self.display_codec_identity=dict(codec=display_jpeg_codec,format='JPEG',quality=85,
+            implementation='PIL.Image.save',opencv_version=None)
+        if display_jpeg_codec=='opencv_jpeg85_v1':
+            import cv2
+            self.display_codec_identity.update(implementation='cv2.imencode',opencv_version=cv2.__version__)
         if type(renderer_mode) is not str or renderer_mode not in RENDERER_MODES:
             raise ValueError('Unknown camera renderer mode')
         self.renderer_mode=renderer_mode;self.renderer_shutdown_status=None
@@ -287,10 +316,7 @@ class CameraProvider:
         return raw
 
     def _encode_display(self,cap,rgb):
-        from PIL import Image
-        buffer=io.BytesIO();Image.fromarray(rgb).save(buffer,format='JPEG',quality=85)
-        jpeg=buffer.getvalue()
-        if len(jpeg)>MAX_JPEG_BYTES:raise ValueError('Display JPEG exceeds bounded capacity')
+        jpeg=encode_display_jpeg(rgb,getattr(self,'display_jpeg_codec','pillow_jpeg85'))
         return dict(jpeg=base64.b64encode(jpeg).decode(),
             capture=replace(cap,buffer=None,projectiles=()),encoded_wall=self.clock())
 
@@ -491,6 +517,7 @@ class CameraProvider:
             max_cached_raw_bytes=self.max_views*self.profile.width*self.profile.height*3,
             native_pixels_enabled=self.enable_native_pixels,native_cached=len(self.native_cache),
             raw_base64_codec=self.raw_base64_codec,
+            display_jpeg_codec=self.display_jpeg_codec,display_codec_identity=dict(self.display_codec_identity),
             max_native_cached_rgb_bytes=self.max_views*self.profile.width*self.profile.height*3 if self.enable_native_pixels else 0,
             max_cached_raw_base64_bytes=self.max_views*((self.profile.width*self.profile.height*3+2)//3*4),
             max_cached_jpeg_bytes=self.max_views*MAX_JPEG_BYTES,

@@ -33,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "4422e9d66c29a32af5fb9f9cf469caef044354b4834086f3a54898934b237bc0",
+      "current_sha256": "36e1e0f2eb7f527d98768c1778766f6fee0ea131cb03a2025f8fa765056f3e70",
       "task": "T09,T01,T07 ,T05 ,T03",
-      "reason": "Expose explicit owned camera render process mode only with camera enabled; retain default thread mode and existing host scheduling, gimbal, native and protocol options"
+      "reason": "Expose opt-in display-only OpenCV JPEG85 encoder only with camera enabled; preserve default Pillow, renderer/scheduling/native and original authority gates"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
@@ -47,9 +47,9 @@
     {
       "path": "rm_match/platform_v2/camera.py",
       "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
-      "current_sha256": "9494170781e8cbf2962c37a2e5d35aa1b1885fe0d8247c66df19535dd7508fb3",
+      "current_sha256": "85192e80ef39568320d71824218bce93f71de0378db4361169550bf84d946325",
       "task": "T03",
-      "reason": "Add explicit owned_process_v1 rendering with bounded binary IPC, immutable saved model and capture integration state; keep default thread renderer and original exposure tokens, raw-pixel seals, calibration and 80ms/150ms admission; retain owned shutdown proof and fail camera on renderer errors"
+      "reason": "Add explicit OpenCV JPEG85 display encoder and reported configuration; retain original RGB-to-BGR display conversion, JPEG quality/2MiB bound, original raw/native pixels, capture identity and expiry/revocation; keep Pillow85 default and isolated display failure"
     },
     {
       "path": "rm_match/platform_v2/client.py",

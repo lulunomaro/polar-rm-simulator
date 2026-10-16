@@ -49,12 +49,19 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
         host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False,
-        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position',gimbal_yaw_gain=1.,camera_renderer_mode='thread'):
+        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position',gimbal_yaw_gain=1.,camera_renderer_mode='thread',display_jpeg_codec='pillow_jpeg85'):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    from rm_match.platform_v2.camera import DISPLAY_JPEG_CODECS
+    if type(display_jpeg_codec) is not str or display_jpeg_codec not in DISPLAY_JPEG_CODECS:
+        raise ValueError('Unknown display JPEG codec')
+    if display_jpeg_codec!='pillow_jpeg85':
+        plan['configuration']['display_jpeg_codec']=display_jpeg_codec
+        plan['criteria']['display_jpeg_codec_matches_plan']=True
+        plan['scope']+='; explicit display-only JPEG85 encoder, original native RGB/BGR chain unchanged'
     from rm_match.platform_v2.camera import RENDERER_MODES
     if type(camera_renderer_mode) is not str or camera_renderer_mode not in RENDERER_MODES:
         raise ValueError('Unknown camera renderer mode')
@@ -278,6 +285,8 @@ def classify(measurements,*,plan=None):
         checks['gimbal_servo_configuration_matches_plan']=m.get('gimbal_servo_configuration_matches_plan') is True
     if c.get('camera_renderer_configuration_matches_plan'):
         checks['camera_renderer_configuration_matches_plan']=m.get('camera_renderer_configuration_matches_plan') is True
+    if c.get('display_jpeg_codec_matches_plan'):
+        checks['display_jpeg_codec_matches_plan']=m.get('display_jpeg_codec_matches_plan') is True
     if c.get('original_async_transactions_accounted'):
         checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
     if c.get('host_scheduling_applied_and_restored'):
@@ -688,7 +697,7 @@ def _run(a,affinity,scheduling):
         profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'),
         telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.),
         moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None),gimbal_servo=getattr(a,'gimbal_servo','position'),gimbal_yaw_gain=getattr(a,'gimbal_yaw_gain',1.),
-        camera_renderer_mode=getattr(a,'camera_renderer_mode','thread'))
+        camera_renderer_mode=getattr(a,'camera_renderer_mode','thread'),display_jpeg_codec=getattr(a,'display_jpeg_codec','pillow_jpeg85'))
     phase_probe=None
     if getattr(a,'profile_phases',False):
         from rm_match.integrations.phase_timing import NumericPhaseProbe
@@ -798,7 +807,8 @@ def _run(a,affinity,scheduling):
             return value
     camera=Camera(sim,clock=time.perf_counter,total_fps=15,max_views=1,renderer_factory=Render,
         enable_native_pixels=a.private_native_pixels,native_pixels_hook=trace if a.private_native_pixels else None,
-        raw_base64_codec=a.raw_base64_codec,capture_policy=getattr(a,'camera_capture_policy','latest_pending'),renderer_mode=renderer_mode)
+        raw_base64_codec=a.raw_base64_codec,capture_policy=getattr(a,'camera_capture_policy','latest_pending'),renderer_mode=renderer_mode,
+        display_jpeg_codec=getattr(a,'display_jpeg_codec','pillow_jpeg85'))
     codec_identity=camera._raw_encoder_metadata
     write('RAW_CODEC_IDENTITY.json',codec_identity)
     probe_options={} if phase_probe is None else {'phase_probe':phase_probe}
@@ -1026,6 +1036,12 @@ def _run(a,affinity,scheduling):
             and (camera.renderer_identity or {}).get('isolation')=='owned_process_v1'
             and (camera.renderer_shutdown_status or {}).get('clean') is True)
         measured['renderer_shutdown_status']=camera.renderer_shutdown_status
+    if plan['criteria'].get('display_jpeg_codec_matches_plan'):
+        measured['display_jpeg_codec_matches_plan']=(camera.display_jpeg_codec==plan['configuration']['display_jpeg_codec']
+            and camera.display_codec_identity.get('implementation')=='cv2.imencode'
+            and camera.display_codec_identity.get('quality')==85 and camera.display_error is None and camera.rendered>0)
+        measured['display_codec_identity']=dict(camera.display_codec_identity)
+        measured['successful_display_frames']=camera.rendered
     rejects=Counter()
     for event in events:
         if event['event']=='adapter_result':
@@ -1076,6 +1092,8 @@ def main(argv=None):
         help='Explicit local render-ready mode defers fresh exposure while renderer is busy; may reduce FPS, never restamps old pixels')
     p.add_argument('--camera-renderer-mode',choices=('thread','owned_process_v1'),default='thread',
         help='Explicit bounded local MuJoCo render process; original exposure identity and deadlines retained')
+    p.add_argument('--display-jpeg-codec',choices=('pillow_jpeg85','opencv_jpeg85_v1'),default='pillow_jpeg85',
+        help='Explicit display-only JPEG85 encoder; raw native pixels never use this JPEG')
     p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
     p.add_argument('--gimbal-servo',choices=('position','position_gravity_v1'),default='position',
         help='Explicit own-model gravity feedforward; original deadlines and native references unchanged')
@@ -1110,7 +1128,7 @@ def main(argv=None):
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
             profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy,
             telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps,gimbal_servo=a.gimbal_servo,gimbal_yaw_gain=a.gimbal_yaw_gain,
-            camera_renderer_mode=a.camera_renderer_mode)
+            camera_renderer_mode=a.camera_renderer_mode,display_jpeg_codec=a.display_jpeg_codec)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection

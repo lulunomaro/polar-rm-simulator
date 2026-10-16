@@ -22,6 +22,8 @@ def main(argv=None):
     parser.add_argument('--camera-total-fps',type=float,default=2.)
     parser.add_argument('--camera-renderer-mode',choices=('thread','owned_process_v1'),default='thread',
         help='Explicit bounded local render process; default GL worker thread is unchanged')
+    parser.add_argument('--display-jpeg-codec',choices=('pillow_jpeg85','opencv_jpeg85_v1'),default='pillow_jpeg85',
+        help='Explicit display-only JPEG85 encoder; original native camera pixels and default Pillow path unchanged')
     parser.add_argument('--telemetry-publish-interval-ms',type=float,default=0.,
         help='Explicit historical display sampling, 0..100 ms; default every physics step; sensors/control/traces unchanged')
     parser.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked',
@@ -71,6 +73,7 @@ def main(argv=None):
     if args.aim_plugins_json and not args.camera:parser.error('Aim plugins require --camera')
     if args.raw_base64_codec!='stdlib_chunked' and not args.camera:parser.error('--raw-base64-codec requires --camera')
     if args.camera_renderer_mode!='thread' and not args.camera:parser.error('--camera-renderer-mode requires --camera')
+    if args.display_jpeg_codec!='pillow_jpeg85' and not args.camera:parser.error('--display-jpeg-codec requires --camera')
     if args.prepare_aim_plugins and not args.aim_plugins_json:parser.error('--prepare-aim-plugins requires --aim-plugins-json')
     if args.prepare_aim_plugins and sys.platform!='win32':parser.error('--prepare-aim-plugins currently requires a Windows host')
     if args.prepare_robotio_plugins and (not args.robotio_plugins_json or sys.platform!='win32'):
@@ -136,7 +139,7 @@ def main(argv=None):
         backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply,navigation_sensors=navigation_config,gimbal_servo=args.gimbal_servo,gimbal_yaw_gain=args.gimbal_yaw_gain)
         if args.camera:
             from .camera import CameraProvider
-            camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps,renderer_mode=args.camera_renderer_mode,enable_native_pixels=args.private_native_pixels,
+            camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps,renderer_mode=args.camera_renderer_mode,display_jpeg_codec=args.display_jpeg_codec,enable_native_pixels=args.private_native_pixels,
                 raw_base64_codec=args.raw_base64_codec)
         runtime=PlatformRuntime(backend,camera=camera,registry=registry,enable_native_pixels=args.private_native_pixels,
             telemetry_publish_interval_s=telemetry_interval)
