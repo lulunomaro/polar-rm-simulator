@@ -49,12 +49,20 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
         host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False,
-        camera_capture_policy='latest_pending'):
+        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    from rm_match.platform_v2.runtime import telemetry_publish_interval
+    if type(telemetry_publish_interval_ms) not in (int,float):
+        raise ValueError('Explicit numeric telemetry interval required')
+    interval=telemetry_publish_interval(telemetry_publish_interval_ms/1000.)
+    if interval>0:
+        plan['configuration']['telemetry_publish_interval_s']=interval
+        plan['criteria']['telemetry_publication_matches_plan']=True
+        plan['scope']+='; explicit historical display sampling only; physics, sensors, guards and receipt traces retain original cadence'
     from rm_match.platform_v2.camera import CAPTURE_POLICIES
     if type(camera_capture_policy) is not str or camera_capture_policy not in CAPTURE_POLICIES:
         raise ValueError('Unknown camera capture policy')
@@ -240,6 +248,8 @@ def classify(measurements,*,plan=None):
         checks['host_opencv_setting_unchanged']=m.get('host_opencv_setting_unchanged') is True
     if c.get('camera_capture_policy_matches_plan'):
         checks['camera_capture_policy_matches_plan']=m.get('camera_capture_policy_matches_plan') is True
+    if c.get('telemetry_publication_matches_plan'):
+        checks['telemetry_publication_matches_plan']=m.get('telemetry_publication_matches_plan') is True
     if c.get('original_async_transactions_accounted'):
         checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
     if c.get('host_scheduling_applied_and_restored'):
@@ -626,7 +636,8 @@ def _run(a,affinity,scheduling):
     plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
         host_opencv_threads=host_threads,host_python_switch_interval_ms=getattr(a,'host_python_switch_interval_ms',None),
         authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None),
-        profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'))
+        profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'),
+        telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.))
     phase_probe=None
     if getattr(a,'profile_phases',False):
         from rm_match.integrations.phase_timing import NumericPhaseProbe
@@ -745,7 +756,8 @@ def _run(a,affinity,scheduling):
                 timing['physics_end']=time.perf_counter()
             return super().close()
     runtime=TimedRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace,
-        enable_native_pixels=a.private_native_pixels)
+        enable_native_pixels=a.private_native_pixels,
+        telemetry_publish_interval_s=plan['configuration'].get('telemetry_publish_interval_s',0.))
     if getattr(a,'profile_authority',False) or phase_probe is not None:
         # Local QPC stage timers only. No suspension, alternate clock or change
         # to original scheduling/80ms/150ms gates; diagnostic overhead is explicit.
@@ -848,6 +860,7 @@ def _run(a,affinity,scheduling):
     write('FRAME_BINDINGS.json',raw);write('SDK_EVENTS.json',sdk_events)
     (out/'ledger.jsonl').write_text(''.join(json.dumps(x,allow_nan=False)+'\n' for x in events),encoding='utf-8')
     write('RUNTIME_OBSERVATION.json',dict(counts=dict(counts),camera=camera.status(),
+        telemetry_publication=runtime.telemetry_publication_status(),
         camera_closed=camera_closed,physics_thread_alive=physics is not None and physics.is_alive(),
         shutdown_status=getattr(runtime,'shutdown_status',None),runtime_error=runtime.error,
         sim_time=sim.time,timing=timing,errors=errors,step_duration_samples_s=step_durations))
@@ -902,6 +915,13 @@ def _run(a,affinity,scheduling):
         write('HOST_OPENCV_FINAL.json',dict(effective_threads=effective,unchanged=host_unchanged,
             scope='Host API query after teardown; no Linux/C++ thread change'))
     measured=dict(configuration=plan['configuration'],duration_s=elapsed,
+        telemetry_publication=runtime.telemetry_publication_status(),
+        telemetry_publication_matches_plan=(runtime.telemetry_publish_interval_s==plan['configuration'].get('telemetry_publish_interval_s',0.)
+            and runtime._telemetry_published_steps+runtime._telemetry_deferred_steps==runtime.steps
+            and runtime._telemetry_published_steps>0
+            and counts['physics_apply']==counts['integration_boundary']==runtime.steps
+            and counts['actuator_consumed']==18*runtime.steps
+            and (runtime.telemetry_publish_interval_s==0. or runtime._telemetry_deferred_steps>0)),
         host_opencv_setting_unchanged=host_unchanged,
         camera_capture_policy_matches_plan=camera.capture_policy==plan['configuration'].get('camera_capture_policy','latest_pending'),
         physics_rtf=durations['physics_rtf'],run_durations=durations,raw_frames=len(raw),
@@ -961,6 +981,8 @@ def main(argv=None):
     p.add_argument('--distribution',default='Ubuntu')
     p.add_argument('--native-transport',choices=('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'),default='wsl_stdio_v1')
     p.add_argument('--private-native-pixels',action='store_true',help='Explicit experimental own-native input before public base64 completion')
+    p.add_argument('--telemetry-publish-interval-ms',type=float,default=0.,
+        help='Explicit historical display sampling, 0..100 ms; default every step; sensors/control/traces unchanged')
     p.add_argument('--camera-capture-policy',choices=('latest_pending','render_ready'),default='latest_pending',
         help='Explicit local render-ready mode defers fresh exposure while renderer is busy; may reduce FPS, never restamps old pixels')
     p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
@@ -990,7 +1012,8 @@ def main(argv=None):
         selected_plan=build_plan(a.native_transport,private_native_pixels=a.private_native_pixels,raw_base64_codec=a.raw_base64_codec,
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
-            profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy)
+            profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy,
+            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection

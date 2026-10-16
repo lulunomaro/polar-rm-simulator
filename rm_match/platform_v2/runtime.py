@@ -19,6 +19,13 @@ def json_copy(value):
     return json.loads(json.dumps(value,allow_nan=False))
 
 
+def telemetry_publish_interval(value):
+    """Local display cadence only; zero preserves publication at every step."""
+    if type(value) not in (int,float) or not math.isfinite(value) or not 0<=value<=.1:
+        raise ValueError('telemetry_publish_interval_s must be finite within 0..0.1 seconds')
+    return float(value)
+
+
 def _loaded_native_class():
     """Recognize an already constructed native adapter without loading vision."""
     module=sys.modules.get(__package__+'.native_adapter')
@@ -234,7 +241,12 @@ class AdapterSlot:
 
 class PlatformRuntime:
     def __init__(self,backend,*,registry=None,clock=time.perf_counter,observation_period=.05,
-                 action_ttl=.2,control=None,camera=None,trace=None,enable_native_pixels=False):
+                 action_ttl=.2,control=None,camera=None,trace=None,enable_native_pixels=False,
+                 telemetry_publish_interval_s=0.):
+        self.telemetry_publish_interval_s=telemetry_publish_interval(telemetry_publish_interval_s)
+        self._telemetry_wall=None;self._telemetry_identity=None
+        self._telemetry_published_steps=0;self._telemetry_deferred_steps=0
+        self._telemetry_final_published=False
         from .adapters import default_registry
         self.camera=camera;self.trace=trace;self.output_budgets={};self.output_authorizations={};self.real_time_factor=1.
         self.backend=backend;self.registry=registry or default_registry();self.clock=clock
@@ -884,6 +896,15 @@ class PlatformRuntime:
             self._trace('integration_boundary',episode=self._episode,sim_time=sim_time,targets=targets,output_budgets={r:self.output_budgets.get((r,'aim')) for r in self.control.robot_ids},**self.backend.last_integration_timing)
         self._trace('physics_apply',apply_wall=apply_wall,sim_time=sim_time,episode=self._episode,targets=targets,output_budgets={r:self.output_budgets.get((r,'aim')) for r in self.control.robot_ids},aim_bindings={r:current['bindings'][r]['aim']['epoch'] for r in self.control.robot_ids})
         self.steps+=1;self.last_step_wall=self.clock()
+        # Only the historical display cache is sampled. All camera scheduling,
+        # control/expiry checks, physics and complete receipt traces above still
+        # run at every original step. Never refresh a deferred sample's stamps.
+        identity=(self._episode,guard_revision[0])
+        if (self.telemetry_publish_interval_s>0 and self._telemetry_wall is not None
+            and self._telemetry_identity==identity
+            and 0<=self.last_step_wall-self._telemetry_wall<self.telemetry_publish_interval_s):
+            self._telemetry_deferred_steps+=1
+            return True
         display=self.backend.display_snapshot()
         if self.camera is not None:
             display['camera']=self.camera.status()
@@ -913,8 +934,17 @@ class PlatformRuntime:
             worker_limits=dict(max_slots=2*len(self.control.robot_ids),created=len(self.slots),
                 max_pending_per_slot=1,max_running_per_slot=1,dropped=sum(s.dropped for s in self.slots.values()),
                 lifecycle_errors=sum(s.lifecycle_error is not None for s in self.slots.values())))
+        self._telemetry_wall=self.last_step_wall;self._telemetry_identity=identity
+        self._telemetry_published_steps+=1
         with self.cache_lock:self.cached=display
         return True
+
+    def telemetry_publication_status(self):
+        """Read after stopping for consistent diagnostic counters; no authority."""
+        return dict(interval_s=self.telemetry_publish_interval_s,
+            published_steps=self._telemetry_published_steps,deferred_steps=self._telemetry_deferred_steps,
+            total_steps=self.steps,last_sample_wall=self._telemetry_wall,
+            final_display_outside_cadence=self._telemetry_final_published)
 
     def snapshot(self,token):
         # Current lease state and historical applied sample have separate stamps.
@@ -996,4 +1026,5 @@ class PlatformRuntime:
         display.update(runtime_state='error' if self.error else 'stopped',telemetry_available=True,
             steps=self.steps,applied_targets=neutral,error=self.error,shutdown_status=self.shutdown_status)
         with self.cache_lock:self.cached=display
+        self._telemetry_final_published=True
         self.backend.close()
