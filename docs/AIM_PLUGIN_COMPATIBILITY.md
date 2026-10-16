@@ -8,7 +8,9 @@
 
 当前仿真接口链路是：**MuJoCo 场景实际渲染 RGB/BGR → 原 CameraInfo/K/D/标定和曝光源上下文 + 同次物理快照的本车姿态反馈 → 上位机完整自瞄算法（检测、跟踪及其控制/弹道链）→ 规范 yaw/pitch action → runtime 重查原 80/150 ms 门限及租约 → MuJoCo 云台关节 actuator → 下一次曝光和关节反馈**。适配程序把原图与本车测量交给算法，不从仿真器喂敌方位置、Target 角度或目标身份真值。yaw/pitch 是算法计算后的控制输出，不是替代图像的输入。相机像素由模拟相机产生，不是物理工业相机采集；qpos/qvel 来自模拟关节，不是实物 IMU/编码器采样。[camera.py](../rm_match/platform_v2/camera.py) 在曝光时复制实际 MuJoCo data；[backend.py](../rm_match/platform_v2/backend.py) 执行经过重检的目标并推进物理。仿真 adapter/runtime/actuator 在这里替代 C 板控制与电机执行，没有连接或验证物理 C 板/电机，也尚未复现特定固件的 CAN、电流环、滤波或硬件延迟。
 
-自家 T2 的历史显式配置曾连续三次通过本机静态实时链，正式入口一次物理RTF0.9971029、107个及时结果/97个独立新帧实际关节消费、0fault/0fire/clean；原80/150ms保持，late/pending不计及时推理或动作。后续源检查点的三次静态实时回归仍FAIL，最新RTF0.821310，当前不继承历史实时资格，见[原始失败记录](validation/aim_reference_20261015/README.md)。旧async02的RTF0.5475和额外计时/调度失败保留。同济source04实际原模型prepare/reset/清理通过，仍无真实图像计算。PB source03七包build/三真实节点graph/reset/clean已过；实际首帧在host序列化或跨WSL请求部分传输时超原80ms，尚无该帧MLP/PnP或控制结果。接口合同不表示三套实时自瞄都通过，也不保证未经适配的程序零修改接入。见[历史逐次验证](validation/aim_live_followup_20261014/README.md)与[此前构建/准备记录](validation/universal_aim_20261014/README.md)。
+2026-10-16最新检查点：此前静态/移动场景局部链与pitch重力修复已有证据，但本轮四次原T2移动场景实时复验全部FAIL，RTF0.942783/0.965446/0.814787(额外计时)/0.643594(不绑单核)，不继承历史实时资格。新增本车yaw反馈选项不改变算法角度/RobotIO，接收审计修复不延长原截止；当前目标关联、动态跟踪、射击/完整比赛仍未验。见[本轮原始失败与复现](validation/gimbal_yaw_20261016/README.md)。
+
+历史记录：自家 T2 的历史显式配置曾连续三次通过本机静态实时链，正式入口一次物理RTF0.9971029、107个及时结果/97个独立新帧实际关节消费、0fault/0fire/clean；原80/150ms保持，late/pending不计及时推理或动作。后续源检查点的三次静态实时回归仍FAIL，最新RTF0.821310，当前不继承历史实时资格，见[原始失败记录](validation/aim_reference_20261015/README.md)。旧async02的RTF0.5475和额外计时/调度失败保留。同济source04实际原模型prepare/reset/清理通过，仍无真实图像计算。PB source03七包build/三真实节点graph/reset/clean已过；实际首帧在host序列化或跨WSL请求部分传输时超原80ms，尚无该帧MLP/PnP或控制结果。接口合同不表示三套实时自瞄都通过，也不保证未经适配的程序零修改接入。见[历史逐次验证](validation/aim_live_followup_20261014/README.md)与[此前构建/准备记录](validation/universal_aim_20261014/README.md)。
 
 导航已有 Windows→WSL、实际 LiDAR/IMU→Point-LIO→Nav2→SDK→MuJoCo 的单目标生产 SIL 闭环证据，见 [导航生产验证](validation/pb_wsl_production_20261014/README.md)。这是导航的局部结果，不替代自瞄实时门禁、定位精度、完整比赛或实机 C 板验收。
 

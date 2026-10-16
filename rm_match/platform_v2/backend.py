@@ -16,9 +16,12 @@ class MuJoCoBackend:
     The existing 3v3 core and judge remain unchanged. Supplying a different backend
     preserves the platform protocol; this does not qualify a new roster or ruleset.
     """
-    def __init__(self,sim=None,*,camera=False,virtual_resupply="disabled",navigation_sensors=None,clock=time.perf_counter,gimbal_servo='position'):
-        from .gimbal_servo import servo_mode,GravityPositionServo
+    def __init__(self,sim=None,*,camera=False,virtual_resupply="disabled",navigation_sensors=None,clock=time.perf_counter,gimbal_servo='position',gimbal_yaw_gain=1.):
+        from .gimbal_servo import servo_mode,GravityPositionServo,yaw_gain
         self.gimbal_servo_mode=servo_mode(gimbal_servo)
+        self.gimbal_yaw_gain=yaw_gain(gimbal_yaw_gain)
+        if self.gimbal_servo_mode=='position' and self.gimbal_yaw_gain!=1.:
+            raise ValueError('Explicit yaw gain requires position_gravity_v1 servo')
         from .resupply import VirtualResupply
         self._resupply=VirtualResupply(virtual_resupply)
         if sim is None:
@@ -46,7 +49,7 @@ class MuJoCoBackend:
         self.last_commands={}
         self._gimbal_hold={}
         self._gimbal_was_active={r:False for r in self.robot_ids}
-        self._gimbal_servo=GravityPositionServo(sim.model,self.robot_ids) if self.gimbal_servo_mode=='position_gravity_v1' else None
+        self._gimbal_servo=GravityPositionServo(sim.model,self.robot_ids,yaw_position_gain=self.gimbal_yaw_gain) if self.gimbal_servo_mode=='position_gravity_v1' else None
         # Immutable model-derived cache. Never read model/data in HTTP threads.
         from .spin import capability
         import mujoco
@@ -223,11 +226,13 @@ class MuJoCoBackend:
             command=replace(command,**changes) if changes else command
             if servo is not None:
                 raw_refs[rid]=(command.gimbal_yaw,command.gimbal_pitch)
-                command=servo.apply(rid,command,float(s.data.qpos[s.qindices[rid][4]]),phase)
+                command=servo.apply(rid,command,float(s.data.qpos[s.qindices[rid][4]]),phase,
+                    own_yaw=float(s.data.qpos[s.qindices[rid][3]]),yaw_feedback_enabled=current['gimbal'] is not None)
             return command
         integration_sim_time=self.sim_time
         if guard is None and servo is not None:
-            commands={rid:servo.apply(rid,c,float(s.data.qpos[s.qindices[rid][4]]),'unguarded') for rid,c in commands.items()}
+            commands={rid:servo.apply(rid,c,float(s.data.qpos[s.qindices[rid][4]]),'unguarded',
+                own_yaw=float(s.data.qpos[s.qindices[rid][3]]),yaw_feedback_enabled=targets[rid]['gimbal'] is not None) for rid,c in commands.items()}
         s.step(commands,command_guard=final if guard is not None else None,integration_clock=clock if guard is not None else None)
         self.last_integration_timing=getattr(s,"last_integration_timing",None)
         self.last_commands={r:_command_snapshot(c) for r,c in s.commands.items()}

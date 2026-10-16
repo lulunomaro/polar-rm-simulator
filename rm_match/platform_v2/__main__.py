@@ -18,6 +18,7 @@ def main(argv=None):
     parser.add_argument('--camera',action='store_true',help='Opt in to actual role_v23 calibrated cameras')
     from .gimbal_servo import MODES
     parser.add_argument('--gimbal-servo',choices=MODES,default='position',help='Explicit own-model gravity feedforward for verified planar position servos')
+    parser.add_argument('--gimbal-yaw-gain',type=float,default=1.,help='Explicit bounded own yaw position feedback gain, 1..4; requires gravity servo for values other than 1')
     parser.add_argument('--camera-total-fps',type=float,default=2.)
     parser.add_argument('--telemetry-publish-interval-ms',type=float,default=0.,
         help='Explicit historical display sampling, 0..100 ms; default every physics step; sensors/control/traces unchanged')
@@ -52,6 +53,10 @@ def main(argv=None):
     args=parser.parse_args(argv)
     try:telemetry_interval=telemetry_publish_interval(args.telemetry_publish_interval_ms/1000.)
     except ValueError as exc:parser.error(str(exc))
+    from .gimbal_servo import yaw_gain
+    try:args.gimbal_yaw_gain=yaw_gain(args.gimbal_yaw_gain)
+    except ValueError as exc:parser.error(str(exc))
+    if args.gimbal_yaw_gain!=1. and args.gimbal_servo!='position_gravity_v1':parser.error('Explicit yaw gain requires position_gravity_v1 servo')
     if args.authority_affinity_mask is not None and sys.platform!='win32':parser.error('--authority-affinity-mask requires Windows')
     if args.pb_wsl_navigation_manifest and sys.platform!='win32':parser.error('--pb-wsl-navigation-manifest requires a Windows host')
     from .admission import AdmissionPolicy
@@ -125,7 +130,7 @@ def main(argv=None):
             robots=set(() if robotio is None else robotio['navigation_robots'])
             if args.pb_navigation_manifest or args.pb_wsl_navigation_manifest:robots.add('red_sentry')
             navigation_config=NavigationSensorConfig(robot_ids=tuple(sorted(robots)))
-        backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply,navigation_sensors=navigation_config,gimbal_servo=args.gimbal_servo)
+        backend=MuJoCoBackend(camera=args.camera,virtual_resupply=args.virtual_resupply,navigation_sensors=navigation_config,gimbal_servo=args.gimbal_servo,gimbal_yaw_gain=args.gimbal_yaw_gain)
         if args.camera:
             from .camera import CameraProvider
             camera=CameraProvider(backend._sim,total_fps=args.camera_total_fps,enable_native_pixels=args.private_native_pixels,
@@ -146,7 +151,7 @@ def main(argv=None):
             wsl_native_registered=bool(args.wsl_native_spec),
             wsl_native_transport=None if not args.wsl_native_spec else args.wsl_native_transport,
             prepared_aim_plugin_count=0 if aim_resources is None else len(aim_resources.instances),
-            telemetry_publish_interval_s=telemetry_interval,gimbal_servo=args.gimbal_servo,
+            telemetry_publish_interval_s=telemetry_interval,gimbal_servo=args.gimbal_servo,gimbal_yaw_gain=args.gimbal_yaw_gain,
             host_opencv=host_opencv,
             host_scheduling=scheduling,
             raw_codec_identity=None if camera is None else getattr(camera,'_raw_encoder_metadata',None),

@@ -33,16 +33,16 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "33775591a9f56d1f00ddcab59dc91bf8c0fd67b1fb704585d8d6c84f9a9a5b31",
+      "current_sha256": "b0f5a47915873327654833e04f6644d6ea1080d5a3d462854e3966edfa01faa9",
       "task": "T09,T01,T07 ,T05 ,T03",
-      "reason": "Expose explicit validated gimbal servo option and report startup mode; preserve position default and original runtime/sensor/control deadlines"
+      "reason": "Validate and forward explicit dimensionless yaw feedback gain 1..4 before resource preparation and report startup value; nondefault requires explicit verified servo"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
       "original_sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
-      "current_sha256": "6ef3e29fcc7de760a15e18e5513332263ac1dd0cdda25ff0a7c508e261a35700",
+      "current_sha256": "36c50e78407936d72c35b600c7ae29b348a05a97e222eb459a776ddf962b0f14",
       "task": "T05,T06,T07",
-      "reason": "Explicit own-model planar pitch gravity feedforward, off by default; original raw references restored before each authority guard, no accumulation across phases, expired commands become current measured hold and retain original deadlines; no enemy inputs or physics/gain changes"
+      "reason": "Explicit bounded own-yaw outer position feedback on the verified gravity servo, off at default gain 1; restore raw angle at each original guard and disable feedback boost for expired/revoked target; physical model, source angles and deadlines unchanged"
     },
     {
       "path": "rm_match/platform_v2/camera.py",

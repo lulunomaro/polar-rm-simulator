@@ -49,13 +49,17 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
         host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False,
-        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position'):
+        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position',gimbal_yaw_gain=1.):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
-    from rm_match.platform_v2.gimbal_servo import servo_mode
+    from rm_match.platform_v2.gimbal_servo import servo_mode,yaw_gain
+    gain=yaw_gain(gimbal_yaw_gain)
+    if gain!=1.:
+        if servo_mode(gimbal_servo)!='position_gravity_v1':raise ValueError('Explicit yaw gain requires position_gravity_v1 servo')
+        plan['configuration']['gimbal_yaw_gain']=gain
     if servo_mode(gimbal_servo)!='position':
         plan['configuration']['gimbal_servo']=gimbal_servo
         plan['criteria']['gimbal_servo_configuration_matches_plan']=True
@@ -420,7 +424,7 @@ def async_transaction_measurements(events,transport_evidence):
     from rm_match.platform_v2.contracts import IDENTITY
     from rm_match.integrations.wsl_aim_async_worker import (SCHEMA,TRANSPORT,MAX_IMAGE,
         OWNERSHIP_FIELDS,same_identity,validate_source_context)
-    queued={};terminal={};started={};accepted={};valid=True
+    queued={};terminal={};started={};accepted={};stdout_stamps={};valid=True
     dispositions=Counter()
     def key(row):return row.get('request_id')
     def matches(row,request):
@@ -449,12 +453,26 @@ def async_transaction_measurements(events,transport_evidence):
             elif event=='async_result_accepted80':
                 if serial in accepted or terminal.get(serial)!='async_native_stdout':valid=False
                 accepted[serial]=row
-                if (type(row.get('wall_time')) not in (float,int)
-                    or not row['wall_time']<request['source_context']['wall_deadline']):valid=False
+                stamp=row.get('wall_time');decision=row.get('acceptance_decision_wall',stamp)
+                if (type(stamp) not in (float,int) or not math.isfinite(stamp)
+                    or type(decision) not in (float,int) or not math.isfinite(decision)
+                    or not 0<=decision<=stamp or not decision<request['source_context']['wall_deadline']):valid=False
+                if 'acceptance_decision_wall' in row:
+                    # Separate the original host acceptance check from later
+                    # log publication; never rewrite wall_time or infer a time
+                    # for old evidence. The wrapper still withholds expired
+                    # responses and every actuator retains the original budget.
+                    deadline=row.get('original_host_deadline');original=request.get('original_host_deadline')
+                    stdout=stdout_stamps.get(serial)
+                    if (row.get('wall_clock')!='host_perf_counter' or type(deadline) not in (float,int)
+                        or type(deadline) is not type(original) or deadline!=original
+                        or not decision<deadline<=request['source_context']['wall_deadline']
+                        or type(stdout) not in (float,int) or not request['wall_time']<=stdout<=decision):valid=False
             else:
                 if serial in terminal and not (terminal[serial]=='async_native_stdout'
                     and event=='async_late_discard' and serial not in accepted):valid=False
                 terminal[serial]=event;dispositions[event]+=1
+                if event=='async_native_stdout':stdout_stamps[serial]=row.get('wall_time')
                 if event in ('async_native_stdout','async_late_discard','async_after_pending_discard') and serial not in started:valid=False
     journal=transport_evidence.get('NATIVE_EVENTS.json',{})
     cleanup=transport_evidence.get('CLEANUP.json',{})
@@ -660,7 +678,7 @@ def _run(a,affinity,scheduling):
         authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None),
         profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'),
         telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.),
-        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None),gimbal_servo=getattr(a,'gimbal_servo','position'))
+        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None),gimbal_servo=getattr(a,'gimbal_servo','position'),gimbal_yaw_gain=getattr(a,'gimbal_yaw_gain',1.))
     phase_probe=None
     if getattr(a,'profile_phases',False):
         from rm_match.integrations.phase_timing import NumericPhaseProbe
@@ -705,8 +723,8 @@ def _run(a,affinity,scheduling):
     sys.path.insert(0,str(a.client_root.resolve()))
     from rm_client.sim_platform_client import PlatformClient,ClientError
     credential=provision_operator(out/'admission.json',allowed_robots=(actor_id,))
-    backend=MuJoCoBackend(camera=True,gimbal_servo=plan['configuration'].get('gimbal_servo','position'));sim=backend._sim
-    servo_identity=dict(mode=backend.gimbal_servo_mode,provenance=None if backend._gimbal_servo is None else backend._gimbal_servo.provenance,
+    backend=MuJoCoBackend(camera=True,gimbal_servo=plan['configuration'].get('gimbal_servo','position'),gimbal_yaw_gain=plan['configuration'].get('gimbal_yaw_gain',1.));sim=backend._sim
+    servo_identity=dict(mode=backend.gimbal_servo_mode,yaw_gain=backend.gimbal_yaw_gain,provenance=None if backend._gimbal_servo is None else backend._gimbal_servo.provenance,
         scope='Own-model low-level feedforward only; raw native references and original authority checks unchanged; no target/accuracy/shooting qualification')
     write('GIMBAL_SERVO.json',servo_identity)
     if len(backend.robot_ids)!=6 or backend.timestep!=.002:raise RuntimeError('Six-car dt2ms required')
@@ -986,6 +1004,7 @@ def _run(a,affinity,scheduling):
                 and target_report['vy_mps']==plan['configuration']['moving_target']['vy_mps']))
     if plan['criteria'].get('gimbal_servo_configuration_matches_plan'):
         measured['gimbal_servo_configuration_matches_plan']=(servo_identity['mode']==plan['configuration']['gimbal_servo']
+            and servo_identity['yaw_gain']==plan['configuration'].get('gimbal_yaw_gain',1.)
             and set(servo_identity['provenance'] or {})==set(backend.robot_ids))
     rejects=Counter()
     for event in events:
@@ -1038,6 +1057,7 @@ def main(argv=None):
     p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
     p.add_argument('--gimbal-servo',choices=('position','position_gravity_v1'),default='position',
         help='Explicit own-model gravity feedforward; original deadlines and native references unchanged')
+    p.add_argument('--gimbal-yaw-gain',type=float,default=1.,help='Explicit own yaw position feedback gain, 1..4; other than 1 requires gravity servo')
     p.add_argument('--moving-target-vy-mps',type=float,
         help='Explicit manual scene target motion, magnitude 0.03..0.15 m/s; shooter stays stationary; no navigation/decision qualification')
     p.add_argument('--native-robot-scope',type=Path,help='Explicit local stationary robot identity registration')
@@ -1067,7 +1087,7 @@ def main(argv=None):
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
             profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy,
-            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps,gimbal_servo=a.gimbal_servo)
+            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps,gimbal_servo=a.gimbal_servo,gimbal_yaw_gain=a.gimbal_yaw_gain)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection

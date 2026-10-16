@@ -378,7 +378,8 @@ class WslAsyncAimProcess(WslPipeOperatorProcess):
                     if terminal is not None:
                         self._inflight=None
                         if terminal['kind']=='result' and now<deadline:
-                            self._record('async_result_accepted80',original_host_deadline=deadline,response=terminal['response'],**self._source_fields(slot))
+                            self._record('async_result_accepted80',acceptance_decision_wall=now,
+                                original_host_deadline=deadline,response=terminal['response'],**self._source_fields(slot))
                             if self._phase_probe is not None:self._phase_mark('async_caller_return',slot,detail='accepted')
                             return dict(terminal['response'],episode=source['episode'],should_control=terminal['response']['tracking'])
                         if self._phase_probe is not None:self._phase_mark('async_caller_late_boundary',slot,detail=terminal['kind'])
