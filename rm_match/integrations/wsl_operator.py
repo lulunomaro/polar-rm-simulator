@@ -229,7 +229,18 @@ class WslOperatorProcess:
         try:
             while not cleanup_path.exists() and not pre_exit_path.exists() and time.perf_counter()<deadline-.1 and child.poll() is None:
                 time.sleep(.01)
-            self._load_cleanup_proof()
+            while True:
+                try:
+                    self._load_cleanup_proof()
+                    break
+                except PermissionError:
+                    # DrvFS may expose a cleanup filename before the Linux
+                    # writer releases its Windows sharing lock. Retry only this
+                    # transient read failure inside the ORIGINAL close budget.
+                    # Malformed/mismatched/unproved cleanup is still terminal.
+                    remaining=deadline-.1-time.perf_counter()
+                    if remaining<=0:raise
+                    time.sleep(min(.01,remaining))
             child.wait(timeout=max(0.,deadline-.1-time.perf_counter()))
         except Exception as exc:errors.append(type(exc).__name__+':'+str(exc))
         finally:

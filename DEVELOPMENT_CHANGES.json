@@ -33,9 +33,9 @@
     {
       "path": "rm_match/platform_v2/__main__.py",
       "original_sha256": "dac6819751c0741ded1cc6df4f5df877b0185070e75b98cc02b107a5fe14accc",
-      "current_sha256": "b0f5a47915873327654833e04f6644d6ea1080d5a3d462854e3966edfa01faa9",
+      "current_sha256": "4422e9d66c29a32af5fb9f9cf469caef044354b4834086f3a54898934b237bc0",
       "task": "T09,T01,T07 ,T05 ,T03",
-      "reason": "Validate and forward explicit dimensionless yaw feedback gain 1..4 before resource preparation and report startup value; nondefault requires explicit verified servo"
+      "reason": "Expose explicit owned camera render process mode only with camera enabled; retain default thread mode and existing host scheduling, gimbal, native and protocol options"
     },
     {
       "path": "rm_match/platform_v2/backend.py",
@@ -47,9 +47,9 @@
     {
       "path": "rm_match/platform_v2/camera.py",
       "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
-      "current_sha256": "4d4c173c9da6a82d4da4d2b4a3205e2c19f1c6f216ed3f15b82d3e0ff17cdedb",
+      "current_sha256": "9494170781e8cbf2962c37a2e5d35aa1b1885fe0d8247c66df19535dd7508fb3",
       "task": "T03",
-      "reason": "Add explicit render-ready camera exposure policy: defer new authority snapshots while GL/encoding is busy without refreshing old captures, advancing cadence/round-robin, or bypassing revocation/reset; default latest-pending, calibration, pixel transforms and original 80ms/150ms guards remain unchanged"
+      "reason": "Add explicit owned_process_v1 rendering with bounded binary IPC, immutable saved model and capture integration state; keep default thread renderer and original exposure tokens, raw-pixel seals, calibration and 80ms/150ms admission; retain owned shutdown proof and fail camera on renderer errors"
     },
     {
       "path": "rm_match/platform_v2/client.py",

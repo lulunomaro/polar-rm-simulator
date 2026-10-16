@@ -22,6 +22,7 @@ MAX_VIEWS=8
 MAX_JPEG_BYTES=2*1024*1024
 RAW_BASE64_CHUNK_BYTES=192*1024  # Divisible by three: padding only in final chunk.
 CAPTURE_POLICIES=('latest_pending','render_ready')
+RENDERER_MODES=('thread','owned_process_v1')
 
 
 def encode_raw_base64(raw):
@@ -103,7 +104,7 @@ class CameraProvider:
     def __init__(self,sim,*,clock=time.perf_counter,total_fps=2.,max_frame_age_wall_s=2.5,
                  renderer_factory=MuJoCoCameraRenderer,max_views=MAX_VIEWS,
                  enable_native_pixels=False,native_pixels_hook=None,raw_base64_codec='stdlib_chunked',
-                 capture_policy='latest_pending'):
+                 capture_policy='latest_pending',renderer_mode='thread'):
         import mujoco
         import numpy as np
         from ..camera_profile import SourceCameraProfile
@@ -112,6 +113,12 @@ class CameraProvider:
         if type(capture_policy) is not str or capture_policy not in CAPTURE_POLICIES:
             raise ValueError('Unknown camera capture policy')
         self.capture_policy=capture_policy;self.capture_deferred_busy=0
+        if type(renderer_mode) is not str or renderer_mode not in RENDERER_MODES:
+            raise ValueError('Unknown camera renderer mode')
+        self.renderer_mode=renderer_mode;self.renderer_shutdown_status=None
+        if renderer_mode=='owned_process_v1' and renderer_factory is MuJoCoCameraRenderer:
+            from .camera_process import ProcessCameraRenderer
+            renderer_factory=ProcessCameraRenderer
         if type(enable_native_pixels) is not bool or (native_pixels_hook is not None and not callable(native_pixels_hook)):
             raise ValueError('Invalid local native pixel experiment')
         self.enable_native_pixels=enable_native_pixels;self.native_pixels_hook=native_pixels_hook
@@ -323,7 +330,9 @@ class CameraProvider:
     def _loop(self):
         renderer=None
         try:
-            started=self.clock();renderer=self.renderer_factory(self.model,self.profile)
+            started=self.clock()
+            options={'stop_event':self.stopped} if getattr(self,'renderer_mode','thread')=='owned_process_v1' else {}
+            renderer=self.renderer_factory(self.model,self.profile,**options)
             self.timings.record('renderer_init',self.clock()-started)
             with self.lock:self.renderer_identity=getattr(renderer,'identity',None)
             while not self.stopped.is_set():
@@ -373,6 +382,8 @@ class CameraProvider:
                 try:renderer.close()
                 except BaseException as exc:
                     with self.lock:self.error=type(exc).__name__;self.cache.clear();self.native_cache.clear();self.display_cache.clear()
+                finally:
+                    with self.lock:self.renderer_shutdown_status=copy.deepcopy(getattr(renderer,'shutdown_status',None))
             with self.lock:
                 for cap in self.pending.values():self.free.append(cap.buffer)
                 self.pending.clear();self.running=False
@@ -472,6 +483,8 @@ class CameraProvider:
         with self.lock:return dict(available=not self.stopped.is_set() and self.error is None,
             reason='camera_error:'+self.error if self.error else ('runtime_stopped' if self.stopped.is_set() else 'enabled'),
             capture_policy=self.capture_policy,capture_deferred_busy=self.capture_deferred_busy,
+            renderer_mode=self.renderer_mode,max_renderer_processes=1 if self.renderer_mode=='owned_process_v1' else 0,
+            renderer_shutdown_status=copy.deepcopy(self.renderer_shutdown_status),
             total_fps_limit=self.total_fps,max_frame_age_wall_s=self.ttl,max_views=self.max_views,
             max_renderer_threads=1,max_display_encoder_threads=1,max_pending=self.max_views,max_data_buffers=self.max_views+1,
             max_display_pending=self.max_views,max_display_rgb_bytes=(self.max_views+2)*self.profile.width*self.profile.height*3,

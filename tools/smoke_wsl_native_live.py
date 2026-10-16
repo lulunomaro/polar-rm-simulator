@@ -49,12 +49,19 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
         host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False,
-        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position',gimbal_yaw_gain=1.):
+        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None,gimbal_servo='position',gimbal_yaw_gain=1.,camera_renderer_mode='thread'):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
         raise ValueError('Explicit reviewed raw codec required')
     plan=copy.deepcopy(PLAN)
+    from rm_match.platform_v2.camera import RENDERER_MODES
+    if type(camera_renderer_mode) is not str or camera_renderer_mode not in RENDERER_MODES:
+        raise ValueError('Unknown camera renderer mode')
+    if camera_renderer_mode!='thread':
+        plan['configuration']['camera_renderer_mode']=camera_renderer_mode
+        plan['criteria']['camera_renderer_configuration_matches_plan']=True
+        plan['scope']+='; opt-in owned MuJoCo render process, original exposure and actuator gates retained'
     from rm_match.platform_v2.gimbal_servo import servo_mode,yaw_gain
     gain=yaw_gain(gimbal_yaw_gain)
     if gain!=1.:
@@ -269,6 +276,8 @@ def classify(measurements,*,plan=None):
         checks['telemetry_publication_matches_plan']=m.get('telemetry_publication_matches_plan') is True
     if c.get('gimbal_servo_configuration_matches_plan'):
         checks['gimbal_servo_configuration_matches_plan']=m.get('gimbal_servo_configuration_matches_plan') is True
+    if c.get('camera_renderer_configuration_matches_plan'):
+        checks['camera_renderer_configuration_matches_plan']=m.get('camera_renderer_configuration_matches_plan') is True
     if c.get('original_async_transactions_accounted'):
         checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
     if c.get('host_scheduling_applied_and_restored'):
@@ -678,7 +687,8 @@ def _run(a,affinity,scheduling):
         authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None),
         profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'),
         telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.),
-        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None),gimbal_servo=getattr(a,'gimbal_servo','position'),gimbal_yaw_gain=getattr(a,'gimbal_yaw_gain',1.))
+        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None),gimbal_servo=getattr(a,'gimbal_servo','position'),gimbal_yaw_gain=getattr(a,'gimbal_yaw_gain',1.),
+        camera_renderer_mode=getattr(a,'camera_renderer_mode','thread'))
     phase_probe=None
     if getattr(a,'profile_phases',False):
         from rm_match.integrations.phase_timing import NumericPhaseProbe
@@ -766,10 +776,15 @@ def _run(a,affinity,scheduling):
                 consumed[frame_id]=value;events.append(value)
             return
         events.append(dict(row,host_received_wall=now))
-    class Render(MuJoCoCameraRenderer):
-        def __init__(self,*args):
+    renderer_mode=getattr(a,'camera_renderer_mode','thread')
+    renderer_class=MuJoCoCameraRenderer
+    if renderer_mode=='owned_process_v1':
+        from rm_match.platform_v2.camera_process import ProcessCameraRenderer
+        renderer_class=ProcessCameraRenderer
+    class Render(renderer_class):
+        def __init__(self,*args,**kwargs):
             try:
-                super().__init__(*args)
+                super().__init__(*args,**kwargs)
                 if 'NVIDIA' not in str(self.identity):raise RuntimeError('Actual NVIDIA GL required')
             except BaseException as exc:
                 renderer_errors.append(type(exc).__name__+':'+str(exc));raise
@@ -783,7 +798,7 @@ def _run(a,affinity,scheduling):
             return value
     camera=Camera(sim,clock=time.perf_counter,total_fps=15,max_views=1,renderer_factory=Render,
         enable_native_pixels=a.private_native_pixels,native_pixels_hook=trace if a.private_native_pixels else None,
-        raw_base64_codec=a.raw_base64_codec,capture_policy=getattr(a,'camera_capture_policy','latest_pending'))
+        raw_base64_codec=a.raw_base64_codec,capture_policy=getattr(a,'camera_capture_policy','latest_pending'),renderer_mode=renderer_mode)
     codec_identity=camera._raw_encoder_metadata
     write('RAW_CODEC_IDENTITY.json',codec_identity)
     probe_options={} if phase_probe is None else {'phase_probe':phase_probe}
@@ -1006,6 +1021,11 @@ def _run(a,affinity,scheduling):
         measured['gimbal_servo_configuration_matches_plan']=(servo_identity['mode']==plan['configuration']['gimbal_servo']
             and servo_identity['yaw_gain']==plan['configuration'].get('gimbal_yaw_gain',1.)
             and set(servo_identity['provenance'] or {})==set(backend.robot_ids))
+    if plan['criteria'].get('camera_renderer_configuration_matches_plan'):
+        measured['camera_renderer_configuration_matches_plan']=(camera.renderer_mode==plan['configuration']['camera_renderer_mode']
+            and (camera.renderer_identity or {}).get('isolation')=='owned_process_v1'
+            and (camera.renderer_shutdown_status or {}).get('clean') is True)
+        measured['renderer_shutdown_status']=camera.renderer_shutdown_status
     rejects=Counter()
     for event in events:
         if event['event']=='adapter_result':
@@ -1054,6 +1074,8 @@ def main(argv=None):
         help='Explicit historical display sampling, 0..100 ms; default every step; sensors/control/traces unchanged')
     p.add_argument('--camera-capture-policy',choices=('latest_pending','render_ready'),default='latest_pending',
         help='Explicit local render-ready mode defers fresh exposure while renderer is busy; may reduce FPS, never restamps old pixels')
+    p.add_argument('--camera-renderer-mode',choices=('thread','owned_process_v1'),default='thread',
+        help='Explicit bounded local MuJoCo render process; original exposure identity and deadlines retained')
     p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
     p.add_argument('--gimbal-servo',choices=('position','position_gravity_v1'),default='position',
         help='Explicit own-model gravity feedforward; original deadlines and native references unchanged')
@@ -1087,7 +1109,8 @@ def main(argv=None):
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
             profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy,
-            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps,gimbal_servo=a.gimbal_servo,gimbal_yaw_gain=a.gimbal_yaw_gain)
+            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps,gimbal_servo=a.gimbal_servo,gimbal_yaw_gain=a.gimbal_yaw_gain,
+            camera_renderer_mode=a.camera_renderer_mode)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection
