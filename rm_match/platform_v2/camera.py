@@ -21,6 +21,7 @@ from .camera_pixels import encode_camera_pixels
 MAX_VIEWS=8
 MAX_JPEG_BYTES=2*1024*1024
 RAW_BASE64_CHUNK_BYTES=192*1024  # Divisible by three: padding only in final chunk.
+CAPTURE_POLICIES=('latest_pending','render_ready')
 
 
 def encode_raw_base64(raw):
@@ -101,12 +102,16 @@ class MuJoCoCameraRenderer:
 class CameraProvider:
     def __init__(self,sim,*,clock=time.perf_counter,total_fps=2.,max_frame_age_wall_s=2.5,
                  renderer_factory=MuJoCoCameraRenderer,max_views=MAX_VIEWS,
-                 enable_native_pixels=False,native_pixels_hook=None,raw_base64_codec='stdlib_chunked'):
+                 enable_native_pixels=False,native_pixels_hook=None,raw_base64_codec='stdlib_chunked',
+                 capture_policy='latest_pending'):
         import mujoco
         import numpy as np
         from ..camera_profile import SourceCameraProfile
         if not 0<total_fps<=15 or not .1<=max_frame_age_wall_s<=5:raise ValueError('Invalid camera timing bounds')
         if type(max_views) is not int or not 1<=max_views<=MAX_VIEWS:raise ValueError('Invalid camera view limit')
+        if type(capture_policy) is not str or capture_policy not in CAPTURE_POLICIES:
+            raise ValueError('Unknown camera capture policy')
+        self.capture_policy=capture_policy;self.capture_deferred_busy=0
         if type(enable_native_pixels) is not bool or (native_pixels_hook is not None and not callable(native_pixels_hook)):
             raise ValueError('Invalid local native pixel experiment')
         self.enable_native_pixels=enable_native_pixels;self.native_pixels_hook=native_pixels_hook
@@ -190,6 +195,12 @@ class CameraProvider:
                 for rid in list(values):
                     if rid not in self.desired:values.pop(rid)
             if self.error is not None or not self.desired or now<self.next_capture:return
+            # Wait for GL/encoding readiness before taking a NEW authority
+            # snapshot. Never move an existing capture's timestamp or skip the
+            # revocation/reset bookkeeping above. Busy ticks consume neither
+            # a camera slot nor the round-robin turn. Default policy is unchanged.
+            if self.capture_policy=='render_ready' and self.running:
+                self.capture_deferred_busy+=1;return
             ordered=[r for r in self.ids if r in self.desired]
             rid=ordered[self.cursor%len(ordered)];self.cursor+=1
             old=self.pending.pop(rid,None)
@@ -460,6 +471,7 @@ class CameraProvider:
     def status(self):
         with self.lock:return dict(available=not self.stopped.is_set() and self.error is None,
             reason='camera_error:'+self.error if self.error else ('runtime_stopped' if self.stopped.is_set() else 'enabled'),
+            capture_policy=self.capture_policy,capture_deferred_busy=self.capture_deferred_busy,
             total_fps_limit=self.total_fps,max_frame_age_wall_s=self.ttl,max_views=self.max_views,
             max_renderer_threads=1,max_display_encoder_threads=1,max_pending=self.max_views,max_data_buffers=self.max_views+1,
             max_display_pending=self.max_views,max_display_rgb_bytes=(self.max_views+2)*self.profile.width*self.profile.height*3,

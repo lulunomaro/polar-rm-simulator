@@ -40,16 +40,16 @@
     {
       "path": "rm_match/platform_v2/backend.py",
       "original_sha256": "ea45e1d206ed73019d54d84ebef2a4c6a75904dbbcba478e938fc68cd05a198f",
-      "current_sha256": "e73a520e6d2e11f16d17f3298d77202c943497647582e161c236038afebf7285",
+      "current_sha256": "7ed25f6348e2c2135d953c9e34fc168ff5ba7b26c7da0682547f7f1d7323685b",
       "task": "T05,T06,T07",
-      "reason": "Retain per-actuator authority and provisional dynamics; explicit MuJoCo navigation profile samples actual rays/gyro/accelerometer on physics authority outside the control lock; repeated preparation at the same physical time preserves the original sensor bytes and capture clock; Final guarded actuator command applies returned authorized gimbal angles and captures active-channel facts before target alias mutation; no clock or permission extension; Apply final consume guard yaw/pitch to actual MuJoCo Commands at each actuator write, preserve alias revocation facts and existing fire/authority gates; actual synthetic-command mechanics and original-backend negative control are separate evidence"
+      "reason": "Detach the six immutable Command scalar fields directly for telemetry instead of recursive dataclasses.asdict/deepcopy at every 2ms step and neutralization; original command values, actuator guards, receipts, timestamps and physics cadence remain unchanged"
     },
     {
       "path": "rm_match/platform_v2/camera.py",
       "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
-      "current_sha256": "2232581b5ca0b1d9861b3d4a138e257949d9a2e7da60a7f3b4e63d641acce641",
+      "current_sha256": "4d4c173c9da6a82d4da4d2b4a3205e2c19f1c6f216ed3f15b82d3e0ff17cdedb",
       "task": "T03",
-      "reason": "Separate raw/display and bounded sealed actual RGB before encoding; preserve original capture/deadlines and pixel bytes; measure renderer substages with QPC perf_counter to avoid Windows monotonic quantization"
+      "reason": "Add explicit render-ready camera exposure policy: defer new authority snapshots while GL/encoding is busy without refreshing old captures, advancing cadence/round-robin, or bypassing revocation/reset; default latest-pending, calibration, pixel transforms and original 80ms/150ms guards remain unchanged"
     },
     {
       "path": "rm_match/platform_v2/client.py",

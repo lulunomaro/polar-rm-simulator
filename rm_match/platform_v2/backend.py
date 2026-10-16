@@ -1,9 +1,14 @@
 """Trusted MuJoCo boundary; not passed to algorithm instances or HTTP clients."""
 from __future__ import annotations
-from dataclasses import asdict
 import math
 import threading
 import time
+
+def _command_snapshot(command):
+    # Command contains six immutable scalars. Detach the display dictionary
+    # without dataclasses.asdict's recursive deepcopy on every physics tick.
+    return dict(force_x=command.force_x,force_y=command.force_y,yaw_torque=command.yaw_torque,
+                gimbal_yaw=command.gimbal_yaw,gimbal_pitch=command.gimbal_pitch,fire=command.fire)
 
 class MuJoCoBackend:
     """Current no-GL qualification backend, registry taken from the loaded scene.
@@ -139,7 +144,7 @@ class MuJoCoBackend:
             c=Command(gimbal_yaw=p['gimbal_yaw'],gimbal_pitch=p['gimbal_pitch'])
             commands[rid]=c
             s.data.ctrl[s.aindices[rid]]=[0.,0.,0.,c.gimbal_yaw,c.gimbal_pitch]
-        s.commands=commands;self.last_commands={r:asdict(c) for r,c in commands.items()}
+        s.commands=commands;self.last_commands={r:_command_snapshot(c) for r,c in commands.items()}
 
     def step(self,targets):
         return self._step(targets)
@@ -209,7 +214,7 @@ class MuJoCoBackend:
         integration_sim_time=self.sim_time
         s.step(commands,command_guard=final if guard is not None else None,integration_clock=clock if guard is not None else None)
         self.last_integration_timing=getattr(s,"last_integration_timing",None)
-        self.last_commands={r:asdict(c) for r,c in s.commands.items()}
+        self.last_commands={r:_command_snapshot(c) for r,c in s.commands.items()}
         from .spin import requested_yaw
         feedback={}
         for rid in self.robot_ids:

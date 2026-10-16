@@ -76,14 +76,33 @@ def test_original_host_deadline_is_opaque_on_ros_clock_and_late_result_not_accep
     with pytest.raises(BridgeError,match='response_timeout'):core.receive_pb_result(json.dumps(result(core.bundle)))
     core.close()
 
-def test_actual_static_model_mount_is_hash_bound_and_not_hardware_calibration():
-    ref=ROOT/'artifacts/aim-mount-calibration-20261014-03/MOUNTS.json'
-    if not ref.exists():pytest.skip('Local actual model calibration evidence not present')
-    mount,sha=checked_mount(ref,'296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62','blue_hero')
+def test_actual_static_model_mount_is_hash_bound_and_not_hardware_calibration(tmp_path):
+    from tools.capture_aim_mounts import capture_mounts
+    value=capture_mounts()
+    assert value['origin']=='static_simulation_model_design_not_hardware_calibration'
+    assert value['physics_steps']==0 and value['NN']==0 and value['renderer'] is False
+    raw=(json.dumps(value,indent=2)+'\n').encode();ref=tmp_path/'MOUNTS.json';ref.write_bytes(raw)
+    expected=hashlib.sha256(raw).hexdigest()
+    mount,sha=checked_mount(ref,expected,'blue_hero')
     assert mount['translation_m']==[.38,0.,0.] and mount['pitch_joint_axis']==[0.,-1.,0.]
     assert mount['kinematics']['yaw_to_pitch_translation_m']==[0.,0.,0.]
     with pytest.raises(ContractError):checked_mount(ref,'0'*64,'blue_hero')
     with pytest.raises(ContractError):checked_mount(ref,sha,'nonexistent_robot')
+    value['source_sha256']['rm_match/platform_v2/camera.py']='0'*64
+    raw=json.dumps(value).encode();ref.write_bytes(raw)
+    with pytest.raises(ContractError,match='pb_aim_mount_source_changed'):
+        checked_mount(ref,hashlib.sha256(raw).hexdigest(),'blue_hero')
+
+
+def test_historical_static_mount_cannot_be_silently_reused_after_source_change():
+    ref=ROOT/'artifacts/aim-mount-calibration-20261014-03/MOUNTS.json'
+    if not ref.exists():pytest.skip('Historical local calibration evidence not present')
+    expected='296aaa073da96fa0dcc0ecf473284e76eb94859dd53006457c9507cdda86bf62'
+    value=json.loads(ref.read_bytes())
+    if any(hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=sha for name,sha in value['source_sha256'].items()):
+        with pytest.raises(ContractError,match='pb_aim_mount_source_changed'):checked_mount(ref,expected,'blue_hero')
+    else:
+        checked_mount(ref,expected,'blue_hero')
 
 def test_partial_ros_setup_cleanup_attempts_shutdown_even_on_node_close_error():
     from types import SimpleNamespace

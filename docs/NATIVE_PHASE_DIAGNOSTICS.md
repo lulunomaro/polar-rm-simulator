@@ -35,3 +35,17 @@ host/Linux绝对时钟不互减，原Linux本地时长保持原域。
 
 原始失败、独立CPU量化/绑定撤权审查、离线分块对照、最终测试与复现入口见
 [固定证据](validation/native_phase_20261016/README.md)。
+
+## 显式按渲染就绪拍摄
+
+`CameraProvider(..., capture_policy='render_ready')` 仅在相机工作线程空闲时拍摄新的物理快照。
+本地诊断可用 `--camera-capture-policy render_ready` 选择；默认仍是 `latest_pending`。
+工作线程忙时不复制新快照，不推进拍摄间隔或轮询车辆位置；本车订阅撤销和跨回合清理仍先执行。
+新拍摄使用当时真实的 wall/sim 时间和本车姿态，已有图像不改时间、不改变原 80ms/150ms 门限。
+它可能降低实际帧率，不保证渲染、推理或物理 RTF 达标。计划与报告分别记录选择和实际相机状态。
+该选项适用于相机调度，不依赖队名、自瞄算法或真实目标位置。
+
+相机源码变更后，旧 PB 模拟安装位姿文件会按其原源码 SHA 被拒绝，不能覆盖旧文件或跳过检查。
+可用 `python tools/capture_aim_mounts.py --out artifacts/YOUR_FRESH_MOUNT_DIRECTORY` 从当前编译模型
+重新导出六车静态云台/炮口设计。该步骤零物理步、零渲染、零推理，不是硬件标定，也不会自动重新绑定
+旧 PB 插件 spec；新文件及其 SHA 仍须通过原 `checked_mount`，并为后续算法运行显式准备新的配置和证据。
