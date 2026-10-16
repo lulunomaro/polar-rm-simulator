@@ -49,7 +49,7 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
 
 def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_chunked',host_opencv_threads=None,
         host_python_switch_interval_ms=None,authority_affinity_mask=None,robot_id='red_sentry',native_robot_scope=None,profile_phases=False,
-        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.):
+        camera_capture_policy='latest_pending',telemetry_publish_interval_ms=0.,moving_target_vy_mps=None):
     if transport not in ('wsl_stdio_v1','wsl_stdio_bgr_v2','wsl_async_bgr_v3'):raise ValueError('Explicit reviewed transport required')
     if type(private_native_pixels) is not bool:raise ValueError('Explicit boolean private pixel mode required')
     if type(raw_base64_codec) is not str or raw_base64_codec not in ('stdlib_chunked','pybase64_1_5_1'):
@@ -77,6 +77,14 @@ def build_plan(transport,*,private_native_pixels=False,raw_base64_codec='stdlib_
     scope=load_native_robot_scope(native_robot_scope)
     # Check the same source identity later enforced on actual own measurements.
     actor=scope.match(robot_id,*roster[robot_id])
+    if moving_target_vy_mps is not None:
+        from tools.native_target_motion import target_velocity
+        velocity=target_velocity(moving_target_vy_mps)
+        target=('blue' if actor.team=='red' else 'red')+'_infantry'
+        plan['configuration']['moving_target']=dict(robot_id=target,vy_mps=velocity,
+            profile='scripted_manual_body_velocity_v1',algorithm_input=False)
+        plan['criteria']['original_target_motion_proven']=True
+        plan['scope']='Bounded moving-scene diagnostic, stationary shooter; native target association is unverified; scripted manual target motion is not navigation/decision; not target-tracking, accuracy, shooting, GUI, moving-shooter or full-match qualification'
     if native_robot_scope is not None or robot_id!='red_sentry':
         plan['configuration']['robot_id']=robot_id
         plan['configuration']['native_robot_scope']=dict(path=None if native_robot_scope is None else str(Path(native_robot_scope).absolute()),
@@ -254,9 +262,15 @@ def classify(measurements,*,plan=None):
         checks['original_async_transactions_accounted']=m.get('original_async_transactions_accounted') is True
     if c.get('host_scheduling_applied_and_restored'):
         checks['host_scheduling_applied_and_restored']=m.get('host_scheduling_applied_and_restored') is True
-    return dict(checks=checks,live_static_chain_qualified=all(checks.values()),
+    moving=c.get('original_target_motion_proven') is True
+    if moving:checks['original_target_motion_proven']=m.get('original_target_motion_proven') is True
+    result=dict(checks=checks,live_static_chain_qualified=not moving and all(checks.values()),
         full_match_qualified=False,hardware_qualified=False,visible_qt_qualified=False,
         rejected_or_failed_criteria=[k for k,v in checks.items() if not v])
+    if moving:
+        result['live_moving_scene_chain_qualified']=all(checks.values())
+        result['moving_target_tracking_qualified']=False
+    return result
 
 
 def stage_measurements(events, raw_frames, consumed_frames,*,private_native_pixels=False,pixel_audit=None):
@@ -599,7 +613,8 @@ def run(a):
     report['classification']=classify(report['measurements'],plan=report.pop('_plan'))
     (a.out/'RESULT.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n',encoding='utf-8')
     print(json.dumps(report['classification'],indent=2))
-    return 0 if report['classification']['live_static_chain_qualified'] else 2
+    return 0 if (report['classification']['live_static_chain_qualified']
+        or report['classification'].get('live_moving_scene_chain_qualified') is True) else 2
 
 
 def selected_client_identity(a):
@@ -637,7 +652,8 @@ def _run(a,affinity,scheduling):
         host_opencv_threads=host_threads,host_python_switch_interval_ms=getattr(a,'host_python_switch_interval_ms',None),
         authority_affinity_mask=getattr(a,'authority_affinity_mask',None),robot_id=getattr(a,'robot_id','red_sentry'),native_robot_scope=getattr(a,'native_robot_scope',None),
         profile_phases=getattr(a,'profile_phases',False),camera_capture_policy=getattr(a,'camera_capture_policy','latest_pending'),
-        telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.))
+        telemetry_publish_interval_ms=getattr(a,'telemetry_publish_interval_ms',0.),
+        moving_target_vy_mps=getattr(a,'moving_target_vy_mps',None))
     phase_probe=None
     if getattr(a,'profile_phases',False):
         from rm_match.integrations.phase_timing import NumericPhaseProbe
@@ -689,9 +705,10 @@ def _run(a,affinity,scheduling):
         sim.data.qpos[sim.qindices[rid][1]]=y-SPAWNS[rid][1]
     sim.data.qvel[:]=0;mujoco.mj_forward(sim.model,sim.data)
     write('PUBLIC_INITIAL_SCENE.json',dict(origin='Explicit public static test only; never native DTO',qpos=sim.data.qpos.tolist()))
-    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[];authority_stages={}
+    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[];authority_stages={};target_motion=None
     def trace(row):
         event=row['event'];counts[event]+=1
+        if target_motion is not None:target_motion.consumed(row)
         now=time.perf_counter()
         if event=='physics_apply':
             counts['fire_true']+=sum(bool(t['fire']) for t in row['targets'].values())
@@ -747,24 +764,33 @@ def _run(a,affinity,scheduling):
             started=time.perf_counter()
             index=self.steps
             if phase_probe is not None:phase_probe.mark('authority_step_start',detail=index)
-            try:return super().step_once()
+            try:
+                if target_motion is not None:target_motion.before_step()
+                return super().step_once()
             finally:
                 if phase_probe is not None:phase_probe.mark('authority_step_end',detail=index)
                 step_durations.append(time.perf_counter()-started)
         def close(self):
             if self._authority==threading.get_ident() and 'start' in timing and 'physics_end' not in timing:
                 timing['physics_end']=time.perf_counter()
-            return super().close()
+            try:
+                if target_motion is not None:target_motion.close()
+            finally:super().close()
     runtime=TimedRuntime(backend,camera=camera,registry=registry,clock=time.perf_counter,trace=trace,
         enable_native_pixels=a.private_native_pixels,
         telemetry_publish_interval_s=plan['configuration'].get('telemetry_publish_interval_s',0.))
+    if plan['configuration'].get('moving_target'):
+        from tools.native_target_motion import ScriptedTargetMotion
+        target=plan['configuration']['moving_target']
+        target_motion=ScriptedTargetMotion(runtime.control,backend,target['robot_id'],target['vy_mps'])
     if getattr(a,'profile_authority',False) or phase_probe is not None:
         # Local QPC stage timers only. No suspension, alternate clock or change
         # to original scheduling/80ms/150ms gates; diagnostic overhead is explicit.
         for obj,name,label in ((runtime,'_collect','collect'),(runtime,'_schedule','schedule'),
             (runtime,'_targets','targets'),(backend,'_step','backend_step'),
             (backend,'display_snapshot','display_snapshot'),(runtime.control,'snapshot','control_snapshot'),
-            (camera,'capture_from_authority','camera_authority_capture')):
+            (camera,'capture_from_authority','camera_authority_capture')) + (
+                ((target_motion,'before_step','scripted_target_before_step'),) if target_motion is not None else ()):
             original=getattr(obj,name);samples=authority_stages.setdefault(label,[])
             def timed(*args,_original=original,_samples=samples,**kwargs):
                 start=time.perf_counter()
@@ -864,6 +890,10 @@ def _run(a,affinity,scheduling):
         camera_closed=camera_closed,physics_thread_alive=physics is not None and physics.is_alive(),
         shutdown_status=getattr(runtime,'shutdown_status',None),runtime_error=runtime.error,
         sim_time=sim.time,timing=timing,errors=errors,step_duration_samples_s=step_durations))
+    target_report=None
+    if target_motion is not None:
+        target_report=target_motion.report(raw,consumed)
+        write('TARGET_MOTION.json',dict(report=target_report,windows=target_motion.windows,samples=target_motion.samples))
     durations=run_durations(timing,sim.time);elapsed=durations['run_and_cleanup_wall_s']
     clean=(camera_closed and not http.is_alive() and (physics is None or not physics.is_alive())
         and getattr(runtime,'shutdown_status',{}).get('clean') is True)
@@ -937,6 +967,11 @@ def _run(a,affinity,scheduling):
             writer_required=getattr(native,'_evidence_required',False),async_measurements=async_measurements),
         **stage_measurements(events,raw,consumed,private_native_pixels=a.private_native_pixels,pixel_audit=pixel_audit))
     if async_measurements is not None:measured.update(async_measurements)
+    if target_report is not None:
+        measured.update(target_motion=target_report,
+            original_target_motion_proven=(target_report['original_manual_authority_and_motion_proven'] is True
+                and target_report['robot_id']==plan['configuration']['moving_target']['robot_id']
+                and target_report['vy_mps']==plan['configuration']['moving_target']['vy_mps']))
     rejects=Counter()
     for event in events:
         if event['event']=='adapter_result':
@@ -986,6 +1021,8 @@ def main(argv=None):
     p.add_argument('--camera-capture-policy',choices=('latest_pending','render_ready'),default='latest_pending',
         help='Explicit local render-ready mode defers fresh exposure while renderer is busy; may reduce FPS, never restamps old pixels')
     p.add_argument('--robot-id',default='red_sentry',help='One actual scene robot for this stationary test; requires matching local scope')
+    p.add_argument('--moving-target-vy-mps',type=float,
+        help='Explicit manual scene target motion, magnitude 0.03..0.15 m/s; shooter stays stationary; no navigation/decision qualification')
     p.add_argument('--native-robot-scope',type=Path,help='Explicit local stationary robot identity registration')
     p.add_argument('--raw-base64-codec',choices=('stdlib_chunked','pybase64_1_5_1'),default='stdlib_chunked')
     p.add_argument('--host-opencv-threads',type=int,help='Explicit verified host camera OpenCV thread option, 1..32')
@@ -1013,7 +1050,7 @@ def main(argv=None):
             host_opencv_threads=a.host_opencv_threads,host_python_switch_interval_ms=a.host_python_switch_interval_ms,
             authority_affinity_mask=a.authority_affinity_mask,robot_id=a.robot_id,native_robot_scope=a.native_robot_scope,
             profile_phases=a.profile_phases,camera_capture_policy=a.camera_capture_policy,
-            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms)
+            telemetry_publish_interval_ms=a.telemetry_publish_interval_ms,moving_target_vy_mps=a.moving_target_vy_mps)
         a._client_selection=selected_client_plan(a)
         if a._client_selection is not None:
             selected_plan['client_selection']=a._client_selection
