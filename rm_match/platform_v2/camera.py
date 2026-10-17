@@ -114,7 +114,9 @@ class MuJoCoCameraRenderer:
                 np.array([radius]*3),position,np.eye(3).ravel(),np.array([1,.8,.1,1],dtype=np.float32))
             scene.ngeom+=1
         scene_done=time.perf_counter();ideal=renderer.render();readback_done=time.perf_counter()
-        rgb=self.warp.apply(ideal).copy();warp_done=time.perf_counter()
+        # remap allocates a detached output on every call. Keep that owned
+        # exposure, without another full-frame allocation/copy under the GIL.
+        rgb=self.warp.apply(ideal);warp_done=time.perf_counter()
         self.last_timings=dict(scene_update=scene_done-started,render_readback=readback_done-scene_done,
                               lens_warp=warp_done-readback_done)
         return rgb

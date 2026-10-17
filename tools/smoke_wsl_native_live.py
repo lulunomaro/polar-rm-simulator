@@ -289,6 +289,7 @@ def classify(measurements,*,plan=None):
         actual_evidence_preserved=m.get('native_evidence_closed') is True,
         actual_native_actuation=m.get('distinct_native_actuated_frames',0)>=c['minimum_distinct_native_actuated_frames'],
         physical_integration_evidence=m.get('physical_integration_evidence') is True,
+        no_late_physical_active_calls=type(m.get('late_physical_active_calls')) is int and m['late_physical_active_calls']==0,
         native_sensor_budget_80ms=m.get('native_sensor_budget_80ms') is True,
         actual_transport_matches_plan=m.get('actual_transport_matches_plan') is True,
         exact_sensor_pixel_binding=m.get('exact_sensor_pixel_binding') is True,
@@ -811,6 +812,8 @@ def _run(a,affinity,scheduling):
                 command=dict(backend.last_commands[actor_id])
                 checks=physical_integration_checks(receipt,boundary,ctrl,command)
                 counts['native_integration_attempts']+=1
+                if boundary['targets'][actor_id]['gimbal'] is not None and not checks['actual_call_within_original_wall_budget']:
+                    counts['late_physical_active_calls']+=1
                 passed=all(checks.values());counts['native_physical_integrations']+=passed
                 value=dict(receipt,event='native_integration_attempt',host_received_wall=now,
                     integration_boundary=boundary,physical_integration_checks=checks,physical_integration_verified=passed,
@@ -1067,6 +1070,7 @@ def _run(a,affinity,scheduling):
         native_results=counts['native_result'],distinct_native_actuated_frames=len(consumed),
         distinct_native_prepared_frames=len(prepared),
         physical_integration_evidence=bool(consumed) and all(v['physical_integration_verified'] is True for v in consumed.values()),
+        late_physical_active_calls=counts['late_physical_active_calls'],
         source_unchanged=source_unchanged,sdk_admission=sdk_admitted,window_acknowledged=window_acked,
         native_sensor_budget_80ms=native_budget_ok,
         actual_transport_matches_plan=actual_transport==a.native_transport,

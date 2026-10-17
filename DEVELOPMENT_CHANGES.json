@@ -47,9 +47,9 @@
     {
       "path": "rm_match/platform_v2/camera.py",
       "original_sha256": "bb76a168136a39c9c55b7a642c70a9ea68f46ef6b049ef4aee3e8f6e89a76ad4",
-      "current_sha256": "85192e80ef39568320d71824218bce93f71de0378db4361169550bf84d946325",
+      "current_sha256": "445a143dd3d44020893382163bbb5cdfda24c86dac9e8f45f5095612ea6e8c61",
       "task": "T03",
-      "reason": "Add explicit OpenCV JPEG85 display encoder and reported configuration; retain original RGB-to-BGR display conversion, JPEG quality/2MiB bound, original raw/native pixels, capture identity and expiry/revocation; keep Pillow85 default and isolated display failure"
+      "reason": "Add explicit OpenCV JPEG85 display encoder and reported configuration; retain original RGB-to-BGR display conversion, JPEG quality/2MiB bound, original raw/native pixels, capture identity and expiry/revocation; keep Pillow85 default and isolated display failure; remove redundant full-frame copy after float remap, whose detached per-exposure output is verified against the same readback original copy and across subsequent GL frames; original float maps, pixels, source identity, native/public serialization and expiry unchanged"
     },
     {
       "path": "rm_match/platform_v2/client.py",

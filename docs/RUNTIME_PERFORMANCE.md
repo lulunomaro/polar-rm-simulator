@@ -1,5 +1,11 @@
 # T03 Windows 实时调度修复与验证
 
+移除真实MuJoCo renderer在原浮点畸变映射输出后的多余RGB.copy；保留原float32 map、INTER_LINEAR、分辨率、颜色、曝光身份、原native/public编码及80ms图像/150ms控制/RTF0.98门限。
+实际NVIDIA六车/步进/物理弹丸/重置8曝光：与同一次readback的原复制路径逐字节相同，后续曝光不覆盖旧帧；这是GL帧所有权与像素检查，不是NN/精度或实时验收。
+固定点映射候选出现约288万通道差异/最大7级，初次严格断言失败及后续对照均保留，该候选未进入生产；packed float映射虽相同但微基准无稳定收益，也未采用。
+两次真实T2仍FAIL：01 RTF0.943211/79及时结果/32预写入/30物理帧，出现1次entry及时但真实mj_step调用超期，已排除有效帧；新增严格no_late_physical_active_calls门禁防止好帧掩盖该问题。最终同源02 RTF0.865401/8及时结果/5预写入/4物理帧，晚调用0，仍不满足RTF/数量/运动证据。原01结果不重写，另存只读新门禁复核亦FAIL；波动未隔离，不能把局部复制移除宣称稳定整链提速。
+保持六车2ms、NVIDIA1440×1080/15总fps、自有CPU4 ELF/ONNX、red_infantry静止scope、原SDK手控对方vy.08、gravity/yawgain4及OpenCV JPEG85；火控始终false。未调用子代理，未改模型/NN/Command/物理、未刷新旧时间戳、未输入目标真值，未训练/硬件/整场比赛。证据见[曝光所有权与物理调用门禁](validation/exposure_ownership_20261017/README.md)。
+
 本轮修复实时诊断的执行帧误计：过去first actuator receipt包含仅预写入、随后在积分前撤销的帧，不能证明物理执行。上一检查点03唯一计数帧14仅有actuator记录，没有integration_entry，旧报告1帧不作为有效物理积分证据；历史文件/原判不覆盖，其他历史数量也未经此次新审计。
 现仅计原integration_entry与同一步最终target/budget、实际mj_step调用时刻和本车真实ctrl/Command一致的帧；入口与实际调用都须在原80ms预算内。新增结果接收处置日志保留原collect wall sample及当时sim time，与较晚日志发布时间分开，不刷新身份/期限、不重复检查选取有利时间。
 本轮同配置真实T2 10秒复验RTF0.7384549158、147 raw、103次真实完成均late_discard、及时native_result 0、预写入0、物理执行0；clean/errors[]/fire0，全部实时验收仍FAIL。35次collector late_result中5次在壁钟尚余2.20–8.48ms时仿真预算已超4–8ms，另1次wall/sim均超；这些包括pending状态，不声称是有效目标输出。未归因为单一CPU/GIL或本次日志开销，未盲目重复取最好结果。
@@ -152,3 +158,7 @@ records.tar.gz SHA256：`a91d6dda7fe06e3553193d22bcf12a8e3c8de3b4943972895ef8a9f
 最终QA01四阶段退出0：3665 passed, 46 skipped, 6 warnings, 1024 subtests passed in 166.94s (0:02:46)。driver 228.75098830000206秒/exit0/reaped；508项程序/测试/补丁输入与17944项Git已知全树输入在QA期间前后逐SHA相同。专项、一次真实native与QA的程序输入完全相同；新增测试不代表native/比赛验收通过。
 QA后仅补记文档与永久归档/索引，四份pre-QA文档原字节另存归档；结果增补本身未参加先前QA。当前T2仍FAIL，M0–M5未关闭；未调用子代理。
 永久归档1600记录/574唯一payload，3182406字节；108个实际BGR留本地，Git取1个真实样本；私有账本仅SHA。records.tar.gz SHA256：`9b4ce894f3fb606506bc5a2448b515ab56138edcbe12f6011dd7db1dc67ec35e`。
+
+最终QA01四阶段退出0：3677 passed, 47 skipped, 6 warnings, 1024 subtests passed in 172.84s (0:02:52)。driver 223.32034099999873秒/exit0/reaped；509项程序/测试/补丁输入与17949项Git已知全树输入在QA期间前后逐SHA相同。最终GL02、专项02、真实native02与QA的程序输入完全相同；各01保留此前原源，不继承新门禁。新增测试不代表native/比赛验收通过。
+QA后仅补记文档与永久归档/索引，四份pre-QA文档原字节另存归档；结果增补本身未参加先前QA。当前T2仍FAIL，M0–M5未关闭；未调用子代理。
+永久归档3708记录/625唯一payload，4251989字节；257个实际BGR留本地，Git取2个真实样本；私有账本仅SHA。records.tar.gz SHA256：`a5bf4bc357b9e8011d50774325734df688d193749b816012a36e1e7cfe94f6f6`。
