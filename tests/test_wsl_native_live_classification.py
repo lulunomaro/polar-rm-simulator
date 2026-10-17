@@ -14,7 +14,7 @@ def measured():
     return dict(configuration=copy.deepcopy(smoke.PLAN['configuration']),duration_s=10.,
         physics_rtf=.995,raw_frames=140,native_results=70,distinct_native_actuated_frames=50,
         exact_sensor_pixel_binding=True,source_unchanged=True,sdk_admission=True,
-        native_sensor_budget_80ms=True,
+        native_sensor_budget_80ms=True,physical_integration_evidence=True,
         actual_transport_matches_plan=True,
         adapter_error_count=0,incomplete_native_requests=0,native_evidence_closed=True,
         postclose_actual_pixel_audit=True,

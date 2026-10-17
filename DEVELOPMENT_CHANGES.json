@@ -89,9 +89,9 @@
     {
       "path": "rm_match/platform_v2/runtime.py",
       "original_sha256": "95beaba2d0eab88752bed598a5174432e46673d2074bbdefd3c5a71651748f67",
-      "current_sha256": "ff595d985923903b376d530707c1fe95589a3ee84fe98b550a95297fc39dd6d5",
+      "current_sha256": "444c922dd59afa7756afa2f4cff21c5f4f7ad42dc935e92fca030f922059e0a0",
       "task": "T05,T06,T07 ,T03",
-      "reason": "Query immutable registered scheduling metadata instead of copying complete public descriptors at 500Hz; legacy duck registries remain live; original activation, sensor/frame, expiry, source and consume gates unchanged"
+      "reason": "Query immutable registered scheduling metadata instead of copying complete public descriptors at 500Hz; legacy duck registries remain live; original activation, sensor/frame, expiry, source and consume gates unchanged; trace each collected result disposition with the original decision wall sample/current simulation time, separately from later log publication; no acceptance, expiry, source or authority change"
     },
     {
       "path": "rm_match/platform_v2/server.py",

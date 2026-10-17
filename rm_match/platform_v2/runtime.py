@@ -453,26 +453,37 @@ class PlatformRuntime:
             job=result['job'];o=job['observation'];old=job['binding'];budget=job.get('sensor_budget')
             self._trace('adapter_result',robot_id=rid,kind=kind,binding_epoch=old['epoch'],observed_seq=o['observed_seq'],episode=o['episode'],observation_sim_time=o['sim_time'],wall_deadline=o['wall_deadline'],sensor_budget=budget,sample_identity=job.get('sample_identity'),operator_authorization=job.get('operator_authorization'),started_wall=result.get('started_wall'),completed_wall=result['completed'],error=result['error'],command=result['value'].get('command') if result['value'] else None,
                 discarded_reason=result.get('discarded_reason'),admission_timings=result.get('admission_timings'),exception_diagnostic=result.get('exception_diagnostic'))
+            def disposition(reason,active=None):
+                # Diagnostic only: keep the existing collection sample distinct
+                # from the later trace publication clock. Never refresh a budget
+                # or repeat an authority check to obtain a more favorable time.
+                self._trace('adapter_result_disposition',robot_id=rid,kind=kind,
+                    binding_epoch=old['epoch'],current_binding_epoch=b['epoch'],
+                    episode=o['episode'],current_episode=self._episode,observed_seq=o['observed_seq'],
+                    observation_sim_time=o['sim_time'],wall_deadline=o['wall_deadline'],sensor_budget=budget,
+                    collect_sample_wall=now,collect_sim_time=sim_time,reason=reason,active=active)
             if b['owner'] is None or (b['epoch'],b['owner'],b['lease_epochs'])!=(old['epoch'],old['owner'],old['lease_epochs']):
+                disposition('binding_changed')
                 continue
             if result.get('discarded_reason'):
                 self._clear_aim_source(key)
-                self.status[key]='sample_discarded:'+result['discarded_reason'];continue
+                self.status[key]='sample_discarded:'+result['discarded_reason'];disposition('sample_discarded');continue
             if result.get('private_rejected'):
                 self._clear_aim_source(key)
                 self._native_pixels_denied[key]=(b['epoch'],b['owner'])
                 self._camera_samples.pop(key,None);self.next_observation.pop(key,None)
-                self.status[key]='waiting_for_public_camera';continue
+                self.status[key]='waiting_for_public_camera';disposition('private_source_rejected');continue
             if self._fault_epochs.get(key)==b['epoch']:
                 self._discard_output(key)
+                disposition('sticky_fault')
                 continue  # No queued or late same-generation result can recover a fault.
             if result['error']:
-                self._discard_output(key);self.status[key]='adapter_error:'+result['error'];self._fault_epochs[key]=b['epoch'];continue
+                self._discard_output(key);self.status[key]='adapter_error:'+result['error'];self._fault_epochs[key]=b['epoch'];disposition('adapter_error');continue
             if (o['robot_id']!=rid or o['episode']!=self._episode
                 or now>=o['wall_deadline'] or not 0<=sim_time-o['sim_time']<=self.action_ttl
                 or not self._budget_valid(budget,now,sim_time)
                 or not self._camera_budget_current(rid,kind,b,budget,sim_time,private=job.get('native_pixels') is not None)):
-                self._discard_output(key);self.status[key]='late_result';continue
+                self._discard_output(key);self.status[key]='late_result';disposition('late_result');continue
             fence=self._aim_source_fences.get(key)
             if fence is not None:
                 if fence[0]!=self._aim_binding_identity(b):self._aim_source_fences.pop(key,None)
@@ -481,6 +492,7 @@ class PlatformRuntime:
                     self._trace('adapter_sample_rejected',robot_id=rid,kind=kind,binding_epoch=b['epoch'],
                         episode=o['episode'],observed_seq=o['observed_seq'],wall_deadline=o['wall_deadline'],
                         reason='source_precedes_disallowed_boundary')
+                    disposition('source_invalidated_after_submit')
                     continue
             try:
                 from .navigation_contracts import NAV_STATUS_SCHEMA,validate_navigation_status
@@ -491,6 +503,7 @@ class PlatformRuntime:
                     status=validate_navigation_status(result['value'],o)
                     self._discard_output(key);self.output_budgets.pop(key,None);self.output_authorizations.pop(key,None)
                     self.status[key]='waiting_for_navigation:'+status['status']
+                    disposition('navigation_status')
                     continue
                 if result['value'].get('schema')==AIM_STATUS_SCHEMA:
                     metadata=self.registry.get(b['adapter_id']).descriptor
@@ -507,6 +520,7 @@ class PlatformRuntime:
                     self._trace('aim_status',robot_id=rid,binding_epoch=old['epoch'],
                         observed_seq=o['observed_seq'],episode=o['episode'],status=status['status'],
                         camera_frame_id=o['sensors']['camera'].get('frame_id'),command=None)
+                    disposition('aim_status')
                     continue
                 action=validate_action(result['value'],o,self.registry.get(b['adapter_id']).descriptor)
                 if action['kind']!=kind:raise ValueError('kind mismatch')
@@ -531,8 +545,10 @@ class PlatformRuntime:
                 if kind=='aim':
                     self._remember_aim_status(key,b,o,budget,
                         'result_available' if action['command']['active'] else 'no_target')
+                disposition('accepted',action['command'].get('active'))
             except (ValueError,TypeError,KeyError):
                 self._discard_output(key);self.status[key]='invalid_result';self._fault_epochs[key]=b['epoch']
+                disposition('invalid_result')
 
     def _remember_aim_status(self,key,b,o,budget,status):
         """UI metadata only, bound to the original source and owner; not motion."""

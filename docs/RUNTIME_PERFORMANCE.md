@@ -1,5 +1,10 @@
 # T03 Windows 实时调度修复与验证
 
+本轮修复实时诊断的执行帧误计：过去first actuator receipt包含仅预写入、随后在积分前撤销的帧，不能证明物理执行。上一检查点03唯一计数帧14仅有actuator记录，没有integration_entry，旧报告1帧不作为有效物理积分证据；历史文件/原判不覆盖，其他历史数量也未经此次新审计。
+现仅计原integration_entry与同一步最终target/budget、实际mj_step调用时刻和本车真实ctrl/Command一致的帧；入口与实际调用都须在原80ms预算内。新增结果接收处置日志保留原collect wall sample及当时sim time，与较晚日志发布时间分开，不刷新身份/期限、不重复检查选取有利时间。
+本轮同配置真实T2 10秒复验RTF0.7384549158、147 raw、103次真实完成均late_discard、及时native_result 0、预写入0、物理执行0；clean/errors[]/fire0，全部实时验收仍FAIL。35次collector late_result中5次在壁钟尚余2.20–8.48ms时仿真预算已超4–8ms，另1次wall/sim均超；这些包括pending状态，不声称是有效目标输出。未归因为单一CPU/GIL或本次日志开销，未盲目重复取最好结果。
+六车2ms、真实NVIDIA1440×1080/15总fps、自有CPU4 ELF/ONNX、原red_infantry静止scope、手控对方vy.08、gravity/yawgain4和OpenCV JPEG85保持。原80ms图像、150ms控制、RTF0.98均不变。没有修改算法/模型/Command/物理，没有调用子代理/训练/硬件/整场比赛。证据见[物理积分证据修复](validation/native_integration_20261017/README.md)。
+
 2026-10-17本轮：非阻塞外部采样获得551条GIL样本/79次采样错误，Pillow显示编码为可行动热点之一；该诊断RTF0.919355仍FAIL，采样不是精确CPU占用或等待时间证明。
 新增显式display-jpeg-codec=opencv_jpeg85_v1，只改显示JPEG85；Pillow默认不变，原RGB/BGR、1440×1080/15总fps、80ms图像/150ms控制/RTF0.98保持。初步及最终实际保存帧对照的JPEG字节均与原Pillow一致；不泛化到未经验证的库版本。
 当前无额外包装的OpenCV/Pillow/OpenCV三次真实T2 RTF0.960193/0.862132/0.965395，及时结果48/20/14、独立执行帧16/8/1，全FAIL且clean。显示JPEG均值7.10/11.73/8.17ms、P95 11.74/16.43/12.54ms；复测及时动作反而不足，不能把显示编码局部改善当作自瞄闭环修复。
@@ -143,3 +148,7 @@ QA后原事件聚合：03的14条native_result为tracking=true5条/false9条，�
 QA后仅增补结果文档/永久归档/索引；四份pre-QA文档原字节亦归档；最终结果增补未参加此前QA。三次实际T2与外部采样全部仍FAIL，及时执行复测退化，M0–M5、完整目标精度/关联/射击、GUI、多车与比赛未关闭。
 永久归档3243条记录/649份唯一payload，5087177字节；523份完整实际BGR留本地，Git取4个真实样本，12项私有账本只记SHA。
 records.tar.gz SHA256：`a91d6dda7fe06e3553193d22bcf12a8e3c8de3b4943972895ef8a9f5a7e96b0f`。
+
+最终QA01四阶段退出0：3665 passed, 46 skipped, 6 warnings, 1024 subtests passed in 166.94s (0:02:46)。driver 228.75098830000206秒/exit0/reaped；508项程序/测试/补丁输入与17944项Git已知全树输入在QA期间前后逐SHA相同。专项、一次真实native与QA的程序输入完全相同；新增测试不代表native/比赛验收通过。
+QA后仅补记文档与永久归档/索引，四份pre-QA文档原字节另存归档；结果增补本身未参加先前QA。当前T2仍FAIL，M0–M5未关闭；未调用子代理。
+永久归档1600记录/574唯一payload，3182406字节；108个实际BGR留本地，Git取1个真实样本；私有账本仅SHA。records.tar.gz SHA256：`9b4ce894f3fb606506bc5a2448b515ab56138edcbe12f6011dd7db1dc67ec35e`。

@@ -37,7 +37,7 @@ PLAN = dict(schema='polar.wsl.native.live-plan.v1',
             'adapter_enqueue_to_native_request', 'native_request_to_native_result',
             'native_result_to_actuator_consume', 'exposure_to_actuator_consume'],
         distributions=['sample_count','p50_ms','p95_ms','p99_ms','max_ms'],
-        logging='In-memory small event records; first actuator receipt per source frame, all phase counters'),
+        logging='In-memory small event records; first proven physical integration per source frame, all phase counters'),
     criteria=dict(minimum_physics_rtf=.98, minimum_raw_frames=30,
         minimum_native_results=10, minimum_distinct_native_actuated_frames=10,
         all_raw_encode_ages_at_most_s=.08, all_native_result_ages_at_most_s=.08,
@@ -237,6 +237,44 @@ def actuator_receipt_budget_checks(receipt):
         sim=type(sim) in (int,float) and math.isfinite(sim) and budget['capture_sim_time']<=sim<=budget['sim_deadline'])
 
 
+def _typed_equal(a,b):
+    if type(a) is not type(b):return False
+    if type(a) is dict:return a.keys()==b.keys() and all(_typed_equal(a[k],b[k]) for k in a)
+    if type(a) is list:return len(a)==len(b) and all(_typed_equal(x,y) for x,y in zip(a,b))
+    return a==b
+
+
+def physical_integration_checks(receipt,boundary,actual_ctrl,actual_command):
+    """Audit after mj_step; a preparatory write never proves integration.
+
+    The engine's original uniform entry sample is NOT its later mj_step call.
+    Both must retain the original exposure budget. This cannot grant authority.
+    """
+    numeric=lambda v:type(v) in (int,float) and math.isfinite(v)
+    r=receipt if type(receipt) is dict else {}
+    b=boundary if type(boundary) is dict else {}
+    budget=r.get('budget');rid=r.get('robot_id')
+    valid_budget=native_sensor_budget_valid(budget)
+    start=b.get('integration_start_wall');call=b.get('integration_call_wall');post=b.get('post_step_wall')
+    times=all(numeric(v) for v in (start,call,post)) and start<=call<=post
+    command_fields=('force_x','force_y','yaw_torque','gimbal_yaw','gimbal_pitch')
+    controls=(type(actual_command) is dict and type(actual_ctrl) is list and len(actual_ctrl)==5
+        and all(numeric(v) for v in actual_ctrl)
+        and all(numeric(actual_command.get(k)) and actual_command[k]==v for k,v in zip(command_fields,actual_ctrl))
+        and actual_command.get('fire') is False)
+    target=r.get('target')
+    return dict(entry_phase=r.get('phase')=='integration_entry',
+        original_entry_budget=all(actuator_receipt_budget_checks(r).values()),
+        episode=_typed_equal(r.get('episode'),b.get('episode')) and type(r.get('episode')) is int,
+        entry_wall=times and _typed_equal(r.get('consume_wall'),start),
+        entry_sim=numeric(b.get('sim_time')) and _typed_equal(r.get('consume_sim_time'),b.get('sim_time')),
+        actual_call_within_original_wall_budget=bool(valid_budget and times and budget['capture_wall']<=call<budget['wall_deadline']),
+        final_target=(type(target) is dict and type(target.get('gimbal')) is dict and target.get('fire') is False
+            and _typed_equal(target,b.get('targets',{}).get(rid))),
+        final_budget=bool(valid_budget and _typed_equal(budget,b.get('output_budgets',{}).get(rid))),
+        actual_controls=controls)
+
+
 def classify(measurements,*,plan=None):
     """Late/rejected results and empty measurements never establish live pass."""
     plan=PLAN if plan is None else plan
@@ -250,6 +288,7 @@ def classify(measurements,*,plan=None):
         all_native_requests_completed=m.get('incomplete_native_requests')==0,
         actual_evidence_preserved=m.get('native_evidence_closed') is True,
         actual_native_actuation=m.get('distinct_native_actuated_frames',0)>=c['minimum_distinct_native_actuated_frames'],
+        physical_integration_evidence=m.get('physical_integration_evidence') is True,
         native_sensor_budget_80ms=m.get('native_sensor_budget_80ms') is True,
         actual_transport_matches_plan=m.get('actual_transport_matches_plan') is True,
         exact_sensor_pixel_binding=m.get('exact_sensor_pixel_binding') is True,
@@ -754,7 +793,7 @@ def _run(a,affinity,scheduling):
         sim.data.qpos[sim.qindices[rid][1]]=y-SPAWNS[rid][1]
     sim.data.qvel[:]=0;mujoco.mj_forward(sim.model,sim.data)
     write('PUBLIC_INITIAL_SCENE.json',dict(origin='Explicit public static test only; never native DTO',qpos=sim.data.qpos.tolist()))
-    events=[];raw={};consumed={};counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[];authority_stages={};target_motion=None
+    events=[];raw={};consumed={};prepared=set();entry_candidates=[];counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[];authority_stages={};target_motion=None
     def trace(row):
         event=row['event'];counts[event]+=1
         if target_motion is not None:target_motion.consumed(row)
@@ -762,7 +801,24 @@ def _run(a,affinity,scheduling):
         if event=='physics_apply':
             counts['fire_true']+=sum(bool(t['fire']) for t in row['targets'].values())
             return
-        if event=='integration_boundary':return
+        if event=='integration_boundary':
+            # All receipts from this completed physical step have arrived. Join
+            # the real entry, final target/budget and actual mj_step call only.
+            for receipt in entry_candidates:
+                boundary={k:row[k] for k in ('episode','sim_time','integration_start_wall','integration_call_wall','post_step_wall')}
+                boundary.update(targets={actor_id:row['targets'][actor_id]},output_budgets={actor_id:row['output_budgets'][actor_id]})
+                ctrl=sim.data.ctrl[sim.aindices[actor_id]].tolist()
+                command=dict(backend.last_commands[actor_id])
+                checks=physical_integration_checks(receipt,boundary,ctrl,command)
+                counts['native_integration_attempts']+=1
+                passed=all(checks.values());counts['native_physical_integrations']+=passed
+                value=dict(receipt,event='native_integration_attempt',host_received_wall=now,
+                    integration_boundary=boundary,physical_integration_checks=checks,physical_integration_verified=passed,
+                    actual_qpos=sim.data.qpos[sim.qindices[actor_id]].tolist(),actual_actuator_ctrl=ctrl,actual_command=command)
+                events.append(value)
+                if passed:consumed.setdefault(receipt['budget']['frame_id'],value)
+            entry_candidates.clear()
+            return
         if row.get('robot_id',actor_id)!=actor_id:return
         if event=='actuator_consumed':
             target=row['target'];budget=row.get('budget')
@@ -778,11 +834,9 @@ def _run(a,affinity,scheduling):
                     original_event='actuator_consumed',host_received_wall=now,
                     wall_age_s=wall_age,sim_age_s=sim_age))
             frame_id=budget['frame_id']
-            if frame_id not in consumed:
-                value=dict(row,host_received_wall=now,
-                    actual_qpos=sim.data.qpos[sim.qindices[actor_id]].tolist(),
-                    actual_actuator_ctrl=sim.data.ctrl[sim.aindices[actor_id]].tolist())
-                consumed[frame_id]=value;events.append(value)
+            if frame_id not in prepared:
+                prepared.add(frame_id);events.append(dict(row,host_received_wall=now,evidence_scope='preparatory_write_only'))
+            if row.get('phase')=='integration_entry':entry_candidates.append(dict(row))
             return
         events.append(dict(row,host_received_wall=now))
     renderer_mode=getattr(a,'camera_renderer_mode','thread')
@@ -1011,6 +1065,8 @@ def _run(a,affinity,scheduling):
         camera_capture_policy_matches_plan=camera.capture_policy==plan['configuration'].get('camera_capture_policy','latest_pending'),
         physics_rtf=durations['physics_rtf'],run_durations=durations,raw_frames=len(raw),
         native_results=counts['native_result'],distinct_native_actuated_frames=len(consumed),
+        distinct_native_prepared_frames=len(prepared),
+        physical_integration_evidence=bool(consumed) and all(v['physical_integration_verified'] is True for v in consumed.values()),
         source_unchanged=source_unchanged,sdk_admission=sdk_admitted,window_acknowledged=window_acked,
         native_sensor_budget_80ms=native_budget_ok,
         actual_transport_matches_plan=actual_transport==a.native_transport,
