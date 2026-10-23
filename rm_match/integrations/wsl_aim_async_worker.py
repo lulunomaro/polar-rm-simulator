@@ -28,6 +28,35 @@ WATCHDOG_S=1.0  # Resource hang bound; never an action/observation validity wind
 MAX_EVENTS=4096
 MAX_EVIDENCE_BYTES=8*1024*1024
 OWNERSHIP_FIELDS=('run_id','supervisor_pid','pid','pgid','boot_id','leader_start_ticks','spec_sha256','transport')
+READ_BATCH_LIMIT=16
+READ_BATCH_WALL_S=.001
+
+
+def _drain_payload(fd,payload,progress,*,deadline,clock=None):
+    """Drain currently available bytes, yielding to the original supervisor.
+
+    fd is already nonblocking. Never wait/spin for another fragment, extend the
+    original transaction watchdog, read beyond the existing overflow byte, or
+    let a continuously readable input starve stop/native-stdout processing.
+    progress retains exact partial receipt counts even on EOF/overflow/fault.
+    """
+    if clock is None:clock=time.monotonic
+    start=clock();progress['batches']+=1
+    for attempt in range(READ_BATCH_LIMIT):
+        now=clock()
+        if now>=deadline:raise TimeoutError('async_input_transaction_watchdog')
+        if attempt and now-start>=READ_BATCH_WALL_S:break
+        progress['read_calls']+=1
+        try:n=_read_payload_into(fd,payload,progress['received'])
+        except BlockingIOError:
+            progress['would_blocks']+=1;break
+        if n==0:raise EOFError('async_partial_payload_eof')
+        if n>len(payload)-progress['received']:
+            progress['rejected_read_bytes']=progress.get('rejected_read_bytes',0)+n
+            raise ValueError('async_extra_binary_bytes')
+        progress['received']+=n;progress['bytes_read']+=n
+        if progress['received']==len(payload):break
+    return progress['received']
 
 
 def input_source(header):
@@ -175,6 +204,8 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
     started=time.monotonic();limit=started+startup_timeout if startup_deadline is None else startup_deadline
     slot=NativeComputeSlot();header=bytearray();header_started=None;incoming=None;payload=None;received=0;payload_verified=False
     native_buffer=bytearray();writebuf=b'';written=0;expected=0;outputs=[];ready=False;next_stop=started;startup_error=None
+    input_io=dict(profile='nonblocking_readv_batch16_1ms_v1',received=0,batches=0,read_calls=0,would_blocks=0,
+        bytes_read=0,rejected_read_bytes=0,header_payload_bytes=0,images_verified=0,max_read_calls_per_batch=READ_BATCH_LIMIT,max_batch_wall_s=READ_BATCH_WALL_S)
     def journal(data):
         nonlocal evidence_bytes
         if len(events)>=MAX_EVENTS:raise ValueError('async_evidence_bound')
@@ -268,11 +299,8 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                         emit(completed);native_buffer.clear()
                     continue
                 if payload is not None:
-                    try:n=_read_payload_into(0,payload,received)
-                    except BlockingIOError:continue
-                    if n==0:raise EOFError('async_partial_payload_eof')
-                    if n>MAX_IMAGE-received:raise ValueError('async_extra_binary_bytes')
-                    received+=n
+                    try:_drain_payload(0,payload,input_io,deadline=header_started+WATCHDOG_S)
+                    finally:received=input_io['received']
                 else:
                     try:chunk=os.read(0,65536)
                     except BlockingIOError:continue
@@ -292,12 +320,14 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
                     payload=bytearray(MAX_IMAGE);received=len(chunk)-newline-1;payload_verified=False
                     if received>MAX_IMAGE:raise ValueError('async_extra_binary_bytes')
                     payload[:received]=chunk[newline+1:]
+                    input_io['received']=received;input_io['header_payload_bytes']+=received
                     journal(dict(event='input_header_received',schema=SCHEMA,transport=TRANSPORT,**input_source(incoming),
                         header_validated=True,received_bgr_bytes=received,clock_domain='linux_local_diagnostic_only'))
                 if received!=MAX_IMAGE:continue
                 sha=hashlib.sha256(payload).hexdigest()
                 if sha!=incoming['packet']['frame']['image']['sha256']:raise ValueError('async_payload_sha_mismatch')
                 payload_verified=True
+                input_io['images_verified']+=1
                 if stopped or (out/'STOP').exists():reason='host_cancel';break
                 if time.monotonic()>=header_started+incoming['timeout_s']:
                     f=incoming['packet']['frame']
@@ -338,6 +368,9 @@ def supervise(command,out,fov,*,env=None,spec_sha=None,startup_timeout=15.,contr
         return exit_code
     finally:
         cleanup=None;errors=[];tmp_path=None if tmp is None else tmp.name
+        try:_record(out,'INPUT_IO.json',dict(schema='polar.wsl.async.input-io.v1',**input_io,
+            scope='Local receive diagnostics only; images_verified is original SHA verification, never NN/action proof'))
+        except Exception as error:errors.append('input_io_evidence:'+type(error).__name__)
         if child is not None:
             try:cleanup=owner.cleanup()
             except Exception as error:errors.append('owned_cleanup:'+type(error).__name__)

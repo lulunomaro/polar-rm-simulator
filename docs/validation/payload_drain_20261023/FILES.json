@@ -1,0 +1,17 @@
+{
+  "schema": "polar.validation.files.v1",
+  "files": {
+    "MANIFEST.json": {
+      "size": 799595,
+      "sha256": "d03c598c2274ff3e88ab198982b5ed66c3c2c4170ee7f9844bb7f22eb712ee6b"
+    },
+    "README.md": {
+      "size": 7027,
+      "sha256": "ddf7c768474484c1c59dff5ca98af9fd919f58a4d85efaa8d0cca6b87bc198d9"
+    },
+    "records.tar.gz": {
+      "size": 4305906,
+      "sha256": "553d940176c8da026caf7cbd99d756296d79e84ea3460de4acaa02d434be9354"
+    }
+  }
+}

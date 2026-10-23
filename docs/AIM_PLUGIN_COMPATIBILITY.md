@@ -1,5 +1,10 @@
 # 通用自瞄插件与原 Qt 客户端
 
+2026-10-23：补齐WSL异步自瞄输入的有界连续readv接收，每批最多16次非阻塞读取或1ms即交还外层；原资源看门狗、完整SHA、额外字节/EOF拒绝、原80ms图像/150ms控制/RTF0.98和源身份保持。新增INPUT_IO本地统计及故障时仍回收owned child的保护，不增加图像缓存/队列、不压缩/降采样或更换算法。
+48次同一真实BGR的Windows→WSL ABBA微基准全部SHA相同，外层select总次数3136/1260/1305/4132；耗时12.21/6.31/6.53/6.88ms。首组有预热差异，不声称整链稳定加速；readv调用反而增加。1MiB管道容量实验无稳定收益，未进入生产，也未修改全局WSL配置。
+同日旧接收器对照RTF0.989471、138及时结果/81严格物理帧/2晚活动调用；新接收器RTF0.998485、120及时结果/69严格物理帧/3晚活动调用。两轮均clean/errors[]/禁射，全部原始判定FAIL；未挑较好结果签收，未将images_verified当作NN成功。剩余P0是entry→实际mj_step间过期撤销缺口，晚调用仍阻止整体验收。
+保持六车2ms/NVIDIA1440×1080/15总fps、原自有CPU4 ELF/ONNX/客户端身份、静止red_infantry scope、对方SDK手控vy.08、gravity/yawgain4。未调用子代理/恢复定时任务/训练/硬件/完整比赛；通用接入/导航决策及M0–M5未据此关闭。证据见[有界接收修复](validation/payload_drain_20261023/README.md)。
+
 移除真实MuJoCo renderer在原浮点畸变映射输出后的多余RGB.copy；保留原float32 map、INTER_LINEAR、分辨率、颜色、曝光身份、原native/public编码及80ms图像/150ms控制/RTF0.98门限。
 实际NVIDIA六车/步进/物理弹丸/重置8曝光：与同一次readback的原复制路径逐字节相同，后续曝光不覆盖旧帧；这是GL帧所有权与像素检查，不是NN/精度或实时验收。
 固定点映射候选出现约288万通道差异/最大7级，初次严格断言失败及后续对照均保留，该候选未进入生产；packed float映射虽相同但微基准无稳定收益，也未采用。
@@ -244,3 +249,8 @@ QA后仅补记文档与永久归档/索引，四份pre-QA文档原字节另存�
 最终QA01四阶段退出0：3677 passed, 47 skipped, 6 warnings, 1024 subtests passed in 172.84s (0:02:52)。driver 223.32034099999873秒/exit0/reaped；509项程序/测试/补丁输入与17949项Git已知全树输入在QA期间前后逐SHA相同。最终GL02、专项02、真实native02与QA的程序输入完全相同；各01保留此前原源，不继承新门禁。新增测试不代表native/比赛验收通过。
 QA后仅补记文档与永久归档/索引，四份pre-QA文档原字节另存归档；结果增补本身未参加先前QA。当前T2仍FAIL，M0–M5未关闭；未调用子代理。
 永久归档3708记录/625唯一payload，4251989字节；257个实际BGR留本地，Git取2个真实样本；私有账本仅SHA。records.tar.gz SHA256：`a5bf4bc357b9e8011d50774325734df688d193749b816012a36e1e7cfe94f6f6`。
+
+最终QA01四阶段退出0：3689 passed, 47 skipped, 6 warnings, 1024 subtests passed in 172.76s (0:02:52)。driver 234.44433290000597秒/exit0/reaped；510项程序/测试/补丁输入与17954项Git已知全树输入在QA期间前后逐SHA相同。专项01、真实native01与QA的程序输入完全相同；旧接收器00保留原源，两个实际原生运行均FAIL。新增测试不代表native/比赛验收通过。
+QA后仅补记文档与永久归档/索引，四份pre-QA文档原字节另存归档；结果增补本身未参加先前QA。当前T2仍FAIL，M0–M5未关闭；未调用子代理。
+最终COMPARE.json逐SHA核对510项程序输入，对照00与候选01实际仅wsl_aim_async_worker.py不同，测试文件也相同；不据此推断输入轨迹/系统负载相同。初始恢复candidate.py是后续溢出诊断补记前的中间快照，最终运行source快照保留最终源。
+永久归档2172记录/609唯一payload，4305906字节；276个实际BGR留本地，Git取2个真实样本；私有账本仅SHA。records.tar.gz SHA256：`553d940176c8da026caf7cbd99d756296d79e84ea3460de4acaa02d434be9354`。

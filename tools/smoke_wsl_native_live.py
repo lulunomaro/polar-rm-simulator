@@ -189,7 +189,7 @@ def collect_transport_evidence(native_root,process):
     if len(candidates)!=1:return {},collection
     collection['selected_directory']=str(candidates[0]);evidence={}
     for name in ('WORKER_STARTUP.json','STARTUP_PHASES.json','PRE_NATIVE_EXIT.json',
-        'OWNED_CHILD.json','STARTUP.json','CLEANUP.json','HOST_TRACE.json','SUPERVISOR_ERROR.json','FINAL_IO.json','NATIVE_EVENTS.json'):
+        'OWNED_CHILD.json','STARTUP.json','CLEANUP.json','HOST_TRACE.json','SUPERVISOR_ERROR.json','FINAL_IO.json','NATIVE_EVENTS.json','INPUT_IO.json'):
         path=candidates[0]/name
         if path.is_file():evidence[name]=json.loads(path.read_text(encoding='utf-8'))
     return evidence,collection
