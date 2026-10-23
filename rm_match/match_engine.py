@@ -190,6 +190,24 @@ class MatchSimulation:
                 self.data.ctrl[self.aindices[rid]]=values if self.judge.robots[rid].alive else [0,0,0,0,0]
                 if c.fire:self._fire(rid)
         integration_call=integration_clock() if integration_clock is not None else None
+        deadlines=getattr(command_guard,'integration_deadlines',{})
+        # Entry receipts can take time to prepare. If an original active input
+        # expires before mj_step, revoke through the SAME authority guard and
+        # actual Command writer. No waiting, refreshed input or extra fire.
+        # At most 3 channels per robot can expire under the authority lock.
+        rounds=0
+        while integration_call is not None and deadlines:
+            expired=[rid for rid,deadline in deadlines.items() if integration_call>=deadline]
+            if not expired:break
+            rounds+=1
+            if rounds>3*len(self.robot_ids):raise RuntimeError('Integration expiry guard made no progress')
+            for rid in expired:
+                c=command_guard(rid,self.commands[rid],'integration_expired')
+                self.commands[rid]=c
+                values=[c.force_x,c.force_y,c.yaw_torque,c.gimbal_yaw,c.gimbal_pitch]
+                if not np.isfinite(values).all():raise ValueError('Nonfinite expired-input command')
+                self.data.ctrl[self.aindices[rid]]=values if self.judge.robots[rid].alive else [0,0,0,0,0]
+            integration_call=integration_clock()
         mujoco.mj_step(self.model,self.data);mujoco.mj_forward(self.model,self.data)
         if integration_clock is not None:self.last_integration_timing=dict(integration_start_wall=integration_start,integration_call_wall=integration_call,post_step_wall=integration_clock())
         self._advance_projectiles(before,rot0,dt)

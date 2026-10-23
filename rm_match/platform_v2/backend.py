@@ -233,6 +233,7 @@ class MuJoCoBackend:
         if guard is None and servo is not None:
             commands={rid:servo.apply(rid,c,float(s.data.qpos[s.qindices[rid][4]]),'unguarded',
                 own_yaw=float(s.data.qpos[s.qindices[rid][3]]),yaw_feedback_enabled=targets[rid]['gimbal'] is not None) for rid,c in commands.items()}
+        if guard is not None:final.integration_deadlines=getattr(guard,'integration_deadlines',{})
         s.step(commands,command_guard=final if guard is not None else None,integration_clock=clock if guard is not None else None)
         self.last_integration_timing=getattr(s,"last_integration_timing",None)
         self.last_commands={r:_command_snapshot(c) for r,c in s.commands.items()}

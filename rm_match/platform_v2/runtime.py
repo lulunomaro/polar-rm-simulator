@@ -862,6 +862,7 @@ class PlatformRuntime:
             targets=self._targets(current,sim_time)
             apply_wall=self.clock()
             consumed=[]
+            integration_deadlines={}
             guard_cache={}
             guard_revision=[current['revision']]
             guard_state=[current]
@@ -897,6 +898,23 @@ class PlatformRuntime:
                 consume_wall=self.clock() if sampled_wall is None else sampled_wall
                 consume_sim_time=self.backend.sim_time
                 checked=self._targets(guard_snapshot,consume_sim_time,sampled_wall=consume_wall)[rid]
+                if phase in ('integration_entry','integration_expired'):
+                    deadlines=[]
+                    for channel in ('motion','gimbal','fire'):
+                        if not checked[channel]:continue
+                        lease=guard_snapshot['leases'][rid][channel]
+                        deadlines.append(lease['expires'])
+                        kind='navigation' if channel=='motion' else 'aim'
+                        binding=guard_snapshot['bindings'][rid][kind]
+                        if channel=='fire' or binding['owner'] is None:
+                            deadlines.append(lease['input_expires'])
+                        else:
+                            deadlines.append(self.outputs[rid,kind]['wall_deadline'])
+                            if binding.get('activation_required',False):deadlines.append(binding['activation_expires'])
+                            source_budget=self.output_budgets.get((rid,kind))
+                            if source_budget is not None:deadlines.append(source_budget['wall_deadline'])
+                    if deadlines:integration_deadlines[rid]=min(deadlines)
+                    else:integration_deadlines.pop(rid,None)
                 # Every displayed applied target reflects the final guard too.
                 targets[rid]=checked
                 # Validated motion/spin/gimbal command fields are flat scalars;
@@ -909,6 +927,9 @@ class PlatformRuntime:
                     receipt['aim_reference']=copy.deepcopy(reference)
                 consumed.append(receipt)
                 return checked
+            # Trusted, private expiry hints only. They grant no authority: an
+            # elapsed hint causes the original full guard to run again.
+            command_guard.integration_deadlines=integration_deadlines
             if hasattr(self.backend,'guarded_step'):self.backend.guarded_step(targets,command_guard,clock=self.clock)
             else:self.backend.step(targets)
         for receipt in consumed:self._trace('actuator_consumed',**receipt)

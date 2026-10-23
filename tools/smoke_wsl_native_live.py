@@ -797,6 +797,7 @@ def _run(a,affinity,scheduling):
     events=[];raw={};consumed={};prepared=set();entry_candidates=[];counts=Counter();errors=[];ready=threading.Event();renderer_errors=[];step_durations=[];authority_stages={};target_motion=None
     def trace(row):
         event=row['event'];counts[event]+=1
+        if event=='actuator_consumed' and row.get('phase')=='integration_expired':counts['integration_expiry_revocations']+=1
         if target_motion is not None:target_motion.consumed(row)
         now=time.perf_counter()
         if event=='physics_apply':
@@ -825,6 +826,7 @@ def _run(a,affinity,scheduling):
         if row.get('robot_id',actor_id)!=actor_id:return
         if event=='actuator_consumed':
             target=row['target'];budget=row.get('budget')
+            if row.get('phase')=='integration_expired':events.append(dict(row,host_received_wall=now))
             if target.get('gimbal') is None or budget is None:return
             counts['native_actuator_receipts']+=1
             wall_age=row['consume_wall']-budget['capture_wall']
@@ -1062,7 +1064,7 @@ def _run(a,affinity,scheduling):
             and runtime._telemetry_published_steps+runtime._telemetry_deferred_steps==runtime.steps
             and runtime._telemetry_published_steps>0
             and counts['physics_apply']==counts['integration_boundary']==runtime.steps
-            and counts['actuator_consumed']==18*runtime.steps
+            and counts['actuator_consumed']==18*runtime.steps+counts['integration_expiry_revocations']
             and (runtime.telemetry_publish_interval_s==0. or runtime._telemetry_deferred_steps>0)),
         host_opencv_setting_unchanged=host_unchanged,
         camera_capture_policy_matches_plan=camera.capture_policy==plan['configuration'].get('camera_capture_policy','latest_pending'),
